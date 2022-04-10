@@ -5,33 +5,40 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
+using Model;
+using Repository;
 
 namespace Service
 {
    public class RoomService
    {
-      public void Create(Model.Room room)
+        public RoomService(RoomRepository roomRepository)
+        {
+            this.roomRepository = roomRepository;
+        }
+      public void Create(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room Read()
+      public List<Room> Read()
       {
          // TODO: implement
-         return null;
+         return roomRepository.Read();
       }
       
-      public void Update(Model.Room room)
-      {
-         // TODO: implement
-      }
-      
-      public void Delete(Model.Room room)
+      public void Update(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room FindById(int id)
+      public void Delete(Room room)
+      {
+         // TODO: implement
+      }
+      
+      public Room FindById(int id)
       {
          // TODO: implement
          return null;
@@ -42,7 +49,7 @@ namespace Service
          // TODO: implement
       }
    
-      public Repository.RoomRepository roomRepository;
+      public RoomRepository roomRepository;
    
    }
 }

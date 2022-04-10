@@ -4,7 +4,9 @@
  * Purpose: Definition of the Class Service.MedicalRecordService
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -50,7 +52,7 @@ namespace Service
          return null;
       }
    
-      public Repository.MedicalRecordRepository medicalRecordRepository;
+      public Repository.MedicalRecordsRepository medicalRecordRepository;
    
    }
 }

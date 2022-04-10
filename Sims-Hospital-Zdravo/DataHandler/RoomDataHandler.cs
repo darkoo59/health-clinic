@@ -4,7 +4,10 @@
  * Purpose: Definition of the Class DataHandler.RoomDataHandler
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace DataHandler
 {
@@ -12,8 +15,9 @@ namespace DataHandler
    {
       public List<Room> ReadAll()
       {
-         // TODO: implement
-         return null;
+            string roomsSerialized = System.IO.File.ReadAllText(Path);
+            List<Room> rooms = Newtonsoft.Json.JsonConvert.DeserializeObject <List<Room>>(roomsSerialized);
+            return rooms;
       }
       
       public void Write(List<Room> rooms)
@@ -21,7 +25,7 @@ namespace DataHandler
          // TODO: implement
       }
    
-      private String Path;
+      private String Path = @"..\..\..\Resources\rooms.txt";
    
    }
 }

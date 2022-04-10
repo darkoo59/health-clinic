@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using System;
-
+using static Enums.Enums;
 namespace Model
 {
    public class Doctor
@@ -13,7 +13,7 @@ namespace Model
       private String Name;
       private String Surname;
       private int DoctorID;
-      private Specialty Specialty;
+      private Specialty Specialty { get; set; }
    
       public String _Name
       {
@@ -51,19 +51,6 @@ namespace Model
          {
             if (this.DoctorID != value)
                this.DoctorID = value;
-         }
-      }
-      
-      public Specialty _Specialty
-      {
-         get
-         {
-            return Specialty;
-         }
-         set
-         {
-            if (this.Specialty != value)
-               this.Specialty = value;
          }
       }
    

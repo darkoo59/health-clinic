@@ -5,15 +5,16 @@
  ***********************************************************************/
 
 using System;
+using static Enums.Enums;
 
 namespace Model
 {
    public class MedicalRecord
    {
-      private Patient Patient;
-      private GenderType Gender;
-      private BloodType BloodType;
-      private MaritalType MaritalStatus;
+        private Patient Patient;
+        private GenderType Gender { get; set; }
+        private BloodType BloodType { get; set; }
+        private MaritalType MaritalStatus { get; set; }
    
       public Patient _Patient
       {
@@ -28,44 +29,6 @@ namespace Model
          }
       }
       
-      public GenderType _Gender
-      {
-         get
-         {
-            return Gender;
-         }
-         set
-         {
-            if (this.Gender != value)
-               this.Gender = value;
-         }
-      }
-      
-      public BloodType _BloodType
-      {
-         get
-         {
-            return BloodType;
-         }
-         set
-         {
-            if (this.BloodType != value)
-               this.BloodType = value;
-         }
-      }
-      
-      public MaritalType _MaritalStatus
-      {
-         get
-         {
-            return MaritalStatus;
-         }
-         set
-         {
-            if (this.MaritalStatus != value)
-               this.MaritalStatus = value;
-         }
-      }
    
    }
 }

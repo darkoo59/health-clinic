@@ -4,7 +4,9 @@
  * Purpose: Definition of the Class Service.AppointmentPatientService
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
 
 namespace Service
 {

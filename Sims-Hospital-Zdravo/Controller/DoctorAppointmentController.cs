@@ -4,13 +4,15 @@
  * Purpose: Definition of the Class Controller.DoctorAppointmentController
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
 
 namespace Controller
 {
    public class DoctorAppointmentController
    {
-      public void Create(Appointmnent appointment)
+      public void Create(Appointment appointment)
       {
          // TODO: implement
       }

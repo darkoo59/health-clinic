@@ -5,6 +5,8 @@
  ***********************************************************************/
 
 using System;
+using Enums;
+using static Enums.Enums;
 
 namespace Model
 {
@@ -12,7 +14,7 @@ namespace Model
    {
       private int Floor;
       private int Id;
-      private RoomType Type;
+      private RoomType Type { get; set; }
    
       public int _Floor
       {
@@ -40,18 +42,7 @@ namespace Model
          }
       }
       
-      public RoomType _Type
-      {
-         get
-         {
-            return Type;
-         }
-         set
-         {
-            if (this.Type != value)
-               this.Type = value;
-         }
-      }
+
    
    }
 }

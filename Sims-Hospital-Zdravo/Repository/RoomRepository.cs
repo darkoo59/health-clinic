@@ -4,34 +4,40 @@
  * Purpose: Definition of the Class Repository.RoomRepository
  ***********************************************************************/
 
+using DataHandler;
+using Model;
 using System;
-
+using System.Collections.Generic;
 namespace Repository
 {
    public class RoomRepository
    {
-      public void Create(Model.Room room)
+        public RoomRepository(RoomDataHandler roomDataHandler) 
+        {
+            this.roomDataHandler = roomDataHandler;
+        } 
+      public void Create(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room Read()
+      public List<Room> Read()
       {
          // TODO: implement
-         return null;
+         return roomDataHandler.ReadAll();
       }
       
-      public void Update(Model.Room room)
-      {
-         // TODO: implement
-      }
-      
-      public void Delete(Model.Room room)
+      public void Update(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room FindById(int id)
+      public void Delete(Room room)
+      {
+         // TODO: implement
+      }
+      
+      public Room FindById(int id)
       {
          // TODO: implement
          return null;
@@ -41,53 +47,16 @@ namespace Repository
       {
          // TODO: implement
       }
+
+      public void loadData() 
+      {
+            this.rooms = roomDataHandler.ReadAll();  
+      }
    
       public DataHandler.RoomDataHandler roomDataHandler;
-      public System.Collections.ArrayList room;
+      public List<Room> rooms;
       
       /// <pdGenerated>default getter</pdGenerated>
-      public System.Collections.ArrayList GetRoom()
-      {
-         if (room == null)
-            room = new System.Collections.ArrayList();
-         return room;
-      }
-      
-      /// <pdGenerated>default setter</pdGenerated>
-      public void SetRoom(System.Collections.ArrayList newRoom)
-      {
-         RemoveAllRoom();
-         foreach (Model.Room oRoom in newRoom)
-            AddRoom(oRoom);
-      }
-      
-      /// <pdGenerated>default Add</pdGenerated>
-      public void AddRoom(Model.Room newRoom)
-      {
-         if (newRoom == null)
-            return;
-         if (this.room == null)
-            this.room = new System.Collections.ArrayList();
-         if (!this.room.Contains(newRoom))
-            this.room.Add(newRoom);
-      }
-      
-      /// <pdGenerated>default Remove</pdGenerated>
-      public void RemoveRoom(Model.Room oldRoom)
-      {
-         if (oldRoom == null)
-            return;
-         if (this.room != null)
-            if (this.room.Contains(oldRoom))
-               this.room.Remove(oldRoom);
-      }
-      
-      /// <pdGenerated>default removeAll</pdGenerated>
-      public void RemoveAllRoom()
-      {
-         if (room != null)
-            room.Clear();
-      }
    
    }
 }

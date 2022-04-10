@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sims-Hospital-Zdravo", "Sims-Hospital-Zdravo.csproj", "{2F748E18-41A4-44CE-AFE0-1C0DD2C46807}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sims-Hospital-Zdravo", "Sims-Hospital-Zdravo.csproj", "{32CD1DF0-F6AD-4E43-84FC-A82EE64EB3FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2F748E18-41A4-44CE-AFE0-1C0DD2C46807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F748E18-41A4-44CE-AFE0-1C0DD2C46807}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F748E18-41A4-44CE-AFE0-1C0DD2C46807}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F748E18-41A4-44CE-AFE0-1C0DD2C46807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32CD1DF0-F6AD-4E43-84FC-A82EE64EB3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CD1DF0-F6AD-4E43-84FC-A82EE64EB3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CD1DF0-F6AD-4E43-84FC-A82EE64EB3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CD1DF0-F6AD-4E43-84FC-A82EE64EB3FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2F169053-1791-44AB-9DEE-1AFAF8178B7F}
+		SolutionGuid = {FCBA42E2-DB36-4353-A737-81D0676EFD72}
 	EndGlobalSection
 EndGlobal

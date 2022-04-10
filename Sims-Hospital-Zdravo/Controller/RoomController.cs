@@ -4,34 +4,41 @@
  * Purpose: Definition of the Class Controller.RoomController
  ***********************************************************************/
 
+using Model;
+using Service;
 using System;
+using System.Collections.Generic;
 
 namespace Controller
 {
    public class RoomController
    {
-      public void Create(Model.Room room)
+
+        public RoomController(RoomService roomService) {
+            this.roomService = roomService;
+        }
+      public void Create(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room Read()
+      public List<Room> Read()
       {
          // TODO: implement
-         return null;
+         return roomService.Read();
       }
       
-      public void Update(Model.Room room)
-      {
-         // TODO: implement
-      }
-      
-      public void Delete(Model.Room room)
+      public void Update(Room room)
       {
          // TODO: implement
       }
       
-      public Model.Room FindById(int id)
+      public void Delete(Room room)
+      {
+         // TODO: implement
+      }
+      
+      public Room FindById(int id)
       {
          // TODO: implement
          return null;
@@ -42,12 +49,12 @@ namespace Controller
          // TODO: implement
       }
    
-      private void Validate(Model.Room room)
+      private void Validate(Room room)
       {
          // TODO: implement
       }
    
-      public Service.RoomService roomService;
+      public RoomService roomService;
    
    }
 }

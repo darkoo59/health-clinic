@@ -4,7 +4,9 @@
  * Purpose: Definition of the Class DataHandler.RoomDataHandler
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
 
 namespace DataHandler
 {

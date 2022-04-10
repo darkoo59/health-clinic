@@ -4,7 +4,9 @@
  * Purpose: Definition of the Class Repository.AppointmentRepository
  ***********************************************************************/
 
+using Model;
 using System;
+using System.Collections.Generic;
 
 namespace Repository
 {
