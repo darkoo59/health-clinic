@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo
             foreach(Room room in rooms) {
                 Console.WriteLine(room._Floor);
                 Console.WriteLine(room._Id);
-                
+                Console.WriteLine(room._Type);
             }
         }
     }

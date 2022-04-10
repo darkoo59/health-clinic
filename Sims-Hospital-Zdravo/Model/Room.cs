@@ -6,17 +6,33 @@
 
 using System;
 using Enums;
-using static Enums.Enums;
+
+public enum RoomType { OPERATION, EXAMINATION, MEETING, WAREHOUSE };
 
 namespace Model
 {
-   public class Room
-   {
-      private int Floor;
-      private int Id;
-      private RoomType Type { get; set; }
-   
-      public int _Floor
+    public class Room
+    {
+        private int Floor;
+        private int Id;
+
+        private RoomType Type;
+
+
+        public RoomType _Type 
+        {
+            get
+            {
+                return Type;
+            }
+            set
+            {                 
+                this.Type = value;
+            }
+        }
+
+
+        public int _Floor
       {
          get
          {
@@ -41,8 +57,6 @@ namespace Model
                this.Id = value;
          }
       }
-      
 
-   
-   }
+    }
 }
