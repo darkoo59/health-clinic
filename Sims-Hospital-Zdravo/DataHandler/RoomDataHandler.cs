@@ -25,7 +25,7 @@ namespace DataHandler
          // TODO: implement
       }
    
-      private String Path = @"..\..\..\Resources\rooms.txt";
+      private String Path = @"..\..\Resources\rooms.txt";
    
    }
 }
