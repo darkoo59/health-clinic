@@ -7,6 +7,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DataHandler
 {
@@ -14,16 +15,17 @@ namespace DataHandler
    {
       public List<Appointment> ReadAll()
       {
-         // TODO: implement
-         return null;
-      }
+            string appointmentSerialized = System.IO.File.ReadAllText(Path);
+            List<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Appointment>>(appointmentSerialized);
+            return appointments;
+        }
       
       public void Write(List<Appointment> appointments)
       {
          // TODO: implement
       }
    
-      private String Path;
+      private String Path = @"..\..\Resources\appointment.txt";
    
    }
 }
