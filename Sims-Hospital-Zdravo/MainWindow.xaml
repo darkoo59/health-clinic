@@ -9,5 +9,7 @@
     <Grid>
         <Button Name="Patient" Click="Patient_Click" Width="100" Height="20" HorizontalAlignment="Left">Patient CRUD
         </Button>
+        <Button Name="Secretary" HorizontalAlignment="Left" Margin="156,201,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click">Secretary CRUD
+        </Button>
     </Grid>
 </Window>

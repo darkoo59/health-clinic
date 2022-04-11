@@ -70,6 +70,9 @@
     <Compile Include="Repository\DoctorAppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="SecretaryWindow.xaml.cs">
+      <DependentUpon>SecretaryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
@@ -96,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecretaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

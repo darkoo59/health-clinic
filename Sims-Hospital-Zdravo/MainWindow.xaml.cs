@@ -30,5 +30,11 @@ namespace Sims_Hospital_Zdravo
             PatientWindow pw = new PatientWindow();
             pw.Show();
         }
+
+        private void Secretary_Click(object sender, RoutedEventArgs e)
+        {
+            SecretaryWindow secretaryWindow = new SecretaryWindow();
+            secretaryWindow.Show();
+        }
     }
 }
