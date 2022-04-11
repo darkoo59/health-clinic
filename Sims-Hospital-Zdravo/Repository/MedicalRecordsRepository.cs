@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.MedicalRecordsRepository
  ***********************************************************************/
 
+using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -12,49 +13,111 @@ namespace Repository
 {
     public class MedicalRecordsRepository
     {
-        public int Create(Model.MedicalRecord medicalRecord)
+        public MedicalRecordsRepository(PatientDataHandler patientHandler, MedicalRecordDataHandler recordDataHandler)
+        {
+            patientDataHandler = patientHandler;
+            medicalRecordDataHandler = recordDataHandler;
+        }
+
+        public void Create(Model.MedicalRecord medicalRecord, Patient patient)
         {
             // TODO: implement
-            return 0;
+            this.medicalRecords.Add(medicalRecord);
+            this.patients.Add(patient);
         }
 
         public MedicalRecord FindById(int id)
         {
             // TODO: implement
+            foreach(MedicalRecord record in medicalRecords)
+            {
+                if (record._Id == id)
+                    return record;
+            }
             return null;
         }
 
-        public System.Collections.Generic.List<MedicalRecord> FindAll()
+        //dodato
+        public System.Collections.Generic.List<MedicalRecord> ReadAll()
         {
-            // TODO: implement
-            return null;
+            return medicalRecords;
         }
 
-        public MedicalRecord Update(MedicalRecord medicalRecord)
+        public System.Collections.Generic.List<Patient> ReadAllPatients()
+        {
+            return patients;
+        }
+
+        public void Update(MedicalRecord medicalRecord)
         {
             // TODO: implement
-            return null;
+            foreach(MedicalRecord record in medicalRecords)
+            {
+                if(record._Id == medicalRecord._Id)
+                {
+                    medicalRecords.Remove(record);
+                    medicalRecords.Add(medicalRecord);
+                    return;
+                }
+            }
+            return;
         }
 
         public void DeleteById(int id)
         {
             // TODO: implement
+            foreach(MedicalRecord record in medicalRecords)
+            {
+                if(record._Id == id)
+                {
+                    medicalRecords.Remove(record);
+                    return;
+                }
+            }
+            return;
+                
         }
 
         public void Delete(MedicalRecord medicalRecord)
         {
             // TODO: implement
+            medicalRecords.Remove(medicalRecord);
         }
 
-        public List<MedicalRecord> FindByPatient(Patient patient)
+        public MedicalRecord FindByPatient(Patient patient)
         {
             // TODO: implement
+            foreach (MedicalRecord record in medicalRecords)
+            {
+                if (record._Patient._Id == patient._Id)
+                {
+                    return record;
+                }
+            }
             return null;
         }
 
 
-        public System.Collections.ArrayList medicalRecords;
+        public List<MedicalRecord> medicalRecords;
+        public List<Patient> patients;
         public DataHandler.PatientDataHandler patientDataHandler;
+        public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
 
+        public void loadData()
+        {
+            this.medicalRecords = medicalRecordDataHandler.ReadAll();
+            this.patients = patientDataHandler.ReadAll();
+            foreach(MedicalRecord medicalRecord in medicalRecords)
+            {
+                foreach(Patient patient in patients)
+                {
+                    if(medicalRecord._PatientId == patient._Id)
+                    {
+                        medicalRecord._Patient = patient;
+                        break;
+                    }
+                } 
+            }
+        }
     }
 }

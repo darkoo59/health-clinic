@@ -14,16 +14,18 @@ namespace DataHandler
    {
       public List<MedicalRecord> ReadAll()
       {
-         // TODO: implement
-         return null;
-      }
+            // TODO: implement
+            string recordsSerialized = System.IO.File.ReadAllText(Path);
+            List<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MedicalRecord>>(recordsSerialized);
+            return records;
+        }
       
       public void Write(List<MedicalRecord> MedicalRecords)
       {
          // TODO: implement
       }
    
-      private String Path;
-   
-   }
+      private String Path = @"..\..\Resources\medicalRecord.txt";
+
+    }
 }

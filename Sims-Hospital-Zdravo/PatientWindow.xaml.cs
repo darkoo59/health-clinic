@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Sims_Hospital_Zdravo
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PatientWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PatientWindow : Window
     {
-        public MainWindow()
+        public PatientWindow()
         {
             InitializeComponent();
-        }
-
-        private void Patient_Click(object sender, RoutedEventArgs e)
-        {
-            PatientWindow pw = new PatientWindow();
-            pw.Show();
         }
     }
 }

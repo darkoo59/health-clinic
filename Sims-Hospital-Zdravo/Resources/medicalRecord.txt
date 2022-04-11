@@ -1,0 +1,9 @@
+[
+	{
+		"_Id": 1,
+		"_PatientId": 1,
+		"_GenderType": 1,
+		"_BloodType":  1,
+		"_MaritalType": 1
+	}
+]
