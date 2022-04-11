@@ -19,39 +19,47 @@ namespace Controller
         }
       public void Create(Room room)
       {
-         // TODO: implement
+            try
+            {
+                Validate(room);
+                roomService.Create(room);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
       }
       
       public List<Room> Read()
       {
-         // TODO: implement
          return roomService.Read();
       }
       
       public void Update(Room room)
       {
-         // TODO: implement
-      }
+            roomService.Update(room);
+      } 
       
       public void Delete(Room room)
       {
-         // TODO: implement
+            roomService.Delete(room);
       }
       
       public Room FindById(int id)
       {
-         // TODO: implement
-         return null;
+            return roomService.FindById(id);
       }
       
       public void DeleteById(int id)
       {
-         // TODO: implement
+            roomService.DeleteById(id);
       }
    
       private void Validate(Room room)
       {
-         // TODO: implement
+
+            if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null) 
+                throw new Exception("Warehouse already exists");
+            
       }
    
       public RoomService roomService;

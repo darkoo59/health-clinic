@@ -18,6 +18,13 @@ namespace Model
 
         private RoomType Type;
 
+        public Room(int floor, int id, RoomType type)
+        {
+            this.Floor = floor;
+            this.Id = id;
+            this.Type = type;
+        }
+
 
         public RoomType _Type 
         {
