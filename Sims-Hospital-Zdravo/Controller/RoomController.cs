@@ -8,6 +8,7 @@ using Model;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace Controller
 {
@@ -24,14 +25,15 @@ namespace Controller
                 Validate(room);
                 roomService.Create(room);
             }
-            catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
             }
       }
       
-      public List<Room> Read()
+      public List<Room> ReadAll()
       {
-         return roomService.Read();
+         return roomService.ReadAll();
       }
       
       public void Update(Room room)
@@ -59,7 +61,7 @@ namespace Controller
 
             if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null) 
                 throw new Exception("Warehouse already exists");
-            if (roomService.FindById(room._Id) == null)
+            if (roomService.FindById(room._Id) != null)
                 throw new Exception("Id already exists");
             
       }

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Name="Patient" Click="Patient_Click" Width="100" Height="20" HorizontalAlignment="Left">Patient CRUD
+        <Button Name="Patient" Click="Patient_Click" Width="100" Height="20" HorizontalAlignment="Left" Margin="129,200,0,199">Patient CRUD
         </Button>
+        <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Center">Manager CRUD</Button>        
     </Grid>
 </Window>

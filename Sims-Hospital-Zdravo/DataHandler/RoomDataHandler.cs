@@ -22,7 +22,8 @@ namespace DataHandler
       
       public void Write(List<Room> rooms)
       {
-         // TODO: implement
+            string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(rooms);
+            System.IO.File.WriteAllText(Path, serialized);      
       }
    
       private String Path = @"..\..\Resources\rooms.txt";

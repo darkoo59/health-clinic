@@ -75,6 +75,15 @@
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Utils\RoomValidator.cs" />
+    <Compile Include="View\ManagerDashboard.xaml.cs">
+      <DependentUpon>ManagerDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerInsertRoom.xaml.cs">
+      <DependentUpon>ManagerInsertRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerRooms.xaml.cs">
+      <DependentUpon>ManagerRooms.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,6 +105,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerInsertRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerRooms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
