@@ -14,39 +14,63 @@ namespace Repository
    {
         public RoomRepository(RoomDataHandler roomDataHandler) 
         {
+            this.rooms = new List<Room>();
             this.roomDataHandler = roomDataHandler;
         } 
       public void Create(Room room)
       {
-         // TODO: implement
+            Console.WriteLine(room);
+            this.rooms.Add(room);
       }
       
       public List<Room> Read()
       {
          // TODO: implement
-         return roomDataHandler.ReadAll();
+         return this.rooms;
       }
       
       public void Update(Room room)
       {
-         // TODO: implement
+            int id = room._Id;
+            foreach (Room rm in rooms) 
+            {
+                if (id == rm._Id) {
+                    rm._Id = room._Id;
+                    rm._Floor = room._Floor;
+                    rm._Type = room._Type;
+                    break;
+                }
+            }
       }
       
       public void Delete(Room room)
       {
-         // TODO: implement
+            rooms.Remove(room);
       }
       
       public Room FindById(int id)
       {
-         // TODO: implement
+            foreach (Room room in rooms) 
+            {
+                if (id == room._Id) return room;
+            }
          return null;
       }
       
       public void DeleteById(int id)
       {
-         // TODO: implement
+            Room room = FindById(id);
+            if (room != null) rooms.Remove(room);
       }
+
+        public Room FindByType(RoomType type) { 
+            foreach(Room room in rooms)
+            {
+                if (room._Type == type) return room;
+            }
+
+            return null;
+        } 
 
       public void loadData() 
       {

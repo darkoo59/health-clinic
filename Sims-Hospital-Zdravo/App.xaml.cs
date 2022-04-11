@@ -23,12 +23,13 @@ namespace Sims_Hospital_Zdravo
         public App() 
         {
             RoomDataHandler roomDataHandler = new RoomDataHandler();
+
+
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
             roomRepository.loadData();
             RoomService roomService = new RoomService(roomRepository);
             RoomController roomController = new RoomController(roomService);
 
-            //dodato
             PatientDataHandler patientDataHandler = new PatientDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler);
             List<Patient> patients = medicalRepo.ReadAll();
@@ -43,9 +44,17 @@ namespace Sims_Hospital_Zdravo
                 Console.WriteLine(patient._PhoneNumber);
             }
 
-            List<Room> rooms = roomController.Read();
 
-            foreach(Room room in rooms) {
+            roomController.Create(new Room(2, 2, RoomType.WAREHOUSE));
+            roomController.Create(new Room(2, 2, RoomType.OPERATION));
+            roomController.Create(new Room(2, 2, RoomType.OPERATION));
+            roomController.Create(new Room(2, 2, RoomType.OPERATION));
+
+            List<Room> rooms = roomController.Read();
+            Console.WriteLine(rooms.Count);
+
+            foreach (Room room in rooms)
+            {
                 Console.WriteLine(room._Floor);
                 Console.WriteLine(room._Id);
                 Console.WriteLine(room._Type);

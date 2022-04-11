@@ -17,36 +17,38 @@ namespace Service
         {
             this.roomRepository = roomRepository;
         }
-      public void Create(Room room)
-      {
-         // TODO: implement
-      }
-      
+        public void Create(Room room)
+        {
+            roomRepository.Create(room);
+        }
       public List<Room> Read()
       {
-         // TODO: implement
          return roomRepository.Read();
       }
       
       public void Update(Room room)
       {
-         // TODO: implement
+        roomRepository.Update(room);
       }
       
       public void Delete(Room room)
       {
-         // TODO: implement
+            roomRepository.Delete(room);
       }
       
       public Room FindById(int id)
       {
-         // TODO: implement
-         return null;
+            return roomRepository.FindById(id);
+      }
+
+      public Room FindByType(RoomType type) 
+      {
+            return roomRepository.FindByType(type);
       }
       
       public void DeleteById(int id)
       {
-         // TODO: implement
+            roomRepository.DeleteById(id);
       }
    
       public RoomRepository roomRepository;

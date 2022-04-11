@@ -71,6 +71,7 @@
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
+    <Compile Include="Utils\RoomValidator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
