@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.AppointmentRepositoryPatient
  ***********************************************************************/
 
+using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -12,25 +13,38 @@ namespace Repository
 {
    public class AppointmentRepositoryPatient : AppointmentRepository
    {
-      public List<Appointment> FindByPatientID(int id)
+
+        public List<Appointment> FindByPatientID(int id)
       {
-         // TODO: implement
-         return null;
+            List<Appointment> appointments = new List<Appointment>();
+            foreach (Appointment app in GetAppointment()) {
+                if (app._Id == id) 
+                appointments.Add(app);
+            }
+            return appointments;
       }
       
       public new void Create(Model.Appointment appointment)
       {
-         // TODO: implement
+            AddAppointment(appointment);
       }
       
       public new void Update(Model.Appointment appointment)
       {
-         // TODO: implement
+            foreach (Appointment app in GetAppointment()) 
+            {
+                if (app._Id==appointment._Id) 
+                {
+                   RemoveAppointment(app);
+                    AddAppointment(appointment);
+                    break;
+                }
+            }
       }
       
       public new void Delete(Model.Appointment appointment)
       {
-         // TODO: implement
+            RemoveAppointment(appointment);
       }
    
    }
