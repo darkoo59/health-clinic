@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Model;
+using Service;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +13,11 @@ namespace Controller
 {
    public class MedicalRecordController
    {
+
+      public MedicalRecordController(MedicalRecordService recordService)
+        {
+            medicalRecordService = recordService;
+        }
       public int Create(MedicalRecord medicalRecord)
       {
          // TODO: implement

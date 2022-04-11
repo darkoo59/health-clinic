@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Model;
+using Repository;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +13,11 @@ namespace Service
 {
    public class MedicalRecordService
    {
+
+        public MedicalRecordService(MedicalRecordsRepository medicalRepo)
+        {
+            medicalRecordRepository = medicalRepo;
+        }
       public int Create(MedicalRecord medicalRecord)
       {
          // TODO: implement

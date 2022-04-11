@@ -31,18 +31,11 @@ namespace Sims_Hospital_Zdravo
             RoomController roomController = new RoomController(roomService);
 
             PatientDataHandler patientDataHandler = new PatientDataHandler();
-            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler);
-            List<Patient> patients = medicalRepo.ReadAll();
-            foreach(Patient patient in patients)
-            {
-                Console.WriteLine("Odavde krece pacijent :");
-                Console.WriteLine(patient._Id);
-                Console.WriteLine(patient._Name);
-                Console.WriteLine(patient._BirthDate);
-                Console.WriteLine(patient._Email);
-                Console.WriteLine(patient._Jmbg);
-                Console.WriteLine(patient._PhoneNumber);
-            }
+            MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
+            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler, medicalRecordDataHandler);
+            medicalRepo.loadData();
+            MedicalRecordService recordService = new MedicalRecordService(medicalRepo);
+            MedicalRecordController recordController = new MedicalRecordController(recordService);
 
 
             roomController.Create(new Room(2, 2, RoomType.WAREHOUSE));
