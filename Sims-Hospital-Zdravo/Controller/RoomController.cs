@@ -6,67 +6,91 @@
 
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Controller
 {
-   public class RoomController
-   {
+    public class RoomController
+    {
+        public RoomService roomService;
 
-        public RoomController(RoomService roomService) {
+
+        public RoomController(RoomService roomService)
+        {
             this.roomService = roomService;
         }
-      public void Create(Room room)
-      {
+        public void Create(Room room)
+        {
             try
             {
-                Validate(room);
+                RoomValidator validator = new RoomValidator(roomService, room);
+                validator.ValidateCreate();
                 roomService.Create(room);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-      }
-      
-      public List<Room> ReadAll()
-      {
-         return roomService.ReadAll();
-      }
-      
-      public void Update(Room room)
-      {
-            roomService.Update(room);
-      } 
-      
-      public void Delete(Room room)
-      {
-            roomService.Delete(room);
-      }
-      
-      public Room FindById(int id)
-      {
-            return roomService.FindById(id);
-      }
-      
-      public void DeleteById(int id)
-      {
-            roomService.DeleteById(id);
-      }
-   
-      private void Validate(Room room)
-      {
+        }
 
-            if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null) 
-                throw new Exception("Warehouse already exists");
-            if (roomService.FindById(room._Id) != null)
-                throw new Exception("Id already exists");
-            
-      }
-   
-      public RoomService roomService;
-   
-   }
+        public ref ObservableCollection<Room> ReadAll()
+        {
+            return ref roomService.ReadAll();
+        }
+
+        public void Update(Room room)
+        {
+            try
+            {
+                RoomValidator validator = new RoomValidator(roomService, room);
+                validator.ValidateUpdate();
+                roomService.Update(room);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void Delete(Room room)
+        {
+            try
+            {
+                RoomValidator validator = new RoomValidator(roomService, room);
+                validator.ValidateDelete();
+                roomService.Delete(room);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public Room FindById(int id)
+        {
+            return roomService.FindById(id);
+        }
+
+        public void DeleteById(int id)
+        {
+            try
+            {
+                RoomValidator validator = new RoomValidator(roomService, null);
+                validator.ValidateDelete(id);
+                roomService.DeleteById(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+
+    }
 }

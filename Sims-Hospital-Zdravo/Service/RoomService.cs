@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Model;
 using Repository;
 
@@ -21,9 +22,9 @@ namespace Service
         {
             roomRepository.Create(room);
         }
-        public List<Room> ReadAll()
+        public ref ObservableCollection<Room> ReadAll()
         {
-            return roomRepository.ReadAll();
+            return ref roomRepository.ReadAll();
         }
 
         public void Update(Room room)

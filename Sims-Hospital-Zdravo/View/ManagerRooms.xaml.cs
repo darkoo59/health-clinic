@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -34,6 +36,21 @@ namespace Sims_Hospital_Zdravo.View
             ManagerInsertRoom managerInRoom = new ManagerInsertRoom(roomController);
             managerInRoom.Show();
 
+        }
+
+        private void UpdateRoom_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = roomsTable.SelectedItem};
+            managerUpdateRoom.Show();
+        }
+
+        private void DeleteRoom_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
+            if(dialogResult == MessageBoxResult.Yes)
+            {
+                roomController.Delete((Room)roomsTable.SelectedItem);
+            }
         }
     }
 }

@@ -17,12 +17,12 @@ using System.Windows.Shapes;
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
-    /// Interaction logic for ManagerInsertRoom.xaml
+    /// Interaction logic for ManagerUpdateRoom.xaml
     /// </summary>
-    public partial class ManagerInsertRoom : Window
+    public partial class ManagerUpdateRoom : Window
     {
         private RoomController roomController;
-        public ManagerInsertRoom(RoomController roomController)
+        public ManagerUpdateRoom(RoomController roomController)
         {
             InitializeComponent();
             this.roomController = roomController;
@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.View
             try
             {
                 Room room = new Room(Int32.Parse(FloorTxt.Text), Int32.Parse(RoomIdTxt.Text), (RoomType)RoomTypeCmb.SelectedValue);
-                roomController.Create(room);
+                roomController.Update(room);
                 Close();
             }
             catch (Exception ex)

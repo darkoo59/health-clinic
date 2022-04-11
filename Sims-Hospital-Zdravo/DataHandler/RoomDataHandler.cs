@@ -7,20 +7,21 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace DataHandler
 {
    public class RoomDataHandler
    {
-      public List<Room> ReadAll()
+      public ObservableCollection<Room> ReadAll()
       {
             string roomsSerialized = System.IO.File.ReadAllText(Path);
-            List<Room> rooms = Newtonsoft.Json.JsonConvert.DeserializeObject <List<Room>>(roomsSerialized);
+            ObservableCollection<Room> rooms = Newtonsoft.Json.JsonConvert.DeserializeObject <ObservableCollection<Room>>(roomsSerialized);
             return rooms;
       }
       
-      public void Write(List<Room> rooms)
+      public void Write(ObservableCollection<Room> rooms)
       {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(rooms);
             System.IO.File.WriteAllText(Path, serialized);      

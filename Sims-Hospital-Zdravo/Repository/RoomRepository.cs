@@ -8,28 +8,30 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Repository
 {
     public class RoomRepository
     {
         public RoomDataHandler roomDataHandler;
-        public List<Room> rooms;
+        public ObservableCollection<Room> rooms;
         public RoomRepository(RoomDataHandler rmDataHandler)
         {
-            rooms = new List<Room>();
+            rooms = new ObservableCollection<Room>();
             roomDataHandler = rmDataHandler;
             loadDataFromFiles();
 
         }
         public void Create(Room room)
         {
-            this.rooms.Add(room);
-            roomDataHandler.Write(rooms);
+            rooms.Add(room);
+            loadDataToFile();
         }
 
-        public List<Room> ReadAll()
+        public ref ObservableCollection<Room> ReadAll()
         {
-            return this.rooms;
+            return ref rooms;
         }
 
         public void Update(Room room)
@@ -45,8 +47,6 @@ namespace Repository
                     return;
                 }
             }
-
-            throw new Exception("Room doesn't exist!");
         }
 
         public void Delete(Room room)
@@ -58,7 +58,10 @@ namespace Repository
         {
             foreach (Room room in rooms)
             {
-                if (id == room._Id) return room;
+                if (id == room._Id)
+                {
+                    return room;
+                }
             }
             return null;
         }
@@ -73,7 +76,10 @@ namespace Repository
         {
             foreach (Room room in rooms)
             {
-                if (room._Type == type) return room;
+                if (room._Type == type)
+                {
+                    return room;
+                }
             }
 
             return null;
@@ -84,7 +90,7 @@ namespace Repository
             rooms = roomDataHandler.ReadAll();
         }
 
-        public void loadDataToFiles() 
+        public void loadDataToFile() 
         {
             roomDataHandler.Write(rooms);
         }
