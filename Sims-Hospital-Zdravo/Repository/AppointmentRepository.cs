@@ -4,42 +4,40 @@
  * Purpose: Definition of the Class Repository.AppointmentRepository
  ***********************************************************************/
 
-using Model;
 using System;
-using System.Collections.Generic;
 
 namespace Repository
 {
    public class AppointmentRepository
    {
-      public void Create(Model.Appointment appointment)
+      protected void Create(Model.Appointment appointment)
       {
          // TODO: implement
       }
       
-      public void Update(Model.Appointment appointment)
+      protected void Update(Model.Appointment appointment)
       {
          // TODO: implement
       }
       
-      public void Delete(Model.Appointment appointment)
+      protected void Delete(Model.Appointment appointment)
       {
          // TODO: implement
       }
       
-      public List<Appointment> FindByDoctorId(int id)
-      {
-         // TODO: implement
-         return null;
-      }
-      
-      public List<Appointment> FindByPatientId(int id)
+      protected List<Appointment> FindByDoctorId(int id)
       {
          // TODO: implement
          return null;
       }
       
-      public List<Appointment> FindAll()
+      protected List<Appointment> FindByPatientId(int id)
+      {
+         // TODO: implement
+         return null;
+      }
+      
+      protected List<Appointment> FindAll()
       {
          // TODO: implement
          return null;
