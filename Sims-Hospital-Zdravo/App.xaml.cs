@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo
 
 
 
-            roomController.Create(new Room(2, 2, RoomType.OPERATION));
+            roomController.Create(new Room(2, 2, RoomType.WAREHOUSE));
             roomController.Create(new Room(2, 2, RoomType.OPERATION));
             roomController.Create(new Room(2, 2, RoomType.OPERATION));
             roomController.Create(new Room(2, 2, RoomType.OPERATION));

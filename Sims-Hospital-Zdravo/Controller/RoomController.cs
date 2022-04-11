@@ -59,6 +59,8 @@ namespace Controller
 
             if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null) 
                 throw new Exception("Warehouse already exists");
+            if (roomService.FindById(room._Id) == null)
+                throw new Exception("Id already exists");
             
       }
    
