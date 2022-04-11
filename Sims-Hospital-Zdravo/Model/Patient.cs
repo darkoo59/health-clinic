@@ -17,6 +17,17 @@ namespace Model
       private String Email;
       private String Jmbg;
       private String PhoneNumber;
+
+        public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg, String phoneNumber)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.BirthDate = birthDate;
+            this.Email = email;
+            this.Jmbg = jmbg;
+            this.PhoneNumber = phoneNumber;
+        }
    
       public int _Id
       {

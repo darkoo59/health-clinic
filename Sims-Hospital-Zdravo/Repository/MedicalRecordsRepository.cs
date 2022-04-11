@@ -19,10 +19,11 @@ namespace Repository
             medicalRecordDataHandler = recordDataHandler;
         }
 
-        public void Create(Model.MedicalRecord medicalRecord)
+        public void Create(Model.MedicalRecord medicalRecord, Patient patient)
         {
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
+            this.patients.Add(patient);
         }
 
         public MedicalRecord FindById(int id)

@@ -37,6 +37,8 @@ namespace Sims_Hospital_Zdravo
             MedicalRecordService recordService = new MedicalRecordService(medicalRepo);
             MedicalRecordController recordController = new MedicalRecordController(recordService);
 
+            recordController.Create(new MedicalRecord(1, 1, GenderType.MALE, BloodType.ABNEGATIVE, MaritalType.MARRIED),
+                new Patient(1,"Darko","Selakovic",new DateTime(2000,11,01),"darkoo@gmail.com","123214123","+381321333"));
 
             roomController.Create(new Room(2, 2, RoomType.WAREHOUSE));
             roomController.Create(new Room(2, 2, RoomType.OPERATION));

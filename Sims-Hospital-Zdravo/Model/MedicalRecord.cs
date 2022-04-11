@@ -5,7 +5,11 @@
  ***********************************************************************/
 
 using System;
-using static Enums.Enums;
+
+
+public enum BloodType { APOSITIVE, ANEGATIVE, ABPOSITIVE, ABNEGATIVE, BPOSITIVE, BNEGATIVE, OPOSITIVE, ONEGATIVE };
+public enum GenderType { MALE, FEMALE };
+public enum MaritalType { MARRIED, UNMARRIED, DIVORCED, WIDOVER };
 
 namespace Model
 {
