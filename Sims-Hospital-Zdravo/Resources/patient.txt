@@ -1,0 +1,11 @@
+[
+	{
+		"_Id": 1,
+		"_Name": "Ognjen",
+		"_Surname":  "Golubovic",
+		"_BirthDate": "1995-04-07",
+		"_Email": "ognjen@gmail.com",
+		"_Jmbg": "123423523",
+		"_PhoneNumber": "+381641234322"
+	}
+]

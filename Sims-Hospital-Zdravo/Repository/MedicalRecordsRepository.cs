@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.MedicalRecordsRepository
  ***********************************************************************/
 
+using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,11 @@ namespace Repository
 {
     public class MedicalRecordsRepository
     {
+        public MedicalRecordsRepository(PatientDataHandler patientHandler)
+        {
+            patientDataHandler = patientHandler;
+        }
+
         public int Create(Model.MedicalRecord medicalRecord)
         {
             // TODO: implement
@@ -28,6 +34,12 @@ namespace Repository
         {
             // TODO: implement
             return null;
+        }
+
+        //dodato
+        public System.Collections.Generic.List<Patient> ReadAll()
+        {
+            return patientDataHandler.ReadAll();
         }
 
         public MedicalRecord Update(MedicalRecord medicalRecord)
@@ -99,6 +111,5 @@ namespace Repository
                 medicalRecord.Clear();
         }
         public DataHandler.PatientDataHandler patientDataHandler;
-
     }
 }

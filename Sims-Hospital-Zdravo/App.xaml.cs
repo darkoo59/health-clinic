@@ -28,6 +28,21 @@ namespace Sims_Hospital_Zdravo
             RoomService roomService = new RoomService(roomRepository);
             RoomController roomController = new RoomController(roomService);
 
+            //dodato
+            PatientDataHandler patientDataHandler = new PatientDataHandler();
+            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler);
+            List<Patient> patients = medicalRepo.ReadAll();
+            foreach(Patient patient in patients)
+            {
+                Console.WriteLine("Odavde krece pacijent :");
+                Console.WriteLine(patient._Id);
+                Console.WriteLine(patient._Name);
+                Console.WriteLine(patient._BirthDate);
+                Console.WriteLine(patient._Email);
+                Console.WriteLine(patient._Jmbg);
+                Console.WriteLine(patient._PhoneNumber);
+            }
+
             List<Room> rooms = roomController.Read();
 
             foreach(Room room in rooms) {
