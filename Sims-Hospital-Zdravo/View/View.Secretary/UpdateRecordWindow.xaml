@@ -7,29 +7,29 @@
         mc:Ignorable="d"
         Title="UpdateRecordWindow" Height="700" Width="800">
     <Grid>
-        <Label Content="Medical record id" HorizontalAlignment="Left" Margin="267,41,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="TxtMedicalId" HorizontalAlignment="Left" Height="23" Margin="388,44,0,0" TextWrapping="Wrap" Text="{Binding _Id, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="268,116,0,0" VerticalAlignment="Top" Width="49"/>
+        <Label Content="Medical record id" HorizontalAlignment="Left" Margin="267,40,0,0" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="TxtMedicalId" HorizontalAlignment="Left" Height="23" Margin="388,40,0,0" TextWrapping="Wrap" Text="{Binding _Id, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="268,120,0,0" VerticalAlignment="Top" Width="49"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="388,120,0,0" TextWrapping="Wrap" Text="{Binding _Name, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Margin="268,157,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="TxtSurname" HorizontalAlignment="Left" Height="23" Margin="388,161,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Birth date" HorizontalAlignment="Left" Margin="268,198,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="TxtBirth" HorizontalAlignment="Left" Height="23" Margin="388,202,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="268,242,0,0" VerticalAlignment="Top" Width="49"/>
-        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="388,246,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Jmbg" HorizontalAlignment="Left" Margin="268,282,0,0" VerticalAlignment="Top" Width="49"/>
-        <TextBox x:Name="TxtJmbg" HorizontalAlignment="Left" Height="23" Margin="388,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Phone number" HorizontalAlignment="Left" Margin="268,325,0,0" VerticalAlignment="Top" Width="92"/>
-        <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="23" Margin="388,325,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Gender" HorizontalAlignment="Left" Margin="268,371,0,0" VerticalAlignment="Top" Width="92"/>
-        <Label Content="Patient Id" HorizontalAlignment="Left" Margin="267,69,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="TxtPatientId" HorizontalAlignment="Left" Height="23" Margin="388,72,0,0" TextWrapping="Wrap" Text="{Binding _PatientId, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <ComboBox x:Name="ComboGender"  HorizontalAlignment="Left" Margin="388,371,0,0" VerticalAlignment="Top" Width="120" Text="{Binding _Gender, Mode=OneTime}"/>
-        <Label Content="Blood type" HorizontalAlignment="Left" Margin="268,413,0,-20" VerticalAlignment="Top" Width="92"/>
-        <ComboBox x:Name="ComboBlood"  HorizontalAlignment="Left" Margin="388,413,0,-16" VerticalAlignment="Top" Width="120" Text="{Binding _BloodType, Mode=OneTime}"/>
+        <Label Content="Surname" HorizontalAlignment="Left" Margin="268,160,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBox x:Name="TxtSurname" HorizontalAlignment="Left" Height="23" Margin="388,160,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Birth date" HorizontalAlignment="Left" Margin="268,200,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBox x:Name="TxtBirth" HorizontalAlignment="Left" Height="23" Margin="388,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="268,240,0,0" VerticalAlignment="Top" Width="49"/>
+        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="388,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Jmbg" HorizontalAlignment="Left" Margin="268,280,0,0" VerticalAlignment="Top" Width="49"/>
+        <TextBox x:Name="TxtJmbg" HorizontalAlignment="Left" Height="23" Margin="388,280,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Phone number" HorizontalAlignment="Left" Margin="268,320,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="23" Margin="388,320,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Gender" HorizontalAlignment="Left" Margin="268,360,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Patient Id" HorizontalAlignment="Left" Margin="267,80,0,0" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="TxtPatientId" HorizontalAlignment="Left" Height="23" Margin="388,80,0,0" TextWrapping="Wrap" Text="{Binding _PatientId, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <ComboBox x:Name="ComboGender"  HorizontalAlignment="Left" Margin="388,360,0,0" VerticalAlignment="Top" Width="120" Text="{Binding _Gender, Mode=OneTime}"/>
+        <Label Content="Blood type" HorizontalAlignment="Left" Margin="268,400,0,-20" VerticalAlignment="Top" Width="92"/>
+        <ComboBox x:Name="ComboBlood"  HorizontalAlignment="Left" Margin="388,400,0,-16" VerticalAlignment="Top" Width="120" Text="{Binding _BloodType, Mode=OneTime}"/>
         <Label Content="Marital status" HorizontalAlignment="Left" Margin="268,440,0,-47" VerticalAlignment="Top" Width="92"/>
         <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="388,440,0,-43" VerticalAlignment="Top" Width="120" Text="{Binding _MaritalStatus, Mode=OneTime}"/>
         <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="337,504,0,0" VerticalAlignment="Top" Width="75" Click="Update_Click"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="332,494,0,0" VerticalAlignment="Top" Width="115" Click="Update_Click" Height="36"/>
     </Grid>
 </Window>

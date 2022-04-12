@@ -6,6 +6,7 @@
 
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,16 +24,10 @@ namespace Controller
         public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            try
-            {
-                Validate(medicalRecord);
-                medicalRecordService.Create(medicalRecord,patient);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-      }
+            MedicalRecordValidator validator = new MedicalRecordValidator(medicalRecordService, medicalRecord, patient);
+            validator.InsertValidation();
+            medicalRecordService.Create(medicalRecord, patient);
+        }
       
       public MedicalRecord FindById(int id)
       {
