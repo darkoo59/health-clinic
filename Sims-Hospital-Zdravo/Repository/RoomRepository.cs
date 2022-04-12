@@ -20,7 +20,7 @@ namespace Repository
         {
             rooms = new ObservableCollection<Room>();
             roomDataHandler = rmDataHandler;
-            loadDataFromFile();
+            loadDataFromFiles();
 
         }
         public void Create(Room room)
