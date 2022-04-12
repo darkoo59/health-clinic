@@ -14,23 +14,22 @@ namespace Service
    {
       public void Create(Appointment appointment)
       {
-         // TODO: implement
+            appointmentRepositoryPatient.Create(appointment);
       }
       
       public void Update(Appointment appointment)
       {
-         // TODO: implement
+            appointmentRepositoryPatient.Update(appointment);
       }
       
       public void Delete(Appointment appointment)
       {
-         // TODO: implement
+            appointmentRepositoryPatient.Delete(appointment);
       }
       
       public List<Appointment> FindByPatientID(int id)
       {
-         // TODO: implement
-         return null;
+            return appointmentRepositoryPatient.FindByPatientID(id);
       }
    
       public Repository.AppointmentRepositoryPatient appointmentRepositoryPatient;

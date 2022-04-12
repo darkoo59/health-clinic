@@ -14,24 +14,23 @@ namespace Controller
    {
       public void Create(Appointment appointment)
       {
-         // TODO: implement
+            appointmentPatientService.Create(appointment);
       }
       
       public void Update(Appointment appointment)
       {
-         // TODO: implement
+            appointmentPatientService.Update(appointment);
       }
       
       public void Delete(Appointment appointment)
       {
-         // TODO: implement
+            appointmentPatientService.Delete(appointment);
       }
       
       public List<Appointment> FindByPatientID(int id)
-      {
-         // TODO: implement
-         return null;
-      }
+        {
+            return appointmentPatientService.FindByPatientID(id);
+        }
    
       public Service.AppointmentPatientService appointmentPatientService;
    

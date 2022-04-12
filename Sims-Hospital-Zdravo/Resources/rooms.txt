@@ -1,7 +1,1 @@
-﻿[
-	{
-		"_Id": 1,
-		"_Floor": 2,
-		"_Type":  0
-	}
-]
+[{"_Type":3,"_Floor":2,"_Id":1},{"_Type":2,"_Floor":2,"_Id":2},{"_Type":2,"_Floor":4,"_Id":4},{"_Type":2,"_Floor":2,"_Id":10},{"_Type":2,"_Floor":12,"_Id":5},{"_Type":2,"_Floor":5,"_Id":11}]

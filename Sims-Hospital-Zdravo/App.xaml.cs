@@ -19,22 +19,27 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class App : Application
     {
+        internal RoomController roomController;
+        internal MedicalRecordController recordController;
 
         public App() 
         {
+
+
             RoomDataHandler roomDataHandler = new RoomDataHandler();
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
-            roomRepository.loadData();
             RoomService roomService = new RoomService(roomRepository);
-            RoomController roomController = new RoomController(roomService);
+            roomController = new RoomController(roomService);
 
-            List<Room> rooms = roomController.Read();
+            PatientDataHandler patientDataHandler = new PatientDataHandler();
 
-            foreach(Room room in rooms) {
-                Console.WriteLine(room._Floor);
-                Console.WriteLine(room._Id);
-                Console.WriteLine(room._Type);
-            }
+
+            MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
+            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler, medicalRecordDataHandler);
+            MedicalRecordService recordService = new MedicalRecordService(medicalRepo);
+            recordController = new MedicalRecordController(recordService);
+
+
         }
     }
 }
