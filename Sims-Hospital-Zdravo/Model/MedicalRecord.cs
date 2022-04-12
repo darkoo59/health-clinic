@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using System;
-
+using System.ComponentModel;
 
 public enum BloodType { APOSITIVE, ANEGATIVE, ABPOSITIVE, ABNEGATIVE, BPOSITIVE, BNEGATIVE, OPOSITIVE, ONEGATIVE };
 public enum GenderType { MALE, FEMALE };
@@ -13,18 +13,21 @@ public enum MaritalType { MARRIED, UNMARRIED, DIVORCED, WIDOVER };
 
 namespace Model
 {
-   public class MedicalRecord
-   {
+    public class MedicalRecord : INotifyPropertyChanged
+    {
         //private Patient Patient;
 
 
         private int Id;
         private int PatientId;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private GenderType Gender { get; set; }
         private BloodType BloodType { get; set; }
         private MaritalType MaritalStatus { get; set; }
 
-        public MedicalRecord(int id,int patientId, GenderType genderType, BloodType bloodType, MaritalType martialStatus)
+        public MedicalRecord(int id, int patientId, GenderType genderType, BloodType bloodType, MaritalType martialStatus)
         {
             this.Id = id;
             this.PatientId = patientId;
@@ -32,7 +35,7 @@ namespace Model
             this.Gender = genderType;
             this.MaritalStatus = martialStatus;
         }
-   
+
         public int _Id
         {
             get
@@ -68,7 +71,10 @@ namespace Model
             set
             {
                 if (this.Gender != value)
+                {
                     this.Gender = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -81,7 +87,10 @@ namespace Model
             set
             {
                 if (this.BloodType != value)
+                {
                     this.BloodType = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -94,10 +103,18 @@ namespace Model
             set
             {
                 if (this.MaritalStatus != value)
+                {
                     this.MaritalStatus = value;
+                    OnPropertyChanged();
+                }
             }
+
+
         }
 
-
+        private void OnPropertyChanged(String name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
-}
+    }

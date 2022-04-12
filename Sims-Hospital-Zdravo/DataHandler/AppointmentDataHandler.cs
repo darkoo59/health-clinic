@@ -7,8 +7,10 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Collections.ObjectModel;
+
 
 
 namespace DataHandler
@@ -24,8 +26,9 @@ namespace DataHandler
       
       public void Write(ObservableCollection<Appointment> appointments)
       {
-         // TODO: implement
-      }
+            string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(appointments);
+            System.IO.File.WriteAllText(Path, serialized);
+        }
    
       private String Path = @"..\..\Resources\appointment.txt";
    

@@ -7,6 +7,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Controller
 {
@@ -27,7 +28,7 @@ namespace Controller
             appointmentPatientService.Delete(appointment);
       }
       
-      public List<Appointment> FindByPatientID(int id)
+      public ObservableCollection<Appointment> FindByPatientID(int id)
         {
             return appointmentPatientService.FindByPatientID(id);
         }

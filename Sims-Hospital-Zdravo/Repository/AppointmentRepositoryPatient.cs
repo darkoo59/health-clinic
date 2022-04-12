@@ -8,35 +8,41 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Repository
 {
    public class AppointmentRepositoryPatient : AppointmentRepository
    {
+        public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler)
+        {
+            this.appointments = new ObservableCollection<Appointment>();
+            this.appointmentDataHandler = appointmentDataHandler;
+        }
 
-        public List<Appointment> FindByPatientID(int id)
+        public ObservableCollection<Appointment> FindByPatientID(int id)
       {
-            List<Appointment> appointments = new List<Appointment>();
-            foreach (Appointment app in GetAppointment()) {
+            ObservableCollection<Appointment> appointments1 = new ObservableCollection<Appointment>();
+            foreach (Appointment app in this.appointments) {
                 if (app._Id == id) 
-                appointments.Add(app);
+                appointments1.Add(app);
             }
-            return appointments;
+            return appointments1;
       }
       
       public new void Create(Model.Appointment appointment)
       {
-            AddAppointment(appointment);
+            this.appointments.Add(appointment);
       }
       
       public new void Update(Model.Appointment appointment)
       {
-            foreach (Appointment app in GetAppointment()) 
+            foreach (Appointment app in this.appointments) 
             {
                 if (app._Id==appointment._Id) 
                 {
-                   RemoveAppointment(app);
-                    AddAppointment(appointment);
+                    this.appointments.Remove(app);
+                    this.appointments.Add(appointment);
                     break;
                 }
             }
@@ -44,7 +50,7 @@ namespace Repository
       
       public new void Delete(Model.Appointment appointment)
       {
-            RemoveAppointment(appointment);
+            this.appointments.Remove(appointment);
       }
    
    }
