@@ -9,41 +9,60 @@ using System.Windows;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
-    class MedicalRecordValidator
+    public class MedicalRecordValidator
     {
         private MedicalRecordService recordService;
-        private MedicalRecord medicalRecord;
-        private Patient patient;
 
-        public MedicalRecordValidator(MedicalRecordService service,MedicalRecord record,Patient patient)
+
+        public MedicalRecordValidator(MedicalRecordService service)
         {
             this.recordService = service;
-            this.medicalRecord = record;
-            this.patient = patient;
         }
 
-        public void medicalRecordIdAlreadyExist()
+        private void medicalRecordIdAlreadyExist(MedicalRecord medicalRecord)
         {
             if (recordService.FindById(medicalRecord._Id) != null)
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("There is medical record with same id", "Medical record same id!", MessageBoxButton.OK);
                 throw new Exception("Medical Id Already Exist!");
             }
         }
 
-        public void patientIdAlreadyExist()
+        private void patientIdAlreadyExist(Patient patient)
         {
             if (recordService.findPatientById(patient._Id) != null)
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("There is patient with same id", "Patient same id!", MessageBoxButton.OK);
                 throw new Exception("Patient Id Already Exist!");
             }
         }
 
-        public void InsertValidation()
+        private void jmbgRightFormat(Patient patient)
         {
-            medicalRecordIdAlreadyExist();
-            patientIdAlreadyExist();
+            String jmbg = patient._Jmbg;
+            if(jmbg.Length != 13)
+            {
+                throw new Exception("JMBG must have 13 numbers!");
+            }
+            else
+            {
+                foreach (char c in jmbg)
+                {
+                    if (c < '0' || c > '9')
+                        throw new Exception("JMBG can have numbers only!");
+                }
+            }
+        }
+
+
+        public void InsertValidation(MedicalRecord medicalRecord,Patient patient)
+        {
+            medicalRecordIdAlreadyExist(medicalRecord);
+            patientIdAlreadyExist(patient);
+            jmbgRightFormat(patient);
+        }
+
+        public void UpdateValidation(Patient patient)
+        {
+            jmbgRightFormat(patient);
         }
     }
 }
