@@ -11,21 +11,21 @@ namespace Sims_Hospital_Zdravo.Utils
     class RoomValidator
     {
         private RoomService roomService;
-        private Room room;
 
-        public RoomValidator(RoomService roomService, Room room)
+
+        public RoomValidator(RoomService roomService)
         {
             this.roomService = roomService;
-            this.room = room;
+
         }
 
 
-        private void warehouseAlreadyExists() {
+        private void warehouseAlreadyExists(Room room) {
             if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null)
                 throw new Exception("Warehouse already exists!");
         }
 
-        private void IdAlreadyExists()
+        private void IdAlreadyExists(Room room)
         {
             if (roomService.FindById(room._Id) != null)
                 throw new Exception("Id already exists!");
@@ -38,34 +38,34 @@ namespace Sims_Hospital_Zdravo.Utils
 
         }
 
-        private void IdNotFound()
+        private void IdNotFound(Room room)
         {
             if (roomService.FindById(room._Id) == null)
                 throw new Exception("Id Not Found!");
         }
 
-        private void RoomDoesntExist()
+        private void RoomDoesntExist(Room room)
         {
             if (room == null)
                 throw new Exception("Room doesn't exist!");
         }
 
-        public void ValidateCreate()
+        public void ValidateCreate(Room room)
         {
-            warehouseAlreadyExists();
-            IdAlreadyExists();
+            warehouseAlreadyExists(room);
+            IdAlreadyExists(room);
         }
 
-        public void ValidateUpdate()
+        public void ValidateUpdate(Room room)
         {
-            RoomDoesntExist();
-            warehouseAlreadyExists();
+            RoomDoesntExist(room);
+            warehouseAlreadyExists(room);
         }
 
-        public void ValidateDelete()
+        public void ValidateDelete(Room room)
         {
-            RoomDoesntExist();
-            IdNotFound();
+            RoomDoesntExist(room);
+            IdNotFound(room);
         }
 
         public void ValidateDelete(int id)

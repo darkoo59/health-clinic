@@ -7,6 +7,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Repository
 {
@@ -91,6 +92,7 @@ namespace Repository
             appointment.Clear();
       }
       public DataHandler.AppointmentDataHandler appointmentDataHandler;
+      public ObservableCollection<Appointment> appointments;
    
    }
 }

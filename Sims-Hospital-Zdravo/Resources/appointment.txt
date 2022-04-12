@@ -1,0 +1,21 @@
+[
+	{
+	"_Id": 1,
+	"_Room": 100,
+	"_DateAndTime": "2022-04-07 18:00",
+	"_Patient": {
+			"_Id": 1,
+			"_Name": "Ognjen",
+			"_Surname":  "Golubovic",
+			"_BirthDate": "1995-04-07",
+			"_Email": "ognjen@gmail.com",
+			"_Jmbg": "123423523",
+			"_PhoneNumber": "+381641234322"
+		    }
+	"_Doctor": {
+			"_Id": 2,
+			"_Name": "Grigorije",
+			"_Surname":  "Kucanski"
+		    }
+	}
+]

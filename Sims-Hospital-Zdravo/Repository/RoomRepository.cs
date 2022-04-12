@@ -20,7 +20,7 @@ namespace Repository
         {
             rooms = new ObservableCollection<Room>();
             roomDataHandler = rmDataHandler;
-            loadDataFromFiles();
+            loadDataFromFile();
 
         }
         public void Create(Room room)
@@ -44,6 +44,7 @@ namespace Repository
                     rm._Id = room._Id;
                     rm._Floor = room._Floor;
                     rm._Type = room._Type;
+                    loadDataToFile();
                     return;
                 }
             }
@@ -52,6 +53,7 @@ namespace Repository
         public void Delete(Room room)
         {
             rooms.Remove(room);
+            loadDataToFile();
         }
 
         public Room FindById(int id)
@@ -85,7 +87,7 @@ namespace Repository
             return null;
         }
 
-        public void loadDataFromFiles()
+        public void loadDataFromFile()
         {
             rooms = roomDataHandler.ReadAll();
         }
