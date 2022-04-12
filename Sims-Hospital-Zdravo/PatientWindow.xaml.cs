@@ -21,15 +21,17 @@ namespace Sims_Hospital_Zdravo
     public partial class PatientWindow : Window
     {
         AppointmentPatientController appointmentPatientController;
-        public PatientWindow()
+        public PatientWindow(AppointmentPatientController appointmentPatientController)
         {
             InitializeComponent();
+            this.appointmentPatientController = appointmentPatientController;
+            this.DataContext = this;
             McDataGrid.ItemsSource = appointmentPatientController.FindByPatientID(1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PatientCreate pc = new PatientCreate();
+            PatientCreate pc = new PatientCreate(appointmentPatientController);
             pc.Show();
         }
 
@@ -39,6 +41,11 @@ namespace Sims_Hospital_Zdravo
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void McDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
 
         }

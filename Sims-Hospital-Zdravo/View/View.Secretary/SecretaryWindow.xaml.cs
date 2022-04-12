@@ -52,21 +52,5 @@ namespace Sims_Hospital_Zdravo
                 medicalController.Delete((MedicalRecord)ContentGrid.SelectedItem);
             }
         }
-        /*
-         *  private void DeleteRoom_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
-            if(dialogResult == MessageBoxResult.Yes)
-            {
-                roomController.Delete((Room)roomsTable.SelectedItem);
-            }
-        }
-         */
-        /* private void UpdateRoom_Click(object sender, RoutedEventArgs e)
-{
-   ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = roomsTable.SelectedItem};
-   managerUpdateRoom.Show();
-}
-*/
     }
 }
