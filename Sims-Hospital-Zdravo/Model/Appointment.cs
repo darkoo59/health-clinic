@@ -5,21 +5,24 @@
  ***********************************************************************/
 
 using System;
-using System.Collections;
-using static Enums.Enums;
 namespace Model
 {
    public class Appointment
    {
       private DateTime DateAndTime;
       private int Room;
-      private Doctor Doctor;
+      private int DoctorId;
       private int Id;
-      private Patient Patient;
-
-        
-
-        public DateTime _DateAndTime
+      private int PatientId;
+        public Appointment(int Id, int room, DateTime DateAndTime, int PatientId,int DoctorId) 
+        {
+            this._Id = Id;
+            this._Room = room;
+            this._DateAndTime = DateAndTime;
+            this._PatientId = PatientId;
+            this._DoctorId = DoctorId;
+        }
+      public DateTime _DateAndTime
       {
          get
          {
@@ -45,16 +48,16 @@ namespace Model
          }
       }
       
-      public Doctor _Doctor
+      public int _DoctorId
       {
          get
          {
-            return Doctor;
+            return DoctorId;
          }
          set
          {
-            if (this.Doctor != value)
-               this.Doctor = value;
+            if (this.DoctorId != value)
+               this.DoctorId = value;
          }
       }
       
@@ -71,16 +74,16 @@ namespace Model
          }
       }
       
-      public Patient _Patient
+      public int _PatientId
       {
          get
          {
-            return Patient;
+            return PatientId;
          }
          set
          {
-            if (this.Patient != value)
-               this.Patient = value;
+            if (this.PatientId != value)
+               this.PatientId = value;
          }
       }
 

@@ -6,6 +6,7 @@
 
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,24 +16,20 @@ namespace Controller
    public class MedicalRecordController
    {
 
-      public MedicalRecordController(MedicalRecordService recordService)
+        public Service.MedicalRecordService medicalRecordService;
+        public MedicalRecordValidator validator;
+        public MedicalRecordController(MedicalRecordService recordService)
         {
             medicalRecordService = recordService;
+            validator = new MedicalRecordValidator(medicalRecordService);
         }
 
         public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            try
-            {
-                Validate(medicalRecord);
-                medicalRecordService.Create(medicalRecord,patient);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-      }
+            validator.InsertValidation(medicalRecord,patient);
+            medicalRecordService.Create(medicalRecord, patient);
+        }
       
       public MedicalRecord FindById(int id)
       {
@@ -55,6 +52,7 @@ namespace Controller
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
+            validator.UpdateValidation(patient);
             medicalRecordService.Update(medicalRecord, patient);
       }
       
@@ -70,18 +68,6 @@ namespace Controller
             medicalRecordService.Delete(medicalRecord);
       }
       
-
-      private void Validate(MedicalRecord record)
-      {
-
-            if (medicalRecordService.FindById(record._Id) != null)
-                throw new Exception("Id already exists");
-            if (medicalRecordService.FindByPatientId(record._PatientId) != null)
-                throw new Exception("Patient already have medical record");
-
-      }
-
-        public Service.MedicalRecordService medicalRecordService;
    
    }
 }

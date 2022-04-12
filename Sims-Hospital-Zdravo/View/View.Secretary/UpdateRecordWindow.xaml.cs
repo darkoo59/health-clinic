@@ -52,16 +52,5 @@ namespace Sims_Hospital_Zdravo
                 MessageBox.Show(ex.Message);
             }
         }
-        /*try
-            {
-                Room room = new Room(Int32.Parse(FloorTxt.Text), Int32.Parse(RoomIdTxt.Text), (RoomType)RoomTypeCmb.SelectedValue);
-                roomController.Update(room);
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-         */
     }
 }

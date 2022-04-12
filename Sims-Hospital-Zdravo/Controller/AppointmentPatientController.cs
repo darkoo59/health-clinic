@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Model;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,12 @@ namespace Controller
 {
    public class AppointmentPatientController
    {
-      public void Create(Appointment appointment)
+
+        public AppointmentPatientController(AppointmentPatientService appointmentPatientService)
+        {
+            this.appointmentPatientService = appointmentPatientService;
+        }
+        public void Create(Appointment appointment)
       {
             appointmentPatientService.Create(appointment);
       }
@@ -28,9 +34,14 @@ namespace Controller
             appointmentPatientService.Delete(appointment);
       }
       
-      public ObservableCollection<Appointment> FindByPatientID(int id)
+      public ref ObservableCollection<Appointment> FindByPatientID(int id)
         {
-            return appointmentPatientService.FindByPatientID(id);
+            return ref appointmentPatientService.FindByPatientID(id);
+        }
+
+        public ref ObservableCollection<Doctor> ReadDoctors()
+        {
+            return ref appointmentPatientService.ReadDoctors();
         }
    
       public Service.AppointmentPatientService appointmentPatientService;

@@ -6,7 +6,6 @@
 
 using System;
 using System.ComponentModel;
-using Enums;
 
 public enum RoomType { OPERATION, EXAMINATION, MEETING, WAREHOUSE };
 

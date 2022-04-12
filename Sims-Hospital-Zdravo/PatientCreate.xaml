@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
         Title="PatientCreate" Height="450" Width="800">
-    <Grid>
-                <Grid.RowDefinitions>
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -15,5 +17,12 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0">Doctor:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1">Date:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="2">Priority:</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="0" Name="Doctors" SelectionChanged="Doctors_Selected"/>
+        <DatePicker Grid.Column="1" Grid.Row="1"  Width="30" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" Name="DateOrDoctors"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Click="Button_Click">Submit</Button>
     </Grid>
 </Window>

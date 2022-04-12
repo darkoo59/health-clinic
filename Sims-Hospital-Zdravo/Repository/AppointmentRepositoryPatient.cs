@@ -14,25 +14,25 @@ namespace Repository
 {
    public class AppointmentRepositoryPatient : AppointmentRepository
    {
-        public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler)
+        private ObservableCollection<Appointment> appointments;
+        public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler, DoctorDataHandler doctorDataHandler)
         {
             this.appointments = new ObservableCollection<Appointment>();
+            this.doctors = new ObservableCollection<Doctor>();
             this.appointmentDataHandler = appointmentDataHandler;
+            this.doctorDataHandler = doctorDataHandler;
+            loadDataFromFiles();
         }
 
-        public ObservableCollection<Appointment> FindByPatientID(int id)
+        public ref ObservableCollection<Appointment> FindByPatientID(int id)
       {
-            ObservableCollection<Appointment> appointments1 = new ObservableCollection<Appointment>();
-            foreach (Appointment app in this.appointments) {
-                if (app._Id == id) 
-                appointments1.Add(app);
-            }
-            return appointments1;
+            return ref appointments;
       }
       
       public new void Create(Model.Appointment appointment)
       {
-            this.appointments.Add(appointment);
+            appointments.Add(appointment);
+            loadDataToFile();
       }
       
       public new void Update(Model.Appointment appointment)
@@ -52,6 +52,28 @@ namespace Repository
       {
             this.appointments.Remove(appointment);
       }
-   
-   }
+      public Model.Appointment FindByID(int id)
+      {
+          // TODO: implement
+          return null;
+      }
+        public void loadDataFromFiles()
+        {
+            appointments = appointmentDataHandler.ReadAll();
+            doctors = doctorDataHandler.ReadAll();
+        }
+
+        public void loadDataToFile()
+        {
+            appointmentDataHandler.Write(appointments);
+        }
+
+        public ref ObservableCollection<Doctor> ReadDoctors() 
+        {
+            return ref this.doctors;
+        }
+
+        public DataHandler.DoctorDataHandler doctorDataHandler;
+        public ObservableCollection<Doctor> doctors;
+    }
 }

@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using System;
-using static Enums.Enums;
 namespace Model
 {
    public class Doctor
@@ -13,24 +12,9 @@ namespace Model
       private String Name;
       private String Surname;
       private int DoctorID;
-      private DateTime BirthDate;
-        
-
-        public DateTime _BirthDate 
-        {
-            get { 
-                return BirthDate; 
-            }
-            set { 
-                BirthDate = value; 
-            }
-        }
-
-        private String Email;
-      private String Jmbg;
-      private String PhoneNumber;
-
-        public String _Name
+      private String Specialty { get; set; }
+   
+      public String _Name
       {
          get
          {

@@ -1,19 +1,8 @@
 ﻿using Controller;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace Sims_Hospital_Zdravo.View
 {
@@ -46,10 +35,16 @@ namespace Sims_Hospital_Zdravo.View
 
         private void DeleteRoom_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
-            if(dialogResult == MessageBoxResult.Yes)
+            try
             {
-                roomController.Delete((Room)roomsTable.SelectedItem);
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    roomController.Delete((Room)roomsTable.SelectedItem);
+                }
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
