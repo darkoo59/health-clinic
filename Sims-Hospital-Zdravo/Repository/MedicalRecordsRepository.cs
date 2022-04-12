@@ -28,6 +28,7 @@ namespace Repository
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
             this.patients.Add(patient);
+            loadDataToFile();
         }
 
         public MedicalRecord FindById(int id)
@@ -77,6 +78,7 @@ namespace Repository
                     patient2._Name = patient._Name;
                     patient2._PhoneNumber = patient._PhoneNumber;
                     patient2._Surname = patient._Surname;
+                    loadDataToFile();
                     return;
                 }
             }
@@ -91,6 +93,7 @@ namespace Repository
                 if(record._Id == id)
                 {
                     medicalRecords.Remove(record);
+                    loadDataToFile();
                     return;
                 }
             }

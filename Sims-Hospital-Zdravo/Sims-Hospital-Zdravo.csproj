@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>

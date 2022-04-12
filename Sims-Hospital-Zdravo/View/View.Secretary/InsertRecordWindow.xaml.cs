@@ -35,14 +35,14 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text),Int32.Parse(TxtPatientId.Text),(GenderType)ComboGender.SelectedValue,(BloodType)ComboBlood.SelectedValue,(MaritalType)ComboMarital.SelectedValue);
+                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), Int32.Parse(TxtPatientId.Text), (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
                 Patient patient = new Patient(Int32.Parse(TxtPatientId.Text), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 medicalController.Create(medicalRecord, patient);
                 Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex);
             }
         }
     }
