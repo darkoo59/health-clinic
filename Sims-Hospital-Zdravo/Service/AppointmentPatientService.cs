@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Model;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,11 @@ namespace Service
 {
    public class AppointmentPatientService
    {
-      public void Create(Appointment appointment)
+        public AppointmentPatientService(AppointmentRepositoryPatient appointmentRepositoryPatient)
+        {
+            this.appointmentRepositoryPatient = appointmentRepositoryPatient;
+        }
+        public void Create(Appointment appointment)
       {
             appointmentRepositoryPatient.Create(appointment);
       }
@@ -28,11 +33,16 @@ namespace Service
             appointmentRepositoryPatient.Delete(appointment);
       }
       
-      public ObservableCollection<Appointment> FindByPatientID(int id)
+      public ref ObservableCollection<Appointment> FindByPatientID(int id)
       {
-            return appointmentRepositoryPatient.FindByPatientID(id);
+            return ref appointmentRepositoryPatient.FindByPatientID(id);
       }
-   
+
+        public ref ObservableCollection<Doctor> ReadDoctors()
+        {
+            return ref appointmentRepositoryPatient.ReadDoctors();
+        }
+
       public Repository.AppointmentRepositoryPatient appointmentRepositoryPatient;
    
    }

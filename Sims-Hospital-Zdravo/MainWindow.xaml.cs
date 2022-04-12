@@ -31,7 +31,8 @@ namespace Sims_Hospital_Zdravo
 
         private void Patient_Click(object sender, RoutedEventArgs e)
         {
-            PatientWindow pw = new PatientWindow();
+            AppointmentPatientController appointmentPatientController = app.appointmentPatientController;
+            PatientWindow pw = new PatientWindow(appointmentPatientController);
             pw.Show();
         }
 
