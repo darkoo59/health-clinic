@@ -87,7 +87,7 @@ namespace Repository
             return null;
         }
 
-        public void loadDataFromFile()
+        public void loadDataFromFiles()
         {
             rooms = roomDataHandler.ReadAll();
         }
