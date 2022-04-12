@@ -20,6 +20,7 @@ namespace Sims_Hospital_Zdravo
     public partial class App : Application
     {
         internal RoomController roomController;
+        internal MedicalRecordController recordController;
 
         public App() 
         {
@@ -35,12 +36,9 @@ namespace Sims_Hospital_Zdravo
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler, medicalRecordDataHandler);
-            medicalRepo.loadData();
             MedicalRecordService recordService = new MedicalRecordService(medicalRepo);
-            MedicalRecordController recordController = new MedicalRecordController(recordService);
+            recordController = new MedicalRecordController(recordService);
 
-            recordController.Create(new MedicalRecord(1, 1, GenderType.MALE, BloodType.ABNEGATIVE, MaritalType.MARRIED),
-                new Patient(1,"Darko","Selakovic",new DateTime(2000,11,01),"darkoo@gmail.com","123214123","+381321333"));
 
         }
     }

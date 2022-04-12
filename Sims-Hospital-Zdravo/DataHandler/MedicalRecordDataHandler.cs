@@ -7,23 +7,26 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DataHandler
 {
    public class MedicalRecordDataHandler
    {
-      public List<MedicalRecord> ReadAll()
+      public ObservableCollection<MedicalRecord> ReadAll()
       {
             // TODO: implement
             string recordsSerialized = System.IO.File.ReadAllText(Path);
-            List<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MedicalRecord>>(recordsSerialized);
+            ObservableCollection<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<MedicalRecord>>(recordsSerialized);
             return records;
         }
       
-      public void Write(List<MedicalRecord> MedicalRecords)
+      public void Write(ObservableCollection<MedicalRecord> medicalRecords)
       {
-         // TODO: implement
-      }
+            // TODO: implement
+            string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(medicalRecords);
+            System.IO.File.WriteAllText(Path, serialized);
+        }
    
       private String Path = @"..\..\Resources\medicalRecord.txt";
 

@@ -35,6 +35,12 @@ namespace Sims_Hospital_Zdravo
             pw.Show();
         }
 
+        private void Secretary_Click(object sender, RoutedEventArgs e)
+        {
+            MedicalRecordController medicalController = app.recordController;
+            SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
+            secretaryHomeWindow.Show();
+        }
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
             RoomController roomController = app.roomController;

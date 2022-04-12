@@ -63,6 +63,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
+      <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
@@ -71,10 +74,19 @@
     <Compile Include="Repository\DoctorAppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
+      <DependentUpon>SecretaryHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\View.Secretary\SecretaryWindow.xaml.cs">
+      <DependentUpon>SecretaryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
+    <Compile Include="View\View.Secretary\UpdateRecordWindow.xaml.cs">
+      <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
     <Compile Include="View\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
@@ -88,6 +100,10 @@
     <Compile Include="View\ManagerUpdateRoom.xaml.cs">
       <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,7 +124,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PatientCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\View.Secretary\SecretaryHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\View.Secretary\SecretaryWindow.xaml">
+    </Page>
+    <Page Include="View\View.Secretary\UpdateRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,5 +200,6 @@
   <ItemGroup>
     <Resource Include="Resources\patient.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

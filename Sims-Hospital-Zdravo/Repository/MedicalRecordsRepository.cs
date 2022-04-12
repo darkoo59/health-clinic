@@ -8,15 +8,19 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Repository
 {
     public class MedicalRecordsRepository
     {
+        public ObservableCollection<MedicalRecord> medicalRecords;
         public MedicalRecordsRepository(PatientDataHandler patientHandler, MedicalRecordDataHandler recordDataHandler)
         {
+            medicalRecords = new ObservableCollection<MedicalRecord>();
             patientDataHandler = patientHandler;
             medicalRecordDataHandler = recordDataHandler;
+            loadDataFromFile();
         }
 
         public void Create(Model.MedicalRecord medicalRecord, Patient patient)
@@ -38,9 +42,9 @@ namespace Repository
         }
 
         //dodato
-        public System.Collections.Generic.List<MedicalRecord> ReadAll()
+        public ref ObservableCollection<MedicalRecord> ReadAll()
         {
-            return medicalRecords;
+            return ref medicalRecords;
         }
 
         public System.Collections.Generic.List<Patient> ReadAllPatients()
@@ -48,15 +52,31 @@ namespace Repository
             return patients;
         }
 
-        public void Update(MedicalRecord medicalRecord)
+        public void Update(MedicalRecord medicalRecord, Patient patient)
         {
             // TODO: implement
+            int medicalId = medicalRecord._Id;
             foreach(MedicalRecord record in medicalRecords)
             {
-                if(record._Id == medicalRecord._Id)
+                if(record._Id == medicalId)
                 {
-                    medicalRecords.Remove(record);
-                    medicalRecords.Add(medicalRecord);
+                    record._BloodType = medicalRecord._BloodType;
+                    record._Gender = medicalRecord._Gender;
+                    record._MaritalStatus = medicalRecord._MaritalStatus;
+                    break;
+                }
+            }
+            int patientId = patient._Id;
+            foreach(Patient patient2 in patients)
+            {
+                if(patient2._Id == patientId)
+                {
+                    patient2._BirthDate = patient._BirthDate;
+                    patient2._Email = patient._Email;
+                    patient2._Jmbg = patient._Jmbg;
+                    patient2._Name = patient._Name;
+                    patient2._PhoneNumber = patient._PhoneNumber;
+                    patient2._Surname = patient._Surname;
                     return;
                 }
             }
@@ -82,14 +102,15 @@ namespace Repository
         {
             // TODO: implement
             medicalRecords.Remove(medicalRecord);
+            loadDataToFile();
         }
 
-        public MedicalRecord FindByPatient(Patient patient)
+
+        public MedicalRecord FindByPatientId(int id)
         {
-            // TODO: implement
             foreach (MedicalRecord record in medicalRecords)
             {
-                if (record._Patient._Id == patient._Id)
+                if (record._PatientId == id)
                 {
                     return record;
                 }
@@ -97,27 +118,33 @@ namespace Repository
             return null;
         }
 
+        public Patient findPatientById(int id)
+        {
+            foreach(Patient patient in patients)
+            {
+                if(patient._Id == id)
+                {
+                    return patient;
+                }
+            }
+            return null;
+        }
 
-        public List<MedicalRecord> medicalRecords;
+
         public List<Patient> patients;
         public DataHandler.PatientDataHandler patientDataHandler;
         public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
 
-        public void loadData()
+        public void loadDataFromFile()
         {
             this.medicalRecords = medicalRecordDataHandler.ReadAll();
             this.patients = patientDataHandler.ReadAll();
-            foreach(MedicalRecord medicalRecord in medicalRecords)
-            {
-                foreach(Patient patient in patients)
-                {
-                    if(medicalRecord._PatientId == patient._Id)
-                    {
-                        medicalRecord._Patient = patient;
-                        break;
-                    }
-                } 
-            }
+        }
+
+        public void loadDataToFile()
+        {
+            medicalRecordDataHandler.Write(medicalRecords);
+            patientDataHandler.Write(patients);
         }
     }
 }
