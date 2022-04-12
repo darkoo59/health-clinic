@@ -125,7 +125,7 @@ namespace Repository
             return null;
         }
 
-        public Patient findPatientById(int id)
+        public Patient FindPatientById(int id)
         {
             foreach(Patient patient in patients)
             {
@@ -137,13 +137,13 @@ namespace Repository
             return null;
         }
 
-        public void loadDataFromFiles()
+        public void LoadDataFromFiles()
         {
             this.medicalRecords = medicalRecordDataHandler.ReadAll();
             this.patients = patientDataHandler.ReadAll();
         }
 
-        public void loadDataToFiles()
+        public void LoadDataToFiles()
         {
             medicalRecordDataHandler.Write(medicalRecords);
             patientDataHandler.Write(patients);
