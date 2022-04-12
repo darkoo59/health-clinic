@@ -14,7 +14,6 @@ namespace Repository
 {
    public class AppointmentRepositoryPatient : AppointmentRepository
    {
-        private ObservableCollection<Appointment> appointments;
         public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler, DoctorDataHandler doctorDataHandler)
         {
             this.appointments = new ObservableCollection<Appointment>();
@@ -37,20 +36,23 @@ namespace Repository
       
       public new void Update(Model.Appointment appointment)
       {
-            foreach (Appointment app in this.appointments) 
+            foreach (Appointment app in appointments) 
             {
                 if (app._Id==appointment._Id) 
                 {
-                    this.appointments.Remove(app);
-                    this.appointments.Add(appointment);
-                    break;
+                    app._DateAndTime = appointment._DateAndTime;
+                    app._DoctorId = appointment._DoctorId;
+                    app._Room = appointment._Room;
+                    loadDataToFile();
+                    return;
                 }
             }
-      }
+        }
       
       public new void Delete(Model.Appointment appointment)
       {
             this.appointments.Remove(appointment);
+            loadDataToFile();
       }
       public Model.Appointment FindByID(int id)
       {
