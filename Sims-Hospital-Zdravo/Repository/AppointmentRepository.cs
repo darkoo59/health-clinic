@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Repository.AppointmentRepository
  ***********************************************************************/
 
+using Model;
 using System;
 
 namespace Repository
@@ -25,19 +26,19 @@ namespace Repository
          // TODO: implement
       }
       
-      protected List<Appointment> FindByDoctorId(int id)
+      protected System.Collections.Generic.List<Appointment> FindByDoctorId(int id)
       {
          // TODO: implement
          return null;
       }
       
-      protected List<Appointment> FindByPatientId(int id)
+      protected System.Collections.Generic.List<Appointment> FindByPatientId(int id)
       {
          // TODO: implement
          return null;
       }
       
-      protected List<Appointment> FindAll()
+      protected System.Collections.Generic.List<Appointment> FindAll()
       {
          // TODO: implement
          return null;

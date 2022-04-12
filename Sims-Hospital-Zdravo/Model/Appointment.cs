@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using System;
+using System.Collections;
 using static Enums.Enums;
 namespace Model
 {
@@ -15,8 +16,10 @@ namespace Model
       private Doctor Doctor;
       private int Id;
       private Patient Patient;
-   
-      public DateTime _DateAndTime
+
+        
+
+        public DateTime _DateAndTime
       {
          get
          {
@@ -80,6 +83,10 @@ namespace Model
                this.Patient = value;
          }
       }
-   
-   }
+
+        public static implicit operator ArrayList(Appointment v)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

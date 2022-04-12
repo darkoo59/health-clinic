@@ -13,7 +13,7 @@ namespace Model
       private String Name;
       private String Surname;
       private int DoctorID;
-      private Specialty Specialty { get; set; }
+      
    
       public String _Name
       {

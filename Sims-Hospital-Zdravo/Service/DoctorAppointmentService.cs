@@ -15,29 +15,34 @@ namespace Service
       public void Create(Appointment appointment)
       {
          // TODO: implement
+         doctorAppointmentRepository.Create(appointment);
       }
       
       public bool DeleteByID(Appointment appointment)
       {
          // TODO: implement
-         return false;
+         return doctorAppointmentRepository.DeleteByID(appointment);
+         
       }
       
       public List <Appointment> GetAllByDoctorID(Doctor doctor)
       {
-         // TODO: implement
-         return null;
+            // TODO: implement
+            return doctorAppointmentRepository.GetAllByDoctorID(doctor);
+         //return null;
       }
       
       public void Update(Appointment appointment)
       {
          // TODO: implement
+         doctorAppointmentRepository.Update(appointment);
       }
       
       public Appointment GetByID(Appointment appointment)
       {
          // TODO: implement
-         return null;
+        return doctorAppointmentRepository.GetByID(appointment);
+         //return null;
       }
    
       public Repository.DoctorAppointmentRepository doctorAppointmentRepository;

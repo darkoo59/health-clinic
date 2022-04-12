@@ -14,6 +14,6 @@ namespace Enums
         public enum MaritalType { MARRIED, UNMARRIED, DIVORCED, WIDOVER };
         public enum RoomType { OPERATION, EXAMINATION, MEETING, WAREHOUSE };
         
-        public enum Specialty { NEUROLOGIST, DERMATOLOGIST, UROLOGIST, CARDIOLOGIST, ENDOCRINOLOGIST, GASTROENTEROLOGIST, SURGEON, ONCOLOGIST}
+        
     }
 }
