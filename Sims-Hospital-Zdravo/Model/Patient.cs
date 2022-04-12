@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using System;
-using static Enums.Enums;
 namespace Model
 {
    public class Patient

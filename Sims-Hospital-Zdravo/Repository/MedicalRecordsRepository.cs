@@ -15,12 +15,16 @@ namespace Repository
     public class MedicalRecordsRepository
     {
         public ObservableCollection<MedicalRecord> medicalRecords;
+        public List<Patient> patients;
+        public DataHandler.PatientDataHandler patientDataHandler;
+        public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
+
         public MedicalRecordsRepository(PatientDataHandler patientHandler, MedicalRecordDataHandler recordDataHandler)
         {
             medicalRecords = new ObservableCollection<MedicalRecord>();
             patientDataHandler = patientHandler;
             medicalRecordDataHandler = recordDataHandler;
-            loadDataFromFile();
+            LoadDataFromFiles();
         }
 
         public void Create(Model.MedicalRecord medicalRecord, Patient patient)
@@ -28,7 +32,7 @@ namespace Repository
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
             this.patients.Add(patient);
-            loadDataToFile();
+            LoadDataToFiles();
         }
 
         public MedicalRecord FindById(int id)
@@ -78,7 +82,7 @@ namespace Repository
                     patient2._Name = patient._Name;
                     patient2._PhoneNumber = patient._PhoneNumber;
                     patient2._Surname = patient._Surname;
-                    loadDataToFile();
+                    LoadDataToFiles();
                     return;
                 }
             }
@@ -93,7 +97,7 @@ namespace Repository
                 if(record._Id == id)
                 {
                     medicalRecords.Remove(record);
-                    loadDataToFile();
+                    LoadDataToFiles();
                     return;
                 }
             }
@@ -105,11 +109,11 @@ namespace Repository
         {
             // TODO: implement
             medicalRecords.Remove(medicalRecord);
-            loadDataToFile();
+            LoadDataToFiles();
         }
 
 
-        public MedicalRecord FindByPatientId(int id)
+        public MedicalRecord FindRecordByPatientId(int id)
         {
             foreach (MedicalRecord record in medicalRecords)
             {
@@ -121,7 +125,7 @@ namespace Repository
             return null;
         }
 
-        public Patient findPatientById(int id)
+        public Patient FindPatientById(int id)
         {
             foreach(Patient patient in patients)
             {
@@ -133,18 +137,13 @@ namespace Repository
             return null;
         }
 
-
-        public List<Patient> patients;
-        public DataHandler.PatientDataHandler patientDataHandler;
-        public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
-
-        public void loadDataFromFile()
+        public void LoadDataFromFiles()
         {
             this.medicalRecords = medicalRecordDataHandler.ReadAll();
             this.patients = patientDataHandler.ReadAll();
         }
 
-        public void loadDataToFile()
+        public void LoadDataToFiles()
         {
             medicalRecordDataHandler.Write(medicalRecords);
             patientDataHandler.Write(patients);

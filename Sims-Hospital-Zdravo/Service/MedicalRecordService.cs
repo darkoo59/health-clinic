@@ -15,6 +15,8 @@ namespace Service
    public class MedicalRecordService
    {
 
+        public Repository.MedicalRecordsRepository medicalRecordRepository;
+
         public MedicalRecordService(MedicalRecordsRepository medicalRepo)
         {
             medicalRecordRepository = medicalRepo;
@@ -59,18 +61,17 @@ namespace Service
       }
       
 
-        public MedicalRecord FindByPatientId(int id)
+        public MedicalRecord FindRecordByPatientId(int id)
         {
             // TODO: implement
-            return medicalRecordRepository.FindByPatientId(id);
+            return medicalRecordRepository.FindRecordByPatientId(id);
         }
 
         public Patient findPatientById(int id)
         {
-            return medicalRecordRepository.findPatientById(id);
+            return medicalRecordRepository.FindPatientById(id);
         }
 
-        public Repository.MedicalRecordsRepository medicalRecordRepository;
    
    }
 }
