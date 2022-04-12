@@ -13,9 +13,23 @@ namespace Model
       private String Name;
       private String Surname;
       private int DoctorID;
-      
-   
-      public String _Name
+      private DateTime BirthDate;
+
+        public DateTime _BirthDate 
+        {
+            get { 
+                return BirthDate; 
+            }
+            set { 
+                BirthDate = value; 
+            }
+        }
+
+        private String Email;
+      private String Jmbg;
+      private String PhoneNumber;
+
+        public String _Name
       {
          get
          {
@@ -53,6 +67,44 @@ namespace Model
                this.DoctorID = value;
          }
       }
-   
-   }
+        public String _Email
+        {
+            get
+            {
+                return Email;
+            }
+            set
+            {
+                if (this.Email != value)
+                    this.Email = value;
+            }
+        }
+
+        public String _Jmbg
+        {
+            get
+            {
+                return Jmbg;
+            }
+            set
+            {
+                if (this.Jmbg != value)
+                    this.Jmbg = value;
+            }
+        }
+
+        public String _PhoneNumber
+        {
+            get
+            {
+                return PhoneNumber;
+            }
+            set
+            {
+                if (this.PhoneNumber != value)
+                    this.PhoneNumber = value;
+            }
+        }
+
+    }
 }

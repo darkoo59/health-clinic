@@ -7,7 +7,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 namespace Service
 {
    public class DoctorAppointmentService
@@ -25,7 +25,7 @@ namespace Service
          
       }
       
-      public List <Appointment> GetAllByDoctorID(Doctor doctor)
+      public ObservableCollection <Appointment> GetAllByDoctorID(Doctor doctor)
       {
             // TODO: implement
             return doctorAppointmentRepository.GetAllByDoctorID(doctor);

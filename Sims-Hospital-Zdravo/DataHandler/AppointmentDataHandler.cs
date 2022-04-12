@@ -8,19 +8,21 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.ObjectModel;
+
 
 namespace DataHandler
 {
    public class AppointmentDataHandler
    {
-      public List<Appointment> ReadAll()
+      public ObservableCollection<Appointment> ReadAll()
       {
             string appointmentSerialized = System.IO.File.ReadAllText(Path);
-            List<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Appointment>>(appointmentSerialized);
+            ObservableCollection<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Appointment>>(appointmentSerialized);
             return appointments;
         }
       
-      public void Write(List<Appointment> appointments)
+      public void Write(ObservableCollection<Appointment> appointments)
       {
          // TODO: implement
       }

@@ -90,7 +90,7 @@ namespace Repository
          if (appointment != null)
             appointment.Clear();
       }
-      public DataHandler.AppointmentDataHandler appointmentDataHandler;
+      public DataHandler.AppointmentDataHandler DataHandler;
    
    }
 }

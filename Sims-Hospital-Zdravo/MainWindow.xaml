@@ -12,5 +12,6 @@
         <Button Name="Secretary" HorizontalAlignment="Left" Margin="256,194,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click" Height="30">Secretary CRUD
         </Button>
         <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Center" Margin="403,194,289,195">Manager CRUD</Button>
+        <Button Name ="Doctor" Click="Doctor_Click" Width="100" Height="30" HorizontalAlignment="Left"  Margin="589,203,0,201">Doctor CRUD</Button>
     </Grid>
 </Window>

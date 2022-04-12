@@ -88,6 +88,18 @@
       <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
+    <Compile Include="View\DoctorAppointments.xaml.cs">
+      <DependentUpon>DoctorAppointments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorCreateAppointment.xaml.cs">
+      <DependentUpon>DoctorCreateAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorCRUDWindow.xaml.cs">
+      <DependentUpon>DoctorCRUDWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorUpdateAppointment.xaml.cs">
+      <DependentUpon>DoctorUpdateAppointment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
     </Compile>
@@ -135,6 +147,22 @@
     <Page Include="SecretaryWindow.xaml">
     </Page>
     <Page Include="UpdateRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorAppointments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorCreateAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorCRUDWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorUpdateAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +223,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\patient.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\doctors.txt">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
