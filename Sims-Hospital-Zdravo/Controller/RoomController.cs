@@ -17,24 +17,18 @@ namespace Controller
     public class RoomController
     {
         public RoomService roomService;
+        private RoomValidator validator;
 
 
         public RoomController(RoomService roomService)
         {
             this.roomService = roomService;
+            validator = new RoomValidator(roomService);
         }
         public void Create(Room room)
         {
-            try
-            {
-                RoomValidator validator = new RoomValidator(roomService, room);
-                validator.ValidateCreate();
-                roomService.Create(room);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            validator.ValidateCreate(room);
+            roomService.Create(room);
         }
 
         public ref ObservableCollection<Room> ReadAll()
@@ -44,30 +38,14 @@ namespace Controller
 
         public void Update(Room room)
         {
-            try
-            {
-                RoomValidator validator = new RoomValidator(roomService, room);
-                validator.ValidateUpdate();
-                roomService.Update(room);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            validator.ValidateUpdate(room);
+            roomService.Update(room);
         }
 
         public void Delete(Room room)
         {
-            try
-            {
-                RoomValidator validator = new RoomValidator(roomService, room);
-                validator.ValidateDelete();
-                roomService.Delete(room);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            validator.ValidateDelete(room);
+            roomService.Delete(room);
         }
 
         public Room FindById(int id)
@@ -77,16 +55,8 @@ namespace Controller
 
         public void DeleteById(int id)
         {
-            try
-            {
-                RoomValidator validator = new RoomValidator(roomService, null);
-                validator.ValidateDelete(id);
-                roomService.DeleteById(id);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            validator.ValidateDelete(id);
+            roomService.DeleteById(id);
         }
 
 
