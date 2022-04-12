@@ -8,79 +8,95 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Repository
 {
-   public class RoomRepository
-   {
-        public RoomRepository(RoomDataHandler roomDataHandler) 
+    public class RoomRepository
+    {
+        public RoomDataHandler roomDataHandler;
+        public ObservableCollection<Room> rooms;
+        public RoomRepository(RoomDataHandler rmDataHandler)
         {
-            this.rooms = new List<Room>();
-            this.roomDataHandler = roomDataHandler;
-        } 
-      public void Create(Room room)
-      {
-            Console.WriteLine(room);
-            this.rooms.Add(room);
-      }
-      
-      public List<Room> Read()
-      {
-         // TODO: implement
-         return this.rooms;
-      }
-      
-      public void Update(Room room)
-      {
+            rooms = new ObservableCollection<Room>();
+            roomDataHandler = rmDataHandler;
+            loadDataFromFiles();
+
+        }
+        public void Create(Room room)
+        {
+            rooms.Add(room);
+            loadDataToFile();
+        }
+
+        public ref ObservableCollection<Room> ReadAll()
+        {
+            return ref rooms;
+        }
+
+        public void Update(Room room)
+        {
             int id = room._Id;
-            foreach (Room rm in rooms) 
+            foreach (Room rm in rooms)
             {
-                if (id == rm._Id) {
+                if (id == rm._Id)
+                {
                     rm._Id = room._Id;
                     rm._Floor = room._Floor;
                     rm._Type = room._Type;
-                    break;
+                    return;
                 }
             }
-      }
-      
-      public void Delete(Room room)
-      {
+        }
+
+        public void Delete(Room room)
+        {
             rooms.Remove(room);
-      }
-      
-      public Room FindById(int id)
-      {
-            foreach (Room room in rooms) 
+        }
+
+        public Room FindById(int id)
+        {
+            foreach (Room room in rooms)
             {
-                if (id == room._Id) return room;
+                if (id == room._Id)
+                {
+                    return room;
+                }
             }
-         return null;
-      }
-      
-      public void DeleteById(int id)
-      {
+            return null;
+        }
+
+        public void DeleteById(int id)
+        {
             Room room = FindById(id);
             if (room != null) rooms.Remove(room);
-      }
+        }
 
-        public Room FindByType(RoomType type) { 
-            foreach(Room room in rooms)
+        public Room FindByType(RoomType type)
+        {
+            foreach (Room room in rooms)
             {
-                if (room._Type == type) return room;
+                if (room._Type == type)
+                {
+                    return room;
+                }
             }
 
             return null;
-        } 
+        }
 
-      public void loadData() 
-      {
-            this.rooms = roomDataHandler.ReadAll();  
-      }
-   
-      public DataHandler.RoomDataHandler roomDataHandler;
-      public List<Room> rooms;
-      
-      /// <pdGenerated>default getter</pdGenerated>
-   
-   }
+        public void loadDataFromFiles()
+        {
+            rooms = roomDataHandler.ReadAll();
+        }
+
+        public void loadDataToFile() 
+        {
+            roomDataHandler.Write(rooms);
+        }
+
+
+
+
+    }
 }

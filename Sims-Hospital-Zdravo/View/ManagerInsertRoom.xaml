@@ -1,0 +1,30 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ManagerInsertRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View"
+        mc:Ignorable="d"
+        Title="ManagerInsertRoom" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0, 20, 120, 0" HorizontalAlignment="Right">Floor :</Label>
+        <TextBox x:Name="FloorTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" HorizontalAlignment="Center">Room Type :</Label>
+        <TextBox x:Name="RoomIdTxt" Grid.Row="1" Grid.Column="2" Width="150" Height="30" HorizontalAlignment="Left"></TextBox>
+        <Label Grid.Row="1" Grid.Column="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" HorizontalAlignment="Left">ID:</Label>
+        <ComboBox x:Name="RoomTypeCmb" Grid.Column="1" Grid.Row="1" Width="150" Height="30" SelectedIndex="0"></ComboBox>
+        <Button Grid.Row="2" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" Click="SaveInsertedRoom_Click" >Save</Button>
+
+    </Grid>
+</Window>

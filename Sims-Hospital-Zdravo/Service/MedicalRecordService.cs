@@ -1,58 +1,76 @@
 /***********************************************************************
  * Module:  MedicalRecordService.cs
- * Author:  stjep
+ * Author:  Darko
  * Purpose: Definition of the Class Service.MedicalRecordService
  ***********************************************************************/
 
 using Model;
+using Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Service
 {
    public class MedicalRecordService
    {
-      public int Create(MedicalRecord medicalRecord)
+
+        public MedicalRecordService(MedicalRecordsRepository medicalRepo)
+        {
+            medicalRecordRepository = medicalRepo;
+        }
+      public void Create(MedicalRecord medicalRecord, Patient patient)
       {
-         // TODO: implement
-         return 0;
+            // TODO: implement
+            medicalRecordRepository.Create(medicalRecord,patient);
+         return;
       }
       
       public MedicalRecord FindById(int id)
       {
-         // TODO: implement
-         return null;
+            // TODO: implement
+            return medicalRecordRepository.FindById(id);
       }
-      
-      public List<MedicalRecord> FindAll()
+
+
+       public ref ObservableCollection<MedicalRecord> ReadAll()
       {
          // TODO: implement
-         return null;
+         return ref medicalRecordRepository.ReadAll();
       }
       
-      public MedicalRecord Update(MedicalRecord medicalRecord)
+      public void Update(MedicalRecord medicalRecord, Patient patient)
       {
-         // TODO: implement
-         return null;
+            // TODO: implement
+            medicalRecordRepository.Update(medicalRecord, patient);
+         return;
       }
       
       public void DeleteById(int id)
       {
-         // TODO: implement
+            // TODO: implement
+            medicalRecordRepository.DeleteById(id);
       }
       
       public void Delete(MedicalRecord medicalRecord)
       {
-         // TODO: implement
+            // TODO: implement
+            medicalRecordRepository.Delete(medicalRecord);
       }
       
-      public List<MedicalRecord> FindByPatient(Patient patient)
-      {
-         // TODO: implement
-         return null;
-      }
-   
-      public Repository.MedicalRecordsRepository medicalRecordRepository;
+
+        public MedicalRecord FindByPatientId(int id)
+        {
+            // TODO: implement
+            return medicalRecordRepository.FindByPatientId(id);
+        }
+
+        public Patient findPatientById(int id)
+        {
+            return medicalRecordRepository.findPatientById(id);
+        }
+
+        public Repository.MedicalRecordsRepository medicalRecordRepository;
    
    }
 }
