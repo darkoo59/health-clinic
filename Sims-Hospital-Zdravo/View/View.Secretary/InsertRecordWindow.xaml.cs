@@ -42,7 +42,7 @@ namespace Sims_Hospital_Zdravo
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex);
+                MessageBox.Show(ex.Message);
             }
         }
     }

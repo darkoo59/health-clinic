@@ -16,16 +16,18 @@ namespace Controller
    public class MedicalRecordController
    {
 
-      public MedicalRecordController(MedicalRecordService recordService)
+        public Service.MedicalRecordService medicalRecordService;
+        public MedicalRecordValidator validator;
+        public MedicalRecordController(MedicalRecordService recordService)
         {
             medicalRecordService = recordService;
+            validator = new MedicalRecordValidator(medicalRecordService);
         }
 
         public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            MedicalRecordValidator validator = new MedicalRecordValidator(medicalRecordService, medicalRecord, patient);
-            validator.InsertValidation();
+            validator.InsertValidation(medicalRecord,patient);
             medicalRecordService.Create(medicalRecord, patient);
         }
       
@@ -50,6 +52,7 @@ namespace Controller
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
+            validator.UpdateValidation(patient);
             medicalRecordService.Update(medicalRecord, patient);
       }
       
@@ -65,18 +68,6 @@ namespace Controller
             medicalRecordService.Delete(medicalRecord);
       }
       
-
-      private void Validate(MedicalRecord record)
-      {
-
-            if (medicalRecordService.FindById(record._Id) != null)
-                throw new Exception("Id already exists");
-            if (medicalRecordService.FindByPatientId(record._PatientId) != null)
-                throw new Exception("Patient already have medical record");
-
-      }
-
-        public Service.MedicalRecordService medicalRecordService;
    
    }
 }
