@@ -18,7 +18,7 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for DoctorCreateAppointment.xaml
     /// </summary>
-    public partial class DoctorCreateAppointment : UserControl
+    public partial class DoctorCreateAppointment : Window
     {
         public DoctorCreateAppointment()
         {

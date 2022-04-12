@@ -23,5 +23,22 @@ namespace Sims_Hospital_Zdravo.View
         {
             InitializeComponent();
         }
+
+        
+
+        /*private void UpdateAppo_Click(object sender, RoutedEventArgs e)
+        {
+            
+           /* try
+            {
+                /*Appointment appointment = new Appointment(Int32.Parse(FloorTxt.Text), Int32.Parse(RoomIdTxt.Text), (RoomType)RoomTypeCmb.SelectedValue);
+                roomController.Update(room);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+        
     }
 }

@@ -5,13 +5,16 @@
  ***********************************************************************/
 
 using Model;
+using Service;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Controller
 {
    public class DoctorAppointmentController
    {
+
       public void Create(Appointment appointment)
       {
          // TODO: implement
@@ -31,11 +34,11 @@ namespace Controller
          return doctorAppointmentService.GetByID(appointment);
       }
       
-      public List<Appointment> GetByDoctorID(Doctor doctor)
+      public ObservableCollection<Appointment> GetByDoctorID(int id)
       {
-         // TODO: implement
-         //return null;
-         return doctorAppointmentService.GetAllByDoctorID(doctor);
+            // TODO: implement
+            //return null;
+            return doctorAppointmentService.GetAllByDoctorID(id);
       }
       
       public bool DeleteByID(Appointment appointment)
@@ -44,8 +47,18 @@ namespace Controller
          //return false;
          return doctorAppointmentService.DeleteByID(appointment);
       }
-   
-      public Service.DoctorAppointmentService doctorAppointmentService;
-   
-   }
+
+        public ref ObservableCollection<Appointment> ReadAll()
+        {
+            // TODO: implement
+            return ref doctorAppointmentService.ReadAll();
+        }
+        public Service.DoctorAppointmentService doctorAppointmentService;
+        //public DoctorAppointmentService doctorAppService;
+
+        public DoctorAppointmentController(DoctorAppointmentService AppService)
+        {
+            this.doctorAppointmentService = AppService;
+        }
+    }
 }

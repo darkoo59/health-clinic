@@ -14,15 +14,25 @@ namespace Repository
 {
    public class DoctorAppointmentRepository : AppointmentRepository
    {
-        public DataHandler.AppointmentDataHandler appDataHandler;
+        public AppointmentDataHandler appDataHandler;
+       //public PatientDataHandler patientHandler;
         public ObservableCollection<Appointment> appointments;
-        public DoctorAppointmentRepository(AppointmentDataHandler appointmentDataHandler)
+        public List<Patient> patients;
+        public PatientDataHandler patientDataHandler;
+        //private object appointmentDataHandler1;
+        //private RoomDataHandler roomDataHandler;
+
+        public DoctorAppointmentRepository( PatientDataHandler patientData, AppointmentDataHandler appointmentDataHandler)
         {
             appDataHandler = appointmentDataHandler;
             appointments = new ObservableCollection<Appointment>();
+            patients = new List<Patient>();
 
         }
-      public new void Create(Appointment appointment)
+
+       
+
+        public new void Create(Appointment appointment)
       {
             // TODO: implement
             AddAppointment(appointment);
@@ -62,13 +72,13 @@ namespace Repository
 
       }
       
-      public ObservableCollection<Appointment> GetAllByDoctorID(Doctor doctor)
+      public ObservableCollection<Appointment> GetAllByDoctorID(int id)
       {
             // TODO: implement
              ObservableCollection<Appointment> backup = new ObservableCollection<Appointment>();
             foreach(Appointment appointment in appointments)
             {
-                if(appointment._Doctor == doctor)
+                if(appointment._Doctor._DoctorID == id)
                 {
                     backup.Add(appointment);
                 }
@@ -79,23 +89,7 @@ namespace Repository
             else
                 return backup;
       }
-        /*public ObservableCollection<Appointment> GetAllByDoctorIDAndDate(Doctor doctor,DateTime date)
-        {
-            // TODO: implement
-            ObservableCollection<Appointment> backup = new ObservableCollection<Appointment>();
-            foreach (Appointment appointment in appointments)
-            {
-                if (appointment._Doctor == doctor )
-                {
-                    backup.Add(appointment);
-                }
-            }
-            if (backup.Count == 0)
-
-                return null;
-            else
-                return backup;
-        }*/
+        
 
         public Appointment GetByID(Appointment app)
       {
@@ -113,10 +107,23 @@ namespace Repository
          
          return null;
       }
+
+        public ref ObservableCollection<Appointment> ReadAll()
+        {
+            return ref appointments;
+        }
     
+        
+
+        public List<Patient> GetPatients()
+        {
+            return patients;
+        }
+
         public void LoadData()
         {
-            appointments = DataHandler.ReadAll();
+            patients = patientDataHandler.ReadAll();
+            appointments = appDataHandler.ReadAll();
         }
         public void writeData()
         {

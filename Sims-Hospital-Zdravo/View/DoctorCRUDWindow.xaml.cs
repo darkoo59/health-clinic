@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace Sims_Hospital_Zdravo.View
 {
@@ -20,14 +23,24 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorCRUDWindow : Window
     {
-        public DoctorCRUDWindow()
+        
+        public ObservableCollection<Appointment> DoctorAppointments = new ObservableCollection<Appointment>();
+
+        
+
+        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController)
         {
             InitializeComponent();
+            this.DataContext = this;
+            
+            DoctorAppointments = doctorAppController.ReadAll();
         }
 
-        private void Rooms_Click(object sender, RoutedEventArgs e)
+        /*private void Rooms_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+           // DataGridApp.
+        }*/
     }
+
+    
 }

@@ -32,7 +32,7 @@
         <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Doctor:</Label>
         <TextBox x:Name="DoctorTxt" Grid.Row="5" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
        
-            <Button Grid.Row="3" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" Click="SaveAppointmentRoom_Click" >Save</Button>
+            <Button Grid.Row="3" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" >Save</Button>
 
     </Grid>
 </Window>

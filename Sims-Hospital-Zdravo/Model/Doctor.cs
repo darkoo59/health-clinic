@@ -14,6 +14,7 @@ namespace Model
       private String Surname;
       private int DoctorID;
       private DateTime BirthDate;
+        
 
         public DateTime _BirthDate 
         {

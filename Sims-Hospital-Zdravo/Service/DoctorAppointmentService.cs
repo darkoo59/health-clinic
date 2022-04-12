@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Model;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,11 +25,16 @@ namespace Service
          return doctorAppointmentRepository.DeleteByID(appointment);
          
       }
-      
-      public ObservableCollection <Appointment> GetAllByDoctorID(Doctor doctor)
+
+        public ref ObservableCollection<Appointment> ReadAll()
+        {
+            // TODO: implement
+            return ref doctorAppointmentRepo.ReadAll();
+        }
+        public ObservableCollection <Appointment> GetAllByDoctorID(int id)
       {
             // TODO: implement
-            return doctorAppointmentRepository.GetAllByDoctorID(doctor);
+            return doctorAppointmentRepository.GetAllByDoctorID(id);
          //return null;
       }
       
@@ -46,6 +52,11 @@ namespace Service
       }
    
       public Repository.DoctorAppointmentRepository doctorAppointmentRepository;
-   
-   }
+        private DoctorAppointmentRepository doctorAppointmentRepo;
+
+        public DoctorAppointmentService(DoctorAppointmentRepository doctorAppointmentRepo)
+        {
+            this.doctorAppointmentRepo = doctorAppointmentRepo;
+        }
+    }
 }
