@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +21,52 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class SecretaryWindow : Window
     {
-        public SecretaryWindow()
+        private MedicalRecordController medicalController;
+        public SecretaryWindow(MedicalRecordController controller)
         {
             InitializeComponent();
-            GridView gridContent = new GridView();
+            this.medicalController = controller;
+            this.DataContext = this;
+            ContentGrid.ItemsSource = this.medicalController.ReadAll();
         }
+
+        private void Insert_Click(object sender, RoutedEventArgs e)
+        {
+            InsertRecordWindow insertWindow = new InsertRecordWindow(medicalController);
+            insertWindow.Show();
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
+            int patientId = medical._PatientId;
+            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController,patientId) { DataContext = ContentGrid.SelectedItem };
+            updateWindow.Show();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                medicalController.Delete((MedicalRecord)ContentGrid.SelectedItem);
+            }
+        }
+        /*
+         *  private void DeleteRoom_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
+            if(dialogResult == MessageBoxResult.Yes)
+            {
+                roomController.Delete((Room)roomsTable.SelectedItem);
+            }
+        }
+         */
+        /* private void UpdateRoom_Click(object sender, RoutedEventArgs e)
+{
+   ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = roomsTable.SelectedItem};
+   managerUpdateRoom.Show();
+}
+*/
     }
 }

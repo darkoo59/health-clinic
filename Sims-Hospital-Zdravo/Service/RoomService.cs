@@ -6,13 +6,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Model;
 using Repository;
 
 namespace Service
 {
-   public class RoomService
-   {
+    public class RoomService
+    {
         public RoomService(RoomRepository roomRepository)
         {
             this.roomRepository = roomRepository;
@@ -21,37 +22,37 @@ namespace Service
         {
             roomRepository.Create(room);
         }
-      public List<Room> Read()
-      {
-         return roomRepository.Read();
-      }
-      
-      public void Update(Room room)
-      {
-        roomRepository.Update(room);
-      }
-      
-      public void Delete(Room room)
-      {
-            roomRepository.Delete(room);
-      }
-      
-      public Room FindById(int id)
-      {
-            return roomRepository.FindById(id);
-      }
+        public ref ObservableCollection<Room> ReadAll()
+        {
+            return ref roomRepository.ReadAll();
+        }
 
-      public Room FindByType(RoomType type) 
-      {
+        public void Update(Room room)
+        {
+            roomRepository.Update(room);
+        }
+
+        public void Delete(Room room)
+        {
+            roomRepository.Delete(room);
+        }
+
+        public Room FindById(int id)
+        {
+            return roomRepository.FindById(id);
+        }
+
+        public Room FindByType(RoomType type)
+        {
             return roomRepository.FindByType(type);
-      }
-      
-      public void DeleteById(int id)
-      {
+        }
+
+        public void DeleteById(int id)
+        {
             roomRepository.DeleteById(id);
-      }
-   
-      public RoomRepository roomRepository;
-   
-   }
+        }
+
+        public RoomRepository roomRepository;
+
+    }
 }

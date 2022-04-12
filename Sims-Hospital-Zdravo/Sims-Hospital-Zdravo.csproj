@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,6 +63,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="InsertRecordWindow.xaml.cs">
+      <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
@@ -70,6 +74,9 @@
     <Compile Include="Repository\DoctorAppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="SecretaryHome.xaml.cs">
+      <DependentUpon>SecretaryHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
@@ -77,7 +84,26 @@
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
+    <Compile Include="UpdateRecordWindow.xaml.cs">
+      <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
+    <Compile Include="View\ManagerDashboard.xaml.cs">
+      <DependentUpon>ManagerDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerInsertRoom.xaml.cs">
+      <DependentUpon>ManagerInsertRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerRooms.xaml.cs">
+      <DependentUpon>ManagerRooms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerUpdateRoom.xaml.cs">
+      <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
+    </Compile>
+    <Page Include="InsertRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,7 +128,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SecretaryHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecretaryWindow.xaml">
+    </Page>
+    <Page Include="UpdateRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerInsertRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerRooms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerUpdateRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

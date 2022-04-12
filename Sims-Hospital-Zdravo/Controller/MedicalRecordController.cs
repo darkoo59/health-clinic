@@ -8,6 +8,7 @@ using Model;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Controller
 {
@@ -18,7 +19,8 @@ namespace Controller
         {
             medicalRecordService = recordService;
         }
-      public void Create(MedicalRecord medicalRecord, Patient patient)
+
+        public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
             try
@@ -37,17 +39,23 @@ namespace Controller
          // TODO: implement
          return medicalRecordService.FindById(id);
       }
-      
-      public List<MedicalRecord> ReadAll()
+
+      public Patient findPatientById(int id)
+        {
+            return medicalRecordService.findPatientById(id);
+        }
+
+
+      public ref ObservableCollection<MedicalRecord> ReadAll()
       {
          // TODO: implement
-         return medicalRecordService.ReadAll();
+         return ref medicalRecordService.ReadAll();
       }
       
-      public void Update(MedicalRecord medicalRecord)
+      public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            medicalRecordService.Update(medicalRecord);
+            medicalRecordService.Update(medicalRecord, patient);
       }
       
       public void DeleteById(int id)
@@ -62,18 +70,13 @@ namespace Controller
             medicalRecordService.Delete(medicalRecord);
       }
       
-      public MedicalRecord FindByPatient(Patient patient)
-      {
-            // TODO: implement
-            return medicalRecordService.FindByPatient(patient);
-      }
 
       private void Validate(MedicalRecord record)
       {
 
             if (medicalRecordService.FindById(record._Id) != null)
                 throw new Exception("Id already exists");
-            if (medicalRecordService.FindByPatient(record._Patient) != null)
+            if (medicalRecordService.FindByPatientId(record._PatientId) != null)
                 throw new Exception("Patient already have medical record");
 
       }

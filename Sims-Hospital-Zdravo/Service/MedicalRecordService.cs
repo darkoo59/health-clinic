@@ -8,6 +8,7 @@ using Model;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Service
 {
@@ -30,17 +31,18 @@ namespace Service
             // TODO: implement
             return medicalRecordRepository.FindById(id);
       }
-      
-      public List<MedicalRecord> ReadAll()
+
+
+       public ref ObservableCollection<MedicalRecord> ReadAll()
       {
          // TODO: implement
-         return medicalRecordRepository.ReadAll();
+         return ref medicalRecordRepository.ReadAll();
       }
       
-      public void Update(MedicalRecord medicalRecord)
+      public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            medicalRecordRepository.Update(medicalRecord);
+            medicalRecordRepository.Update(medicalRecord, patient);
          return;
       }
       
@@ -56,13 +58,19 @@ namespace Service
             medicalRecordRepository.Delete(medicalRecord);
       }
       
-      public MedicalRecord FindByPatient(Patient patient)
-      {
-         // TODO: implement
-         return medicalRecordRepository.FindByPatient(patient);
-      }
-   
-      public Repository.MedicalRecordsRepository medicalRecordRepository;
+
+        public MedicalRecord FindByPatientId(int id)
+        {
+            // TODO: implement
+            return medicalRecordRepository.FindByPatientId(id);
+        }
+
+        public Patient findPatientById(int id)
+        {
+            return medicalRecordRepository.findPatientById(id);
+        }
+
+        public Repository.MedicalRecordsRepository medicalRecordRepository;
    
    }
 }

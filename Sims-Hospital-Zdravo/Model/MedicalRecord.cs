@@ -15,7 +15,7 @@ namespace Model
 {
    public class MedicalRecord
    {
-        private Patient Patient;
+        //private Patient Patient;
 
 
         private int Id;
@@ -45,18 +45,6 @@ namespace Model
                     this.Id = value;
             }
         }
-      public Patient _Patient
-      {
-         get
-         {
-            return Patient;
-         }
-         set
-         {
-            if (this.Patient != value)
-               this.Patient = value;
-         }
-      }
 
         public int _PatientId
         {

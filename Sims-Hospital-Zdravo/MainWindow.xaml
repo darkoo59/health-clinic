@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Name="Patient" Click="Patient_Click" Width="100" Height="20" HorizontalAlignment="Left">Patient CRUD
+        <Button Name="Patient" Click="Patient_Click" Width="100" Height="20" HorizontalAlignment="Left" Margin="129,200,0,199">Patient CRUD
         </Button>
-        <Button Name="Secretary" HorizontalAlignment="Left" Margin="156,201,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click">Secretary CRUD
+        <Button Name="Secretary" HorizontalAlignment="Left" Margin="256,194,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click" Height="30">Secretary CRUD
         </Button>
+        <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Center" Margin="403,194,289,195">Manager CRUD</Button>
     </Grid>
 </Window>

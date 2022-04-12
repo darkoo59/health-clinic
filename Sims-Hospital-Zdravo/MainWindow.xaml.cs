@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Sims_Hospital_Zdravo.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class MainWindow : Window
     {
+        App app;
         public MainWindow()
         {
             InitializeComponent();
+            app = Application.Current as App;
         }
 
         private void Patient_Click(object sender, RoutedEventArgs e)
@@ -33,8 +37,16 @@ namespace Sims_Hospital_Zdravo
 
         private void Secretary_Click(object sender, RoutedEventArgs e)
         {
-            SecretaryWindow secretaryWindow = new SecretaryWindow();
-            secretaryWindow.Show();
+            MedicalRecordController medicalController = app.recordController;
+            SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
+            secretaryHomeWindow.Show();
+        }
+        private void Manager_Click(object sender, RoutedEventArgs e)
+        {
+            RoomController roomController = app.roomController;
+            ManagerDashboard manDash = new ManagerDashboard(roomController);
+            manDash.Show();
+
         }
     }
 }
