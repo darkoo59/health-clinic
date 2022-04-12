@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataHandler\PatientDataHandler.cs" />
-    <Compile Include="InsertRecordWindow.xaml.cs">
+    <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientWindow.xaml.cs">
@@ -74,17 +74,17 @@
     <Compile Include="Repository\DoctorAppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="SecretaryHome.xaml.cs">
+    <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SecretaryWindow.xaml.cs">
+    <Compile Include="View\View.Secretary\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
-    <Compile Include="UpdateRecordWindow.xaml.cs">
+    <Compile Include="View\View.Secretary\UpdateRecordWindow.xaml.cs">
       <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="View\ManagerUpdateRoom.xaml.cs">
       <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
     </Compile>
-    <Page Include="InsertRecordWindow.xaml">
+    <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,13 +128,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SecretaryHome.xaml">
+    <Page Include="View\View.Secretary\SecretaryHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SecretaryWindow.xaml">
+    <Page Include="View\View.Secretary\SecretaryWindow.xaml">
     </Page>
-    <Page Include="UpdateRecordWindow.xaml">
+    <Page Include="View\View.Secretary\UpdateRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,5 +196,6 @@
   <ItemGroup>
     <Resource Include="Resources\patient.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

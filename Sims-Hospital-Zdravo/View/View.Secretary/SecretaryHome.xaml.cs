@@ -32,5 +32,6 @@ namespace Sims_Hospital_Zdravo
             SecretaryWindow secretaryWindow = new SecretaryWindow(medicalController);
             secretaryWindow.Show();
         }
+
     }
 }
