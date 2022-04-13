@@ -1,13 +1,13 @@
 [
 	{
-			"_Id": 2,
+			"_DoctorID": 2,
 			"_Name": "Grigorije",
 			"_Surname":  "Kucanski"		
 	},
 	{
-			"_Id": 3,
-			"_Name": "Grigorije",
-			"_Surname":  "Kucanski"		
+			"_DoctorID": 3,
+			"_Name": "Robert",
+			"_Surname":  "Potjera"		
 	}
 
 ]

@@ -92,7 +92,8 @@ namespace Repository
             appointment.Clear();
       }
       public DataHandler.AppointmentDataHandler appointmentDataHandler;
-      //public ObservableCollection<Appointment> appointments;
-   
-   }
+        //public ObservableCollection<Appointment> appointments;
+        public ObservableCollection<Appointment> appointments;
+
+    }
 }

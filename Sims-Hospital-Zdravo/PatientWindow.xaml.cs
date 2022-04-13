@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +38,18 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            Appointment appointment = (Appointment)McDataGrid.SelectedValue;
+            PatientUpdate up = new PatientUpdate(appointmentPatientController, appointment) { DataContext = McDataGrid.SelectedItem };
+            up.Show();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
+            }
         }
 
         private void McDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

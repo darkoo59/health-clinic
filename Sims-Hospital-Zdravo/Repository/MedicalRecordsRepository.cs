@@ -24,7 +24,7 @@ namespace Repository
             medicalRecords = new ObservableCollection<MedicalRecord>();
             patientDataHandler = patientHandler;
             medicalRecordDataHandler = recordDataHandler;
-            loadDataFromFiles();
+            LoadDataFromFiles();
         }
 
         public void Create(Model.MedicalRecord medicalRecord, Patient patient)
@@ -32,7 +32,7 @@ namespace Repository
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
             this.patients.Add(patient);
-            loadDataToFiles();
+            LoadDataToFiles();
         }
 
         public MedicalRecord FindById(int id)
@@ -82,7 +82,7 @@ namespace Repository
                     patient2._Name = patient._Name;
                     patient2._PhoneNumber = patient._PhoneNumber;
                     patient2._Surname = patient._Surname;
-                    loadDataToFiles();
+                    LoadDataToFiles();
                     return;
                 }
             }
@@ -97,7 +97,7 @@ namespace Repository
                 if(record._Id == id)
                 {
                     medicalRecords.Remove(record);
-                    loadDataToFiles();
+                    LoadDataToFiles();
                     return;
                 }
             }
@@ -109,7 +109,7 @@ namespace Repository
         {
             // TODO: implement
             medicalRecords.Remove(medicalRecord);
-            loadDataToFiles();
+            LoadDataToFiles();
         }
 
 
@@ -125,7 +125,7 @@ namespace Repository
             return null;
         }
 
-        public Patient findPatientById(int id)
+        public Patient FindPatientById(int id)
         {
             foreach(Patient patient in patients)
             {
@@ -137,13 +137,13 @@ namespace Repository
             return null;
         }
 
-        public void loadDataFromFiles()
+        public void LoadDataFromFiles()
         {
             this.medicalRecords = medicalRecordDataHandler.ReadAll();
             this.patients = patientDataHandler.ReadAll();
         }
 
-        public void loadDataToFiles()
+        public void LoadDataToFiles()
         {
             medicalRecordDataHandler.Write(medicalRecords);
             patientDataHandler.Write(patients);

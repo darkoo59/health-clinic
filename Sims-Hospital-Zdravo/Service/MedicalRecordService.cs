@@ -69,7 +69,7 @@ namespace Service
 
         public Patient findPatientById(int id)
         {
-            return medicalRecordRepository.findPatientById(id);
+            return medicalRecordRepository.FindPatientById(id);
         }
 
    
