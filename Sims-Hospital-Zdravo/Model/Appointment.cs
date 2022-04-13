@@ -5,9 +5,11 @@
  ***********************************************************************/
 
 using System;
+using System.ComponentModel;
+
 namespace Model
 {
-   public class Appointment
+   public class Appointment : INotifyPropertyChanged
    {
       private DateTime DateAndTime;
       private int Room;
@@ -30,8 +32,11 @@ namespace Model
          }
          set
          {
-            if (this.DateAndTime != value)
-               this.DateAndTime = value;
+                if (this.DateAndTime != value)
+                {
+                    this.DateAndTime = value;
+                    OnPropertyChanged();
+                }
          }
       }
       
@@ -43,8 +48,11 @@ namespace Model
          }
          set
          {
-            if (this.Room != value)
-               this.Room = value;
+                if (this.Room != value)
+                {
+                    this.Room = value;
+
+                }
          }
       }
       
@@ -56,8 +64,11 @@ namespace Model
          }
          set
          {
-            if (this.DoctorId != value)
-               this.DoctorId = value;
+                if (this.DoctorId != value)
+                {
+                    this.DoctorId = value;
+                    OnPropertyChanged();
+                }
          }
       }
       
@@ -87,9 +98,11 @@ namespace Model
          }
       }
 
-        /*public static implicit operator ArrayList(Appointment v)
+        private void OnPropertyChanged(String name = "")
         {
-            throw new NotImplementedException();
-        }*/
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
