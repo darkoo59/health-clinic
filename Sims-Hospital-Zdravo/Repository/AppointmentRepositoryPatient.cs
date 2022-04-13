@@ -14,7 +14,7 @@ namespace Repository
 {
    public class AppointmentRepositoryPatient : AppointmentRepository
    {
-        public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler, DoctorDataHandler doctorDataHandler)
+        public AppointmentRepositoryPatient(AppointmentDataHandler appointmentDataHandler, DoctorDataHandler doctorDataHandler): base(appointmentDataHandler)
         {
             this.appointments = new ObservableCollection<Appointment>();
             this.doctors = new ObservableCollection<Doctor>();

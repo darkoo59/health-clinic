@@ -16,16 +16,16 @@ namespace Repository
    {
         public AppointmentDataHandler appDataHandler;
        //public PatientDataHandler patientHandler;
-        public ObservableCollection<Appointment> appointments;
+        public ObservableCollection<Appointment> appointmentsList;
         public List<Patient> patients;
         public PatientDataHandler patientDataHandler;
         //private object appointmentDataHandler1;
         //private RoomDataHandler roomDataHandler;
 
-        public DoctorAppointmentRepository( PatientDataHandler patientData, AppointmentDataHandler appointmentDataHandler)
+        public DoctorAppointmentRepository(PatientDataHandler patientData, AppointmentDataHandler appointmentDataHandler) : base(appointmentDataHandler)
         {
             appDataHandler = appointmentDataHandler;
-            appointments = new ObservableCollection<Appointment>();
+            appointmentsList = new ObservableCollection<Appointment>();
             patients = new List<Patient>();
 
         }
@@ -35,7 +35,7 @@ namespace Repository
         public new void Create(Appointment appointment)
       {
             // TODO: implement
-            AddAppointment(appointment);
+            appointmentsList.Add(appointment);
 
 
       }
@@ -43,11 +43,11 @@ namespace Repository
       public Boolean DeleteByID(Appointment appointment)
       {
          // TODO: implement
-         foreach(  Appointment app in appointments)
+         foreach(  Appointment app in appointmentsList)
             {
                 if (app._Id == appointment._Id)
                 {
-                    RemoveAppointment(app);
+                    appointmentsList.Remove(app);
                     return true;
                 }
             }
@@ -57,13 +57,13 @@ namespace Repository
       public new void Update(Appointment appointment)
       {
          // TODO: implement
-         foreach(Appointment app in appointments)
+         foreach(Appointment app in appointmentsList)
             {
                 if(app._Id == appointment._Id)
                 {
                     app._DateAndTime = appointment._DateAndTime;
-                    app._Doctor = appointment._Doctor;
-                    app._Patient = appointment._Patient;
+                    //app._Doctor = appointment._Doctor;
+                    app._PatientId = appointment._PatientId;
                     app._Room = appointment._Room;
                 }
 
@@ -76,9 +76,9 @@ namespace Repository
       {
             // TODO: implement
              ObservableCollection<Appointment> backup = new ObservableCollection<Appointment>();
-            foreach(Appointment appointment in appointments)
+            foreach(Appointment appointment in appointmentsList)
             {
-                if(appointment._Doctor._DoctorID == id)
+                if(appointment._DoctorId == id)
                 {
                     backup.Add(appointment);
                 }
@@ -95,7 +95,7 @@ namespace Repository
       {
          // TODO: implement
          
-         foreach(Appointment appoi in appointments)
+         foreach(Appointment appoi in appointmentsList)
             {
                 if (appoi._Id == app._Id)
                 {
@@ -108,9 +108,9 @@ namespace Repository
          return null;
       }
 
-        public ref ObservableCollection<Appointment> ReadAll()
+        public ObservableCollection<Appointment> ReadAll(int id)
         {
-            return ref appointments;
+            return base.FindByDoctorId(id);
         }
     
         
@@ -120,14 +120,15 @@ namespace Repository
             return patients;
         }
 
-        public void LoadData()
+        public void LoadData(int id)
         {
             patients = patientDataHandler.ReadAll();
-            appointments = appDataHandler.ReadAll();
+            //appointmentsList = appDataHandler.ReadAll();
+            //appointmentsList = base.FindByDoctorId(id);
         }
         public void writeData()
         {
-            appDataHandler.Write(appointments);
+            //appDataHandler.Write(appointmentsList);
         }
         //public DataHandler.AppointmentDataHandler DataHandler;
         //public ObservableCollection<Appointment> appointments;

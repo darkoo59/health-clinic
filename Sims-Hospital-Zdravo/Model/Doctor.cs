@@ -12,6 +12,9 @@ namespace Model
       private String Name;
       private String Surname;
       private int DoctorID;
+        private String Email;
+        private String Jmbg;
+        private String PhoneNumber;
       private String Specialty { get; set; }
    
       public String _Name

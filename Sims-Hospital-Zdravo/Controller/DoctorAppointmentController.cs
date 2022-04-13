@@ -48,10 +48,10 @@ namespace Controller
          return doctorAppointmentService.DeleteByID(appointment);
       }
 
-        public ref ObservableCollection<Appointment> ReadAll()
+        public ObservableCollection<Appointment> ReadAll(int id)
         {
             // TODO: implement
-            return ref doctorAppointmentService.ReadAll();
+            return doctorAppointmentService.ReadAll(id);
         }
         public Service.DoctorAppointmentService doctorAppointmentService;
         //public DoctorAppointmentService doctorAppService;

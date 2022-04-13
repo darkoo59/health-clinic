@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorAppointments : Window
     {
+        private DoctorAppointmentController doctorAppointmentController;
         public DoctorAppointments()
         {
             InitializeComponent();

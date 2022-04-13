@@ -22,6 +22,7 @@ namespace Sims_Hospital_Zdravo
         internal RoomController roomController;
         internal MedicalRecordController recordController;
         internal AppointmentPatientController appointmentPatientController;
+        internal DoctorAppointmentController doctorAppointmentController;
 
         public App() 
         {
@@ -45,6 +46,14 @@ namespace Sims_Hospital_Zdravo
             AppointmentRepositoryPatient appointmentRepositoryPatient = new AppointmentRepositoryPatient(appointmentDataHandler,doctorDataHandler);
             AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepositoryPatient);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
+
+
+            DoctorAppointmentRepository doctorAppointmentRepository = new DoctorAppointmentRepository(patientDataHandler, appointmentDataHandler);
+            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(doctorAppointmentRepository);
+            doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
+
+
+            //DoctorAppointmentService doctorService = new DoctorAppointmentService();
         }
     }
 }

@@ -11,7 +11,9 @@
         </Button>
         <Button Name="Secretary" HorizontalAlignment="Left" Margin="309,155,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click" Height="30">Secretary CRUD
         </Button>
-        <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Center" Margin="494,155,198,234">Manager CRUD
+        <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Left" Margin="465,158,0,246">Manager CRUD
+        </Button>
+        <Button Name="DoctorBtn" Click="Doctor_Click" Width="100" Height="30" HorizontalAlignment="Left" Margin="619,163,0,241">Doctor CRUD
         </Button>
     </Grid>
 </Window>

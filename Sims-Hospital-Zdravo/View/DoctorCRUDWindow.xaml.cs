@@ -25,15 +25,18 @@ namespace Sims_Hospital_Zdravo.View
     {
         
         public ObservableCollection<Appointment> DoctorAppointments = new ObservableCollection<Appointment>();
-
+        private DoctorAppointmentController doctorAppController;
         
 
         public DoctorCRUDWindow(DoctorAppointmentController doctorAppController)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.doctorAppController = doctorAppController;
+            DoctorAppointments = doctorAppController.ReadAll(1);
+
+            dataGridDoctorApps.ItemsSource = DoctorAppointments;
             
-            DoctorAppointments = doctorAppController.ReadAll();
         }
 
         /*private void Rooms_Click(object sender, RoutedEventArgs e)

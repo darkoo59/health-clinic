@@ -13,6 +13,7 @@ namespace Service
 {
    public class DoctorAppointmentService
    {
+
       public void Create(Appointment appointment)
       {
          // TODO: implement
@@ -26,10 +27,10 @@ namespace Service
          
       }
 
-        public ref ObservableCollection<Appointment> ReadAll()
+        public ObservableCollection<Appointment> ReadAll(int id)
         {
             // TODO: implement
-            return ref doctorAppointmentRepo.ReadAll();
+            return doctorAppointmentRepository.ReadAll(id);
         }
         public ObservableCollection <Appointment> GetAllByDoctorID(int id)
       {
@@ -52,11 +53,10 @@ namespace Service
       }
    
       public Repository.DoctorAppointmentRepository doctorAppointmentRepository;
-        private DoctorAppointmentRepository doctorAppointmentRepo;
 
         public DoctorAppointmentService(DoctorAppointmentRepository doctorAppointmentRepo)
         {
-            this.doctorAppointmentRepo = doctorAppointmentRepo;
+            this.doctorAppointmentRepository = doctorAppointmentRepo;
         }
     }
 }

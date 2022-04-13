@@ -87,9 +87,9 @@ namespace Model
          }
       }
 
-        public static implicit operator ArrayList(Appointment v)
+        /*public static implicit operator ArrayList(Appointment v)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }
