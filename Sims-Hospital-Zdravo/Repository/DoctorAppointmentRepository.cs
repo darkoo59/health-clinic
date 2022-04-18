@@ -35,6 +35,7 @@ namespace Repository
         public new void Create(Appointment appointment)
       {
             // TODO: implement
+            base.Create(appointment);
             appointmentsList.Add(appointment);
 
 
