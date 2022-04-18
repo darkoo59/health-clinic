@@ -105,16 +105,16 @@
     <Compile Include="View\DoctorUpdateAppointment.xaml.cs">
       <DependentUpon>DoctorUpdateAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagerDashboard.xaml.cs">
+    <Compile Include="View\Manager\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagerInsertRoom.xaml.cs">
+    <Compile Include="View\Manager\ManagerInsertRoom.xaml.cs">
       <DependentUpon>ManagerInsertRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagerRooms.xaml.cs">
+    <Compile Include="View\Manager\ManagerRooms.xaml.cs">
       <DependentUpon>ManagerRooms.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagerUpdateRoom.xaml.cs">
+    <Compile Include="View\Manager\ManagerUpdateRoom.xaml.cs">
       <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientCreate.xaml.cs">
@@ -177,19 +177,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagerDashboard.xaml">
+    <Page Include="View\Manager\ManagerDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagerInsertRoom.xaml">
+    <Page Include="View\Manager\ManagerInsertRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagerRooms.xaml">
+    <Page Include="View\Manager\ManagerRooms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ManagerUpdateRoom.xaml">
+    <Page Include="View\Manager\ManagerUpdateRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

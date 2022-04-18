@@ -7,13 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Name="Patient" Click="Patient_Click" Width="100" Height="30" HorizontalAlignment="Left" Margin="132,155,0,234">Patient CRUD
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button  Grid.Column="0" Name="Patient" Click="Patient_Click" Width="100"  VerticalAlignment="Center">Patient CRUD
         </Button>
-        <Button Name="Secretary" HorizontalAlignment="Left" Margin="309,155,0,0" VerticalAlignment="Top" Width="100" Click="Secretary_Click" Height="30">Secretary CRUD
+        <Button Grid.Column="1" Name="Secretary"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="Secretary_Click" >Secretary CRUD
         </Button>
-        <Button Name="ManagerBtn" Click="Manager_Click" Width="100" Height="30" HorizontalAlignment="Left" Margin="465,158,0,246">Manager CRUD
+        <Button Grid.Column="2" Name="ManagerBtn" Click="Manager_Click" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" >Manager CRUD
         </Button>
-        <Button Name="DoctorBtn" Click="Doctor_Click" Width="100" Height="30" HorizontalAlignment="Left" Margin="619,163,0,241">Doctor CRUD
+        <Button Grid.Column="3" Name="DoctorBtn" Click="Doctor_Click" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Center" >Doctor CRUD
         </Button>
     </Grid>
 </Window>

@@ -23,6 +23,8 @@ namespace Repository
         protected void Create(Model.Appointment appointment)
         {
             // TODO: implement
+            appointments.Add(appointment);
+            appointmentDataHandler.Write(appointments);
         }
 
         protected void Update(Model.Appointment appointment)
