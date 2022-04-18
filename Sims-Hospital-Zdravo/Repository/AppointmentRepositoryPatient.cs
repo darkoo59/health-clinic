@@ -41,7 +41,7 @@ namespace Repository
                 if (app._Id==appointment._Id) 
                 {
                     app._DateAndTime = appointment._DateAndTime;
-                    app._DoctorId = appointment._DoctorId;
+                    app._Doctor = appointment._Doctor;
                     app._Room = appointment._Room;
                     loadDataToFile();
                     return;

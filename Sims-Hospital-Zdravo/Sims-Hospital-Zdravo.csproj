@@ -64,6 +64,11 @@
     </ApplicationDefinition>
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserData.cs" />
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
