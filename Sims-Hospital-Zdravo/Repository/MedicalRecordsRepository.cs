@@ -46,6 +46,16 @@ namespace Repository
             return null;
         }
 
+        public Patient FindPatientById(int id)
+        {
+            foreach(Patient patient in patients)
+            {
+                if (patient._Id == id)
+                    return patient;
+            }
+            return null;
+        }
+
         //dodato
         public ref ObservableCollection<MedicalRecord> ReadAll()
         {
@@ -112,35 +122,10 @@ namespace Repository
             LoadDataToFiles();
         }
 
-
-        public MedicalRecord FindRecordByPatientId(int id)
-        {
-            foreach (MedicalRecord record in medicalRecords)
-            {
-                if (record._PatientId == id)
-                {
-                    return record;
-                }
-            }
-            return null;
-        }
-
-        public Patient FindPatientById(int id)
-        {
-            foreach(Patient patient in patients)
-            {
-                if(patient._Id == id)
-                {
-                    return patient;
-                }
-            }
-            return null;
-        }
-
         public void LoadDataFromFiles()
         {
-            this.medicalRecords = medicalRecordDataHandler.ReadAll();
             this.patients = patientDataHandler.ReadAll();
+            this.medicalRecords = medicalRecordDataHandler.ReadAll();
         }
 
         public void LoadDataToFiles()

@@ -54,7 +54,10 @@ namespace Sims_Hospital_Zdravo
 
         private void McDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
+            //if (e.PropertyName == "Patient") e.Cancel = true;
+            //Console.WriteLine(e.PropertyName);
+            if (e.PropertyName == "_Id") { e.Cancel = true; Console.WriteLine("Usao"); }
+            if (e.PropertyName == "_PatientId") { e.Column.Header = "Patient";Console.WriteLine("Usao"); }
         }
     }
 }

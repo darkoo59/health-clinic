@@ -5,104 +5,25 @@
  ***********************************************************************/
 
 using System;
-using System.ComponentModel;
 
 namespace Model
 {
-   public class Appointment : INotifyPropertyChanged
+   public class Appointment
    {
-      private DateTime DateAndTime;
-      private int Room;
-      private int DoctorId;
-      private int Id;
-      private int PatientId;
-        public Appointment(int Id, int room, DateTime DateAndTime, int PatientId,int DoctorId) 
-        {
-            this._Id = Id;
-            this._Room = room;
-            this._DateAndTime = DateAndTime;
-            this._PatientId = PatientId;
-            this._DoctorId = DoctorId;
-        }
-      public DateTime _DateAndTime
-      {
-         get
-         {
-            return DateAndTime;
-         }
-         set
-         {
-                if (this.DateAndTime != value)
-                {
-                    this.DateAndTime = value;
-                    OnPropertyChanged();
-                }
-         }
-      }
-      
-      public int _Room
-      {
-         get
-         {
-            return Room;
-         }
-         set
-         {
-                if (this.Room != value)
-                {
-                    this.Room = value;
+        private Room room;
 
-                }
-         }
-      }
-      
-      public int _DoctorId
-      {
-         get
-         {
-            return DoctorId;
-         }
-         set
-         {
-                if (this.DoctorId != value)
-                {
-                    this.DoctorId = value;
-                    OnPropertyChanged();
-                }
-         }
-      }
-      
-      public int _Id
-      {
-         get
-         {
-            return Id;
-         }
-         set
-         {
-            if (this.Id != value)
-               this.Id = value;
-         }
-      }
-      
-      public int _PatientId
-      {
-         get
-         {
-            return PatientId;
-         }
-         set
-         {
-            if (this.PatientId != value)
-               this.PatientId = value;
-         }
-      }
+        private Doctor doctor;
+        private Patient patient;
 
-        private void OnPropertyChanged(String name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        private DateTime DateAndTime;
+        private int Id;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Room _Room { get; set; }
+
+        public Doctor _Doctor { get; set; }
+        public Patient _Patient { get; set; }
+
+        public DateTime _DateAndTime { get; set; }
+        public int _Id { get; set; }
     }
 }

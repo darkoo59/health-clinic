@@ -64,7 +64,7 @@ namespace Repository
                 {
                     app._DateAndTime = appointment._DateAndTime;
                     //app._Doctor = appointment._Doctor;
-                    app._PatientId = appointment._PatientId;
+                    app._Patient._Id = appointment._Patient._Id;
                     app._Room = appointment._Room;
                 }
 
@@ -79,7 +79,7 @@ namespace Repository
              ObservableCollection<Appointment> backup = new ObservableCollection<Appointment>();
             foreach(Appointment appointment in appointmentsList)
             {
-                if(appointment._DoctorId == id)
+                if(appointment._Doctor._Id == id)
                 {
                     backup.Add(appointment);
                 }
