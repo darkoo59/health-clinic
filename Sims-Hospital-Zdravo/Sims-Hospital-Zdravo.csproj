@@ -67,6 +67,8 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\RoomEquipment.cs" />
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>

@@ -348,3 +348,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+Sims-Hospital-Zdravo/Resources/appointment.txt
+Sims-Hospital-Zdravo/Resources/appointments.txt
+Sims-Hospital-Zdravo/Resources/doctor.txt
+Sims-Hospital-Zdravo/Resources/doctors.txt
+Sims-Hospital-Zdravo/Resources/medicalRecord.txt
+Sims-Hospital-Zdravo/Resources/patient.txt
+Sims-Hospital-Zdravo/Resources/rooms.txt
