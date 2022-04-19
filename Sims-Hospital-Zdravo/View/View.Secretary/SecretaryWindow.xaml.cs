@@ -39,8 +39,8 @@ namespace Sims_Hospital_Zdravo
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
-            int patientId = medical._PatientId;
-            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController,patientId) { DataContext = ContentGrid.SelectedItem };
+            Patient patient = medical._Patient;
+            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient) { DataContext = ContentGrid.SelectedItem };
             updateWindow.Show();
         }
 

@@ -12,11 +12,23 @@ namespace Model
 {
     public class MedicalRecord
    {
+        private int id;
         private Patient patient;
 
         private GenderType Gender;
         private BloodType BloodType;
         private MaritalType MaritalStatus;
+
+        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus)
+        {
+            this._Id = id;
+            this.patient = patient;
+            this._Gender = gender;
+            this._BloodType = blood;
+            this._MaritalStatus = maritalStatus;
+        }
+
+        public int _Id { get; set; }
         public Patient _Patient { get; set; }
 
         public GenderType _Gender { get; set; }

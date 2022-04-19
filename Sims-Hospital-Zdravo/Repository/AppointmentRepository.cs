@@ -44,7 +44,7 @@ namespace Repository
 
             foreach(Appointment app in appointments)
             {
-                if(app._DoctorId == id)
+                if(app._Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
                 }

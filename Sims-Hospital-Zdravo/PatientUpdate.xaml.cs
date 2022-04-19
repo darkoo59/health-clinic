@@ -63,7 +63,7 @@ namespace Sims_Hospital_Zdravo
             Doctors.ItemsSource = doctors;
             foreach (Doctor doctor in appointmentPatientController.ReadDoctors()) 
             {
-                if (doctor._DoctorID == appointment._DoctorId)
+                if (doctor._Id == appointment._Doctor._Id)
                 {
                     _Doctor = doctor;
                     Doctors.SelectedItem = doctor._Name + " " + doctor._Surname; 
@@ -98,7 +98,7 @@ namespace Sims_Hospital_Zdravo
             string[] time = Time.Text.Split(':');
             _DateTime = _DateTime.AddHours(Int32.Parse(time[0]));
             _DateTime = _DateTime.AddMinutes(Int32.Parse(time[1]));
-            Appointment appointment = new Appointment(_Id, 100, _DateTime, 1, _Doctor._DoctorID);
+            Appointment appointment = new  Appointment(_Id, 100, _DateTime, 1, _Doctor._Id);
             appointmentPatientController.Update(appointment);
             Close();
         }

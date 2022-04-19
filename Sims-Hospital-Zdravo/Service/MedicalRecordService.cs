@@ -60,13 +60,6 @@ namespace Service
             medicalRecordRepository.Delete(medicalRecord);
       }
       
-
-        public MedicalRecord FindRecordByPatientId(int id)
-        {
-            // TODO: implement
-            return medicalRecordRepository.FindRecordByPatientId(id);
-        }
-
         public Patient findPatientById(int id)
         {
             return medicalRecordRepository.FindPatientById(id);

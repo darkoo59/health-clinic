@@ -22,14 +22,15 @@ namespace Sims_Hospital_Zdravo
     public partial class UpdateRecordWindow : Window
     {
         private MedicalRecordController medicalController;
-        public UpdateRecordWindow(MedicalRecordController controller,int patientId)
+        private Patient patient;
+        public UpdateRecordWindow(MedicalRecordController controller,Patient patient)
         {
             InitializeComponent();
             medicalController = controller;
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            Patient patient = medicalController.findPatientById(patientId);
+            patient = patient;
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
@@ -42,7 +43,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), Int32.Parse(TxtPatientId.Text), (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
+                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), this.patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
                 Patient patient = new Patient(Int32.Parse(TxtPatientId.Text), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 medicalController.Update(medicalRecord, patient);
                 Close();
