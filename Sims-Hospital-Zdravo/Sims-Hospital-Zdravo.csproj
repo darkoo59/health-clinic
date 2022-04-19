@@ -64,6 +64,8 @@
     </ApplicationDefinition>
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\RoomEquipment.cs" />
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>

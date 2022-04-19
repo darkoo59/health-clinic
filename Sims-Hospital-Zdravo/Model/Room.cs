@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 public enum RoomType { OPERATION, EXAMINATION, MEETING, WAREHOUSE };
 
@@ -14,14 +15,15 @@ namespace Model
     {
         private int Floor;
         private int Id;
-
         private RoomType Type;
+        private List<RoomEquipment> roomEquipment;
 
         public Room(int floor, int id, RoomType type)
         {
             this.Floor = floor;
             this.Id = id;
             this.Type = type;
+            this.roomEquipment = new List<RoomEquipment>();
         }
 
 
