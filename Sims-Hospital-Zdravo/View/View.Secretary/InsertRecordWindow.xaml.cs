@@ -35,8 +35,8 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), medicalController.findPatientById(Int32.Parse(TxtPatientId.Text)), (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
                 Patient patient = new Patient(Int32.Parse(TxtPatientId.Text), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
                 medicalController.Create(medicalRecord, patient);
                 Close();
             }

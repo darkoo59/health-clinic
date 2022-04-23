@@ -12,8 +12,8 @@ namespace Model
 {
     public class MedicalRecord
    {
-        private int id;
-        private Patient patient;
+        private int Id;
+        private Patient Patient;
 
         private GenderType Gender;
         private BloodType BloodType;
@@ -22,7 +22,7 @@ namespace Model
         public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus)
         {
             this._Id = id;
-            this.patient = patient;
+            this._Patient = patient;
             this._Gender = gender;
             this._BloodType = blood;
             this._MaritalStatus = maritalStatus;

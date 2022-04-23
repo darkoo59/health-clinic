@@ -15,23 +15,20 @@ namespace Repository
     public class MedicalRecordsRepository
     {
         public ObservableCollection<MedicalRecord> medicalRecords;
-        public List<Patient> patients;
-        public DataHandler.PatientDataHandler patientDataHandler;
         public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
 
-        public MedicalRecordsRepository(PatientDataHandler patientHandler, MedicalRecordDataHandler recordDataHandler)
+        public MedicalRecordsRepository(MedicalRecordDataHandler recordDataHandler)
         {
             medicalRecords = new ObservableCollection<MedicalRecord>();
-            patientDataHandler = patientHandler;
             medicalRecordDataHandler = recordDataHandler;
             LoadDataFromFiles();
         }
 
-        public void Create(Model.MedicalRecord medicalRecord, Patient patient)
+        public void Create(Model.MedicalRecord medicalRecord)
         {
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
-            this.patients.Add(patient);
+         //   this.patients.Add(patient);
             LoadDataToFiles();
         }
 
@@ -48,10 +45,10 @@ namespace Repository
 
         public Patient FindPatientById(int id)
         {
-            foreach(Patient patient in patients)
+            foreach(MedicalRecord medicalRecord in medicalRecords)
             {
-                if (patient._Id == id)
-                    return patient;
+                if (medicalRecord._Patient._Id == id)
+                    return medicalRecord._Patient;
             }
             return null;
         }
@@ -62,38 +59,20 @@ namespace Repository
             return ref medicalRecords;
         }
 
-        public System.Collections.Generic.List<Patient> ReadAllPatients()
-        {
-            return patients;
-        }
-
-        public void Update(MedicalRecord medicalRecord, Patient patient)
+        public void Update(MedicalRecord medicalRecord)
         {
             // TODO: implement
             int medicalId = medicalRecord._Id;
-            foreach(MedicalRecord record in medicalRecords)
+            foreach (MedicalRecord record in medicalRecords)
             {
-                if(record._Id == medicalId)
+                if (record._Id == medicalId)
                 {
                     record._BloodType = medicalRecord._BloodType;
                     record._Gender = medicalRecord._Gender;
                     record._MaritalStatus = medicalRecord._MaritalStatus;
-                    break;
-                }
-            }
-            int patientId = patient._Id;
-            foreach(Patient patient2 in patients)
-            {
-                if(patient2._Id == patientId)
-                {
-                    patient2._BirthDate = patient._BirthDate;
-                    patient2._Email = patient._Email;
-                    patient2._Jmbg = patient._Jmbg;
-                    patient2._Name = patient._Name;
-                    patient2._PhoneNumber = patient._PhoneNumber;
-                    patient2._Surname = patient._Surname;
+                    record._Patient = medicalRecord._Patient;
                     LoadDataToFiles();
-                    return;
+                    break;
                 }
             }
             return;
@@ -124,14 +103,12 @@ namespace Repository
 
         public void LoadDataFromFiles()
         {
-            this.patients = patientDataHandler.ReadAll();
-            this.medicalRecords = medicalRecordDataHandler.ReadAll();
+            medicalRecords = medicalRecordDataHandler.ReadAll();
         }
 
         public void LoadDataToFiles()
         {
             medicalRecordDataHandler.Write(medicalRecords);
-            patientDataHandler.Write(patients);
         }
     }
 }

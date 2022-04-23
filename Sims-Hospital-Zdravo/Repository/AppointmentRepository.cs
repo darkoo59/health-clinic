@@ -15,11 +15,7 @@ namespace Repository
     public class AppointmentRepository
     {
         public ObservableCollection<Appointment> appointments;
-
-        public List<Patient> patients;
-        public PatientDataHandler patientDataHandler;
-
-        public DataHandler.AppointmentDataHandler appointmentDataHandler;
+        public AppointmentDataHandler appointmentDataHandler;
 
 
 
@@ -37,12 +33,22 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
-            // TODO: implement
+            foreach (Appointment app in appointments)
+            {
+                if (app._Id == appointment._Id)
+                {
+                    app._DateAndTime = appointment._DateAndTime;
+                    //app._Doctor = appointment._Doctor;
+                    //app._Patient = appointment._Patient;
+                    //app._Room = appointment._Room;
+                }
+
+            }
         }
 
         public void Delete(Model.Appointment appointment)
         {
-            // TODO: implement
+            appointments.Remove(appointment);
         }
 
         public ObservableCollection<Appointment> FindByDoctorId(int id)
@@ -63,8 +69,15 @@ namespace Repository
 
         public ObservableCollection<Appointment> FindByPatientId(int id)
         {
-            // TODO: implement
-            return null;
+            ObservableCollection<Appointment> patientApps = new ObservableCollection<Appointment>();
+            foreach (Appointment app in this.appointments)
+            {
+                if (app._Patient._Id == id)
+                {
+                    patientApps.Add(app);
+                }
+            }
+            return patientApps;
         }
 
         public ObservableCollection<Appointment> FindAll()
@@ -72,19 +85,15 @@ namespace Repository
             // TODO: implement
             return null;
         }
-
-
-    
-
-        //
-
-        /// <pdGenerated>default getter</pdGenerated>
-
-
-        public ref List<Patient> GetPatients()
+        public void loadDataFromFiles()
         {
-            return ref patients;
+            appointments = appointmentDataHandler.ReadAll();
         }
+        public void loadDataToFile()
+        {
+            appointmentDataHandler.Write(appointments);
+        }
+
         public Appointment GetByID(Appointment app)
         {
             // TODO: implement

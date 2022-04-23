@@ -11,6 +11,7 @@ using Controller;
 using Repository;
 using Model;
 using DataHandler;
+using Sims_Hospital_Zdravo.Repository;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -34,24 +35,24 @@ namespace Sims_Hospital_Zdravo
             roomController = new RoomController(roomService);
 
             PatientDataHandler patientDataHandler = new PatientDataHandler();
+            PatientRepository patientRepository = new PatientRepository(patientDataHandler);
 
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
-            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(patientDataHandler, medicalRecordDataHandler);
-            MedicalRecordService recordService = new MedicalRecordService(medicalRepo);
+            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
+            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository);
             recordController = new MedicalRecordController(recordService);
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
-            AppointmentRepositoryPatient appointmentRepositoryPatient = new AppointmentRepositoryPatient(appointmentDataHandler,doctorDataHandler);
-            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepositoryPatient);
+            DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
+            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
+            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository,doctorRepository);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
 
             //DoctorAppointmentRepository doctorAppointmentRepository = new DoctorAppointmentRepository(patientDataHandler, appointmentDataHandler);
-            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
-            DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
-            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, appointmentRepositoryPatient,doctorRepository);
+            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, patientRepository);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
 

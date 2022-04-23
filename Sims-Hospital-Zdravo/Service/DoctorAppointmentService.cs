@@ -13,8 +13,6 @@ namespace Service
 {
     public class DoctorAppointmentService
     {
-        List<Patient> fakePatients = new List<Patient>();
-        public DoctorRepository doctorRepo;
 
 
         public Doctor getDoctor(int id)
@@ -38,9 +36,9 @@ namespace Service
         }
 
 
-        public ref List<Patient> GetPatients()
+        public ref ObservableCollection<Patient> GetPatients()
         {
-            return ref fakePatients;
+            return ref patientRepository.ReadAll();
             //Zamijeniti pravim funkcijama
 
         }
@@ -60,18 +58,17 @@ namespace Service
         }
 
         public AppointmentRepository appointmentRepository;
-        public AppointmentRepositoryPatient appointmentRepositoryPatient;
+        public PatientRepository patientRepository;
         /// <summary>
         /// Appointment repository patient zamijeniti sa patient handlerom ili sta vec bude trebalo
         /// </summary>
         /// <param name="appointmentRepo"></param>
         /// <param name="appRepoPatient"></param>
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepo, AppointmentRepositoryPatient appRepoPatient,DoctorRepository docRepo)
+        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository)
         {
-            this.appointmentRepository = appointmentRepo;
-            this.appointmentRepositoryPatient = appRepoPatient;
-            this.doctorRepo = docRepo;
+            this.appointmentRepository = appointmentRepository;
+            this.patientRepository = patientRepository;
         }
     }
 }

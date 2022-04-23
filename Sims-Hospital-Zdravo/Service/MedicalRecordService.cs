@@ -16,15 +16,18 @@ namespace Service
    {
 
         public Repository.MedicalRecordsRepository medicalRecordRepository;
+        public PatientRepository patientRepository;
 
-        public MedicalRecordService(MedicalRecordsRepository medicalRepo)
+        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo)
         {
             medicalRecordRepository = medicalRepo;
+            patientRepository = patientRepo;
         }
       public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            medicalRecordRepository.Create(medicalRecord,patient);
+            medicalRecordRepository.Create(medicalRecord);
+            patientRepository.Create(patient);
          return;
       }
       
@@ -44,7 +47,8 @@ namespace Service
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            medicalRecordRepository.Update(medicalRecord, patient);
+            medicalRecordRepository.Update(medicalRecord);
+            patientRepository.Update(patient);
          return;
       }
       
