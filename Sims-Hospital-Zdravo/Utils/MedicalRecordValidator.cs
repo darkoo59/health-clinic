@@ -29,7 +29,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void patientIdAlreadyExist(Patient patient)
         {
-            if (recordService.findPatientById(patient._Id) != null)
+            if (recordService.FindPatientById(patient._Id) != null)
             {
                 throw new Exception("Patient Id Already Exist!");
             }

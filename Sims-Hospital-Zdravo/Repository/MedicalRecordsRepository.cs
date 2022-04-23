@@ -21,15 +21,14 @@ namespace Repository
         {
             medicalRecords = new ObservableCollection<MedicalRecord>();
             medicalRecordDataHandler = recordDataHandler;
-            LoadDataFromFiles();
+            LoadDataFromFile();
         }
 
         public void Create(Model.MedicalRecord medicalRecord)
         {
             // TODO: implement
             this.medicalRecords.Add(medicalRecord);
-         //   this.patients.Add(patient);
-            LoadDataToFiles();
+            LoadDataToFile();
         }
 
         public MedicalRecord FindById(int id)
@@ -53,7 +52,6 @@ namespace Repository
             return null;
         }
 
-        //dodato
         public ref ObservableCollection<MedicalRecord> ReadAll()
         {
             return ref medicalRecords;
@@ -62,16 +60,15 @@ namespace Repository
         public void Update(MedicalRecord medicalRecord)
         {
             // TODO: implement
-            int medicalId = medicalRecord._Id;
             foreach (MedicalRecord record in medicalRecords)
             {
-                if (record._Id == medicalId)
+                if (record._Id == medicalRecord._Id)
                 {
                     record._BloodType = medicalRecord._BloodType;
                     record._Gender = medicalRecord._Gender;
                     record._MaritalStatus = medicalRecord._MaritalStatus;
                     record._Patient = medicalRecord._Patient;
-                    LoadDataToFiles();
+                    LoadDataToFile();
                     break;
                 }
             }
@@ -86,7 +83,7 @@ namespace Repository
                 if(record._Id == id)
                 {
                     medicalRecords.Remove(record);
-                    LoadDataToFiles();
+                    LoadDataToFile();
                     return;
                 }
             }
@@ -98,15 +95,15 @@ namespace Repository
         {
             // TODO: implement
             medicalRecords.Remove(medicalRecord);
-            LoadDataToFiles();
+            LoadDataToFile();
         }
 
-        public void LoadDataFromFiles()
+        public void LoadDataFromFile()
         {
             medicalRecords = medicalRecordDataHandler.ReadAll();
         }
 
-        public void LoadDataToFiles()
+        public void LoadDataToFile()
         {
             medicalRecordDataHandler.Write(medicalRecords);
         }

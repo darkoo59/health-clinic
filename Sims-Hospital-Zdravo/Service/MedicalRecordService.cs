@@ -47,8 +47,8 @@ namespace Service
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            medicalRecordRepository.Update(medicalRecord);
             patientRepository.Update(patient);
+            medicalRecordRepository.Update(medicalRecord);
          return;
       }
       
@@ -64,7 +64,7 @@ namespace Service
             medicalRecordRepository.Delete(medicalRecord);
       }
       
-        public Patient findPatientById(int id)
+        public Patient FindPatientById(int id)
         {
             return medicalRecordRepository.FindPatientById(id);
         }
