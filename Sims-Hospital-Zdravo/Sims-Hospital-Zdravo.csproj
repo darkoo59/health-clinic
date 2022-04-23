@@ -72,6 +72,8 @@
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
@@ -80,8 +82,6 @@
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\AppointmentRepository.cs" />
-    <Compile Include="Repository\AppointmentRepositoryPatient.cs" />
-    <Compile Include="Repository\DoctorAppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
     <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">

@@ -34,7 +34,7 @@ namespace Controller
         {
             return doctorAppointmentService.ReadAll(id);
         }
-        public ref List<Patient> getPatients()
+        public ref ObservableCollection<Patient> getPatients()
         {
             return ref doctorAppointmentService.GetPatients();
         }
