@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 namespace Sims_Hospital_Zdravo.Repository
 {
 
-    internal class DoctorRepository
+    public class DoctorRepository
     {
         public DoctorDataHandler docHandler;
         public ObservableCollection<Doctor> doctors;

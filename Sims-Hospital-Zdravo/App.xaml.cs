@@ -11,6 +11,7 @@ using Controller;
 using Repository;
 using Model;
 using DataHandler;
+using Sims_Hospital_Zdravo.Repository;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -43,14 +44,15 @@ namespace Sims_Hospital_Zdravo
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
-            AppointmentRepositoryPatient appointmentRepositoryPatient = new AppointmentRepositoryPatient(appointmentDataHandler,doctorDataHandler);
-            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepositoryPatient);
+            DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
+            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
+            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository,doctorRepository);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
 
             //DoctorAppointmentRepository doctorAppointmentRepository = new DoctorAppointmentRepository(patientDataHandler, appointmentDataHandler);
-            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
-            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, appointmentRepositoryPatient);
+            PatientRepository patientRepository = new PatientRepository(patientDataHandler);
+            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, patientRepository);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
 

@@ -6,6 +6,7 @@
 
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,36 +15,37 @@ namespace Service
 {
    public class AppointmentPatientService
    {
-        public AppointmentPatientService(AppointmentRepositoryPatient appointmentRepositoryPatient)
+        public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
         {
-            this.appointmentRepositoryPatient = appointmentRepositoryPatient;
+            this.appointmentRepository = appointmentRepository;
+            this.doctorRepository = doctorRepository;
         }
         public void Create(Appointment appointment)
       {
-            appointmentRepositoryPatient.Create(appointment);
+            appointmentRepository.Create(appointment);
       }
       
       public void Update(Appointment appointment)
       {
-            appointmentRepositoryPatient.Update(appointment);
+            appointmentRepository.Update(appointment);
       }
       
       public void Delete(Appointment appointment)
       {
-            appointmentRepositoryPatient.Delete(appointment);
+            appointmentRepository.Delete(appointment);
       }
       
-      public ref ObservableCollection<Appointment> FindByPatientID(int id)
+      public ObservableCollection<Appointment> FindByPatientID(int id)
       {
-            return ref appointmentRepositoryPatient.FindByPatientID(id);
+            return appointmentRepository.FindByPatientId(id);
       }
 
         public ref ObservableCollection<Doctor> ReadDoctors()
         {
-            return ref appointmentRepositoryPatient.ReadDoctors();
+            return ref doctorRepository.ReadAll();
         }
 
-      public Repository.AppointmentRepositoryPatient appointmentRepositoryPatient;
-   
+      public AppointmentRepository appointmentRepository;
+      public DoctorRepository doctorRepository;
    }
 }
