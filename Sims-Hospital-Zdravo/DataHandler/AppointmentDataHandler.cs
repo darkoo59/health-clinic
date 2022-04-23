@@ -21,14 +21,7 @@ namespace DataHandler
       {
             string appointmentSerialized = System.IO.File.ReadAllText(Path);
             ObservableCollection<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Appointment>>(appointmentSerialized);
-            //foreach (Appointment app in appointments)
-            //{
-            //    Console.WriteLine(app._Id + "id");
-            //    Console.WriteLine(app._Doctor._Id + "id dr");
-            //    Console.WriteLine(app._Doctor._Name + "ime dr");
-            //}
             return appointments;
-            //return new ObservableCollection<Appointment>();
         }
       
       public void Write(ObservableCollection<Appointment> appointments)

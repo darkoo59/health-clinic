@@ -52,8 +52,7 @@ namespace Sims_Hospital_Zdravo
         private void Doctor_Click(object sender, RoutedEventArgs e)
         {
             DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
-            RoomController rom = app.roomController;
-            DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController,rom);
+            DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController);
             doctorCRUD.Show();
         }
     }
