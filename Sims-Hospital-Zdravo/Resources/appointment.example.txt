@@ -1,1 +1,11 @@
-[{"_DateAndTime":"2022-04-07T18:00:00","_Room":100,"_DoctorId":1,"_Id":1,"_PatientId":1},{"_DateAndTime":"2022-04-19T10:30:00","_Room":100,"_DoctorId":3,"_Id":1637342767,"_PatientId":1},{"_DateAndTime":"2022-04-19T16:00:00","_Room":100,"_DoctorId":3,"_Id":1429338115,"_PatientId":1},{"_DateAndTime":"2022-04-22T03:00:00","_Room":100,"_DoctorId":3,"_Id":544555429,"_PatientId":1},{"_DateAndTime":"2027-09-21T11:00:00","_Room":100,"_DoctorId":2,"_Id":371594376,"_PatientId":1}]
+
+[{
+"_DateAndTime":"2022-04-07T18:00:00",
+"_Room": {"_Type":3,"_Floor":2,"_Id":1,"_RoomEquipment":[]},
+"_Doctor":	{
+			"_Id": 2,
+			"_Name": "Grigorije",
+			"_Surname":  "Kucanski"		
+	},
+"_Id":1,
+"_Patient":{"_Id":6,"_Name":"Jovan","_Surname":"Nikic","_BirthDate":"1111-11-11T00:00:00","_Email":"fdafdasf@gmail.com","_Jmbg":"321341413","_PhoneNumber":"+38134213"}}]
