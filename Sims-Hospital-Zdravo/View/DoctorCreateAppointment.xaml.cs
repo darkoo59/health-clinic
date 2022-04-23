@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Controller;
+using Repository;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -67,7 +68,7 @@ namespace Sims_Hospital_Zdravo.View
             
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
-           // Doctor doc = 
+            
 
             //Appointment app = new Appointment(room,Pat,dt,3);
             //docAppController.Create(app);

@@ -14,8 +14,13 @@ namespace Service
     public class DoctorAppointmentService
     {
         List<Patient> fakePatients = new List<Patient>();
+        public DoctorRepository doctorRepo;
 
 
+        public Doctor getDoctor(int id)
+        {
+            return doctorRepo.FindDoctorById(id);
+        }
         public void Create(Appointment appointment)
         {
             appointmentRepository.Create(appointment);
@@ -62,10 +67,11 @@ namespace Service
         /// <param name="appointmentRepo"></param>
         /// <param name="appRepoPatient"></param>
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepo, AppointmentRepositoryPatient appRepoPatient)
+        public DoctorAppointmentService(AppointmentRepository appointmentRepo, AppointmentRepositoryPatient appRepoPatient,DoctorRepository docRepo)
         {
             this.appointmentRepository = appointmentRepo;
             this.appointmentRepositoryPatient = appRepoPatient;
+            this.doctorRepo = docRepo;
         }
     }
 }

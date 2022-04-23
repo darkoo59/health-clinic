@@ -72,6 +72,7 @@
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>

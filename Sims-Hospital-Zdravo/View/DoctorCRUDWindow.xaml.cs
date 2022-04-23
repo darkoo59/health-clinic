@@ -26,30 +26,50 @@ namespace Sims_Hospital_Zdravo.View
 
         public ObservableCollection<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;
-        private RoomController roomController;
+        public RoomController roomController;
         private Appointment app;
         public Appointment App
         {
-            get { 
-                return app; 
+            get
+            {
+                return this.app;
             }
-            set {
-                app = value; 
+            set
+            {
+                this.app = value;
             }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController)
+        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController, RoomController rom)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.roomController = rom;
             this.doctorAppController = doctorAppController;
             DoctorAppointments = doctorAppController.ReadAll(2);
-            Console.WriteLine("Duzina liste appointmenta je " + DoctorAppointments.Count);
-            foreach(Appointment app in DoctorAppointments)
-            {
-                Console.WriteLine(app._Doctor._Id);
-            }
+            //this.DataContext = DoctorAppointments;
+            dataGridDoctorApps.AutoGenerateColumns = false;
             
+                DataGridTextColumn data_column = new DataGridTextColumn();
+                data_column.Header = "Date and Time";
+                data_column.Binding = new Binding("_DateAndTime");
+                dataGridDoctorApps.Columns.Add(data_column);
+                data_column = new DataGridTextColumn();
+                data_column.Header = "Patient Name";
+                data_column.Binding = new Binding("_Patient._Name");
+                dataGridDoctorApps.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Patient Surname";
+            data_column.Binding = new Binding("_Patient._Surname");
+            dataGridDoctorApps.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Room";
+            data_column.Binding = new Binding("_Room._Id");
+            dataGridDoctorApps.Columns.Add(data_column);
+
+
+
+
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
             
         }

@@ -56,5 +56,10 @@ namespace Controller
         {
             this.doctorAppointmentService = AppService;
         }
+
+        //public  Doctor getDoctor(int id)
+        //{
+        //    return DoctorAppointmentService.getDoctor(id);
+        //}
     }
 }
