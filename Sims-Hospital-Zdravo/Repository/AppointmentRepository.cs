@@ -15,6 +15,8 @@ namespace Repository
     public class AppointmentRepository
     {
         public ObservableCollection<Appointment> appointments;
+        public List<Patient> patients;
+        public PatientDataHandler patientDataHandler;
 
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
@@ -79,7 +81,28 @@ namespace Repository
         //
 
         /// <pdGenerated>default getter</pdGenerated>
-        
+
+        public ref List<Patient> GetPatients()
+        {
+            return ref patients;
+        }
+        public Appointment GetByID(Appointment app)
+        {
+            // TODO: implement
+
+            foreach (Appointment appoi in appointments)
+            {
+                if (appoi._Id == app._Id)
+                {
+
+                    return appoi;
+                    ;
+                }
+            }
+
+            return null;
+        }
+
         public DataHandler.AppointmentDataHandler appointmentDataHandler;
         
 
