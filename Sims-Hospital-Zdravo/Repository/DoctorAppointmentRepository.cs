@@ -15,18 +15,18 @@ namespace Repository
    public class DoctorAppointmentRepository : AppointmentRepository
    {
         public AppointmentDataHandler appDataHandler;
-       //public PatientDataHandler patientHandler;
-        public ObservableCollection<Appointment> appointmentsList;
+       
+        //public ObservableCollection<Appointment> appointmentsList;
         public List<Patient> patients;
         public PatientDataHandler patientDataHandler;
-        //private object appointmentDataHandler1;
-        //private RoomDataHandler roomDataHandler;
+       
 
         public DoctorAppointmentRepository(PatientDataHandler patientData, AppointmentDataHandler appointmentDataHandler) : base(appointmentDataHandler)
         {
             appDataHandler = appointmentDataHandler;
-            appointmentsList = new ObservableCollection<Appointment>();
+            this.appointments = new ObservableCollection<Appointment>();
             patients = new List<Patient>();
+            patientDataHandler = patientData;
 
         }
 
@@ -36,19 +36,21 @@ namespace Repository
       {
             // TODO: implement
             base.Create(appointment);
-            appointmentsList.Add(appointment);
+            appointments.Add(appointment);
 
 
       }
+
+
       
       public Boolean DeleteByID(Appointment appointment)
       {
          // TODO: implement
-         foreach(  Appointment app in appointmentsList)
+         foreach(  Appointment app in appointments)
             {
                 if (app._Id == appointment._Id)
                 {
-                    appointmentsList.Remove(app);
+                    appointments.Remove(app);
                     return true;
                 }
             }
@@ -58,13 +60,13 @@ namespace Repository
       public new void Update(Appointment appointment)
       {
          // TODO: implement
-         foreach(Appointment app in appointmentsList)
+         foreach(Appointment app in appointments)
             {
                 if(app._Id == appointment._Id)
                 {
                     app._DateAndTime = appointment._DateAndTime;
                     //app._Doctor = appointment._Doctor;
-                    app._Patient._Id = appointment._Patient._Id;
+                    app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
                 }
 
@@ -77,7 +79,7 @@ namespace Repository
       {
             // TODO: implement
              ObservableCollection<Appointment> backup = new ObservableCollection<Appointment>();
-            foreach(Appointment appointment in appointmentsList)
+            foreach(Appointment appointment in appointments)
             {
                 if(appointment._Doctor._Id == id)
                 {
@@ -96,7 +98,7 @@ namespace Repository
       {
          // TODO: implement
          
-         foreach(Appointment appoi in appointmentsList)
+         foreach(Appointment appoi in appointments)
             {
                 if (appoi._Id == app._Id)
                 {
@@ -116,9 +118,9 @@ namespace Repository
     
         
 
-        public List<Patient> GetPatients()
+        public  ref List<Patient> GetPatients()
         {
-            return patients;
+            return  ref patients;
         }
 
         public void LoadData(int id)

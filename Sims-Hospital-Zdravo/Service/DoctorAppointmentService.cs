@@ -38,8 +38,13 @@ namespace Service
             return doctorAppointmentRepository.GetAllByDoctorID(id);
          //return null;
       }
-      
-      public void Update(Appointment appointment)
+
+        public ref List<Patient> getPatients()
+        {
+            return ref doctorAppointmentRepository.GetPatients();
+        }
+
+        public void Update(Appointment appointment)
       {
          // TODO: implement
          doctorAppointmentRepository.Update(appointment);

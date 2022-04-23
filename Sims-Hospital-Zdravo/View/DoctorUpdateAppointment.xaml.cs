@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Controller;
+using Model;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -19,26 +21,59 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorUpdateAppointment : Window
     {
-        public DoctorUpdateAppointment()
+        private DoctorAppointmentController docController;
+        private RoomController roomControl;
+       
+        public DoctorUpdateAppointment(DoctorAppointmentController docController,Appointment app,RoomController rom)
         {
             InitializeComponent();
+            this.DataContext = this;
+            this.docController = docController;
+            this.roomControl = rom;
+            DateTime dt = app._DateAndTime;
+            DateTxt.Text = dt.ToString("dd-MM-yyyy");
+            TimeTxt.Text = dt.ToString("HH:mm:ss");
+            PatientTxt.Text = app._Patient._Name;
+            SurnameText.Text = app._Patient._Surname;
+            RoomTxt.Text = app._Room._Id.ToString();
         }
 
+        private Patient pat;
+        public Patient Pat
+        {
+            get { return pat; }
+            set { pat = value; }
+        }
+        private void PatientSelected()
+        {
+
+            foreach (Patient pat in this.docController.getPatients() )
+            {
+                if (pat._Name == PatientTxt.Text && pat._Surname == SurnameText.Text)
+                {
+                    Pat = pat;
+                    break;
+
+                }
+            }
+        }
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int id_room = Int32.Parse(RoomTxt.Text);
+            Room room = roomControl.FindById(id_room);
+            string date = DateTxt.Text;
+            string time = TimeTxt.Text;
+            DateTime dt = DateTime.Parse(date + " " + time);
+           // Appointment app = new Appointment();
+            //docController.Update(app);
+            Close();
+
+        }
+
+
+
         
 
-        /*private void UpdateAppo_Click(object sender, RoutedEventArgs e)
-        {
-            
-           /* try
-            {
-                /*Appointment appointment = new Appointment(Int32.Parse(FloorTxt.Text), Int32.Parse(RoomIdTxt.Text), (RoomType)RoomTypeCmb.SelectedValue);
-                roomController.Update(room);
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
-        
     }
 }

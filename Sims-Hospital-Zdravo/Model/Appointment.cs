@@ -10,6 +10,7 @@ namespace Model
 {
    public class Appointment
    {
+        
         private Room room;
 
         private Doctor doctor;
@@ -17,6 +18,15 @@ namespace Model
 
         private DateTime DateAndTime;
         private int Id;
+
+        public Appointment(Room room, Doctor doctor,  Patient patient, DateTime dateAndTime, int id)
+        {
+            this._Room = room;
+            this._Doctor = doctor;
+            this._Patient = patient;
+            this._DateAndTime = dateAndTime;
+            this._Id = id;
+        }
 
         public Room _Room { get; set; }
 

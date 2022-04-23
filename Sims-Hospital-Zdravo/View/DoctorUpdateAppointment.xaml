@@ -22,19 +22,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0, 20, 120, 0" HorizontalAlignment="Right" RenderTransformOrigin="-0.264,-0.443" Width="67">Date :</Label>
-        <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right" Text="{Binding Path=DateAndTime}" ></TextBox>
+        <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"  ></TextBox>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0,2,0,0" HorizontalAlignment="Center">Time:</Label>
         <TextBox x:Name="TimeTxt" Grid.Row="2" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
-        <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient:</Label>
-        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Text="{Binding Path=Patient}"></TextBox>
-        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
-        <TextBox x:Name="RoomTxt" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Text="{Binding Path=Room}"></TextBox>
-        <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Doctor:</Label>
-        <TextBox x:Name="IDAppTxt" Grid.Row="1" Grid.Column="1" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
-        <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">ID:</Label>
-        <TextBox x:Name="DoctorTxt" Grid.Row="5" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Text="{Binding Path=ID}"></TextBox>
-        <ComboBox x:Name="RoomTypeCmb" Grid.Column="1" Grid.Row="1" Width="150" Height="30" SelectedIndex="0" Margin="58,29,58,31"></ComboBox>
-        <Button Grid.Row="2" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0">Save</Button>
+        <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0,52,0,0" HorizontalAlignment="Center" Grid.RowSpan="2">Patient name:</Label>
+        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" ></TextBox>
+        <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="0,57,0,0" HorizontalAlignment="Center" Grid.RowSpan="2">Room:</Label>
+        <TextBox x:Name="RoomTxt" Grid.Row="5" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Margin="0,10,4,22" ></TextBox>
+        <Button Grid.Row="2" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" Click="Button_Click">Save</Button>
+        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="42,44,0,0" HorizontalAlignment="Left" Grid.RowSpan="2" Content="Patient surname:"/>
+        <TextBox x:Name="SurnameText" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Left" Margin="117,22,0,10" Grid.ColumnSpan="2" />
 
     </Grid>
 </Window>

@@ -30,7 +30,7 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            patient = patient;
+            this.patient = patient;
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");

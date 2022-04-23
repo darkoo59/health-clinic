@@ -14,17 +14,18 @@ namespace Repository
 {
     public class AppointmentRepository
     {
+        public ObservableCollection<Appointment> appointments;
 
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
             this.appointmentDataHandler = appDataHandler;
-            appointments = appDataHandler.ReadAll();
+            this.appointments = appDataHandler.ReadAll();
         }
         protected void Create(Model.Appointment appointment)
         {
             // TODO: implement
             appointments.Add(appointment);
-            appointmentDataHandler.Write(appointments);
+            //appointmentDataHandler.Write(appointments);
         }
 
         protected void Update(Model.Appointment appointment)
@@ -49,9 +50,19 @@ namespace Repository
                     doctorsApps.Add(app);
                 }
             }
+            Console.WriteLine("xmsmsjss");
+            foreach(Appointment app in appointments)
+            {
+                Console.WriteLine(app._Doctor._Name);
+                Console.WriteLine(app._Doctor._Surname);
+                Console.WriteLine("dnsdsjnd");
+
+            }
+            Console.WriteLine("prazna lista");
 
             return doctorsApps;
         }
+       
 
         protected System.Collections.Generic.List<Appointment> FindByPatientId(int id)
         {
@@ -65,12 +76,12 @@ namespace Repository
             return null;
         }
 
-        public ObservableCollection<Appointment> appointments;
+        //
 
         /// <pdGenerated>default getter</pdGenerated>
         
         public DataHandler.AppointmentDataHandler appointmentDataHandler;
-        //public ObservableCollection<Appointment> appointments;
+        
 
 
     }

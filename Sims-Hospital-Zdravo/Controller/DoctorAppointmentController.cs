@@ -40,8 +40,12 @@ namespace Controller
             //return null;
             return doctorAppointmentService.GetAllByDoctorID(id);
       }
-      
-      public bool DeleteByID(Appointment appointment)
+        public ref List<Patient> getPatients()
+        {
+            return ref doctorAppointmentService.getPatients();
+        }
+
+        public bool DeleteByID(Appointment appointment)
       {
          // TODO: implement
          //return false;
