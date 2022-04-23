@@ -68,7 +68,7 @@ namespace Sims_Hospital_Zdravo.View
             
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
-            
+            //Doctor doc = this.docAppController.
 
             //Appointment app = new Appointment(room,Pat,dt,3);
             //docAppController.Create(app);

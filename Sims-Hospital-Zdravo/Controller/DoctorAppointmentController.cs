@@ -15,6 +15,10 @@ namespace Controller
     public class DoctorAppointmentController
     {
 
+        //public  Doctor getDoctor(int id)
+        //{
+        //    return DoctorAppointmentService.GetDoctor(id);
+        //}
         public void Create(Appointment appointment)
         {
             doctorAppointmentService.Create(appointment);
@@ -57,9 +61,6 @@ namespace Controller
             this.doctorAppointmentService = AppService;
         }
 
-        //public  Doctor getDoctor(int id)
-        //{
-        //    return DoctorAppointmentService.getDoctor(id);
-        //}
+        
     }
 }

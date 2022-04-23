@@ -6,7 +6,7 @@
 
 using Model;
 using Repository;
-using Sims_Hospital_Zdravo.Repository;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

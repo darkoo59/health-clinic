@@ -13,9 +13,10 @@ namespace Service
 {
     public class DoctorAppointmentService
     {
+        public DoctorRepository doctorRepo;
 
 
-        public Doctor getDoctor(int id)
+        public Doctor GetDoctor(int id)
         {
             return doctorRepo.FindDoctorById(id);
         }
