@@ -13,5 +13,11 @@ namespace Model
         private String Specialty;
 
         public String _Specialty { get; set; }
+        public Doctor ( int id,string name,string surname)
+        {
+            this._Id = id;
+            this._Name = name;
+            this._Surname = surname;
+        }
     }
 }

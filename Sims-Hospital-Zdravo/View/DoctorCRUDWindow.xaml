@@ -10,6 +10,9 @@
     <Grid>
 
 
-        <DataGrid Height="400" CanUserAddRows="False" ColumnWidth="*" Margin="20" x:Name="dataGridDoctorApps"/>
+        <DataGrid CanUserAddRows="False" ColumnWidth="*" Margin="20,194,20,14" x:Name="dataGridDoctorApps"/>
+        <Button x:Name="addButton" Content="add appointment" HorizontalAlignment="Left" Height="25" Margin="69,62,0,0" VerticalAlignment="Top" Width="113" Click="addButton_Click"/>
+        <Button x:Name="editAppointment" Content="edit appointment" HorizontalAlignment="Center" Height="25" Margin="0,62,0,0" VerticalAlignment="Top" Width="115" Click="editAppointment_Click"/>
+        <Button x:Name="deleteButton" Content="delete appointment" HorizontalAlignment="Left" Height="25" Margin="604,62,0,0" VerticalAlignment="Top" Width="122" Click="deleteButton_Click"/>
     </Grid>
 </Window>
