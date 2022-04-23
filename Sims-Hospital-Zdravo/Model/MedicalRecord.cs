@@ -22,7 +22,7 @@ namespace Model
         public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus)
         {
             this._Id = id;
-            this.Patient = patient;
+            this._Patient = patient;
             this._Gender = gender;
             this._BloodType = blood;
             this._MaritalStatus = maritalStatus;
