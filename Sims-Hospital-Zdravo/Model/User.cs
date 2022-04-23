@@ -30,7 +30,6 @@ namespace Model
         private String Email;
         private String Jmbg;
         private String PhoneNumber;
-        public User _User { get; set; }
         public Address _Address { get; set; }
         public int _Id { get; set; }
         public String _Name { get; set; }

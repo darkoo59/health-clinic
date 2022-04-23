@@ -10,9 +10,8 @@ namespace Model
 {
    public class Doctor : User
    {
-        private String Specialty;
 
-        public String _Specialty { get; set; }
+        public String _Specialty;
         public Doctor ( int id,string name,string surname)
         {
             this._Id = id;

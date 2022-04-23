@@ -11,57 +11,61 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 namespace Service
 {
-   public class DoctorAppointmentService
-   {
+    public class DoctorAppointmentService
+    {
+        List<Patient> fakePatients = new List<Patient>();
 
-      public void Create(Appointment appointment)
-      {
-         // TODO: implement
-         doctorAppointmentRepository.Create(appointment);
-      }
-      
-      public bool DeleteByID(Appointment appointment)
-      {
-         // TODO: implement
-         return doctorAppointmentRepository.DeleteByID(appointment);
-         
-      }
+
+        public void Create(Appointment appointment)
+        {
+            appointmentRepository.Create(appointment);
+        }
+
+        public void DeleteByID(Appointment appointment)
+        {
+            appointmentRepository.Delete(appointment);
+
+        }
 
         public ObservableCollection<Appointment> ReadAll(int id)
         {
-            // TODO: implement
-            return doctorAppointmentRepository.ReadAll(id);
+            return appointmentRepository.FindByDoctorId(id);
         }
-        public ObservableCollection <Appointment> GetAllByDoctorID(int id)
-      {
-            // TODO: implement
-            return doctorAppointmentRepository.GetAllByDoctorID(id);
-         //return null;
-      }
 
-        public ref List<Patient> getPatients()
+
+        public ref List<Patient> GetPatients()
         {
-            return ref doctorAppointmentRepository.GetPatients();
+            return ref fakePatients;
+            //Zamijeniti pravim funkcijama
+
         }
 
         public void Update(Appointment appointment)
-      {
-         // TODO: implement
-         doctorAppointmentRepository.Update(appointment);
-      }
-      
-      public Appointment GetByID(Appointment appointment)
-      {
-         // TODO: implement
-        return doctorAppointmentRepository.GetByID(appointment);
-         //return null;
-      }
-   
-      public Repository.DoctorAppointmentRepository doctorAppointmentRepository;
-
-        public DoctorAppointmentService(DoctorAppointmentRepository doctorAppointmentRepo)
         {
-            this.doctorAppointmentRepository = doctorAppointmentRepo;
+            // TODO: implement
+            appointmentRepository.Update(appointment);
+        }
+
+        public Appointment GetByID(Appointment appointment)
+        {
+            // TODO: implement
+            //return appointmentRepository.GetByID(appointment);
+            return null;
+            //return null;
+        }
+
+        public AppointmentRepository appointmentRepository;
+        public AppointmentRepositoryPatient appointmentRepositoryPatient;
+        /// <summary>
+        /// Appointment repository patient zamijeniti sa patient handlerom ili sta vec bude trebalo
+        /// </summary>
+        /// <param name="appointmentRepo"></param>
+        /// <param name="appRepoPatient"></param>
+
+        public DoctorAppointmentService(AppointmentRepository appointmentRepo, AppointmentRepositoryPatient appRepoPatient)
+        {
+            this.appointmentRepository = appointmentRepo;
+            this.appointmentRepositoryPatient = appRepoPatient;
         }
     }
 }

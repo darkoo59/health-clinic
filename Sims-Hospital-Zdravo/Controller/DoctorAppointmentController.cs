@@ -12,45 +12,37 @@ using System.Collections.ObjectModel;
 
 namespace Controller
 {
-   public class DoctorAppointmentController
-   {
+    public class DoctorAppointmentController
+    {
 
-      public void Create(Appointment appointment)
-      {
-         // TODO: implement
-         doctorAppointmentService.Create(appointment);
-      }
-      
-      public void Update(Appointment appointment)
-      {
-         // TODO: implement
-         doctorAppointmentService.Update(appointment);
-      }
-      
-      public Appointment GetByID(Appointment appointment)
-      {
-         // TODO: implement
-         //return null;
-         return doctorAppointmentService.GetByID(appointment);
-      }
-      
-      public ObservableCollection<Appointment> GetByDoctorID(int id)
-      {
-            // TODO: implement
-            //return null;
-            return doctorAppointmentService.GetAllByDoctorID(id);
-      }
-        public ref List<Patient> getPatients()
+        public void Create(Appointment appointment)
         {
-            return ref doctorAppointmentService.getPatients();
+            doctorAppointmentService.Create(appointment);
         }
 
-        public bool DeleteByID(Appointment appointment)
-      {
-         // TODO: implement
-         //return false;
-         return doctorAppointmentService.DeleteByID(appointment);
-      }
+        public void Update(Appointment appointment)
+        {
+            doctorAppointmentService.Update(appointment);
+        }
+
+        public Appointment GetByID(Appointment appointment)
+        {
+            return doctorAppointmentService.GetByID(appointment);
+        }
+
+        public ObservableCollection<Appointment> GetByDoctorID(int id)
+        {
+            return doctorAppointmentService.ReadAll(id);
+        }
+        public ref List<Patient> getPatients()
+        {
+            return ref doctorAppointmentService.GetPatients();
+        }
+
+        public void DeleteByID(Appointment appointment)
+        {
+            doctorAppointmentService.DeleteByID(appointment);
+        }
 
         public ObservableCollection<Appointment> ReadAll(int id)
         {

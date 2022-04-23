@@ -23,8 +23,8 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorCRUDWindow : Window
     {
-        
-        public ObservableCollection<Appointment> DoctorAppointments = new ObservableCollection<Appointment>();
+
+        public ObservableCollection<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;
         private RoomController roomController;
         private Appointment app;
@@ -38,38 +38,17 @@ namespace Sims_Hospital_Zdravo.View
             }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController,RoomController room)
+        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController)
         {
             InitializeComponent();
             this.DataContext = this;
             this.doctorAppController = doctorAppController;
-            this.roomController = room;
             DoctorAppointments = doctorAppController.ReadAll(2);
+            Console.WriteLine("Duzina liste appointmenta je " + DoctorAppointments.Count);
             foreach(Appointment app in DoctorAppointments)
             {
                 Console.WriteLine(app._Doctor._Id);
-                Console.WriteLine("dhshds");
             }
-            //dataGridDoctorApps.AutoGenerateColumns = true;
-            //DataGridTextColumn data_column = new DataGridTextColumn();
-            //data_column.Header = "Date";
-            ////data_column.Binding = new Binding(App._DateAndTime.Date.ToString());
-            //dataGridDoctorApps.Columns.Add(data_column);
-
-            //data_column = new DataGridTextColumn();
-            //data_column.Header = "Time";
-            ////data_column.Binding = new Binding(App._DateAndTime.TimeOfDay.ToString());
-            //dataGridDoctorApps.Columns.Add(data_column);
-
-            //data_column = new DataGridTextColumn();
-            //data_column.Header = "Room";
-            ////data_column.Binding = new Binding(App._Room._Id.ToString());
-            //dataGridDoctorApps.Columns.Add(data_column);
-
-            //data_column = new DataGridTextColumn();
-            //data_column.Header = "Patient";
-            ////data_column.Binding = new Binding(App._Patient._Name + App._Patient._Surname);
-            //dataGridDoctorApps.Columns.Add(data_column);
             
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
             

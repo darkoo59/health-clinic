@@ -15,72 +15,66 @@ namespace Repository
     public class AppointmentRepository
     {
         public ObservableCollection<Appointment> appointments;
+        public DataHandler.AppointmentDataHandler appointmentDataHandler;
+
 
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
             this.appointmentDataHandler = appDataHandler;
             this.appointments = appDataHandler.ReadAll();
+            Console.WriteLine(this);
+            Console.WriteLine("Id doktora je " + appointments[0]._Doctor._Id);
         }
-        protected void Create(Model.Appointment appointment)
+        public void Create(Model.Appointment appointment)
         {
-            // TODO: implement
             appointments.Add(appointment);
-            //appointmentDataHandler.Write(appointments);
         }
 
-        protected void Update(Model.Appointment appointment)
+        public void Update(Model.Appointment appointment)
         {
             // TODO: implement
         }
 
-        protected void Delete(Model.Appointment appointment)
+        public void Delete(Model.Appointment appointment)
         {
             // TODO: implement
         }
 
-        protected ObservableCollection<Appointment> FindByDoctorId(int id)
+        public ObservableCollection<Appointment> FindByDoctorId(int id)
         {
             // TODO: implement
             ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
-
-            foreach(Appointment app in appointments)
+            Console.WriteLine(this.appointments.Count + " duzina");
+            foreach(Appointment app in this.appointments)
             {
                 if(app._Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
                 }
             }
-            Console.WriteLine("xmsmsjss");
-            foreach(Appointment app in appointments)
-            {
-                Console.WriteLine(app._Doctor._Name);
-                Console.WriteLine(app._Doctor._Surname);
-                Console.WriteLine("dnsdsjnd");
-
-            }
-            Console.WriteLine("prazna lista");
-
             return doctorsApps;
         }
        
 
-        protected System.Collections.Generic.List<Appointment> FindByPatientId(int id)
+        public ObservableCollection<Appointment> FindByPatientId(int id)
         {
             // TODO: implement
             return null;
         }
 
-        protected System.Collections.Generic.List<Appointment> FindAll()
+        public ObservableCollection<Appointment> FindAll()
         {
             // TODO: implement
             return null;
         }
+
+
+    
 
         //
 
         /// <pdGenerated>default getter</pdGenerated>
         
-        public DataHandler.AppointmentDataHandler appointmentDataHandler;
         
 
 

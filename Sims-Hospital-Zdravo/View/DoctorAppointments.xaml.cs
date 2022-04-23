@@ -21,8 +21,9 @@ namespace Sims_Hospital_Zdravo.View
     public partial class DoctorAppointments : Window
     {
         private DoctorAppointmentController doctorAppointmentController;
-        public DoctorAppointments()
+        public DoctorAppointments(DoctorAppointmentController doctorAppointmentController)
         {
+            this.doctorAppointmentController = doctorAppointmentController;
             InitializeComponent();
         }
     }
