@@ -14,8 +14,15 @@ namespace Service
     public class DoctorAppointmentService
     {
         public DoctorRepository doctorRepo;
+        public AppointmentRepository appointmentRepository;
+        public PatientRepository patientRepository;
 
-
+        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo)
+        {
+            this.appointmentRepository = appointmentRepository;
+            this.patientRepository = patientRepository;
+            this.doctorRepo = docRepo;
+        }
         public Doctor GetDoctor(int id)
         {
             return doctorRepo.FindDoctorById(id);
@@ -58,18 +65,13 @@ namespace Service
             //return null;
         }
 
-        public AppointmentRepository appointmentRepository;
-        public PatientRepository patientRepository;
+        
         /// <summary>
         /// Appointment repository patient zamijeniti sa patient handlerom ili sta vec bude trebalo
         /// </summary>
         /// <param name="appointmentRepo"></param>
         /// <param name="appRepoPatient"></param>
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository)
-        {
-            this.appointmentRepository = appointmentRepository;
-            this.patientRepository = patientRepository;
-        }
+        
     }
 }

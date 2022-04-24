@@ -39,19 +39,20 @@ namespace Sims_Hospital_Zdravo.View
             get { return pat; }
             set { pat = value; }
         }
-        private void PatientSelected()
+        public Patient PatientSelected()
         {
             string[] patient = PatientTxt.Text.Split(' ');
-
+            Console.WriteLine(patient);
             foreach (Patient pat in docAppController.getPatients())
             {
-                if (pat._Name == patient[0]  && pat._Surname == patient[1])
+                if (pat._Name.Equals(patient[0]) && pat._Surname.Equals(patient[1]))
                 {
                     Pat = pat;
-                    break;
+                    
 
                 }
             }
+            return Pat;
         }
         Random rnd = new Random();
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -68,12 +69,14 @@ namespace Sims_Hospital_Zdravo.View
             
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
-            //Doctor doc = this.docAppController.
-
-            //Appointment app = new Appointment(room,Pat,dt,3);
-            //docAppController.Create(app);
+            Doctor doc = this.docAppController.getDoctor(2);
+            Patient pat = PatientSelected();
+            Appointment app = new Appointment(room,doc,pat,dt,1);
+            docAppController.Create(app);
             Close();
 
         }
+
+        
     }
 }

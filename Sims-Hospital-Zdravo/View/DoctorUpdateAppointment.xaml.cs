@@ -44,18 +44,19 @@ namespace Sims_Hospital_Zdravo.View
             get { return pat; }
             set { pat = value; }
         }
-        private void PatientSelected()
+        public Patient PatientSelected()
         {
 
             foreach (Patient pat in this.docController.getPatients() )
             {
-                if (pat._Name == PatientTxt.Text && pat._Surname == SurnameText.Text)
+                if (pat._Name.Equals( PatientTxt.Text) && pat._Surname.Equals( SurnameText.Text))
                 {
                     Pat = pat;
-                    break;
+                    
 
                 }
             }
+            return Pat;
         }
         
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,8 +66,11 @@ namespace Sims_Hospital_Zdravo.View
             string date = DateTxt.Text;
             string time = TimeTxt.Text;
             DateTime dt = DateTime.Parse(date + " " + time);
-           // Appointment app = new Appointment();
-            //docController.Update(app);
+            Doctor doc = this.docController.getDoctor(2);
+            Patient pat = PatientSelected();
+            Appointment app = new Appointment(room,doc,Pat,dt,1);
+            
+            docController.Update(app);
             Close();
 
         }

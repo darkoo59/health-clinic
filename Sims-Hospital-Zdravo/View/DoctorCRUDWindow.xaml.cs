@@ -47,12 +47,14 @@ namespace Sims_Hospital_Zdravo.View
             this.roomController = rom;
             this.doctorAppController = doctorAppController;
             DoctorAppointments = doctorAppController.ReadAll(2);
+            
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
             
                 DataGridTextColumn data_column = new DataGridTextColumn();
                 data_column.Header = "Date and Time";
                 data_column.Binding = new Binding("_DateAndTime");
+                   
                 dataGridDoctorApps.Columns.Add(data_column);
                 data_column = new DataGridTextColumn();
                 data_column.Header = "Patient Name";
@@ -71,6 +73,7 @@ namespace Sims_Hospital_Zdravo.View
 
 
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
+            dataGridDoctorApps.Items.Refresh();
             
         }
 
@@ -93,7 +96,8 @@ namespace Sims_Hospital_Zdravo.View
         private void editAppointment_Click(object sender, RoutedEventArgs e)
         {
             app = dataGridDoctorApps.SelectedValue as Appointment;
-           DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController,app,roomController);
+           DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController,app,roomController) { DataContext = dataGridDoctorApps.SelectedItem };
+            
             editAppointment.Show();
 
         }

@@ -23,8 +23,8 @@ namespace Repository
         {
             this.appointmentDataHandler = appDataHandler;
             this.appointments = appDataHandler.ReadAll();
-            Console.WriteLine(this);
-            Console.WriteLine("Id doktora je " + appointments[0]._Doctor._Id);
+            //Console.WriteLine(this);
+            //Console.WriteLine("Id doktora je " + appointments[0]._Doctor._Id);
         }
         public void Create(Model.Appointment appointment)
         {
@@ -33,14 +33,17 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
+            //Console.WriteLine(appointment._DateAndTime.ToString());
             foreach (Appointment app in appointments)
             {
                 if (app._Id == appointment._Id)
                 {
                     app._DateAndTime = appointment._DateAndTime;
-                    //app._Doctor = appointment._Doctor;
-                    //app._Patient = appointment._Patient;
-                    //app._Room = appointment._Room;
+                    app._Doctor = appointment._Doctor;
+                    app._Patient = appointment._Patient;
+                    app._Room = appointment._Room;
+                    //loadDataToFile();
+                    return;
                 }
 
             }

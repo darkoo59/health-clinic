@@ -15,10 +15,10 @@ namespace Controller
     public class DoctorAppointmentController
     {
 
-        //public  Doctor getDoctor(int id)
-        //{
-        //    return DoctorAppointmentService.GetDoctor(id);
-        //}
+        public Doctor getDoctor(int id)
+        {
+            return doctorAppointmentService.GetDoctor(id);
+        }
         public void Create(Appointment appointment)
         {
             doctorAppointmentService.Create(appointment);

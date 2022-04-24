@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View"
         mc:Ignorable="d"
         Title="DoctorUpdateAppointment" Height="450" Width="800">
-    <Grid DataContext="{Binding ElementName=DataGridApp,Path=SelectedItem}">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

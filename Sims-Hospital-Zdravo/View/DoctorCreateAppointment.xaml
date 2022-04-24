@@ -24,7 +24,7 @@
         <Label Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0, 20, 120, 0" HorizontalAlignment="Right" RenderTransformOrigin="-0.264,-0.443" Width="67">Date :</Label>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0,2,0,0" HorizontalAlignment="Center">Time:</Label>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient:</Label>
-        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
+        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" ></TextBox>
         <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
         <TextBox x:Name="RoomTxt" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
 

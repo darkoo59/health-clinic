@@ -5,14 +5,15 @@
  ***********************************************************************/
 
 using System;
-
+using System.ComponentModel;
+using System.Collections;
 namespace Model
 {
-   public class Appointment
+   public class Appointment : INotifyPropertyChanged
    {
         
         private Room room;
-
+        
         private Doctor doctor;
         private Patient patient;
 
@@ -28,12 +29,76 @@ namespace Model
             this._Id = id;
         }
 
-        public Room _Room { get; set; }
+        //public Room _Room { get; set ; }
 
-        public Doctor _Doctor { get; set; }
-        public Patient _Patient { get; set; }
+        public Doctor _Doctor {
+            get
+            {
+                return doctor;
+            }
+            set
+            {
+                this.doctor = value;
+                OnPropertyChanged("_Doctor");
+            }
+        }
+        public Patient _Patient {
+            get
+            {
+                return patient;
+            }
+            set
+            {
+                this.patient = value;
+                OnPropertyChanged("_Patient");
+            }
+        }
 
-        public DateTime _DateAndTime { get; set; }
-        public int _Id { get; set; }
+        public DateTime _DateAndTime {
+            get
+            {
+                return DateAndTime;
+            }
+            set
+            {
+                this.DateAndTime = value;
+                OnPropertyChanged("_DateAndTime");
+            }
+        }
+        public int _Id {
+            get
+            {
+                return Id;
+            }
+            set
+            {
+                this.Id = value;
+                OnPropertyChanged("_Id");
+            }
+        }
+        public Room _Room {
+            get
+            {
+                return room;
+            }
+            set
+            {
+                this.room = value;
+                OnPropertyChanged("_Room");
+            }
+        }
+
+        
+
+        private void OnPropertyChanged(string name )
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
