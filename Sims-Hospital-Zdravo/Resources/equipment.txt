@@ -1,1 +1,1 @@
-[{"_Id":1,"_Name":"Gloves","_Quantity":10,"_Type":1},{"_Id":1,"_Name":"Gloves","_Quantity":10,"_Type":1}]
+[{"_Id":1,"_Name":"Gloves","_Type":1},{"_Id":1,"_Name":"Gloves","_Type":1}]

@@ -21,16 +21,20 @@ namespace Sims_Hospital_Zdravo.View.Manager
     public partial class ManagerEquipment : Window
     {
 
-        private EquipmentController equipmentController;
-        private EquipmentTransferController equipmentTransferController;
+        //private EquipmentController equipmentController;
+        //private EquipmentTransferController equipmentTransferController;
+        /*
+         EquipmentController equipmentController, EquipmentTransferController equipmentTransferController,
+         
+         */
         private RoomController roomController;
-        public ManagerEquipment(EquipmentController equipmentController, EquipmentTransferController equipmentTransferController, RoomController roomController)
+        public ManagerEquipment(RoomController roomController)
         {
-            this.equipmentController = equipmentController;
-            this.equipmentTransferController = equipmentTransferController;
+            //this.equipmentController = equipmentController;
+            //this.equipmentTransferController = equipmentTransferController;
             this.roomController = roomController;
             InitializeComponent();
-            equipmentTable.ItemsSource = equipmentController.ReadAll();
+            //equipmentTable.ItemsSource = equipmentController.ReadAll();
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
@@ -50,9 +54,9 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
- 
-                EquipmentTransfer equipmentTransfer = new EquipmentTransfer(equipmentController, equipmentTransferController, roomController);
-                equipmentTransfer.Show();
+            //equipmentController, equipmentTransferController,
+            EquipmentTransfer equipmentTransfer = new EquipmentTransfer(roomController);
+            equipmentTransfer.Show();
 
 
         }

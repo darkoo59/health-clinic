@@ -23,16 +23,18 @@ namespace Sims_Hospital_Zdravo.View.Manager
     /// </summary>
     public partial class EquipmentTransfer : Window
     {
-        private EquipmentController equipmentController;
-        private EquipmentTransferController equipmentTransferController;
+        //    private EquipmentController equipmentController;
+        //    private EquipmentTransferController equipmentTransferController;
+        /*
+         EquipmentController equipmentController,
+                                    EquipmentTransferController equipmentTransferController,
+         */
         private RoomController roomController;
         private ObservableCollection<Room> rooms;
-        public EquipmentTransfer(EquipmentController equipmentController,
-                                    EquipmentTransferController equipmentTransferController,
-                                    RoomController roomController)
+        public EquipmentTransfer(RoomController roomController)
         {
-            this.equipmentController = equipmentController;
-            this.equipmentTransferController = equipmentTransferController;
+            //this.equipmentController = equipmentController;
+            //this.equipmentTransferController = equipmentTransferController;
             this.roomController = roomController;
             InitializeComponent();
 
@@ -44,63 +46,66 @@ namespace Sims_Hospital_Zdravo.View.Manager
         }
 
 
+
+
         private void RoomData_Changed(object sender, SelectionChangedEventArgs e)
         {
-            Room room = (Room)ComboFromRoom.SelectedItem;
-            ComboEquipment.ItemsSource = room._RoomEquipment;
-            UpdateTimeIntervals();
+            //Room room = (Room)ComboFromRoom.SelectedItem;
+            //ComboEquipment.ItemsSource = room._RoomEquipment;
+            //UpdateTimeIntervals();
 
 
         }
 
         private void UpdateTimeIntervals()
         {
-            try
-            {
+            //try
+            //{
 
-                int minutes = -1;
-                bool isValidNumber = Int32.TryParse(IntervalDuration.Text, out minutes);
+            //    int minutes = -1;
+            //    bool isValidNumber = Int32.TryParse(IntervalDuration.Text, out minutes);
 
-                if (!isValidNumber) return;
+            //    if (!isValidNumber) return;
 
 
-                List<TimeInterval> timeIntervals = equipmentTransferController.GetFreeTimeIntervals(minutes, (Room)ComboFromRoom.SelectedItem, (Room)ComboToRoom.SelectedItem);
-                Console.WriteLine("There is " + timeIntervals.Count + " intervals");
-                ListIntervals.ItemsSource = timeIntervals;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something bad happened");
-            }
+            //    List<TimeInterval> timeIntervals = equipmentTransferController.GetFreeTimeIntervals(minutes, (Room)ComboFromRoom.SelectedItem, (Room)ComboToRoom.SelectedItem);
+            //    Console.WriteLine("There is " + timeIntervals.Count + " intervals");
+            //    ListIntervals.ItemsSource = timeIntervals;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Something bad happened");
+            //}
         }
 
         private void ToRoomData_Changed(object sender, SelectionChangedEventArgs e)
         {
-            UpdateTimeIntervals();
+            //UpdateTimeIntervals();
         }
 
         private void Duration_Changed(object sender, TextChangedEventArgs e)
         {
-            UpdateTimeIntervals();
+            //UpdateTimeIntervals();
         }
 
         private void SaveApp_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Room roomFrom = (Room)ComboFromRoom.SelectedItem;
-                Room roomTo = (Room)ComboFromRoom.SelectedItem;
-                TimeInterval ti = (TimeInterval)ListIntervals.SelectedItem;
-                RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
-                int minutes = Int32.Parse(IntervalDuration.Text);
-                equipmentTransferController.TransferEquipmentToRoom(roomTo, eq._Equip, eq._Quantity, new TimeInterval(ti.Start, ti.Start.AddMinutes(minutes)));
-                Close();
+            //    try
+            //    {
+            //        Room roomFrom = (Room)ComboFromRoom.SelectedItem;
+            //        Room roomTo = (Room)ComboFromRoom.SelectedItem;
+            //        TimeInterval ti = (TimeInterval)ListIntervals.SelectedItem;
+            //        RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
+            //        int minutes = Int32.Parse(IntervalDuration.Text);
+            //        equipmentTransferController.TransferEquipmentToRoom(roomTo, eq._Equip, eq._Quantity, new TimeInterval(ti.Start, ti.Start.AddMinutes(minutes)));
+            //        Close();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
     }
 }
