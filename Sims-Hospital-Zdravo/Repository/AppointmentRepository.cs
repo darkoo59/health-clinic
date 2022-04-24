@@ -29,6 +29,7 @@ namespace Repository
         public void Create(Model.Appointment appointment)
         {
             appointments.Add(appointment);
+            loadDataToFile();
         }
 
         public void Update(Model.Appointment appointment)
@@ -42,7 +43,7 @@ namespace Repository
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
-                    //loadDataToFile();
+                    loadDataToFile();
                     return;
                 }
 
@@ -52,6 +53,7 @@ namespace Repository
         public void Delete(Model.Appointment appointment)
         {
             appointments.Remove(appointment);
+            loadDataToFile();
         }
 
         public ObservableCollection<Appointment> FindByDoctorId(int id)

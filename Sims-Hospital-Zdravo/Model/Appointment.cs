@@ -51,6 +51,8 @@ namespace Model
             {
                 this.patient = value;
                 OnPropertyChanged("_Patient");
+                OnPropertyChanged("_Patient._Name");
+                OnPropertyChanged("_Patient._Surname");
             }
         }
 
@@ -85,6 +87,7 @@ namespace Model
             {
                 this.room = value;
                 OnPropertyChanged("_Room");
+                OnPropertyChanged("_Id");
             }
         }
 
