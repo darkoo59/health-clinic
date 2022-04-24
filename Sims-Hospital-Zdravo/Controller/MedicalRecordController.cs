@@ -37,9 +37,9 @@ namespace Controller
          return medicalRecordService.FindById(id);
       }
 
-      public Patient findPatientById(int id)
+      public Patient FindPatientById(int id)
         {
-            return medicalRecordService.findPatientById(id);
+            return medicalRecordService.FindPatientById(id);
         }
 
 
