@@ -79,6 +79,36 @@ namespace Model
             }
         }
 
+        public List<RoomEquipment> _RoomEquipment
+        {
+            get
+            {
+                return roomEquipment;
+
+            }
+
+            set
+            {
+                roomEquipment = value;
+            }
+        }
+
+        public void AddEquipment(int quantity, int equipmentId)
+        {
+            foreach (RoomEquipment eq in roomEquipment)
+            {
+                if (eq._EquipmentId == equipmentId)
+                {
+                    eq._Quantity += quantity;
+                }
+            }
+        }
+
+        public void RemoveEquipment(int quantity, int equipmentId)
+        {
+            AddEquipment(-quantity, equipmentId);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

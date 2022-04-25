@@ -62,10 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
+    <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\RoomEquipment.cs" />
@@ -73,8 +76,16 @@
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
+      <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
+      <DependentUpon>ManagerEquipment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +139,14 @@
     <Page Include="PatientUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\EquipmentTransfer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manager\ManagerEquipment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
@@ -249,6 +268,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\doctor.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\equipment.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
