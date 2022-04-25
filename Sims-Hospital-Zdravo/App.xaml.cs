@@ -12,7 +12,6 @@ using Repository;
 using Model;
 using DataHandler;
 
-
 namespace Sims_Hospital_Zdravo
 {
     /// <summary>
@@ -24,6 +23,7 @@ namespace Sims_Hospital_Zdravo
         internal MedicalRecordController recordController;
         internal AppointmentPatientController appointmentPatientController;
         internal DoctorAppointmentController doctorAppointmentController;
+        internal EquipmentTransferController equipmentTransferController;
 
         public App() 
         {
@@ -51,9 +51,19 @@ namespace Sims_Hospital_Zdravo
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
-            //DoctorAppointmentRepository doctorAppointmentRepository = new DoctorAppointmentRepository(patientDataHandler, appointmentDataHandler);
             DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
+
+            EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
+            EquipmentRepository equipmentRepository = new EquipmentRepository(equipmentDataHandler);
+
+            RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
+            RelocationAppointmentRepository relocationAppointmentRepository = new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+
+            EquipmentTransferService equipmentTransferService = new EquipmentTransferService(equipmentRepository, roomRepository,relocationAppointmentRepository);
+            equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
+
+            equipmentTransferService.MakeAppointmentFromWarehouse(1, equipmentRepository.FindById(1), 5, new TimeInterval(new DateTime(2022, 12, 12), new DateTime(2022, 12, 14)));
 
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();

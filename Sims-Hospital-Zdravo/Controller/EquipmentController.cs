@@ -6,9 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Service;
-using Sims_Hospital_Zdravo.Service;
 
-namespace Sims_Hospital_Zdravo.Controller
+namespace Controller
 {
     class EquipmentController
     {

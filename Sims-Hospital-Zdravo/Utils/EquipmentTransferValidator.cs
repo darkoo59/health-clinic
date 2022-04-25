@@ -7,7 +7,7 @@ using Service;
 using Model;
 using Repository;
 
-namespace Sims_Hospital_Zdravo.Utils
+namespace Utils
 {
     class EquipmentTransferValidator
     {
@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.Utils
             }
         }
 
-        public void validateTransferFromStorage(int roomId, int quantity, int equipmentId)
+        public void validateTransferFromStorage(int roomId, int equipmentId, int quantity)
         {
             HasEnoughEquipment(roomId, quantity, equipmentId);
         }

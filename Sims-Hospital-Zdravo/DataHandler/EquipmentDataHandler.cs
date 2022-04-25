@@ -25,7 +25,7 @@ namespace DataHandler
             System.IO.File.WriteAllText(Path, serialized);
         }
 
-        private String Path = @"..\..\Resources\equipment.txt";
+        private string Path = @"..\..\Resources\equipment.txt";
 
     }
 }

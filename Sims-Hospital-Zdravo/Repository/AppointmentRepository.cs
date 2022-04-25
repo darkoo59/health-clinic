@@ -14,17 +14,13 @@ namespace Repository
 {
     public class AppointmentRepository
     {
-        public ObservableCollection<Appointment> appointments;
-        public AppointmentDataHandler appointmentDataHandler;
-
-
+        private ObservableCollection<Appointment> appointments;
+        private AppointmentDataHandler appointmentDataHandler;
 
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
             this.appointmentDataHandler = appDataHandler;
             this.appointments = appDataHandler.ReadAll();
-            //Console.WriteLine(this);
-            //Console.WriteLine("Id doktora je " + appointments[0]._Doctor._Id);
         }
         public void Create(Model.Appointment appointment)
         {
@@ -42,7 +38,7 @@ namespace Repository
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
-                    //loadDataToFile();
+                    loadDataToFile();
                     return;
                 }
 
@@ -112,6 +108,21 @@ namespace Repository
             }
 
             return null;
+        }
+
+
+        public List<TimeInterval> GetTimeIntervalsForRoom(Room room)
+        {
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+            foreach(Appointment app in appointments)
+            {
+                if(app._Room._Id == room._Id)
+                {
+                    timeIntervals.Add(new TimeInterval(app._DateAndTime, app._DateAndTime.AddMinutes(30)));
+                }
+            }
+
+            return timeIntervals;
         }
 
         

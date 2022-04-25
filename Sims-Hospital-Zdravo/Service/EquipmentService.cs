@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Repository;
-namespace Sims_Hospital_Zdravo.Service
+namespace Service
 {
     class EquipmentService
     {

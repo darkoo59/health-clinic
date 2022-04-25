@@ -97,7 +97,7 @@ namespace Model
         {
             foreach (RoomEquipment eq in roomEquipment)
             {
-                if (eq._EquipmentId == equipmentId)
+                if (eq._Equip._Id == equipmentId)
                 {
                     eq._Quantity += quantity;
                 }

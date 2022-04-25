@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sims_Hospital_Zdravo.Model
+namespace Model
 {
-    class TimeInterval
+    public class TimeInterval
     {
 
-        private DateTime Start { get; set; }
-        private DateTime End { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
 
         public TimeInterval(DateTime Start, DateTime End)
         {
