@@ -31,6 +31,19 @@ namespace Sims_Hospital_Zdravo.View.Login
             app = System.Windows.Application.Current as App;
         }
 
+        private Window GetWindowByRole(RoleType role)
+        {
+
+            switch (role) 
+            {
+                case RoleType.MANAGER: return new ManagerDashboard();
+                case RoleType.DOCTOR: return new DoctorCRUDWindow();
+                case RoleType.PATIENT: return new PatientWindow();
+                case RoleType.SECRETARY: return new SecretaryHome();
+                default: return null;
+            }
+        }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             AccountController accountController = app.accountController;
@@ -48,20 +61,20 @@ namespace Sims_Hospital_Zdravo.View.Login
                         break;
                     case RoleType.SECRETARY:
                         MedicalRecordController medicalController = app.recordController;
-                        SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
+                        SecretaryHome secretaryHomeWindow = new SecretaryHome();
                         this.Close();
                         secretaryHomeWindow.Show();
                         break;
                     case RoleType.DOCTOR:
                         DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
                         RoomController roomControl = app.roomController;
-                        DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController, roomControl);
+                        DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow();
                         this.Close();
                         doctorCRUD.Show();
                         break;
                     case RoleType.PATIENT:
                         AppointmentPatientController appointmentPatientController = app.appointmentPatientController;
-                        PatientWindow pw = new PatientWindow(appointmentPatientController);
+                        PatientWindow pw = new PatientWindow();
                         this.Close();
                         pw.Show();
                         break;

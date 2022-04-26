@@ -21,10 +21,12 @@ namespace Sims_Hospital_Zdravo
     public partial class SecretaryHome : Window
     {
         private MedicalRecordController medicalController;
-        public SecretaryHome(MedicalRecordController controller)
+        private App app;
+        public SecretaryHome()
         {
+            app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = controller;
+            this.medicalController = app.recordController;
         }
 
         private void MedicalRecordsClick(object sender, RoutedEventArgs e)
