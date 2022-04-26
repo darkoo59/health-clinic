@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
         mc:Ignorable="d"
         Title="EquipmentTransfer" Height="450" Width="800">
@@ -52,15 +53,14 @@
             <TextBox   Height="30" x:Name="IntervalDuration" TextChanged="Duration_Changed"></TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="1">
+        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <Label>Starts:</Label>
-            <DatePicker  x:Name="IntervalStarts"></DatePicker>
-            <!--<TextBox   Height="30" x:Name="IntervalStarts" TextChanged="Duration_Changed"></TextBox>-->
+            <xctk:DateTimeUpDown x:Name="IntervalStarts"></xctk:DateTimeUpDown>
         </StackPanel>
 
-        <ItemsControl  Grid.Row="1" Grid.Column="3" Grid.RowSpan="4"  Grid.ColumnSpan="2"  x:Name="ListIntervals"></ItemsControl>
+        <ItemsControl  Grid.Row="1" Grid.Column="5" Grid.RowSpan="4"  Grid.ColumnSpan="2"  x:Name="ListIntervals"></ItemsControl>
         
-        <Button Grid.Row="5" Grid.Column="3"  Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment" Click="SaveApp_Click">Schedule</Button>
+        <Button Grid.Row="5" Grid.Column="5"  Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment" Click="SaveApp_Click">Schedule</Button>
 
     </Grid>
 </Window>

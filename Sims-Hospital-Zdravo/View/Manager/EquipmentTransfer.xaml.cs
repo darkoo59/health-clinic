@@ -93,7 +93,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
                 int minutes = Int32.Parse(IntervalDuration.Text);
                 int quantity = Int32.Parse(Quantity.Text);
-                DateTime start = (DateTime)IntervalStarts.SelectedDate;
+                Console.WriteLine(IntervalStarts.Value);
+                DateTime start = (DateTime)IntervalStarts.Value;
                 DateTime end = start.AddMinutes(minutes);
                 equipmentTransferController.MakeRelocationAppointment(roomFrom._Id, roomTo._Id, eq._Equip, quantity, new TimeInterval(start, end));
                 Close();
