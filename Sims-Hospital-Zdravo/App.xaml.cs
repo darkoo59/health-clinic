@@ -11,6 +11,10 @@ using Controller;
 using Repository;
 using Model;
 using DataHandler;
+using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Repository;
+using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -25,6 +29,7 @@ namespace Sims_Hospital_Zdravo
         internal DoctorAppointmentController doctorAppointmentController;
         internal EquipmentTransferController equipmentTransferController;
         internal EquipmentController equipmentController;
+        internal AccountController accountController;
 
         public App()
         {
@@ -69,7 +74,10 @@ namespace Sims_Hospital_Zdravo
             EquipmentTransferService equipmentTransferService = new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
             equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
-
+            AccountDataHandler accountDataHandler = new AccountDataHandler();
+            AccountRepository accountRepository = new AccountRepository(accountDataHandler);
+            AccountService accountService = new AccountService(accountRepository);
+            accountController = new AccountController(accountService);
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();
         }

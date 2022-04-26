@@ -77,8 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
@@ -95,15 +97,20 @@
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\EquipmentTransferService.cs" />
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="View\Login\LoginMainWindow.xaml.cs">
+      <DependentUpon>LoginMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
       <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
     </Compile>
@@ -161,6 +168,10 @@
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
     <Page Include="PatientUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\LoginMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,5 +310,9 @@
   <ItemGroup>
     <Resource Include="Resources\relocation_appointments.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accounts.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
