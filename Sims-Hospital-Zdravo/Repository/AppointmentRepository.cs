@@ -25,6 +25,7 @@ namespace Repository
         public void Create(Model.Appointment appointment)
         {
             appointments.Add(appointment);
+            loadDataToFile();
         }
 
         public void Update(Model.Appointment appointment)
@@ -48,6 +49,7 @@ namespace Repository
         public void Delete(Model.Appointment appointment)
         {
             appointments.Remove(appointment);
+            loadDataToFile();
         }
 
         public ObservableCollection<Appointment> FindByDoctorId(int id)

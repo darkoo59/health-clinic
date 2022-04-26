@@ -23,19 +23,23 @@ namespace Sims_Hospital_Zdravo.View
     {
         private DoctorAppointmentController docController;
         private RoomController roomControl;
-       
+        private int id_app;
         public DoctorUpdateAppointment(DoctorAppointmentController docController,Appointment app,RoomController rom)
         {
             InitializeComponent();
             this.DataContext = this;
             this.docController = docController;
             this.roomControl = rom;
-            DateTime dt = app._DateAndTime;
-            DateTxt.Text = dt.ToString("dd-MM-yyyy");
-            TimeTxt.Text = dt.ToString("HH:mm:ss");
-            PatientTxt.Text = app._Patient._Name;
-            SurnameText.Text = app._Patient._Surname;
-            RoomTxt.Text = app._Room._Id.ToString();
+            
+            
+                DateTime dt = app._DateAndTime;
+                DateTxt.Text = dt.ToString("dd-MM-yyyy");
+                TimeTxt.Text = dt.ToString("HH:mm:ss");
+                PatientTxt.Text = app._Patient._Name;
+                SurnameText.Text = app._Patient._Surname;
+                RoomTxt.Text = app._Room._Id.ToString();
+            id_app = app._Id;
+            
         }
 
         private Patient pat;
@@ -68,9 +72,10 @@ namespace Sims_Hospital_Zdravo.View
             DateTime dt = DateTime.Parse(date + " " + time);
             Doctor doc = this.docController.getDoctor(2);
             Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,Pat,dt,1);
             
-            docController.Update(app);
+            Appointment appoi = new Appointment(room,doc,Pat,dt);
+            
+            docController.Update(appoi);
             Close();
 
         }
