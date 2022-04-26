@@ -1,4 +1,6 @@
 ﻿using Controller;
+using Sims_Hospital_Zdravo;
+using Sims_Hospital_Zdravo.View.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,15 @@ namespace Sims_Hospital_Zdravo.View
     public partial class ManagerDashboard : Window
     {
         private RoomController roomController;
-        public ManagerDashboard(RoomController roomController)
+        private EquipmentController equipmentController;
+        private EquipmentTransferController equipmentTransferController;
+        private App app;
+        public ManagerDashboard()
         {
-            this.roomController = roomController;
+            app = Application.Current as App;
+            this.roomController = app.roomController;
+            this.equipmentController = app.equipmentController;
+            this.equipmentTransferController = app.equipmentTransferController;
             InitializeComponent();
         }
 
@@ -32,5 +40,14 @@ namespace Sims_Hospital_Zdravo.View
             ManagerRooms rooms = new ManagerRooms(this.roomController);
             rooms.Show();
         }
+
+        private void Equipment_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerEquipment managerEquipment = new ManagerEquipment(roomController, equipmentController, equipmentTransferController);
+            managerEquipment.Show();
+
+
+        }
+    
     }
 }

@@ -13,39 +13,42 @@ using System.Collections.ObjectModel;
 
 namespace Service
 {
-   public class AppointmentPatientService
-   {
+    public class AppointmentPatientService
+    {
         public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.doctorRepository = doctorRepository;
         }
         public void Create(Appointment appointment)
-      {
+        {
             appointmentRepository.Create(appointment);
-      }
-      
-      public void Update(Appointment appointment)
-      {
+        }
+
+        public void Update(Appointment appointment)
+        {
             appointmentRepository.Update(appointment);
-      }
-      
-      public void Delete(Appointment appointment)
-      {
+        }
+
+        public void Delete(Appointment appointment)
+        {
             appointmentRepository.Delete(appointment);
-      }
-      
-      public ObservableCollection<Appointment> FindByPatientID(int id)
-      {
+        }
+
+        public ObservableCollection<Appointment> FindByPatientID(int id)
+        {
             return appointmentRepository.FindByPatientId(id);
-      }
+        }
 
         public ref ObservableCollection<Doctor> ReadDoctors()
         {
             return ref doctorRepository.ReadAll();
         }
 
-      public AppointmentRepository appointmentRepository;
-      public DoctorRepository doctorRepository;
-   }
+ 
+
+
+        public AppointmentRepository appointmentRepository;
+        public DoctorRepository doctorRepository;
+    }
 }

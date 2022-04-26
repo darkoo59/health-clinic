@@ -44,8 +44,7 @@ namespace Sims_Hospital_Zdravo
         }
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
-            RoomController roomController = app.roomController;
-            ManagerDashboard manDash = new ManagerDashboard(roomController);
+            ManagerDashboard manDash = new ManagerDashboard();
             manDash.Show();
 
         }

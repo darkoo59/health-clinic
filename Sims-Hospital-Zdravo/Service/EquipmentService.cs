@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Repository;
 namespace Service
 {
-    class EquipmentService
+    public class EquipmentService
     {
         private EquipmentRepository equipmentRepository;
 

@@ -68,6 +68,8 @@
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
     <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />

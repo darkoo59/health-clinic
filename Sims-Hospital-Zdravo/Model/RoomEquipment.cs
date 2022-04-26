@@ -47,5 +47,9 @@ namespace Model
             }
         }
 
+        public override string ToString()
+        {
+            return this.Equipment._Name + " " + Quantity;
+        }
     }
 }

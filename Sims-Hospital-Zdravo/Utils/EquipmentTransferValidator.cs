@@ -11,14 +11,12 @@ namespace Utils
 {
     class EquipmentTransferValidator
     {
-        private EquipmentRepository eqRepo;
         private RoomRepository roomRepo;
 
-        public EquipmentTransferValidator(RoomRepository roomRepo, EquipmentRepository eqRepo)
+        public EquipmentTransferValidator(RoomRepository roomRepo)
         {
-            this.eqRepo = eqRepo;
             this.roomRepo = roomRepo;
-        }
+        }       
 
 
         private void HasEnoughEquipment(int roomId, int quantity, int equipmentId)
@@ -34,10 +32,35 @@ namespace Utils
             }
         }
 
+        private void RoomExists(int roomId)
+        {
+            Room room = roomRepo.FindById(roomId);
+            if (room == null)
+                throw new Exception("Room number " + roomId + " does not exist!");
+        }
+
+
+        public void validateTransferFromRoom(int fromRoomId, int toRoomId, int equipmentId, int quantity)
+        {
+            RoomExists(fromRoomId);
+            RoomExists(toRoomId);
+            HasEnoughEquipment(fromRoomId, quantity, equipmentId);
+
+
+        }
+
         public void validateTransferFromStorage(int roomId, int equipmentId, int quantity)
         {
             HasEnoughEquipment(roomId, quantity, equipmentId);
         }
+
+
+        public void ValidateRoomTaken(bool isFree, int roomId)
+        {
+            if (!isFree) throw new Exception("Room " + roomId + " is not free in given interval!");
+        }
+
+
 
 
     }

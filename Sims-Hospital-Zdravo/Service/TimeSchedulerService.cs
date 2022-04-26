@@ -36,6 +36,57 @@ namespace Service
             return null;
         }
 
+        public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
+        {
+            List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
+            foreach(Appointment app in appointments)
+            {
+                DateTime start = app._DateAndTime;
+                DateTime end = start.AddMinutes(30);
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+                
+            }
+
+            return true;
+        }
+
+
+        public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
+        {
+
+            DateTime now = DateTime.Now;
+            int newminutes = now.Minute > 30 ? 60 - now.Minute : 30 - now.Minute;
+            now = now.AddMinutes(newminutes);
+            now = now.AddSeconds(-now.Second);
+            DateTime last = now.AddDays(5);
+
+            List<TimeInterval> mergedIntervals = MergeTwoTimeIntervalLists(unavailable1, unavailable2);
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+
+            foreach (TimeInterval ti in mergedIntervals)
+            {
+                if (now.CompareTo(ti.Start) > 0) continue;
+                if (now.CompareTo(ti.Start) == 0)
+                {
+                    now = ti.End;
+                }
+
+                filterIfIntervalTooShort(minutes, now, ti.Start, timeIntervals);
+                now = ti.End;
+
+            }
+
+            if (now.CompareTo(last) < 0)
+            {
+                filterIfIntervalTooShort(minutes, now, last, timeIntervals);
+            }
+
+            return timeIntervals;
+        }
+
 
         private List<TimeInterval> MergeTwoTimeIntervalLists(List<TimeInterval> list1, List<TimeInterval> list2)
         {
@@ -76,40 +127,6 @@ namespace Service
         }
 
 
-        public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
-        {
-
-            DateTime now = DateTime.Now;
-            int newminutes = now.Minute > 30 ? 60 - now.Minute : 30 - now.Minute;
-            now = now.AddMinutes(newminutes);
-            now = now.AddSeconds(-now.Second);
-            DateTime last = now.AddDays(5);
-
-            List<TimeInterval> mergedIntervals = MergeTwoTimeIntervalLists(unavailable1, unavailable2);
-            List<TimeInterval> timeIntervals = new List<TimeInterval>();
-
-            foreach (TimeInterval ti in mergedIntervals)
-            {
-                if (now.CompareTo(ti.Start) > 0) continue;
-                if (now.CompareTo(ti.Start) == 0)
-                {
-                    now = ti.End;
-                }
-
-                filterIfIntervalTooShort(minutes, now, ti.Start, timeIntervals);
-                now = ti.End;
-
-            }
-
-            if (now.CompareTo(last) < 0)
-            {
-                filterIfIntervalTooShort(minutes, now, last, timeIntervals);
-            }
-
-            return timeIntervals;
-        }
-
-
         private void filterIfIntervalTooShort(int intervalDuration, DateTime now, DateTime next, List<TimeInterval> intervals)
         {
             TimeSpan diff = next - now;
@@ -118,33 +135,6 @@ namespace Service
                 intervals.Add(new TimeInterval(now, next));
             }
         }
-
-
-        //public List<TimeInterval> fillListWithFakeTimeIntervals1()
-        //{
-        //    List<TimeInterval> timeIntervals = new List<TimeInterval>
-        //    {
-        //        new TimeInterval(new DateTime(2022, 4, 25, 2, 0, 0), new DateTime(2022, 4, 25, 2, 30, 0)),
-        //        new TimeInterval(new DateTime(2022, 4, 25, 6, 0, 0), new DateTime(2022, 4, 25, 6, 30, 0)),
-        //        new TimeInterval(new DateTime(2022, 4, 25, 6, 30, 0), new DateTime(2022, 4, 25, 7, 0, 0)),
-        //    };
-
-
-        //    return timeIntervals;
-        //}
-
-        //public List<TimeInterval> fillListWithFakeTimeIntervals2()
-        //{
-        //    List<TimeInterval> timeIntervals = new List<TimeInterval>
-        //    {
-        //        new TimeInterval(new DateTime(2022, 4, 25, 2, 30, 0), new DateTime(2022, 4, 25, 3, 0, 0)),
-        //        new TimeInterval(new DateTime(2022, 4, 25, 6, 0, 0), new DateTime(2022, 4, 25, 6, 30, 0)),
-        //        new TimeInterval(new DateTime(2022, 4, 25, 7, 0, 0), new DateTime(2022, 4,  25, 7, 30, 0)),
-        //    };
-
-
-        //    return timeIntervals;
-        //}
 
     }
 }

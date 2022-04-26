@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    class EquipmentTransferController
+    public class EquipmentTransferController
     {
 
 
@@ -19,14 +19,18 @@ namespace Controller
             this.equipmentTransferService = equipmentTransferService;
         }
 
-        public void TransferFromWarehouse(int roomId, Equipment eq, int quantity, TimeInterval ti)
+        public void FinishRelocationAppointment(int relocationAppointmentId)
         {
-            equipmentTransferService.TransferFromWarehouse(roomId, eq, quantity, ti);
+            equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
+        }
+        public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
+        {
+            equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
-        public void MakeAppointmentFromWarehouse(int roomId, Equipment eq, int quantity, TimeInterval ti)
+        public List<TimeInterval> GetFreeTimeIntervals(int minutes, Room fromRoom, Room toRoom)
         {
-            equipmentTransferService.MakeAppointmentFromWarehouse(roomId, eq, quantity, ti);
+            return equipmentTransferService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);
         }
     }
 }

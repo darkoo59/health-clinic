@@ -9,7 +9,7 @@ using Service;
 
 namespace Controller
 {
-    class EquipmentController
+    public class EquipmentController
     {
         private EquipmentService equipmentService;
 

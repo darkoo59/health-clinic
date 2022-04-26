@@ -17,5 +17,12 @@ namespace Model
             this.Start = Start;
             this.End = End;
         }
+
+        public override string ToString()
+        {
+            return Start + " \n " + End;
+        }
     }
+
+
 }

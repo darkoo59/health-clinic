@@ -24,8 +24,9 @@ namespace Sims_Hospital_Zdravo
         internal AppointmentPatientController appointmentPatientController;
         internal DoctorAppointmentController doctorAppointmentController;
         internal EquipmentTransferController equipmentTransferController;
+        internal EquipmentController equipmentController;
 
-        public App() 
+        public App()
         {
 
 
@@ -47,7 +48,7 @@ namespace Sims_Hospital_Zdravo
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
             DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
             AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
-            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository,doctorRepository);
+            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository, doctorRepository);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
@@ -56,14 +57,18 @@ namespace Sims_Hospital_Zdravo
 
             EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
             EquipmentRepository equipmentRepository = new EquipmentRepository(equipmentDataHandler);
+            EquipmentService equipmentService = new EquipmentService(equipmentRepository);
+            equipmentController = new EquipmentController(equipmentService);
 
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository = new RelocationAppointmentRepository(relocationAppointmentDataHandler);
 
-            EquipmentTransferService equipmentTransferService = new EquipmentTransferService(equipmentRepository, roomRepository,relocationAppointmentRepository);
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
+
+
+            EquipmentTransferService equipmentTransferService = new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
             equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
-            equipmentTransferService.MakeAppointmentFromWarehouse(1, equipmentRepository.FindById(1), 5, new TimeInterval(new DateTime(2022, 12, 12), new DateTime(2022, 12, 14)));
 
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();

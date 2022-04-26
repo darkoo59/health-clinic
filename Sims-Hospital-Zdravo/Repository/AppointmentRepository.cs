@@ -125,9 +125,23 @@ namespace Repository
             return timeIntervals;
         }
 
-        
+        public List<Appointment> FindByRoomId(int roomId)
+        {
+            List<Appointment> apps = new List<Appointment>();
+            foreach (Appointment app in appointments)
+            {
+                if (app._Room._Id == roomId)
+                {
+                    apps.Add(app);
+                }
+            }
 
-        
+            return apps;
+        }
+
+
+
+
 
 
     }
