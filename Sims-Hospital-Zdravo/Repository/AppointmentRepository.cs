@@ -113,6 +113,7 @@ namespace Repository
 
         public List<TimeInterval> GetTimeIntervalsForRoom(Room room)
         {
+            if (room == null) return new List<TimeInterval>();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
             foreach(Appointment app in appointments)
             {

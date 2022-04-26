@@ -90,11 +90,12 @@ namespace Sims_Hospital_Zdravo.View.Manager
             {
                 Room roomFrom = (Room)ComboFromRoom.SelectedItem;
                 Room roomTo = (Room)ComboFromRoom.SelectedItem;
-                TimeInterval ti = (TimeInterval)ListIntervals.SelectedItem;
                 RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
                 int minutes = Int32.Parse(IntervalDuration.Text);
-                equipmentTransferController.MakeRelocationAppointment(roomFrom._Id, roomTo._Id, eq._Equip, eq._Quantity, ti);
-                //equipmentTransferController.TransferEquipmentToRoom(roomTo, eq._Equip, eq._Quantity, new TimeInterval(ti.Start, ti.Start.AddMinutes(minutes)));
+                int quantity = Int32.Parse(Quantity.Text);
+                DateTime start = (DateTime)IntervalStarts.SelectedDate;
+                DateTime end = start.AddMinutes(minutes);
+                equipmentTransferController.MakeRelocationAppointment(roomFrom._Id, roomTo._Id, eq._Equip, quantity, new TimeInterval(start, end));
                 Close();
 
             }

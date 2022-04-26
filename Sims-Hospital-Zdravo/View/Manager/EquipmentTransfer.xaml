@@ -12,6 +12,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -21,14 +25,42 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Column="1" Height="30" x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
-        <ComboBox Grid.Column="1" Grid.Row="1" Height="30" SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
-        <ComboBox Grid.Column="1" Grid.Row="2" Height="30" x:Name="ComboEquipment"></ComboBox>
-        <ListBox  Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="2"  x:Name="ListIntervals"></ListBox>
-        <TextBox  Grid.Row="3" Grid.Column="1" Height="30" x:Name="IntervalDuration" TextChanged="Duration_Changed"></TextBox>
-        <Button Grid.Row="3" Grid.Column="3"  Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment" Click="SaveApp_Click">Schedule</Button>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+            <Label>From Room:</Label>
+            <ComboBox  Height="30" x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label>To Room:</Label>
+            <ComboBox  Height="30" SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label>Equipment:</Label>
+            <ComboBox  Height="30" x:Name="ComboEquipment"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Label>Quantity: </Label>
+            <TextBox Height="30" x:Name="Quantity"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <Label>Duration:</Label>
+            <TextBox   Height="30" x:Name="IntervalDuration" TextChanged="Duration_Changed"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1">
+            <Label>Starts:</Label>
+            <DatePicker  x:Name="IntervalStarts"></DatePicker>
+            <!--<TextBox   Height="30" x:Name="IntervalStarts" TextChanged="Duration_Changed"></TextBox>-->
+        </StackPanel>
+
+        <ItemsControl  Grid.Row="1" Grid.Column="3" Grid.RowSpan="4"  Grid.ColumnSpan="2"  x:Name="ListIntervals"></ItemsControl>
+        
+        <Button Grid.Row="5" Grid.Column="3"  Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment" Click="SaveApp_Click">Schedule</Button>
 
     </Grid>
 </Window>
