@@ -27,8 +27,12 @@ namespace Controller
         public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            validator.InsertValidation(medicalRecord,patient);
             medicalRecordService.Create(medicalRecord, patient);
+        }
+
+        public void ValidateInsert(String jmbg)
+        {
+            validator.InsertValidation(jmbg);
         }
       
       public MedicalRecord FindById(int id)
@@ -52,9 +56,13 @@ namespace Controller
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
-            validator.UpdateValidation(patient);
             medicalRecordService.Update(medicalRecord, patient);
       }
+
+        public void ValidateUpdate(String jmbg)
+        {
+            validator.UpdateValidation(jmbg);
+        }
       
       public void DeleteById(int id)
       {
@@ -67,7 +75,17 @@ namespace Controller
             // TODO: implement
             medicalRecordService.Delete(medicalRecord);
       }
-      
-   
-   }
+
+        public int GenerateId()
+        {
+           return  medicalRecordService.GenerateId();
+        }
+
+        public int GeneratePatientId()
+        {
+            return medicalRecordService.GenreatePatientId();
+        }
+
+
+    }
 }
