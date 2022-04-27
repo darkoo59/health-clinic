@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
         }
+
+
 
         private void Insert_Click(object sender, RoutedEventArgs e)
         {

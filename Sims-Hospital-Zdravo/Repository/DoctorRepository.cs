@@ -61,6 +61,8 @@ namespace Repository
         {
             foreach (Doctor doc in doctors)
             {
+                Console.WriteLine("Id of doctor in list is " + doc._Id);
+                Console.WriteLine("Id of doctor search is " + id);
                 if (doc._Id == id) return doc;
             }
             return null;

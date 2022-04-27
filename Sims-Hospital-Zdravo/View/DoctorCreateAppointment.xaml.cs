@@ -15,20 +15,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
     /// Interaction logic for DoctorCreateAppointment.xaml
     /// </summary>
-    public partial class DoctorCreateAppointment : Window
+    public partial class DoctorCreateAppointment : Window, IUpdateFilesObservable
     {
         private DoctorAppointmentController docAppController;
         private RoomController roomController;
+        private List<IUpdateFilesObserver> observers;
         private int id;
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
+            observers = new List<IUpdateFilesObserver>();
             this.DataContext = this;
             this.docAppController = docController;
             this.roomController = roomControl;
@@ -73,12 +76,36 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             Patient pat = PatientSelected();
+            Console.WriteLine("Printing doctor");
+            Console.WriteLine(doc._Id);
+            Console.WriteLine(doc);
+            Console.WriteLine(room);
+            Console.WriteLine(pat);
             Appointment app = new Appointment(room,doc,pat,dt, 5);
             docAppController.Create(app);
+            NotifyUpdated();
             Close();
 
         }
 
-        
+        public void AddObserver(IUpdateFilesObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void NotifyUpdated()
+        {
+            foreach (IUpdateFilesObserver observer in observers)
+            {
+                observer.NotifyUpdated();
+            }
+        }
+
+        public void RemoveObserver(IUpdateFilesObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+
     }
 }

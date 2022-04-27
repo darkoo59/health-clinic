@@ -15,13 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
     /// Interaction logic for DoctorCRUDWindow.xaml
     /// </summary>
-    public partial class DoctorCRUDWindow : Window
+    public partial class DoctorCRUDWindow : Window, IUpdateFilesObserver
     {
 
         public ObservableCollection<Appointment> DoctorAppointments;
@@ -49,19 +50,19 @@ namespace Sims_Hospital_Zdravo.View
             this.roomController = application.roomController;
             this.doctorAppController = application.doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
-            
+
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
-            
-                DataGridTextColumn data_column = new DataGridTextColumn();
-                data_column.Header = "Date and Time";
-                data_column.Binding = new Binding("_DateAndTime");
-                   
-                dataGridDoctorApps.Columns.Add(data_column);
-                data_column = new DataGridTextColumn();
-                data_column.Header = "Patient Name";
-                data_column.Binding = new Binding("_Patient._Name");
-                dataGridDoctorApps.Columns.Add(data_column);
+
+            DataGridTextColumn data_column = new DataGridTextColumn();
+            data_column.Header = "Date and Time";
+            data_column.Binding = new Binding("_DateAndTime");
+
+            dataGridDoctorApps.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Patient Name";
+            data_column.Binding = new Binding("_Patient._Name");
+            dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient Surname";
             data_column.Binding = new Binding("_Patient._Surname");
@@ -76,7 +77,7 @@ namespace Sims_Hospital_Zdravo.View
 
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
             dataGridDoctorApps.Items.Refresh();
-            
+
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -113,11 +114,19 @@ namespace Sims_Hospital_Zdravo.View
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
 
-            DoctorCreateAppointment addAppointment = new DoctorCreateAppointment(doctorAppController,roomController);
+            DoctorCreateAppointment addAppointment = new DoctorCreateAppointment(doctorAppController, roomController);
+            addAppointment.AddObserver(this);
             addAppointment.Show();
+
+        }
+
+        public void NotifyUpdated()
+        {
+            DoctorAppointments = doctorAppController.ReadAll(2);
+            dataGridDoctorApps.ItemsSource = DoctorAppointments;
 
         }
     }
 
-    
+
 }

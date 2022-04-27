@@ -20,6 +20,7 @@ namespace Repository
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
             this.appointmentDataHandler = appDataHandler;
+            this.patientApps = new ObservableCollection<Appointment>();
             this.appointments = appDataHandler.ReadAll();
         }
         public void Create(Model.Appointment appointment)
@@ -71,6 +72,7 @@ namespace Repository
             Console.WriteLine(this.appointments.Count + " duzina");
             foreach(Appointment app in this.appointments)
             {
+                if (app._Doctor == null) continue;
                 if(app._Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
