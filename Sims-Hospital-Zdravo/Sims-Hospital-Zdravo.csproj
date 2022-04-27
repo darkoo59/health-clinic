@@ -130,6 +130,7 @@
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="Utils\TaskScheduleTimer.cs" />
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
