@@ -28,6 +28,7 @@ namespace Sims_Hospital_Zdravo.View
         private DoctorAppointmentController doctorAppController;
         public RoomController roomController;
         private Appointment app;
+        private App application;
         public Appointment App
         {
             get
@@ -40,12 +41,13 @@ namespace Sims_Hospital_Zdravo.View
             }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController, RoomController rom)
+        public DoctorCRUDWindow()
         {
+            application = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.roomController = rom;
-            this.doctorAppController = doctorAppController;
+            this.roomController = application.roomController;
+            this.doctorAppController = application.doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
             
             //this.DataContext = DoctorAppointments;
@@ -96,10 +98,16 @@ namespace Sims_Hospital_Zdravo.View
         private void editAppointment_Click(object sender, RoutedEventArgs e)
         {
             app = dataGridDoctorApps.SelectedValue as Appointment;
-           DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController,app,roomController) { DataContext = dataGridDoctorApps.SelectedItem };
-            
-            editAppointment.Show();
+            if (app != null)
+            {
+                DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController, app, roomController) { DataContext = dataGridDoctorApps.SelectedItem };
 
+                editAppointment.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chose appointment you want to edit.");
+            }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)

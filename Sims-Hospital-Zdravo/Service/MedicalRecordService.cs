@@ -69,6 +69,39 @@ namespace Service
             return medicalRecordRepository.FindPatientById(id);
         }
 
+        public int GenerateId()
+        {
+            ObservableCollection<MedicalRecord> medicalRecords = medicalRecordRepository.ReadAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach(MedicalRecord record in medicalRecords)
+            {
+                ids.Add(record._Id);
+            }
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+
+        }
+
+        public int GenreatePatientId()
+        {
+            ObservableCollection<Patient> patients = patientRepository.ReadAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (Patient patient in patients)
+            {
+                ids.Add(patient._Id);
+            }
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+        }
+
    
    }
 }

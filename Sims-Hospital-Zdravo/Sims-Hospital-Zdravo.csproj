@@ -74,29 +74,77 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="AppointmentList.xaml.cs">
       <DependentUpon>AppointmentList.xaml</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Controller\AccountController.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
+    <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="DataHandler\AccountDataHandler.cs" />
+>>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
+    <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\RelocationAppointment.cs" />
+    <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\RoomEquipment.cs" />
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+<<<<<<< HEAD
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
+=======
+    <Compile Include="Repository\RelocationAppointmentRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Service\EquipmentTransferService.cs" />
+    <Compile Include="Service\TimeSchedulerService.cs" />
+    <Compile Include="Utils\EquipmentTransferValidator.cs" />
+>>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="View\Login\LoginMainWindow.xaml.cs">
+      <DependentUpon>LoginMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
+      <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
+      <DependentUpon>ManagerEquipment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -154,6 +202,18 @@
     <Page Include="PatientUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\LoginMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\EquipmentTransfer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manager\ManagerEquipment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
@@ -277,6 +337,7 @@
     <Resource Include="Resources\doctor.txt" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
@@ -288,5 +349,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+=======
+    <Resource Include="Resources\equipment.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\relocation_appointments.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accounts.txt" />
+  </ItemGroup>
+  <ItemGroup />
+>>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

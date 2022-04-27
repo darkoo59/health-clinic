@@ -19,25 +19,8 @@ namespace Sims_Hospital_Zdravo.Utils
             this.recordService = service;
         }
 
-        private void medicalRecordIdAlreadyExist(MedicalRecord medicalRecord)
+        private void jmbgRightFormat(String jmbg)
         {
-            if (recordService.FindById(medicalRecord._Id) != null)
-            {
-                throw new Exception("Medical Id Already Exist!");
-            }
-        }
-
-        private void patientIdAlreadyExist(Patient patient)
-        {
-            if (recordService.FindPatientById(patient._Id) != null)
-            {
-                throw new Exception("Patient Id Already Exist!");
-            }
-        }
-
-        private void jmbgRightFormat(Patient patient)
-        {
-            String jmbg = patient._Jmbg;
             if(jmbg.Length != 13)
             {
                 throw new Exception("JMBG must have 13 numbers!");
@@ -53,16 +36,14 @@ namespace Sims_Hospital_Zdravo.Utils
         }
 
 
-        public void InsertValidation(MedicalRecord medicalRecord,Patient patient)
+        public void InsertValidation(String jmbg)
         {
-            medicalRecordIdAlreadyExist(medicalRecord);
-            patientIdAlreadyExist(patient);
-            jmbgRightFormat(patient);
+            jmbgRightFormat(jmbg);
         }
 
-        public void UpdateValidation(Patient patient)
+        public void UpdateValidation(String jmbg)
         {
-            jmbgRightFormat(patient);
+            jmbgRightFormat(jmbg);
         }
     }
 }

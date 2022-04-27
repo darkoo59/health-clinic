@@ -14,14 +14,12 @@ namespace Model
     {
         private int Id;
         private String Name { get; set; }
-        private int Quantity { get; set; }
         private EquipmentType Type { get; set; }
 
-        public Equipment(int id, String name, int quantity, EquipmentType type)
+        public Equipment(int id, String name, EquipmentType type)
         {
             this.Id = id;
             this.Name = name;
-            this.Quantity = quantity;
             this.Type = type;
         }
 
@@ -36,11 +34,7 @@ namespace Model
             get { return Name; }
             set { this.Name = value; }
         }
-        public int _Quantity
-        {
-            get { return Quantity; }
-            set { this.Quantity = value; }
-        }
+
         public EquipmentType _Type
         {
             get { return Type; }

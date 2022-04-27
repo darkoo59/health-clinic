@@ -13,8 +13,9 @@ using System.Collections.ObjectModel;
 
 namespace Service
 {
-   public class AppointmentPatientService
-   {
+    public class AppointmentPatientService
+    {
+
         private AppointmentPatientValidator appointmentPatientValidator;
         public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
         {
@@ -23,19 +24,21 @@ namespace Service
             this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
         }
         public void Create(Appointment appointment)
-      {
+        {
             appointmentRepository.Create(appointment);
       }
       
-      public void Update(Appointment appointment)
-      {
-            appointmentPatientValidator.rescheduleAppointment(appointment);
+
+
+        public void Update(Appointment appointment)
+        {
             appointmentRepository.Update(appointment);
-      }
-      
-      public void Delete(Appointment appointment)
-      {
+        }
+
+        public void Delete(Appointment appointment)
+        {
             appointmentRepository.Delete(appointment);
+
       }
       
       public ref ObservableCollection<Appointment> FindByPatientID(int id)
@@ -48,7 +51,10 @@ namespace Service
             return ref doctorRepository.ReadAll();
         }
 
-      public AppointmentRepository appointmentRepository;
-      public DoctorRepository doctorRepository;
-   }
+ 
+
+
+        public AppointmentRepository appointmentRepository;
+        public DoctorRepository doctorRepository;
+    }
 }

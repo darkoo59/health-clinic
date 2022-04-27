@@ -25,6 +25,7 @@ namespace Sims_Hospital_Zdravo.View
     {
         private DoctorAppointmentController docAppController;
         private RoomController roomController;
+        private int id;
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace Sims_Hospital_Zdravo.View
             return Pat;
         }
         Random rnd = new Random();
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -71,7 +73,7 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,pat,dt,1);
+            Appointment app = new Appointment(room,doc,pat,dt);
             docAppController.Create(app);
             Close();
 

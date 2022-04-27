@@ -22,14 +22,17 @@ namespace Sims_Hospital_Zdravo
     public partial class UpdateRecordWindow : Window
     {
         private MedicalRecordController medicalController;
-        public UpdateRecordWindow(MedicalRecordController controller,Patient patient)
+        private MedicalRecord medicalRecord;
+        private Patient patient;
+        public UpdateRecordWindow(MedicalRecordController controller,Patient patient, MedicalRecord record)
         {
             InitializeComponent();
             medicalController = controller;
+            this.medicalRecord = record;
+            this.patient = patient;
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            TxtPatientId.Text = patient._Id.ToString();
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
@@ -42,9 +45,10 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patient = new Patient(Int32.Parse(TxtPatientId.Text), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                MedicalRecord medicalRecord = new MedicalRecord(Int32.Parse(TxtMedicalId.Text), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
-                medicalController.Update(medicalRecord, patient);
+                Patient patientUpdated = new Patient(patient._Id, TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                medicalController.ValidateUpdate(TxtJmbg.Text);
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
+                medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }
             catch(Exception ex)

@@ -6,13 +6,14 @@
 
 using DataHandler;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Repository
 {
-    public class RoomRepository
+    public class RoomRepository: IUpdateFilesObserver
     {
         public RoomDataHandler roomDataHandler;
         public ObservableCollection<Room> rooms;
@@ -26,6 +27,7 @@ namespace Repository
         public void Create(Room room)
         {
             rooms.Add(room);
+            room.AddObserver(this);
             LoadDataToFile();
         }
 
@@ -90,6 +92,10 @@ namespace Repository
         public void LoadDataFromFiles()
         {
             rooms = roomDataHandler.ReadAll();
+            foreach(Room room in rooms)
+            {
+                room.AddObserver(this);
+            }
         }
 
         public void LoadDataToFile() 
@@ -97,8 +103,10 @@ namespace Repository
             roomDataHandler.Write(rooms);
         }
 
-
-
-
+        public void NotifyUpdated()
+        {
+            Console.WriteLine("Updating");
+            LoadDataToFile();
+        }
     }
 }

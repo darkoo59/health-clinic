@@ -29,6 +29,7 @@ namespace Service
         }
         public void Create(Appointment appointment)
         {
+            appointment._Id = generateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -43,7 +44,11 @@ namespace Service
             return appointmentRepository.FindByDoctorId(id);
         }
 
-
+        Random random = new Random();
+            public int generateId()
+        {
+            return random.Next(1,100000000);
+        }
         public ref ObservableCollection<Patient> GetPatients()
         {
             return ref patientRepository.ReadAll();
