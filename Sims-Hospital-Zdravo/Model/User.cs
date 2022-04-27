@@ -8,7 +8,9 @@ using System;
 using System.ComponentModel;
 namespace Model
 {
-   public class User : INotifyPropertyChanged
+
+    public enum RoleType { MANAGER, SECRETARY, DOCTOR, PATIENT };
+    public class User : INotifyPropertyChanged
    {
       public bool ChangePassword(string newPassowrd)
       {
@@ -30,6 +32,7 @@ namespace Model
         private String Email;
         private String Jmbg;
         private String PhoneNumber;
+        private RoleType Role;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -92,6 +95,19 @@ namespace Model
             set
             {
                 this.PhoneNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RoleType _Role
+        {
+            get
+            {
+                return Role;
+            }
+            set
+            {
+                this.Role = value;
                 OnPropertyChanged();
             }
         }

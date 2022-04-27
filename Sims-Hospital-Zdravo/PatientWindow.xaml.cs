@@ -22,10 +22,13 @@ namespace Sims_Hospital_Zdravo
     public partial class PatientWindow : Window
     {
         AppointmentPatientController appointmentPatientController;
-        public PatientWindow(AppointmentPatientController appointmentPatientController)
+        App app;
+        public PatientWindow()
         {
+            app = Application.Current as App;
+
             InitializeComponent();
-            this.appointmentPatientController = appointmentPatientController;
+            this.appointmentPatientController = app.appointmentPatientController;
             this.DataContext = this;
             McDataGrid.ItemsSource = appointmentPatientController.FindByPatientID(1);
         }
