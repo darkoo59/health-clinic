@@ -52,11 +52,15 @@ namespace Sims_Hospital_Zdravo.View
             dataGridDoctorApps.AutoGenerateColumns = false;
             
                 DataGridTextColumn data_column = new DataGridTextColumn();
-                data_column.Header = "Date and Time";
-                data_column.Binding = new Binding("_DateAndTime");
-                   
+                data_column.Header = "Start Time";
+                data_column.Binding = new Binding("_Time.Start"); 
                 dataGridDoctorApps.Columns.Add(data_column);
-                data_column = new DataGridTextColumn();
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Start Time";
+            data_column.Binding = new Binding("_Time.End");
+
+            dataGridDoctorApps.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
                 data_column.Header = "Patient Name";
                 data_column.Binding = new Binding("_Patient._Name");
                 dataGridDoctorApps.Columns.Add(data_column);
