@@ -32,15 +32,15 @@ namespace Sims_Hospital_Zdravo
         private void Patient_Click(object sender, RoutedEventArgs e)
         {
             AppointmentPatientController appointmentPatientController = app.appointmentPatientController;
-            PatientWindow pw = new PatientWindow(appointmentPatientController);
-            pw.Show();
+           // PatientWindow pw = new PatientWindow(appointmentPatientController);
+           // pw.Show();
         }
 
         private void Secretary_Click(object sender, RoutedEventArgs e)
         {
             MedicalRecordController medicalController = app.recordController;
-            SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
-            secretaryHomeWindow.Show();
+          //  SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
+           // secretaryHomeWindow.Show();
         }
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
@@ -52,8 +52,8 @@ namespace Sims_Hospital_Zdravo
         {
             DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
             RoomController roomControl = app.roomController;
-            DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController,roomControl);
-            doctorCRUD.Show();
+          //  DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController,roomControl);
+          //  doctorCRUD.Show();
         }
     }
 }
