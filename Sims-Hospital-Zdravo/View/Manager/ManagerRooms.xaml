@@ -27,6 +27,6 @@
             <Button Grid.Column="5" Width="100" Height="30" Click="UpdateRoom_Click">Update</Button>
             <Button Grid.Column="4" Width="100" Height="30" Click="DeleteRoom_Click">Delete</Button>
         </Grid>
-        <DataGrid x:Name="roomsTable" Grid.Row="2" ColumnWidth="*"  VerticalAlignment="Stretch" Margin="20, 0, 20, 20" CanUserResizeColumns="False" CanUserResizeRows="False"/>
+        <DataGrid CanUserAddRows="False" x:Name="roomsTable" Grid.Row="2" ColumnWidth="*"  VerticalAlignment="Stretch" Margin="20, 0, 20, 20" CanUserResizeColumns="False" CanUserResizeRows="False"/>
     </Grid>
 </Window>

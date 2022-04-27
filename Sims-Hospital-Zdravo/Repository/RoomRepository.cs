@@ -94,6 +94,7 @@ namespace Repository
             rooms = roomDataHandler.ReadAll();
             foreach(Room room in rooms)
             {
+                Console.WriteLine("Loading observer");
                 room.AddObserver(this);
             }
         }

@@ -22,11 +22,17 @@ namespace Model
         private List<IUpdateFilesObserver> observers;
         public Room(int floor, int id, RoomType type)
         {
+            this.observers = new List<IUpdateFilesObserver>();
+            printObservers();
             this.Floor = floor;
             this.Id = id;
             this.Type = type;
             this.roomEquipment = new List<RoomEquipment>();
-            this.observers = new List<IUpdateFilesObserver>();
+        }
+
+        public void printObservers()
+        {
+            Console.WriteLine(observers);
         }
 
 
@@ -148,6 +154,10 @@ namespace Model
 
         public void AddObserver(IUpdateFilesObserver observer)
         {
+            if(observers == null)
+            {
+                observers = new List<IUpdateFilesObserver>();
+            }
             observers.Add(observer);
         }
 

@@ -95,16 +95,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Compile Include="AppointmentList.xaml.cs">
       <DependentUpon>AppointmentList.xaml</DependentUpon>
     </Compile>
-=======
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
->>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
@@ -125,16 +122,13 @@
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
-<<<<<<< HEAD
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
-=======
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\EquipmentTransferService.cs" />
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
->>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
@@ -337,7 +331,6 @@
     <Resource Include="Resources\doctor.txt" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
@@ -349,7 +342,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-=======
+  <ItemGroup>
     <Resource Include="Resources\equipment.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -359,6 +352,5 @@
     <Resource Include="Resources\accounts.txt" />
   </ItemGroup>
   <ItemGroup />
->>>>>>> aff7069f7ae5235d4f9e5113747c0cc4d5d5bb2c
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
