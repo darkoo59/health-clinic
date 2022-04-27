@@ -46,7 +46,6 @@ namespace Sims_Hospital_Zdravo
                 doctors.Add(doctor._Name + " " + doctor._Surname);
             }
             Doctors.ItemsSource = doctors;
-
         }
         public DateTime dateTime;
         private DateTime _DateTime { get; set; }
@@ -75,8 +74,10 @@ namespace Sims_Hospital_Zdravo
             string[] time = Time.Text.Split(':');
             _DateTime = _DateTime.AddHours(Int32.Parse(time[0]));
             _DateTime = _DateTime.AddMinutes(Int32.Parse(time[1]));
-            //Appointment appointment = new Appointment(rnd.Next(),100,_DateTime,1,_Doctor._Id);
-            //appointmentPatientController.Create(appointment);
+            DateTime dateTime = new DateTime(1111,11,11);
+            Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
+            Appointment appointment = new Appointment(new Room(),_Doctor, patient, _DateTime, rnd.Next());
+            appointmentPatientController.Create(appointment);
             Close();
         }
     }

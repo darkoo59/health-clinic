@@ -28,6 +28,7 @@ namespace Sims_Hospital_Zdravo.View
         private DoctorAppointmentController doctorAppController;
         public RoomController roomController;
         private Appointment app;
+        private App application;
         public Appointment App
         {
             get
@@ -40,12 +41,13 @@ namespace Sims_Hospital_Zdravo.View
             }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController, RoomController rom)
+        public DoctorCRUDWindow()
         {
+            application = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.roomController = rom;
-            this.doctorAppController = doctorAppController;
+            this.roomController = application.roomController;
+            this.doctorAppController = application.doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
             
             //this.DataContext = DoctorAppointments;

@@ -73,7 +73,7 @@ namespace Sims_Hospital_Zdravo.View
             Doctor doc = this.docController.getDoctor(2);
             Patient pat = PatientSelected();
             
-            Appointment appoi = new Appointment(room,doc,Pat,dt,id_app);
+            Appointment appoi = new Appointment(room,doc,Pat,dt, 2);
             
             docController.Update(appoi);
             Close();

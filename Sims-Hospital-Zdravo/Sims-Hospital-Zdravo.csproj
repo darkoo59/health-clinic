@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +52,9 @@
   <PropertyGroup>
     <StartupObject>Sims_Hospital_Zdravo.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -56,18 +74,43 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppointmentList.xaml.cs">
+      <DependentUpon>AppointmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
+    <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
+    <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
@@ -75,11 +118,21 @@
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Utils\AppointmentPatientValidator.cs" />
+    <Compile Include="Repository\RelocationAppointmentRepository.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Service\EquipmentTransferService.cs" />
+    <Compile Include="Service\TimeSchedulerService.cs" />
+    <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="View\Login\LoginMainWindow.xaml.cs">
+      <DependentUpon>LoginMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
       <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
     </Compile>
@@ -136,7 +189,15 @@
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
+    <Page Include="AppointmentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\LoginMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -270,7 +331,26 @@
     <Resource Include="Resources\doctor.txt" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\equipment.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\relocation_appointments.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accounts.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

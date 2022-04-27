@@ -25,7 +25,7 @@ namespace Sims_Hospital_Zdravo.View
     {
         private DoctorAppointmentController docAppController;
         private RoomController roomController;
-        //private int id;
+        private int id;
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
@@ -73,7 +73,7 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,pat,dt,rnd.Next(1,20));
+            Appointment app = new Appointment(room,doc,pat,dt, 5);
             docAppController.Create(app);
             Close();
 

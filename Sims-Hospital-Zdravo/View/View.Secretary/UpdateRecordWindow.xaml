@@ -6,9 +6,7 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
         Title="UpdateRecordWindow" Height="700" Width="800">
-    <Grid>
-        <Label Content="Medical record id" HorizontalAlignment="Left" Margin="267,40,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="TxtMedicalId" HorizontalAlignment="Left" Height="23" Margin="388,40,0,0" TextWrapping="Wrap" Text="{Binding _Id, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+    <Grid Margin="0,-84,0,84">
         <Label Content="Name" HorizontalAlignment="Left" Margin="268,120,0,0" VerticalAlignment="Top" Width="49"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="388,120,0,0" TextWrapping="Wrap" Text="{Binding _Name, Mode=OneTime}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Surname" HorizontalAlignment="Left" Margin="268,160,0,0" VerticalAlignment="Top" Width="66"/>
@@ -22,8 +20,6 @@
         <Label Content="Phone number" HorizontalAlignment="Left" Margin="268,320,0,0" VerticalAlignment="Top" Width="92"/>
         <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="23" Margin="388,320,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Label Content="Gender" HorizontalAlignment="Left" Margin="268,360,0,0" VerticalAlignment="Top" Width="92"/>
-        <Label Content="Patient Id" HorizontalAlignment="Left" Margin="267,80,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="TxtPatientId" HorizontalAlignment="Left" Height="23" Margin="388,80,0,0" TextWrapping="Wrap" Text="{Binding _PatientId, Mode=OneTime}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <ComboBox x:Name="ComboGender"  HorizontalAlignment="Left" Margin="388,360,0,0" VerticalAlignment="Top" Width="120" Text="{Binding _Gender, Mode=OneTime}"/>
         <Label Content="Blood type" HorizontalAlignment="Left" Margin="268,400,0,-20" VerticalAlignment="Top" Width="92"/>
         <ComboBox x:Name="ComboBlood"  HorizontalAlignment="Left" Margin="388,400,0,-16" VerticalAlignment="Top" Width="120" Text="{Binding _BloodType, Mode=OneTime}"/>

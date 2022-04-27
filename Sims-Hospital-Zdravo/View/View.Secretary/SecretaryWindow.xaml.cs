@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo
         {
             MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
             Patient patient = medical._Patient;
-            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient) { DataContext = ContentGrid.SelectedItem };
+            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient, medical) { DataContext = ContentGrid.SelectedItem };
             updateWindow.Show();
         }
 

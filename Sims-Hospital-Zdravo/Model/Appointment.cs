@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using System.Collections;
+using System.Threading;
 namespace Model
 {
    public class Appointment : INotifyPropertyChanged
@@ -19,16 +20,22 @@ namespace Model
 
         private DateTime DateAndTime;
         private int Id;
-
-        public Appointment(Room room, Doctor doctor,  Patient patient, DateTime dateAndTime, int id)
+        public static int GlobalId=1;
+        //public Appointment(Room room, Doctor doctor,  Patient patient, DateTime dateAndTime)
+        //{
+        //    this._Room = room;
+        //    this._Doctor = doctor;
+        //    this._Patient = patient;
+        //    this._DateAndTime = dateAndTime;
+        //}
+        public Appointment(Room room, Doctor doctor, Patient patient, DateTime dateAndTime, int id)
         {
-            this._Room = room;
             this._Doctor = doctor;
             this._Patient = patient;
+            this.room = room;
             this._DateAndTime = dateAndTime;
             this._Id = id;
         }
-
         //public Room _Room { get; set ; }
 
         public Doctor _Doctor {
