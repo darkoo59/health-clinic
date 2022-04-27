@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.Model;
+//using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View
 {

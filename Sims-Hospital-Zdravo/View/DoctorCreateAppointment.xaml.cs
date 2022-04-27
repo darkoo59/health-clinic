@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
-using Sims_Hospital_Zdravo.Model;
+//using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
@@ -32,10 +32,9 @@ namespace Sims_Hospital_Zdravo.View
         public RoomController roomController;
         public int id;
         public ObservableCollection<string> patients;
-        private DoctorAppointmentController docAppController;
-        private RoomController roomController;
+       
         private List<IUpdateFilesObserver> observers;
-        private int id;
+        
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();

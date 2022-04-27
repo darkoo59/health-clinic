@@ -8,7 +8,8 @@ using System;
 using System.ComponentModel;
 using System.Collections;
 using System.Threading;
-using Sims_Hospital_Zdravo.Model;
+using Model;
+//using Sims_Hospital_Zdravo.Model;
 
 namespace Model
 {
@@ -30,7 +31,7 @@ namespace Model
             this._Patient = patient;
            // this._DateAndTime = dateAndTime;
             this._Time = time;
-            this._Id = id;
+            //this._Id = id;
         }
         //public Room _Room { get; set ; }
 
