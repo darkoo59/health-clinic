@@ -10,27 +10,27 @@ namespace Model
 {
     public class RoomEquipment
     {
-        private int EquipmentId;
+        private Equipment Equipment;
         private int Quantity;
 
 
-        public RoomEquipment(int equipmentId, int quantity)
+        public RoomEquipment(Equipment equipment, int quantity)
         {
-            this.EquipmentId = equipmentId;
+            this.Equipment = equipment;
             this.Quantity = quantity;
         }
 
 
-        public int _EquipmentId
+        public Equipment _Equip
         {
             get
             {
-                return EquipmentId;
+                return Equipment;
             }
 
             set
             {
-                EquipmentId = value;
+                Equipment = value;
             }
         }
 
@@ -47,5 +47,9 @@ namespace Model
             }
         }
 
+        public override string ToString()
+        {
+            return this.Equipment._Name + " " + Quantity;
+        }
     }
 }

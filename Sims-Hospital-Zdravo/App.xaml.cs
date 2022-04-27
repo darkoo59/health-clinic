@@ -11,7 +11,10 @@ using Controller;
 using Repository;
 using Model;
 using DataHandler;
-
+using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Repository;
+using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -24,8 +27,11 @@ namespace Sims_Hospital_Zdravo
         internal MedicalRecordController recordController;
         internal AppointmentPatientController appointmentPatientController;
         internal DoctorAppointmentController doctorAppointmentController;
+        internal EquipmentTransferController equipmentTransferController;
+        internal EquipmentController equipmentController;
+        internal AccountController accountController;
 
-        public App() 
+        public App()
         {
 
 
@@ -47,14 +53,31 @@ namespace Sims_Hospital_Zdravo
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
             DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
             AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
-            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository,doctorRepository);
+            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository, doctorRepository);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
-            //DoctorAppointmentRepository doctorAppointmentRepository = new DoctorAppointmentRepository(patientDataHandler, appointmentDataHandler);
             DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
+            EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
+            EquipmentRepository equipmentRepository = new EquipmentRepository(equipmentDataHandler);
+            EquipmentService equipmentService = new EquipmentService(equipmentRepository);
+            equipmentController = new EquipmentController(equipmentService);
+
+            RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
+            RelocationAppointmentRepository relocationAppointmentRepository = new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
+
+
+            EquipmentTransferService equipmentTransferService = new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
+            equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
+
+            AccountDataHandler accountDataHandler = new AccountDataHandler();
+            AccountRepository accountRepository = new AccountRepository(accountDataHandler);
+            AccountService accountService = new AccountService(accountRepository);
+            accountController = new AccountController(accountService);
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();
         }

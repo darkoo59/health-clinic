@@ -15,19 +15,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
     /// Interaction logic for DoctorCRUDWindow.xaml
     /// </summary>
-    public partial class DoctorCRUDWindow : Window
+    public partial class DoctorCRUDWindow : Window, IUpdateFilesObserver
     {
 
         public ObservableCollection<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;
         public RoomController roomController;
         private Appointment app;
+        private App application;
         public Appointment App
         {
             get
@@ -40,14 +42,15 @@ namespace Sims_Hospital_Zdravo.View
             }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppController, RoomController rom)
+        public DoctorCRUDWindow()
         {
+            application = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.roomController = rom;
-            this.doctorAppController = doctorAppController;
+            this.roomController = application.roomController;
+            this.doctorAppController = application.doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
-            
+
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
             
@@ -78,7 +81,7 @@ namespace Sims_Hospital_Zdravo.View
 
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
             dataGridDoctorApps.Items.Refresh();
-            
+
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -115,11 +118,19 @@ namespace Sims_Hospital_Zdravo.View
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
 
-            DoctorCreateAppointment addAppointment = new DoctorCreateAppointment(doctorAppController,roomController);
+            DoctorCreateAppointment addAppointment = new DoctorCreateAppointment(doctorAppController, roomController);
+            addAppointment.AddObserver(this);
             addAppointment.Show();
+
+        }
+
+        public void NotifyUpdated()
+        {
+            DoctorAppointments = doctorAppController.ReadAll(2);
+            dataGridDoctorApps.ItemsSource = DoctorAppointments;
 
         }
     }
 
-    
+
 }

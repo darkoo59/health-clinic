@@ -19,21 +19,27 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
     /// Interaction logic for DoctorCreateAppointment.xaml
     /// </summary>
-    public partial class DoctorCreateAppointment : Window
+    public partial class DoctorCreateAppointment : Window, IUpdateFilesObservable
     {
         public DoctorAppointmentController docAppController;
         public RoomController roomController;
         public int id;
         public ObservableCollection<string> patients;
+        private DoctorAppointmentController docAppController;
+        private RoomController roomController;
+        private List<IUpdateFilesObserver> observers;
+        private int id;
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
+            observers = new List<IUpdateFilesObserver>();
             this.DataContext = this;
             this.docAppController = docController;
             this.roomController = roomControl;
@@ -92,10 +98,29 @@ namespace Sims_Hospital_Zdravo.View
            // Patient pat = PatientSelected();
             Appointment app = new Appointment(room,doc,Pat,timeInterval);
             docAppController.Create(app);
+            NotifyUpdated();
             Close();
 
         }
 
-        
+        public void AddObserver(IUpdateFilesObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void NotifyUpdated()
+        {
+            foreach (IUpdateFilesObserver observer in observers)
+            {
+                observer.NotifyUpdated();
+            }
+        }
+
+        public void RemoveObserver(IUpdateFilesObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sims_Hospital_Zdravo.Model
+namespace Model
 {
      public class TimeInterval
     {
@@ -17,5 +17,12 @@ namespace Sims_Hospital_Zdravo.Model
             this.Start = Start;
             this.End = End;
         }
+
+        public override string ToString()
+        {
+            return Start + " \n " + End;
+        }
     }
+
+
 }
