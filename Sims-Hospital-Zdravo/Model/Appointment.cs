@@ -28,7 +28,13 @@ namespace Model
             this._DateAndTime = dateAndTime;
             this._Id = id;
         }
-
+       /* public Appointment(Doctor doctor, Patient patient, DateTime dateAndTime, int id)
+        {
+            this._Doctor = doctor;
+            this._Patient = patient;
+            this._DateAndTime = dateAndTime;
+            this._Id = id;
+        }*/
         //public Room _Room { get; set ; }
 
         public Doctor _Doctor {

@@ -29,6 +29,8 @@ namespace Repository
         public void Create(Model.Appointment appointment)
         {
             appointments.Add(appointment);
+            patientApps.Add(appointment);
+            loadDataToFile();
         }
 
         public void Update(Model.Appointment appointment)
@@ -42,16 +44,26 @@ namespace Repository
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
-                    //loadDataToFile();
-                    return;
                 }
-
+            }
+            foreach (Appointment app in patientApps)
+            {
+                if (app._Id == appointment._Id)
+                {
+                    app._DateAndTime = appointment._DateAndTime;
+                    app._Doctor = appointment._Doctor;
+                    app._Patient = appointment._Patient;
+                    app._Room = appointment._Room;
+                    loadDataToFile();
+                }
             }
         }
 
         public void Delete(Model.Appointment appointment)
         {
             appointments.Remove(appointment);
+            patientApps.Remove(appointment);
+            loadDataToFile();
         }
 
         public ObservableCollection<Appointment> FindByDoctorId(int id)
@@ -68,11 +80,11 @@ namespace Repository
             }
             return doctorsApps;
         }
-       
 
-        public ObservableCollection<Appointment> FindByPatientId(int id)
+        ObservableCollection<Appointment> patientApps;
+        public ref ObservableCollection<Appointment> FindByPatientId(int id)
         {
-            ObservableCollection<Appointment> patientApps = new ObservableCollection<Appointment>();
+            patientApps = new ObservableCollection<Appointment>();
             foreach (Appointment app in this.appointments)
             {
                 if (app._Patient._Id == id)
@@ -80,9 +92,8 @@ namespace Repository
                     patientApps.Add(app);
                 }
             }
-            return patientApps;
+            return ref patientApps;
         }
-
         public ObservableCollection<Appointment> FindAll()
         {
             // TODO: implement

@@ -17,7 +17,7 @@ namespace Model
         private int Id;
         private RoomType Type;
         private List<RoomEquipment> roomEquipment;
-
+        public Room() { }
         public Room(int floor, int id, RoomType type)
         {
             this.Floor = floor;

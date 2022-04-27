@@ -25,14 +25,16 @@ namespace Sims_Hospital_Zdravo
         public AppointmentPatientController appointmentPatientController;
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
+        public bool dateChanged = false;
         public PatientUpdate(AppointmentPatientController appointmentPatientController,Appointment appointment)
         {
             InitializeComponent();
             this.DataContext = this;
             this.appointmentPatientController = appointmentPatientController;
-            _DateTime = _DateTime.AddYears(appointment._DateAndTime.Year);
+            _DateTime = appointment._DateAndTime;
+            /*_DateTime = _DateTime.AddYears(appointment._DateAndTime.Year);
             _DateTime = _DateTime.AddDays(appointment._DateAndTime.Day);
-            _DateTime = _DateTime.AddMonths(appointment._DateAndTime.Month);
+            _DateTime = _DateTime.AddMonths(appointment._DateAndTime.Month);*/
             if (appointment._DateAndTime.Hour < 10)
             {
                 Time.Text ="0" + appointment._DateAndTime.Hour;
@@ -77,6 +79,7 @@ namespace Sims_Hospital_Zdravo
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             _DateTime = datePicker.SelectedDate.Value;
+            dateChanged = true;
         }
         public Doctor doctor;
         private Doctor _Doctor { get; set; }
@@ -95,12 +98,22 @@ namespace Sims_Hospital_Zdravo
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string[] time = Time.Text.Split(':');
-            _DateTime = _DateTime.AddHours(Int32.Parse(time[0]));
-            _DateTime = _DateTime.AddMinutes(Int32.Parse(time[1]));
-            //Appointment appointment = new  Appointment(_Id, 100, _DateTime, 1, _Doctor._Id);
-            //appointmentPatientController.Update(appointment);
-            Close();
+            try
+            {
+                string[] time = Time.Text.Split(':');
+                DateTime date = new DateTime(_DateTime.Year,_DateTime.Month,_DateTime.Day);
+                date = date.AddHours(Int32.Parse(time[0]));
+                date = date.AddMinutes(Int32.Parse(time[1]));
+                DateTime dateTime = new DateTime(1111,11,11);
+                Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
+                Appointment appointment = new Appointment(new Room(), _Doctor, patient, date, _Id);
+                appointmentPatientController.Update(appointment);
+                Close();
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -27,7 +27,29 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             this.appointmentPatientController = appointmentPatientController;
             this.DataContext = this;
+
+            McDataGrid.AutoGenerateColumns = false;
+
+            DataGridTextColumn data_column = new DataGridTextColumn();
+            data_column.Header = "Date and Time";
+            data_column.Binding = new Binding("_DateAndTime");
+
+            McDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Doctor Name";
+            data_column.Binding = new Binding("_Doctor._Name");
+            McDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Doctor Surname";
+            data_column.Binding = new Binding("_Doctor._Surname");
+            McDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Room";
+            data_column.Binding = new Binding("_Room._Id");
+            McDataGrid.Columns.Add(data_column);
+
             McDataGrid.ItemsSource = appointmentPatientController.FindByPatientID(1);
+            McDataGrid.Items.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,12 +74,5 @@ namespace Sims_Hospital_Zdravo
             }
         }
 
-        private void McDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            //if (e.PropertyName == "Patient") e.Cancel = true;
-            //Console.WriteLine(e.PropertyName);
-            if (e.PropertyName == "_Id") { e.Cancel = true; Console.WriteLine("Usao"); }
-            if (e.PropertyName == "_PatientId") { e.Column.Header = "Patient";Console.WriteLine("Usao"); }
-        }
     }
 }

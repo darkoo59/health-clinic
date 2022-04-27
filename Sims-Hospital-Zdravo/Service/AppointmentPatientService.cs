@@ -6,7 +6,7 @@
 
 using Model;
 using Repository;
-
+using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,10 +15,12 @@ namespace Service
 {
    public class AppointmentPatientService
    {
+        private AppointmentPatientValidator appointmentPatientValidator;
         public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.doctorRepository = doctorRepository;
+            this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
         }
         public void Create(Appointment appointment)
       {
@@ -27,6 +29,7 @@ namespace Service
       
       public void Update(Appointment appointment)
       {
+            appointmentPatientValidator.rescheduleAppointment(appointment);
             appointmentRepository.Update(appointment);
       }
       
@@ -35,9 +38,9 @@ namespace Service
             appointmentRepository.Delete(appointment);
       }
       
-      public ObservableCollection<Appointment> FindByPatientID(int id)
+      public ref ObservableCollection<Appointment> FindByPatientID(int id)
       {
-            return appointmentRepository.FindByPatientId(id);
+            return ref appointmentRepository.FindByPatientId(id);
       }
 
         public ref ObservableCollection<Doctor> ReadDoctors()
