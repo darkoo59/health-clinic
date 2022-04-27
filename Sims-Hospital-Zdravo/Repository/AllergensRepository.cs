@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    class AllergensRepository
+    public class AllergensRepository
     {
         private AllergensDataHandler allergensDataHandler;
         public List<String> allergens;

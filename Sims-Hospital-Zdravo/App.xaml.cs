@@ -43,10 +43,13 @@ namespace Sims_Hospital_Zdravo
             PatientDataHandler patientDataHandler = new PatientDataHandler();
             PatientRepository patientRepository = new PatientRepository(patientDataHandler);
 
+            AllergensDataHandler allergensDataHandler = new AllergensDataHandler();
+            AllergensRepository allergensRepository = new AllergensRepository(allergensDataHandler);
+
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
-            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository);
+            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             recordController = new MedicalRecordController(recordService);
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();

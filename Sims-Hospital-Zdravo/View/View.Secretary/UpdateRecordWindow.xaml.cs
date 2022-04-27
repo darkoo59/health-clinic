@@ -33,12 +33,18 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
+            AllergensList.ItemsSource = medicalController.ReadAllAllergens();
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
             TxtEmail.Text = patient._Email;
             TxtJmbg.Text = patient._Jmbg;
             TxtPhone.Text = patient._PhoneNumber;
+            List<String> allergens = medicalRecord._Allergens;
+            List<String> selectedAllergens = new List<String>();
+          /*  foreach(ListItem item in AllergensList.Items){
+                
+            }*/
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -47,7 +53,7 @@ namespace Sims_Hospital_Zdravo
             {
                 Patient patientUpdated = new Patient(patient._Id, TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 medicalController.ValidateUpdate(TxtJmbg.Text);
-                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, new List<String>());
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }

@@ -52,11 +52,6 @@ namespace Sims_Hospital_Zdravo.View.Login
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
 
-            AllergensRepository allergRepo = new AllergensRepository(new DataHandler.AllergensDataHandler());
-            foreach(String str in allergRepo.ReadAll()){
-                Console.WriteLine(str);
-            }
-
             if (account != null)
             {
                 switch (account._Role)

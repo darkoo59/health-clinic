@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.DataHandler
 {
-    class AllergensDataHandler
+    public class AllergensDataHandler
     {
         public List<String> ReadAll()
         {
