@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +36,10 @@ namespace Sims_Hospital_Zdravo
             secretaryWindow.Show();
         }
 
+        private void Examination_Click(object sender, RoutedEventArgs e)
+        {
+            ExaminationWindow examinationWindow = new ExaminationWindow();
+            examinationWindow.Show();
+        }
     }
 }
