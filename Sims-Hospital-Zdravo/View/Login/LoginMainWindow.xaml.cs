@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,12 @@ namespace Sims_Hospital_Zdravo.View.Login
             String username = txtUsername.Text;
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
+
+            AllergensRepository allergRepo = new AllergensRepository(new DataHandler.AllergensDataHandler());
+            foreach(String str in allergRepo.ReadAll()){
+                Console.WriteLine(str);
+            }
+
             if (account != null)
             {
                 switch (account._Role)
