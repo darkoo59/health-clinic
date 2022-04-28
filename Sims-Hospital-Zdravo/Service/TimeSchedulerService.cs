@@ -9,37 +9,38 @@ using System;
 using Repository;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 
 namespace Service
 {
     public class TimeSchedulerService
     {
-
         private AppointmentRepository appointmentRepository;
 
         public TimeSchedulerService(AppointmentRepository appointmentRepository)
         {
             this.appointmentRepository = appointmentRepository;
         }
+
         public List<TimeInterval> FindAvailableTimeForInterval(int minutes, Room room1, Room room2)
         {
-
             List<TimeInterval> ocupied1 = appointmentRepository.GetTimeIntervalsForRoom(room1);
             List<TimeInterval> ocupied2 = appointmentRepository.GetTimeIntervalsForRoom(room2);
 
             return FindFreeIntervals(ocupied1, ocupied2, minutes);
         }
 
-        public List<TimeInterval> FindAvailableDateRangeForInterval(int days)
+        public List<TimeInterval> FindAvailableDateRangeForInterval(int days, Room room)
         {
-            // TODO: implement
+            List<TimeInterval> ocupied = appointmentRepository.GetTimeIntervalsForRoom(room);
             return null;
         }
+
 
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
             List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
-            foreach(Appointment app in appointments)
+            foreach (Appointment app in appointments)
             {
                 DateTime start = app._DateAndTime;
                 DateTime end = start.AddMinutes(30);
@@ -47,16 +48,34 @@ namespace Service
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
-                
+            }
+
+            return true;
+        }
+
+        public bool isRoomTakenInDateInterval(int roomId, TimeInterval ti)
+        {
+            List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime startDate = app._DateAndTime.Date;
+                DateTime endDate = app._DateAndTime.AddMinutes(30).Date;
+                DateTime startDateNew = ti.Start.Date;
+                DateTime endDateNew = ti.End.Date;
+
+                if (startDate == startDateNew && endDate == endDateNew) return false;
+                if (startDate >= startDateNew && startDate <= endDateNew) return false;
+                if (endDate >= startDateNew && endDate <= endDateNew) return false;
+                if (startDate <= startDateNew && endDate >= endDateNew) return false;
             }
 
             return true;
         }
 
 
-        public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
+        public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2,
+            int minutes)
         {
-
             DateTime now = DateTime.Now;
             int newminutes = now.Minute > 30 ? 60 - now.Minute : 30 - now.Minute;
             now = now.AddMinutes(newminutes);
@@ -76,7 +95,6 @@ namespace Service
 
                 filterIfIntervalTooShort(minutes, now, ti.Start, timeIntervals);
                 now = ti.End;
-
             }
 
             if (now.CompareTo(last) < 0)
@@ -90,7 +108,6 @@ namespace Service
 
         private List<TimeInterval> MergeTwoTimeIntervalLists(List<TimeInterval> list1, List<TimeInterval> list2)
         {
-
             List<TimeInterval> joined = new List<TimeInterval>();
             joined.AddRange(list1);
             joined.AddRange(list2);
@@ -120,14 +137,14 @@ namespace Service
                     mergedList.Add(ti);
                     newIntervalCounter++;
                 }
-
             }
-            return mergedList;
 
+            return mergedList;
         }
 
 
-        private void filterIfIntervalTooShort(int intervalDuration, DateTime now, DateTime next, List<TimeInterval> intervals)
+        private void filterIfIntervalTooShort(int intervalDuration, DateTime now, DateTime next,
+            List<TimeInterval> intervals)
         {
             TimeSpan diff = next - now;
             if (diff.TotalMinutes >= intervalDuration)
@@ -135,6 +152,5 @@ namespace Service
                 intervals.Add(new TimeInterval(now, next));
             }
         }
-
     }
 }

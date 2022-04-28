@@ -10,19 +10,18 @@ namespace Service
 {
     public class EquipmentTransferService
     {
-
-
         private RelocationAppointmentRepository relocationAppointmentRepository;
         private RoomRepository roomRepository;
         private TimeSchedulerService timeSchedulerService;
         private EquipmentTransferValidator validator;
 
-        public EquipmentTransferService(RoomRepository roomRepository, RelocationAppointmentRepository relocationAppointmentRepository, TimeSchedulerService timeSchedulerService)
+        public EquipmentTransferService(RoomRepository roomRepository,
+            RelocationAppointmentRepository relocationAppointmentRepository, TimeSchedulerService timeSchedulerService)
         {
             this.roomRepository = roomRepository;
             this.relocationAppointmentRepository = relocationAppointmentRepository;
             this.timeSchedulerService = timeSchedulerService;
-            validator = new EquipmentTransferValidator(roomRepository);
+            validator = new EquipmentTransferValidator(roomRepository, timeSchedulerService);
         }
 
         public void FinishRelocationAppointment(int appointmentId)
@@ -39,11 +38,7 @@ namespace Service
 
         public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
         {
-
-            validator.ValidateRoomTaken(timeSchedulerService.IsRoomFreeInInterval(fromRoomId, ti), fromRoomId);
-            validator.ValidateRoomTaken(timeSchedulerService.IsRoomFreeInInterval(toRoomId, ti), toRoomId);
-            validator.validateTransferFromRoom(fromRoomId, toRoomId, eq._Id, quantity);
-
+            validator.ValidateTransferFromRoom(fromRoomId, toRoomId, eq._Id, quantity, ti);
             MakeAppointmentFromRoom(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
@@ -53,7 +48,8 @@ namespace Service
             Room fromRoom = roomRepository.FindById(fromRoomId);
             Room toRoom = roomRepository.FindById(toRoomId);
             RoomEquipment eqForTransfer = new RoomEquipment(eq, quantity);
-            RelocationAppointment relocationApp = new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
+            RelocationAppointment relocationApp =
+                new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
 
             fromRoom.RemoveEquipment(eqForTransfer);
             relocationAppointmentRepository.Create(relocationApp);
@@ -67,10 +63,17 @@ namespace Service
 
         private int GenerateId()
         {
-            ObservableCollection<RelocationAppointment> relApp = relocationAppointmentRepository.ReadAll();
-            if (relApp.Count == 0) return 1;
-            RelocationAppointment last = relApp[relApp.Count - 1];
-            return ++last._Id;
+            List<RelocationAppointment> appointments = relocationAppointmentRepository.ReadAll();
+            List<int> ids = (List<int>)appointments.Select(x => x._Id);
+
+            int id = 0;
+
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+
+            return id;
         }
     }
 }

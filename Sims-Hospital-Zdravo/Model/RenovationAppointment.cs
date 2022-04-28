@@ -5,90 +5,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+public enum RenovationType
+{
+    ADVANCED,
+    BASIC
+}
+
 namespace Sims_Hospital_Zdravo.Model
 {
-    class RenovationAppointment
+    public class RenovationAppointment
     {
         private int Id;
-        private DateTime Start;
-        private DateTime End;
+        private TimeInterval Time;
         private Room Room;
         private String Description;
+        private RenovationType Type;
 
 
-        public RenovationAppointment(DateTime start, DateTime end, Room room, String description, int id)
+        public RenovationAppointment(TimeInterval time, Room room, String description, RenovationType type,
+            int id)
         {
-            Start = start;
-            End = end;
+            this.Time = time;
             Description = description;
             Room = room;
             Id = id;
+            Type = type;
         }
 
 
         public int _Id
         {
-            get
-            {
-                return Id;
-            }
+            get { return Id; }
 
-            set
-            {
-                Id = value;
-            }
+            set { Id = value; }
         }
 
-        public DateTime _Start
+        public TimeInterval _Time
         {
-            get
-            {
-                return Start;
-            }
-            set
-            {
-                Start = value;
-            }
-        }
-
-        public DateTime _End
-        {
-            get
-            {
-                return End;
-            }
-
-             set
-            {
-                End = value;
-            }
+            get { return Time; }
+            set { Time = value; }
         }
 
 
         public Room _Room
         {
-            get
-            {
-                return Room;
-            }
+            get { return Room; }
 
-            set
-            {
-                Room = value;
-            }
+            set { Room = value; }
         }
 
         public String _Description
         {
-            get
-            {
-                return Description;
-            }
-            
-            set
-            {
-                Description = value;
-            }
+            get { return Description; }
+
+            set { Description = value; }
+        }
+
+        public RenovationType _Type
+        {
+            get { return Type; }
+
+            set { Type = value; }
         }
     }
 }
