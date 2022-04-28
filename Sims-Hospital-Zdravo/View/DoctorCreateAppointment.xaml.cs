@@ -43,8 +43,9 @@ namespace Sims_Hospital_Zdravo.View
             this.docAppController = docController;
             this.roomController = roomControl;
             patients = new ObservableCollection<string>();
+            AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
 
-            foreach(Patient pat in this.docAppController.getPatients())
+            foreach (Patient pat in this.docAppController.getPatients())
             {
                 patients.Add(pat._Name + " " +  pat._Surname + " " + pat._BirthDate.ToString());
 
@@ -95,7 +96,7 @@ namespace Sims_Hospital_Zdravo.View
             Doctor doc = this.docAppController.getDoctor(2);
             TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
            // Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,Pat,timeInterval);
+            Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
             docAppController.Create(app);
             NotifyUpdated();
             Close();

@@ -76,6 +76,11 @@ namespace Sims_Hospital_Zdravo.View
             data_column.Binding = new Binding("_Room._Id");
             dataGridDoctorApps.Columns.Add(data_column);
 
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Type";
+            data_column.Binding = new Binding("_Type");
+            dataGridDoctorApps.Columns.Add(data_column);
+
 
 
 

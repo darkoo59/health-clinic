@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using Controller;
 using Model;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -24,6 +26,7 @@ namespace Sims_Hospital_Zdravo.View
     {
         private DoctorAppointmentController docController;
         private RoomController roomControl;
+        public ObservableCollection<string> Patients;
         private int id_app;
         public DoctorUpdateAppointment(DoctorAppointmentController docController,Appointment app,RoomController rom)
         {
@@ -31,16 +34,22 @@ namespace Sims_Hospital_Zdravo.View
             this.DataContext = this;
             this.docController = docController;
             this.roomControl = rom;
-            
+
+            Patients = new ObservableCollection<string>();
+            foreach (Patient pat in this.docController.getPatients())
+            {
+                Patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
+
+            }
+            Patientcb.ItemsSource = Patients;
             
                 TimeInterval dt = app._Time;
-            DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
+                DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
                 TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
                 endtime.Text = dt.End.ToString("HH:mm:ss");
-                PatientTxt.Text = app._Patient._Name;
-                SurnameText.Text = app._Patient._Surname;
-                RoomTxt.Text = app._Room._Id.ToString();
-            id_app = app._Id;
+                AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
+            RoomTxt.Text = app._Room._Id.ToString();
+                id_app = app._Id;
             
         }
 
@@ -50,21 +59,25 @@ namespace Sims_Hospital_Zdravo.View
             get { return pat; }
             set { pat = value; }
         }
-        public Patient PatientSelected()
+        
+        
+        private void Patientcb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            foreach (Patient pat in this.docController.getPatients() )
+            string name = Patientcb.SelectedItem.ToString();
+            string[] names = name.Split(' ');
+            foreach (Patient pat in this.docController.getPatients())
             {
-                if (pat._Name.Equals( PatientTxt.Text) && pat._Surname.Equals( SurnameText.Text))
-                {
-                    Pat = pat;
-                    
+                if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
 
+                {
+
+
+                    Pat = pat;
+                    break;
                 }
             }
-            return Pat;
         }
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int id_room = Int32.Parse(RoomTxt.Text);
@@ -75,19 +88,18 @@ namespace Sims_Hospital_Zdravo.View
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
             Doctor doc = this.docController.getDoctor(2);
-            Patient pat = PatientSelected();
+            //Patient pat = PatientSelected();
             
             TimeInterval timeInterval = new TimeInterval(start,end);
-            Appointment appoi = new Appointment(room,doc,Pat,timeInterval);
+            Appointment appoi = new Appointment(room,doc,Pat,timeInterval,(AppointmentType)AppType.SelectedValue);
             
             docController.Update(appoi);
             Close();
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+       
 
-        }
+        
     }
 }
