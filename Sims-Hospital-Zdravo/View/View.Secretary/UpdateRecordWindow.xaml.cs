@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.View.View.Secretary;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -33,18 +35,13 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            AllergensList.ItemsSource = medicalController.ReadAllAllergens();
+            AllergensList.ItemsSource = medicalRecord._Allergens;
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
             TxtEmail.Text = patient._Email;
             TxtJmbg.Text = patient._Jmbg;
             TxtPhone.Text = patient._PhoneNumber;
-            List<String> allergens = medicalRecord._Allergens;
-            List<String> selectedAllergens = new List<String>();
-          /*  foreach(ListItem item in AllergensList.Items){
-                
-            }*/
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -59,8 +56,23 @@ namespace Sims_Hospital_Zdravo
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddAllergens_Click(object sender, RoutedEventArgs e)
+        {
+            List<String> nonAllergicList = medicalController.ReadAllAllergens();
+            foreach(String str in medicalRecord._Allergens){
+                nonAllergicList.Remove(str);
+            }
+            AddAllergensWindow addWindow = new AddAllergensWindow(AllergensList,nonAllergicList);
+            addWindow.Show();
+        }
+
+        private void RemoveAllergens_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
