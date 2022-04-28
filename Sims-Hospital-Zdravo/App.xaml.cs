@@ -79,7 +79,6 @@ namespace Sims_Hospital_Zdravo
             AccountRepository accountRepository = new AccountRepository(accountDataHandler);
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
-            equipmentTransferController.MakeRelocationAppointment(1, 3, new Equipment(1, "Gloves", EquipmentType.Static), 5, new TimeInterval(new DateTime(2022, 4, 27, 17, 19, 0), new DateTime(2022, 4, 27, 17, 19, 0)));
 
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
 
