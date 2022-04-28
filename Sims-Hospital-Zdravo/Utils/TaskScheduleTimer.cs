@@ -34,13 +34,9 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Running check");
             ObservableCollection<RelocationAppointment> appointments = relocationController.ReadAll(); 
             foreach(RelocationAppointment app in appointments.ToList())
             {
-                Console.WriteLine(app._Scheduled.End.CompareTo(DateTime.Now));
-                Console.WriteLine(app._Scheduled.End);
-                Console.WriteLine(DateTime.Now);
                 if(app._Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
                     relocationController.FinishRelocationAppointment(app._Id);
