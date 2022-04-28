@@ -142,9 +142,6 @@
     <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
       <DependentUpon>ManagerEquipment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\View.Secretary\AddAllergensWindow.xaml.cs">
-      <DependentUpon>AddAllergensWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -154,9 +151,6 @@
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="View\View.Secretary\RemoveAllergensWindow.xaml.cs">
-      <DependentUpon>RemoveAllergensWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
@@ -218,10 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\View.Secretary\AddAllergensWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,10 +236,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\View.Secretary\RemoveAllergensWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,6 +356,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\allergens.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img\TransferAllergens.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
