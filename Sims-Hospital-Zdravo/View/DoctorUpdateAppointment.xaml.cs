@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View
 {
@@ -32,9 +33,10 @@ namespace Sims_Hospital_Zdravo.View
             this.roomControl = rom;
             
             
-                DateTime dt = app._DateAndTime;
-                DateTxt.Text = dt.ToString("dd-MM-yyyy");
-                TimeTxt.Text = dt.ToString("HH:mm:ss");
+                TimeInterval dt = app._Time;
+            DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
+                TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
+                endtime.Text = dt.End.ToString("HH:mm:ss");
                 PatientTxt.Text = app._Patient._Name;
                 SurnameText.Text = app._Patient._Surname;
                 RoomTxt.Text = app._Room._Id.ToString();
@@ -68,21 +70,24 @@ namespace Sims_Hospital_Zdravo.View
             int id_room = Int32.Parse(RoomTxt.Text);
             Room room = roomControl.FindById(id_room);
             string date = DateTxt.Text;
-            string time = TimeTxt.Text;
-            DateTime dt = DateTime.Parse(date + " " + time);
+            string starttime = TimeTxt.Text;
+            string end_time = endtime.Text;
+            DateTime start = DateTime.Parse(date + " " + starttime);
+            DateTime end = DateTime.Parse(date + " " + end_time);
             Doctor doc = this.docController.getDoctor(2);
             Patient pat = PatientSelected();
             
-            Appointment appoi = new Appointment(room,doc,Pat,dt, 2);
+            TimeInterval timeInterval = new TimeInterval(start,end);
+            Appointment appoi = new Appointment(room,doc,Pat,timeInterval);
             
             docController.Update(appoi);
             Close();
 
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
-
-        
-
+        }
     }
 }

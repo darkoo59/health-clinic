@@ -22,14 +22,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="1" Height="30" VerticalAlignment="Top" Margin="0, 20, 120, 0" HorizontalAlignment="Right" RenderTransformOrigin="-0.264,-0.443" Width="67">Date :</Label>
-        <Label Grid.Row="1" Height="30" Width="150" VerticalAlignment="Top" Margin="80,62,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Time:</Label>
-        <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient:</Label>
-        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" ></TextBox>
-        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="80,55,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
-        <TextBox x:Name="RoomTxt" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
+        <Label Grid.Row="1" Height="30" Width="150" VerticalAlignment="Top" Margin="80,62,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Start Time:</Label>
+        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="71,7,0,0" HorizontalAlignment="Left">End Time:</Label>
+        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="90,51,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient:</Label>
+        <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="80,47,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
+        <TextBox x:Name="RoomTxt" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,62,250,32" Grid.RowSpan="2"></TextBox>
 
         <Button Grid.Row="3" Grid.Column="1" Height="36" VerticalAlignment="Top" Margin="58,10,73,0" Click="Button_Click" >Save</Button>
-        <ComboBox Margin="117,19,266,12" Grid.Row="2" x:Name="cbTime" Grid.ColumnSpan="2">
+        <ComboBox Margin="113,30,4,1" Grid.Row="2" x:Name="cbTime">
             <ComboBoxItem>8:00</ComboBoxItem>
             <ComboBoxItem>8:30</ComboBoxItem>
             <ComboBoxItem>9:00</ComboBoxItem>
@@ -39,6 +39,17 @@
             <ComboBoxItem>11:00</ComboBoxItem>
         </ComboBox>
         <DatePicker x:Name="DatePick" HorizontalAlignment="Left" Height="29" Margin="117,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <ComboBox Grid.ColumnSpan="2"  HorizontalAlignment="Left" Height="24" Margin="165,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="134" Name="Patients" SelectionChanged="Patients_SelectionChanged"/>
+        <ComboBox Margin="133,21,250,10" Grid.Row="3" x:Name="cbTimeEnd" Grid.ColumnSpan="2">
+            <ComboBoxItem Content="8:00"/>
+            <ComboBoxItem Content="8:30"/>
+            <ComboBoxItem Content="9:00"/>
+            <ComboBoxItem Content="9:30"/>
+            <ComboBoxItem Content="10:00"/>
+            <ComboBoxItem Content="10:30"/>
+            <ComboBoxItem Content="11:00"/>
+        </ComboBox>
+
 
     </Grid>
 </Window>

@@ -24,7 +24,7 @@
         <Label Height="30" VerticalAlignment="Top" Margin="0,60,158,0" HorizontalAlignment="Right" RenderTransformOrigin="-0.264,-0.443" Width="67" Grid.RowSpan="2">Date :</Label>
         <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"  ></TextBox>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="42,1,0,0" HorizontalAlignment="Left">Time:</Label>
-        <TextBox x:Name="TimeTxt" Grid.Row="2" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
+        <TextBox x:Name="TimeTxt" Grid.Row="2" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Left" Margin="117,10,0,22" Grid.ColumnSpan="2"></TextBox>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="42,51,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient name:</Label>
         <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" ></TextBox>
         <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="42,52,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
@@ -32,6 +32,8 @@
         <Button Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Center" Margin="58,0,68,0" Click="Button_Click">Save</Button>
         <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="42,44,0,0" HorizontalAlignment="Left" Grid.RowSpan="2" Content="Patient surname:"/>
         <TextBox x:Name="SurnameText" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Left" Margin="117,16,0,16" Grid.ColumnSpan="2" />
+        <TextBox Grid.Column="1" Name="endtime" HorizontalAlignment="Left" Height="31" Margin="102,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.RowSpan="2" TextChanged="TextBox_TextChanged"/>
+        <Label Height="30" Width="150" VerticalAlignment="Top" Margin="0,27,0,0" HorizontalAlignment="Left" Content=" End Time:" Grid.Column="1"/>
 
     </Grid>
 </Window>
