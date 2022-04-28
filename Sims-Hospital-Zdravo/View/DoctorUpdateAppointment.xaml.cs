@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,7 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for DoctorUpdateAppointment.xaml
     /// </summary>
-    public partial class DoctorUpdateAppointment : Window
+    public partial class DoctorUpdateAppointment : Window 
     {
         private DoctorAppointmentController docController;
         private RoomController roomControl;
@@ -42,7 +43,9 @@ namespace Sims_Hospital_Zdravo.View
 
             }
             Patientcb.ItemsSource = Patients;
+            Patientcb.Text = app._Patient._Name;
             
+            Console.WriteLine(Patientcb.Text);
                 TimeInterval dt = app._Time;
                 DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
                 TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
@@ -59,8 +62,9 @@ namespace Sims_Hospital_Zdravo.View
             get { return pat; }
             set { pat = value; }
         }
-        
-        
+
+        //public virtual string Text { get; set; }
+
         private void Patientcb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string name = Patientcb.SelectedItem.ToString();
@@ -78,6 +82,17 @@ namespace Sims_Hospital_Zdravo.View
             }
         }
 
+        //public override string Text
+        //{
+        //    get
+        //    {
+        //        return base.Text;
+        //    }
+        //    set
+        //    {
+        //        base.Text = value;
+        //    }
+        //}
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int id_room = Int32.Parse(RoomTxt.Text);
@@ -88,11 +103,12 @@ namespace Sims_Hospital_Zdravo.View
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
             Doctor doc = this.docController.getDoctor(2);
-            //Patient pat = PatientSelected();
+            
             
             TimeInterval timeInterval = new TimeInterval(start,end);
             Appointment appoi = new Appointment(room,doc,Pat,timeInterval,(AppointmentType)AppType.SelectedValue);
             
+            appoi._Id = id_app;
             docController.Update(appoi);
             Close();
 

@@ -95,8 +95,11 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
-           // Patient pat = PatientSelected();
+           
+
             Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
+            app._Id = this.docAppController.GenerateId();
+            
             docAppController.Create(app);
             NotifyUpdated();
             Close();
