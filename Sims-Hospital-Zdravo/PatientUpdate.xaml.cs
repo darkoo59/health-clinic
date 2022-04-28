@@ -106,8 +106,9 @@ namespace Sims_Hospital_Zdravo
                 date = date.AddMinutes(Int32.Parse(time[1]));
                 DateTime dateTime = new DateTime(1111,11,11);
                 Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
-                //Appointment appointment = new Appointment(new Room(), _Doctor, patient, date, _Id);
-                //appointmentPatientController.Update(appointment);
+                TimeInterval timeInterval = new TimeInterval(date,date.AddMinutes(30));
+                Appointment appointment = new Appointment(null, _Doctor, patient, timeInterval, AppointmentType.EXAMINATION);
+                appointmentPatientController.Update(appointment);
                 Close();
             }
             catch (Exception ex) 

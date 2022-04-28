@@ -15,8 +15,8 @@
             <ColumnDefinition Width="320*"/>
             <ColumnDefinition Width="321*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Height="185" Margin="40,90,0,0" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="55,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="29,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>
+        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="185" Margin="40,90,0,0" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button HorizontalAlignment="Left" Margin="55,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click">Submit</Button>
+        <Button HorizontalAlignment="Left" Margin="29,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"> Cancel</Button>
     </Grid>
 </Window>

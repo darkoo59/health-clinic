@@ -23,10 +23,7 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class PatientCreate : Window
     {
-        /*public PatientCreate()
-        {
-            InitializeComponent();
-        }*/
+
         public AppointmentPatientController appointmentPatientController;
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
@@ -76,8 +73,11 @@ namespace Sims_Hospital_Zdravo
             _DateTime = _DateTime.AddMinutes(Int32.Parse(time[1]));
             DateTime dateTime = new DateTime(1111,11,11);
             Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
-            //Appointment appointment = new Appointment(new Room(),_Doctor, patient, _DateTime, rnd.Next());
-            //appointmentPatientController.Create(appointment);
+            TimeInterval timeInterval = new TimeInterval(_DateTime, _DateTime.AddMinutes(30));
+            Appointment appointment = new Appointment(null, _Doctor, patient, timeInterval, AppointmentType.EXAMINATION);
+            string priority = DateOrDoctors.SelectedItem.ToString();
+            AppointmentList al = new AppointmentList(appointmentPatientController,appointment,priority);
+            al.Show();
             Close();
         }
     }

@@ -43,7 +43,16 @@ namespace Controller
         {
             return ref appointmentPatientService.ReadDoctors();
         }
-   
+
+        public ObservableCollection<Appointment> FindAll()
+        {
+            return appointmentPatientService.FindAll();
+        }
+
+        public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority) 
+        {
+            return appointmentPatientService.InitializeList(appointment,priority);
+        }
       public Service.AppointmentPatientService appointmentPatientService;
    
    }

@@ -35,7 +35,7 @@ namespace Sims_Hospital_Zdravo
 
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date and Time";
-            data_column.Binding = new Binding("_DateAndTime");
+            data_column.Binding = new Binding("_Time.Start");
 
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
