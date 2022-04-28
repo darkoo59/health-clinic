@@ -56,6 +56,11 @@ namespace Controller
         public Service.DoctorAppointmentService doctorAppointmentService;
         //public DoctorAppointmentService doctorAppService;
 
+        public int GenerateId()
+        {
+            return doctorAppointmentService.GenerateId();
+        }
+
         public DoctorAppointmentController(DoctorAppointmentService AppService)
         {
             this.doctorAppointmentService = AppService;

@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
-using Sims_Hospital_Zdravo.Model;
+//using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
@@ -32,10 +32,9 @@ namespace Sims_Hospital_Zdravo.View
         public RoomController roomController;
         public int id;
         public ObservableCollection<string> patients;
-        private DoctorAppointmentController docAppController;
-        private RoomController roomController;
+       
         private List<IUpdateFilesObserver> observers;
-        private int id;
+        
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
@@ -44,8 +43,9 @@ namespace Sims_Hospital_Zdravo.View
             this.docAppController = docController;
             this.roomController = roomControl;
             patients = new ObservableCollection<string>();
+            AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
 
-            foreach(Patient pat in this.docAppController.getPatients())
+            foreach (Patient pat in this.docAppController.getPatients())
             {
                 patients.Add(pat._Name + " " +  pat._Surname + " " + pat._BirthDate.ToString());
 
@@ -95,8 +95,11 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
-           // Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,Pat,timeInterval);
+           
+
+            Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
+            app._Id = this.docAppController.GenerateId();
+            
             docAppController.Create(app);
             NotifyUpdated();
             Close();

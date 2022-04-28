@@ -8,8 +8,10 @@ using System;
 using System.ComponentModel;
 using System.Collections;
 using System.Threading;
-using Sims_Hospital_Zdravo.Model;
+using Model;
+//using Sims_Hospital_Zdravo.Model;
 
+public enum AppointmentType { OPERATION,EXAMINATION,URGENCY };
 namespace Model
 {
    public class Appointment : INotifyPropertyChanged
@@ -19,18 +21,18 @@ namespace Model
         
         private Doctor doctor;
         private Patient patient;
-
+        private AppointmentType type;
         private DateTime DateAndTime;
         private TimeInterval time;
         private int Id;
         public static int GlobalId=1;
-        public Appointment(Room room, Doctor doctor, Patient patient,  TimeInterval time)
+        public Appointment(Room room, Doctor doctor, Patient patient,  TimeInterval time, AppointmentType type)
         {
             this._Doctor = doctor;
             this._Patient = patient;
-           // this._DateAndTime = dateAndTime;
+           this._Room = room;
             this._Time = time;
-            this._Id = id;
+            this._Type = type;
         }
         //public Room _Room { get; set ; }
 
@@ -67,6 +69,18 @@ namespace Model
             set
             {
                 this.DateAndTime = value;
+                OnPropertyChanged("_DateAndTime");
+            }
+        }
+        public AppointmentType _Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                this.type = value;
                 OnPropertyChanged("_DateAndTime");
             }
         }

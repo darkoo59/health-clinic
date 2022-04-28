@@ -32,15 +32,21 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
+            Console.WriteLine("laalalalalal");
+            Console.WriteLine(appointment._Id);
             //Console.WriteLine(appointment._DateAndTime.ToString());
             foreach (Appointment app in appointments)
             {
+                Console.WriteLine(app._Id+"hahaha");
                 if (app._Id == appointment._Id)
                 {
-                    app._DateAndTime = appointment._DateAndTime;
+                    
+                    app._Time = appointment._Time;
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
+                    app._Type = appointment._Type;
+                    Console.WriteLine(app._Patient._Name+"hshhsh");
                     loadDataToFile();
                     return;
                 }
@@ -94,10 +100,10 @@ namespace Repository
             }
             return ref patientApps;
         }
-        public ObservableCollection<Appointment> FindAll()
+        public  ref ObservableCollection<Appointment> FindAll()
         {
             // TODO: implement
-            return null;
+            return  ref appointments;
         }
         public void loadDataFromFiles()
         {

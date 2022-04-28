@@ -190,6 +190,9 @@
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
+      <DependentUpon>DoctorMain.xaml</DependentUpon>
+    </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\DoctorMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

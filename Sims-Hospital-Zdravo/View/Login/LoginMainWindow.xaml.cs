@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.View.ViewDoctor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace Sims_Hospital_Zdravo.View.Login
             switch (role) 
             {
                 case RoleType.MANAGER: return new ManagerDashboard();
-                case RoleType.DOCTOR: return new DoctorCRUDWindow();
+                case RoleType.DOCTOR: return new DoctorMain();
                 case RoleType.PATIENT: return new PatientWindow();
                 case RoleType.SECRETARY: return new SecretaryHome();
                 default: return null;
@@ -68,9 +69,9 @@ namespace Sims_Hospital_Zdravo.View.Login
                     case RoleType.DOCTOR:
                         DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
                         RoomController roomControl = app.roomController;
-                        DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow();
+                        DoctorMain doctorMain = new DoctorMain();
                         this.Close();
-                        doctorCRUD.Show();
+                        doctorMain.Show();
                         break;
                     case RoleType.PATIENT:
                         AppointmentPatientController appointmentPatientController = app.appointmentPatientController;
