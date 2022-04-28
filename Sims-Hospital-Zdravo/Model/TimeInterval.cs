@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class TimeInterval
+     public class TimeInterval
     {
 
         public DateTime Start { get; set; }

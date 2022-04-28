@@ -27,6 +27,7 @@ namespace Service
         public void FinishRelocationAppointment(int appointmentId)
         {
             RelocationAppointment appointment = relocationAppointmentRepository.FindById(appointmentId);
+            Console.WriteLine("Transfering " + appointment._RoomEquipment._Quantity + " Equipment");
             Room toRoom = appointment._ToRoom;
             Room originalRoom = roomRepository.FindById(toRoom._Id);
 
@@ -58,6 +59,11 @@ namespace Service
         public List<TimeInterval> FindAvailableTimeForInterval(int minutes, Room fromRoom, Room toRoom)
         {
             return timeSchedulerService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);
+        }
+
+        public List<RelocationAppointment> ReadAll()
+        {
+            return relocationAppointmentRepository.ReadAll();
         }
 
 

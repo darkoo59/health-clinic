@@ -7,6 +7,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Service;
+using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -79,6 +80,9 @@ namespace Sims_Hospital_Zdravo
             RenovationService renovationService =
                 new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
             renovationController = new RenovationController(renovationService);
+
+            // TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
+
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();
         }

@@ -29,7 +29,7 @@ namespace Service
         }
         public void Create(Appointment appointment)
         {
-            appointment._Id = generateId();
+            //appointment._Id = generateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -44,11 +44,7 @@ namespace Service
             return appointmentRepository.FindByDoctorId(id);
         }
 
-        Random random = new Random();
-            public int generateId()
-        {
-            return random.Next(1,100000000);
-        }
+        
         public ref ObservableCollection<Patient> GetPatients()
         {
             return ref patientRepository.ReadAll();
@@ -70,13 +66,31 @@ namespace Service
             //return null;
         }
 
-        
+
         /// <summary>
         /// Appointment repository patient zamijeniti sa patient handlerom ili sta vec bude trebalo
         /// </summary>
         /// <param name="appointmentRepo"></param>
         /// <param name="appRepoPatient"></param>
+        public int GenerateId()
+        {
+            ObservableCollection<Appointment> appointments = appointmentRepository.FindAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (Appointment app in appointments)
+            {
+                ids.Add(app._Id);
+            }
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
 
-        
+        }
+
+
+
+
     }
 }

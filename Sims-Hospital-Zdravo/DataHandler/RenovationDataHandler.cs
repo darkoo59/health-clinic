@@ -23,6 +23,6 @@ namespace Sims_Hospital_Zdravo.DataHandler
             System.IO.File.WriteAllText(Path, serialized);
         }
 
-        private string Path = @"..\..\Resources\renovation_apointments.txt";
+        private string Path = @"..\..\Resources\renovation_appointments.txt";
     }
 }

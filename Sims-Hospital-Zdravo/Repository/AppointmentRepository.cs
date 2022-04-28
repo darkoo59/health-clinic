@@ -20,6 +20,7 @@ namespace Repository
         public AppointmentRepository(AppointmentDataHandler appDataHandler)
         {
             this.appointmentDataHandler = appDataHandler;
+            this.patientApps = new ObservableCollection<Appointment>();
             this.appointments = appDataHandler.ReadAll();
         }
         public void Create(Model.Appointment appointment)
@@ -31,15 +32,21 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
+            Console.WriteLine("laalalalalal");
+            Console.WriteLine(appointment._Id);
             //Console.WriteLine(appointment._DateAndTime.ToString());
             foreach (Appointment app in appointments)
             {
+                Console.WriteLine(app._Id+"hahaha");
                 if (app._Id == appointment._Id)
                 {
-                    app._DateAndTime = appointment._DateAndTime;
+                    
+                    app._Time = appointment._Time;
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
+                    app._Type = appointment._Type;
+                    Console.WriteLine(app._Patient._Name+"hshhsh");
                     loadDataToFile();
                     return;
                 }
@@ -70,6 +77,7 @@ namespace Repository
             Console.WriteLine(this.appointments.Count + " duzina");
             foreach(Appointment app in this.appointments)
             {
+                if (app._Doctor == null) continue;
                 if(app._Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
@@ -91,10 +99,10 @@ namespace Repository
             }
             return ref patientApps;
         }
-        public ObservableCollection<Appointment> FindAll()
+        public  ref ObservableCollection<Appointment> FindAll()
         {
             // TODO: implement
-            return null;
+            return  ref appointments;
         }
         public void loadDataFromFiles()
         {
