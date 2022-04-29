@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
@@ -84,6 +85,21 @@ namespace Sims_Hospital_Zdravo.Repository
             RenovationAppointment renovationAppointment = FindById(renovationId);
             Delete(renovationAppointment);
         }
+
+        public List<TimeInterval> FindTakenIntervalsForRoom(int roomId)
+        {
+            List<TimeInterval> intervals = new List<TimeInterval>();
+            foreach (RenovationAppointment renovationAppointment in renovations)
+            {
+                if (renovationAppointment._Room._Id == roomId)
+                {
+                    intervals.Add(renovationAppointment._Time);
+                }
+            }
+
+            return intervals;
+        }
+
 
         private void LoadDataToFile()
         {

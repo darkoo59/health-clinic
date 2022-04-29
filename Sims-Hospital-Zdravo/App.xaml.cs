@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Service;
 using Controller;
 using Repository;
 using DataHandler;
+using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Repository;
@@ -62,9 +64,16 @@ namespace Sims_Hospital_Zdravo
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository =
                 new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+            RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
+            RenovationRepository renovationRepository = new RenovationRepository(renovationDataHandler);
 
-            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
 
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository,
+                renovationRepository, relocationAppointmentRepository);
+
+            RenovationService renovationService =
+                new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
+            renovationController = new RenovationController(renovationService);
 
             EquipmentTransferService equipmentTransferService =
                 new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
@@ -75,13 +84,8 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
 
-            RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
-            RenovationRepository renovationRepository = new RenovationRepository(renovationDataHandler);
-            RenovationService renovationService =
-                new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
-            renovationController = new RenovationController(renovationService);
 
-            // TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
+            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
 
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();

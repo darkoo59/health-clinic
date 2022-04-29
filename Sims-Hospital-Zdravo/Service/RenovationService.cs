@@ -70,7 +70,7 @@ namespace Sims_Hospital_Zdravo.Service
         private int GenerateId()
         {
             List<RenovationAppointment> appointments = renovationRepository.ReadAll();
-            List<int> ids = (List<int>)appointments.Select(x => x._Id);
+            List<int> ids = new List<int>(appointments.Select(x => x._Id));
 
             int id = 0;
 

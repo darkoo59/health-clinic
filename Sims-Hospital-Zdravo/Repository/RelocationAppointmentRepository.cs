@@ -58,11 +58,6 @@ namespace Repository
             LoadDataToFile();
         }
 
-        public void UpdateById(int id, RelocationAppointment relocationAppointment)
-        {
-            Update(relocationAppointment);
-            LoadDataToFile();
-        }
 
         public RelocationAppointment FindById(int id)
         {
@@ -75,6 +70,20 @@ namespace Repository
             }
 
             return null;
+        }
+
+        public List<TimeInterval> FindTakenIntervalsForRoom(int roomId)
+        {
+            List<TimeInterval> intervals = new List<TimeInterval>();
+            foreach (RelocationAppointment relocationAppointment in relocationAppointments)
+            {
+                if (relocationAppointment._FromRoom._Id == roomId || relocationAppointment._ToRoom._Id == roomId)
+                {
+                    intervals.Add(relocationAppointment._Scheduled);
+                }
+            }
+
+            return intervals;
         }
 
 

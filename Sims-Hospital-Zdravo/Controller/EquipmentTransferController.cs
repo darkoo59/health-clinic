@@ -33,9 +33,9 @@ namespace Controller
             return equipmentTransferService.ReadAll();
         }
 
-        public List<TimeInterval> GetFreeTimeIntervals(int minutes, Room fromRoom, Room toRoom)
+        public List<TimeInterval> GetFreeTimeIntervals(Room fromRoom, Room toRoom)
         {
-            return equipmentTransferService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);
+            return equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
     }
 }

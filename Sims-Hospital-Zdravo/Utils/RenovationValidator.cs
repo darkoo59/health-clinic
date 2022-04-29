@@ -23,7 +23,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void ValidateRoomTaken(Room room, TimeInterval ti)
         {
-            if (timeSchedulerService.isRoomTakenInDateInterval(room._Id, ti))
+            if (!timeSchedulerService.IsRoomFreeInDateInterval(room._Id, ti))
             {
                 throw new Exception("Room taken in give interval");
             }

@@ -27,10 +27,8 @@ namespace Service
         public void FinishRelocationAppointment(int appointmentId)
         {
             RelocationAppointment appointment = relocationAppointmentRepository.FindById(appointmentId);
-            Console.WriteLine("Transfering " + appointment._RoomEquipment._Quantity + " Equipment");
             Room toRoom = appointment._ToRoom;
             Room originalRoom = roomRepository.FindById(toRoom._Id);
-
             RoomEquipment re = appointment._RoomEquipment;
 
             relocationAppointmentRepository.Delete(appointment);
@@ -49,16 +47,15 @@ namespace Service
             Room fromRoom = roomRepository.FindById(fromRoomId);
             Room toRoom = roomRepository.FindById(toRoomId);
             RoomEquipment eqForTransfer = new RoomEquipment(eq, quantity);
-            RelocationAppointment relocationApp =
-                new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
+            RelocationAppointment relocationApp = new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
 
             fromRoom.RemoveEquipment(eqForTransfer);
             relocationAppointmentRepository.Create(relocationApp);
         }
 
-        public List<TimeInterval> FindAvailableTimeForInterval(int minutes, Room fromRoom, Room toRoom)
+        public List<TimeInterval> FindReservedTimeForRooms(Room fromRoom, Room toRoom)
         {
-            return timeSchedulerService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);
+            return timeSchedulerService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
 
         public List<RelocationAppointment> ReadAll()
@@ -70,7 +67,7 @@ namespace Service
         private int GenerateId()
         {
             List<RelocationAppointment> appointments = relocationAppointmentRepository.ReadAll();
-            List<int> ids = (List<int>)appointments.Select(x => x._Id);
+            List<int> ids = new List<int>(appointments.Select(x => x._Id));
 
             int id = 0;
 

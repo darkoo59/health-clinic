@@ -8,42 +8,59 @@ using Model;
 using System;
 using Repository;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
+using Sims_Hospital_Zdravo.Repository;
 
 namespace Service
 {
     public class TimeSchedulerService
     {
         private AppointmentRepository appointmentRepository;
+        private RenovationRepository renovationRepository;
+        private RelocationAppointmentRepository relocationRepository;
 
-        public TimeSchedulerService(AppointmentRepository appointmentRepository)
+        public TimeSchedulerService(AppointmentRepository appointmentRepository,
+            RenovationRepository renovationRepository, RelocationAppointmentRepository relocationRepository)
         {
             this.appointmentRepository = appointmentRepository;
+            this.renovationRepository = renovationRepository;
+            this.relocationRepository = relocationRepository;
         }
 
-        public List<TimeInterval> FindAvailableTimeForInterval(int minutes, Room room1, Room room2)
+        public List<TimeInterval> FindReservedTimeForRooms(Room room1, Room room2)
         {
-            List<TimeInterval> ocupied1 = appointmentRepository.GetTimeIntervalsForRoom(room1);
-            List<TimeInterval> ocupied2 = appointmentRepository.GetTimeIntervalsForRoom(room2);
+            List<TimeInterval> takenIntervalsRoom1 = CaptureAllTakenIntervalsForRoom(room1._Id);
+            List<TimeInterval> takenIntervalsRoom2 = CaptureAllTakenIntervalsForRoom(room2._Id);
+            List<TimeInterval> takenIntervals = new List<TimeInterval>(takenIntervalsRoom1.Concat(takenIntervalsRoom2));
 
-            return FindFreeIntervals(ocupied1, ocupied2, minutes);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            takenIntervals = CompactIntervals(takenIntervals);
+
+            return takenIntervals;
         }
 
-        public List<TimeInterval> FindAvailableDateRangeForInterval(int days, Room room)
+        public List<TimeInterval> FindReservedDatesForRoom(int days, Room room)
         {
-            List<TimeInterval> ocupied = appointmentRepository.GetTimeIntervalsForRoom(room);
-            return null;
-        }
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room._Id);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            takenIntervals = CompactIntervals(takenIntervals);
 
+            takenIntervals = ConvertIntervalsToTakenDates(takenIntervals);
+            return takenIntervals;
+        }
 
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
-            List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
-            foreach (Appointment app in appointments)
+            List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
+            intervals = intervals.OrderBy(o => o.Start).ToList();
+            intervals = CompactIntervals(intervals);
+
+            foreach (TimeInterval app in intervals)
             {
-                DateTime start = app._DateAndTime;
-                DateTime end = start.AddMinutes(30);
+                DateTime start = app.Start;
+                DateTime end = app.End;
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
@@ -53,7 +70,7 @@ namespace Service
             return true;
         }
 
-        public bool isRoomTakenInDateInterval(int roomId, TimeInterval ti)
+        public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
         {
             List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
             foreach (Appointment app in appointments)
@@ -72,85 +89,48 @@ namespace Service
             return true;
         }
 
-
-        public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2,
-            int minutes)
+        private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
-            DateTime now = DateTime.Now;
-            int newminutes = now.Minute > 30 ? 60 - now.Minute : 30 - now.Minute;
-            now = now.AddMinutes(newminutes);
-            now = now.AddSeconds(-now.Second);
-            DateTime last = now.AddDays(5);
+            List<TimeInterval> takenIntervalsApp = appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
+            List<TimeInterval> takenIntervalRenovation = renovationRepository.FindTakenIntervalsForRoom(roomId);
+            List<TimeInterval> takenIntervalRelocation = relocationRepository.FindTakenIntervalsForRoom(roomId);
 
-            List<TimeInterval> mergedIntervals = MergeTwoTimeIntervalLists(unavailable1, unavailable2);
-            List<TimeInterval> timeIntervals = new List<TimeInterval>();
-
-            foreach (TimeInterval ti in mergedIntervals)
-            {
-                if (now.CompareTo(ti.Start) > 0) continue;
-                if (now.CompareTo(ti.Start) == 0)
-                {
-                    now = ti.End;
-                }
-
-                filterIfIntervalTooShort(minutes, now, ti.Start, timeIntervals);
-                now = ti.End;
-            }
-
-            if (now.CompareTo(last) < 0)
-            {
-                filterIfIntervalTooShort(minutes, now, last, timeIntervals);
-            }
-
-            return timeIntervals;
+            return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }
 
-
-        private List<TimeInterval> MergeTwoTimeIntervalLists(List<TimeInterval> list1, List<TimeInterval> list2)
+        private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
-            List<TimeInterval> joined = new List<TimeInterval>();
-            joined.AddRange(list1);
-            joined.AddRange(list2);
+            //TODO
+            return new List<TimeInterval>();
+        }
 
-            if (joined.Count == 0) return joined;
-
-            List<TimeInterval> sortedList = joined.OrderBy(o => o.Start).ToList();
-            List<TimeInterval> mergedList = new List<TimeInterval>();
+        private List<TimeInterval> CompactIntervals(List<TimeInterval> intervals)
+        {
+            List<TimeInterval> compactedIntervals = new List<TimeInterval>();
 
             int newIntervalCounter = 0;
-            foreach (TimeInterval ti in sortedList)
+            foreach (TimeInterval ti in intervals)
             {
-                if (mergedList.Count == 0)
+                if (compactedIntervals.Count == 0)
                 {
-                    mergedList.Add(ti);
+                    compactedIntervals.Add(ti);
                     continue;
                 }
 
-                TimeInterval newInterval = mergedList[newIntervalCounter];
+                TimeInterval newInterval = compactedIntervals[newIntervalCounter];
 
                 if (newInterval.End.CompareTo(ti.Start) == 0)
                 {
-                    mergedList[newIntervalCounter].End = ti.End;
+                    compactedIntervals[newIntervalCounter].End = ti.End;
                 }
                 else if (newInterval.End.CompareTo(ti.Start) < 0)
                 {
-                    mergedList.Add(ti);
+                    compactedIntervals.Add(ti);
                     newIntervalCounter++;
                 }
             }
 
-            return mergedList;
-        }
-
-
-        private void filterIfIntervalTooShort(int intervalDuration, DateTime now, DateTime next,
-            List<TimeInterval> intervals)
-        {
-            TimeSpan diff = next - now;
-            if (diff.TotalMinutes >= intervalDuration)
-            {
-                intervals.Add(new TimeInterval(now, next));
-            }
+            return compactedIntervals;
         }
     }
 }

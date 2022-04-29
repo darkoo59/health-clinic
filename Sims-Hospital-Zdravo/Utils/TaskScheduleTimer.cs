@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
+            Debug.WriteLine("Working....");
             List<RelocationAppointment> appointments = relocationController.ReadAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {

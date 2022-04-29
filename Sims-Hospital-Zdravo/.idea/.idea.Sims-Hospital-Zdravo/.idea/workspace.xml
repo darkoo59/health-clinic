@@ -5,37 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4152fb37-9de3-4f3e-be44-fafa8e602bea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/equipment.example.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/relocation_appointments.example.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/ViewDoctor/DoctorMain.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/ViewDoctor/DoctorMain.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/DoctorAppointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/DoctorAppointmentController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/EquipmentTransferController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EquipmentTransferController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/RoomController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Appointment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Appointment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/TimeInterval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TimeInterval.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PatientCreate.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PatientCreate.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PatientUpdate.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PatientUpdate.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/AppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/AppointmentRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/DoctorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/DoctorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/rooms.example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/rooms.example.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/DoctorAppointmentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/DoctorAppointmentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repository/RenovationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/RenovationRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/EquipmentTransferService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/EquipmentTransferService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/RoomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/RoomService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/RenovationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/RenovationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/TimeSchedulerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/TimeSchedulerService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sims-Hospital-Zdravo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Sims-Hospital-Zdravo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/DoctorCRUDWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/DoctorCRUDWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/DoctorCreateAppointment.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/View/DoctorCreateAppointment.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/DoctorCreateAppointment.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/DoctorCreateAppointment.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/DoctorUpdateAppointment.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/View/DoctorUpdateAppointment.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/DoctorUpdateAppointment.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/DoctorUpdateAppointment.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Login/LoginMainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/Login/LoginMainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/View.Secretary/InsertRecordWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/View.Secretary/InsertRecordWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/RenovationValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/RenovationValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,18 +31,27 @@
     <setting file="file://$PROJECT_DIR$/Controller/EquipmentTransferController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DataHandler/RelocationAppointmentDataHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Repository/RenovationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Repository/RoomRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Service/DoctorAppointmentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Service/EquipmentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Service/EquipmentTransferService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Service/RenovationService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Service/RoomService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Service/TimeSchedulerService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utils/RoomValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/DoctorCreateAppointment.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/DoctorCreateAppointment.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Manager/ManagerEquipment.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Manager/ManagerRooms.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectId" id="28QqTySDrRSzj5JGcV2IBqYCTqW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -79,7 +71,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;rider.code.cleanup.on.save&quot;: &quot;true&quot;,
     &quot;rider.code.cleanup.on.save.profile&quot;: &quot;Built-in: Reformat Code&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;XamlPreviewOptionsPage&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -115,7 +107,9 @@
       <workItem from="1651159844506" duration="167000" />
       <workItem from="1651160065082" duration="5730000" />
       <workItem from="1651167469564" duration="69000" />
-      <workItem from="1651167634497" duration="106000" />
+      <workItem from="1651167634497" duration="7066000" />
+      <workItem from="1651180287160" duration="6401000" />
+      <workItem from="1651239778388" duration="76000" />
     </task>
     <servers />
   </component>
