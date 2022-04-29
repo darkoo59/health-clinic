@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
-        Title="InsertRecordWindow" Height="600" Width="800">
+        Title="InsertRecordWindow" Height="650" Width="800">
     <Grid Margin="0,0,0,1">
         <Label Content="Name" HorizontalAlignment="Left" Margin="268,36,0,0" VerticalAlignment="Top" Width="49"/>
         <Label Content="Surname" HorizontalAlignment="Left" Margin="268,80,0,0" VerticalAlignment="Top" Width="66"/>
@@ -26,11 +26,13 @@
             <ComboBox Name="ComboGender"  HorizontalAlignment="Left" Margin="388,360,0,0" VerticalAlignment="Top" Width="120"/>
             <ComboBox Name="ComboBlood"  HorizontalAlignment="Left" Margin="388,400,0,0" VerticalAlignment="Top" Width="120"/>
             <ComboBox Name="ComboMarital" HorizontalAlignment="Left" Margin="388,440,0,0" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Insert" HorizontalAlignment="Left" Margin="349,497,0,0" VerticalAlignment="Top" Width="75" Click="Insert_Click"/>
+            <Button Content="Insert" HorizontalAlignment="Left" Margin="335,607,0,-59" VerticalAlignment="Top" Width="76" Click="Insert_Click"/>
             <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85"/>
 
         </Grid>
         <Label Content="Marital status" HorizontalAlignment="Left" Margin="267,360,0,0" VerticalAlignment="Top" Width="92"/>
+        <ListBox x:Name="AllergensList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="76" Margin="388,412,0,0" VerticalAlignment="Top" Width="117"/>
+        <Label Content="Allergens" HorizontalAlignment="Left" Margin="267,412,0,0" VerticalAlignment="Top" Width="92"/>
 
     </Grid>
 </Window>
