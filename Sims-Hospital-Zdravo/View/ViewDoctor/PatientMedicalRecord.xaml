@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.PatientMedicalRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="PatientMedicalRecord" Height="450" Width="800">
+    <Grid x:Name="MedicalRecord">
+        <TextBlock TextWrapping="Wrap" Text="Patient name:" Margin="34,47,640,350"/>
+        <TextBlock TextWrapping="Wrap" Name="Patientname"  Margin="97,47,577,350"/>
+        <TextBlock TextWrapping="Wrap" Text="Patient surname:" Margin="34,76,640,321"/>
+        <TextBlock TextWrapping="Wrap" Name="Patientsurname"  Margin="160,71,514,326"/>
+        <TextBlock TextWrapping="Wrap" Text="Gender:" Margin="34,150,640,247"/>
+        <TextBlock TextWrapping="Wrap" Name="genderPat"  Margin="141,39,533,358"/>
+        <TextBlock TextWrapping="Wrap" Text="Birthdate:" Margin="34,113,640,284"/>
+        <TextBlock TextWrapping="Wrap" Name="birthdate"  Margin="187,100,487,297"/>
+        <TextBlock TextWrapping="Wrap" Text="Adress:" Margin="34,229,640,168"/>
+        <TextBlock TextWrapping="Wrap" Name="adress"  Margin="160,210,514,186"/>
+        <TextBlock TextWrapping="Wrap" Text="Phone number:" Margin="34,187,640,210"/>
+        <TextBlock TextWrapping="Wrap" Name="number"  Margin="160,180,514,217"/>
+        <TextBlock TextWrapping="Wrap" Text="Marital status:" Margin="10,266,664,131"/>
+        <TextBlock TextWrapping="Wrap" Name="marital"  Margin="165,253,509,145"/>
+        <TextBlock TextWrapping="Wrap" Text="UID:" Margin="34,308,640,89"/>
+        <TextBlock TextWrapping="Wrap" Name="uid"  Margin="141,295,533,102"/>
+    </Grid>
+</Window>

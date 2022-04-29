@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Controller;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -19,6 +20,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// </summary>
     public partial class DoctorMain : Window
     {
+        private DoctorAppointmentController docController;
+        private MedicalRecordController medicalRecordController;
+        private App app;
         public DoctorMain()
         {
             InitializeComponent();
@@ -30,6 +34,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow();
             CrudWindow.Show();
+        }
+
+        
+
+        private void Button_Click_Appointment(object sender, RoutedEventArgs e)
+        {
+            MyAppointments MyAppointments = new MyAppointments();
+            MyAppointments.Show();
+
         }
     }
 }

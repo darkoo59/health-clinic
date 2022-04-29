@@ -16,6 +16,7 @@ namespace Repository
     {
         public ObservableCollection<MedicalRecord> medicalRecords;
         public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
+        public ObservableCollection<Patient> patients;
 
         public MedicalRecordsRepository(MedicalRecordDataHandler recordDataHandler)
         {
@@ -102,6 +103,8 @@ namespace Repository
         {
             medicalRecords = medicalRecordDataHandler.ReadAll();
         }
+
+        
 
         public void LoadDataToFile()
         {

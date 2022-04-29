@@ -41,7 +41,7 @@ namespace Service
             List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
             foreach(Appointment app in appointments)
             {
-                DateTime start = app._DateAndTime;
+                DateTime start = app._Time.Start;
                 DateTime end = start.AddMinutes(30);
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;

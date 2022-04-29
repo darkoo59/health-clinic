@@ -10,7 +10,7 @@
         <Button Content="Crud " HorizontalAlignment="Left" Height="26" Margin="191,122,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
         <Button Content="Prescribe therapy" HorizontalAlignment="Left" Height="26" Margin="400,122,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="Medical history/anamnesis" HorizontalAlignment="Left" Height="26" Margin="191,225,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button Content="My appointments" HorizontalAlignment="Left" Height="26" Margin="400,225,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="My appointments" HorizontalAlignment="Left" Height="26" Margin="400,225,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_Appointment"/>
 
     </Grid>
 </Window>

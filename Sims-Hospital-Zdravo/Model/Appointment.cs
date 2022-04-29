@@ -22,7 +22,7 @@ namespace Model
         private Doctor doctor;
         private Patient patient;
         private AppointmentType type;
-        private DateTime DateAndTime;
+        
         private TimeInterval time;
         private int Id;
         public static int GlobalId=1;
@@ -34,7 +34,7 @@ namespace Model
             this._Time = time;
             this._Type = type;
         }
-        //public Room _Room { get; set ; }
+        
 
         public Doctor _Doctor {
             get
@@ -61,17 +61,7 @@ namespace Model
             }
         }
 
-        public DateTime _DateAndTime {
-            get
-            {
-                return DateAndTime;
-            }
-            set
-            {
-                this.DateAndTime = value;
-                OnPropertyChanged("_DateAndTime");
-            }
-        }
+        
         public AppointmentType _Type
         {
             get

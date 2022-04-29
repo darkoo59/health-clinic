@@ -30,6 +30,7 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentTransferController equipmentTransferController;
         internal EquipmentController equipmentController;
         internal AccountController accountController;
+        internal PatientMedicalRecordController patientMedRecController;
 
         public App()
         {
@@ -79,6 +80,8 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
 
+            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
+            patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();
         }
     }

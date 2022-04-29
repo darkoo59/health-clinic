@@ -101,6 +101,7 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Service\PatientMedicalRecordService.cs" />
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
@@ -191,6 +193,12 @@
     </Compile>
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
       <DependentUpon>DoctorMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\MyAppointments.xaml.cs">
+      <DependentUpon>MyAppointments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs">
+      <DependentUpon>PatientMedicalRecord.xaml</DependentUpon>
     </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
@@ -286,6 +294,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\MyAppointments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

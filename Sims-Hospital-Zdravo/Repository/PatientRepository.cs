@@ -13,6 +13,7 @@ namespace Repository
     {
         public PatientDataHandler patientHandler;
         public ObservableCollection<Patient> patients;
+        public MedicalRecordsRepository MedicalRecordsRepository;
 
         public PatientRepository(PatientDataHandler patientHandler)
         {
@@ -69,6 +70,12 @@ namespace Repository
             return ref this.patients;
 
         }
+
+        //public MedicalRecord findMedicalRecordByPatient(Patient patient)
+        //{
+        //    foreach(MedicalRecord record in medicalRecords)
+
+        //}
         public void LoadDataFromFile()
         {
             this.patients = patientHandler.ReadAll();
