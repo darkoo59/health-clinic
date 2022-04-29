@@ -31,26 +31,26 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             this.DataContext = this;
             this.appointmentPatientController = appointmentPatientController;
-            _DateTime = appointment._DateAndTime;
+            _DateTime = appointment._Time.Start;
             /*_DateTime = _DateTime.AddYears(appointment._DateAndTime.Year);
             _DateTime = _DateTime.AddDays(appointment._DateAndTime.Day);
             _DateTime = _DateTime.AddMonths(appointment._DateAndTime.Month);*/
-            if (appointment._DateAndTime.Hour < 10)
+            if (appointment._Time.Start.Hour < 10)
             {
-                Time.Text ="0" + appointment._DateAndTime.Hour;
+                Time.Text ="0" + appointment._Time.Start.Hour;
             }
             else
             {
-                Time.Text ="" +appointment._DateAndTime.Hour;
+                Time.Text ="" +appointment._Time.Start.Hour;
             }
-            Time.Text = appointment._DateAndTime.Hour + ":";
-            if (appointment._DateAndTime.Minute < 10)
+            Time.Text = appointment._Time.Start.Hour + ":";
+            if (appointment._Time.Start.Minute < 10)
             {
-                Time.Text = Time.Text + "0" + appointment._DateAndTime.Minute;
+                Time.Text = Time.Text + "0" + appointment._Time.Start.Minute;
             }
             else
             {
-                Time.Text = Time.Text + appointment._DateAndTime.Minute;
+                Time.Text = Time.Text + appointment._Time.Start.Minute;
             }
             doctors = new ObservableCollection<string>();
             doctorordate = new ObservableCollection<string>();

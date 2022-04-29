@@ -379,12 +379,12 @@
     <Resource Include="Resources\accounts.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\allergens.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\img\TransferAllergens.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\allergens.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

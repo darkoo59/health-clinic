@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
-//using Sims_Hospital_Zdravo.Model;
+
 using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
@@ -94,7 +94,7 @@ namespace Sims_Hospital_Zdravo.View
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
-            TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
+            TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
            
 
             Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
