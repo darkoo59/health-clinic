@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 public enum BloodType { APOSITIVE, ANEGATIVE, ABPOSITIVE, ABNEGATIVE, BPOSITIVE, BNEGATIVE, OPOSITIVE, ONEGATIVE };
@@ -16,18 +17,20 @@ namespace Model
     {
         private int Id;
         private Patient Patient;
+        private List<String> Allergens;
 
         private GenderType Gender;
         private BloodType BloodType;
         private MaritalType MaritalStatus;
 
-        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus)
+        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,List<String> allergens)
         {
             this._Id = id;
             this._Patient = patient;
             this._Gender = gender;
             this._BloodType = blood;
             this._MaritalStatus = maritalStatus;
+            this._Allergens = allergens;
         }
 
         public Patient _Patient {
@@ -104,6 +107,22 @@ namespace Model
                 if (this.MaritalStatus != value)
                 {
                     this.MaritalStatus = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public List<String> _Allergens
+        {
+            get
+            {
+                return Allergens;
+            }
+            set
+            {
+                if(this.Allergens != value)
+                {
+                    this.Allergens = value;
                     OnPropertyChanged();
                 }
             }

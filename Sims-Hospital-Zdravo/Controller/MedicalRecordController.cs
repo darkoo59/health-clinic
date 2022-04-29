@@ -86,6 +86,11 @@ namespace Controller
             return medicalRecordService.GenreatePatientId();
         }
 
+        public List<String> ReadAllAllergens()
+        {
+            return medicalRecordService.ReadAllAllergens();
+        }
+
 
     }
 }

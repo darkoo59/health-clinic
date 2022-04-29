@@ -6,6 +6,7 @@
 
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,11 +18,13 @@ namespace Service
 
         public Repository.MedicalRecordsRepository medicalRecordRepository;
         public PatientRepository patientRepository;
+        public AllergensRepository allergensRepository;
 
-        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo)
+        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
         {
             medicalRecordRepository = medicalRepo;
             patientRepository = patientRepo;
+            allergensRepository = alergRepo;
         }
       public void Create(MedicalRecord medicalRecord, Patient patient)
       {
@@ -67,6 +70,11 @@ namespace Service
         public Patient FindPatientById(int id)
         {
             return medicalRecordRepository.FindPatientById(id);
+        }
+
+        public List<String> ReadAllAllergens()
+        {
+            return allergensRepository.ReadAll();
         }
 
         public int GenerateId()
