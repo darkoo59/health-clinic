@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-     public class TimeInterval
+    public class TimeInterval
     {
-
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
@@ -20,9 +19,7 @@ namespace Model
 
         public override string ToString()
         {
-            return Start + " \n " + End;
+            return Start + " - " + End;
         }
     }
-
-
 }

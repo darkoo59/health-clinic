@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,14 @@ using System.Timers;
 using Controller;
 using Model;
 using Repository;
+
 namespace Sims_Hospital_Zdravo.Utils
 {
     class TaskScheduleTimer
     {
-
         public static Timer timer;
         private EquipmentTransferController relocationController;
+
         public TaskScheduleTimer(EquipmentTransferController relocationController)
         {
             this.relocationController = relocationController;
@@ -34,16 +36,15 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            ObservableCollection<RelocationAppointment> appointments = relocationController.ReadAll(); 
-            foreach(RelocationAppointment app in appointments.ToList())
+            Debug.WriteLine("Working....");
+            List<RelocationAppointment> appointments = relocationController.ReadAll();
+            foreach (RelocationAppointment app in appointments.ToList())
             {
-                if(app._Scheduled.End.CompareTo(DateTime.Now) < 0)
+                if (app._Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
                     relocationController.FinishRelocationAppointment(app._Id);
                 }
             }
         }
-
-
     }
 }
