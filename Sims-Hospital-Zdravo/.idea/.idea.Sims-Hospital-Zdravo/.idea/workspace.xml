@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4152fb37-9de3-4f3e-be44-fafa8e602bea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sims-Hospital-Zdravo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/EquipmentTransferController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EquipmentTransferController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/TimeInterval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/TimeInterval.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/RenovationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/RenovationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/EquipmentTransferService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/EquipmentTransferService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/RenovationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/RenovationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/TimeSchedulerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/TimeSchedulerService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sims-Hospital-Zdravo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Sims-Hospital-Zdravo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/RenovationValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/RenovationValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +15,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/App.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/App.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Fakultet/SIMS-PROJEKAT/Sims-Hospital-Zdravo/App.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controller/EquipmentTransferController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DataHandler/RelocationAppointmentDataHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Repository/AppointmentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Repository/RelocationAppointmentRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Repository/RenovationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Repository/RoomRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,8 +32,10 @@
     <setting file="file://$PROJECT_DIR$/Utils/TaskScheduleTimer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/DoctorCreateAppointment.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/DoctorCreateAppointment.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/Manager/EquipmentTransfer.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/Manager/ManagerEquipment.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Manager/ManagerRooms.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/Manager/ManagerRooms.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">

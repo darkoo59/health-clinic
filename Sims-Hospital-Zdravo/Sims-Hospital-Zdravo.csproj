@@ -5,9 +5,9 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{C04F39BD-348B-43B3-A4A2-21D1672D48D3}</ProjectGuid>
-        <!--        <OutputType>WinExe</OutputType>-->
-        <OutputType>Exe</OutputType>
-        <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
+        <OutputType>WinExe</OutputType>
+        <!--        <OutputType>Exe</OutputType>-->
+        <!--        <DisableWinExeOutputInference>true</DisableWinExeOutputInference>-->
 
         <RootNamespace>Sims_Hospital_Zdravo</RootNamespace>
         <AssemblyName>Sims-Hospital-Zdravo</AssemblyName>
