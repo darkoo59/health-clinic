@@ -32,10 +32,10 @@ namespace Sims_Hospital_Zdravo.View
         public RoomController roomController;
         public int id;
         public ObservableCollection<string> patients;
-       
+
         private List<IUpdateFilesObserver> observers;
-        
-        public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
+
+        public DoctorCreateAppointment(DoctorAppointmentController docController, RoomController roomControl)
         {
             InitializeComponent();
             observers = new List<IUpdateFilesObserver>();
@@ -47,21 +47,22 @@ namespace Sims_Hospital_Zdravo.View
 
             foreach (Patient pat in this.docAppController.getPatients())
             {
-                patients.Add(pat._Name + " " +  pat._Surname + " " + pat._BirthDate.ToString());
-
+                patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
             }
+
             Patients.ItemsSource = patients;
-
-
         }
+
         private Patient pat;
+
         public Patient Pat
         {
             get { return pat; }
             set { pat = value; }
         }
-        
+
         Random rnd = new Random();
+
         private void Patients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string name = Patients.SelectedItem.ToString();
@@ -76,34 +77,33 @@ namespace Sims_Hospital_Zdravo.View
                 }
             }
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             //String date = dateTxt.Text;
             ComboBoxItem cbItem = cbTime.SelectedItem as ComboBoxItem;
             ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
-            
-            
-                string start = cbItem.Content.ToString();
+
+
+            string start = cbItem.Content.ToString();
             string end = cbItemEnd.Content.ToString();
-                string d = DatePick.Text;
-                var dt_start = DateTime.Parse(d + " " + start);
-                 var dt_end = DateTime.Parse(d + " " + end);
-                
-            
+            string d = DatePick.Text;
+            var dt_start = DateTime.Parse(d + " " + start);
+            var dt_end = DateTime.Parse(d + " " + end);
+
+
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
-            TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
-           
+            TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
 
-            Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
+
+            Appointment app = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
             app._Id = this.docAppController.GenerateId();
-            
+
             docAppController.Create(app);
             NotifyUpdated();
             Close();
-
         }
 
         public void AddObserver(IUpdateFilesObserver observer)
@@ -123,7 +123,5 @@ namespace Sims_Hospital_Zdravo.View
         {
             observers.Remove(observer);
         }
-
-
     }
 }
