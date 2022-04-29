@@ -9,4 +9,5 @@ namespace Sims_Hospital_Zdravo.Utils
     internal class AppointmentDoctorValidator
     {
     }
+
 }
