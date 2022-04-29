@@ -359,6 +359,8 @@
   <ItemGroup>
     <Resource Include="Resources\accounts.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\renovation_appointments.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
