@@ -15,8 +15,8 @@ namespace Repository
 {
     public class RoomRepository: IUpdateFilesObserver
     {
-        public RoomDataHandler roomDataHandler;
-        public ObservableCollection<Room> rooms;
+        private RoomDataHandler roomDataHandler;
+        private ObservableCollection<Room> rooms;
         public RoomRepository(RoomDataHandler rmDataHandler)
         {
             rooms = new ObservableCollection<Room>();
@@ -94,7 +94,6 @@ namespace Repository
             rooms = roomDataHandler.ReadAll();
             foreach(Room room in rooms)
             {
-                Console.WriteLine("Loading observer");
                 room.AddObserver(this);
             }
         }
@@ -106,7 +105,6 @@ namespace Repository
 
         public void NotifyUpdated()
         {
-            Console.WriteLine("Updating");
             LoadDataToFile();
         }
     }

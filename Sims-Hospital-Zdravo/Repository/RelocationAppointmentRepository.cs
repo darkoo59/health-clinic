@@ -14,26 +14,25 @@ namespace Repository
 {
     public class RelocationAppointmentRepository
     {
-        private ObservableCollection<RelocationAppointment> relocationAppointments;
+        private List<RelocationAppointment> relocationAppointments;
         private RelocationAppointmentDataHandler relocationAppointmentDataHandler;
 
         public RelocationAppointmentRepository(RelocationAppointmentDataHandler relocationAppointmentDataHandler)
         {
             this.relocationAppointmentDataHandler = relocationAppointmentDataHandler;
-            relocationAppointments = new ObservableCollection<RelocationAppointment>();
+            relocationAppointments = new List<RelocationAppointment>();
             LoadDataFromFile();
         }
 
-        public ref ObservableCollection<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> ReadAll()
         {
-            return ref relocationAppointments;
+            return relocationAppointments;
         }
 
         public void Create(RelocationAppointment appointment)
         {
             relocationAppointments.Add(appointment);
             LoadDataToFile();
-
         }
 
         public void Update(RelocationAppointment appointment)
@@ -57,14 +56,8 @@ namespace Repository
         {
             relocationAppointments.Remove(appointment);
             LoadDataToFile();
-
         }
 
-        public void UpdateById(int id, RelocationAppointment relocationAppointment)
-        {
-            Update(relocationAppointment);
-            LoadDataToFile();
-        }
 
         public RelocationAppointment FindById(int id)
         {
@@ -75,7 +68,22 @@ namespace Repository
                     return ra;
                 }
             }
+
             return null;
+        }
+
+        public List<TimeInterval> FindTakenIntervalsForRoom(int roomId)
+        {
+            List<TimeInterval> intervals = new List<TimeInterval>();
+            foreach (RelocationAppointment relocationAppointment in relocationAppointments)
+            {
+                if (relocationAppointment._FromRoom._Id == roomId || relocationAppointment._ToRoom._Id == roomId)
+                {
+                    intervals.Add(relocationAppointment._Scheduled);
+                }
+            }
+
+            return intervals;
         }
 
 
@@ -90,10 +98,10 @@ namespace Repository
         }
 
         /// <pdGenerated>default getter</pdGenerated>
-        public ObservableCollection<RelocationAppointment> GetRelocationAppointment()
+        public List<RelocationAppointment> GetRelocationAppointment()
         {
             if (relocationAppointments == null)
-                relocationAppointments = new ObservableCollection<RelocationAppointment>();
+                relocationAppointments = new List<RelocationAppointment>();
             return relocationAppointments;
         }
 
@@ -111,7 +119,7 @@ namespace Repository
             if (newRelocationAppointment == null)
                 return;
             if (this.relocationAppointments == null)
-                this.relocationAppointments = new ObservableCollection<RelocationAppointment>();
+                this.relocationAppointments = new List<RelocationAppointment>();
             if (!this.relocationAppointments.Contains(newRelocationAppointment))
                 this.relocationAppointments.Add(newRelocationAppointment);
         }
@@ -132,6 +140,5 @@ namespace Repository
             if (relocationAppointments != null)
                 relocationAppointments.Clear();
         }
-
     }
 }

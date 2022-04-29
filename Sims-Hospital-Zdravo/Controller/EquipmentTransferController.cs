@@ -11,8 +11,6 @@ namespace Controller
 {
     public class EquipmentTransferController
     {
-
-
         private EquipmentTransferService equipmentTransferService;
 
         public EquipmentTransferController(EquipmentTransferService equipmentTransferService)
@@ -24,18 +22,20 @@ namespace Controller
         {
             equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
         }
+
         public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
         {
             equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
-        public ObservableCollection<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> ReadAll()
         {
             return equipmentTransferService.ReadAll();
         }
-        public List<TimeInterval> GetFreeTimeIntervals(int minutes, Room fromRoom, Room toRoom)
+
+        public List<TimeInterval> GetFreeTimeIntervals(Room fromRoom, Room toRoom)
         {
-            return equipmentTransferService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);
+            return equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
     }
 }

@@ -11,22 +11,22 @@ using System.Collections.ObjectModel;
 
 namespace DataHandler
 {
-   public class RelocationAppointmentDataHandler
-   {
-        public ObservableCollection<RelocationAppointment> ReadAll()
+    public class RelocationAppointmentDataHandler
+    {
+        public List<RelocationAppointment> ReadAll()
         {
             string appsSerialized = System.IO.File.ReadAllText(Path);
-            ObservableCollection<RelocationAppointment> apps = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<RelocationAppointment>>(appsSerialized);
+            List<RelocationAppointment> apps =
+                Newtonsoft.Json.JsonConvert.DeserializeObject<List<RelocationAppointment>>(appsSerialized);
             return apps;
         }
 
-        public void Write(ObservableCollection<RelocationAppointment> apps)
+        public void Write(List<RelocationAppointment> apps)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(apps);
             System.IO.File.WriteAllText(Path, serialized);
         }
 
         private string Path = @"..\..\Resources\relocation_appointments.txt";
-
     }
 }

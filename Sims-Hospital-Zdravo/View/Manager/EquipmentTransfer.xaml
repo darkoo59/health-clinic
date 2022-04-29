@@ -9,40 +9,40 @@
         Title="EquipmentTransfer" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
             <Label>From Room:</Label>
-            <ComboBox  Height="30" x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
+            <ComboBox Height="30" x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label>To Room:</Label>
-            <ComboBox  Height="30" SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
+            <ComboBox Height="30" SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label>Equipment:</Label>
-            <ComboBox  Height="30" x:Name="ComboEquipment"></ComboBox>
+            <ComboBox Height="30" x:Name="ComboEquipment"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label>Quantity: </Label>
@@ -50,17 +50,24 @@
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
             <Label>Duration:</Label>
-            <TextBox   Height="30" x:Name="IntervalDuration" TextChanged="Duration_Changed"></TextBox>
+            <TextBox Height="30" x:Name="IntervalDuration"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <Label>Starts:</Label>
             <xctk:DateTimeUpDown x:Name="IntervalStarts"></xctk:DateTimeUpDown>
         </StackPanel>
+        <DockPanel Grid.Row="1" Grid.Column="5" Grid.RowSpan="4" Grid.ColumnSpan="3">
+            <Label DockPanel.Dock="Top">Already reserved intervals: </Label>
+            <ItemsControl BorderThickness="1" BorderBrush="Black" VerticalContentAlignment="Stretch"
+                          x:Name="ListIntervals">
+            </ItemsControl>
+        </DockPanel>
 
-        <ItemsControl  Grid.Row="1" Grid.Column="5" Grid.RowSpan="4"  Grid.ColumnSpan="2"  x:Name="ListIntervals"></ItemsControl>
-        
-        <Button Grid.Row="5" Grid.Column="5"  Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment" Click="SaveApp_Click">Schedule</Button>
+        <Button Grid.Row="5" Grid.Column="5" Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment"
+                Click="SaveApp_Click">
+            Schedule
+        </Button>
 
     </Grid>
 </Window>

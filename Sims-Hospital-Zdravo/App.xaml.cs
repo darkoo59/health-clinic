@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-
 using Service;
 using Controller;
 using Repository;
-using Model;
 using DataHandler;
+using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Repository;
@@ -32,11 +26,10 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentController equipmentController;
         internal AccountController accountController;
         internal PatientMedicalRecordController patientMedRecController;
+        internal RenovationController renovationController;
 
         public App()
         {
-
-
             RoomDataHandler roomDataHandler = new RoomDataHandler();
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
             RoomService roomService = new RoomService(roomRepository);
@@ -58,11 +51,13 @@ namespace Sims_Hospital_Zdravo
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
             DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
             AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
-            AppointmentPatientService appointmentPatientService = new AppointmentPatientService(appointmentRepository, doctorRepository);
+            AppointmentPatientService appointmentPatientService =
+                new AppointmentPatientService(appointmentRepository, doctorRepository);
             appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
-            DoctorAppointmentService doctorAppointmentService = new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo);
+            DoctorAppointmentService doctorAppointmentService =
+                new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
@@ -71,18 +66,28 @@ namespace Sims_Hospital_Zdravo
             equipmentController = new EquipmentController(equipmentService);
 
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
-            RelocationAppointmentRepository relocationAppointmentRepository = new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+            RelocationAppointmentRepository relocationAppointmentRepository =
+                new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+            RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
+            RenovationRepository renovationRepository = new RenovationRepository(renovationDataHandler);
 
-            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
 
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository,
+                renovationRepository, relocationAppointmentRepository);
 
-            EquipmentTransferService equipmentTransferService = new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
+            RenovationService renovationService =
+                new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
+            renovationController = new RenovationController(renovationService);
+
+            EquipmentTransferService equipmentTransferService =
+                new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
             equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
             AccountDataHandler accountDataHandler = new AccountDataHandler();
             AccountRepository accountRepository = new AccountRepository(accountDataHandler);
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
+
 
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
 

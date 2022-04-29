@@ -12,11 +12,14 @@ namespace Utils
     class EquipmentTransferValidator
     {
         private RoomRepository roomRepo;
+        private TimeSchedulerService timeSchedulerService;
 
-        public EquipmentTransferValidator(RoomRepository roomRepo)
+
+        public EquipmentTransferValidator(RoomRepository roomRepo, TimeSchedulerService timeSchedulerService)
         {
             this.roomRepo = roomRepo;
-        }       
+            this.timeSchedulerService = timeSchedulerService;
+        }
 
 
         private void HasEnoughEquipment(int roomId, int quantity, int equipmentId)
@@ -40,28 +43,22 @@ namespace Utils
         }
 
 
-        public void validateTransferFromRoom(int fromRoomId, int toRoomId, int equipmentId, int quantity)
+        public void ValidateTransferFromRoom(int fromRoomId, int toRoomId, int equipmentId, int quantity,
+            TimeInterval ti)
         {
             RoomExists(fromRoomId);
             RoomExists(toRoomId);
             HasEnoughEquipment(fromRoomId, quantity, equipmentId);
-
-
+            ValidateRoomTaken(fromRoomId, ti);
+            ValidateRoomTaken(toRoomId, ti);
         }
 
-        public void validateTransferFromStorage(int roomId, int equipmentId, int quantity)
+        private void ValidateRoomTaken(int roomId, TimeInterval ti)
         {
-            HasEnoughEquipment(roomId, quantity, equipmentId);
+            if (!timeSchedulerService.IsRoomFreeInInterval(roomId, ti))
+            {
+                throw new Exception("Room " + roomId + " is not free in given interval!");
+            }
         }
-
-
-        public void ValidateRoomTaken(bool isFree, int roomId)
-        {
-            if (!isFree) throw new Exception("Room " + roomId + " is not free in given interval!");
-        }
-
-
-
-
     }
 }

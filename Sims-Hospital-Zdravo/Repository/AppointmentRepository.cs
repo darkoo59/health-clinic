@@ -71,7 +71,6 @@ namespace Repository
 
         public ObservableCollection<Appointment> FindByDoctorId(int id)
         {
-            // TODO: implement
             ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
             Console.WriteLine(this.appointments.Count + " duzina");
             foreach(Appointment app in this.appointments)
