@@ -2,6 +2,7 @@
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace Controller
             equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
+        public ObservableCollection<RelocationAppointment> ReadAll()
+        {
+            return equipmentTransferService.ReadAll();
+        }
         public List<TimeInterval> GetFreeTimeIntervals(int minutes, Room fromRoom, Room toRoom)
         {
             return equipmentTransferService.FindAvailableTimeForInterval(minutes, fromRoom, toRoom);

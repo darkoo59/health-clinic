@@ -15,6 +15,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Service;
+using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -44,10 +45,13 @@ namespace Sims_Hospital_Zdravo
             PatientDataHandler patientDataHandler = new PatientDataHandler();
             PatientRepository patientRepository = new PatientRepository(patientDataHandler);
 
+            AllergensDataHandler allergensDataHandler = new AllergensDataHandler();
+            AllergensRepository allergensRepository = new AllergensRepository(allergensDataHandler);
+
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
-            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository);
+            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             recordController = new MedicalRecordController(recordService);
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
@@ -79,6 +83,9 @@ namespace Sims_Hospital_Zdravo
             AccountRepository accountRepository = new AccountRepository(accountDataHandler);
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
+
+            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
+
 
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
             patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);

@@ -30,6 +30,7 @@ namespace Sims_Hospital_Zdravo
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
+            AllergensList.ItemsSource = medicalController.ReadAllAllergens();
         }
 
 
@@ -40,7 +41,12 @@ namespace Sims_Hospital_Zdravo
             {
                 medicalController.ValidateInsert(TxtJmbg.Text);
                 Patient patient = new Patient(medicalController.GeneratePatientId(), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue);
+                List<String> allergensItems = new List<String>();
+                foreach (string str in AllergensList.SelectedItems)
+                {
+                    allergensItems.Add(str);
+                }
+                MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergensItems);
                 medicalController.Create(medicalRecord, patient);
                 Close();
             }

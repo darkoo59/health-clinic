@@ -17,17 +17,14 @@ namespace Controller
     public class RoomController
     {
         public RoomService roomService;
-        private RoomValidator validator;
 
 
         public RoomController(RoomService roomService)
         {
             this.roomService = roomService;
-            validator = new RoomValidator(roomService);
         }
         public void Create(Room room)
         {
-            validator.ValidateCreate(room);
             roomService.Create(room);
         }
 
@@ -38,13 +35,11 @@ namespace Controller
 
         public void Update(Room room)
         {
-            validator.ValidateUpdate(room);
             roomService.Update(room);
         }
 
         public void Delete(Room room)
         {
-            validator.ValidateDelete(room);
             roomService.Delete(room);
         }
 
@@ -55,7 +50,6 @@ namespace Controller
 
         public void DeleteById(int id)
         {
-            validator.ValidateDelete(id);
             roomService.DeleteById(id);
         }
 

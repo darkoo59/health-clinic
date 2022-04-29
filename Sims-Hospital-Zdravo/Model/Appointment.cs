@@ -11,26 +11,26 @@ using System.Threading;
 using Model;
 //using Sims_Hospital_Zdravo.Model;
 
-public enum AppointmentType { OPERATION,EXAMINATION,URGENCY };
+public enum AppointmentType { OPERATION, EXAMINATION, URGENCY };
 namespace Model
 {
-   public class Appointment : INotifyPropertyChanged
-   {
-        
+    public class Appointment : INotifyPropertyChanged
+    {
+
         private Room room;
-        
+
         private Doctor doctor;
         private Patient patient;
         private AppointmentType type;
         
         private TimeInterval time;
         private int Id;
-        public static int GlobalId=1;
-        public Appointment(Room room, Doctor doctor, Patient patient,  TimeInterval time, AppointmentType type)
+        public static int GlobalId = 1;
+        public Appointment(Room room, Doctor doctor, Patient patient, TimeInterval time, AppointmentType type)
         {
             this._Doctor = doctor;
             this._Patient = patient;
-           this._Room = room;
+            this._Room = room;
             this._Time = time;
             this._Type = type;
         }
@@ -47,7 +47,8 @@ namespace Model
                 OnPropertyChanged("_Doctor");
             }
         }
-        public Patient _Patient {
+        public Patient _Patient
+        {
             get
             {
                 return patient;
@@ -74,7 +75,8 @@ namespace Model
                 OnPropertyChanged("_DateAndTime");
             }
         }
-        public int _Id {
+        public int _Id
+        {
             get
             {
                 return Id;
@@ -85,7 +87,8 @@ namespace Model
                 OnPropertyChanged("_Id");
             }
         }
-        public Room _Room {
+        public Room _Room
+        {
             get
             {
                 return room;
@@ -113,7 +116,7 @@ namespace Model
         }
 
 
-        private void OnPropertyChanged(string name )
+        private void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)

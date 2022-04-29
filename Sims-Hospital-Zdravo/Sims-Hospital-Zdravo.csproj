@@ -103,6 +103,7 @@
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
+    <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\Allergens.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\TimeInterval.cs" />
@@ -120,6 +122,7 @@
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\AccountRepository.cs" />
+    <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
+    <Compile Include="Utils\TaskScheduleTimer.cs" />
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
@@ -374,6 +378,13 @@
   <ItemGroup>
     <Resource Include="Resources\accounts.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\allergens.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img\TransferAllergens.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
