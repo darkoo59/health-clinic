@@ -5,17 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace Sims_Hospital_Zdravo.Controller
 {
-
     class RenovationController
     {
         private RenovationService renovationService;
+
         public RenovationController(RenovationService renovationService)
         {
             this.renovationService = renovationService;
         }
+
+        public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
+        {
+            renovationService.MakeRenovationAppointment(time, room, type, description);
+        }
+
+        public void FinishRenovationAppointment(int renovationId)
+        {
+            renovationService.FinishRenovationAppointment(renovationId);
+        }
+
         public void Create(RenovationAppointment renovation)
         {
             renovationService.Create(renovation);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace Model
 {
@@ -15,6 +16,11 @@ namespace Model
         {
             this.Start = Start;
             this.End = End;
+        }
+
+        public string toDateString()
+        {
+            return Start.ToString("MMMM dd, yyyy") + " - " + End.ToString("MMMM dd, yyyy");
         }
 
         public override string ToString()

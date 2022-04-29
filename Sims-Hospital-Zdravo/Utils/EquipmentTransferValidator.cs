@@ -43,6 +43,15 @@ namespace Utils
         }
 
 
+        private void ValidateRoomTaken(int roomId, TimeInterval ti)
+        {
+            if (!timeSchedulerService.IsRoomFreeInInterval(roomId, ti))
+            {
+                throw new Exception("Room " + roomId + " is not free in given interval!");
+            }
+        }
+
+
         public void ValidateTransferFromRoom(int fromRoomId, int toRoomId, int equipmentId, int quantity,
             TimeInterval ti)
         {
@@ -51,14 +60,6 @@ namespace Utils
             HasEnoughEquipment(fromRoomId, quantity, equipmentId);
             ValidateRoomTaken(fromRoomId, ti);
             ValidateRoomTaken(toRoomId, ti);
-        }
-
-        private void ValidateRoomTaken(int roomId, TimeInterval ti)
-        {
-            if (!timeSchedulerService.IsRoomFreeInInterval(roomId, ti))
-            {
-                throw new Exception("Room " + roomId + " is not free in given interval!");
-            }
         }
     }
 }

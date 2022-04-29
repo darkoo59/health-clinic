@@ -10,6 +10,8 @@ using System.Timers;
 using Controller;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -17,10 +19,12 @@ namespace Sims_Hospital_Zdravo.Utils
     {
         public static Timer timer;
         private EquipmentTransferController relocationController;
+        private RenovationController renovationController;
 
-        public TaskScheduleTimer(EquipmentTransferController relocationController)
+        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController)
         {
             this.relocationController = relocationController;
+            this.renovationController = renovationController;
             SetTimer();
         }
 
@@ -36,13 +40,30 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            Debug.WriteLine("Working....");
+            CheckIfRelocationAppointmentDone();
+            CheckIfRenovationAppointmentDone();
+        }
+
+        private void CheckIfRelocationAppointmentDone()
+        {
             List<RelocationAppointment> appointments = relocationController.ReadAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
                 if (app._Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
                     relocationController.FinishRelocationAppointment(app._Id);
+                }
+            }
+        }
+
+        private void CheckIfRenovationAppointmentDone()
+        {
+            List<RenovationAppointment> renovations = renovationController.ReadAll();
+            foreach (RenovationAppointment renovation in renovations)
+            {
+                if (renovation._Time.End.Date.CompareTo(DateTime.Now.Date) == 0)
+                {
+                    renovationController.FinishRenovationAppointment(renovation._Id);
                 }
             }
         }
