@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Documents;
 using Service;
 using Controller;
 using Repository;
@@ -87,11 +89,7 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             accountController = new AccountController(accountService);
 
-
-            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
-
-
-            //DoctorAppointmentService doctorService = new DoctorAppointmentService();
+            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController, renovationController);
         }
     }
 }

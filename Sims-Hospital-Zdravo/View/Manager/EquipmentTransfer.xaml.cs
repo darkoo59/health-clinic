@@ -71,7 +71,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             try
             {
                 Room roomFrom = (Room)ComboFromRoom.SelectedItem;
-                Room roomTo = (Room)ComboFromRoom.SelectedItem;
+                Room roomTo = (Room)ComboToRoom.SelectedItem;
                 RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
                 int minutes = Int32.Parse(IntervalDuration.Text);
                 int quantity = Int32.Parse(Quantity.Text);
