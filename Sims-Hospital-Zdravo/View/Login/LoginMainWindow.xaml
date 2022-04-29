@@ -13,6 +13,7 @@
         <Label Content="Password" HorizontalAlignment="Left" Margin="108,161,-208,0" VerticalAlignment="Top" Width="100"/>
         <Button x:Name="btnLogin" Content="LOGIN" HorizontalAlignment="Left" Margin="108,233,-282,0" VerticalAlignment="Top" Width="174" Height="40" Click="btnLogin_Click"/>
         <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="108,187,-282,0" VerticalAlignment="Top" Width="174" Height="21"/>
+        <DataGrid HorizontalAlignment="Left" Height="100" Margin="552,30,-552,0" VerticalAlignment="Top" Width="0"/>
 
     </Grid>
 </Window>

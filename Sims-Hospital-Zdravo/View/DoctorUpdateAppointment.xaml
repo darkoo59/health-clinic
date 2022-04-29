@@ -24,14 +24,16 @@
         <Label Height="30" VerticalAlignment="Top" Margin="0,60,158,0" HorizontalAlignment="Right" RenderTransformOrigin="-0.264,-0.443" Width="67" Grid.RowSpan="2">Date :</Label>
         <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"  ></TextBox>
         <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="42,1,0,0" HorizontalAlignment="Left">Time:</Label>
-        <TextBox x:Name="TimeTxt" Grid.Row="2" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
-        <Label Grid.Row="2" Height="30" Width="150" VerticalAlignment="Top" Margin="42,51,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Patient name:</Label>
-        <TextBox x:Name="PatientTxt" Grid.Row="3" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" ></TextBox>
+        <TextBox x:Name="TimeTxt" Grid.Row="2" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Left" Margin="110,10,0,22"/>
+        <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="43,1,0,0" HorizontalAlignment="Left">Patient :</Label>
         <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="42,52,0,0" HorizontalAlignment="Left" Grid.RowSpan="2">Room:</Label>
         <TextBox x:Name="RoomTxt" Grid.Row="5" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Right" Margin="0,1,266,31" Grid.ColumnSpan="2" ></TextBox>
         <Button Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Center" Margin="58,0,68,0" Click="Button_Click">Save</Button>
-        <Label Grid.Row="3" Height="30" Width="150" VerticalAlignment="Top" Margin="42,44,0,0" HorizontalAlignment="Left" Grid.RowSpan="2" Content="Patient surname:"/>
-        <TextBox x:Name="SurnameText" Grid.Row="4" Grid.Column="0" Width="150" Height="30" HorizontalAlignment="Left" Margin="117,16,0,16" Grid.ColumnSpan="2" />
+        <TextBox Name="endtime" HorizontalAlignment="Left" Height="31" Margin="133,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"  Grid.Row="3"/>
+        <Label Height="30" Width="150" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalAlignment="Center" Content=" End Time:" Grid.RowSpan="2" Grid.Row="2"/>
+        <ComboBox Margin="121,24,10,10" Grid.Row="4" Name="Patientcb" SelectionChanged="Patientcb_SelectionChanged"  />
+        <ComboBox Grid.Column="1" Margin="73,31,10,3" Grid.Row="1" Name="AppType"/>
+        <Label Content="Type:" Margin="5,62,144,31" Grid.Column="1" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

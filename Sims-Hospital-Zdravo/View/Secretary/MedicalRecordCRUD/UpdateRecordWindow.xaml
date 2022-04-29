@@ -26,6 +26,22 @@
         <Label Content="Marital status" HorizontalAlignment="Left" Margin="268,440,0,-47" VerticalAlignment="Top" Width="92"/>
         <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="388,440,0,-43" VerticalAlignment="Top" Width="120" Text="{Binding _MaritalStatus, Mode=OneTime}"/>
         <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="332,494,0,0" VerticalAlignment="Top" Width="115" Click="Update_Click" Height="36"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="326,646,0,-13" Width="115" Click="Update_Click"/>
+        <Label Content="Allergens" HorizontalAlignment="Left" Margin="268,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,-0.135"/>
+        <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="88" Margin="388,511,0,0" VerticalAlignment="Top" Width="100" SelectionMode="Multiple"/>
+        <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="88" Margin="573,511,0,0" VerticalAlignment="Top" Width="100" SelectionMode="Multiple"/>
+        <Label Content="Patient allergic to:" HorizontalAlignment="Left" Margin="388,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,-0.135"/>
+        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="568,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,-0.135"/>
+        <Image x:Name="ImageToLeft" Source="..\..\Resources\img\TransferAllergens.png" HorizontalAlignment="Left" Height="22" Margin="519,523,0,0" VerticalAlignment="Top" Width="27"/>
+        <Image x:Name="ImageToRight" Source="..\..\Resources\img\TransferAllergens.png" HorizontalAlignment="Left" Height="22" Margin="519,556,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Window>

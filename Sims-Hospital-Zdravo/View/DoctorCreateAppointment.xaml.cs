@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Controller;
+using System.Collections;
 using Repository;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -15,23 +16,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using Model;
+//using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View
 {
     /// <summary>
     /// Interaction logic for DoctorCreateAppointment.xaml
     /// </summary>
-    public partial class DoctorCreateAppointment : Window
+    public partial class DoctorCreateAppointment : Window, IUpdateFilesObservable
     {
-        private DoctorAppointmentController docAppController;
-        private RoomController roomController;
-        private int id;
+        public DoctorAppointmentController docAppController;
+        public RoomController roomController;
+        public int id;
+        public ObservableCollection<string> patients;
+       
+        private List<IUpdateFilesObserver> observers;
+        
         public DoctorCreateAppointment(DoctorAppointmentController docController,RoomController roomControl)
         {
             InitializeComponent();
+            observers = new List<IUpdateFilesObserver>();
             this.DataContext = this;
             this.docAppController = docController;
             this.roomController = roomControl;
+            patients = new ObservableCollection<string>();
+            AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
+
+            foreach (Patient pat in this.docAppController.getPatients())
+            {
+                patients.Add(pat._Name + " " +  pat._Surname + " " + pat._BirthDate.ToString());
+
+            }
+            Patients.ItemsSource = patients;
+
 
         }
         private Patient pat;
@@ -40,45 +60,70 @@ namespace Sims_Hospital_Zdravo.View
             get { return pat; }
             set { pat = value; }
         }
-        public Patient PatientSelected()
+        
+        Random rnd = new Random();
+        private void Patients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string[] patient = PatientTxt.Text.Split(' ');
-            Console.WriteLine(patient);
-            foreach (Patient pat in docAppController.getPatients())
+            string name = Patients.SelectedItem.ToString();
+            string[] names = name.Split(' ');
+            foreach (Patient pat in this.docAppController.getPatients())
             {
-                if (pat._Name.Equals(patient[0]) && pat._Surname.Equals(patient[1]))
+                if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
+
                 {
                     Pat = pat;
-                    
-
+                    break;
                 }
             }
-            return Pat;
         }
-        Random rnd = new Random();
-        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             //String date = dateTxt.Text;
             ComboBoxItem cbItem = cbTime.SelectedItem as ComboBoxItem;
+            ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
             
             
-                string t = cbItem.Content.ToString();
+                string start = cbItem.Content.ToString();
+            string end = cbItemEnd.Content.ToString();
                 string d = DatePick.Text;
-                var dt = DateTime.Parse(d + " " + t);
+                var dt_start = DateTime.Parse(d + " " + start);
+                 var dt_end = DateTime.Parse(d + " " + end);
                 
             
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
-            Patient pat = PatientSelected();
-            Appointment app = new Appointment(room,doc,pat,dt, 5);
+            TimeInterval timeInterval = new Model.TimeInterval(dt_start, dt_end);
+           
+
+            Appointment app = new Appointment(room,doc,Pat,timeInterval,(AppointmentType) AppType.SelectedValue);
+            app._Id = this.docAppController.GenerateId();
+            
             docAppController.Create(app);
+            NotifyUpdated();
             Close();
 
         }
 
-        
+        public void AddObserver(IUpdateFilesObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void NotifyUpdated()
+        {
+            foreach (IUpdateFilesObserver observer in observers)
+            {
+                observer.NotifyUpdated();
+            }
+        }
+
+        public void RemoveObserver(IUpdateFilesObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+
     }
 }
