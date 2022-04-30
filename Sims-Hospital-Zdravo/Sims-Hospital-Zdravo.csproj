@@ -101,6 +101,7 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="Controller\SecretaryAppointmentController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Service\SecretaryAppointmentService.cs" />
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
@@ -145,6 +147,9 @@
     </Compile>
     <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
       <DependentUpon>ExaminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
+      <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
@@ -220,6 +225,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

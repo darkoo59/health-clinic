@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DataHandler;
+using Sims_Hospital_Zdravo;
 
 namespace Repository
 {
@@ -161,10 +162,17 @@ namespace Repository
             return apps;
         }
 
+        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        {
+            ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
+            foreach (Appointment app in FindAll())
+            {
+                if (app._Time.Start.Date == date.Date)
+                    appointmentsForDate.Add(app);
+            }
 
-
-
-
+            return appointmentsForDate;
+        }
 
     }
 }

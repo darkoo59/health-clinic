@@ -31,6 +31,7 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentTransferController equipmentTransferController;
         internal EquipmentController equipmentController;
         internal AccountController accountController;
+        internal SecretaryAppointmentController secretaryAppointmentController;
 
         public App()
         {
@@ -84,6 +85,10 @@ namespace Sims_Hospital_Zdravo
             accountController = new AccountController(accountService);
 
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
+
+            SecretaryAppointmentService secretaryAppointmentService =
+                new SecretaryAppointmentService(appointmentRepository);
+            secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
 
             //DoctorAppointmentService doctorService = new DoctorAppointmentService();

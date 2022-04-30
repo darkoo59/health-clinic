@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -22,12 +23,14 @@ namespace Sims_Hospital_Zdravo
     public partial class SecretaryHome : Window
     {
         private MedicalRecordController medicalController;
+        private SecretaryAppointmentController appointmentController;
         private App app;
         public SecretaryHome()
         {
             app = Application.Current as App;
             InitializeComponent();
             this.medicalController = app.recordController;
+            this.appointmentController = app.secretaryAppointmentController;
         }
 
         private void MedicalRecordsClick(object sender, RoutedEventArgs e)
@@ -38,7 +41,7 @@ namespace Sims_Hospital_Zdravo
 
         private void Examination_Click(object sender, RoutedEventArgs e)
         {
-            ExaminationWindow examinationWindow = new ExaminationWindow();
+            ExaminationWindow examinationWindow = new ExaminationWindow(appointmentController);
             examinationWindow.Show();
         }
     }
