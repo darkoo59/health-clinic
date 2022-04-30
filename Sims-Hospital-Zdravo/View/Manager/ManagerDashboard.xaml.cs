@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo.View
 {
@@ -25,13 +26,16 @@ namespace Sims_Hospital_Zdravo.View
         private RoomController roomController;
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
+        private RenovationController renovationController;
         private App app;
+
         public ManagerDashboard()
         {
             app = Application.Current as App;
             this.roomController = app.roomController;
             this.equipmentController = app.equipmentController;
             this.equipmentTransferController = app.equipmentTransferController;
+            this.renovationController = app.renovationController;
             InitializeComponent();
         }
 
@@ -45,9 +49,12 @@ namespace Sims_Hospital_Zdravo.View
         {
             ManagerEquipment managerEquipment = new ManagerEquipment(roomController, equipmentController, equipmentTransferController);
             managerEquipment.Show();
-
-
         }
-    
+
+        private void Renovations_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerRenovations renovations = new ManagerRenovations();
+            renovations.Show();
+        }
     }
 }

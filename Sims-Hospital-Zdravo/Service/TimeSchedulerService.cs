@@ -41,7 +41,7 @@ namespace Service
             return takenIntervals;
         }
 
-        public List<TimeInterval> FindReservedDatesForRoom(int days, Room room)
+        public List<TimeInterval> FindReservedDatesForRoom(Room room)
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room._Id);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
@@ -72,11 +72,14 @@ namespace Service
 
         public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
         {
-            List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
-            foreach (Appointment app in appointments)
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            takenIntervals = CompactIntervals(takenIntervals, areIntervalsTouching, isThereGapInIntervals);
+
+            foreach (TimeInterval takenInterval in takenIntervals)
             {
-                DateTime startDate = app._DateAndTime.Date;
-                DateTime endDate = app._DateAndTime.AddMinutes(30).Date;
+                DateTime startDate = takenInterval.Start.Date;
+                DateTime endDate = takenInterval.End.Date;
                 DateTime startDateNew = ti.Start.Date;
                 DateTime endDateNew = ti.End.Date;
 

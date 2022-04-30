@@ -32,10 +32,15 @@ namespace Sims_Hospital_Zdravo.Service
             string description)
         {
             renovationValidator.ValidateRenovation(room, time);
-            RenovationAppointment renovationAppointment =
-                new RenovationAppointment(time, room, description, type, GenerateId());
+            RenovationAppointment renovationAppointment = new RenovationAppointment(time, room, description, type, GenerateId());
             renovationRepository.Create(renovationAppointment);
         }
+
+        public List<TimeInterval> GetTakenDateIntervals(Room room)
+        {
+            return timeSchedulerService.FindReservedDatesForRoom(room);
+        }
+
 
         public void FinishRenovationAppointment(int renovationId)
         {

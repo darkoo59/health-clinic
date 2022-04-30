@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -61,21 +61,21 @@
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
             <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
         </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Windows.Forms"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Xml.Linq"/>
-        <Reference Include="System.Data.DataSetExtensions"/>
-        <Reference Include="System.Net.Http"/>
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="System.Net.Http" />
         <Reference Include="System.Xaml">
             <RequiredTargetFramework>4.0</RequiredTargetFramework>
         </Reference>
-        <Reference Include="WindowsBase"/>
-        <Reference Include="PresentationCore"/>
-        <Reference Include="PresentationFramework"/>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
         <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
             <HintPath>packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
         </Reference>
@@ -100,45 +100,45 @@
         <Compile Include="AppointmentList.xaml.cs">
             <DependentUpon>AppointmentList.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Controller\AccountController.cs"/>
-        <Compile Include="Controller\EquipmentController.cs"/>
-        <Compile Include="Controller\EquipmentTransferController.cs"/>
-        <Compile Include="Controller\RenovationController.cs"/>
-        <Compile Include="DataHandler\AccountDataHandler.cs"/>
-        <Compile Include="DataHandler\DoctorDataHandler.cs"/>
-        <Compile Include="DataHandler\EquipmentDataHandler.cs"/>
-        <Compile Include="DataHandler\PatientDataHandler.cs"/>
-        <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs"/>
-        <Compile Include="DataHandler\RenovationDataHandler.cs"/>
-        <Compile Include="Interfaces\IUpdateFilesObservable.cs"/>
-        <Compile Include="Interfaces\IUpdateFilesObserver.cs"/>
-        <Compile Include="Model\Address.cs"/>
-        <Compile Include="Model\City.cs"/>
-        <Compile Include="Model\RelocationAppointment.cs"/>
-        <Compile Include="Model\RenovationAppointment.cs"/>
-        <Compile Include="Model\TimeInterval.cs"/>
-        <Compile Include="Model\User.cs"/>
-        <Compile Include="Model\Equipment.cs"/>
-        <Compile Include="Model\RoomEquipment.cs"/>
+        <Compile Include="Controller\AccountController.cs" />
+        <Compile Include="Controller\EquipmentController.cs" />
+        <Compile Include="Controller\EquipmentTransferController.cs" />
+        <Compile Include="Controller\RenovationController.cs" />
+        <Compile Include="DataHandler\AccountDataHandler.cs" />
+        <Compile Include="DataHandler\DoctorDataHandler.cs" />
+        <Compile Include="DataHandler\EquipmentDataHandler.cs" />
+        <Compile Include="DataHandler\PatientDataHandler.cs" />
+        <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
+        <Compile Include="DataHandler\RenovationDataHandler.cs" />
+        <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
+        <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
+        <Compile Include="Model\Address.cs" />
+        <Compile Include="Model\City.cs" />
+        <Compile Include="Model\RelocationAppointment.cs" />
+        <Compile Include="Model\RenovationAppointment.cs" />
+        <Compile Include="Model\TimeInterval.cs" />
+        <Compile Include="Model\User.cs" />
+        <Compile Include="Model\Equipment.cs" />
+        <Compile Include="Model\RoomEquipment.cs" />
         <Compile Include="PatientUpdate.xaml.cs">
             <DependentUpon>PatientUpdate.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Repository\AccountRepository.cs"/>
-        <Compile Include="Repository\DoctorRepository.cs"/>
-        <Compile Include="Repository\EquipmentRepository.cs"/>
-        <Compile Include="Repository\PatientRepository.cs"/>
-        <Compile Include="Repository\RenovationRepository.cs"/>
-        <Compile Include="Service\RenovationService.cs"/>
-        <Compile Include="Utils\AppointmentPatientValidator.cs"/>
-        <Compile Include="Repository\RelocationAppointmentRepository.cs"/>
-        <Compile Include="Service\AccountService.cs"/>
-        <Compile Include="Service\EquipmentService.cs"/>
-        <Compile Include="Service\EquipmentTransferService.cs"/>
-        <Compile Include="Service\TimeSchedulerService.cs"/>
-        <Compile Include="Utils\EquipmentTransferValidator.cs"/>
-        <Compile Include="Utils\MedicalRecordValidator.cs"/>
-        <Compile Include="Utils\RenovationValidator.cs"/>
-        <Compile Include="Utils\TaskScheduleTimer.cs"/>
+        <Compile Include="Repository\AccountRepository.cs" />
+        <Compile Include="Repository\DoctorRepository.cs" />
+        <Compile Include="Repository\EquipmentRepository.cs" />
+        <Compile Include="Repository\PatientRepository.cs" />
+        <Compile Include="Repository\RenovationRepository.cs" />
+        <Compile Include="Service\RenovationService.cs" />
+        <Compile Include="Utils\AppointmentPatientValidator.cs" />
+        <Compile Include="Repository\RelocationAppointmentRepository.cs" />
+        <Compile Include="Service\AccountService.cs" />
+        <Compile Include="Service\EquipmentService.cs" />
+        <Compile Include="Service\EquipmentTransferService.cs" />
+        <Compile Include="Service\TimeSchedulerService.cs" />
+        <Compile Include="Utils\EquipmentTransferValidator.cs" />
+        <Compile Include="Utils\MedicalRecordValidator.cs" />
+        <Compile Include="Utils\RenovationValidator.cs" />
+        <Compile Include="Utils\TaskScheduleTimer.cs" />
         <Compile Include="View\Login\LoginMainWindow.xaml.cs">
             <DependentUpon>LoginMainWindow.xaml</DependentUpon>
         </Compile>
@@ -148,29 +148,35 @@
         <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
             <DependentUpon>ManagerEquipment.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Manager\ManagerRenovations.xaml.cs">
+          <DependentUpon>ManagerRenovations.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs">
+          <DependentUpon>ManagerRenovationBasic.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
             <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="PatientWindow.xaml.cs">
             <DependentUpon>PatientWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Repository\AppointmentRepository.cs"/>
-        <Compile Include="Repository\MedicalRecordsRepository.cs"/>
-        <Compile Include="Repository\RoomRepository.cs"/>
+        <Compile Include="Repository\AppointmentRepository.cs" />
+        <Compile Include="Repository\MedicalRecordsRepository.cs" />
+        <Compile Include="Repository\RoomRepository.cs" />
         <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
             <DependentUpon>SecretaryHome.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\View.Secretary\SecretaryWindow.xaml.cs">
             <DependentUpon>SecretaryWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Service\AppointmentPatientService.cs"/>
-        <Compile Include="Service\DoctorAppointmentService.cs"/>
-        <Compile Include="Service\MedicalRecordService.cs"/>
-        <Compile Include="Service\RoomService.cs"/>
+        <Compile Include="Service\AppointmentPatientService.cs" />
+        <Compile Include="Service\DoctorAppointmentService.cs" />
+        <Compile Include="Service\MedicalRecordService.cs" />
+        <Compile Include="Service\RoomService.cs" />
         <Compile Include="View\View.Secretary\UpdateRecordWindow.xaml.cs">
             <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Utils\RoomValidator.cs"/>
+        <Compile Include="Utils\RoomValidator.cs" />
         <Compile Include="View\DoctorAppointments.xaml.cs">
             <DependentUpon>DoctorAppointments.xaml</DependentUpon>
         </Compile>
@@ -221,6 +227,8 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </Page>
+        <Page Include="View\Manager\ManagerRenovations.xaml" />
+        <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
         <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
             <SubType>Designer</SubType>
             <Generator>MSBuild:Compile</Generator>
@@ -233,13 +241,13 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="Controller\AppointmentPatientController.cs"/>
-        <Compile Include="Controller\DoctorAppointmentController.cs"/>
-        <Compile Include="Controller\MedicalRecordController.cs"/>
-        <Compile Include="Controller\RoomController.cs"/>
-        <Compile Include="DataHandler\AppointmentDataHandler.cs"/>
-        <Compile Include="DataHandler\MedicalRecordDataHandler.cs"/>
-        <Compile Include="DataHandler\RoomDataHandler.cs"/>
+        <Compile Include="Controller\AppointmentPatientController.cs" />
+        <Compile Include="Controller\DoctorAppointmentController.cs" />
+        <Compile Include="Controller\MedicalRecordController.cs" />
+        <Compile Include="Controller\RoomController.cs" />
+        <Compile Include="DataHandler\AppointmentDataHandler.cs" />
+        <Compile Include="DataHandler\MedicalRecordDataHandler.cs" />
+        <Compile Include="DataHandler\RoomDataHandler.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
@@ -300,11 +308,11 @@
         </Page>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Model\Appointment.cs"/>
-        <Compile Include="Model\Doctor.cs"/>
-        <Compile Include="Model\MedicalRecord.cs"/>
-        <Compile Include="Model\Patient.cs"/>
-        <Compile Include="Model\Room.cs"/>
+        <Compile Include="Model\Appointment.cs" />
+        <Compile Include="Model\Doctor.cs" />
+        <Compile Include="Model\MedicalRecord.cs" />
+        <Compile Include="Model\Patient.cs" />
+        <Compile Include="Model\Room.cs" />
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
         </Compile>
@@ -322,29 +330,29 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-        <None Include="packages.config"/>
+        <None Include="packages.config" />
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\rooms.txt"/>
+        <Resource Include="Resources\rooms.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\medicalRecord.txt"/>
+        <Resource Include="Resources\medicalRecord.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\patient.txt"/>
+        <Resource Include="Resources\patient.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\appointment.txt"/>
+        <Resource Include="Resources\appointment.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\doctor.txt"/>
+        <Resource Include="Resources\doctor.txt" />
     </ItemGroup>
     <ItemGroup>
         <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -359,17 +367,17 @@
         </BootstrapperPackage>
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\equipment.txt"/>
+        <Resource Include="Resources\equipment.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\relocation_appointments.txt"/>
+        <Resource Include="Resources\relocation_appointments.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Resource Include="Resources\accounts.txt"/>
+        <Resource Include="Resources\accounts.txt" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="Resources\allergens.txt"/>
-        <Content Include="Resources\renovation_appointments.txt"/>
+        <Content Include="Resources\allergens.txt" />
+        <Content Include="Resources\renovation_appointments.txt" />
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
