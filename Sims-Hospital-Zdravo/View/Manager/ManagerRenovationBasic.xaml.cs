@@ -21,8 +21,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
         public ManagerRenovationBasic()
         {
             app = Application.Current as App;
-            this.renovationController = app.renovationController;
-            this.roomController = app.roomController;
+            this.renovationController = app._renovationController;
+            this.roomController = app._roomController;
             InitializeComponent();
 
             RenovationRooms.ItemsSource = roomController.ReadAll();

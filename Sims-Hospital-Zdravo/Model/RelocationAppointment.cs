@@ -11,101 +11,51 @@ namespace Model
 {
     public class RelocationAppointment
     {
-        private TimeInterval Scheduled;
-        private RoomEquipment RoomEquipment;
-        private int Id;
-        private Room FromRoom;
-        private Room ToRoom;
-        private bool Allocated;
+        private TimeInterval _scheduled;
+        private RoomEquipment _roomEquipment;
+        private int _id;
+        private Room _fromRoom;
+        private Room _toRoom;
 
         public RelocationAppointment(Room fromRoom, Room toRoom, TimeInterval ti, RoomEquipment re, int id)
         {
-            this.FromRoom = fromRoom;
-            this.ToRoom = toRoom;
-            this.Scheduled = ti;
-            this.RoomEquipment = re;
-            this.Id = id;
-            this.Allocated = false;
+            this._fromRoom = fromRoom;
+            this._toRoom = toRoom;
+            this._scheduled = ti;
+            this._roomEquipment = re;
+            this._id = id;
         }
 
-        public Room _FromRoom
+        public Room FromRoom
         {
-            get
-            {
-                return FromRoom;
-            }
-            set
-            {
-                if (this.FromRoom != value)
-                    this.FromRoom = value;
-            }
+            get { return _fromRoom; }
+            set { this._fromRoom = value; }
         }
 
-        public Room _ToRoom
+        public Room ToRoom
         {
-            get
-            {
-                return ToRoom;
-            }
-            set
-            {
-                if (this.ToRoom != value)
-                    this.ToRoom = value;
-            }
+            get { return _toRoom; }
+            set { this._toRoom = value; }
         }
 
-        public TimeInterval _Scheduled
+        public TimeInterval Scheduled
         {
-            get
-            {
-                return Scheduled;
-            }
-            set
-            {
-                if (this.Scheduled != value)
-                    this.Scheduled = value;
-            }
+            get { return _scheduled; }
+            set { this._scheduled = value; }
         }
 
-        public bool _Allocated
+        public RoomEquipment RoomEquipment
         {
-            get
-            {
-                return Allocated;
-            }
-            set
-            {
-                if (this.Allocated != value)
-                    this.Allocated = value;
-            }
+            get { return _roomEquipment; }
+
+            set { this._roomEquipment = value; }
         }
 
-        public RoomEquipment _RoomEquipment
+        public int Id
         {
-            get
-            {
-                return RoomEquipment;
-            }
+            get { return _id; }
 
-            set
-            {
-                if (this.RoomEquipment != value)
-                    this.RoomEquipment = value;
-            }
+            set { _id = value; }
         }
-
-        public int _Id
-        {
-            get
-            {
-                return Id;
-            }
-
-            set
-            {
-                Id = value;
-            }
-        }
-
     }
 }

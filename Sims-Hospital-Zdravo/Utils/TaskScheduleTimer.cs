@@ -18,13 +18,13 @@ namespace Sims_Hospital_Zdravo.Utils
     class TaskScheduleTimer
     {
         public static Timer timer;
-        private EquipmentTransferController relocationController;
-        private RenovationController renovationController;
+        private EquipmentTransferController _relocationController;
+        private RenovationController _renovationController;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController)
         {
-            this.relocationController = relocationController;
-            this.renovationController = renovationController;
+            this._relocationController = relocationController;
+            this._renovationController = renovationController;
             SetTimer();
         }
 
@@ -46,24 +46,24 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckIfRelocationAppointmentDone()
         {
-            List<RelocationAppointment> appointments = relocationController.ReadAll();
+            List<RelocationAppointment> appointments = _relocationController.ReadAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
-                if (app._Scheduled.End.CompareTo(DateTime.Now) < 0)
+                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
-                    relocationController.FinishRelocationAppointment(app._Id);
+                    _relocationController.FinishRelocationAppointment(app.Id);
                 }
             }
         }
 
         private void CheckIfRenovationAppointmentDone()
         {
-            List<RenovationAppointment> renovations = renovationController.ReadAll();
+            List<RenovationAppointment> renovations = _renovationController.ReadAll();
             foreach (RenovationAppointment renovation in renovations)
             {
-                if (renovation._Time.End.Date.CompareTo(DateTime.Now.Date) < 0)
+                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) < 0)
                 {
-                    renovationController.FinishRenovationAppointment(renovation._Id);
+                    _renovationController.FinishRenovationAppointment(renovation.Id);
                 }
             }
         }

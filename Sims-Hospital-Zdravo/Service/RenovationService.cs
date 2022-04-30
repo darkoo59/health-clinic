@@ -14,26 +14,24 @@ namespace Sims_Hospital_Zdravo.Service
 {
     public class RenovationService
     {
-        private RenovationRepository renovationRepository;
-        private RoomRepository roomRepository;
+        private RenovationRepository _renovationRepository;
         private TimeSchedulerService timeSchedulerService;
-        private RenovationValidator renovationValidator;
+        private RenovationValidator _renovationValidator;
 
         public RenovationService(RenovationRepository renovationRepository, TimeSchedulerService timeSchedulerService,
             RoomRepository roomRepository)
         {
-            this.renovationRepository = renovationRepository;
+            this._renovationRepository = renovationRepository;
             this.timeSchedulerService = timeSchedulerService;
-            this.roomRepository = roomRepository;
-            renovationValidator = new RenovationValidator(roomRepository, renovationRepository, timeSchedulerService);
+            _renovationValidator = new RenovationValidator(roomRepository, renovationRepository, timeSchedulerService);
         }
 
         public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type,
             string description)
         {
-            renovationValidator.ValidateRenovation(room, time);
+            _renovationValidator.ValidateRenovation(room, time);
             RenovationAppointment renovationAppointment = new RenovationAppointment(time, room, description, type, GenerateId());
-            renovationRepository.Create(renovationAppointment);
+            _renovationRepository.Create(renovationAppointment);
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)
@@ -44,38 +42,38 @@ namespace Sims_Hospital_Zdravo.Service
 
         public void FinishRenovationAppointment(int renovationId)
         {
-            renovationRepository.DeleteById(renovationId);
+            _renovationRepository.DeleteById(renovationId);
         }
 
         public void Create(RenovationAppointment renovation)
         {
-            renovationRepository.Create(renovation);
+            _renovationRepository.Create(renovation);
         }
 
         public void Update(RenovationAppointment renovation)
         {
-            renovationRepository.Update(renovation);
+            _renovationRepository.Update(renovation);
         }
 
         public void Delete(RenovationAppointment renovation)
         {
-            renovationRepository.Delete(renovation);
+            _renovationRepository.Delete(renovation);
         }
 
         public List<RenovationAppointment> ReadAll()
         {
-            return renovationRepository.ReadAll();
+            return _renovationRepository.ReadAll();
         }
 
         public List<RenovationAppointment> FindByType(RenovationType type)
         {
-            return renovationRepository.FindByType(type);
+            return _renovationRepository.FindByType(type);
         }
 
         private int GenerateId()
         {
-            List<RenovationAppointment> appointments = renovationRepository.ReadAll();
-            List<int> ids = new List<int>(appointments.Select(x => x._Id));
+            List<RenovationAppointment> appointments = _renovationRepository.ReadAll();
+            List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;
 

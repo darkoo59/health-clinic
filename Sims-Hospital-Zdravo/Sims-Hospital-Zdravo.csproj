@@ -159,6 +159,8 @@
         <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
             <DependentUpon>ManagerEquipment.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs"/>
+        <Compile Include="View\Manager\ManagerRenovations.xaml.cs"/>
         <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
             <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
         </Compile>
@@ -232,6 +234,8 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </Page>
+        <Page Include="View\Manager\ManagerRenovationBasic.xaml"/>
+        <Page Include="View\Manager\ManagerRenovations.xaml"/>
         <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
             <SubType>Designer</SubType>
             <Generator>MSBuild:Compile</Generator>

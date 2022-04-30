@@ -45,7 +45,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private void RoomData_Changed(object sender, SelectionChangedEventArgs e)
         {
             Room room = (Room)ComboFromRoom.SelectedItem;
-            ComboEquipment.ItemsSource = room._RoomEquipment;
+            ComboEquipment.ItemsSource = room.RoomEquipment;
             UpdateTimeIntervals();
         }
 
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 int quantity = Int32.Parse(Quantity.Text);
                 DateTime start = (DateTime)IntervalStarts.Value;
                 DateTime end = start.AddMinutes(minutes);
-                equipmentTransferController.MakeRelocationAppointment(roomFrom._Id, roomTo._Id, eq._Equip, quantity, new TimeInterval(start, end));
+                equipmentTransferController.MakeRelocationAppointment(roomFrom.Id, roomTo.Id, eq.Equipment, quantity, new TimeInterval(start, end));
                 Close();
             }
             catch (Exception ex)

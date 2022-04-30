@@ -23,6 +23,7 @@ namespace Sims_Hospital_Zdravo
     public partial class MainWindow : Window
     {
         App app;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,29 +32,30 @@ namespace Sims_Hospital_Zdravo
 
         private void Patient_Click(object sender, RoutedEventArgs e)
         {
-            AppointmentPatientController appointmentPatientController = app.appointmentPatientController;
-           // PatientWindow pw = new PatientWindow(appointmentPatientController);
-           // pw.Show();
+            AppointmentPatientController appointmentPatientController = app._appointmentPatientController;
+            // PatientWindow pw = new PatientWindow(appointmentPatientController);
+            // pw.Show();
         }
 
         private void Secretary_Click(object sender, RoutedEventArgs e)
         {
-            MedicalRecordController medicalController = app.recordController;
-          //  SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
-           // secretaryHomeWindow.Show();
+            MedicalRecordController medicalController = app._recordController;
+            //  SecretaryHome secretaryHomeWindow = new SecretaryHome(medicalController);
+            // secretaryHomeWindow.Show();
         }
+
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
             ManagerDashboard manDash = new ManagerDashboard();
             manDash.Show();
-
         }
+
         private void Doctor_Click(object sender, RoutedEventArgs e)
         {
-            DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
-            RoomController roomControl = app.roomController;
-          //  DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController,roomControl);
-          //  doctorCRUD.Show();
+            DoctorAppointmentController doctorAppController = app._doctorAppointmentController;
+            RoomController roomControl = app._roomController;
+            //  DoctorCRUDWindow doctorCRUD = new DoctorCRUDWindow(doctorAppController,roomControl);
+            //  doctorCRUD.Show();
         }
     }
 }

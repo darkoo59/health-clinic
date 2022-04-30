@@ -11,24 +11,24 @@ namespace Utils
 {
     class EquipmentTransferValidator
     {
-        private RoomRepository roomRepo;
-        private TimeSchedulerService timeSchedulerService;
+        private RoomRepository _roomRepo;
+        private TimeSchedulerService _timeSchedulerService;
 
 
         public EquipmentTransferValidator(RoomRepository roomRepo, TimeSchedulerService timeSchedulerService)
         {
-            this.roomRepo = roomRepo;
-            this.timeSchedulerService = timeSchedulerService;
+            this._roomRepo = roomRepo;
+            this._timeSchedulerService = timeSchedulerService;
         }
 
 
         private void HasEnoughEquipment(int roomId, int quantity, int equipmentId)
         {
-            Room room = roomRepo.FindById(roomId);
-            foreach (RoomEquipment re in room._RoomEquipment)
+            Room room = _roomRepo.FindById(roomId);
+            foreach (RoomEquipment re in room.RoomEquipment)
             {
-                if (re._Equip._Id != equipmentId) continue;
-                if (re._Quantity < quantity)
+                if (re.Equipment.Id != equipmentId) continue;
+                if (re.Quantity < quantity)
                 {
                     throw new Exception("Not enough equipment for transfer!");
                 }
@@ -37,7 +37,7 @@ namespace Utils
 
         private void RoomExists(int roomId)
         {
-            Room room = roomRepo.FindById(roomId);
+            Room room = _roomRepo.FindById(roomId);
             if (room == null)
                 throw new Exception("Room number " + roomId + " does not exist!");
         }
@@ -45,7 +45,7 @@ namespace Utils
 
         private void ValidateRoomTaken(int roomId, TimeInterval ti)
         {
-            if (!timeSchedulerService.IsRoomFreeInInterval(roomId, ti))
+            if (!_timeSchedulerService.IsRoomFreeInInterval(roomId, ti))
             {
                 throw new Exception("Room " + roomId + " is not free in given interval!");
             }

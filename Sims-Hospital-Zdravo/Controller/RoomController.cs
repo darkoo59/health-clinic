@@ -16,45 +16,42 @@ namespace Controller
 {
     public class RoomController
     {
-        public RoomService roomService;
+        public RoomService _roomService;
 
 
         public RoomController(RoomService roomService)
         {
-            this.roomService = roomService;
+            this._roomService = roomService;
         }
+
         public void Create(Room room)
         {
-            roomService.Create(room);
+            _roomService.Create(room);
         }
 
         public ref ObservableCollection<Room> ReadAll()
         {
-            return ref roomService.ReadAll();
+            return ref _roomService.ReadAll();
         }
 
         public void Update(Room room)
         {
-            roomService.Update(room);
+            _roomService.Update(room);
         }
 
         public void Delete(Room room)
         {
-            roomService.Delete(room);
+            _roomService.Delete(room);
         }
 
         public Room FindById(int id)
         {
-            return roomService.FindById(id);
+            return _roomService.FindById(id);
         }
 
         public void DeleteById(int id)
         {
-            roomService.DeleteById(id);
+            _roomService.DeleteById(id);
         }
-
-
-
-
     }
 }

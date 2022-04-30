@@ -10,11 +10,11 @@ using System.Collections.ObjectModel;
 
 namespace DataHandler
 {
-   public class EquipmentDataHandler
-   {
+    public class EquipmentDataHandler
+    {
         public ObservableCollection<Equipment> ReadAll()
         {
-            string equipmentSerialized = System.IO.File.ReadAllText(Path);
+            string equipmentSerialized = System.IO.File.ReadAllText(_path);
             ObservableCollection<Equipment> equipment = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Equipment>>(equipmentSerialized);
             return equipment;
         }
@@ -22,10 +22,9 @@ namespace DataHandler
         public void Write(ObservableCollection<Equipment> equipment)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(equipment);
-            System.IO.File.WriteAllText(Path, serialized);
+            System.IO.File.WriteAllText(_path, serialized);
         }
 
-        private string Path = @"..\..\Resources\equipment.txt";
-
+        private string _path = @"..\..\Resources\equipment.txt";
     }
 }

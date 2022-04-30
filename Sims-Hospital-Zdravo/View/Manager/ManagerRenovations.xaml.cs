@@ -12,7 +12,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
         public ManagerRenovations()
         {
             app = Application.Current as App;
-            this.renovationController = app.renovationController;
+            this.renovationController = app._renovationController;
             InitializeComponent();
 
             RenovationsTable.ItemsSource = renovationController.ReadAll();

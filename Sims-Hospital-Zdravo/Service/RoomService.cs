@@ -10,23 +10,25 @@ using System.Collections.ObjectModel;
 using Model;
 using Repository;
 using Sims_Hospital_Zdravo.Utils;
+
 namespace Service
 {
     public class RoomService
     {
-
-        private RoomValidator validator;
+        private RoomValidator _validator;
 
         public RoomService(RoomRepository roomRepository)
         {
             this.roomRepository = roomRepository;
-            validator = new RoomValidator(this);
+            _validator = new RoomValidator(this);
         }
+
         public void Create(Room room)
         {
-            validator.ValidateCreate(room);
+            _validator.ValidateCreate(room);
             roomRepository.Create(room);
         }
+
         public ref ObservableCollection<Room> ReadAll()
         {
             return ref roomRepository.ReadAll();
@@ -34,13 +36,13 @@ namespace Service
 
         public void Update(Room room)
         {
-            validator.ValidateUpdate(room);
+            _validator.ValidateUpdate(room);
             roomRepository.Update(room);
         }
 
         public void Delete(Room room)
         {
-            validator.ValidateDelete(room);
+            _validator.ValidateDelete(room);
             roomRepository.Delete(room);
         }
 
@@ -56,11 +58,10 @@ namespace Service
 
         public void DeleteById(int id)
         {
-            validator.ValidateDelete(id);
+            _validator.ValidateDelete(id);
             roomRepository.DeleteById(id);
         }
 
         public RoomRepository roomRepository;
-
     }
 }

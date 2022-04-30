@@ -11,7 +11,7 @@ namespace Sims_Hospital_Zdravo.DataHandler
     {
         public List<RenovationAppointment> ReadAll()
         {
-            string renovationSerialized = System.IO.File.ReadAllText(Path);
+            string renovationSerialized = System.IO.File.ReadAllText(_path);
             List<RenovationAppointment> renovations =
                 Newtonsoft.Json.JsonConvert.DeserializeObject<List<RenovationAppointment>>(renovationSerialized);
             return renovations;
@@ -20,9 +20,9 @@ namespace Sims_Hospital_Zdravo.DataHandler
         public void Write(List<RenovationAppointment> renovations)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(renovations);
-            System.IO.File.WriteAllText(Path, serialized);
+            System.IO.File.WriteAllText(_path, serialized);
         }
 
-        private string Path = @"..\..\Resources\renovation_appointments.txt";
+        private string _path = @"..\..\Resources\renovation_appointments.txt";
     }
 }

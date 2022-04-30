@@ -24,22 +24,16 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorCRUDWindow : Window, IUpdateFilesObserver
     {
-
         public ObservableCollection<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;
         public RoomController roomController;
         private Appointment app;
         private App application;
+
         public Appointment App
         {
-            get
-            {
-                return this.app;
-            }
-            set
-            {
-                this.app = value;
-            }
+            get { return this.app; }
+            set { this.app = value; }
         }
 
         public DoctorCRUDWindow()
@@ -47,26 +41,26 @@ namespace Sims_Hospital_Zdravo.View
             application = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.roomController = application.roomController;
-            this.doctorAppController = application.doctorAppointmentController;
+            this.roomController = application._roomController;
+            this.doctorAppController = application._doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
 
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
-            
-                DataGridTextColumn data_column = new DataGridTextColumn();
-                data_column.Header = "Start Time";
-                data_column.Binding = new Binding("_Time.Start"); 
-                dataGridDoctorApps.Columns.Add(data_column);
+
+            DataGridTextColumn data_column = new DataGridTextColumn();
+            data_column.Header = "Start Time";
+            data_column.Binding = new Binding("_Time.Start");
+            dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Start Time";
             data_column.Binding = new Binding("_Time.End");
 
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
-                data_column.Header = "Patient Name";
-                data_column.Binding = new Binding("_Patient._Name");
-                dataGridDoctorApps.Columns.Add(data_column);
+            data_column.Header = "Patient Name";
+            data_column.Binding = new Binding("_Patient._Name");
+            dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient Surname";
             data_column.Binding = new Binding("_Patient._Surname");
@@ -82,11 +76,8 @@ namespace Sims_Hospital_Zdravo.View
             dataGridDoctorApps.Columns.Add(data_column);
 
 
-
-
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
             dataGridDoctorApps.Items.Refresh();
-
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -122,20 +113,15 @@ namespace Sims_Hospital_Zdravo.View
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-
             DoctorCreateAppointment addAppointment = new DoctorCreateAppointment(doctorAppController, roomController);
             addAppointment.AddObserver(this);
             addAppointment.Show();
-
         }
 
         public void NotifyUpdated()
         {
             DoctorAppointments = doctorAppController.ReadAll(2);
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
-
         }
     }
-
-
 }

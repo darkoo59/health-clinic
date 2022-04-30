@@ -32,10 +32,10 @@ namespace Sims_Hospital_Zdravo.View
         public ManagerDashboard()
         {
             app = Application.Current as App;
-            this.roomController = app.roomController;
-            this.equipmentController = app.equipmentController;
-            this.equipmentTransferController = app.equipmentTransferController;
-            this.renovationController = app.renovationController;
+            this.roomController = app._roomController;
+            this.equipmentController = app._equipmentController;
+            this.equipmentTransferController = app._equipmentTransferController;
+            this.renovationController = app._renovationController;
             InitializeComponent();
         }
 

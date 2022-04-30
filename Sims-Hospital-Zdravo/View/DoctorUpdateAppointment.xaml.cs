@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 //using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View
@@ -23,13 +24,14 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for DoctorUpdateAppointment.xaml
     /// </summary>
-    public partial class DoctorUpdateAppointment : Window 
+    public partial class DoctorUpdateAppointment : Window
     {
         private DoctorAppointmentController docController;
         private RoomController roomControl;
         public ObservableCollection<string> Patients;
         private int id_app;
-        public DoctorUpdateAppointment(DoctorAppointmentController docController,Appointment app,RoomController rom)
+
+        public DoctorUpdateAppointment(DoctorAppointmentController docController, Appointment app, RoomController rom)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -40,23 +42,23 @@ namespace Sims_Hospital_Zdravo.View
             foreach (Patient pat in this.docController.getPatients())
             {
                 Patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
-
             }
+
             Patientcb.ItemsSource = Patients;
             Patientcb.Text = app._Patient._Name;
-            
+
             Console.WriteLine(Patientcb.Text);
-                TimeInterval dt = app._Time;
-                DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
-                TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
-                endtime.Text = dt.End.ToString("HH:mm:ss");
-                AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
-            RoomTxt.Text = app._Room._Id.ToString();
-                id_app = app._Id;
-            
+            TimeInterval dt = app._Time;
+            DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
+            TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
+            endtime.Text = dt.End.ToString("HH:mm:ss");
+            AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
+            RoomTxt.Text = app._Room.Id.ToString();
+            id_app = app._Id;
         }
 
         private Patient pat;
+
         public Patient Pat
         {
             get { return pat; }
@@ -74,8 +76,6 @@ namespace Sims_Hospital_Zdravo.View
                 if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
 
                 {
-
-
                     Pat = pat;
                     break;
                 }
@@ -103,19 +103,14 @@ namespace Sims_Hospital_Zdravo.View
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
             Doctor doc = this.docController.getDoctor(2);
-            
-            
-            TimeInterval timeInterval = new TimeInterval(start,end);
-            Appointment appoi = new Appointment(room,doc,Pat,timeInterval,(AppointmentType)AppType.SelectedValue);
-            
+
+
+            TimeInterval timeInterval = new TimeInterval(start, end);
+            Appointment appoi = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
+
             appoi._Id = id_app;
             docController.Update(appoi);
             Close();
-
         }
-
-       
-
-        
     }
 }

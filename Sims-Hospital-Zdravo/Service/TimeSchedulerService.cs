@@ -17,22 +17,22 @@ namespace Service
 {
     public class TimeSchedulerService
     {
-        private AppointmentRepository appointmentRepository;
-        private RenovationRepository renovationRepository;
-        private RelocationAppointmentRepository relocationRepository;
+        private AppointmentRepository _appointmentRepository;
+        private RenovationRepository _renovationRepository;
+        private RelocationAppointmentRepository _relocationRepository;
 
         public TimeSchedulerService(AppointmentRepository appointmentRepository,
             RenovationRepository renovationRepository, RelocationAppointmentRepository relocationRepository)
         {
-            this.appointmentRepository = appointmentRepository;
-            this.renovationRepository = renovationRepository;
-            this.relocationRepository = relocationRepository;
+            this._appointmentRepository = appointmentRepository;
+            this._renovationRepository = renovationRepository;
+            this._relocationRepository = relocationRepository;
         }
 
         public List<TimeInterval> FindReservedTimeForRooms(Room room1, Room room2)
         {
-            List<TimeInterval> takenIntervalsRoom1 = CaptureAllTakenIntervalsForRoom(room1._Id);
-            List<TimeInterval> takenIntervalsRoom2 = CaptureAllTakenIntervalsForRoom(room2._Id);
+            List<TimeInterval> takenIntervalsRoom1 = CaptureAllTakenIntervalsForRoom(room1.Id);
+            List<TimeInterval> takenIntervalsRoom2 = CaptureAllTakenIntervalsForRoom(room2.Id);
             List<TimeInterval> takenIntervals = new List<TimeInterval>(takenIntervalsRoom1.Concat(takenIntervalsRoom2));
 
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
@@ -43,7 +43,7 @@ namespace Service
 
         public List<TimeInterval> FindReservedDatesForRoom(Room room)
         {
-            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room._Id);
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room.Id);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
             takenIntervals = CompactIntervals(takenIntervals, areIntervalsTouching, isThereGapInIntervals);
 
@@ -94,9 +94,9 @@ namespace Service
 
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
-            List<TimeInterval> takenIntervalsApp = appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
-            List<TimeInterval> takenIntervalRenovation = renovationRepository.FindTakenIntervalsForRoom(roomId);
-            List<TimeInterval> takenIntervalRelocation = relocationRepository.FindTakenIntervalsForRoom(roomId);
+            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
+            List<TimeInterval> takenIntervalRenovation = _renovationRepository.FindTakenIntervalsForRoom(roomId);
+            List<TimeInterval> takenIntervalRelocation = _relocationRepository.FindTakenIntervalsForRoom(roomId);
 
             return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }

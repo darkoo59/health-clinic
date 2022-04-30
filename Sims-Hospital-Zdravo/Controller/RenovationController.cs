@@ -12,51 +12,51 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     public class RenovationController
     {
-        private RenovationService renovationService;
+        private RenovationService _renovationService;
 
         public RenovationController(RenovationService renovationService)
         {
-            this.renovationService = renovationService;
+            this._renovationService = renovationService;
         }
 
         public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
         {
-            renovationService.MakeRenovationAppointment(time, room, type, description);
+            _renovationService.MakeRenovationAppointment(time, room, type, description);
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)
         {
-            return renovationService.GetTakenDateIntervals(room);
+            return _renovationService.GetTakenDateIntervals(room);
         }
 
         public void FinishRenovationAppointment(int renovationId)
         {
-            renovationService.FinishRenovationAppointment(renovationId);
+            _renovationService.FinishRenovationAppointment(renovationId);
         }
 
         public void Create(RenovationAppointment renovation)
         {
-            renovationService.Create(renovation);
+            _renovationService.Create(renovation);
         }
 
         public void Update(RenovationAppointment renovation)
         {
-            renovationService.Update(renovation);
+            _renovationService.Update(renovation);
         }
 
         public void Delete(RenovationAppointment renovation)
         {
-            renovationService.Delete(renovation);
+            _renovationService.Delete(renovation);
         }
 
         public List<RenovationAppointment> ReadAll()
         {
-            return renovationService.ReadAll();
+            return _renovationService.ReadAll();
         }
 
         public List<RenovationAppointment> FindByType(RenovationType type)
         {
-            return renovationService.FindByType(type);
+            return _renovationService.FindByType(type);
         }
     }
 }

@@ -22,11 +22,12 @@ namespace Sims_Hospital_Zdravo
     {
         private MedicalRecordController medicalController;
         private App app;
+
         public SecretaryHome()
         {
             app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = app.recordController;
+            this.medicalController = app._recordController;
         }
 
         private void MedicalRecordsClick(object sender, RoutedEventArgs e)
@@ -34,6 +35,5 @@ namespace Sims_Hospital_Zdravo
             SecretaryWindow secretaryWindow = new SecretaryWindow(medicalController);
             secretaryWindow.Show();
         }
-
     }
 }

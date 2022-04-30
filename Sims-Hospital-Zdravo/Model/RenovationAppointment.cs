@@ -16,57 +16,57 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class RenovationAppointment
     {
-        private int Id;
-        private TimeInterval Time;
-        private Room Room;
-        private String Description;
-        private RenovationType Type;
+        private int _id;
+        private TimeInterval _time;
+        private Room _room;
+        private String _description;
+        private RenovationType _type;
 
 
         public RenovationAppointment(TimeInterval time, Room room, String description, RenovationType type,
             int id)
         {
-            this.Time = time;
-            Description = description;
-            Room = room;
-            Id = id;
-            Type = type;
+            this._time = time;
+            _description = description;
+            _room = room;
+            _id = id;
+            _type = type;
         }
 
 
-        public int _Id
+        public int Id
         {
-            get { return Id; }
+            get { return _id; }
 
-            set { Id = value; }
+            set { _id = value; }
         }
 
-        public TimeInterval _Time
+        public TimeInterval Time
         {
-            get { return Time; }
-            set { Time = value; }
+            get { return _time; }
+            set { _time = value; }
         }
 
 
-        public Room _Room
+        public Room Room
         {
-            get { return Room; }
+            get { return _room; }
 
-            set { Room = value; }
+            set { _room = value; }
         }
 
-        public String _Description
+        public String Description
         {
-            get { return Description; }
+            get { return _description; }
 
-            set { Description = value; }
+            set { _description = value; }
         }
 
-        public RenovationType _Type
+        public RenovationType Type
         {
-            get { return Type; }
+            get { return _type; }
 
-            set { Type = value; }
+            set { _type = value; }
         }
     }
 }
