@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Model;
 
 namespace Sims_Hospital_Zdravo.Controller
 {
-    class RenovationController
+    public class RenovationController
     {
         private RenovationService renovationService;
 
@@ -21,6 +22,11 @@ namespace Sims_Hospital_Zdravo.Controller
         public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
         {
             renovationService.MakeRenovationAppointment(time, room, type, description);
+        }
+
+        public List<TimeInterval> GetTakenDateIntervals(Room room)
+        {
+            return renovationService.GetTakenDateIntervals(room);
         }
 
         public void FinishRenovationAppointment(int renovationId)
