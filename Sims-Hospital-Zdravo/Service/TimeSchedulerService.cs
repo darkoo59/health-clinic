@@ -37,7 +37,7 @@ namespace Service
 
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
             // takenIntervals = CompactIntervals(takenIntervals);
-            takenIntervals = CompactIntervals(takenIntervals, areIntervalsTouching, isThereGapInIntervals);
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
             return takenIntervals;
         }
 
@@ -45,7 +45,7 @@ namespace Service
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room.Id);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals, areIntervalsTouching, isThereGapInIntervals);
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
 
             takenIntervals = ConvertIntervalsToTakenDates(takenIntervals);
             return takenIntervals;
@@ -55,7 +55,7 @@ namespace Service
         {
             List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
             intervals = intervals.OrderBy(o => o.Start).ToList();
-            intervals = CompactIntervals(intervals, areIntervalsTouching, isThereGapInIntervals);
+            intervals = CompactIntervals(intervals, IntervalsTouching, IsThereGapInIntervals);
 
             foreach (TimeInterval app in intervals)
             {
@@ -74,7 +74,7 @@ namespace Service
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals, areIntervalsTouching, isThereGapInIntervals);
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
 
             foreach (TimeInterval takenInterval in takenIntervals)
             {
@@ -104,7 +104,7 @@ namespace Service
         private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
             List<TimeInterval> dates = new List<TimeInterval>(intervals.Select(x => new TimeInterval(x.Start.Date, x.End.Date)));
-            dates = CompactIntervals(dates, isSameOrNextDate, isThereGapInDates);
+            dates = CompactIntervals(dates, IsSameOrNextDate, IsThereGapInDates);
             return dates;
         }
 
@@ -139,22 +139,22 @@ namespace Service
         }
 
 
-        private bool isSameOrNextDate(TimeInterval timeInterval, TimeInterval dateInterval)
+        private bool IsSameOrNextDate(TimeInterval timeInterval, TimeInterval dateInterval)
         {
             return timeInterval.End.CompareTo(dateInterval.Start) == 0 || timeInterval.End.AddDays(1).CompareTo(dateInterval.Start) == 0;
         }
 
-        private bool isThereGapInDates(TimeInterval baseInterval, TimeInterval newInterval)
+        private bool IsThereGapInDates(TimeInterval baseInterval, TimeInterval newInterval)
         {
             return baseInterval.End.AddDays(1).CompareTo(newInterval.Start) < 0;
         }
 
-        private bool isThereGapInIntervals(TimeInterval baseInterval, TimeInterval newInterval)
+        private bool IsThereGapInIntervals(TimeInterval baseInterval, TimeInterval newInterval)
         {
             return baseInterval.End.CompareTo(newInterval.Start) < 0;
         }
 
-        private bool areIntervalsTouching(TimeInterval baseInterval, TimeInterval newInterval)
+        private bool IntervalsTouching(TimeInterval baseInterval, TimeInterval newInterval)
         {
             return baseInterval.End.CompareTo(newInterval.Start) == 0;
         }
