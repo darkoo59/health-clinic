@@ -104,5 +104,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             GridAppointments.ItemsSource = appointments;
 
         }
+
+        private void Schedule_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateChoosePatientWindow choosePatient = new UpdateChoosePatientWindow(secretaryAppointmentController);
+            choosePatient.Show();
+        }
     }
 }

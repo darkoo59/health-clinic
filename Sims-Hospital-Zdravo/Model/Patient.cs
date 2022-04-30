@@ -20,5 +20,10 @@ namespace Model
             this._Jmbg = jmbg;
             this._PhoneNumber = phoneNumber;
         }
+
+    public override string ToString()
+    {
+        return _Name + " " + _Surname + " " + ",JMBG:"+_Jmbg;
+    }
    }
 }

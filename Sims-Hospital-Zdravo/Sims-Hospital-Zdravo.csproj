@@ -151,6 +151,9 @@
     <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
       <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChoosePatientWindow.xaml.cs">
+      <DependentUpon>UpdateChoosePatientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChoosePatientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

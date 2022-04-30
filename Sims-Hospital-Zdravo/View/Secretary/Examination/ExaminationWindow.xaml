@@ -9,7 +9,7 @@
     <Grid>
         <DatePicker x:Name="appointmentsDatePicker" SelectedDateChanged="appDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="39,29,0,0" VerticalAlignment="Top" Height="30" Width="125"/>
         <DataGrid x:Name="GridAppointments" HorizontalAlignment="Left" Height="292" Margin="39,91,0,0" VerticalAlignment="Top" Width="712"/>
-        <Button Content="Schedule" HorizontalAlignment="Left" Margin="214,29,0,0" VerticalAlignment="Top" Width="89" Height="30"/>
+        <Button Content="Schedule" HorizontalAlignment="Left" Margin="214,29,0,0" VerticalAlignment="Top" Width="89" Height="30" Click="Schedule_Click"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="342,29,0,0" VerticalAlignment="Top" Width="89" Height="30" Click="Cancel_Click"/>
         <Button Content="Reschedule" HorizontalAlignment="Left" Margin="477,29,0,0" VerticalAlignment="Top" Width="89" Height="30" Click="Reschedule_Click"/>
 

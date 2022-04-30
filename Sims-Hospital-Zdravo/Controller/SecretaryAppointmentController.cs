@@ -29,5 +29,10 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             secretaryAppointmenService.Update(appointmentToUpdate);
         }
+
+        public ObservableCollection<Patient> ReadAllPatients()
+        {
+            return secretaryAppointmenService.ReadAllPatients();
+        }
     }
 }
