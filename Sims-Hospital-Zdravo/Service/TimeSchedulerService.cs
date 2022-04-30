@@ -75,8 +75,8 @@ namespace Service
             List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
             foreach (Appointment app in appointments)
             {
-                DateTime startDate = app._DateAndTime.Date;
-                DateTime endDate = app._DateAndTime.AddMinutes(30).Date;
+                DateTime startDate = app._Time.Start.Date;
+                DateTime endDate = app._Time.End.Date;
                 DateTime startDateNew = ti.Start.Date;
                 DateTime endDateNew = ti.End.Date;
 

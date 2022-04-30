@@ -35,13 +35,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow();
             CrudWindow.Show();
         }
-
-        
-
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments MyAppointments = new MyAppointments();
-            MyAppointments.Show();
+            MyAppointments myAppointments = new MyAppointments();
+            myAppointments.Show();
 
         }
     }

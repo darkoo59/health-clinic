@@ -26,7 +26,6 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private PatientMedicalRecordController PatientMedicalRecordController;
         public ObservableCollection<Appointment> appointmentsScheduled;
         private App app;
-        private DateTime AppointmentDate;
         public MyAppointments( )
         {
             app = App.Current as App;
@@ -38,7 +37,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.appointmentsScheduled = docController.GetByDoctorID(2);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
             DoctorAppointments.AutoGenerateColumns = false;
-            //Button btnmedical = new Button();
+            Button btnmedical = new Button();
            
              DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Start Time";
@@ -74,7 +73,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         }
 
-        
+        private void DoctorAppointments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -85,16 +87,5 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             medRed.Show();
 
         }
-
-        private void AppointmentShow_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-             AppointmentDate = AppointmentShow.SelectedDate.Value;
-            this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
-            this.DoctorAppointments.ItemsSource = appointmentsScheduled;
-
-
-        }
-
-        
     }
 }

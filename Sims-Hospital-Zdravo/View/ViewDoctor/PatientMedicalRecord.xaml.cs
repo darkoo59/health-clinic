@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -26,6 +27,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController _medicalRecordController;
         private PatientMedicalRecordController patMedRecordController;
         private MedicalRecord medRecord;
+        private Sims_Hospital_Zdravo.Model.Allergens allergens;
 
         public MedicalRecord _MedicalRecord
         {
@@ -68,6 +70,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             binding = new Binding("_Patient._Jmbg");
             uid.SetBinding(TextBlock.TextProperty, binding);
+            
+            
+
+            
+            
+            AllergensBox.DataContext = med;
+            AllergensBox.ItemsSource = med._Allergens;
 
 
         }

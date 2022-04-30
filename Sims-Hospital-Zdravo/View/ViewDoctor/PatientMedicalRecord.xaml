@@ -23,5 +23,11 @@
         <TextBlock TextWrapping="Wrap" Name="marital"  Margin="165,253,509,145"/>
         <TextBlock TextWrapping="Wrap" Text="UID:" Margin="34,308,640,89"/>
         <TextBlock TextWrapping="Wrap" Name="uid"  Margin="141,295,533,102"/>
+        <TextBlock TextWrapping="Wrap" Text="Allergens:" Margin="228,47,446,350"/>
+        <ListBox Name="AllergensBox" Margin="287,47,400,276">
+         
+        </ListBox>
+        <Button Content="Write report" Margin="272,282,431,110"/>
+        <Button Content="Presciption" Margin="481,282,222,110"/>
     </Grid>
 </Window>

@@ -66,6 +66,12 @@ namespace Controller
             this.doctorAppointmentService = AppService;
         }
 
-        
+        public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
+        {
+            return doctorAppointmentService.FilterAppointmentsByDate(date);
+
+
+        }
+
     }
 }

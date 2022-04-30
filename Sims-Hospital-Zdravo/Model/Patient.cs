@@ -4,13 +4,15 @@
  * Purpose: Definition of the Class Model.Patient
  ***********************************************************************/
 
+using Sims_Hospital_Zdravo.Model;
 using System;
 
 namespace Model
 {
-   public class Patient : User
-   {
-    public Patient(int id,String name,String surname,DateTime birthDate,String email,String jmbg,String phoneNumber)
+    public class Patient : User
+    {
+        private Allergens allergens;
+        public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg, String phoneNumber)
         {
             this._Id = id;
             this._Name = name;
@@ -20,5 +22,18 @@ namespace Model
             this._Jmbg = jmbg;
             this._PhoneNumber = phoneNumber;
         }
+
+        public Allergens _Allergens
+            {
+            get
+            {
+                return allergens;
+            }
+            set
+            {
+                value = allergens;
+            }
+
+            }
    }
 }

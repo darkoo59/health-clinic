@@ -9,6 +9,7 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 namespace Service
 {
     public class DoctorAppointmentService
@@ -86,6 +87,17 @@ namespace Service
                 id++;
             }
             return id;
+
+        }
+
+        public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
+        {
+            var AppointmentsDate = appointmentRepository.FindByDoctorId(2);
+            var appDate = AppointmentsDate.Where(i => i._Time.Start.Date == date).ToList();
+            AppointmentsDate = new ObservableCollection<Appointment>(appDate);
+
+            return AppointmentsDate;
+
 
         }
 

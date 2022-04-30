@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DataHandler;
-
+using System.Linq;
 namespace Repository
 {
     public class AppointmentRepository
@@ -81,6 +81,8 @@ namespace Repository
                     doctorsApps.Add(app);
                 }
             }
+             var doctorsapps = doctorsApps.OrderBy(i => i._Time.Start.Date).ToList();
+            doctorsApps =  new ObservableCollection<Appointment> (doctorsapps);
             return doctorsApps;
         }
 
@@ -158,7 +160,7 @@ namespace Repository
             return apps;
         }
 
-
+        
 
 
 
