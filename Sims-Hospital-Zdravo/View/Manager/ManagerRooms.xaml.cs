@@ -12,6 +12,7 @@ namespace Sims_Hospital_Zdravo.View
     public partial class ManagerRooms : Window
     {
         private RoomController roomController;
+
         public ManagerRooms(RoomController roomController)
         {
             InitializeComponent();
@@ -24,12 +25,12 @@ namespace Sims_Hospital_Zdravo.View
         {
             ManagerInsertRoom managerInRoom = new ManagerInsertRoom(roomController);
             managerInRoom.Show();
-
         }
 
         private void UpdateRoom_Click(object sender, RoutedEventArgs e)
         {
-            ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = roomsTable.SelectedItem};
+            ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = (Room)roomsTable.SelectedItem };
+            MessageBox.Show(((Room)roomsTable.SelectedItem).ToString());
             managerUpdateRoom.Show();
         }
 
@@ -42,7 +43,8 @@ namespace Sims_Hospital_Zdravo.View
                 {
                     roomController.Delete((Room)roomsTable.SelectedItem);
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
