@@ -31,7 +31,7 @@ namespace Sims_Hospital_Zdravo.Service
         {
             _renovationValidator.ValidateRenovation(room, time);
             RenovationAppointment renovationAppointment = new RenovationAppointment(time, room, description, type, GenerateId());
-            _renovationRepository.Create(renovationAppointment);
+            Create(renovationAppointment);
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)

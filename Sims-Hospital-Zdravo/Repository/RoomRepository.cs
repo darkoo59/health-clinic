@@ -91,7 +91,7 @@ namespace Repository
             return null;
         }
 
-        public void LoadDataFromFiles()
+        private void LoadDataFromFiles()
         {
             _rooms = _roomDataHandler.ReadAll();
             foreach (Room room in _rooms)
@@ -100,7 +100,7 @@ namespace Repository
             }
         }
 
-        public void LoadDataToFile()
+        private void LoadDataToFile()
         {
             _roomDataHandler.Write(_rooms);
         }
