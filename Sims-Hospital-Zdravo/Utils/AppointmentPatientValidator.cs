@@ -16,79 +16,138 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             this.appointmentRepository = appointmentRepository;
         }
-        public void rescheduleAppointment(Appointment appointment) 
+        public void ValidateAppointment(Appointment appointment) 
         {
-            int i;
-            int j = 365; 
-            foreach(Appointment app in appointmentRepository.FindByPatientId(1)) 
+            if (appointment._Time.Start.Hour < 8 || appointment._Time.Start.Hour > 11) 
             {
-                if (app._Id == appointment._Id) 
+                throw new Exception("Hospital works between 8h and 12h");
+            }
+            if (appointment._Time.Start.Minute != 0 && appointment._Time.Start.Minute != 30)
+            {
+                throw new Exception("Minutes must be 0 or 30");
+            }
+            DateTime now = DateTime.Now;
+            if (now.CompareTo(appointment._Time.Start) > 0) 
+            {
+                throw new Exception("You can not time travel");
+            }
+        }
+        public void RescheduleAppointment(Appointment appointment, TimeInterval timeInterval) 
+        {
+            if (timeInterval.Start.Hour < 8 || timeInterval.Start.Hour > 11)
+            {
+                throw new Exception("Hospital works between 8h and 12h");
+            }
+            if (timeInterval.Start.Minute != 0 && timeInterval.Start.Minute != 30)
+            {
+                throw new Exception("Minutes must be 0 or 30");
+            }
+            DateTime now = DateTime.Now;
+            if (now.CompareTo(timeInterval.Start) > 0)
+            {
+                throw new Exception("You can not time travel");
+            }
+            int i;
+            int j = 365;
+            int z = 365;
+            if (timeInterval.Start.Year % 4 == 0)
+            {
+                if (timeInterval.Start.Year % 100 == 0)
                 {
-                    if (app._DateAndTime.Year % 4 == 0) 
+                    if (timeInterval.Start.Year % 400 == 0)
                     {
-                        if (app._DateAndTime.Year % 100 == 0)
+                        z = 366;
+                    }
+                }
+                else z = 366;
+            }
+            foreach (Appointment app in appointmentRepository.FindByPatientId(1)) 
+            {
+                if (app._Id == appointment._Id)
+                {
+                    if (app._Time.Start.Year % 4 == 0)
+                    {
+                        if (app._Time.Start.Year % 100 == 0)
                         {
-                            if (app._DateAndTime.Year % 400 == 0)
+                            if (app._Time.Start.Year % 400 == 0)
                             {
                                 j = 366;
                             }
                         }
                         else j = 366;
                     }
-                    if (appointment._DateAndTime.Year == app._DateAndTime.Year)
+                    if (timeInterval.Start.Year == app._Time.Start.Year)
                     {
-                        if (appointment._DateAndTime.DayOfYear - app._DateAndTime.DayOfYear > 2)
+                        if (timeInterval.Start.DayOfYear - app._Time.Start.DayOfYear > 2 || app._Time.Start.DayOfYear - timeInterval.Start.DayOfYear > 2)
                         {
                             throw new Exception("You cant move appointment more than 2 days from original day");
                         }
                     }
-                    else if (appointment._DateAndTime.Year - app._DateAndTime.Year == 1)
+                    else if (timeInterval.Start.Year - app._Time.Start.Year == 1)
                     {
-                        i = appointment._DateAndTime.DayOfYear;
+                        i = timeInterval.Start.DayOfYear;
                         i = i + j;
-                        if (i - app._DateAndTime.DayOfYear > 2)
+                        if (i - app._Time.Start.DayOfYear > 2)
                         {
                             throw new Exception("You cant move appointment more than 2 days from original day");
                         }
                     }
-                    else
+                    else if (app._Time.Start.Year - timeInterval.Start.Year == 1)
                     {
-                        throw new Exception("You cant move appointment more than 2 days from original day");
+                        i = app._Time.Start.DayOfYear;
+                        i = i + z;
+                        if (i - timeInterval.Start.DayOfYear > 2)
+                        {
+                            throw new Exception("You cant move appointment more than 2 days from original day");
+                        }
                     }
                     DateTime dateTime = DateTime.Now;
-                    if (dateTime.Year == app._DateAndTime.Year)
+                    if (dateTime.Year == app._Time.Start.Year)
                     {
-                        if (app._DateAndTime.DayOfYear - dateTime.DayOfYear < 1)
+                        if (app._Time.Start.DayOfYear - dateTime.DayOfYear < 1)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._DateAndTime.DayOfYear - dateTime.DayOfYear == 1 && app._DateAndTime.Hour < dateTime.Hour)
+                        else if (app._Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app._Time.Start.Hour < dateTime.Hour)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._DateAndTime.DayOfYear - dateTime.DayOfYear == 1 && app._DateAndTime.Hour == dateTime.Hour)
+                        else if (app._Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app._Time.Start.Hour == dateTime.Hour)
                         {
-                            if (((app._DateAndTime.Minute * 60) + app._DateAndTime.Second) < ((dateTime.Minute * 60) + dateTime.Second))
+                            if (((app._Time.Start.Minute * 60) + app._Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
                             {
                                 throw new Exception("You cant change appointment less than 24 hours before appointment");
                             }
                         }
                     }
-                    else if (dateTime.Year - app._DateAndTime.Year == 1 && dateTime.DayOfYear == j && app._DateAndTime.DayOfYear == 1)
+                    else if (dateTime.Year - app._Time.Start.Year == 1 && dateTime.DayOfYear == j && app._Time.Start.DayOfYear == 1)
                     {
-                        if (app._DateAndTime.Hour < dateTime.Hour)
+                        if (app._Time.Start.Hour < dateTime.Hour)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._DateAndTime.Hour < dateTime.Hour)
+                        else if (app._Time.Start.Hour < dateTime.Hour)
                         {
-                            if (((app._DateAndTime.Minute * 60) + app._DateAndTime.Second) < ((dateTime.Minute * 60) + dateTime.Second))
+                            if (((app._Time.Start.Minute * 60) + app._Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
                             {
                                 throw new Exception("You cant change appointment less than 24 hours before appointment");
                             }
                         }
                     }
-                }   
+                }
+                else
+                {
+                    if (timeInterval.Start.CompareTo(app._Time.Start) == 0)
+                    {
+                        if (appointment._Doctor._Id == app._Doctor._Id)
+                        {
+                            if (appointment._Patient._Id != app._Patient._Id)
+                            {
+                                throw new Exception("Appointment already exists");
+                            }
+                        }
+                    }
+                }
             }
         }
     }

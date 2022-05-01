@@ -18,14 +18,14 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0">Doctor:</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="1">Date:</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="3">Priority:</TextBlock>
-        <ComboBox Grid.Column="1" Grid.Row="0" Name="Doctors" SelectionChanged="Doctors_Selected"/>
-        <DatePicker Grid.Column="1" Grid.Row="1"  Width="30" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" Name="DateOrDoctors"/>
-        <TextBlock Grid.Column="0" Grid.Row="2">Time:</TextBlock>
-        <TextBox x:Name="Time" Grid.Column="1" Grid.Row="2"></TextBox>
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Button_Click">Submit</Button>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,11,0,15" Grid.RowSpan="5">Doctor:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,42,0,-47">Date:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,149,0,-151">Priority:</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="0" Name="Doctors" SelectionChanged="Doctors_Selected" Margin="0,11,0,15" Grid.RowSpan="5"/>
+        <DatePicker Grid.Column="1" Grid.Row="4"  Width="30" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker" Margin="0,41,0,-44"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" Name="DateOrDoctors" Margin="0,149,0,-151"/>
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,91,0,-89">Time:</TextBlock>
+        <TextBox x:Name="Time" Grid.Column="1" Grid.Row="4" Margin="0,91,0,-89"></TextBox>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Button_Click" Margin="0,273,0,-273">Submit</Button>
     </Grid>
 </Window>
