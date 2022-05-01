@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,7 @@ namespace Sims_Hospital_Zdravo
         public AppointmentPatientController appointmentPatientController;
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
+        string pattern = @"\d?\d:\d\d";
 
         public PatientCreate(AppointmentPatientController appointmentPatientController)
         {
@@ -43,24 +45,24 @@ namespace Sims_Hospital_Zdravo
                 doctors.Add(doctor._Name + " " + doctor._Surname);
             }
             Doctors.ItemsSource = doctors;
+            Doctors.SelectedIndex = 1;
+            DateOrDoctors.SelectedItem = "Date";
         }
         public DateTime dateTime;
-        private DateTime _DateTime { get; set; }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            _DateTime = datePicker.SelectedDate.Value;
+            dateTime = datePicker.SelectedDate.Value;
         }
         public Doctor doctor;
-        private Doctor _Doctor { get; set; }
         private void Doctors_Selected(object sender, RoutedEventArgs e)
         {
             string name = Doctors.SelectedItem.ToString();
             string[] names = name.Split(' ');
-            foreach (Doctor doctor in this.appointmentPatientController.ReadDoctors())
+            foreach (Doctor d in this.appointmentPatientController.ReadDoctors())
             {
-                if (doctor._Name.Equals(names[0]) && doctor._Surname.Equals(names[1]))
+                if (d._Name.Equals(names[0]) && d._Surname.Equals(names[1]))
                 {
-                    _Doctor = doctor;
+                    doctor = d;
                     break;
                 }
             }
@@ -68,17 +70,35 @@ namespace Sims_Hospital_Zdravo
         Random rnd = new Random();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string[] time = Time.Text.Split(':');
-            _DateTime = _DateTime.AddHours(Int32.Parse(time[0]));
-            _DateTime = _DateTime.AddMinutes(Int32.Parse(time[1]));
-            DateTime dateTime = new DateTime(1111,11,11);
-            Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
-            TimeInterval timeInterval = new TimeInterval(_DateTime, _DateTime.AddMinutes(30));
-            Appointment appointment = new Appointment(null, _Doctor, patient, timeInterval, AppointmentType.EXAMINATION);
-            string priority = DateOrDoctors.SelectedItem.ToString();
-            AppointmentList al = new AppointmentList(appointmentPatientController,appointment,priority);
-            al.Show();
-            Close();
+            try
+            {
+                Match m = Regex.Match(Time.Text, pattern);
+                if (m.Success)
+                {
+                    string[] time = Time.Text.Split(':');
+                    dateTime = dateTime.AddHours(Int32.Parse(time[0]));
+                    dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
+                }else
+                {
+                    throw new Exception("Time format must be HH:mm (10:00)");                
+                }
+                if (datePicker.SelectedDate == null) 
+                {
+                    throw new Exception("You must pick a date");
+                }
+                DateTime dateTime1 = new DateTime(1111, 11, 11);
+                Patient patient = new Patient(1, "Jovan", "Nikic", dateTime1, "fdafdasf@gmail.com", "321341413", "+38134213");
+                TimeInterval timeInterval = new TimeInterval(dateTime, dateTime.AddMinutes(30));
+                Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
+                string priority = DateOrDoctors.SelectedItem.ToString();
+                appointmentPatientController.ValidateAppointment(appointment);
+                AppointmentList al = new AppointmentList(appointmentPatientController, appointment, priority);
+                al.Show();
+                Close();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

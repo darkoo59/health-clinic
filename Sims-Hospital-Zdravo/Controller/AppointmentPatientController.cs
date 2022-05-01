@@ -53,7 +53,16 @@ namespace Controller
         {
             return appointmentPatientService.InitializeList(appointment,priority);
         }
-      public Service.AppointmentPatientService appointmentPatientService;
+
+        public void ValidateAppointment(Appointment appointment) 
+        {
+            appointmentPatientService.ValidateAppointment(appointment);
+        }
+        public void ValidateReshedule(Appointment appointment, TimeInterval timeInterval)
+        {
+            appointmentPatientService.ValidateReschedule(appointment, timeInterval);
+        }
+        public Service.AppointmentPatientService appointmentPatientService;
    
    }
 }

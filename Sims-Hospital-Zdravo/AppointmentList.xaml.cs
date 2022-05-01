@@ -53,6 +53,19 @@ namespace Sims_Hospital_Zdravo
             data_column.Header = "Doctor Surname";
             data_column.Binding = new Binding("_Doctor._Surname");
             Apps.Columns.Add(data_column);
+            if (appointments.Contains(appointment))
+            {
+                Apps.SelectedIndex = 0;
+                Text.Text = "Your appointment is available";
+            }
+            else if (appointments.Count > 0)
+            {
+                Text.Text = "There is no available appointment with that parameters, here's some available suggestions";
+            }
+            else 
+            {
+                Text.Text = "There is no available appointment with that parameters";
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
