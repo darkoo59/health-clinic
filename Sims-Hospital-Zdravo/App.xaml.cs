@@ -28,6 +28,7 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentController _equipmentController;
         internal AccountController _accountController;
         internal RenovationController _renovationController;
+        internal PrescriptionController _prescriptionController;
         internal TaskScheduleTimer taskScheduleTimer;
 
         public App()
@@ -90,7 +91,12 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
+            PrescriptionDataHandler prescriptionDataHandler = new PrescriptionDataHandler();
+            PrescriptionRepository prescriptionRepository = new PrescriptionRepository(prescriptionDataHandler);
+            PrescriptionService prescriptionService = new PrescriptionService(prescriptionRepository);
+            _prescriptionController = new PrescriptionController(prescriptionService);
+
+            taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _prescriptionController);
         }
     }
 }
