@@ -80,8 +80,7 @@ namespace Service
             {
                 DateTime startDate = takenInterval.Start.Date;
                 DateTime endDate = takenInterval.End.Date;
-                DateTime startDate = app._Time.Start.Date;
-                DateTime endDate = app._Time.End.Date;
+                
                 DateTime startDateNew = ti.Start.Date;
                 DateTime endDateNew = ti.End.Date;
 
@@ -164,7 +163,7 @@ namespace Service
 
         public Appointment findAppointmentByDate(DateTime date, int id,Patient pat)
         {
-            foreach (Appointment app in appointmentRepository.FindByDoctorId(id))
+            foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
             {
                 if (app._Time.Start.Date.Equals(date.Date))
                 {

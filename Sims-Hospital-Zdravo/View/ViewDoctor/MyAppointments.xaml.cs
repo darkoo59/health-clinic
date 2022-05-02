@@ -62,7 +62,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DoctorAppointments.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
-            data_column.Binding = new Binding("_Room._Id");
+            data_column.Binding = new Binding("_Room.Id");
             DoctorAppointments.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();

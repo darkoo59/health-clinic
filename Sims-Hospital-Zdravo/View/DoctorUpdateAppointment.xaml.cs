@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.View
                 TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
                 endtime.Text = dt.End.ToString("HH:mm:ss");
                 AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
-                RoomTxt.Text = app._Room._Id.ToString();
+                RoomTxt.Text = app._Room.Id.ToString();
                 id_app = app._Id;
             
         }

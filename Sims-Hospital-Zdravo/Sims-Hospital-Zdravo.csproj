@@ -114,7 +114,7 @@
     <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
-    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\Adress.cs" />
     <Compile Include="Model\Allergens.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\City.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
-    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
@@ -169,6 +168,12 @@
     </Compile>
     <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
       <DependentUpon>ManagerEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs">
+      <DependentUpon>ManagerRenovationBasic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerRenovations.xaml.cs">
+      <DependentUpon>ManagerRenovations.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
@@ -258,6 +263,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Manager\ManagerEquipment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manager\ManagerRenovationBasic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manager\ManagerRenovations.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
