@@ -13,13 +13,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo
 {
     /// <summary>
     /// Interaction logic for PatientWindow.xaml
     /// </summary>
-    public partial class PatientWindow : Window
+    public partial class PatientWindow : Window, INotificationObserver
     {
         AppointmentPatientController appointmentPatientController;
         App app;
@@ -29,6 +30,7 @@ namespace Sims_Hospital_Zdravo
             app = Application.Current as App;
 
             InitializeComponent();
+            app.taskScheduleTimer.AddObserver(this);
             this.appointmentPatientController = app._appointmentPatientController;
             this.DataContext = this;
 
@@ -76,6 +78,11 @@ namespace Sims_Hospital_Zdravo
             {
                 appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
             }
+        }
+
+        public void Notify(string description)
+        {
+            MessageBox.Show(description);
         }
     }
 }

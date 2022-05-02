@@ -38,6 +38,7 @@ namespace Sims_Hospital_Zdravo
         internal PatientMedicalRecordController patientMedRecController;
         internal RenovationController renovationController;
         internal AnamnesisController anamnesisController;
+        internal TaskScheduleTimer taskScheduleTimer;
 
         public App()
         {
@@ -104,13 +105,6 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
-            patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
-            //DoctorAppointmentService doctorService = new DoctorAppointmentService();
-            AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
-            AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
-            AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
-            anamnesisController = new AnamnesisController(anamnesisService);
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
         }
     }
