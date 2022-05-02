@@ -27,22 +27,26 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentTransferController _equipmentTransferController;
         internal EquipmentController _equipmentController;
         internal AccountController _accountController;
+
         internal RenovationController _renovationController;
+
         //internal RoomController roomController;
         //internal MedicalRecordController recordController;
         //internal AppointmentPatientController appointmentPatientController;
         internal DoctorAppointmentController doctorAppointmentController;
+
         internal EquipmentTransferController equipmentTransferController;
-       // internal EquipmentController equipmentController;
-       // internal AccountController accountController;
+
+        // internal EquipmentController equipmentController;
+        // internal AccountController accountController;
         internal PatientMedicalRecordController _patientMedRecController;
+
         //internal RenovationController renovationController;
         internal AnamnesisController _anamnesisController;
-        internal TaskScheduleTimer taskScheduleTimer;
+        internal TaskScheduleTimer _taskScheduleTimer;
 
         public App()
         {
-            
             RoomDataHandler roomDataHandler = new RoomDataHandler();
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
             RoomService roomService = new RoomService(roomRepository);
@@ -89,7 +93,7 @@ namespace Sims_Hospital_Zdravo
                 renovationRepository, relocationAppointmentRepository);
 
             DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo, timeSchedulerService,roomService);
+                new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo, timeSchedulerService, roomService);
             doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
@@ -113,6 +117,8 @@ namespace Sims_Hospital_Zdravo
             AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
+
+            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
         }
     }
 }

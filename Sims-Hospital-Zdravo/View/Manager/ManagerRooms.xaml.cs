@@ -18,7 +18,7 @@ namespace Sims_Hospital_Zdravo.View
             InitializeComponent();
             this.roomController = roomController;
             this.DataContext = this;
-            roomsTable.ItemsSource = this.roomController.ReadAll();
+            RoomsTable.ItemsSource = this.roomController.ReadAll();
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
@@ -29,13 +29,13 @@ namespace Sims_Hospital_Zdravo.View
 
         private void UpdateRoom_Click(object sender, RoutedEventArgs e)
         {
-            if (roomsTable.SelectedItem == null)
+            if (RoomsTable.SelectedItem == null)
             {
                 MessageBox.Show("Room should be selected!");
                 return;
             }
 
-            ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = (Room)roomsTable.SelectedItem };
+            ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = (Room)RoomsTable.SelectedItem };
             managerUpdateRoom.Show();
         }
 
@@ -46,7 +46,7 @@ namespace Sims_Hospital_Zdravo.View
                 MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
-                    roomController.Delete((Room)roomsTable.SelectedItem);
+                    roomController.Delete((Room)RoomsTable.SelectedItem);
                 }
             }
             catch (Exception ex)

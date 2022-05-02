@@ -30,7 +30,7 @@ namespace Sims_Hospital_Zdravo
             app = Application.Current as App;
 
             InitializeComponent();
-            app.taskScheduleTimer.AddObserver(this);
+            app._taskScheduleTimer.AddObserver(this);
             this.appointmentPatientController = app._appointmentPatientController;
             this.DataContext = this;
 

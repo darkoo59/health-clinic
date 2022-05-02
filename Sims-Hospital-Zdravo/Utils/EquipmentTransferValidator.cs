@@ -51,12 +51,21 @@ namespace Utils
             }
         }
 
+        private void ValidateDateCorrect(TimeInterval ti)
+        {
+            if (ti.Start > ti.End)
+            {
+                throw new Exception("End date should be later than start date!");
+            }
+        }
+
 
         public void ValidateTransferFromRoom(int fromRoomId, int toRoomId, int equipmentId, int quantity,
             TimeInterval ti)
         {
             RoomExists(fromRoomId);
             RoomExists(toRoomId);
+            ValidateDateCorrect(ti);
             HasEnoughEquipment(fromRoomId, quantity, equipmentId);
             ValidateRoomTaken(fromRoomId, ti);
             ValidateRoomTaken(toRoomId, ti);
