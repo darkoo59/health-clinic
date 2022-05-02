@@ -43,7 +43,9 @@ namespace Sims_Hospital_Zdravo.View
 
             }
             Patientcb.ItemsSource = Patients;
-            Patientcb.Text = app._Patient._Name;
+            
+            Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app._Patient._Name + " " + app._Patient._Surname + " " + app._Patient._BirthDate.ToString()
+                );
             
             Console.WriteLine(Patientcb.Text);
                 TimeInterval dt = app._Time;
@@ -51,7 +53,7 @@ namespace Sims_Hospital_Zdravo.View
                 TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
                 endtime.Text = dt.End.ToString("HH:mm:ss");
                 AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
-            RoomTxt.Text = app._Room._Id.ToString();
+                RoomTxt.Text = app._Room._Id.ToString();
                 id_app = app._Id;
             
         }
@@ -109,7 +111,14 @@ namespace Sims_Hospital_Zdravo.View
             Appointment appoi = new Appointment(room,doc,Pat,timeInterval,(AppointmentType)AppType.SelectedValue);
             
             appoi._Id = id_app;
-            docController.Update(appoi);
+            try
+            {
+                docController.Update(appoi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             Close();
 
         }

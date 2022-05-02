@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Sims_Hospital_Zdravo.Utils;
 namespace Service
 {
     public class DoctorAppointmentService
@@ -17,12 +18,17 @@ namespace Service
         public DoctorRepository doctorRepo;
         public AppointmentRepository appointmentRepository;
         public PatientRepository patientRepository;
+        public TimeSchedulerService timeSchedulerService;
+        private AppointmentDoctorValidator validator;
+        private Appointment app;
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo)
+        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo,TimeSchedulerService timeSchedulerService,RoomService roomService)
         {
+            this.timeSchedulerService = timeSchedulerService;
             this.appointmentRepository = appointmentRepository;
             this.patientRepository = patientRepository;
             this.doctorRepo = docRepo;
+            this.validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService,roomService);
         }
         public Doctor GetDoctor(int id)
         {
@@ -30,8 +36,10 @@ namespace Service
         }
         public void Create(Appointment appointment)
         {
-            //appointment._Id = generateId();
+            validator.ValidateAppointment(appointment);
             appointmentRepository.Create(appointment);
+            
+                
         }
 
         public void DeleteByID(Appointment appointment)
@@ -56,6 +64,7 @@ namespace Service
         public void Update(Appointment appointment)
         {
             // TODO: implement
+            validator.ValidateAppointment(appointment);
             appointmentRepository.Update(appointment);
         }
 
@@ -100,6 +109,30 @@ namespace Service
 
 
         }
+        public void DeleteAfterExaminationIsDone(DateTime tl,int id ,Patient pat)
+        {
+           app =  timeSchedulerService.findAppointmentByDate(tl, id,pat);
+            appointmentRepository.Delete(app);
+        }
+
+        public Appointment FindAppointmentByDateAndPatient(DateTime date,Patient pat,int id)
+        {
+            ObservableCollection<Appointment> appointments = appointmentRepository.FindByDoctorId(id);
+            
+            foreach (Appointment appointment in appointments)
+            {
+
+                if (appointment._Time.Start.Date.Equals(date.Date) && appointment._Patient._Jmbg.Equals(pat._Jmbg))
+                {
+
+                    app = appointment;
+                }
+
+            }
+            return app;
+
+        }
+        
 
 
 

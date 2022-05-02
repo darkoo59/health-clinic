@@ -1,0 +1,14 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.AnamnesisList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="AnamnesisList" Height="450" Width="800">
+    <Grid Margin="0,0,0,0">
+        <DataGrid  Name="AnamnesisListDoctor" SelectionMode="Single"  Margin="91,170,91,47"/>
+        <Label Content="Medical reports:" Margin="91,128,590,269" />
+        <Button Content="Edit" Margin="91,44,559,348" Click="Button_Click"/>
+    </Grid>
+</Window>

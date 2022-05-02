@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
-    class RoomValidator
+    public class RoomValidator
     {
         private RoomService roomService;
 

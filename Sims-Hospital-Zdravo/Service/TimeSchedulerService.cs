@@ -132,5 +132,23 @@ namespace Service
 
             return compactedIntervals;
         }
+
+
+        public Appointment findAppointmentByDate(DateTime date, int id,Patient pat)
+        {
+            foreach (Appointment app in appointmentRepository.FindByDoctorId(id))
+            {
+                if (app._Time.Start.Date.Equals(date.Date))
+                {
+                    if (app._Patient._Jmbg.Equals(pat._Jmbg))
+                    {
+                        return app;
+                    }
+                }
+            }
+            return null;
+
+
+        }
     }
 }

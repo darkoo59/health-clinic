@@ -80,9 +80,12 @@ namespace Sims_Hospital_Zdravo.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //String date = dateTxt.Text;
-            ComboBoxItem cbItem = cbTime.SelectedItem as ComboBoxItem;
-            ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
+            
+            
+                //String date = dateTxt.Text;
+                ComboBoxItem cbItem = cbTime.SelectedItem as ComboBoxItem;
+                ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
+
 
 
             string start = cbItem.Content.ToString();
@@ -96,12 +99,16 @@ namespace Sims_Hospital_Zdravo.View
             Room room = this.roomController.FindById(numOfRoom);
             Doctor doc = this.docAppController.getDoctor(2);
             TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
-           
-
+            try { 
             Appointment app = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
             app._Id = this.docAppController.GenerateId();
-
-            docAppController.Create(app);
+            
+                docAppController.Create(app);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             NotifyUpdated();
             Close();
         }

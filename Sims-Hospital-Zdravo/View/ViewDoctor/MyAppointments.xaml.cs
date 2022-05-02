@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -27,6 +28,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public ObservableCollection<Appointment> appointmentsScheduled;
         private App app;
         private DateTime AppointmentDate;
+        private AnamnesisController anamnesisController;
         public MyAppointments( )
         {
             app = App.Current as App;
@@ -37,6 +39,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.docController =app.doctorAppointmentController;
             this.appointmentsScheduled = docController.GetByDoctorID(2);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+            this.anamnesisController = app.anamnesisController;
             DoctorAppointments.AutoGenerateColumns = false;
             //Button btnmedical = new Button();
            
@@ -79,10 +82,19 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Appointment appointment = DoctorAppointments.SelectedValue as Appointment;
-            Patient patient = appointment._Patient;
-            MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
-             PatientMedicalRecord medRed = new PatientMedicalRecord(record);
-            medRed.Show();
+            if (appointment != null)
+            {
+                Patient patient = appointment._Patient;
+                MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
+                PatientMedicalRecord medRed = new PatientMedicalRecord(record, docController, anamnesisController, appointment);
+                medRed.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chose whose medical record you want to see.");
+            }
+            
+            
 
         }
 

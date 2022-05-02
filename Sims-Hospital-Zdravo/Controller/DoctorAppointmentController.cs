@@ -72,6 +72,10 @@ namespace Controller
 
 
         }
+        public void DeleteAfterExaminationIsDone(DateTime date,int id,Patient pat)
+        {
+            doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
+        }
 
     }
 }

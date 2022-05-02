@@ -7,27 +7,38 @@
         mc:Ignorable="d"
         Title="PatientMedicalRecord" Height="450" Width="800">
     <Grid x:Name="MedicalRecord">
-        <TextBlock TextWrapping="Wrap" Text="Patient name:" Margin="34,47,640,350"/>
-        <TextBlock TextWrapping="Wrap" Name="Patientname"  Margin="97,47,577,350"/>
-        <TextBlock TextWrapping="Wrap" Text="Patient surname:" Margin="34,76,640,321"/>
-        <TextBlock TextWrapping="Wrap" Name="Patientsurname"  Margin="160,71,514,326"/>
-        <TextBlock TextWrapping="Wrap" Text="Gender:" Margin="34,150,640,247"/>
-        <TextBlock TextWrapping="Wrap" Name="genderPat"  Margin="141,39,533,358"/>
-        <TextBlock TextWrapping="Wrap" Text="Birthdate:" Margin="34,113,640,284"/>
-        <TextBlock TextWrapping="Wrap" Name="birthdate"  Margin="187,100,487,297"/>
-        <TextBlock TextWrapping="Wrap" Text="Adress:" Margin="34,229,640,168"/>
-        <TextBlock TextWrapping="Wrap" Name="adress"  Margin="160,210,514,186"/>
-        <TextBlock TextWrapping="Wrap" Text="Phone number:" Margin="34,187,640,210"/>
-        <TextBlock TextWrapping="Wrap" Name="number"  Margin="160,180,514,217"/>
-        <TextBlock TextWrapping="Wrap" Text="Marital status:" Margin="10,266,664,131"/>
-        <TextBlock TextWrapping="Wrap" Name="marital"  Margin="165,253,509,145"/>
-        <TextBlock TextWrapping="Wrap" Text="UID:" Margin="34,308,640,89"/>
-        <TextBlock TextWrapping="Wrap" Name="uid"  Margin="141,295,533,102"/>
-        <TextBlock TextWrapping="Wrap" Text="Allergens:" Margin="228,47,446,350"/>
-        <ListBox Name="AllergensBox" Margin="287,47,400,276">
-         
-        </ListBox>
-        <Button Content="Write report" Margin="272,282,431,110"/>
-        <Button Content="Presciption" Margin="481,282,222,110"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Text="Patient name:" Margin="15,17,142,98"/>
+        <TextBlock TextWrapping="Wrap" Name="Patientname"  Margin="110,17,31,101"/>
+        <TextBlock TextWrapping="Wrap" Text="Patient surname:" Margin="15,43,126,73"/>
+        <TextBlock TextWrapping="Wrap" Name="Patientsurname"  Margin="146,39,24,82"/>
+        <TextBlock TextWrapping="Wrap" Text="Gender:" Margin="15,144,188,116" Grid.RowSpan="2"/>
+        <TextBlock TextWrapping="Wrap" Name="genderPat"  Margin="141,5,44,116" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Text="Birthdate:" Margin="15,77,165,40"/>
+        <TextBlock TextWrapping="Wrap" Name="birthdate"  Margin="133,74,266,41" Grid.ColumnSpan="2"/>
+        <TextBlock TextWrapping="Wrap" Text="Adress:" Margin="16,105,186,10"/>
+        <TextBlock TextWrapping="Wrap" Name="adress"  Margin="147,104,44,18"/>
+        <TextBlock TextWrapping="Wrap" Text="Phone number:" Margin="16,27,171,72" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Name="number"  Margin="145,33,39,89" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Text="Marital status:" Margin="16,85,165,28" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Name="marital"  Margin="165,88,10,39" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Text="UID:" Margin="15,116,170,2" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Name="uid"  Margin="136,116,15,9" Grid.Row="1"/>
+        <TextBlock TextWrapping="Wrap" Text="Allergens:" Margin="5,14,137,105" Grid.Column="1"/>
+        <ListBox Name="AllergensBox" Margin="76,27,76,2" Grid.Column="1"/>
+        <Button Content="Write report" Margin="5,43,137,62" Click="Button_Click" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Presciption" Margin="156,43,10,63" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>

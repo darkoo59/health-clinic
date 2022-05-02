@@ -31,8 +31,11 @@
         <Button Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Center" Margin="58,0,68,0" Click="Button_Click">Save</Button>
         <TextBox Name="endtime" HorizontalAlignment="Left" Height="31" Margin="133,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"  Grid.Row="3"/>
         <Label Height="30" Width="150" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalAlignment="Center" Content=" End Time:" Grid.RowSpan="2" Grid.Row="2"/>
-        <ComboBox Margin="121,24,10,10" Grid.Row="4" Name="Patientcb" SelectionChanged="Patientcb_SelectionChanged"  />
-        <ComboBox Grid.Column="1" Margin="73,31,10,3" Grid.Row="1" Name="AppType"/>
+        <ComboBox Margin="121,24,10,10" Grid.Row="4" Name="Patientcb"   SelectionChanged="Patientcb_SelectionChanged"  >
+            
+        
+        </ComboBox>
+        <ComboBox Grid.Column="1" Margin="73,31,10,3" Grid.Row="1" Name="AppType" SelectedIndex="0" Text="{ Binding _Type}"/>
         <Label Content="Type:" Margin="5,62,144,31" Grid.Column="1" Grid.RowSpan="2"/>
 
     </Grid>

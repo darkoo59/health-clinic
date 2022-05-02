@@ -120,5 +120,6 @@ namespace Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+       
     }
 }

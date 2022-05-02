@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Controller;
+using Sims_Hospital_Zdravo.Controller;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -22,11 +23,20 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     {
         private DoctorAppointmentController docController;
         private MedicalRecordController medicalRecordController;
+        private AnamnesisController anamnesisController;
+        private PatientMedicalRecordController patientMedicalRecordController;
+        private int doctorId;
+        
         private App app;
-        public DoctorMain()
+        public DoctorMain(int DoctorId)
         {
+            app = App.Current as App;
             InitializeComponent();
-
+            this.doctorId = DoctorId;
+            this.docController = app.doctorAppointmentController;
+            this.medicalRecordController = app.recordController;
+            this.anamnesisController = app.anamnesisController;
+            this.patientMedicalRecordController = app.patientMedRecController;
 
         }
 
@@ -40,6 +50,19 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MyAppointments myAppointments = new MyAppointments();
             myAppointments.Show();
 
+        }
+
+        private void button_medical_report_click(object sender, RoutedEventArgs e)
+        {
+            MedicalReport medicalReportWindow = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId);
+            medicalReportWindow.Show();
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AnamnesisList anamnesisList = new AnamnesisList(anamnesisController,doctorId,docController);
+            anamnesisList.Show();
         }
     }
 }

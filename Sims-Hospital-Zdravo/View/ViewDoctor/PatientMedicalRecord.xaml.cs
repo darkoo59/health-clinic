@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -27,6 +28,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController _medicalRecordController;
         private PatientMedicalRecordController patMedRecordController;
         private MedicalRecord medRecord;
+        private Appointment app;
+        private AnamnesisController anamnesisController;
         private Sims_Hospital_Zdravo.Model.Allergens allergens;
 
         public MedicalRecord _MedicalRecord
@@ -40,12 +43,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 this.medRecord = value;
             }
         }
-        public PatientMedicalRecord(MedicalRecord med )
+        public PatientMedicalRecord(MedicalRecord med,DoctorAppointmentController doctorAppointmentController, AnamnesisController anamnesisController,Appointment app )
         {
             this.medRecord = med;
+            this.app = app;
             InitializeComponent();
             this.DataContext = med;
-            
+            this._doctorAppointmentController = doctorAppointmentController;
+            this.anamnesisController = anamnesisController;
             Binding binding = new Binding("_Patient._Name");
             binding.Source = med;
             Patientname.SetBinding(TextBlock.TextProperty, binding);
@@ -79,6 +84,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             AllergensBox.ItemsSource = med._Allergens;
 
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AnamnesisWindow anamnesisWindow = new AnamnesisWindow(anamnesisController,_doctorAppointmentController, medRecord,app);
+            anamnesisWindow.Show();
         }
     }
 }
