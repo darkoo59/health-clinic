@@ -10,64 +10,64 @@ namespace Service
 {
     public class EquipmentTransferService
     {
-        private RelocationAppointmentRepository relocationAppointmentRepository;
-        private RoomRepository roomRepository;
-        private TimeSchedulerService timeSchedulerService;
-        private EquipmentTransferValidator validator;
+        private RelocationAppointmentRepository _relocationAppointmentRepository;
+        private RoomRepository _roomRepository;
+        private TimeSchedulerService _timeSchedulerService;
+        private EquipmentTransferValidator _validator;
 
         public EquipmentTransferService(RoomRepository roomRepository,
             RelocationAppointmentRepository relocationAppointmentRepository, TimeSchedulerService timeSchedulerService)
         {
-            this.roomRepository = roomRepository;
-            this.relocationAppointmentRepository = relocationAppointmentRepository;
-            this.timeSchedulerService = timeSchedulerService;
-            validator = new EquipmentTransferValidator(roomRepository, timeSchedulerService);
+            this._roomRepository = roomRepository;
+            this._relocationAppointmentRepository = relocationAppointmentRepository;
+            this._timeSchedulerService = timeSchedulerService;
+            _validator = new EquipmentTransferValidator(roomRepository, timeSchedulerService);
         }
 
         public void FinishRelocationAppointment(int appointmentId)
         {
-            RelocationAppointment appointment = relocationAppointmentRepository.FindById(appointmentId);
-            Room toRoom = appointment._ToRoom;
-            Room originalRoom = roomRepository.FindById(toRoom._Id);
-            RoomEquipment re = appointment._RoomEquipment;
+            RelocationAppointment appointment = _relocationAppointmentRepository.FindById(appointmentId);
+            Room toRoom = appointment.ToRoom;
+            Room originalRoom = _roomRepository.FindById(toRoom.Id);
+            RoomEquipment re = appointment.RoomEquipment;
 
-            relocationAppointmentRepository.Delete(appointment);
+            _relocationAppointmentRepository.Delete(appointment);
             originalRoom.AddEquipment(re);
         }
 
         public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
         {
-            validator.ValidateTransferFromRoom(fromRoomId, toRoomId, eq._Id, quantity, ti);
+            _validator.ValidateTransferFromRoom(fromRoomId, toRoomId, eq.Id, quantity, ti);
             MakeAppointmentFromRoom(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
 
         private void MakeAppointmentFromRoom(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
         {
-            Room fromRoom = roomRepository.FindById(fromRoomId);
-            Room toRoom = roomRepository.FindById(toRoomId);
+            Room fromRoom = _roomRepository.FindById(fromRoomId);
+            Room toRoom = _roomRepository.FindById(toRoomId);
             RoomEquipment eqForTransfer = new RoomEquipment(eq, quantity);
             RelocationAppointment relocationApp = new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
 
             fromRoom.RemoveEquipment(eqForTransfer);
-            relocationAppointmentRepository.Create(relocationApp);
+            _relocationAppointmentRepository.Create(relocationApp);
         }
 
         public List<TimeInterval> FindReservedTimeForRooms(Room fromRoom, Room toRoom)
         {
-            return timeSchedulerService.FindReservedTimeForRooms(fromRoom, toRoom);
+            return _timeSchedulerService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
 
         public List<RelocationAppointment> ReadAll()
         {
-            return relocationAppointmentRepository.ReadAll();
+            return _relocationAppointmentRepository.ReadAll();
         }
 
 
         private int GenerateId()
         {
-            List<RelocationAppointment> appointments = relocationAppointmentRepository.ReadAll();
-            List<int> ids = new List<int>(appointments.Select(x => x._Id));
+            List<RelocationAppointment> appointments = _relocationAppointmentRepository.ReadAll();
+            List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;
 

@@ -23,19 +23,20 @@ namespace Sims_Hospital_Zdravo
     {
         AppointmentPatientController appointmentPatientController;
         App app;
+
         public PatientWindow()
         {
             app = Application.Current as App;
 
             InitializeComponent();
-            this.appointmentPatientController = app.appointmentPatientController;
+            this.appointmentPatientController = app._appointmentPatientController;
             this.DataContext = this;
 
             McDataGrid.AutoGenerateColumns = false;
 
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date and Time";
-            data_column.Binding = new Binding("_DateAndTime");
+            data_column.Binding = new Binding("_Time.Start");
 
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
@@ -76,6 +77,5 @@ namespace Sims_Hospital_Zdravo
                 appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
             }
         }
-
     }
 }

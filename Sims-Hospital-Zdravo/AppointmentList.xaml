@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
-        Title="AppointmentList" Height="433" Width="333">
+        Title="AppointmentList" Height="450" Width="800">
     <Grid Margin="0,0,2,-1">
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
@@ -15,8 +15,9 @@
             <ColumnDefinition Width="320*"/>
             <ColumnDefinition Width="321*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Height="185" Margin="40,90,0,0" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="55,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="29,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>
+        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="185" Margin="150,90,0,0" VerticalAlignment="Top" Width="495" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button HorizontalAlignment="Left" Margin="280,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click">Submit</Button>
+        <Button HorizontalAlignment="Left" Margin="41,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1">Cancel</Button>
+        <TextBlock Name="Text" HorizontalAlignment="Left" Margin="300,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="190" Height="45"/>
     </Grid>
 </Window>

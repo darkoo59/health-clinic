@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 //using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View
@@ -23,13 +24,14 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for DoctorUpdateAppointment.xaml
     /// </summary>
-    public partial class DoctorUpdateAppointment : Window 
+    public partial class DoctorUpdateAppointment : Window
     {
         private DoctorAppointmentController docController;
         private RoomController roomControl;
         public ObservableCollection<string> Patients;
         private int id_app;
-        public DoctorUpdateAppointment(DoctorAppointmentController docController,Appointment app,RoomController rom)
+
+        public DoctorUpdateAppointment(DoctorAppointmentController docController, Appointment app, RoomController rom)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -40,8 +42,8 @@ namespace Sims_Hospital_Zdravo.View
             foreach (Patient pat in this.docController.getPatients())
             {
                 Patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
-
             }
+
             Patientcb.ItemsSource = Patients;
             
             Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app._Patient._Name + " " + app._Patient._Surname + " " + app._Patient._BirthDate.ToString()
@@ -59,6 +61,7 @@ namespace Sims_Hospital_Zdravo.View
         }
 
         private Patient pat;
+
         public Patient Pat
         {
             get { return pat; }
@@ -76,8 +79,6 @@ namespace Sims_Hospital_Zdravo.View
                 if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
 
                 {
-
-
                     Pat = pat;
                     break;
                 }
@@ -105,11 +106,11 @@ namespace Sims_Hospital_Zdravo.View
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
             Doctor doc = this.docController.getDoctor(2);
-            
-            
-            TimeInterval timeInterval = new TimeInterval(start,end);
-            Appointment appoi = new Appointment(room,doc,Pat,timeInterval,(AppointmentType)AppType.SelectedValue);
-            
+
+
+            TimeInterval timeInterval = new TimeInterval(start, end);
+            Appointment appoi = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
+
             appoi._Id = id_app;
             try
             {
@@ -120,11 +121,6 @@ namespace Sims_Hospital_Zdravo.View
                 MessageBox.Show(ex.Message);
             }
             Close();
-
         }
-
-       
-
-        
     }
 }

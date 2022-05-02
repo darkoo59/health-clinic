@@ -23,6 +23,7 @@ namespace Repository
             this.patientApps = new ObservableCollection<Appointment>();
             this.appointments = appDataHandler.ReadAll();
         }
+
         public void Create(Model.Appointment appointment)
         {
             appointments.Add(appointment);
@@ -38,7 +39,6 @@ namespace Repository
                
                 if (app._Id == appointment._Id)
                 {
-                    
                     app._Time = appointment._Time;
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
@@ -49,6 +49,7 @@ namespace Repository
                     return;
                 }
             }
+
             foreach (Appointment app in patientApps)
             {
                 if (app._Id == appointment._Id)
@@ -73,10 +74,10 @@ namespace Repository
         {
             ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
             Console.WriteLine(this.appointments.Count + " duzina");
-            foreach(Appointment app in this.appointments)
+            foreach (Appointment app in this.appointments)
             {
                 if (app._Doctor == null) continue;
-                if(app._Doctor._Id == id)
+                if (app._Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
                 }
@@ -87,6 +88,7 @@ namespace Repository
         }
 
         ObservableCollection<Appointment> patientApps;
+
         public ref ObservableCollection<Appointment> FindByPatientId(int id)
         {
             patientApps = new ObservableCollection<Appointment>();
@@ -97,17 +99,21 @@ namespace Repository
                     patientApps.Add(app);
                 }
             }
+
             return ref patientApps;
         }
-        public  ref ObservableCollection<Appointment> FindAll()
+
+        public ref ObservableCollection<Appointment> FindAll()
         {
             // TODO: implement
-            return  ref appointments;
+            return ref appointments;
         }
+
         public void loadDataFromFiles()
         {
             appointments = appointmentDataHandler.ReadAll();
         }
+
         public void loadDataToFile()
         {
             appointmentDataHandler.Write(appointments);
@@ -121,7 +127,6 @@ namespace Repository
             {
                 if (appoi._Id == app._Id)
                 {
-
                     return appoi;
                     ;
                 }
@@ -135,9 +140,9 @@ namespace Repository
         {
             if (room == null) return new List<TimeInterval>();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
-            foreach(Appointment app in appointments)
+            foreach (Appointment app in appointments)
             {
-                if(app._Room._Id == room._Id)
+                if (app._Room.Id == room.Id)
                 {
                     timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
                 }
@@ -151,7 +156,7 @@ namespace Repository
             List<Appointment> apps = new List<Appointment>();
             foreach (Appointment app in appointments)
             {
-                if (app._Room._Id == roomId)
+                if (app._Room.Id == roomId)
                 {
                     apps.Add(app);
                 }

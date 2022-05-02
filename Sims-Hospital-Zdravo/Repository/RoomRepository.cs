@@ -13,39 +13,40 @@ using System.Collections.ObjectModel;
 
 namespace Repository
 {
-    public class RoomRepository: IUpdateFilesObserver
+    public class RoomRepository : IUpdateFilesObserver
     {
-        private RoomDataHandler roomDataHandler;
-        private ObservableCollection<Room> rooms;
+        private RoomDataHandler _roomDataHandler;
+        private ObservableCollection<Room> _rooms;
+
         public RoomRepository(RoomDataHandler rmDataHandler)
         {
-            rooms = new ObservableCollection<Room>();
-            roomDataHandler = rmDataHandler;
+            _rooms = new ObservableCollection<Room>();
+            _roomDataHandler = rmDataHandler;
             LoadDataFromFiles();
-
         }
+
         public void Create(Room room)
         {
-            rooms.Add(room);
+            _rooms.Add(room);
             room.AddObserver(this);
             LoadDataToFile();
         }
 
         public ref ObservableCollection<Room> ReadAll()
         {
-            return ref rooms;
+            return ref _rooms;
         }
 
         public void Update(Room room)
         {
-            int id = room._Id;
-            foreach (Room rm in rooms)
+            int id = room.Id;
+            foreach (Room rm in _rooms)
             {
-                if (id == rm._Id)
+                if (id == rm.Id)
                 {
-                    rm._Id = room._Id;
-                    rm._Floor = room._Floor;
-                    rm._Type = room._Type;
+                    rm.Id = room.Id;
+                    rm.Floor = room.Floor;
+                    rm.Type = room.Type;
                     LoadDataToFile();
                     return;
                 }
@@ -54,33 +55,34 @@ namespace Repository
 
         public void Delete(Room room)
         {
-            rooms.Remove(room);
+            _rooms.Remove(room);
             LoadDataToFile();
         }
 
         public Room FindById(int id)
         {
-            foreach (Room room in rooms)
+            foreach (Room room in _rooms)
             {
-                if (id == room._Id)
+                if (id == room.Id)
                 {
                     return room;
                 }
             }
+
             return null;
         }
 
         public void DeleteById(int id)
         {
             Room room = FindById(id);
-            if (room != null) rooms.Remove(room);
+            if (room != null) _rooms.Remove(room);
         }
 
         public Room FindByType(RoomType type)
         {
-            foreach (Room room in rooms)
+            foreach (Room room in _rooms)
             {
-                if (room._Type == type)
+                if (room.Type == type)
                 {
                     return room;
                 }
@@ -89,18 +91,18 @@ namespace Repository
             return null;
         }
 
-        public void LoadDataFromFiles()
+        private void LoadDataFromFiles()
         {
-            rooms = roomDataHandler.ReadAll();
-            foreach(Room room in rooms)
+            _rooms = _roomDataHandler.ReadAll();
+            foreach (Room room in _rooms)
             {
                 room.AddObserver(this);
             }
         }
 
-        public void LoadDataToFile() 
+        private void LoadDataToFile()
         {
-            roomDataHandler.Write(rooms);
+            _roomDataHandler.Write(_rooms);
         }
 
         public void NotifyUpdated()

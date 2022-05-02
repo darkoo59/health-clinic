@@ -59,9 +59,11 @@
         </StackPanel>
         <DockPanel Grid.Row="1" Grid.Column="5" Grid.RowSpan="4" Grid.ColumnSpan="3">
             <Label DockPanel.Dock="Top">Already reserved intervals: </Label>
-            <ItemsControl BorderThickness="1" BorderBrush="Black" VerticalContentAlignment="Stretch"
-                          x:Name="ListIntervals">
-            </ItemsControl>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl BorderThickness="1" BorderBrush="Black" VerticalContentAlignment="Stretch"
+                              x:Name="ListIntervals">
+                </ItemsControl>
+            </ScrollViewer>
         </DockPanel>
 
         <Button Grid.Row="5" Grid.Column="5" Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment"

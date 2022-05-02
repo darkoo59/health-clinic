@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,18 +24,16 @@ namespace Sims_Hospital_Zdravo
     public partial class PatientUpdate : Window
     {
         public AppointmentPatientController appointmentPatientController;
-        public ObservableCollection<string> doctors;
-        public ObservableCollection<string> doctorordate;
-        public bool dateChanged = false;
-        public PatientUpdate(AppointmentPatientController appointmentPatientController,Appointment appointment)
+        public Appointment appointment;
+        string pattern = @"\d?\d:\d\d";
+        private DateTime dateTime;
+        public PatientUpdate(AppointmentPatientController appointmentPatientController, Appointment appointment)
         {
             InitializeComponent();
             this.DataContext = this;
             this.appointmentPatientController = appointmentPatientController;
-            _DateTime = appointment._Time.Start;
-            /*_DateTime = _DateTime.AddYears(appointment._DateAndTime.Year);
-            _DateTime = _DateTime.AddDays(appointment._DateAndTime.Day);
-            _DateTime = _DateTime.AddMonths(appointment._DateAndTime.Month);*/
+            this.appointment = appointment;
+            dateTime = appointment._Time.Start;
             if (appointment._Time.Start.Hour < 10)
             {
                 Time.Text ="0" + appointment._Time.Start.Hour;
@@ -43,7 +42,7 @@ namespace Sims_Hospital_Zdravo
             {
                 Time.Text ="" +appointment._Time.Start.Hour;
             }
-            Time.Text = appointment._Time.Start.Hour + ":";
+            Time.Text = Time.Text + ":";
             if (appointment._Time.Start.Minute < 10)
             {
                 Time.Text = Time.Text + "0" + appointment._Time.Start.Minute;
@@ -52,68 +51,43 @@ namespace Sims_Hospital_Zdravo
             {
                 Time.Text = Time.Text + appointment._Time.Start.Minute;
             }
-            doctors = new ObservableCollection<string>();
-            doctorordate = new ObservableCollection<string>();
-            doctorordate.Add("Doctor");
-            doctorordate.Add("Date");
-            _Id = appointment._Id;
-            DateOrDoctors.ItemsSource = doctorordate;
-            foreach (Doctor doctor in this.appointmentPatientController.ReadDoctors())
-            {
-                doctors.Add(doctor._Name + " " + doctor._Surname);
-            }
-            Doctors.ItemsSource = doctors;
-            foreach (Doctor doctor in appointmentPatientController.ReadDoctors()) 
-            {
-                if (doctor._Id == appointment._Doctor._Id)
-                {
-                    _Doctor = doctor;
-                    Doctors.SelectedItem = doctor._Name + " " + doctor._Surname; 
-                }
-            }
+            datePicker.SelectedDate = appointment._Time.Start;
         }
-        public DateTime dateTime;
-        public int Id;
-        private int _Id { get; set; }
-        private DateTime _DateTime { get; set; }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            _DateTime = datePicker.SelectedDate.Value;
-            dateChanged = true;
-        }
-        public Doctor doctor;
-        private Doctor _Doctor { get; set; }
-        private void Doctors_Selected(object sender, RoutedEventArgs e)
-        {
-            string name = Doctors.SelectedItem.ToString();
-            string[] names = name.Split(' ');
-            foreach (Doctor doctor in this.appointmentPatientController.ReadDoctors())
-            {
-                if (doctor._Name.Equals(names[0]) && doctor._Surname.Equals(names[1]))
-                {
-                    _Doctor = doctor;
-                    break;
-                }
-            }
+            dateTime = datePicker.SelectedDate.Value;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            DateTime date = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
             try
             {
-                string[] time = Time.Text.Split(':');
-                DateTime date = new DateTime(_DateTime.Year,_DateTime.Month,_DateTime.Day);
-                date = date.AddHours(Int32.Parse(time[0]));
-                date = date.AddMinutes(Int32.Parse(time[1]));
-                DateTime dateTime = new DateTime(1111,11,11);
-                Patient patient = new Patient(1, "Jovan", "Nikic", dateTime, "fdafdasf@gmail.com", "321341413", "+38134213");
-                //Appointment appointment = new Appointment(new Room(), _Doctor, patient, date, _Id);
-                //appointmentPatientController.Update(appointment);
+                Match m = Regex.Match(Time.Text, pattern);
+                if (m.Success)
+                {
+                    string[] time = Time.Text.Split(':');
+                    date = date.AddHours(Int32.Parse(time[0]));
+                    date = date.AddMinutes(Int32.Parse(time[1]));
+                }
+                else
+                {
+                    throw new Exception("Time format must be HH:mm (10:00)");
+                }
+                TimeInterval timeInterval = new TimeInterval(date,date.AddMinutes(30));
+                appointmentPatientController.ValidateReshedule(appointment,timeInterval);
+                appointment._Time = timeInterval;
+                appointmentPatientController.Update(appointment);
                 Close();
             }
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

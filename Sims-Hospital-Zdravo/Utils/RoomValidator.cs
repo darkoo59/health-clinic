@@ -10,38 +10,36 @@ namespace Sims_Hospital_Zdravo.Utils
 {
     public class RoomValidator
     {
-        private RoomService roomService;
+        private RoomService _roomService;
 
 
         public RoomValidator(RoomService roomService)
         {
-            this.roomService = roomService;
-
-
+            this._roomService = roomService;
         }
 
 
-        private void warehouseAlreadyExists(Room room) {
-            if (room._Type == RoomType.WAREHOUSE && roomService.FindByType(RoomType.WAREHOUSE) != null)
+        private void warehouseAlreadyExists(Room room)
+        {
+            if (room.Type == RoomType.WAREHOUSE && _roomService.FindByType(RoomType.WAREHOUSE) != null)
                 throw new Exception("Warehouse already exists!");
         }
 
         private void IdAlreadyExists(Room room)
         {
-            if (roomService.FindById(room._Id) != null)
+            if (_roomService.FindById(room.Id) != null)
                 throw new Exception("Id already exists!");
         }
 
         private void IdNotFound(int id)
         {
-            if (roomService.FindById(id) != null)
+            if (_roomService.FindById(id) != null)
                 throw new Exception("Id already exists!");
-
         }
 
         private void IdNotFound(Room room)
         {
-            if (roomService.FindById(room._Id) == null)
+            if (_roomService.FindById(room.Id) == null)
                 throw new Exception("Id Not Found!");
         }
 

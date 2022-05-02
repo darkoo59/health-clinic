@@ -17,35 +17,35 @@ namespace Service
 {
     public class TimeSchedulerService
     {
-        private AppointmentRepository appointmentRepository;
-        private RenovationRepository renovationRepository;
-        private RelocationAppointmentRepository relocationRepository;
+        private AppointmentRepository _appointmentRepository;
+        private RenovationRepository _renovationRepository;
+        private RelocationAppointmentRepository _relocationRepository;
 
         public TimeSchedulerService(AppointmentRepository appointmentRepository,
             RenovationRepository renovationRepository, RelocationAppointmentRepository relocationRepository)
         {
-            this.appointmentRepository = appointmentRepository;
-            this.renovationRepository = renovationRepository;
-            this.relocationRepository = relocationRepository;
+            this._appointmentRepository = appointmentRepository;
+            this._renovationRepository = renovationRepository;
+            this._relocationRepository = relocationRepository;
         }
 
         public List<TimeInterval> FindReservedTimeForRooms(Room room1, Room room2)
         {
-            List<TimeInterval> takenIntervalsRoom1 = CaptureAllTakenIntervalsForRoom(room1._Id);
-            List<TimeInterval> takenIntervalsRoom2 = CaptureAllTakenIntervalsForRoom(room2._Id);
+            List<TimeInterval> takenIntervalsRoom1 = CaptureAllTakenIntervalsForRoom(room1.Id);
+            List<TimeInterval> takenIntervalsRoom2 = CaptureAllTakenIntervalsForRoom(room2.Id);
             List<TimeInterval> takenIntervals = new List<TimeInterval>(takenIntervalsRoom1.Concat(takenIntervalsRoom2));
 
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals);
-
+            // takenIntervals = CompactIntervals(takenIntervals);
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
             return takenIntervals;
         }
 
-        public List<TimeInterval> FindReservedDatesForRoom(int days, Room room)
+        public List<TimeInterval> FindReservedDatesForRoom(Room room)
         {
-            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room._Id);
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room.Id);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals);
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
 
             takenIntervals = ConvertIntervalsToTakenDates(takenIntervals);
             return takenIntervals;
@@ -55,7 +55,7 @@ namespace Service
         {
             List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
             intervals = intervals.OrderBy(o => o.Start).ToList();
-            intervals = CompactIntervals(intervals);
+            intervals = CompactIntervals(intervals, IntervalsTouching, IsThereGapInIntervals);
 
             foreach (TimeInterval app in intervals)
             {
@@ -72,18 +72,23 @@ namespace Service
 
         public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
         {
-            List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
-            foreach (Appointment app in appointments)
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
+
+            foreach (TimeInterval takenInterval in takenIntervals)
             {
+                DateTime startDate = takenInterval.Start.Date;
+                DateTime endDate = takenInterval.End.Date;
                 DateTime startDate = app._Time.Start.Date;
                 DateTime endDate = app._Time.End.Date;
                 DateTime startDateNew = ti.Start.Date;
                 DateTime endDateNew = ti.End.Date;
 
-                if (startDate == startDateNew && endDate == endDateNew) return false;
-                if (startDate >= startDateNew && startDate <= endDateNew) return false;
-                if (endDate >= startDateNew && endDate <= endDateNew) return false;
-                if (startDate <= startDateNew && endDate >= endDateNew) return false;
+                if (startDate == startDateNew || endDate == endDateNew) return false;
+                if (startDate > startDateNew && startDate < endDateNew) return false;
+                if (endDate > startDateNew && endDate < endDateNew) return false;
+                if (startDate < startDateNew && endDate > endDateNew) return false;
             }
 
             return true;
@@ -91,46 +96,69 @@ namespace Service
 
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
-            List<TimeInterval> takenIntervalsApp = appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
-            List<TimeInterval> takenIntervalRenovation = renovationRepository.FindTakenIntervalsForRoom(roomId);
-            List<TimeInterval> takenIntervalRelocation = relocationRepository.FindTakenIntervalsForRoom(roomId);
+            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
+            List<TimeInterval> takenIntervalRenovation = _renovationRepository.FindTakenIntervalsForRoom(roomId);
+            List<TimeInterval> takenIntervalRelocation = _relocationRepository.FindTakenIntervalsForRoom(roomId);
 
             return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }
 
         private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
-            //TODO
-            return new List<TimeInterval>();
+            List<TimeInterval> dates = new List<TimeInterval>(intervals.Select(x => new TimeInterval(x.Start.Date, x.End.Date)));
+            dates = CompactIntervals(dates, IsSameOrNextDate, IsThereGapInDates);
+            return dates;
         }
 
-        private List<TimeInterval> CompactIntervals(List<TimeInterval> intervals)
+        private List<TimeInterval> CompactIntervals(List<TimeInterval> dateIntervals, Func<TimeInterval, TimeInterval, bool> condition1, Func<TimeInterval, TimeInterval, bool> condition2)
         {
             List<TimeInterval> compactedIntervals = new List<TimeInterval>();
 
             int newIntervalCounter = 0;
-            foreach (TimeInterval ti in intervals)
+
+            foreach (TimeInterval dateInterval in dateIntervals)
             {
                 if (compactedIntervals.Count == 0)
                 {
-                    compactedIntervals.Add(ti);
+                    compactedIntervals.Add(dateInterval);
                     continue;
                 }
 
-                TimeInterval newInterval = compactedIntervals[newIntervalCounter];
-
-                if (newInterval.End.CompareTo(ti.Start) == 0)
+                TimeInterval timeInterval = compactedIntervals[newIntervalCounter];
+                if (condition1(timeInterval, dateInterval))
                 {
-                    compactedIntervals[newIntervalCounter].End = ti.End;
+                    compactedIntervals[newIntervalCounter].End = dateInterval.End;
                 }
-                else if (newInterval.End.CompareTo(ti.Start) < 0)
+
+                else if (condition2(timeInterval, dateInterval))
                 {
-                    compactedIntervals.Add(ti);
+                    compactedIntervals.Add(dateInterval);
                     newIntervalCounter++;
                 }
             }
 
             return compactedIntervals;
+        }
+
+
+        private bool IsSameOrNextDate(TimeInterval timeInterval, TimeInterval dateInterval)
+        {
+            return timeInterval.End.CompareTo(dateInterval.Start) == 0 || timeInterval.End.AddDays(1).CompareTo(dateInterval.Start) == 0;
+        }
+
+        private bool IsThereGapInDates(TimeInterval baseInterval, TimeInterval newInterval)
+        {
+            return baseInterval.End.AddDays(1).CompareTo(newInterval.Start) < 0;
+        }
+
+        private bool IsThereGapInIntervals(TimeInterval baseInterval, TimeInterval newInterval)
+        {
+            return baseInterval.End.CompareTo(newInterval.Start) < 0;
+        }
+
+        private bool IntervalsTouching(TimeInterval baseInterval, TimeInterval newInterval)
+        {
+            return baseInterval.End.CompareTo(newInterval.Start) == 0;
         }
 
 

@@ -6,43 +6,44 @@
 
 using System;
 
-public enum EquipmentType { Static, Consumable }
+public enum EquipmentType
+{
+    Static,
+    Consumable
+}
 
 namespace Model
 {
     public class Equipment
     {
-        private int Id;
-        private String Name { get; set; }
-        private EquipmentType Type { get; set; }
+        private int _id;
+        private String _name { get; set; }
+        private EquipmentType _type { get; set; }
 
         public Equipment(int id, String name, EquipmentType type)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Type = type;
+            this._id = id;
+            this._name = name;
+            this._type = type;
         }
 
 
-        public int _Id
+        public int Id
         {
-            get { return Id; }
-            set { this.Id = value; }
+            get { return _id; }
+            set { this._id = value; }
         }
-        public String _Name
+
+        public String Name
         {
-            get { return Name; }
-            set { this.Name = value; }
+            get { return _name; }
+            set { this._name = value; }
         }
 
-        public EquipmentType _Type
+        public EquipmentType Type
         {
-            get { return Type; }
-            set { this.Type = value; }
+            get { return _type; }
+            set { this._type = value; }
         }
-
-
-
-
     }
 }

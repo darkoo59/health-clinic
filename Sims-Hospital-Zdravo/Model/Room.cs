@@ -8,43 +8,46 @@ using Sims_Hospital_Zdravo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-public enum RoomType { OPERATION, EXAMINATION, MEETING, WAREHOUSE };
+
+public enum RoomType
+{
+    OPERATION,
+    EXAMINATION,
+    MEETING,
+    WAREHOUSE
+};
 
 namespace Model
 {
     public class Room : INotifyPropertyChanged, IUpdateFilesObservable
     {
-        private int Floor;
-        private int Id;
-        private RoomType Type;
-        private List<RoomEquipment> roomEquipment;
-        public Room() { }
-        private List<IUpdateFilesObserver> observers;
+        private int _floor;
+        private int _id;
+        private RoomType _type;
+        private List<RoomEquipment> _roomEquipment;
+
+        public Room()
+        {
+        }
+
+        private List<IUpdateFilesObserver> _observers;
+
         public Room(int floor, int id, RoomType type)
         {
-            this.observers = new List<IUpdateFilesObserver>();
-            printObservers();
-            this.Floor = floor;
-            this.Id = id;
-            this.Type = type;
-            this.roomEquipment = new List<RoomEquipment>();
-        }
-
-        public void printObservers()
-        {
-            Console.WriteLine(observers);
+            this._observers = new List<IUpdateFilesObserver>();
+            this._floor = floor;
+            this._id = id;
+            this._type = type;
+            this._roomEquipment = new List<RoomEquipment>();
         }
 
 
-        public RoomType _Type
+        public RoomType Type
         {
-            get
-            {
-                return Type;
-            }
+            get { return _type; }
             set
             {
-                this.Type = value;
+                this._type = value;
                 OnPropertyChanged();
             }
         }
@@ -54,99 +57,81 @@ namespace Model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public int _Floor
+        public int Floor
         {
-            get
-            {
-                return Floor;
-            }
+            get { return _floor; }
             set
             {
-                if (this.Floor != value)
+                if (this._floor != value)
                 {
-                    this.Floor = value;
+                    this._floor = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
-        public int _Id
+        public int Id
         {
-            get
-            {
-                return Id;
-            }
+            get { return _id; }
             set
             {
-                if (this.Id != value)
+                if (this._id != value)
                 {
-                    this.Id = value;
+                    this._id = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
-        public List<RoomEquipment> _RoomEquipment
+        public List<RoomEquipment> RoomEquipment
         {
-            get
-            {
-                return roomEquipment;
+            get { return _roomEquipment; }
 
-            }
-
-            set
-            {
-                roomEquipment = value;
-            }
+            set { _roomEquipment = value; }
         }
 
         public void AddEquipment(RoomEquipment re)
         {
-            foreach (RoomEquipment eq in roomEquipment)
+            foreach (RoomEquipment eq in _roomEquipment)
             {
-                if (eq._Equip._Id == re._Equip._Id)
+                if (eq.Equipment.Id == re.Equipment.Id)
                 {
-                    eq._Quantity += re._Quantity;
+                    eq.Quantity += re.Quantity;
                     NotifyUpdated();
                     return;
                 }
             }
 
-            roomEquipment.Add(re);
+            _roomEquipment.Add(re);
             NotifyUpdated();
-
         }
 
         public void RemoveEquipment(RoomEquipment re)
         {
-            foreach (RoomEquipment eq in roomEquipment)
+            foreach (RoomEquipment eq in _roomEquipment)
             {
-                if (eq._Equip._Id == re._Equip._Id)
+                if (eq.Equipment.Id == re.Equipment.Id)
                 {
-                    eq._Quantity -= re._Quantity;
+                    eq.Quantity -= re.Quantity;
                     NotifyUpdated();
                     return;
                 }
             }
 
-            roomEquipment.Add(re);
+            _roomEquipment.Add(re);
             NotifyUpdated();
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
-            return this.Id + " " + this.Type; 
-
+            return this._id + " " + this._type;
         }
 
         public void NotifyUpdated()
         {
-           foreach(IUpdateFilesObserver observer in observers)
+            foreach (IUpdateFilesObserver observer in _observers)
             {
                 observer.NotifyUpdated();
             }
@@ -154,16 +139,17 @@ namespace Model
 
         public void AddObserver(IUpdateFilesObserver observer)
         {
-            if(observers == null)
+            if (_observers == null)
             {
-                observers = new List<IUpdateFilesObserver>();
+                _observers = new List<IUpdateFilesObserver>();
             }
-            observers.Add(observer);
+
+            _observers.Add(observer);
         }
 
         public void RemoveObserver(IUpdateFilesObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
     }
 }

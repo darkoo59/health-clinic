@@ -11,19 +11,19 @@ namespace Sims_Hospital_Zdravo.Utils
     {
         private RenovationRepository renovationRepository;
         private RoomRepository roomRepository;
-        private TimeSchedulerService timeSchedulerService;
+        private TimeSchedulerService _timeSchedulerService;
 
         public RenovationValidator(RoomRepository roomRepository, RenovationRepository renovationRepository,
             TimeSchedulerService timeSchedulerService)
         {
             this.renovationRepository = renovationRepository;
             this.roomRepository = roomRepository;
-            this.timeSchedulerService = timeSchedulerService;
+            this._timeSchedulerService = timeSchedulerService;
         }
 
         private void ValidateRoomTaken(Room room, TimeInterval ti)
         {
-            if (!timeSchedulerService.IsRoomFreeInDateInterval(room._Id, ti))
+            if (!_timeSchedulerService.IsRoomFreeInDateInterval(room.Id, ti))
             {
                 throw new Exception("Room taken in give interval");
             }

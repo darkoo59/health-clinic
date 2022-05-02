@@ -11,31 +11,31 @@ namespace Controller
 {
     public class EquipmentTransferController
     {
-        private EquipmentTransferService equipmentTransferService;
+        private EquipmentTransferService _equipmentTransferService;
 
         public EquipmentTransferController(EquipmentTransferService equipmentTransferService)
         {
-            this.equipmentTransferService = equipmentTransferService;
+            this._equipmentTransferService = equipmentTransferService;
         }
 
         public void FinishRelocationAppointment(int relocationAppointmentId)
         {
-            equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
+            _equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
         }
 
         public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
         {
-            equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
+            _equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
         }
 
         public List<RelocationAppointment> ReadAll()
         {
-            return equipmentTransferService.ReadAll();
+            return _equipmentTransferService.ReadAll();
         }
 
         public List<TimeInterval> GetFreeTimeIntervals(Room fromRoom, Room toRoom)
         {
-            return equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
+            return _equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
     }
 }

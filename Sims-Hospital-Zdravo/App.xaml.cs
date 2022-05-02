@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Documents;
 using Service;
 using Controller;
 using Repository;
@@ -18,6 +20,14 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class App : Application
     {
+        internal RoomController _roomController;
+        internal MedicalRecordController _recordController;
+        internal AppointmentPatientController _appointmentPatientController;
+        internal DoctorAppointmentController _doctorAppointmentController;
+        internal EquipmentTransferController _equipmentTransferController;
+        internal EquipmentController _equipmentController;
+        internal AccountController _accountController;
+        internal RenovationController _renovationController;
         internal RoomController roomController;
         internal MedicalRecordController recordController;
         internal AppointmentPatientController appointmentPatientController;
@@ -35,7 +45,7 @@ namespace Sims_Hospital_Zdravo
             RoomDataHandler roomDataHandler = new RoomDataHandler();
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
             RoomService roomService = new RoomService(roomRepository);
-            roomController = new RoomController(roomService);
+            _roomController = new RoomController(roomService);
 
             PatientDataHandler patientDataHandler = new PatientDataHandler();
             PatientRepository patientRepository = new PatientRepository(patientDataHandler);
@@ -47,7 +57,7 @@ namespace Sims_Hospital_Zdravo
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
             MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
-            recordController = new MedicalRecordController(recordService);
+            _recordController = new MedicalRecordController(recordService);
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
@@ -55,7 +65,7 @@ namespace Sims_Hospital_Zdravo
             AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
             AppointmentPatientService appointmentPatientService =
                 new AppointmentPatientService(appointmentRepository, doctorRepository);
-            appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
+            _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
             //DoctorAppointmentService doctorAppointmentService =
@@ -65,7 +75,7 @@ namespace Sims_Hospital_Zdravo
             EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
             EquipmentRepository equipmentRepository = new EquipmentRepository(equipmentDataHandler);
             EquipmentService equipmentService = new EquipmentService(equipmentRepository);
-            equipmentController = new EquipmentController(equipmentService);
+            _equipmentController = new EquipmentController(equipmentService);
 
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository =
@@ -83,20 +93,16 @@ namespace Sims_Hospital_Zdravo
 
             RenovationService renovationService =
                 new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
-            renovationController = new RenovationController(renovationService);
+            _renovationController = new RenovationController(renovationService);
 
             EquipmentTransferService equipmentTransferService =
                 new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
-            equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
+            _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
             AccountDataHandler accountDataHandler = new AccountDataHandler();
             AccountRepository accountRepository = new AccountRepository(accountDataHandler);
             AccountService accountService = new AccountService(accountRepository);
-            accountController = new AccountController(accountService);
-
-
-            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
-
+            _accountController = new AccountController(accountService);
 
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
             patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
@@ -105,6 +111,7 @@ namespace Sims_Hospital_Zdravo
             AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             anamnesisController = new AnamnesisController(anamnesisService);
+            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
         }
     }
 }

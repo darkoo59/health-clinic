@@ -10,17 +10,21 @@ using System.Timers;
 using Controller;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
     class TaskScheduleTimer
     {
         public static Timer timer;
-        private EquipmentTransferController relocationController;
+        private EquipmentTransferController _relocationController;
+        private RenovationController _renovationController;
 
-        public TaskScheduleTimer(EquipmentTransferController relocationController)
+        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController)
         {
-            this.relocationController = relocationController;
+            this._relocationController = relocationController;
+            this._renovationController = renovationController;
             SetTimer();
         }
 
@@ -36,13 +40,30 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            Debug.WriteLine("Working....");
-            List<RelocationAppointment> appointments = relocationController.ReadAll();
+            CheckIfRelocationAppointmentDone();
+            CheckIfRenovationAppointmentDone();
+        }
+
+        private void CheckIfRelocationAppointmentDone()
+        {
+            List<RelocationAppointment> appointments = _relocationController.ReadAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
-                if (app._Scheduled.End.CompareTo(DateTime.Now) < 0)
+                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
-                    relocationController.FinishRelocationAppointment(app._Id);
+                    _relocationController.FinishRelocationAppointment(app.Id);
+                }
+            }
+        }
+
+        private void CheckIfRenovationAppointmentDone()
+        {
+            List<RenovationAppointment> renovations = _renovationController.ReadAll();
+            foreach (RenovationAppointment renovation in renovations)
+            {
+                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) < 0)
+                {
+                    _renovationController.FinishRenovationAppointment(renovation.Id);
                 }
             }
         }

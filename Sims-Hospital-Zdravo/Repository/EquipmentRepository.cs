@@ -14,42 +14,41 @@ namespace Repository
 {
     public class EquipmentRepository
     {
-        private ObservableCollection<Equipment> equipment;
-        private EquipmentDataHandler equipmentDataHandler;
+        private ObservableCollection<Equipment> _equipment;
+        private EquipmentDataHandler _equipmentDataHandler;
 
         public EquipmentRepository(EquipmentDataHandler equipmentDataHandler)
         {
-            this.equipmentDataHandler = equipmentDataHandler;
-            equipment = new ObservableCollection<Equipment>();
+            this._equipmentDataHandler = equipmentDataHandler;
+            _equipment = new ObservableCollection<Equipment>();
             LoadDataFromFile();
         }
+
         public ObservableCollection<Equipment> ReadAll()
         {
-            return equipment;
+            return _equipment;
         }
 
         public void Create(Equipment equipment)
         {
-            this.equipment.Add(equipment);
+            this._equipment.Add(equipment);
             LoadDataToFile();
-
         }
 
         public void Delete(Equipment equipment)
         {
-            this.equipment.Remove(equipment);
+            this._equipment.Remove(equipment);
             LoadDataToFile();
-
         }
 
         public void Update(Equipment equipment)
         {
-            foreach(Equipment eq in this.equipment)
+            foreach (Equipment eq in this._equipment)
             {
-                if(eq._Id == equipment._Id)
+                if (eq.Id == equipment.Id)
                 {
-                    eq._Name = equipment._Name;
-                    eq._Type = equipment._Type;
+                    eq.Name = equipment.Name;
+                    eq.Type = equipment.Type;
                     LoadDataToFile();
                     return;
                 }
@@ -58,10 +57,11 @@ namespace Repository
 
         public Equipment FindById(int id)
         {
-            foreach(Equipment eq in equipment)
+            foreach (Equipment eq in _equipment)
             {
-                if (eq._Id == id) return eq;
+                if (eq.Id == id) return eq;
             }
+
             return null;
         }
 
@@ -75,16 +75,12 @@ namespace Repository
 
         private void LoadDataFromFile()
         {
-            equipment = equipmentDataHandler.ReadAll();
+            _equipment = _equipmentDataHandler.ReadAll();
         }
 
         private void LoadDataToFile()
         {
-            equipmentDataHandler.Write(equipment);
+            _equipmentDataHandler.Write(_equipment);
         }
-
-
-
-
     }
 }
