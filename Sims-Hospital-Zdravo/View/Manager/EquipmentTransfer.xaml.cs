@@ -44,9 +44,16 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void RoomData_Changed(object sender, SelectionChangedEventArgs e)
         {
-            Room room = (Room)ComboFromRoom.SelectedItem;
-            ComboEquipment.ItemsSource = room.RoomEquipment.FindAll(x => x.Equipment.Type == EquipmentType.Static);
+            SetComboEquipment();
             UpdateTimeIntervals();
+        }
+
+        private void SetComboEquipment()
+        {
+            Room room = (Room)ComboFromRoom.SelectedItem;
+            ComboEquipment.ItemsSource = null;
+            ComboEquipment.ItemsSource = room.RoomEquipment.FindAll(x => x.Equipment.Type == EquipmentType.Static);
+            ComboEquipment.SelectedIndex = 0;
         }
 
         private void UpdateTimeIntervals()
@@ -70,15 +77,26 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             try
             {
+                ValidateBoxes();
+                RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
                 Room roomFrom = (Room)ComboFromRoom.SelectedItem;
                 Room roomTo = (Room)ComboToRoom.SelectedItem;
-                RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
+
+
                 int minutes = Int32.Parse(IntervalDuration.Text);
                 int quantity = Int32.Parse(Quantity.Text);
                 DateTime start = (DateTime)IntervalStarts.Value;
+
                 DateTime end = start.AddMinutes(minutes);
                 equipmentTransferController.MakeRelocationAppointment(roomFrom.Id, roomTo.Id, eq.Equipment, quantity, new TimeInterval(start, end));
-                MessageBox.Show("Successfully scheduled equipment transfer!");
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Successfully made appointment! Do you want to continue transfering equipment?", "Equipment transfer", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    UpdateTimeIntervals();
+                    SetComboEquipment();
+                    return;
+                }
+
                 Close();
             }
             catch (Exception ex)
@@ -86,6 +104,43 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 Console.WriteLine(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void ValidateBoxes()
+        {
+            ValidateEquipment();
+            ValidateQuantity();
+            ValidateMinutes();
+            ValidateDate();
+        }
+
+        private void ValidateQuantity()
+        {
+            int quantity;
+            bool correct = Int32.TryParse(Quantity.Text, out quantity);
+            if (!correct) throw new Exception("Quantity should be a number!");
+            if (quantity <= 0) throw new Exception("Quantity should be bigger than 0 !");
+        }
+
+        private void ValidateMinutes()
+        {
+            int minutes;
+            bool correct = Int32.TryParse(IntervalDuration.Text, out minutes);
+            if (!correct) throw new Exception("Duration should be a number!");
+            if (minutes <= 0) throw new Exception("Duration should be bigger than 0!");
+        }
+
+        private void ValidateEquipment()
+        {
+            RoomEquipment eq = (RoomEquipment)ComboEquipment.SelectedItem;
+            if (eq == null) throw new Exception("No equipment selected!");
+        }
+
+        private void ValidateDate()
+        {
+            DateTime date;
+            bool correct = DateTime.TryParse(IntervalStarts.Value.ToString(), out date);
+            if (!correct) throw new Exception("Time in invalid format!");
         }
     }
 }
