@@ -1,4 +1,5 @@
 ﻿using System;
+using Controller;
 using Model;
 using Repository;
 using Service;
@@ -25,12 +26,35 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             if (!_timeSchedulerService.IsRoomFreeInDateInterval(room.Id, ti))
             {
-                throw new Exception("Room taken in give interval");
+                throw new Exception("Room taken in given interval");
+            }
+        }
+
+        private void ValidateRoomExists(Room room)
+        {
+            if (room == null) throw new Exception("Room not selected!");
+            foreach (Room rm in roomRepository.ReadAll())
+            {
+                if (rm.Id == room.Id)
+                {
+                    return;
+                }
+            }
+
+            throw new Exception("Room with given Id doesn't exist!");
+        }
+
+        private void ValidateDateCorrect(TimeInterval ti)
+        {
+            if (ti.Start > ti.End)
+            {
+                throw new Exception("End date should be later than start date!");
             }
         }
 
         public void ValidateRenovation(Room room, TimeInterval ti)
         {
+            ValidateRoomExists(room);
             ValidateRoomTaken(room, ti);
         }
     }

@@ -29,8 +29,13 @@ namespace Sims_Hospital_Zdravo.View
 
         private void UpdateRoom_Click(object sender, RoutedEventArgs e)
         {
+            if (roomsTable.SelectedItem == null)
+            {
+                MessageBox.Show("Room should be selected!");
+                return;
+            }
+
             ManagerUpdateRoom managerUpdateRoom = new ManagerUpdateRoom(roomController) { DataContext = (Room)roomsTable.SelectedItem };
-            MessageBox.Show(((Room)roomsTable.SelectedItem).ToString());
             managerUpdateRoom.Show();
         }
 
