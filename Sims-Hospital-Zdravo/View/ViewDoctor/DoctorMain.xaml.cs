@@ -34,9 +34,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.doctorId = DoctorId;
             this.docController = app.doctorAppointmentController;
-            this.medicalRecordController = app.recordController;
-            this.anamnesisController = app.anamnesisController;
-            this.patientMedicalRecordController = app.patientMedRecController;
+            this.medicalRecordController = app._recordController;
+            this.anamnesisController = app._anamnesisController;
+            this.patientMedicalRecordController = app._patientMedRecController;
 
         }
 

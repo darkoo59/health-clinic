@@ -28,16 +28,16 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentController _equipmentController;
         internal AccountController _accountController;
         internal RenovationController _renovationController;
-        internal RoomController roomController;
-        internal MedicalRecordController recordController;
-        internal AppointmentPatientController appointmentPatientController;
+        //internal RoomController roomController;
+        //internal MedicalRecordController recordController;
+        //internal AppointmentPatientController appointmentPatientController;
         internal DoctorAppointmentController doctorAppointmentController;
         internal EquipmentTransferController equipmentTransferController;
-        internal EquipmentController equipmentController;
-        internal AccountController accountController;
-        internal PatientMedicalRecordController patientMedRecController;
-        internal RenovationController renovationController;
-        internal AnamnesisController anamnesisController;
+       // internal EquipmentController equipmentController;
+       // internal AccountController accountController;
+        internal PatientMedicalRecordController _patientMedRecController;
+        //internal RenovationController renovationController;
+        internal AnamnesisController _anamnesisController;
         internal TaskScheduleTimer taskScheduleTimer;
 
         public App()
@@ -106,6 +106,13 @@ namespace Sims_Hospital_Zdravo
             _accountController = new AccountController(accountService);
 
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
+            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
+            _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
+
+            AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
+            AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
+            AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
+            _anamnesisController = new AnamnesisController(anamnesisService);
         }
     }
 }

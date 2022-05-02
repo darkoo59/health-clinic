@@ -35,11 +35,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             
             InitializeComponent();
             this.DataContext = this;
-            this.PatientMedicalRecordController = app.patientMedRecController;
+            this.PatientMedicalRecordController = app._patientMedRecController;
             this.docController =app.doctorAppointmentController;
             this.appointmentsScheduled = docController.GetByDoctorID(2);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
-            this.anamnesisController = app.anamnesisController;
+            this.anamnesisController = app._anamnesisController;
             DoctorAppointments.AutoGenerateColumns = false;
             //Button btnmedical = new Button();
            
