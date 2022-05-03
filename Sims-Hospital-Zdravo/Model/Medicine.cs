@@ -3,42 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-   
+
 namespace Sims_Hospital_Zdravo.Model
-    {
-        public class Medicine
-        {
-            private string name;
-            private int id;
-            private string allergens;
-            private string description;
-            private string strength;
-            //private string dosage;
-            //private int numberOfDays;
 {
-    public  class Medicine
+    public class Medicine
     {
         private string name;
         private int id;
-        private int strength;
-
-            public Medicine(string name, string strength, string allergens,string description)
-            {
-                this.name = name;
-                this.allergens = allergens;
-                this.description = description;
-                this.strength = strength;
-                //this.dosage = dosage;
-                //this.numberOfDays = numberOfDays;
-            }
-        public Medicine(int id, string name,  int strength)
+        private string allergens;
+        private string description;
+        private string strength;
+        
+        public Medicine(string name, string strength, string allergens, string description)
         {
-            this.id = id;
             this.name = name;
+            this.allergens = allergens;
+            this.description = description;
             this.strength = strength;
-        }
-
             
+        }
+        
+
+
         public string _Description
         {
             get
@@ -51,17 +37,7 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
 
-        public string _Strength
-        {
-            get
-            {
-                return strength;
-            }
-            set
-            {
-                strength = value;
-            }
-        }
+       
 
         public string _Allergens
         {
@@ -75,16 +51,16 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
         public int _Id
+        {
+            get
             {
-                get
-                {
-                    return id;
-                }
-                set
-                {
-                    id = value;
-                }
+                return id;
             }
+            set
+            {
+                id = value;
+            }
+        }
 
         public string _Name
         {
@@ -97,41 +73,10 @@ namespace Sims_Hospital_Zdravo.Model
                 name = value;
             }
         }
-        //public string _Dosage
-        //{
-        //    get
-        //    {
-        //        return dosage;
-        //    }
-        //    set
-        //    {
-        //        dosage = value;
-        //    }
-        //}
-        //public int _NumberOfDays
-        //{
-        //    get
-        //    {
-        //        return numberOfDays;
-        //    }
-        //    set
-        //    {
-        //        numberOfDays = value;
-        //    }
-        //}
-        public string _Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-       
-        public int _Strength
+        
+        
+
+        public string _Strength
         {
             get
             {
@@ -146,7 +91,7 @@ namespace Sims_Hospital_Zdravo.Model
 
 
     }
-    }
+}
 
 
 

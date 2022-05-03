@@ -37,8 +37,8 @@
         <Label Content="Prescription date:" Margin="16,10,147,104" Grid.Row="2"/>
         <TextBox TextWrapping="Wrap" Name="DateTxt" Margin="125,14,10,90" Grid.Row="2"/>
         <Label Content=" Duration:" Margin="29,10,133,104" Grid.Row="1" Grid.Column="1"/>
-        <DatePicker Grid.Column="1"  Name="start" Margin="124,6,13,108" Grid.Row="1"/>
-        <DatePicker Grid.Column="2" Name="End" Margin="25,6,112,108" Grid.Row="1"/>
+        <DatePicker Grid.Column="1"  SelectedDateChanged="start_SelectedDateChanged" Name="start" Margin="124,6,13,108" Grid.Row="1"/>
+        <DatePicker Grid.Column="2" SelectedDateChanged="End_SelectedDateChanged" Name="End" Margin="25,6,112,108" Grid.Row="1"/>
 
 
 

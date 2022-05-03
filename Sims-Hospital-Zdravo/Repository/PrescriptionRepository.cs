@@ -10,10 +10,10 @@ using Sims_Hospital_Zdravo.DataHandler;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    
+
     public class PrescriptionRepository
     {
-       private ObservableCollection<Prescription> prescriptions;
+        private ObservableCollection<Prescription> prescriptions;
         private PrescriptionDataHandler prescriptionDataHandler;
         public PrescriptionRepository(PrescriptionDataHandler prescriptionDataHandler)
         {
@@ -38,19 +38,17 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             return prescriptions;
         }
-        public void LoadDataToFiles()
-        {
-            prescriptionDataHandler.Write(prescriptions);
-        }
+        
         public void LoadDataFromFiles()
         {
             prescriptions = prescriptionDataHandler.ReadAll();
-
-        public void LoadDataToFiles()
-        {
-            prescriptionDataHandler.Write(prescriptions);
         }
+            public void LoadDataToFiles()
+            {
+                prescriptionDataHandler.Write(prescriptions);
+            }
 
 
+        }
     }
-}
+

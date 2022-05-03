@@ -53,6 +53,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Patient patient = medicalRecord._Patient;
             Anamnesis anamnesis = new Anamnesis(doctor, medicalRecord, date, timeInterval, diagnosis, medical_report);
             anamnesisController.Create(anamnesis);
+            medicalRecord._Anamnesis.Add(anamnesis);
             doctorAppointment.DeleteAfterExaminationIsDone(date, doctorId, patient);
             Close();
             

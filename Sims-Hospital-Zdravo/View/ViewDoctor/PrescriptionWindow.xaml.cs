@@ -99,6 +99,16 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             }
         }
+        private void start_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            startDate = start.SelectedDate.Value;
+
+        }
+
+        private void End_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            endDate = End.SelectedDate.Value;
+        }
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
             if (strengthTxt.Text == "" || DosageTxt.Text == "" || startDate.Equals(null) || endDate.Equals(null)|| Medicinecb.SelectedItem==null)
@@ -111,11 +121,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 strength = strengthTxt.Text;
                 dosage = DosageTxt.Text;
                 DateTime date = DateTime.Now;
-                startDate = start.DisplayDate;
-                endDate = End.DisplayDate;
+
+                Console.WriteLine(this.startDate + " " + this.endDate);
+                DateTime startDate = DateTime.Parse(start.Text);
+                DateTime endDate = DateTime.Parse(End.Text);
                 TimeInterval tl = new TimeInterval(startDate, endDate);
-                Doctor doctor = app.doctorAppointmentController.getDoctor(doctorId);
-                Prescription prescription = new Prescription(_Medicine, date, strength, tl, doctor, dosage);
+                Doctor doctor = app._doctorAppointmentController.getDoctor(doctorId);
+                int numOfDays = 20;
+                Prescription prescription = new Prescription(_Medicine, date, strength, tl, doctor, dosage, numOfDays);
                 medicalRecordController.createPrescription(prescription);
 
                 medicalRecord._Prescriptions.Add(prescription);
@@ -124,6 +137,6 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             }
         }
 
-        
+      
     }
 }

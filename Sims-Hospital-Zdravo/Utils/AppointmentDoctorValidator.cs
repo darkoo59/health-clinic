@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateDatePast(Appointment appointment)
         {
-            DateTime date = appointment._Time.Start;
+            DateTime date = appointment._Time.End;
             if (date.CompareTo(DateTime.Now) < 0)
             { throw new Exception("Date has already passed."); }
             else if( appointment._Time.Start.TimeOfDay > appointment._Time.End.TimeOfDay)
@@ -69,7 +69,7 @@ namespace Sims_Hospital_Zdravo.Utils
             ValidateAppointmentTimeTooLong(appointment);
             ValidateAppointmentRoomTaken(appointment._Time, appointment._Id);
             ValidateDatePast(appointment);
-            ValidateRoom(appointment);
+            //ValidateRoom(appointment);
             ValidateIfNull(appointment);
         }
 

@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             foreach( Anamnesis anam in Anamnesis)
             {
-                if (anam._AnamnesisID == anamnesis._AnamnesisID)
+                if (anam._Doctor == anamnesis._Doctor)
                 {
                     anam._Diagnosis = anamnesis._Diagnosis;
                     anam._Anamensis = anamnesis._Anamensis;
@@ -59,6 +59,17 @@ namespace Sims_Hospital_Zdravo.Repository
             
             
         }
+        //public ObservableCollection<Anamnesis> FindAnamesisByPatient(int id)
+        //{
+        //    ObservableCollection<Anamnesis> listOfPatientAnamnesis = new ObservableCollection<Anamnesis>();
+
+        //    foreach( Anamnesis anam in Anamnesis)
+        //    {
+        //        if(anam.pa)
+        //    }
+
+
+        //}
         
         public ObservableCollection<Anamnesis> FindAnamnesisByPatient (MedicalRecord med)
         {

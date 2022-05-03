@@ -21,8 +21,8 @@ namespace Sims_Hospital_Zdravo.Service
 
         public ref ObservableCollection<Medicine> ReadAllMedicine()
         {
-            Console.WriteLine("usao dabog da");
-            return ref medicineRepository.ReadAllMedicines();
+           
+            return ref medicineRepository.ReadAll();
 
         }
 

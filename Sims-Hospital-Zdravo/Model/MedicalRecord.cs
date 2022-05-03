@@ -22,6 +22,7 @@ namespace Model
         private Patient Patient;
         private List<String> Allergens;
         private ObservableCollection<Prescription> prescriptions;
+        private ObservableCollection<Anamnesis> anamnesis;
         private GenderType Gender;
         private BloodType BloodType;
         private MaritalType MaritalStatus;
@@ -35,6 +36,7 @@ namespace Model
             this._MaritalStatus = maritalStatus;
             this._Allergens = allergens;
             this.prescriptions = new ObservableCollection<Prescription>();
+            this.anamnesis = new ObservableCollection<Anamnesis>();
         }
 
         public Patient _Patient {
@@ -127,6 +129,22 @@ namespace Model
                 if(this.prescriptions != value)
                 {
                     this.prescriptions = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ObservableCollection<Anamnesis> _Anamnesis
+        {
+            get
+            {
+                return anamnesis;
+            }
+            set
+            {
+                if (this.anamnesis != value)
+                {
+                    this.anamnesis = value;
                     OnPropertyChanged();
                 }
             }

@@ -27,19 +27,12 @@ namespace Sims_Hospital_Zdravo
         internal EquipmentTransferController _equipmentTransferController;
         internal EquipmentController _equipmentController;
         internal AccountController _accountController;
-
         internal RenovationController _renovationController;
-
-        // internal EquipmentController equipmentController;
-        // internal AccountController accountController;
         internal PatientMedicalRecordController _patientMedRecController;
-
-        //internal RenovationController renovationController;
         internal AnamnesisController _anamnesisController;
-        internal TaskScheduleTimer _taskScheduleTimer;
         internal SecretaryAppointmentController _secretaryAppointmentController;
         internal PrescriptionController _prescriptionController;
-        internal TaskScheduleTimer taskScheduleTimer;
+        internal TaskScheduleTimer _taskScheduleTimer;
         internal MedicineController _medicineController;
 
         public App()
@@ -115,7 +108,7 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController,_doctorAppointmentController);
+            
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
             _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
@@ -128,13 +121,11 @@ namespace Sims_Hospital_Zdravo
                 new SecretaryAppointmentService(appointmentRepository,patientRepository, timeSchedulerService, roomRepository, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
-            //_taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
-            PrescriptionDataHandler prescriptionDataHandler = new PrescriptionDataHandler();
-            PrescriptionRepository prescriptionRepository = new PrescriptionRepository(prescriptionDataHandler);
-            PrescriptionService prescriptionService = new PrescriptionService(prescriptionRepository);
+            
+            
             _prescriptionController = new PrescriptionController(prescriptionService);
 
-            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _prescriptionController);
+            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController,_doctorAppointmentController, _prescriptionController);
         }
     }
 }

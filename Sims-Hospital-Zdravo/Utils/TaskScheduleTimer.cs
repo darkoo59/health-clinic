@@ -27,12 +27,12 @@ namespace Sims_Hospital_Zdravo.Utils
         private DateTime dateTime1;
         private DoctorAppointmentController _doctorAppointmentController;
 
-        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController,DoctorAppointmentController doctorAppointmentController)
+        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController,DoctorAppointmentController doctorAppointmentController,PrescriptionController prescriptionController)
         {
             this._relocationController = relocationController;
             this._renovationController = renovationController;
             this._prescriptionController = prescriptionController;
-            foreach (Prescription prescription in prescriptionController.ReadAll())
+            foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
                 prescription._Flag = true;
             }
@@ -56,6 +56,7 @@ namespace Sims_Hospital_Zdravo.Utils
             //CheckIfRelocationAppointmentDone();
             //CheckIfRenovationAppointmentDone();
             CheckIfThereShouldBeNotification();
+            AppointmentDone();
             dateTime = DateTime.Now;
             dateTime1 = DateTime.Now.AddSeconds(10);
         }
@@ -77,7 +78,7 @@ namespace Sims_Hospital_Zdravo.Utils
             ObservableCollection<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);
             foreach(Appointment appointment in appointments)
             {
-                if(appointment._Time.End.CompareTo(DateTime.Now) < 0)
+                if(appointment._Time.Start.CompareTo(DateTime.Now) < 0)
                 {
                     _doctorAppointmentController.DeleteByID(appointment);
                 }
@@ -105,7 +106,10 @@ namespace Sims_Hospital_Zdravo.Utils
                 DateTime dt = new DateTime(prescription._PrescriptionDate.Year, prescription._PrescriptionDate.Month, prescription._PrescriptionDate.Day);
                 dt = dt.AddHours(prescription._PrescriptionDate.Hour);
                 dt = dt.AddMinutes(prescription._PrescriptionDate.Minute);
-                for (int i = 0; i < prescription._NumberOfDays; i++)
+                Console.WriteLine(prescription._TimeInterval);
+                int p = prescription._TimeInterval.End.DayOfYear - prescription._TimeInterval.Start.DayOfYear;
+                p = p * Int32.Parse(s[0]);
+                for (int i = 0; i < p; i++)
                 {
                     if (dt.CompareTo(dateTime) > 0 && dt.CompareTo(dateTime1) < 0)
                     {

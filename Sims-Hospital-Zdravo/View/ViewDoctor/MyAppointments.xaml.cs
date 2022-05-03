@@ -106,10 +106,22 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void AppointmentShow_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-             AppointmentDate = AppointmentShow.SelectedDate.Value;
-            this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
-            this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+            try
+            {
+                AppointmentDate = AppointmentShow.SelectedDate.Value;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Chose date");
+            }
 
+        
+                this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
+                this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+            
+            
+               
+            
 
         }
 
