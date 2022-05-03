@@ -152,7 +152,6 @@
     <Compile Include="Service\PatientMedicalRecordService.cs" />
     <Compile Include="Service\TimeAppointmentService.cs" />
     <Compile Include="Utils\AppointmentDoctorValidator.cs" />
-
     <Compile Include="Service\SecretaryAppointmentService.cs" />
     <Compile Include="Service\PrescriptionService.cs" />
     <Compile Include="Service\RenovationService.cs" />
@@ -200,12 +199,9 @@
     <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
       <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
+    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs" />
     <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
     <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
-    <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
-      <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
@@ -297,7 +293,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
     <Page Include="View\Manager\ManagerRenovationBasic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -330,13 +325,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml">
+    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml" />
     <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
     <Page Include="View\Manager\ManagerRenovations.xaml" />
-    <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
