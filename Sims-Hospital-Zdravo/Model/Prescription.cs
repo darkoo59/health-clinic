@@ -11,18 +11,45 @@ namespace Sims_Hospital_Zdravo.Model
     {
         private Medicine medicine;
         private DateTime prescriptionDate;
-        private MedicalRecord medical;
+        private string strength;
+        private TimeInterval timeInterval;
         private Doctor doctor;
+        private string dosage;
+        
 
-        public Prescription(Medicine medicine, DateTime prescriptionDate, MedicalRecord medical, Doctor doctor)
+        public Prescription(Medicine medicine, DateTime prescriptionDate, string strength, TimeInterval timeInterval, Doctor doctor, string dosage)
         {
             this.medicine = medicine;
             this.prescriptionDate = prescriptionDate;
-            this.medical = medical;
+            this.strength = strength;
+            this.timeInterval = timeInterval;
             this.doctor = doctor;
+            this.dosage = dosage;
+            
         }
 
-
+        public string _Strength
+        {
+            get
+            {
+                return strength;
+            }
+            set
+            {
+                strength = value;
+            }
+        }
+        public string _Dosage
+        {
+            get
+            {
+                return dosage;
+            }
+            set
+            {
+                dosage = value;
+            }
+        }
         public Medicine _Medicine
         {
             get
@@ -34,7 +61,17 @@ namespace Sims_Hospital_Zdravo.Model
                 medicine = value;
             }
         }
-
+        public TimeInterval _TimeInterval
+        {
+            get
+            {
+                return timeInterval;
+            }
+            set
+            {
+                timeInterval = value;
+            }
+        }
         public DateTime _PrescriptionDate
         {
             get
@@ -57,17 +94,8 @@ namespace Sims_Hospital_Zdravo.Model
                 doctor = value;
             }
         }
-        public MedicalRecord _MedicalRecord
-        {
-            get
-            {
-                return medical;
-            }
-            set
-            {
-                medical = value;
+        
 
-            }
-        }
+
     }
 }

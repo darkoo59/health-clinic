@@ -19,6 +19,7 @@ namespace Sims_Hospital_Zdravo.DataHandler
 
         public void Write(ObservableCollection<Anamnesis> anamnesis)
         {
+            Console.WriteLine("balalalalalallalalalalalalalla");
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(anamnesis);
             System.IO.File.WriteAllText(Path, serialized);
         }

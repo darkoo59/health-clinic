@@ -25,6 +25,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController medicalRecordController;
         private AnamnesisController anamnesisController;
         private PatientMedicalRecordController patientMedicalRecordController;
+        
         private int doctorId;
         
         private App app;
@@ -42,12 +43,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow();
+            DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow(docController);
             CrudWindow.Show();
         }
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments myAppointments = new MyAppointments();
+            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController,medicalRecordController,doctorId);
             myAppointments.Show();
 
         }

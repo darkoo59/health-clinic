@@ -102,6 +102,7 @@
     <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
+    <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
@@ -110,7 +111,9 @@
     <Compile Include="DataHandler\AnamnesisDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
+    <Compile Include="DataHandler\MedicineDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
     <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
     <Compile Include="Interfaces\INotificationObservable.cs" />
     <Compile Include="Interfaces\INotificationObserver.cs" />
@@ -141,6 +144,7 @@
     <Compile Include="Repository\AnamnesisRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
@@ -148,7 +152,9 @@
     <Compile Include="Repository\PrescriptionRepository.cs" />
     <Compile Include="Repository\RenovationRepository.cs" />
     <Compile Include="Service\AnamnesisService.cs" />
+    <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\PatientMedicalRecordService.cs" />
+    <Compile Include="Service\PrescriptionService.cs" />
     <Compile Include="Service\RenovationService.cs" />
     <Compile Include="Service\TimeAppointmentService.cs" />
     <Compile Include="Utils\AppointmentDoctorValidator.cs" />
@@ -247,6 +253,12 @@
     </Compile>
     <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs">
       <DependentUpon>PatientMedicalRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\PrescriptionList.xaml.cs">
+      <DependentUpon>PrescriptionList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\PrescriptionWindow.xaml.cs">
+      <DependentUpon>PrescriptionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
@@ -377,6 +389,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ViewDoctor\PrescriptionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\PrescriptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Appointment.cs" />
@@ -449,6 +469,8 @@
   <ItemGroup>
     <Content Include="Resources\allergens.txt" />
     <Resource Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\medicines.txt" />
+    <Resource Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using Model;
+using Sims_Hospital_Zdravo.Model;
 
 public enum BloodType { APOSITIVE, ANEGATIVE, ABPOSITIVE, ABNEGATIVE, BPOSITIVE, BNEGATIVE, OPOSITIVE, ONEGATIVE };
 public enum GenderType { MALE, FEMALE };
@@ -18,7 +21,7 @@ namespace Model
         private int Id;
         private Patient Patient;
         private List<String> Allergens;
-
+        private ObservableCollection<Prescription> prescriptions;
         private GenderType Gender;
         private BloodType BloodType;
         private MaritalType MaritalStatus;
@@ -31,6 +34,7 @@ namespace Model
             this._BloodType = blood;
             this._MaritalStatus = maritalStatus;
             this._Allergens = allergens;
+            this.prescriptions = new ObservableCollection<Prescription>();
         }
 
         public Patient _Patient {
@@ -112,6 +116,22 @@ namespace Model
             }
         }
 
+        public ObservableCollection<Prescription> _Prescriptions
+        {
+            get
+            {
+                return prescriptions;
+            }
+            set
+            {
+                if(this.prescriptions != value)
+                {
+                    this.prescriptions = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public List<String> _Allergens
         {
             get
@@ -120,7 +140,7 @@ namespace Model
             }
             set
             {
-                if(this.Allergens != value)
+                if (this.Allergens != value)
                 {
                     this.Allergens = value;
                     OnPropertyChanged();

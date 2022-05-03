@@ -10,6 +10,8 @@ using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Model;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Service
 {
@@ -108,6 +110,11 @@ namespace Service
                 id++;
             }
             return id;
+        }
+
+        public void CreatePrescription(Prescription prescription)
+        {
+
         }
 
    

@@ -18,12 +18,15 @@ namespace Sims_Hospital_Zdravo.Repository
 
             this.AnamnesisDataHandler = anamnesisDataHandler;
             Anamnesis = new ObservableCollection<Anamnesis>();
+            LoadDataFromFiles();
+
         }
 
 
         public void Create (Anamnesis anamnesis)
         {
             Anamnesis.Add(anamnesis);
+            LoadDataToFiles();
         }
 
         public void Update (Anamnesis anamnesis)
@@ -34,9 +37,11 @@ namespace Sims_Hospital_Zdravo.Repository
                 {
                     anam._Diagnosis = anamnesis._Diagnosis;
                     anam._Anamensis = anamnesis._Anamensis;
-                    
+                    LoadDataToFiles();
+                    return;
                 }
             }
+            
 
         }
         public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
