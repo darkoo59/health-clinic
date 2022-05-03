@@ -9,24 +9,35 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
         <Grid Margin="20, 0, 20, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <ComboBox x:Name="RoomPicker" Height="30" SelectionChanged="RoomChanged_Selection"></ComboBox>
             <Button Grid.Column="2" Width="100" Height="30" Click="Transfer_Click">Transfer</Button>
             <Button Grid.Column="3" Width="100" Height="30" Click="InsertRoom_Click">Insert</Button>
             <Button Grid.Column="5" Width="100" Height="30" Click="UpdateRoom_Click">Update</Button>
             <Button Grid.Column="4" Width="100" Height="30" Click="DeleteRoom_Click">Delete</Button>
         </Grid>
-        <DataGrid SelectionMode="Single"  x:Name="equipmentTable" Grid.Row="2" ColumnWidth="*"  VerticalAlignment="Stretch" Margin="20, 0, 20, 20" CanUserResizeColumns="False" CanUserResizeRows="False"/>
+        <DataGrid AutoGenerateColumns="False" SelectionMode="Single" x:Name="equipmentTable" Grid.Row="2"
+                  ColumnWidth="*"
+                  VerticalAlignment="Stretch" Margin="20, 0, 20, 20" CanUserResizeColumns="False"
+                  CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Equipment.Name}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*" Binding="{Binding Equipment.Type}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Quantity" IsReadOnly="True" Width="*" Binding="{Binding Quantity}"> </DataGridTextColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </Window>
