@@ -11,7 +11,6 @@ namespace Model
 {
     public class Patient : User
     {
-        private Allergens allergens;
 
         public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg,
             String phoneNumber)
@@ -23,13 +22,6 @@ namespace Model
             this._Email = email;
             this._Jmbg = jmbg;
             this._PhoneNumber = phoneNumber;
-        }
-
-        public Allergens _Allergens
-        {
-            get { return allergens; }
-            set { value = allergens; }
-
         }
 
         public override string ToString()
