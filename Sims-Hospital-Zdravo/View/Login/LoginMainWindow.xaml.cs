@@ -52,7 +52,6 @@ namespace Sims_Hospital_Zdravo.View.Login
             String username = txtUsername.Text;
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
-
             if (account != null)
             {
                 switch (account._Role)
