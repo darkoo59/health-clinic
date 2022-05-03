@@ -15,7 +15,12 @@ namespace Sims_Hospital_Zdravo.Controller
             this.secretaryAppointmenService = appService;
         }
 
-        public ObservableCollection<Appointment>  ReadAllAppointmentsForDate(DateTime date)
+        public void Create(Appointment appointment)
+        {
+            secretaryAppointmenService.Create(appointment);
+        }
+
+        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             return secretaryAppointmenService.ReadAllAppointmentsForDate(date);
         }
@@ -33,6 +38,31 @@ namespace Sims_Hospital_Zdravo.Controller
         public ObservableCollection<Patient> ReadAllPatients()
         {
             return secretaryAppointmenService.ReadAllPatients();
+        }
+
+        public List<Room> FindAvailableRoomsForInterval(TimeInterval startEndTime)
+        {
+            return secretaryAppointmenService.FindAvailableRoomsForInterval(startEndTime);
+        }
+
+        public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval startEndTime)
+        {
+            return secretaryAppointmenService.FindAvailableDoctorsForInterval(startEndTime);
+        }
+
+        public ObservableCollection<Patient> FindAvailablePatientsForInterval(TimeInterval startEndTime)
+        {
+            return secretaryAppointmenService.FindAvailablePatientsForInterval(startEndTime);
+        }
+
+        public int GenerateId()
+        {
+            return secretaryAppointmenService.GenerateId();
+        }
+
+        public void ValidateAppointmentInterval(TimeInterval interval)
+        {
+            secretaryAppointmenService.ValidateAppointmentInterval(interval);
         }
     }
 }

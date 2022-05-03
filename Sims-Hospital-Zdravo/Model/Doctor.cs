@@ -18,5 +18,10 @@ namespace Model
             this._Name = name;
             this._Surname = surname;
         }
+
+        public override string ToString()
+        {
+            return _Name + " " +_Surname;
+        }
     }
 }

@@ -21,15 +21,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     /// <summary>
     /// Interaction logic for RescheduleExaminationWindow.xaml
     /// </summary>
-    public partial class RescheduleExaminationWindow : Window,IUpdateFilesObservable
+    public partial class RescheduleExaminationWindow : Window
     {
         private Appointment selectedAppointment;
         private SecretaryAppointmentController secretaryAppointmentController;
-        private List<IUpdateFilesObserver> observers;
-        public RescheduleExaminationWindow(Appointment appointment,SecretaryAppointmentController controller)
+        public RescheduleExaminationWindow(Appointment appointment, SecretaryAppointmentController controller)
         {
             InitializeComponent();
-            this.observers = new List<IUpdateFilesObserver>();
             this.DataContext = this;
             this.selectedAppointment = appointment;
             this.secretaryAppointmentController = controller;
@@ -41,49 +39,29 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string startString = startDatePicker.SelectedDate.Value.ToString("yyyy-MM-dd");
-            DateTime startDate = DateTime.Parse(startString);
-            string[] startTime = txtStartTime.Text.Split(':');
-            startDate = startDate.AddHours(Int32.Parse(startTime[0]));
-            startDate = startDate.AddMinutes(Int32.Parse(startTime[1]));
-            
-            string endString = endDatePicker.SelectedDate.Value.ToString("yyyy-MM-dd");
-            DateTime endDate = DateTime.Parse(endString);
-            string[] endTime = txtEndTime.Text.Split(':');
-            endDate=endDate.AddHours(Int32.Parse(endTime[0]));
-            endDate=endDate.AddMinutes(Int32.Parse(endTime[1]));
-            //DateTime startDate = DateTime.Parse(startString);
-            //DateTime startTemp = DateTime.Parse(txtStartTime.Text);
-            /*
-              string[] time = Time.Text.Split(':');
-                DateTime date = new DateTime(_DateTime.Year,_DateTime.Month,_DateTime.Day);
-                date = date.AddHours(Int32.Parse(time[0]));
-                date = date.AddMinutes(Int32.Parse(time[1]));
-             */
-            selectedAppointment._Time.Start = startDate;
-            selectedAppointment._Time.End = endDate;
-            
-            secretaryAppointmentController.Update(selectedAppointment);
-            NotifyUpdated();
-            Close();
-        }
-
-        public void NotifyUpdated()
-        {
-            foreach (IUpdateFilesObserver observer in observers)
+            try
             {
-                observer.NotifyUpdated();
+                string startString = startDatePicker.SelectedDate.Value.ToString("yyyy-MM-dd");
+                DateTime startDate = DateTime.Parse(startString);
+                string[] startTime = txtStartTime.Text.Split(':');
+                startDate = startDate.AddHours(Int32.Parse(startTime[0]));
+                startDate = startDate.AddMinutes(Int32.Parse(startTime[1]));
+
+                string endString = endDatePicker.SelectedDate.Value.ToString("yyyy-MM-dd");
+                DateTime endDate = DateTime.Parse(endString);
+                string[] endTime = txtEndTime.Text.Split(':');
+                endDate = endDate.AddHours(Int32.Parse(endTime[0]));
+                endDate = endDate.AddMinutes(Int32.Parse(endTime[1]));
+                selectedAppointment._Time.Start = startDate;
+                selectedAppointment._Time.End = endDate;
+
+                secretaryAppointmentController.Update(selectedAppointment);
+                Close();
             }
-        }
-
-        public void AddObserver(IUpdateFilesObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void RemoveObserver(IUpdateFilesObserver observer)
-        {
-            observers.Remove(observer);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

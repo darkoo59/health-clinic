@@ -39,7 +39,6 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                medicalController.ValidateInsert(TxtJmbg.Text);
                 Patient patient = new Patient(medicalController.GeneratePatientId(), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 foreach (string str in AllergensList.SelectedItems)
@@ -50,7 +49,7 @@ namespace Sims_Hospital_Zdravo
                 medicalController.Create(medicalRecord, patient);
                 Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

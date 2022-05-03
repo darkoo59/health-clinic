@@ -133,6 +133,7 @@
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\EquipmentTransferService.cs" />
     <Compile Include="Service\TimeSchedulerService.cs" />
+    <Compile Include="Utils\AppointmentSecretaryValidator.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="Utils\TaskScheduleTimer.cs" />
@@ -148,11 +149,20 @@
     <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
       <DependentUpon>ExaminationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml.cs">
+      <DependentUpon>NewAppointmentChooseDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml.cs">
+      <DependentUpon>NewAppointmentChoosePatient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
       <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Secretary\Examination\UpdateChoosePatientWindow.xaml.cs">
-      <DependentUpon>UpdateChoosePatientWindow.xaml</DependentUpon>
+    <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs">
+      <DependentUpon>UpdateChooseDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
+      <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
@@ -231,11 +241,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Secretary\Examination\UpdateChoosePatientWindow.xaml">
+    <Page Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

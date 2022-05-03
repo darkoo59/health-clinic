@@ -9,6 +9,7 @@ using System;
 using Repository;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Service
 {
@@ -41,13 +42,47 @@ namespace Service
             List<Appointment> appointments = appointmentRepository.FindByRoomId(roomId);
             foreach(Appointment app in appointments)
             {
-                DateTime start = app._DateAndTime;
-                DateTime end = start.AddMinutes(30);
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
                 
+            }
+
+            return true;
+        }
+
+        public bool IsDoctorFreeInInterval(int doctorId, TimeInterval ti)
+        {
+            ObservableCollection<Appointment> appointments = appointmentRepository.FindByDoctorId(doctorId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+
+            }
+
+            return true;
+        }
+
+        public bool IsPatientFreeInInterval(int patientId, TimeInterval ti)
+        {
+            ObservableCollection<Appointment> appointments = appointmentRepository.FindByPatientId(patientId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+
             }
 
             return true;

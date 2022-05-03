@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             this.medicalController = controller;
             this.DataContext = this;
+            UpdateGridView();
             ContentGrid.ItemsSource = this.medicalController.ReadAll();
         }
 
@@ -51,6 +52,36 @@ namespace Sims_Hospital_Zdravo
             {
                 medicalController.Delete((MedicalRecord)ContentGrid.SelectedItem);
             }
+        }
+
+        private void UpdateGridView()
+        {
+            ContentGrid.AutoGenerateColumns = false;
+            ContentGrid.CanUserSortColumns = false;
+            DataGridTextColumn dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Name";
+            dataColumn.Binding = new Binding("_Patient._Name");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Surname";
+            dataColumn.Binding = new Binding("_Patient._Surname");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Jmbg";
+            dataColumn.Binding = new Binding("_Patient._Jmbg");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Gender";
+            dataColumn.Binding = new Binding("_Gender");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Blood type";
+            dataColumn.Binding = new Binding("_BloodType");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Marital status";
+            dataColumn.Binding = new Binding("_MaritalStatus");
+            ContentGrid.Columns.Add(dataColumn);
         }
     }
 }

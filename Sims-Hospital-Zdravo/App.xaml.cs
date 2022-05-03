@@ -87,7 +87,7 @@ namespace Sims_Hospital_Zdravo
             TaskScheduleTimer taskScheduler = new TaskScheduleTimer(equipmentTransferController);
 
             SecretaryAppointmentService secretaryAppointmentService =
-                new SecretaryAppointmentService(appointmentRepository,patientRepository);
+                new SecretaryAppointmentService(appointmentRepository,patientRepository, timeSchedulerService, roomRepository, doctorRepository);
             secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
 

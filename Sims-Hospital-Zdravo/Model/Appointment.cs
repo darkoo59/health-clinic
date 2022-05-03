@@ -46,6 +46,8 @@ namespace Model
             {
                 this.doctor = value;
                 OnPropertyChanged("_Doctor");
+                OnPropertyChanged("_Doctor._Name");
+                OnPropertyChanged("_Doctor._Surname");
             }
         }
         public Patient _Patient
@@ -84,7 +86,7 @@ namespace Model
             set
             {
                 this.type = value;
-                OnPropertyChanged("_DateAndTime");
+                OnPropertyChanged("_Type");
             }
         }
         public int _Id
@@ -109,7 +111,7 @@ namespace Model
             {
                 this.room = value;
                 OnPropertyChanged("_Room");
-                OnPropertyChanged("_Id");
+                OnPropertyChanged("_Room._Type");
             }
         }
 
@@ -123,7 +125,8 @@ namespace Model
             {
                 this.time = value;
                 OnPropertyChanged("_Time");
-                //OnPropertyChanged("_Id");
+                OnPropertyChanged("_Time.Start");
+                OnPropertyChanged("_Time.End");
             }
         }
 

@@ -1,0 +1,24 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.NewAppointmentChooseDate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        mc:Ignorable="d"
+        Title="NewAppointmentChooseDate" Height="400" Width="700">
+    <Grid>
+        <Grid>
+            <Button Content="Next" HorizontalAlignment="Left" Margin="277,259,0,0" VerticalAlignment="Top" Width="133" Height="51" RenderTransformOrigin="0.522,2.172" FontSize="20" Click="btnNext_Click"/>
+            <Label Content="Start at:" HorizontalAlignment="Left" Margin="181,96,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18"/>
+            <Label Content="End at:" HorizontalAlignment="Left" Margin="181,150,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18"/>
+            <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="334,103,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
+            <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="334,150,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
+            <TextBox x:Name="txtStartTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="471,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontSize="20"/>
+            <TextBox x:Name="txtEndTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="471,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontSize="20"/>
+            <Label Content="If patient doesn't exist, please create medical  record first!" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top" Height="42" Width="580" FontSize="18"/>
+            <Button Content="Create" HorizontalAlignment="Left" Margin="550,20,0,0" VerticalAlignment="Top" Width="118" Height="42" Click="btnCreateRecord_Click"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
