@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Controller;
+using Model;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
@@ -20,41 +21,43 @@ namespace Sims_Hospital_Zdravo.View.Manager
     /// </summary>
     public partial class ManagerEquipment : Window
     {
-
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
 
         private RoomController roomController;
+
         public ManagerEquipment(RoomController roomController, EquipmentController equipmentController, EquipmentTransferController equipmentTransferController)
         {
             this.equipmentController = equipmentController;
             this.equipmentTransferController = equipmentTransferController;
             this.roomController = roomController;
             InitializeComponent();
-            equipmentTable.ItemsSource = equipmentController.ReadAll();
+            RoomPicker.ItemsSource = roomController.ReadAll();
+            RoomPicker.SelectedIndex = 0;
+            equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void UpdateRoom_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void DeleteRoom_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
             EquipmentTransfer equipmentTransfer = new EquipmentTransfer(roomController, equipmentController, equipmentTransferController);
             equipmentTransfer.Show();
+        }
 
-
+        private void RoomChanged_Selection(object sender, SelectionChangedEventArgs e)
+        {
+            equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
         }
     }
 }

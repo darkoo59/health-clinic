@@ -108,10 +108,19 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         public void ValidateBoxes()
         {
+            ValidateRoomsSelected();
             ValidateEquipment();
             ValidateQuantity();
             ValidateMinutes();
             ValidateDate();
+        }
+
+
+        private void ValidateRoomsSelected()
+        {
+            Room roomFrom = (Room)ComboFromRoom.SelectedItem;
+            Room roomTo = (Room)ComboToRoom.SelectedItem;
+            if (roomFrom == null || roomTo == null) throw new Exception("Source and Destination rooms should have selected value!");
         }
 
         private void ValidateQuantity()

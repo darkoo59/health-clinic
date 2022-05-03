@@ -53,8 +53,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            //CheckIfRelocationAppointmentDone();
-            //CheckIfRenovationAppointmentDone();
+            CheckIfRelocationAppointmentDone();
+            CheckIfRenovationAppointmentDone();
             CheckIfThereShouldBeNotification();
             AppointmentDone();
             dateTime = DateTime.Now;

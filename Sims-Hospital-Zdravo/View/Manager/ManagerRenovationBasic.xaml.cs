@@ -39,6 +39,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             try
             {
+                Validate();
                 Room room = (Room)RenovationRooms.SelectedItem;
                 DateTime start = DateTime.Parse(StartDate.Text);
                 DateTime end = DateTime.Parse(EndDate.Text).AddHours(23).AddMinutes(59).AddSeconds(59);
@@ -48,12 +49,41 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 RenovationType type = RenovationType.BASIC;
                 renovationController.MakeRenovationAppointment(schedule, room, type, description);
                 MessageBox.Show("Successfully made appointment for renovation!");
-                this.Close();
+                Close();
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
+        }
+
+
+        private void Validate()
+        {
+            ValidateRoom();
+            ValidateDate(StartDate);
+            ValidateDate(EndDate);
+            ValidateDescription();
+        }
+
+
+        private void ValidateDescription()
+        {
+            string desc = Description.Text;
+            if (desc.Trim().Equals("")) throw new Exception("Description text should contain at least one letter!");
+        }
+
+        private void ValidateRoom()
+        {
+            Room room = (Room)RenovationRooms.SelectedItem;
+            if (room == null) throw new Exception("Room should be selected!");
+        }
+
+        private void ValidateDate(DatePicker picker)
+        {
+            DateTime date;
+            bool correct = DateTime.TryParse(picker.Text, out date);
+            if (!correct) throw new Exception("Date should be picked!");
         }
     }
 }

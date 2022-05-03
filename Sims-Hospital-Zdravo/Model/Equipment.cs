@@ -45,5 +45,11 @@ namespace Model
             get { return _type; }
             set { this._type = value; }
         }
+
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
