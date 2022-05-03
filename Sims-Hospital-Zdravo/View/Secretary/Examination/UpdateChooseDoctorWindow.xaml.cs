@@ -41,11 +41,19 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             try
             {
-                Doctor selectedDoctor = (Doctor)ListDoctors.SelectedItem;
-                Appointment appointment = new Appointment(selectedRoom, selectedDoctor, selectedPatient, selectedTime, (AppointmentType)comboAppointmentType.SelectedValue);
-                appointment._Id = app._secretaryAppointmentController.GenerateId();
-                app._secretaryAppointmentController.Create(appointment);
-                this.Close();
+                if (ListDoctors.SelectedItem == null)
+                    MessageBox.Show("Doctor isn't selected", "Please select doctor!");
+                else if (comboAppointmentType.SelectedItem == null)
+                    MessageBox.Show("Appointment type isn't selected", "Please select appointment type!");
+                else
+                {
+                    Doctor selectedDoctor = (Doctor)ListDoctors.SelectedItem;
+                    Appointment appointment = new Appointment(selectedRoom, selectedDoctor, selectedPatient,
+                        selectedTime, (AppointmentType)comboAppointmentType.SelectedValue);
+                    appointment._Id = app._secretaryAppointmentController.GenerateId();
+                    app._secretaryAppointmentController.Create(appointment);
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

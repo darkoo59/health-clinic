@@ -105,6 +105,24 @@ namespace Service
             return true;
         }
 
+        public bool IsDoctorFreeInIntervalWithoutSelectedAppointment(int doctorId, Appointment appointment)
+        {
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
+            foreach (Appointment app in appointments)
+            {
+                if (app._Id != appointment._Id)
+                {
+                    DateTime start = app._Time.Start;
+                    DateTime end = app._Time.End;
+                    if (start.CompareTo(appointment._Time.Start) < 0 && end.CompareTo(appointment._Time.Start) > 0) return false;
+                    if (start.CompareTo(appointment._Time.End) < 0 && end.CompareTo(appointment._Time.End) > 0) return false;
+                    if (start.CompareTo(appointment._Time.Start) > 0 && end.CompareTo(appointment._Time.End) < 0) return false;
+                    if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
+                }
+            }
+            return true;
+        }
+
         public bool IsPatientFreeInInterval(int patientId, TimeInterval ti)
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
@@ -116,9 +134,28 @@ namespace Service
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+                if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
 
             }
 
+            return true;
+        }
+
+        public bool IsPatientFreeInIntervalWithoutSelectedAppointment(int patientId, Appointment appointment)
+        {
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
+            foreach (Appointment app in appointments)
+            {
+                if (app._Id != appointment._Id)
+                {
+                    DateTime start = app._Time.Start;
+                    DateTime end = app._Time.End;
+                    if (start.CompareTo(appointment._Time.Start) < 0 && end.CompareTo(appointment._Time.Start) > 0) return false;
+                    if (start.CompareTo(appointment._Time.End) < 0 && end.CompareTo(appointment._Time.End) > 0) return false;
+                    if (start.CompareTo(appointment._Time.Start) > 0 && end.CompareTo(appointment._Time.End) < 0) return false;
+                    if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
+                }
+            }
             return true;
         }
 

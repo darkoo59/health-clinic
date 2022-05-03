@@ -37,10 +37,16 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             try
             {
-                Room selectedRoom = (Room)ListRooms.SelectedItem;
-                UpdateChooseDoctorWindow chooseDoctorWindow = new UpdateChooseDoctorWindow(selectedPatient, selectedTimeInterval, selectedRoom);
-                chooseDoctorWindow.Show();
-                this.Close();
+                if (ListRooms.SelectedItem != null)
+                {
+                    Room selectedRoom = (Room)ListRooms.SelectedItem;
+                    UpdateChooseDoctorWindow chooseDoctorWindow =
+                        new UpdateChooseDoctorWindow(selectedPatient, selectedTimeInterval, selectedRoom);
+                    chooseDoctorWindow.Show();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Room isn't selected", "Please select room!");
             }
             catch (Exception ex)
             {
