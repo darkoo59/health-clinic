@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using Sims_Hospital_Zdravo.Repository;
+using System.Collections.ObjectModel;
 
 namespace Service
 {
@@ -53,6 +54,23 @@ namespace Service
 
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
+            List<Appointment> appointments = _appointmentRepository.FindByRoomId(roomId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+
+            }
+
+            return true;
+        }
+
+        public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)   //TODO
+        {
             List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
             intervals = intervals.OrderBy(o => o.Start).ToList();
             intervals = CompactIntervals(intervals, IntervalsTouching, IsThereGapInIntervals);
@@ -70,7 +88,42 @@ namespace Service
             return true;
         }
 
-        public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
+        public bool IsDoctorFreeInInterval(int doctorId, TimeInterval ti)
+        {
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+
+            }
+
+            return true;
+        }
+
+        public bool IsPatientFreeInInterval(int patientId, TimeInterval ti)
+        {
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
+            foreach (Appointment app in appointments)
+            {
+                DateTime start = app._Time.Start;
+                DateTime end = app._Time.End;
+                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
+                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
+                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+
+            }
+
+            return true;
+        }
+
+
+        /*public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
@@ -91,7 +144,7 @@ namespace Service
             }
 
             return true;
-        }
+        }*/
 
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {

@@ -69,7 +69,7 @@ namespace Sims_Hospital_Zdravo.View.Login
                         secretaryHomeWindow.Show();
                         break;
                     case RoleType.DOCTOR:
-                        DoctorAppointmentController doctorAppController = app.doctorAppointmentController;
+                        DoctorAppointmentController doctorAppController = app._doctorAppointmentController;
                         RoomController roomControl = app._roomController;
                         int id = account._Id;
                         DoctorMain doctorMain = new DoctorMain(id);

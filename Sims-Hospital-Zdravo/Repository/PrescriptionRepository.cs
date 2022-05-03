@@ -4,18 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
     
-    internal class PrescriptionRepository
+    public class PrescriptionRepository
     {
-       private ObservableCollection<Prescription> prescriptions;
-        public PrescriptionRepository()
+        private ObservableCollection<Prescription> prescriptions;
+        private PrescriptionDataHandler prescriptionDataHandler;
+        public PrescriptionRepository(PrescriptionDataHandler prescriptionDataHandler)
         {
+            this.prescriptionDataHandler = prescriptionDataHandler;
             this.prescriptions = new ObservableCollection<Prescription>();
-
+            LoadDataFromFiles();
         }
 
         public void Create(Prescription prescription)
@@ -26,14 +29,18 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             prescriptions.Remove(prescription);
         }
-        public void LoadDataToFiles()
+        public ObservableCollection<Prescription> ReadAll()
         {
-
+            return prescriptions;
         }
-
         public void LoadDataFromFiles()
         {
+           prescriptions = prescriptionDataHandler.ReadAll();
+        }
 
+        public void LoadDataToFiles()
+        {
+            prescriptionDataHandler.Write(prescriptions);
         }
 
 

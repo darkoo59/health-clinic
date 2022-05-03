@@ -100,26 +100,30 @@
     </Compile>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\AnamnesisController.cs" />
+    <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
+    <Compile Include="Controller\SecretaryAppointmentController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
+    <Compile Include="Controller\PrescriptionController.cs" />
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="Controller\RenovationController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\AnamnesisDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
+    <Compile Include="DataHandler\MedicineDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
+    <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
     <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
     <Compile Include="Interfaces\INotificationObservable.cs" />
     <Compile Include="Interfaces\INotificationObserver.cs" />
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
-    <Compile Include="Model\Adress.cs" />
     <Compile Include="Model\Allergens.cs" />
     <Compile Include="Model\Anamnesis.cs" />
-    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
@@ -127,7 +131,6 @@
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\City.cs" />
-    <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
     <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
@@ -139,25 +142,26 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
-    <Compile Include="Repository\DoctorRepository.cs" />
-    <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
-    <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PrescriptionRepository.cs" />
     <Compile Include="Repository\RenovationRepository.cs" />
     <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\PatientMedicalRecordService.cs" />
-    <Compile Include="Service\RenovationService.cs" />
     <Compile Include="Service\TimeAppointmentService.cs" />
     <Compile Include="Utils\AppointmentDoctorValidator.cs" />
+    <Compile Include="Service\SecretaryAppointmentService.cs" />
+    <Compile Include="Service\PrescriptionService.cs" />
+    <Compile Include="Service\RenovationService.cs" />
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\EquipmentTransferService.cs" />
     <Compile Include="Service\TimeSchedulerService.cs" />
+    <Compile Include="Utils\AppointmentSecretaryValidator.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="Utils\RenovationValidator.cs" />
@@ -177,26 +181,44 @@
     <Compile Include="View\Manager\ManagerRenovations.xaml.cs">
       <DependentUpon>ManagerRenovations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
-      <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
+    <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
+      <DependentUpon>ExaminationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml.cs">
+      <DependentUpon>NewAppointmentChooseDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml.cs">
+      <DependentUpon>NewAppointmentChoosePatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
+      <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs">
+      <DependentUpon>UpdateChooseDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
+      <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs" />
+    <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
+    <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
+    <Compile Include="View\Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\View.Secretary\SecretaryWindow.xaml.cs">
+    <Compile Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
-    <Compile Include="View\View.Secretary\UpdateRecordWindow.xaml.cs">
+    <Compile Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml.cs">
       <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
@@ -248,6 +270,9 @@
     <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs">
       <DependentUpon>PatientMedicalRecord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
+      <DependentUpon>DoctorMain.xaml</DependentUpon>
+    </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,10 +301,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
+    <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml" />
+    <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
+    <Page Include="View\Manager\ManagerRenovations.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -303,13 +351,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\View.Secretary\SecretaryHome.xaml">
+    <Page Include="View\Secretary\SecretaryHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\View.Secretary\SecretaryWindow.xaml">
+    <Page Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml">
     </Page>
-    <Page Include="View\View.Secretary\UpdateRecordWindow.xaml">
+    <Page Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -449,6 +497,8 @@
   <ItemGroup>
     <Content Include="Resources\allergens.txt" />
     <Resource Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\medicines.txt" />
+    <Resource Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
   <ItemGroup>

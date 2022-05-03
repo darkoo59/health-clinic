@@ -25,7 +25,7 @@ namespace Sims_Hospital_Zdravo
         private MedicalRecordController medicalController;
         private MedicalRecord medicalRecord;
         private Patient patient;
-        public UpdateRecordWindow(MedicalRecordController controller,Patient patient, MedicalRecord record)
+        public UpdateRecordWindow(MedicalRecordController controller, Patient patient, MedicalRecord record)
         {
             InitializeComponent();
             medicalController = controller;
@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            foreach(String str in medicalRecord._Allergens)
+            foreach (String str in medicalRecord._Allergens)
             {
                 ListPatientAllergens.Items.Add(str);
             }
@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo
             TxtEmail.Text = patient._Email;
             TxtJmbg.Text = patient._Jmbg;
             TxtPhone.Text = patient._PhoneNumber;
-            foreach(String str in medicalController.ReadAllAllergens())
+            foreach (String str in medicalController.ReadAllAllergens())
             {
                 if (!medicalRecord._Allergens.Contains(str))
                 {
@@ -71,7 +71,6 @@ namespace Sims_Hospital_Zdravo
             try
             {
                 Patient patientUpdated = new Patient(patient._Id, TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                medicalController.ValidateUpdate(TxtJmbg.Text);
                 List<String> allergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
                 {
@@ -81,7 +80,7 @@ namespace Sims_Hospital_Zdravo
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
@@ -89,7 +88,7 @@ namespace Sims_Hospital_Zdravo
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            foreach(String str in ListOtherAllergens.SelectedItems)
+            foreach (String str in ListOtherAllergens.SelectedItems)
             {
                 ListPatientAllergens.Items.Add(str);
             }

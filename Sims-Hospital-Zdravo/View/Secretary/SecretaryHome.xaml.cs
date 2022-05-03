@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -21,6 +23,7 @@ namespace Sims_Hospital_Zdravo
     public partial class SecretaryHome : Window
     {
         private MedicalRecordController medicalController;
+        private SecretaryAppointmentController appointmentController;
         private App app;
 
         public SecretaryHome()
@@ -28,12 +31,19 @@ namespace Sims_Hospital_Zdravo
             app = Application.Current as App;
             InitializeComponent();
             this.medicalController = app._recordController;
+            this.appointmentController = app._secretaryAppointmentController;
         }
 
         private void MedicalRecordsClick(object sender, RoutedEventArgs e)
         {
             SecretaryWindow secretaryWindow = new SecretaryWindow(medicalController);
             secretaryWindow.Show();
+        }
+
+        private void Examination_Click(object sender, RoutedEventArgs e)
+        {
+            ExaminationWindow examinationWindow = new ExaminationWindow(appointmentController);
+            examinationWindow.Show();
         }
     }
 }
