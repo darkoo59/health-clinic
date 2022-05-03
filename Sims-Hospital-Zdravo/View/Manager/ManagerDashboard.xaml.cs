@@ -1,6 +1,4 @@
 ﻿using Controller;
-using Sims_Hospital_Zdravo;
-using Sims_Hospital_Zdravo.View.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.View.Manager;
 
 namespace Sims_Hospital_Zdravo.View
 {

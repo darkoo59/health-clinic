@@ -18,6 +18,7 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void ValidateAppointment(Appointment appointment) 
         {
+            Console.WriteLine(appointment._Time.Start.Hour);
             if (appointment._Time.Start.Hour < 8 || appointment._Time.Start.Hour > 11) 
             {
                 throw new Exception("Hospital works between 8h and 12h");

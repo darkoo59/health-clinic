@@ -25,6 +25,7 @@ namespace Sims_Hospital_Zdravo
         private MedicalRecordController medicalController;
         private MedicalRecord medicalRecord;
         private Patient patient;
+
         public UpdateRecordWindow(MedicalRecordController controller, Patient patient, MedicalRecord record)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace Sims_Hospital_Zdravo
             {
                 ListPatientAllergens.Items.Add(str);
             }
+
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
@@ -53,17 +55,16 @@ namespace Sims_Hospital_Zdravo
             }
 
             //Images listeners
-
-            ImageToLeft.MouseLeftButtonDown += (s, e) =>
-            {
-                imageToLeftFunctionality();
-            };
-
-            ImageToRight.MouseLeftButtonDown += (s, e) =>
-            {
-                ImageToRightFunctionality();
-            };
-
+            //
+            // ImageToLeft.MouseLeftButtonDown += (s, e) =>
+            // {
+            //     imageToLeftFunctionality();
+            // };
+            //
+            // ImageToRight.MouseLeftButtonDown += (s, e) =>
+            // {
+            //     ImageToRightFunctionality();
+            // };
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -76,7 +77,9 @@ namespace Sims_Hospital_Zdravo
                 {
                     allergens.Add(str);
                 }
-                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
+
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
+                    allergens);
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }
