@@ -68,7 +68,7 @@ namespace Repository
                     record._BloodType = medicalRecord._BloodType;
                     record._Gender = medicalRecord._Gender;
                     record._MaritalStatus = medicalRecord._MaritalStatus;
-                    record._Allergens = medicalRecord._Allergens;
+                    record._PatientAllergens = medicalRecord._PatientAllergens;
                     record._Patient = medicalRecord._Patient;
                     LoadDataToFile();
                     break;

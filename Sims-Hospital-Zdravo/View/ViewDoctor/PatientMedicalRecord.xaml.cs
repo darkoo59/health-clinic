@@ -81,7 +81,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             
             
             AllergensBox.DataContext = med;
-            AllergensBox.ItemsSource = med._Allergens;
+            AllergensBox.ItemsSource = med._PatientAllergens._Allergens;
 
 
         }

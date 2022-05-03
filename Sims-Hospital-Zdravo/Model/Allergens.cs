@@ -16,6 +16,6 @@ namespace Sims_Hospital_Zdravo.Model
             allergens = new List<String>();
         }
 
-        private List<String> _Allergens { get; set; }
+        public List<String> _Allergens { get; set; }
     }
 }

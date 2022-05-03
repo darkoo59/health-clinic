@@ -49,6 +49,17 @@
                RenderTransformOrigin="0.513,-0.135" />
         <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="568,480,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.513,-0.135" />
+        <Image x:Name="ImageToLeft" Source="../../../Resources/img/TransferAllergens.png" HorizontalAlignment="Left" Height="30" Margin="517,511,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToRight" Source="../../../Resources/img/TransferAllergens.png" HorizontalAlignment="Left" Height="30" Margin="494,542,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 </Window>
