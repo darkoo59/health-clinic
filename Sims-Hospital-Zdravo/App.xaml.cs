@@ -30,13 +30,6 @@ namespace Sims_Hospital_Zdravo
 
         internal RenovationController _renovationController;
 
-        //internal RoomController roomController;
-        //internal MedicalRecordController recordController;
-        //internal AppointmentPatientController appointmentPatientController;
-        internal DoctorAppointmentController doctorAppointmentController;
-
-        internal EquipmentTransferController equipmentTransferController;
-
         // internal EquipmentController equipmentController;
         // internal AccountController accountController;
         internal PatientMedicalRecordController _patientMedRecController;
@@ -44,6 +37,7 @@ namespace Sims_Hospital_Zdravo
         //internal RenovationController renovationController;
         internal AnamnesisController _anamnesisController;
         internal TaskScheduleTimer _taskScheduleTimer;
+        internal SecretaryAppointmentController secretaryAppointmentController;
 
         public App()
         {
@@ -117,6 +111,10 @@ namespace Sims_Hospital_Zdravo
             AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
+
+            SecretaryAppointmentService secretaryAppointmentService =
+                new SecretaryAppointmentService(appointmentRepository,patientRepository, timeSchedulerService, roomRepository, doctorRepository);
+            secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
             _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
         }

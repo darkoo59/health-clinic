@@ -1,0 +1,19 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.RescheduleExaminationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        mc:Ignorable="d"
+        Title="RescheduleExaminationWindow" Height="350" Width="520">
+    <Grid>
+        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="201,78,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Appointment start at :" HorizontalAlignment="Left" Margin="17,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="16" Height="45" Width="184"/>
+        <Label Content="Appointment end at :" HorizontalAlignment="Left" Margin="17,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" Height="33" FontSize="16" Width="184"/>
+        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="201,138,0,0" VerticalAlignment="Top" Height="30" FontSize="16"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="187,206,0,0" VerticalAlignment="Top" Width="100" Height="36" FontSize="18" Click="btnSubmit_Click"/>
+        <TextBox x:Name="txtStartTime" HorizontalAlignment="Left" Height="29" Margin="378,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104"/>
+        <TextBox x:Name="txtEndTime" HorizontalAlignment="Left" Height="29" Margin="378,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104"/>
+
+    </Grid>
+</Window>

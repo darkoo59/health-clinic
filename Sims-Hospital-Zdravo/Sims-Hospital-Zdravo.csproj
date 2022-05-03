@@ -103,6 +103,7 @@
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
+    <Compile Include="Controller\SecretaryAppointmentController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="Controller\RenovationController.cs" />
@@ -152,12 +153,14 @@
     <Compile Include="Service\RenovationService.cs" />
     <Compile Include="Service\TimeAppointmentService.cs" />
     <Compile Include="Utils\AppointmentDoctorValidator.cs" />
+    <Compile Include="Service\SecretaryAppointmentService.cs" />
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
     <Compile Include="Repository\RelocationAppointmentRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\EquipmentTransferService.cs" />
     <Compile Include="Service\TimeSchedulerService.cs" />
+    <Compile Include="Utils\AppointmentSecretaryValidator.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="Utils\RenovationValidator.cs" />
@@ -178,6 +181,25 @@
       <DependentUpon>ManagerRenovations.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
+    <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
+      <DependentUpon>ExaminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml.cs">
+      <DependentUpon>NewAppointmentChooseDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml.cs">
+      <DependentUpon>NewAppointmentChoosePatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
+      <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs">
+      <DependentUpon>UpdateChooseDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
+      <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientWindow.xaml.cs">
@@ -186,17 +208,17 @@
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="View\View.Secretary\SecretaryHome.xaml.cs">
+    <Compile Include="View\Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\View.Secretary\SecretaryWindow.xaml.cs">
+    <Compile Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
-    <Compile Include="View\View.Secretary\UpdateRecordWindow.xaml.cs">
+    <Compile Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml.cs">
       <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
@@ -268,6 +290,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+
     <Page Include="View\Manager\ManagerRenovationBasic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -277,6 +300,31 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
+    <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -303,13 +351,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\View.Secretary\SecretaryHome.xaml">
+    <Page Include="View\Secretary\SecretaryHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\View.Secretary\SecretaryWindow.xaml">
+    <Page Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml">
     </Page>
-    <Page Include="View\View.Secretary\UpdateRecordWindow.xaml">
+    <Page Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

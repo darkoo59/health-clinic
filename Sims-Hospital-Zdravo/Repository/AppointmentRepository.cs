@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DataHandler;
 using System.Linq;
+using Sims_Hospital_Zdravo;
+
 namespace Repository
 {
     public class AppointmentRepository
@@ -58,6 +60,7 @@ namespace Repository
                     app._Doctor = appointment._Doctor;
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
+                    app._Type = appointment._Type;
                     loadDataToFile();
                 }
             }
@@ -164,11 +167,18 @@ namespace Repository
 
             return apps;
         }
-
         
+        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        {
+            ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
+            foreach (Appointment app in FindAll())
+            {
+                if (app._Time.Start.Date == date.Date)
+                    appointmentsForDate.Add(app);
+            }
 
-
-
+            return appointmentsForDate;
+        }
 
     }
 }

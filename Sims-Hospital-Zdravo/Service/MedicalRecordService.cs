@@ -7,6 +7,7 @@
 using Model;
 using Repository;
 using Sims_Hospital_Zdravo.Repository;
+using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,16 +20,19 @@ namespace Service
         public Repository.MedicalRecordsRepository medicalRecordRepository;
         public PatientRepository patientRepository;
         public AllergensRepository allergensRepository;
+        public MedicalRecordValidator validator;
 
         public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
         {
             medicalRecordRepository = medicalRepo;
             patientRepository = patientRepo;
             allergensRepository = alergRepo;
+            validator = new MedicalRecordValidator(this);
         }
       public void Create(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
+            validator.InsertValidation(patient._Jmbg);
             medicalRecordRepository.Create(medicalRecord);
             patientRepository.Create(patient);
          return;
@@ -50,6 +54,7 @@ namespace Service
       public void Update(MedicalRecord medicalRecord, Patient patient)
       {
             // TODO: implement
+            validator.UpdateValidation(patient._Jmbg);
             patientRepository.Update(patient);
             medicalRecordRepository.Update(medicalRecord);
          return;

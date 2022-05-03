@@ -38,4 +38,10 @@ namespace Model
 
        
     }
+
+    public override string ToString()
+    {
+        return _Name + " " + _Surname + " " + ",JMBG:"+_Jmbg;
+    }
+   }
 }
