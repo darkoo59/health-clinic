@@ -32,8 +32,8 @@
         <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="88" Margin="573,511,0,0" VerticalAlignment="Top" Width="100" SelectionMode="Multiple"/>
         <Label Content="Patient allergic to:" HorizontalAlignment="Left" Margin="388,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,-0.135"/>
         <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="568,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,-0.135"/>
-        <Image x:Name="ImageToLeft" Source="..\..\..\Resources\img\TransferAllergens.png" HorizontalAlignment="Left" Height="22" Margin="519,523,0,0" VerticalAlignment="Top" Width="27"/>
-        <Image x:Name="ImageToRight" Source="..\..\..\Resources\img\TransferAllergens.png" HorizontalAlignment="Left" Height="22" Margin="519,556,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="ImageToLeft" HorizontalAlignment="Left" Height="22" Margin="519,523,0,0" VerticalAlignment="Top" Width="27"/>
+        <Image x:Name="ImageToRight" HorizontalAlignment="Left" Height="22" Margin="519,556,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
