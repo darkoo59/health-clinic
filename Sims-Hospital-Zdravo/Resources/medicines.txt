@@ -1,0 +1,7 @@
+[
+{
+	"_Name" : "Panklav",
+	"_Id" : 1,
+	"_Strength" : 24,
+}
+]
