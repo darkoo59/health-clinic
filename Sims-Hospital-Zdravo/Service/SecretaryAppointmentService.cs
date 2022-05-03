@@ -23,7 +23,7 @@ namespace Sims_Hospital_Zdravo.Service
             this.timeSchedulerService = timeService;
             this.roomRepository = roomRepository;
             this.doctorRepo = doctorRepository;
-            this.validator = new AppointmentSecretaryValidator();
+            this.validator = new AppointmentSecretaryValidator(this);
         }
 
         public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)

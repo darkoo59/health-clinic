@@ -36,7 +36,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
             appointments = secretaryAppointmentController.ReadAllAppointmentsForDate(DateTime.Parse(appointmentsDatePicker.SelectedDate.ToString()));
             GridAppointments.ItemsSource = appointments;
-            GridAppointments.Items.Refresh();
         }
 
         private void appDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -117,6 +116,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             dataColumn.Header = "End at";
             dataColumn.Binding = new Binding("_Time.End");
             GridAppointments.Columns.Add(dataColumn);
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            NotifyUpdated();
         }
     }
 }

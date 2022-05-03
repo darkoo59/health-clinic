@@ -52,10 +52,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 string[] endTime = txtEndTime.Text.Split(':');
                 endDate = endDate.AddHours(Int32.Parse(endTime[0]));
                 endDate = endDate.AddMinutes(Int32.Parse(endTime[1]));
-                selectedAppointment._Time.Start = startDate;
-                selectedAppointment._Time.End = endDate;
+                TimeInterval time = new TimeInterval(startDate, endDate);
+                Appointment app = new Appointment(selectedAppointment._Room, selectedAppointment._Doctor, selectedAppointment._Patient, time, selectedAppointment._Type);
+                app._Id = secretaryAppointmentController.GenerateId();
 
-                secretaryAppointmentController.Update(selectedAppointment);
+                secretaryAppointmentController.Update(app);
                 Close();
             }
             catch (Exception ex)
