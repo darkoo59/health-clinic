@@ -3,20 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-   
+
 namespace Sims_Hospital_Zdravo.Model
 {
-    public  class Medicine
+    public class Medicine
     {
         private string name;
         private int id;
-        private int strength;
-
-        public Medicine(int id, string name,  int strength)
+        private string allergens;
+        private string description;
+        private string strength;
+        
+        public Medicine(string name, string strength, string allergens, string description)
         {
-            this.id = id;
             this.name = name;
+            this.allergens = allergens;
+            this.description = description;
             this.strength = strength;
+            
+        }
+        
+
+
+        public string _Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+            }
+        }
+
+       
+
+        public string _Allergens
+        {
+            get
+            {
+                return allergens;
+            }
+            set
+            {
+                allergens = value;
+            }
+        }
+        public int _Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
         }
 
         public string _Name
@@ -30,8 +73,10 @@ namespace Sims_Hospital_Zdravo.Model
                 name = value;
             }
         }
-       
-        public int _Strength
+        
+        
+
+        public string _Strength
         {
             get
             {
@@ -43,5 +88,14 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
 
+
+
     }
 }
+
+
+
+
+
+
+

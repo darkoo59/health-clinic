@@ -6,10 +6,12 @@
 
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Controller
 {
@@ -17,9 +19,13 @@ namespace Controller
    {
 
         public Service.MedicalRecordService medicalRecordService;
-        public MedicalRecordController(MedicalRecordService recordService)
+        public MedicalRecordValidator validator;
+        public PrescriptionService prescriptionService;
+        public MedicalRecordController(MedicalRecordService recordService,PrescriptionService prescriptionService)
         {
             medicalRecordService = recordService;
+            validator = new MedicalRecordValidator(medicalRecordService);
+            this.prescriptionService = prescriptionService;
         }
 
         public void Create(MedicalRecord medicalRecord, Patient patient)
@@ -78,6 +84,17 @@ namespace Controller
         {
             return medicalRecordService.ReadAllAllergens();
         }
+
+        public ObservableCollection<Prescription> ReadAllPrescriptions()
+        {
+            return prescriptionService.ReadAll();
+        }
+
+        public void createPrescription( Prescription prescription)
+        {
+            prescriptionService.Create(prescription);
+        }
+
 
 
     }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.DataHandler;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    
+
     public class PrescriptionRepository
     {
         private ObservableCollection<Prescription> prescriptions;
@@ -18,31 +19,36 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             this.prescriptionDataHandler = prescriptionDataHandler;
             this.prescriptions = new ObservableCollection<Prescription>();
+            this.prescriptionDataHandler = prescriptionDataHandler;
             LoadDataFromFiles();
+
         }
 
         public void Create(Prescription prescription)
         {
             prescriptions.Add(prescription);
+            LoadDataToFiles();
         }
         public void Delete(Prescription prescription)
         {
             prescriptions.Remove(prescription);
         }
+
         public ObservableCollection<Prescription> ReadAll()
         {
             return prescriptions;
         }
+        
         public void LoadDataFromFiles()
         {
-           prescriptions = prescriptionDataHandler.ReadAll();
+            prescriptions = prescriptionDataHandler.ReadAll();
         }
+            public void LoadDataToFiles()
+            {
+                prescriptionDataHandler.Write(prescriptions);
+            }
 
-        public void LoadDataToFiles()
-        {
-            prescriptionDataHandler.Write(prescriptions);
+
         }
-
-
     }
-}
+

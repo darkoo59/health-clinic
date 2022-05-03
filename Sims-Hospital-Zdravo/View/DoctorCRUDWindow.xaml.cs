@@ -30,19 +30,19 @@ namespace Sims_Hospital_Zdravo.View
         private Appointment app;
         private App application;
 
-        public Appointment App
+        public Appointment _App
         {
             get { return this.app; }
             set { this.app = value; }
         }
 
-        public DoctorCRUDWindow()
+        public DoctorCRUDWindow(DoctorAppointmentController doctorAppointmentController)
         {
-            application = Application.Current as App;
+            application = App.Current as App;
             InitializeComponent();
             this.DataContext = this;
             this.roomController = application._roomController;
-            this.doctorAppController = application._doctorAppointmentController;
+            this.doctorAppController = doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
 
             //this.DataContext = DoctorAppointments;
@@ -67,7 +67,7 @@ namespace Sims_Hospital_Zdravo.View
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
-            data_column.Binding = new Binding("_Room._Id");
+            data_column.Binding = new Binding("_Room.Id");
             dataGridDoctorApps.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();

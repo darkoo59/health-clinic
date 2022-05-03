@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Controller;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -24,22 +25,27 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     public partial class MyAppointments : Window
     {
         public DoctorAppointmentController docController;
+        public MedicalRecordController medicalRecordController;
         private PatientMedicalRecordController PatientMedicalRecordController;
         public ObservableCollection<Appointment> appointmentsScheduled;
         private App app;
+        private int doctorId;
         private DateTime AppointmentDate;
         private AnamnesisController anamnesisController;
-        public MyAppointments( )
+        public MyAppointments(DoctorAppointmentController doctorAppointmentController,AnamnesisController anamnesisController,MedicalRecordController medicalRecordController,int id )
         {
             app = App.Current as App;
             
             InitializeComponent();
             this.DataContext = this;
+            this.doctorId = id;
+           this.medicalRecordController = medicalRecordController;
             this.PatientMedicalRecordController = app._patientMedRecController;
-            this.docController =app._doctorAppointmentController;
+            this.docController =doctorAppointmentController;
+
             this.appointmentsScheduled = docController.GetByDoctorID(2);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
-            this.anamnesisController = app._anamnesisController;
+            this.anamnesisController = anamnesisController;
             DoctorAppointments.AutoGenerateColumns = false;
             //Button btnmedical = new Button();
            
@@ -86,7 +92,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 Patient patient = appointment._Patient;
                 MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
-                PatientMedicalRecord medRed = new PatientMedicalRecord(record, docController, anamnesisController, appointment);
+                PatientMedicalRecord medRed = new PatientMedicalRecord(medicalRecordController, docController, anamnesisController, appointment,record,doctorId);
                 medRed.Show();
             }
             else
@@ -100,10 +106,22 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void AppointmentShow_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-             AppointmentDate = AppointmentShow.SelectedDate.Value;
-            this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
-            this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+            try
+            {
+                AppointmentDate = AppointmentShow.SelectedDate.Value;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Chose date");
+            }
 
+        
+                this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
+                this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+            
+            
+               
+            
 
         }
 

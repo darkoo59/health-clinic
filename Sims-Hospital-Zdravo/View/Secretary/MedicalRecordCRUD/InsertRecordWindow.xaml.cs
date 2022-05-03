@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -45,7 +46,10 @@ namespace Sims_Hospital_Zdravo
                 {
                     allergensItems.Add(str);
                 }
-                MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergensItems);
+
+                Allergens allergens = new Allergens();
+                allergens._Allergens = allergensItems;
+                MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
                 medicalController.Create(medicalRecord, patient);
                 Close();
             }

@@ -9,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.Service
 {
-    class PrescriptionService
+   public class PrescriptionService
     {
         private PrescriptionRepository prescriptionRepository;
 
-        public PrescriptionService(PrescriptionRepository prescriptionRepository) 
+        public PrescriptionService(PrescriptionRepository prescriptionRepository)
         {
             this.prescriptionRepository = prescriptionRepository;
         }
-        public ObservableCollection<Prescription> ReadAll() 
+        public ObservableCollection<Prescription> ReadAll()
         {
-            return this.prescriptionRepository.ReadAll();  
+            return this.prescriptionRepository.ReadAll();
+        }
+
+        public void Create(Prescription prescription)
+        {
+            prescriptionRepository.Create(prescription);
         }
     }
 }

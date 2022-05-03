@@ -45,7 +45,7 @@ namespace Sims_Hospital_Zdravo.Model
         {
             get
             {
-                return date;
+                return date.Date;
             }
 
 

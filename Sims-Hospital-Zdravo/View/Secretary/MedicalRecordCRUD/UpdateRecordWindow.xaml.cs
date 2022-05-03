@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -35,7 +36,7 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            foreach (String str in medicalRecord._Allergens)
+            foreach (String str in medicalRecord._PatientAllergens._Allergens)
             {
                 ListPatientAllergens.Items.Add(str);
             }
@@ -48,23 +49,23 @@ namespace Sims_Hospital_Zdravo
             TxtPhone.Text = patient._PhoneNumber;
             foreach (String str in medicalController.ReadAllAllergens())
             {
-                if (!medicalRecord._Allergens.Contains(str))
+                if (!medicalRecord._PatientAllergens._Allergens.Contains(str))
                 {
                     ListOtherAllergens.Items.Add(str);
                 }
             }
 
             //Images listeners
-            //
-            // ImageToLeft.MouseLeftButtonDown += (s, e) =>
-            // {
-            //     imageToLeftFunctionality();
-            // };
-            //
-            // ImageToRight.MouseLeftButtonDown += (s, e) =>
-            // {
-            //     ImageToRightFunctionality();
-            // };
+            
+             ImageToLeft.MouseLeftButtonDown += (s, e) =>
+             {
+                 imageToLeftFunctionality();
+             };
+            
+             ImageToRight.MouseLeftButtonDown += (s, e) =>
+             {
+                 ImageToRightFunctionality();
+             };
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -78,8 +79,10 @@ namespace Sims_Hospital_Zdravo
                     allergens.Add(str);
                 }
 
+                Allergens updatedAllergens = new Allergens();
+                updatedAllergens._Allergens = allergens;
                 MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
-                    allergens);
+                    updatedAllergens);
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }

@@ -39,6 +39,6 @@
         <TextBlock TextWrapping="Wrap" Text="Allergens:" Margin="5,14,137,105" Grid.Column="1"/>
         <ListBox Name="AllergensBox" Margin="76,27,76,2" Grid.Column="1"/>
         <Button Content="Write report" Margin="5,43,137,62" Click="Button_Click" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Presciption" Margin="156,43,10,63" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Presciption" Margin="156,43,10,63" Grid.Column="1" Grid.Row="1" Click="Prescribe_medicine"/>
     </Grid>
 </Window>

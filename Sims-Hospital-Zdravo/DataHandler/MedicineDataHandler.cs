@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.DataHandler
 {
-    class MedicineDataHandler
+    public class MedicineDataHandler
     {
         public ObservableCollection<Medicine> ReadAll()
         {
+            Console.WriteLine("Usao u funkciju");
             string medicineSerialized = System.IO.File.ReadAllText(Path);
             ObservableCollection<Medicine> medicines = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Medicine>>(medicineSerialized);
             return medicines;

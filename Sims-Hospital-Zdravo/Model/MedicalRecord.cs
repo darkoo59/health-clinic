@@ -4,9 +4,13 @@
  * Purpose: Definition of the Class Model.Room
  ***********************************************************************/
 
+using Sims_Hospital_Zdravo.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using Model;
+using Sims_Hospital_Zdravo.Model;
 
 public enum BloodType { APOSITIVE, ANEGATIVE, ABPOSITIVE, ABNEGATIVE, BPOSITIVE, BNEGATIVE, OPOSITIVE, ONEGATIVE };
 public enum GenderType { MALE, FEMALE };
@@ -17,20 +21,29 @@ namespace Model
     {
         private int Id;
         private Patient Patient;
+
         private List<String> Allergens;
+        private ObservableCollection<Prescription> prescriptions;
+        private ObservableCollection<Anamnesis> anamnesis;
+
+        private Allergens PatientAllergens;
 
         private GenderType Gender;
         private BloodType BloodType;
         private MaritalType MaritalStatus;
 
-        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,List<String> allergens)
+        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,Allergens allergens)
         {
             this._Id = id;
             this._Patient = patient;
             this._Gender = gender;
             this._BloodType = blood;
             this._MaritalStatus = maritalStatus;
-            this._Allergens = allergens;
+            this.prescriptions = new ObservableCollection<Prescription>();
+            this.anamnesis = new ObservableCollection<Anamnesis>();
+
+            this._PatientAllergens = allergens;
+
         }
 
         public Patient _Patient {
@@ -43,6 +56,22 @@ namespace Model
                 if(this.Patient != value)
                 {
                     this.Patient = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Allergens _PatientAllergens
+        {
+            get
+            {
+                return PatientAllergens;
+            }
+            set
+            {
+                if (this.PatientAllergens != value)
+                {
+                    this.PatientAllergens = value;
                     OnPropertyChanged();
                 }
             }
@@ -112,21 +141,39 @@ namespace Model
             }
         }
 
-        public List<String> _Allergens
+        public ObservableCollection<Prescription> _Prescriptions
         {
             get
             {
-                return Allergens;
+                return prescriptions;
             }
             set
             {
-                if(this.Allergens != value)
+                if(this.prescriptions != value)
                 {
-                    this.Allergens = value;
+                    this.prescriptions = value;
                     OnPropertyChanged();
                 }
             }
         }
+
+        public ObservableCollection<Anamnesis> _Anamnesis
+        {
+            get
+            {
+                return anamnesis;
+            }
+            set
+            {
+                if (this.anamnesis != value)
+                {
+                    this.anamnesis = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,0 +1,47 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.PrescriptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="PrescriptionWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
+        <Label Content="Choose medicine" Margin="0,15,159,99"/>
+        <ComboBox Width="120" Name="Medicinecb" IsEditable="True" Margin="108,17,39,99" SelectionChanged="Medicinecb_SelectionChanged"/>
+        <Label Content="Allergens" Margin="10,72,147,28" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox TextWrapping="Wrap" Name="allergensTxt" Width="120" Margin="120,72,27,144" Grid.RowSpan="2"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="16,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox TextWrapping="Wrap" Name="descriptionTxt" Width="120" Margin="120,144,27,72" Grid.RowSpan="2"/>
+        <Label Content="Strength" HorizontalAlignment="Left" Margin="33,30,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox TextWrapping="Wrap"  Name="strengthTxt" Width="120" Margin="133,31,13,84" Grid.Column="1"/>
+        <Label Content="Dosage" HorizontalAlignment="Left" Margin="33,81,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox TextWrapping="Wrap" Name="DosageTxt" Width="120" Margin="133,87,13,28" Grid.Column="1"/>
+        <Button Content="Prescribe" Margin="47,36,133,72" Grid.Column="1" Grid.Row="2" Click="Prescription_Click"/>
+        <Button Content="Prescribe and New" Margin="54,34,112,72" Grid.Column="2" Grid.Row="2"/>
+        <Label Content="Patient:" Margin="11,104,170,10" Grid.Row="1"/>
+        <TextBox TextWrapping="Wrap" Name="PatientTxt" Margin="125,104,10,0" Grid.Row="1"/>
+        <Label Content="Prescription date:" Margin="16,10,147,104" Grid.Row="2"/>
+        <TextBox TextWrapping="Wrap" Name="DateTxt" Margin="125,14,10,90" Grid.Row="2"/>
+        <Label Content=" Duration:" Margin="29,10,133,104" Grid.Row="1" Grid.Column="1"/>
+        <DatePicker Grid.Column="1"  SelectedDateChanged="start_SelectedDateChanged" Name="start" Margin="124,6,13,108" Grid.Row="1"/>
+        <DatePicker Grid.Column="2" SelectedDateChanged="End_SelectedDateChanged" Name="End" Margin="25,6,112,108" Grid.Row="1"/>
+
+
+
+
+    </Grid>
+</Window>

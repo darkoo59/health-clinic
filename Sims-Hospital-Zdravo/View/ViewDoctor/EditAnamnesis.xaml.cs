@@ -15,13 +15,14 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
 using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
     /// Interaction logic for EditAnamnesis.xaml
     /// </summary>
-    public partial class EditAnamnesis : Window
+    public partial class EditAnamnesis : Window, IUpdateFilesObservable
     {
         private AnamnesisController anamnesisController;
         private DoctorAppointmentController doctorAppointmentController;
@@ -29,11 +30,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private PatientMedicalRecordController patientMedicalRecordController;
         private int DoctorId;
         private Anamnesis anamnesis;
+        private List<IUpdateFilesObserver> observers;
         public EditAnamnesis( Anamnesis anamnesis,   AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController)
         {
             InitializeComponent();
             this.anamnesisController = anamnesisController;
             this.anamnesis = anamnesis;
+            observers = new List<IUpdateFilesObserver>();
             this.doctorAppointmentController = doctorAppointmentController;
             PatientTxt.Text = anamnesis._MedicalRecord._Patient._Name + anamnesis._MedicalRecord._Patient._Surname;
             MedicalRecordTxt.Text = anamnesis._MedicalRecord._Id.ToString();
@@ -44,9 +47,27 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DoctorId = anamnesis._Doctor._Id;
             DateTime date = anamnesis._Date;
             Patient pat = anamnesis._MedicalRecord._Patient;
-            ExaminatonTxt.Text = (doctorAppointmentController.doctorAppointmentService.FindAppointmentByDateAndPatient(date, pat, DoctorId))._Time.Start.ToString();
+            ExaminatonTxt.Text = DateTime.Now.Date.ToString();
 
 
+        }
+
+        public void AddObserver(IUpdateFilesObserver observer)
+        {
+            observers = new List<IUpdateFilesObserver>();
+        }
+
+        public void NotifyUpdated()
+        {
+            foreach (IUpdateFilesObserver observer in observers)
+            {
+                observer.NotifyUpdated();
+            }
+        }
+
+        public void RemoveObserver(IUpdateFilesObserver observer)
+        {
+            observers.Remove(observer);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
