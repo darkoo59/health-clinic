@@ -66,8 +66,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             anamnesis = AnamnesisListDoctor.SelectedValue as Anamnesis;
-            EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, controller,doctorAppointmentController);
-            editAnamnesis.Show();
+            if(anamnesis!= null)
+            {
+                EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, controller, doctorAppointmentController);
+                editAnamnesis.Show();
+            }
+            else 
+            {
+                MessageBox.Show("Select medical report you want to edit.");
+            }
         }
     }
 }

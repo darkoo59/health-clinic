@@ -95,6 +95,11 @@ namespace Sims_Hospital_Zdravo.Utils
             
         }
 
+        public void ValidatePrescription(Prescription prescription)
+        {
+
+        }
+
 
     }
 

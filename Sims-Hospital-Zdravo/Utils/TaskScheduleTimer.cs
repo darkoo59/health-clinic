@@ -12,6 +12,7 @@ using Repository;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using System.Collections.ObjectModel;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -24,8 +25,9 @@ namespace Sims_Hospital_Zdravo.Utils
         private PrescriptionController _prescriptionController;
         private DateTime dateTime;
         private DateTime dateTime1;
+        private DoctorAppointmentController _doctorAppointmentController;
 
-        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, PrescriptionController prescriptionController)
+        public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController,DoctorAppointmentController doctorAppointmentController)
         {
             this._relocationController = relocationController;
             this._renovationController = renovationController;
@@ -34,6 +36,7 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 prescription._Flag = true;
             }
+            this._doctorAppointmentController = doctorAppointmentController;
             observers = new List<INotificationObserver>();
             SetTimer();
         }
@@ -68,7 +71,18 @@ namespace Sims_Hospital_Zdravo.Utils
                 }
             }
         }
-
+    
+        public void AppointmentDone()
+        {
+            ObservableCollection<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);
+            foreach(Appointment appointment in appointments)
+            {
+                if(appointment._Time.End.CompareTo(DateTime.Now) < 0)
+                {
+                    _doctorAppointmentController.DeleteByID(appointment);
+                }
+            }
+        }
         private void CheckIfRenovationAppointmentDone()
         {
             List<RenovationAppointment> renovations = _renovationController.ReadAll();

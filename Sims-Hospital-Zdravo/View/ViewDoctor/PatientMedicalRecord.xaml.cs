@@ -26,10 +26,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private DoctorAppointmentController _doctorAppointmentController;
         private MedicalRecordController _medicalRecordController;
-        private PatientMedicalRecordController patMedRecordController;
         private MedicalRecord medRecord;
         private Appointment app;
         private AnamnesisController anamnesisController;
+        private int doctorId;
         private Sims_Hospital_Zdravo.Model.Allergens allergens;
 
         public MedicalRecord _MedicalRecord
@@ -43,11 +43,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 this.medRecord = value;
             }
         }
-        public PatientMedicalRecord(MedicalRecord med,DoctorAppointmentController doctorAppointmentController, AnamnesisController anamnesisController,Appointment app )
+        public PatientMedicalRecord(MedicalRecordController medicalRecordController,DoctorAppointmentController doctorAppointmentController, AnamnesisController anamnesisController,Appointment app,MedicalRecord med,int id )
         {
+            
             this.medRecord = med;
             this.app = app;
+            this.doctorId = id;
             InitializeComponent();
+            this._medicalRecordController = medicalRecordController;
             this.DataContext = med;
             this._doctorAppointmentController = doctorAppointmentController;
             this.anamnesisController = anamnesisController;
@@ -90,6 +93,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             AnamnesisWindow anamnesisWindow = new AnamnesisWindow(anamnesisController,_doctorAppointmentController, medRecord,app);
             anamnesisWindow.Show();
+        }
+
+        
+
+        private void Prescribe_medicine(object sender, RoutedEventArgs e)
+        {
+            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(_medicalRecordController,medRecord,doctorId);
+            prescriptionWindow.Show();
+
         }
     }
 }

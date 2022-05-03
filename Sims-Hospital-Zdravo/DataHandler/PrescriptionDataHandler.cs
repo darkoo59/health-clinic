@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sims_Hospital_Zdravo.DataHandler
 {
-    public class PrescriptionDataHandler
+     public class PrescriptionDataHandler
     {
         public ObservableCollection<Prescription> ReadAll()
         {
