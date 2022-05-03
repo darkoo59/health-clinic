@@ -13,13 +13,19 @@ namespace Sims_Hospital_Zdravo.Model
         private DateTime prescriptionDate;
         private MedicalRecord medical;
         private Doctor doctor;
+        private string dosage;
+        private int numberOfDays;
+        private bool flag;
 
-        public Prescription(Medicine medicine, DateTime prescriptionDate, MedicalRecord medical, Doctor doctor)
+        public Prescription(Medicine medicine, DateTime prescriptionDate, MedicalRecord medical, Doctor doctor, string dosage, int numberOfDays)
         {
             this.medicine = medicine;
             this.prescriptionDate = prescriptionDate;
-            this.medical = medical;
             this.doctor = doctor;
+	    this.medical = medical;
+            this.dosage = dosage;
+            this.numberOfDays = numberOfDays;
+            this._Flag = true;
         }
 
 
@@ -57,6 +63,7 @@ namespace Sims_Hospital_Zdravo.Model
                 doctor = value;
             }
         }
+
         public MedicalRecord _MedicalRecord
         {
             get
@@ -66,7 +73,40 @@ namespace Sims_Hospital_Zdravo.Model
             set
             {
                 medical = value;
+            }
+        }
 
+        public string _Dosage
+        {
+            get
+            {
+                return dosage;
+            }
+            set
+            {
+                dosage = value;
+            }
+        }
+        public int _NumberOfDays
+        {
+            get
+            {
+                return numberOfDays;
+            }
+            set
+            {
+                numberOfDays = value;
+            }
+        }
+        public bool _Flag
+        {
+            get
+            {
+                return flag;
+            }
+            set
+            {
+                flag = value;
             }
         }
     }

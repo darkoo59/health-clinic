@@ -44,6 +44,7 @@ namespace Sims_Hospital_Zdravo
         //internal RenovationController renovationController;
         internal AnamnesisController _anamnesisController;
         internal TaskScheduleTimer _taskScheduleTimer;
+        internal PrescriptionController _prescriptionController;
 
         public App()
         {
@@ -109,7 +110,7 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
+            //TaskScheduleTimer taskScheduler = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
             _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
@@ -118,7 +119,13 @@ namespace Sims_Hospital_Zdravo
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
 
-            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
+            //_taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController);
+            PrescriptionDataHandler prescriptionDataHandler = new PrescriptionDataHandler();
+            PrescriptionRepository prescriptionRepository = new PrescriptionRepository(prescriptionDataHandler);
+            PrescriptionService prescriptionService = new PrescriptionService(prescriptionRepository);
+            _prescriptionController = new PrescriptionController(prescriptionService);
+
+            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _prescriptionController);
         }
     }
 }

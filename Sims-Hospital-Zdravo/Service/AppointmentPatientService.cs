@@ -71,7 +71,11 @@ namespace Service
             bool free = true;
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
             ObservableCollection<DateTime> dates = AddingTimes(appointment);
-            ObservableCollection<Doctor> doctors = ReadDoctors();
+            ObservableCollection<Doctor> doctors = new ObservableCollection<Doctor>();
+            foreach (Doctor d in ReadDoctors()) 
+            {
+                doctors.Add(d);
+            }
             if (priority.Equals("Date"))
             {
                 foreach (Appointment app in FindAll())

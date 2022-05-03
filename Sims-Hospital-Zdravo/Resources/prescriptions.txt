@@ -1,0 +1,13 @@
+[
+{
+	"_Medicine":{
+	"_Name" : "Panklav",
+	"_Id" : 1,
+	"_Strength" : 24
+	},
+	"_PrescriptionDate":"2022-05-02T19:51:00",
+	"_Doctor":{"_Specialty":null,"_Username":null,"_Password":null,"_Address":null,"_Id":3,"_Name":"Robert","_Surname":"Potjera","_BirthDate":"0001-01-01T00:00:00","_Email":null,"_Jmbg":null,"_PhoneNumber":null,"_Role":0},
+	"_Dosage" : "3x1",
+	"_NumberOfDays" : 20
+}
+]
