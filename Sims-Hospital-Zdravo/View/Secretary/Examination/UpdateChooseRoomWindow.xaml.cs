@@ -30,7 +30,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             this.app = Application.Current as App;
             this.selectedPatient = patient;
             this.selectedTimeInterval = startEndDate;
-            ListRooms.ItemsSource = app.secretaryAppointmentController.FindAvailableRoomsForInterval(startEndDate);
+            ListRooms.ItemsSource = app._secretaryAppointmentController.FindAvailableRoomsForInterval(startEndDate);
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

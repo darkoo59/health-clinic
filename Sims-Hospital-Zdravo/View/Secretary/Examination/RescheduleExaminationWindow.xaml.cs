@@ -53,8 +53,9 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 endDate = endDate.AddHours(Int32.Parse(endTime[0]));
                 endDate = endDate.AddMinutes(Int32.Parse(endTime[1]));
                 TimeInterval time = new TimeInterval(startDate, endDate);
+                Console.WriteLine("vreme : " + time.ToString());
                 Appointment app = new Appointment(selectedAppointment._Room, selectedAppointment._Doctor, selectedAppointment._Patient, time, selectedAppointment._Type);
-                app._Id = secretaryAppointmentController.GenerateId();
+                app._Id = selectedAppointment._Id;
 
                 secretaryAppointmentController.Update(app);
                 Close();

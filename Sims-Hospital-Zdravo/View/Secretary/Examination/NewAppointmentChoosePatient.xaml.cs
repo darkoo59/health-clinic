@@ -27,7 +27,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             InitializeComponent();
             this.selectedDate = selectedDate;
             app = Application.Current as App;
-            ListPatients.ItemsSource = app.secretaryAppointmentController.FindAvailablePatientsForInterval(selectedDate);
+            ListPatients.ItemsSource = app._secretaryAppointmentController.FindAvailablePatientsForInterval(selectedDate);
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

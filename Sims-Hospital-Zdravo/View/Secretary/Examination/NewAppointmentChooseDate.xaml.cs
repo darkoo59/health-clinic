@@ -28,7 +28,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             InitializeComponent();
             app = Application.Current as App;
-            this.appointmentController = app.secretaryAppointmentController;
+            this.appointmentController = app._secretaryAppointmentController;
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +41,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 TimeSpan endTime = TimeSpan.Parse(txtEndTime.Text);
                 endDate = endDate.Add(endTime);
                 TimeInterval selectedDate = new TimeInterval(startDate, endDate);
-                //UpdateChooseRoomWindow chooseRoom = new UpdateChooseRoomWindow(patient, selectedDate);
                 appointmentController.ValidateAppointmentInterval(selectedDate);
                 NewAppointmentChoosePatient choosePatient = new NewAppointmentChoosePatient(selectedDate);
                 choosePatient.Show();
@@ -55,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void btnCreateRecord_Click(object sender, RoutedEventArgs e)
         {
-            InsertRecordWindow insertRecord = new InsertRecordWindow(app.recordController);
+            InsertRecordWindow insertRecord = new InsertRecordWindow(app._recordController);
             insertRecord.Show();
         }
     }

@@ -31,6 +31,11 @@ namespace Sims_Hospital_Zdravo.Service
             return appointmentRepository.ReadAllAppointmentsForDate(date);
         }
 
+        public ObservableCollection<Appointment> ReadAll()
+        {
+            return appointmentRepository.FindAll();
+        }
+
         public void Create(Appointment appointment)
         {
             validator.ValidateCreate(appointment);
@@ -58,7 +63,7 @@ namespace Sims_Hospital_Zdravo.Service
             List<Room> availableRooms = new List<Room>();
             foreach (Room room in roomRepository.ReadAll())
             {
-                if (timeSchedulerService.IsRoomFreeInInterval(room._Id, interval))
+                if (timeSchedulerService.IsRoomFreeInInterval(room.Id, interval))
                     availableRooms.Add(room);
             }
             return availableRooms;

@@ -180,7 +180,6 @@
     <Compile Include="View\Manager\ManagerRenovations.xaml.cs">
       <DependentUpon>ManagerRenovations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\View.Secretary\InsertRecordWindow.xaml.cs">
     <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
       <DependentUpon>ExaminationWindow.xaml</DependentUpon>
     </Compile>
@@ -299,7 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\View.Secretary\InsertRecordWindow.xaml">
     <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

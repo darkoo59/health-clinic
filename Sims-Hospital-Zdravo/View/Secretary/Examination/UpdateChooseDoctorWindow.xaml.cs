@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             this.selectedPatient = patient;
             this.selectedTime = date;
             this.selectedRoom = room;
-            ListDoctors.ItemsSource = app.secretaryAppointmentController.FindAvailableDoctorsForInterval(selectedTime);
+            ListDoctors.ItemsSource = app._secretaryAppointmentController.FindAvailableDoctorsForInterval(selectedTime);
             comboAppointmentType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
         }
 
@@ -43,8 +43,8 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             {
                 Doctor selectedDoctor = (Doctor)ListDoctors.SelectedItem;
                 Appointment appointment = new Appointment(selectedRoom, selectedDoctor, selectedPatient, selectedTime, (AppointmentType)comboAppointmentType.SelectedValue);
-                appointment._Id = app.secretaryAppointmentController.GenerateId();
-                app.secretaryAppointmentController.Create(appointment);
+                appointment._Id = app._secretaryAppointmentController.GenerateId();
+                app._secretaryAppointmentController.Create(appointment);
                 this.Close();
             }
             catch (Exception ex)

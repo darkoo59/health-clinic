@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             app = App.Current as App;
             InitializeComponent();
             this.doctorId = DoctorId;
-            this.docController = app.doctorAppointmentController;
+            this.docController = app._doctorAppointmentController;
             this.medicalRecordController = app._recordController;
             this.anamnesisController = app._anamnesisController;
             this.patientMedicalRecordController = app._patientMedRecController;

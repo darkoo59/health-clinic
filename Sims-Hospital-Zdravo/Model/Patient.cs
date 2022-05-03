@@ -12,7 +12,9 @@ namespace Model
     public class Patient : User
     {
         private Allergens allergens;
-        public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg, String phoneNumber)
+
+        public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg,
+            String phoneNumber)
         {
             this._Id = id;
             this._Name = name;
@@ -24,22 +26,13 @@ namespace Model
         }
 
         public Allergens _Allergens
-            {
-            get
-            {
-                return allergens;
-            }
-            set
-            {
-                value = allergens;
-            }
+        {
+            get { return allergens; }
+            set { value = allergens; }
 
-            }
+        }
 
-       
-    }
-
-    public override string ToString()
+        public override string ToString()
     {
         return _Name + " " + _Surname + " " + ",JMBG:"+_Jmbg;
     }

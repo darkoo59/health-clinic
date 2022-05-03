@@ -31,7 +31,7 @@ namespace Sims_Hospital_Zdravo
             app = Application.Current as App;
             InitializeComponent();
             this.medicalController = app._recordController;
-            this.appointmentController = app.secretaryAppointmentController;
+            this.appointmentController = app._secretaryAppointmentController;
         }
 
         private void MedicalRecordsClick(object sender, RoutedEventArgs e)

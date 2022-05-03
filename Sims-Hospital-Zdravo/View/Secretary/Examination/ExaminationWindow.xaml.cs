@@ -106,7 +106,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Room type";
-            dataColumn.Binding = new Binding("_Room._Type");
+            dataColumn.Binding = new Binding("_Room.Type");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Start at";
