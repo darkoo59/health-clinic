@@ -32,10 +32,22 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            Patient patient = (Patient)ListPatients.SelectedItem;
-            UpdateChooseRoomWindow chooseRoom = new UpdateChooseRoomWindow(patient, selectedDate);
-            chooseRoom.Show();
-            this.Close();
+            try
+            {
+                if (ListPatients.SelectedItem != null)
+                {
+                    Patient patient = (Patient)ListPatients.SelectedItem;
+                    UpdateChooseRoomWindow chooseRoom = new UpdateChooseRoomWindow(patient, selectedDate);
+                    chooseRoom.Show();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Patient isn't selected", "Please select patient");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

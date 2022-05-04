@@ -82,6 +82,17 @@ namespace Sims_Hospital_Zdravo.Service
             return availableDoctors;
         }
 
+        public bool IsDoctorFreeInIntervalWithoutSelectedAppointment(int doctorId, Appointment app)
+        {
+            return timeSchedulerService.IsDoctorFreeInIntervalWithoutSelectedAppointment(doctorId, app);
+        }
+
+        public bool IsPatientFreeInIntervalWithoutSelectedAppointment(int patientId, Appointment app)
+        {
+            return timeSchedulerService.IsPatientFreeInIntervalWithoutSelectedAppointment(patientId, app);
+        }
+        
+
         public ObservableCollection<Patient> FindAvailablePatientsForInterval(TimeInterval startEndTime)
         {
             ObservableCollection<Patient> availablePatients = new ObservableCollection<Patient>();

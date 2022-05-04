@@ -1,11 +1,1 @@
-
-[{
-"_DateAndTime":"2022-04-07T18:00:00",
-"_Room": {"_Type":3,"_Floor":2,"_Id":1,"_RoomEquipment":[]},
-"_Doctor":	{
-			"_Id": 2,
-			"_Name": "Grigorije",
-			"_Surname":  "Kucanski"		
-	},
-"_Id":1,
-"_Patient":{"_Id":6,"_Name":"Jovan","_Surname":"Nikic","_BirthDate":"1111-11-11T00:00:00","_Email":"fdafdasf@gmail.com","_Jmbg":"321341413","_PhoneNumber":"+38134213"}}]
+[{"_Doctor":{"_Specialty":null,"_Username":null,"_Password":null,"_Address":null,"_Id":2,"_Name":"Grigorije","_Surname":"Kucanski","_BirthDate":"0001-01-01T00:00:00","_Email":null,"_Jmbg":null,"_PhoneNumber":null,"_Role":0},"_Patient":{"_Username":null,"_Password":null,"_Address":null,"_Id":0,"_Name":"Marko","_Surname":"Markovic","_BirthDate":"2000-02-11T00:00:00","_Email":"marko@gmail.com","_Jmbg":"1234512351234","_PhoneNumber":"+38165324343","_Role":0},"_Type":0,"_Id":1,"_Room":{"Type":0,"Floor":15,"Id":50,"RoomEquipment":[]},"_Time":{"Start":"2022-05-04T00:00:00","End":"2022-05-04T23:00:00"}}]

@@ -34,17 +34,22 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             try
             {
-                DateTime startDate = DateTime.Parse(DatePickerStart.SelectedDate.ToString());
-                TimeSpan startTime = TimeSpan.Parse(txtStartTime.Text);
-                startDate = startDate.Add(startTime);
-                DateTime endDate = DateTime.Parse(DatePickerEnd.SelectedDate.ToString());
-                TimeSpan endTime = TimeSpan.Parse(txtEndTime.Text);
-                endDate = endDate.Add(endTime);
-                TimeInterval selectedDate = new TimeInterval(startDate, endDate);
-                appointmentController.ValidateAppointmentInterval(selectedDate);
-                NewAppointmentChoosePatient choosePatient = new NewAppointmentChoosePatient(selectedDate);
-                choosePatient.Show();
-                this.Close();
+                if (DatePickerStart.SelectedDate != null && DatePickerEnd.SelectedDate != null)
+                {
+                    DateTime startDate = DateTime.Parse(DatePickerStart.SelectedDate.ToString());
+                    TimeSpan startTime = TimeSpan.Parse(txtStartTime.Text);
+                    startDate = startDate.Add(startTime);
+                    DateTime endDate = DateTime.Parse(DatePickerEnd.SelectedDate.ToString());
+                    TimeSpan endTime = TimeSpan.Parse(txtEndTime.Text);
+                    endDate = endDate.Add(endTime);
+                    TimeInterval selectedDate = new TimeInterval(startDate, endDate);
+                    appointmentController.ValidateAppointmentInterval(selectedDate);
+                    NewAppointmentChoosePatient choosePatient = new NewAppointmentChoosePatient(selectedDate);
+                    choosePatient.Show();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Date isn't selected", "Please select date!");
             }
             catch (Exception ex)
             {

@@ -1,1 +1,1 @@
-[{"_Name": "Gloves", "_Id": 1, "_Type": 0 }]
+[{"Name": "Gloves", "Id": 1, "Type": 1 }, { "Id": 2, "Name": "X-ray", "Type": 0}]

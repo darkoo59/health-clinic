@@ -30,23 +30,18 @@ namespace Sims_Hospital_Zdravo.Utils
             }
         }
 
-        /*public void IsDoctorAvailableForRescheduling(Appointment appointment)
+        public void DoctorAlreadyHaveAppointment(Appointment appointment)
         {
-            if(!appointmentService.FindAvailableDoctorsForInterval(appointment._Time).Contains(appointment._Doctor))
+            if(!appointmentService.IsDoctorFreeInIntervalWithoutSelectedAppointment(appointment._Doctor._Id,appointment))
                 throw new Exception("Doctor isn't available at selected time!");
         }
 
-        public void isPatientAvailableForRescheduling(Appointment appointment)
+        public void PatientAlreadyHaveAppointment(Appointment appointment)
         {
-            if (!appointmentService.FindAvailablePatientsForInterval(appointment._Time).Contains(appointment._Patient))
+            if(!appointmentService.IsPatientFreeInIntervalWithoutSelectedAppointment(appointment._Patient._Id,appointment))
                 throw new Exception("Patient isn't available at selected time!");
         }
-
-        public void isRoomAvailableForRescheduling(Appointment appointment)
-        {
-            if (!appointmentService.FindAvailableRoomsForInterval(appointment._Time).Contains(appointment._Room))
-                throw new Exception("Room isn't available at selected time!");
-        }*/
+        
         public void ValidateCreate(Appointment appointment)
         {
             SchedulingAppointmentInWrongTime(appointment._Time);
@@ -55,9 +50,8 @@ namespace Sims_Hospital_Zdravo.Utils
         public void ValidateRescheduling(Appointment appointment)
         {
             SchedulingAppointmentInWrongTime(appointment._Time);
-           // IsDoctorAvailableForRescheduling(appointment);
-           // isPatientAvailableForRescheduling(appointment);
-           // isRoomAvailableForRescheduling(appointment);
+            DoctorAlreadyHaveAppointment(appointment);
+            PatientAlreadyHaveAppointment(appointment);
         }
     }
 }
