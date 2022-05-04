@@ -89,7 +89,7 @@ namespace Sims_Hospital_Zdravo.Utils
             List<RenovationAppointment> renovations = _renovationController.ReadAll();
             foreach (RenovationAppointment renovation in renovations)
             {
-                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) < 0)
+                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0)
                 {
                     _renovationController.FinishRenovationAppointment(renovation.Id);
                 }

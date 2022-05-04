@@ -99,6 +99,7 @@ namespace Service
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+                if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
 
             }
 

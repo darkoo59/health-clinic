@@ -81,7 +81,7 @@ namespace Sims_Hospital_Zdravo
 
                 Allergens updatedAllergens = new Allergens();
                 updatedAllergens._Allergens = allergens;
-                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
