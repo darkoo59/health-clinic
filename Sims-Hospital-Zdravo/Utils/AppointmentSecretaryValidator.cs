@@ -42,24 +42,6 @@ namespace Sims_Hospital_Zdravo.Utils
                 throw new Exception("Patient isn't available at selected time!");
         }
         
-
-        /*public void IsDoctorAvailableForRescheduling(Appointment appointment)
-        {
-            if(!appointmentService.FindAvailableDoctorsForInterval(appointment._Time).Contains(appointment._Doctor))
-                throw new Exception("Doctor isn't available at selected time!");
-        }
-
-        public void isPatientAvailableForRescheduling(Appointment appointment)
-        {
-            if (!appointmentService.FindAvailablePatientsForInterval(appointment._Time).Contains(appointment._Patient))
-                throw new Exception("Patient isn't available at selected time!");
-        }
-
-        public void isRoomAvailableForRescheduling(Appointment appointment)
-        {
-            if (!appointmentService.FindAvailableRoomsForInterval(appointment._Time).Contains(appointment._Room))
-                throw new Exception("Room isn't available at selected time!");
-        }*/
         public void ValidateCreate(Appointment appointment)
         {
             SchedulingAppointmentInWrongTime(appointment._Time);
@@ -70,9 +52,6 @@ namespace Sims_Hospital_Zdravo.Utils
             SchedulingAppointmentInWrongTime(appointment._Time);
             DoctorAlreadyHaveAppointment(appointment);
             PatientAlreadyHaveAppointment(appointment);
-            // IsDoctorAvailableForRescheduling(appointment);
-            // isPatientAvailableForRescheduling(appointment);
-            // isRoomAvailableForRescheduling(appointment);
         }
     }
 }
