@@ -99,6 +99,7 @@ namespace Service
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
+                if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
 
             }
 
@@ -158,30 +159,6 @@ namespace Service
             }
             return true;
         }
-
-
-        /*public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
-        {
-            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
-            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
-
-            foreach (TimeInterval takenInterval in takenIntervals)
-            {
-                DateTime startDate = takenInterval.Start.Date;
-                DateTime endDate = takenInterval.End.Date;
-                
-                DateTime startDateNew = ti.Start.Date;
-                DateTime endDateNew = ti.End.Date;
-
-                if (startDate == startDateNew || endDate == endDateNew) return false;
-                if (startDate > startDateNew && startDate < endDateNew) return false;
-                if (endDate > startDateNew && endDate < endDateNew) return false;
-                if (startDate < startDateNew && endDate > endDateNew) return false;
-            }
-
-            return true;
-        }*/
 
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
@@ -267,5 +244,29 @@ namespace Service
 
 
         }
+        
+        
+        /*public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
+        {
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
+
+            foreach (TimeInterval takenInterval in takenIntervals)
+            {
+                DateTime startDate = takenInterval.Start.Date;
+                DateTime endDate = takenInterval.End.Date;
+                
+                DateTime startDateNew = ti.Start.Date;
+                DateTime endDateNew = ti.End.Date;
+
+                if (startDate == startDateNew || endDate == endDateNew) return false;
+                if (startDate > startDateNew && startDate < endDateNew) return false;
+                if (endDate > startDateNew && endDate < endDateNew) return false;
+                if (startDate < startDateNew && endDate > endDateNew) return false;
+            }
+
+            return true;
+        }*/
     }
 }
