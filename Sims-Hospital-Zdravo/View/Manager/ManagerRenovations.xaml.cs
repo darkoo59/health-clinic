@@ -1,10 +1,11 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Controller;
 using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
-    public partial class ManagerRenovations : Window
+    public partial class ManagerRenovations : Page
     {
         private RenovationController renovationController;
         private App app;

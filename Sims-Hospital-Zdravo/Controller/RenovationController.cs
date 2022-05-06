@@ -24,6 +24,11 @@ namespace Sims_Hospital_Zdravo.Controller
             _renovationService.MakeRenovationAppointment(time, room, type, description);
         }
 
+        public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
+        {
+            _renovationService.MakeAdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType);
+        }
+
         public List<TimeInterval> GetTakenDateIntervals(Room room)
         {
             return _renovationService.GetTakenDateIntervals(room);

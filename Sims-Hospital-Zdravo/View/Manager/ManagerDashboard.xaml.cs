@@ -20,13 +20,14 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for ManagerDashboard.xaml
     /// </summary>
-    public partial class ManagerDashboard : Window
+    public partial class ManagerDashboard : Page
     {
         private RoomController roomController;
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
         private RenovationController renovationController;
         private App app;
+        private Frame ManagerContent;
 
         public ManagerDashboard()
         {
@@ -36,6 +37,14 @@ namespace Sims_Hospital_Zdravo.View
             this.equipmentTransferController = app._equipmentTransferController;
             this.renovationController = app._renovationController;
             InitializeComponent();
+
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerContent;
+                }
+            }
         }
 
         private void Rooms_Click(object sender, RoutedEventArgs e)
@@ -46,14 +55,12 @@ namespace Sims_Hospital_Zdravo.View
 
         private void Equipment_Click(object sender, RoutedEventArgs e)
         {
-            ManagerEquipment managerEquipment = new ManagerEquipment(roomController, equipmentController, equipmentTransferController);
-            managerEquipment.Show();
+            ManagerContent.Source = new Uri("ManagerEquipment.xaml", UriKind.Relative);
         }
 
         private void Renovations_Click(object sender, RoutedEventArgs e)
         {
-            ManagerRenovations renovations = new ManagerRenovations();
-            renovations.Show();
+            ManagerContent.Source = new Uri("ManagerRenovations.xaml", UriKind.Relative);
         }
     }
 }

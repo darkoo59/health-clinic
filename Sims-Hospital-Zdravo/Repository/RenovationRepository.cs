@@ -42,6 +42,20 @@ namespace Sims_Hospital_Zdravo.Repository
             }
         }
 
+        public int CountAdvancedRenovations()
+        {
+            int count = 0;
+            foreach (RenovationAppointment renApp in _renovations)
+            {
+                if (typeof(AdvancedRenovationAppointment).IsInstanceOfType(renApp))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
         public void Delete(RenovationAppointment renovation)
         {
             _renovations.Remove(renovation);

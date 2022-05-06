@@ -46,8 +46,8 @@ namespace Sims_Hospital_Zdravo
 
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
-            ManagerDashboard manDash = new ManagerDashboard();
-            manDash.Show();
+            // ManagerDashboard manDash = new ManagerDashboard();
+            // manDash.Show();
         }
 
         private void Doctor_Click(object sender, RoutedEventArgs e)

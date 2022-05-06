@@ -19,22 +19,28 @@ namespace Sims_Hospital_Zdravo.View.Manager
     /// <summary>
     /// Interaction logic for ManagerEquipment.xaml
     /// </summary>
-    public partial class ManagerEquipment : Window
+    public partial class ManagerEquipment : Page
     {
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
 
         private RoomController roomController;
+        private Frame ManagerContent;
+        private App app;
 
-        public ManagerEquipment(RoomController roomController, EquipmentController equipmentController, EquipmentTransferController equipmentTransferController)
+        public ManagerEquipment()
         {
-            this.equipmentController = equipmentController;
-            this.equipmentTransferController = equipmentTransferController;
-            this.roomController = roomController;
+            app = Application.Current as App;
+            this.equipmentController = app._equipmentController;
+            this.equipmentTransferController = app._equipmentTransferController;
+            this.roomController = app._roomController;
+
             InitializeComponent();
             RoomPicker.ItemsSource = roomController.ReadAll();
             RoomPicker.SelectedIndex = 0;
             equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
+
+            RetrieveMainFrame();
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
@@ -51,13 +57,23 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
-            EquipmentTransfer equipmentTransfer = new EquipmentTransfer(roomController, equipmentController, equipmentTransferController);
-            equipmentTransfer.Show();
+            ManagerContent.Source = new Uri("EquipmentTransfer.xaml", UriKind.Relative);
         }
 
         private void RoomChanged_Selection(object sender, SelectionChangedEventArgs e)
         {
             equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
+        }
+
+        private void RetrieveMainFrame()
+        {
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerContent;
+                }
+            }
         }
     }
 }
