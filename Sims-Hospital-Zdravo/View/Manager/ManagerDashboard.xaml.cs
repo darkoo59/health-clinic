@@ -49,8 +49,7 @@ namespace Sims_Hospital_Zdravo.View
 
         private void Rooms_Click(object sender, RoutedEventArgs e)
         {
-            ManagerRooms rooms = new ManagerRooms(this.roomController);
-            rooms.Show();
+            ManagerContent.Source = new Uri("ManagerRooms.xaml", UriKind.Relative);
         }
 
         private void Equipment_Click(object sender, RoutedEventArgs e)
@@ -61,6 +60,17 @@ namespace Sims_Hospital_Zdravo.View
         private void Renovations_Click(object sender, RoutedEventArgs e)
         {
             ManagerContent.Source = new Uri("ManagerRenovations.xaml", UriKind.Relative);
+        }
+
+        private void RetrieveMainFrame()
+        {
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerContent;
+                }
+            }
         }
     }
 }

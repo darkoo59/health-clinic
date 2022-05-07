@@ -5,14 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
-      Title="ManagerRenovations" Height="450" Width="800">
-    <Grid>
+      Title="ManagerRenovations" Height="718" Width="924">
+    <Page.Resources>
+        <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
-        <Grid Margin="20, 0, 20, 0">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -21,13 +24,18 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="2" Width="100" Height="30">Adv. Renovation</Button>
-            <Button Grid.Column="3" Width="100" Height="30" Click="BasicRenovation_Click">Basic Renovation</Button>
-            <Button Grid.Column="5" Width="100" Height="30">Update</Button>
-            <Button Grid.Column="4" Width="100" Height="30">Delete</Button>
+            <TextBox Height="30"></TextBox>
+            <Button Grid.Column="2" Width="100" HorizontalAlignment="Right" Height="30">Adv. Renovation</Button>
+            <Button Grid.Column="3" Width="100" HorizontalAlignment="Right" Height="30" Click="BasicRenovation_Click">Basic Renovation</Button>
+            <Button Grid.Column="5" Width="100" HorizontalAlignment="Right" Height="30">Update</Button>
+            <Button Grid.Column="4" Width="100" HorizontalAlignment="Right" Height="30">Delete</Button>
         </Grid>
-        <DataGrid SelectionMode="Single" x:Name="RenovationsTable" Grid.Row="2" ColumnWidth="*"
-                  VerticalAlignment="Stretch" Margin="20, 0, 20, 20" CanUserResizeColumns="False"
-                  CanUserResizeRows="False" />
+        <DataGrid SelectionMode="Single" x:Name="RenovationsTable" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Room" IsReadOnly="True" Width="*" Binding="{Binding Room}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Time" IsReadOnly="True" Width="*" Binding="{Binding Time}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*" Binding="{Binding Type}"> </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

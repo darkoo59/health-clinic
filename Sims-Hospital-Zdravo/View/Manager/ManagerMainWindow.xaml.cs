@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
+using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
@@ -8,7 +11,20 @@ namespace Sims_Hospital_Zdravo.View.Manager
         public ManagerMainWindow()
         {
             InitializeComponent();
-            ManagerContent.Source = new Uri("ManagerDashboard.xaml", UriKind.Relative);
+            ManagerContent.Source = new Uri("ManagerRenovations.xaml", UriKind.Relative);
+            this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
+        }
+
+        private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.W)
+            {
+                ManagerMenu.RotateMenu(-1);
+            }
+            else if (e.Key == Key.S)
+            {
+                ManagerMenu.RotateMenu(1);
+            }
         }
     }
 }

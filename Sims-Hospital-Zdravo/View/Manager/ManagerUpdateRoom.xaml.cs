@@ -22,6 +22,7 @@ namespace Sims_Hospital_Zdravo.View
     public partial class ManagerUpdateRoom : Window
     {
         private RoomController roomController;
+
         public ManagerUpdateRoom(RoomController roomController)
         {
             InitializeComponent();
