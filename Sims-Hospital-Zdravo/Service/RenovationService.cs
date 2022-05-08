@@ -17,11 +17,13 @@ namespace Sims_Hospital_Zdravo.Service
         private RenovationRepository _renovationRepository;
         private TimeSchedulerService timeSchedulerService;
         private RenovationValidator _renovationValidator;
+        private RoomRepository _roomRepository;
 
         public RenovationService(RenovationRepository renovationRepository, TimeSchedulerService timeSchedulerService,
             RoomRepository roomRepository)
         {
             this._renovationRepository = renovationRepository;
+            this._roomRepository = roomRepository;
             this.timeSchedulerService = timeSchedulerService;
             _renovationValidator = new RenovationValidator(roomRepository, renovationRepository, timeSchedulerService);
         }
@@ -36,7 +38,7 @@ namespace Sims_Hospital_Zdravo.Service
 
         public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
         {
-            // _renovationValidator.ValidateRenovation(room, time);
+            _renovationValidator.ValidateAdvancedRenovation(room, rooms, time, roomRenovationType);
             AdvancedRenovationAppointment renovationAppointment = new AdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType, GenerateId());
             Create(renovationAppointment);
         }
@@ -66,10 +68,34 @@ namespace Sims_Hospital_Zdravo.Service
 
         private void JoinRoomsAfterRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
         {
+            Room resultRoom = advancedRenovationAppointment.Room;
+            List<Room> roomsForJoining = advancedRenovationAppointment.Rooms;
+            resultRoom.Quadrature = CalculateQuadratureForRooms(roomsForJoining);
         }
 
         private void SplitRoomsAfterRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
         {
+            Room forSpliting = advancedRenovationAppointment.Room;
+            List<Room> resultRooms = advancedRenovationAppointment.Rooms;
+            foreach (Room room in resultRooms)
+            {
+                room.Id = GenerateId();
+                _roomRepository.Create(room);
+            }
+
+            _roomRepository.DeleteById(forSpliting.Id);
+        }
+
+
+        private int CalculateQuadratureForRooms(List<Room> rooms)
+        {
+            int quadrature = 0;
+            foreach (Room room in rooms)
+            {
+                quadrature += room.Quadrature;
+            }
+
+            return quadrature;
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)

@@ -37,7 +37,6 @@ namespace Service
             List<TimeInterval> takenIntervals = new List<TimeInterval>(takenIntervalsRoom1.Concat(takenIntervalsRoom2));
 
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            // takenIntervals = CompactIntervals(takenIntervals);
             takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
             return takenIntervals;
         }
