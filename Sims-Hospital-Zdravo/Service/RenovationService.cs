@@ -41,15 +41,40 @@ namespace Sims_Hospital_Zdravo.Service
             Create(renovationAppointment);
         }
 
-        public List<TimeInterval> GetTakenDateIntervals(Room room)
-        {
-            return timeSchedulerService.FindReservedDatesForRoom(room);
-        }
-
 
         public void FinishRenovationAppointment(int renovationId)
         {
+            RenovationAppointment renovationAppointment = FindById(renovationId);
+            if (renovationAppointment.IsAdvancedRenovation())
+            {
+                FinishAdvancedRenovationAppointment((AdvancedRenovationAppointment)renovationAppointment);
+            }
+
             _renovationRepository.DeleteById(renovationId);
+        }
+
+        private void FinishAdvancedRenovationAppointment(AdvancedRenovationAppointment advancedRenovationAppointment)
+        {
+            if (advancedRenovationAppointment.RoomRenovationType == RoomRenovationType.JOIN)
+            {
+                JoinRoomsAfterRenovation(advancedRenovationAppointment);
+                return;
+            }
+
+            SplitRoomsAfterRenovation(advancedRenovationAppointment);
+        }
+
+        private void JoinRoomsAfterRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
+        {
+        }
+
+        private void SplitRoomsAfterRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
+        {
+        }
+
+        public List<TimeInterval> GetTakenDateIntervals(Room room)
+        {
+            return timeSchedulerService.FindReservedDatesForRoom(room);
         }
 
         public void Create(RenovationAppointment renovation)
@@ -75,6 +100,11 @@ namespace Sims_Hospital_Zdravo.Service
         public List<RenovationAppointment> FindByType(RenovationType type)
         {
             return _renovationRepository.FindByType(type);
+        }
+
+        public RenovationAppointment FindById(int renovationId)
+        {
+            return _renovationRepository.FindById(renovationId);
         }
 
         private int GenerateId()

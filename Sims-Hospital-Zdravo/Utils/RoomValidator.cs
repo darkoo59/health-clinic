@@ -25,22 +25,24 @@ namespace Sims_Hospital_Zdravo.Utils
                 throw new Exception("Warehouse already exists!");
         }
 
-        private void IdAlreadyExists(Room room)
+        private void RoomNumberAlreadyExists(Room room)
         {
-            if (_roomService.FindById(room.Id) != null)
+            Room rm = _roomService.FindByRoomNumber(room.RoomNumber);
+            if (room.Id == rm.Id && rm.RoomNumber == room.RoomNumber) return;
+            if (rm != null)
                 throw new Exception("Room number already exists!");
         }
 
         private void IdNotFound(int id)
         {
             if (_roomService.FindById(id) == null)
-                throw new Exception("Room number not found");
+                throw new Exception("Id not found");
         }
 
         private void IdNotFound(Room room)
         {
             if (_roomService.FindById(room.Id) == null)
-                throw new Exception("Room number not Found!");
+                throw new Exception("Id not Found!");
         }
 
         private void RoomDoesntExist(Room room)
@@ -52,13 +54,14 @@ namespace Sims_Hospital_Zdravo.Utils
         public void ValidateCreate(Room room)
         {
             WarehouseAlreadyExists(room);
-            IdAlreadyExists(room);
+            RoomNumberAlreadyExists(room);
         }
 
         public void ValidateUpdate(Room room)
         {
             RoomDoesntExist(room);
             WarehouseAlreadyExists(room);
+            RoomNumberAlreadyExists(room);
         }
 
         public void ValidateDelete(Room room)

@@ -41,9 +41,11 @@
             AutoGenerateColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Room Number" IsReadOnly="True" Width="*" Binding="{Binding Id}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Room Number" IsReadOnly="True" Width="*" Binding="{Binding RoomNumber}"> </DataGridTextColumn>
                 <DataGridTextColumn Header="Floor" IsReadOnly="True" Width="*" Binding="{Binding Floor}"> </DataGridTextColumn>
                 <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*" Binding="{Binding Type}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Quadrature" IsReadOnly="True" Width="*" Binding="{Binding Quadrature}"> </DataGridTextColumn>
+
             </DataGrid.Columns>
 
         </DataGrid>

@@ -91,6 +91,19 @@ namespace Repository
             return null;
         }
 
+        public Room FindByRoomNumber(string roomNumber)
+        {
+            foreach (Room room in _rooms)
+            {
+                if (room.RoomNumber.Equals(roomNumber))
+                {
+                    return room;
+                }
+            }
+
+            return null;
+        }
+
         private void LoadDataFromFiles()
         {
             _rooms = _roomDataHandler.ReadAll();
