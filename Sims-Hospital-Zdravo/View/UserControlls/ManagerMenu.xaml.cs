@@ -31,19 +31,38 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         private void SwitchMenu_Click(object sender, RoutedEventArgs e)
         {
             string buttonText = GetButtonText(sender);
+            SetCurrentMenuItem(buttonText);
             SwitchMenu(buttonText);
         }
 
         private void SwitchMenu(string text)
         {
             Border border = GetBorderByChildButtonContent(text);
-            Console.WriteLine("Clicked on menu");
 
             if (border != null)
             {
                 SetAllBordersBackgroundsToDefault();
                 border.Background = new SolidColorBrush(Color.FromRgb(47, 52, 61));
                 SwitchPage(text);
+            }
+        }
+
+        public void SetCurrentMenuItem(string text)
+        {
+            switch (text)
+            {
+                case "Renovations":
+                    currentMenuItem = 1;
+                    break;
+                case "Equipment":
+                    currentMenuItem = 0;
+                    break;
+                case "Surveys":
+                    currentMenuItem = 3;
+                    break;
+                case "Rooms":
+                    currentMenuItem = 2;
+                    break;
             }
         }
 
