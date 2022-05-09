@@ -1,1 +1,1 @@
-[]
+[{"Id":0,"Time":{"Start":"2022-05-08T00:00:00","End":"2022-05-21T23:59:59"},"Room":{"Type":3,"Floor":2,"Id":1,"RoomEquipment":[{"Equipment":{"Id":1,"Name":"Gloves","Type":1},"Quantity":100},{"Equipment":{"Id":2,"Name":"X-ray","Type":0},"Quantity":90}]},"Description":"renicASD","Type":1}]

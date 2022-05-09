@@ -22,7 +22,7 @@
         <TextBox x:Name="FloorTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" HorizontalAlignment="Center">Room Type :</Label>
         <TextBox x:Name="RoomIdTxt" Grid.Row="1" Grid.Column="2" Width="150" Height="30" HorizontalAlignment="Left"></TextBox>
-        <Label Grid.Row="1" Grid.Column="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" HorizontalAlignment="Left">ID:</Label>
+        <Label Grid.Row="1" Grid.Column="2" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" HorizontalAlignment="Left">Room number:</Label>
         <ComboBox x:Name="RoomTypeCmb" Grid.Column="1" Grid.Row="1" Width="150" Height="30" SelectedIndex="0"></ComboBox>
         <Button Grid.Row="2" Grid.Column="1" Height="50" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0" Click="SaveInsertedRoom_Click" >Save</Button>
 
