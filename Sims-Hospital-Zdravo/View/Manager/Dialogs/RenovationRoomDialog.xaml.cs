@@ -1,32 +1,17 @@
-﻿using Controller;
-using Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Model;
 
-namespace Sims_Hospital_Zdravo.View
+namespace Sims_Hospital_Zdravo.View.Manager.Dialogs
 {
-    /// <summary>
-    /// Interaction logic for ManagerInsertRoom.xaml
-    /// </summary>
-    public partial class ManagerInsertRoom : Window
+    public partial class RenovationRoomDialog : Window
     {
-        private RoomController roomController;
+        public Room Room { get; set; }
 
-        public ManagerInsertRoom(RoomController roomController)
+        public RenovationRoomDialog()
         {
             InitializeComponent();
-            this.roomController = roomController;
             RoomTypeCmb.ItemsSource = Enum.GetValues(typeof(RoomType)).Cast<RoomType>();
         }
 
@@ -35,15 +20,12 @@ namespace Sims_Hospital_Zdravo.View
             try
             {
                 Validate();
-                Room room = new Room(Int32.Parse(FloorTxt.Text), roomController.GenerateId(), (RoomType)RoomTypeCmb.SelectedValue, RoomNumberTxt.Text, Int32.Parse(QuadratureTxt.Text));
-                Console.WriteLine("This is room " + room);
-                roomController.Create(room);
+                this.Room = new Room(Int32.Parse(FloorTxt.Text), -1, (RoomType)RoomTypeCmb.SelectedValue, RoomNumberTxt.Text, Int32.Parse(QuadratureTxt.Text));
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Console.WriteLine(ex.StackTrace);
             }
         }
 

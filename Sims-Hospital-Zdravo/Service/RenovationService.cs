@@ -3,6 +3,7 @@ using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,7 @@ namespace Sims_Hospital_Zdravo.Service
                 FinishAdvancedRenovationAppointment((AdvancedRenovationAppointment)renovationAppointment);
             }
 
+            Console.WriteLine("Calling renovation appointment and deleting renApp");
             _renovationRepository.DeleteById(renovationId);
         }
 
@@ -70,7 +72,10 @@ namespace Sims_Hospital_Zdravo.Service
         {
             Room resultRoom = advancedRenovationAppointment.Room;
             List<Room> roomsForJoining = advancedRenovationAppointment.Rooms;
+            resultRoom.Id = GenerateId();
             resultRoom.Quadrature = CalculateQuadratureForRooms(roomsForJoining);
+            _roomRepository.RemoveMultiple(roomsForJoining);
+            _roomRepository.Create(resultRoom);
         }
 
         private void SplitRoomsAfterRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
@@ -118,7 +123,7 @@ namespace Sims_Hospital_Zdravo.Service
             _renovationRepository.Delete(renovation);
         }
 
-        public List<RenovationAppointment> ReadAll()
+        public ObservableCollection<RenovationAppointment> ReadAll()
         {
             return _renovationRepository.ReadAll();
         }
@@ -135,7 +140,7 @@ namespace Sims_Hospital_Zdravo.Service
 
         private int GenerateId()
         {
-            List<RenovationAppointment> appointments = _renovationRepository.ReadAll();
+            ObservableCollection<RenovationAppointment> appointments = _renovationRepository.ReadAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

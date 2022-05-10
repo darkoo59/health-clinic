@@ -2,6 +2,7 @@
 using Sims_Hospital_Zdravo.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace Sims_Hospital_Zdravo.Repository
     public class RenovationRepository
     {
         private RenovationDataHandler _renovationDataHandler;
-        private List<RenovationAppointment> _renovations;
+        private ObservableCollection<RenovationAppointment> _renovations;
 
         public RenovationRepository(RenovationDataHandler renovationDataHandler)
         {
             this._renovationDataHandler = renovationDataHandler;
-            _renovations = new List<RenovationAppointment>();
+            _renovations = new ObservableCollection<RenovationAppointment>();
             LoadDataFromFile();
         }
 
@@ -62,7 +63,7 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFile();
         }
 
-        public List<RenovationAppointment> ReadAll()
+        public ObservableCollection<RenovationAppointment> ReadAll()
         {
             return _renovations;
         }
@@ -97,7 +98,17 @@ namespace Sims_Hospital_Zdravo.Repository
         public void DeleteById(int renovationId)
         {
             RenovationAppointment renovationAppointment = FindById(renovationId);
+            if (renovationAppointment == null)
+            {
+                Console.WriteLine("Removing appointment which is null " + renovationId);
+            }
+            else
+            {
+                Console.WriteLine("Removed successfully appointment");
+            }
+
             Delete(renovationAppointment);
+            LoadDataToFile();
         }
 
         public List<TimeInterval> FindTakenIntervalsForRoom(int roomId)
@@ -117,12 +128,12 @@ namespace Sims_Hospital_Zdravo.Repository
 
         private void LoadDataToFile()
         {
-            _renovationDataHandler.Write(_renovations);
+            _renovationDataHandler.Write(_renovations.ToList());
         }
 
         private void LoadDataFromFile()
         {
-            _renovations = _renovationDataHandler.ReadAll();
+            _renovations = new ObservableCollection<RenovationAppointment>(_renovationDataHandler.ReadAll());
         }
     }
 }

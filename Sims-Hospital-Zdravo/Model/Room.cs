@@ -142,7 +142,7 @@ namespace Model
 
         public override string ToString()
         {
-            return this._id + " " + this._type;
+            return this._roomNumber + " " + this._type;
         }
 
         public void NotifyUpdated()

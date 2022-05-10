@@ -28,9 +28,11 @@ namespace Sims_Hospital_Zdravo.Utils
         private void RoomNumberAlreadyExists(Room room)
         {
             Room rm = _roomService.FindByRoomNumber(room.RoomNumber);
-            if (room.Id == rm.Id && rm.RoomNumber == room.RoomNumber) return;
             if (rm != null)
+            {
+                if (room.Id == rm.Id && rm.RoomNumber == room.RoomNumber) return;
                 throw new Exception("Room number already exists!");
+            }
         }
 
         private void IdNotFound(int id)
@@ -48,7 +50,7 @@ namespace Sims_Hospital_Zdravo.Utils
         private void RoomDoesntExist(Room room)
         {
             if (room == null)
-                throw new Exception("Room not Found!");
+                throw new Exception("Given room is null!");
         }
 
         public void ValidateCreate(Room room)

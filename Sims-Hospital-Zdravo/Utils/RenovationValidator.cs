@@ -56,6 +56,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void ValidateQuadrature(Room room, List<Room> rooms)
         {
+            Console.WriteLine(CalculateQuadratureForRooms(rooms) + " " + room.Quadrature);
             if (room.Quadrature != CalculateQuadratureForRooms(rooms))
                 throw new Exception("Quadrature of new rooms should be exactly as real room!");
         }
@@ -90,6 +91,12 @@ namespace Sims_Hospital_Zdravo.Utils
             int quadrature = 0;
             foreach (Room room in rooms)
             {
+                if (room == null)
+                {
+                    Console.WriteLine("Soba je null");
+                    continue;
+                }
+
                 quadrature += room.Quadrature;
             }
 
@@ -113,7 +120,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void ValidateJoinAdvancedRenovation(Room room, List<Room> rooms, TimeInterval ti)
         {
-            ValidateQuadrature(room, rooms);
+            // ValidateQuadrature(room, rooms);
             ValidateFloors(room, rooms);
             ValidateRoomsTaken(rooms, ti);
         }
