@@ -17,11 +17,11 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.W)
+            if ((Control.ModifierKeys & Keys.Control) == Keys.Control && e.Key == Key.W)
             {
                 ManagerMenu.RotateMenu(-1);
             }
-            else if (e.Key == Key.S)
+            else if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && e.Key == Key.S)
             {
                 ManagerMenu.RotateMenu(1);
             }

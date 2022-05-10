@@ -23,8 +23,10 @@ namespace Model
     {
         private int _floor;
         private int _id;
+        private string _roomNumber;
         private RoomType _type;
         private List<RoomEquipment> _roomEquipment;
+        private int _quadrature;
 
         public Room()
         {
@@ -32,13 +34,15 @@ namespace Model
 
         private List<IUpdateFilesObserver> _observers;
 
-        public Room(int floor, int id, RoomType type)
+        public Room(int floor, int id, RoomType type, string roomNumber, int quadrature)
         {
             this._observers = new List<IUpdateFilesObserver>();
             this._floor = floor;
             this._id = id;
             this._type = type;
             this._roomEquipment = new List<RoomEquipment>();
+            this._quadrature = quadrature;
+            this._roomNumber = roomNumber;
         }
 
 
@@ -90,6 +94,18 @@ namespace Model
             set { _roomEquipment = value; }
         }
 
+        public string RoomNumber
+        {
+            get { return _roomNumber; }
+            set { _roomNumber = value; }
+        }
+
+        public int Quadrature
+        {
+            get { return _quadrature; }
+            set { _quadrature = value; }
+        }
+
         public void AddEquipment(RoomEquipment re)
         {
             foreach (RoomEquipment eq in _roomEquipment)
@@ -126,7 +142,7 @@ namespace Model
 
         public override string ToString()
         {
-            return this._id + " " + this._type;
+            return this._roomNumber + " " + this._type;
         }
 
         public void NotifyUpdated()

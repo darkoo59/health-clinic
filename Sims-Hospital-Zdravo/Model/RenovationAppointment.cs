@@ -68,5 +68,10 @@ namespace Sims_Hospital_Zdravo.Model
 
             set { _type = value; }
         }
+
+        public bool IsAdvancedRenovation()
+        {
+            return Type == RenovationType.ADVANCED;
+        }
     }
 }

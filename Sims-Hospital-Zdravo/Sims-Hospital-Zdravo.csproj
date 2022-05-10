@@ -170,6 +170,9 @@
         <Compile Include="View\Login\LoginMainWindow.xaml.cs">
             <DependentUpon>LoginMainWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Manager\Dialogs\RenovationRoomDialog.xaml.cs">
+          <DependentUpon>RenovationRoomDialog.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
             <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
         </Compile>
@@ -178,6 +181,9 @@
         </Compile>
         <Compile Include="View\Manager\ManagerMainWindow.xaml.cs">
             <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Manager\ManagerRenovationAdvanced.xaml.cs">
+          <DependentUpon>ManagerRenovationAdvanced.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
         <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
@@ -279,6 +285,7 @@
             <SubType>Designer</SubType>
             <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Include="View\Manager\Dialogs\RenovationRoomDialog.xaml" />
         <Page Include="View\Manager\EquipmentTransfer.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -288,6 +295,7 @@
             <SubType>Designer</SubType>
         </Page>
         <Page Include="View\Manager\ManagerMainWindow.xaml" />
+        <Page Include="View\Manager\ManagerRenovationAdvanced.xaml" />
         <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
         <Page Include="View\Manager\ManagerRenovations.xaml" />
         <Page Include="View\Manager\ManagerStyles.xaml" />

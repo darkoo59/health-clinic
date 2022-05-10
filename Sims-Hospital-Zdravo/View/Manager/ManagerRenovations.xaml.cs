@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             ManagerContent.Source = new Uri("ManagerRenovationBasic.xaml", UriKind.Relative);
         }
 
+
         private void RetrieveMainFrame()
         {
             foreach (Window win in Application.Current.Windows)
@@ -36,6 +37,11 @@ namespace Sims_Hospital_Zdravo.View.Manager
                     ManagerContent = ((ManagerMainWindow)win).ManagerContent;
                 }
             }
+        }
+
+        private void AdvancedRenovation_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerContent.Source = new Uri("ManagerRenovationAdvanced.xaml", UriKind.Relative);
         }
     }
 }
