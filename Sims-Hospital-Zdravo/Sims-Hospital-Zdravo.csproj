@@ -501,6 +501,7 @@
     <Content Include="Resources\img\Secretary\Light\SignOut.png" />
     <Content Include="Resources\img\Secretary\Light\ToggleMenu.png" />
     <Resource Include="Resources\img\Secretary\SignOut.png" />
+    <Content Include="Resources\img\Secretary\ToggleMenu_MouseOver.png" />
     <Content Include="Resources\medicines.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />

@@ -48,7 +48,7 @@ namespace Sims_Hospital_Zdravo
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(TgButton.IsChecked != true)
+            if(TgButton.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
                 tt_profile.Visibility = Visibility.Collapsed;
