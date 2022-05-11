@@ -44,6 +44,17 @@ namespace Sims_Hospital_Zdravo.Service
         {
             return accountRepository.GetAccountByUsernameAndPassword(username, password);
         }
+        
+        
+        public User GetLoggedAccount()
+        {
+            return accountRepository.GetLoggedAccount();
+        }
+        
+        public void AddLoggedAccount(String username, String password)
+        {
+            accountRepository.AddLoggedAccount(username, password);
+        }
 
     }
 }

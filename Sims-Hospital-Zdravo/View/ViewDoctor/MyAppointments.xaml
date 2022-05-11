@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="MyAppointments" Height="450" Width="800">
+        Title="MyAppointments" Height="768" Width="1024">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -26,10 +26,23 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Name="DoctorAppointments" Height="153" Margin="36,10,0,0" VerticalAlignment="Top" Width="728"  SelectionMode="Single"  Grid.ColumnSpan="6" Grid.RowSpan="4" Grid.Row="4" />
-        <Button Content="patient Medical record" Margin="118,16,133,16" Click="Button_Click" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <Label Content="Choose date:" Margin="19,22,0,54" Grid.RowSpan="2" Grid.Row="2"/>
-        <DatePicker Margin="18,27,133,47" Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.Row="2" Grid.Column="1"  >
+        <StackPanel Grid.ColumnSpan="2" Margin="0,0,170,23" Grid.RowSpan="8">
+            <Button Content="MyAppointments" Height="50"></Button>
+            <Button Content="Appointment" Height="50"></Button>
+            <Button Content="Patients" Height="50"></Button>
+            <Button Content="Patients" Height="50"></Button>
+            <Button Content="Examination" Height="50"></Button>
+            <Button Content="Specialist Examination" Height="50"></Button>
+            <Button Content="Medical equipment" Height="50"></Button>
+            <Button Content="Medical supplies" Height="50"></Button>
+            <Button Content="Days off/Vacation" Height="50"></Button>
+            <Button Content="Drug validation" Height="50"></Button>
+            <Button Content="Help" Height="50"></Button>
+        </StackPanel>
+        <DataGrid HorizontalAlignment="Left" Name="DoctorAppointments" Height="188" Margin="40,83,0,0" VerticalAlignment="Top" Width="728"  SelectionMode="Single"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" RenderTransformOrigin="0.502,0.316" Grid.RowSpan="3" />
+        <Button Content="patient Medical record" Margin="10,47,71,79" Click="Button_Click" Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2"/>
+        <Label Content="Choose date:" Margin="65,47,126,29" Grid.RowSpan="2" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <DatePicker Margin="62,47,89,27" Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"  >
 
 
         </DatePicker>
