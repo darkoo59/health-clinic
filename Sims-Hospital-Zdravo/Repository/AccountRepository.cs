@@ -13,6 +13,7 @@ namespace Sims_Hospital_Zdravo.Repository
     {
         public AccountDataHandler accHandler;
         public ObservableCollection<User> accounts;
+        public User loggedAccount;
 
         public AccountRepository(AccountDataHandler accHandler)
         {
@@ -75,6 +76,23 @@ namespace Sims_Hospital_Zdravo.Repository
             }
             return null;
         }
+
+        public User GetLoggedAccount()
+        {
+            return loggedAccount;
+        }
+        
+        public void AddLoggedAccount(String username, String password)
+        {
+            foreach(User acc in accounts)
+            {
+                if(acc._Password.Equals(password) && acc._Username.Equals(username))
+                {
+                    loggedAccount = acc;
+                }
+            }
+        }
+        
         public void LoadDataFromFile()
         {
             this.accounts = accHandler.ReadAll();

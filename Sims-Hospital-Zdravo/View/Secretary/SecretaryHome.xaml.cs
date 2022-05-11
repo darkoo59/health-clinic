@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Repository;
 
 namespace Sims_Hospital_Zdravo
 {
