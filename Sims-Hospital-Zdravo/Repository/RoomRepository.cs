@@ -30,7 +30,6 @@ namespace Repository
         public void Create(Room room)
         {
             StackTrace stackTrace = new StackTrace();
-            Console.WriteLine(stackTrace.GetFrame(1).GetMethod().Name);
             _rooms.Add(room);
             room.AddObserver(this);
             LoadDataToFile();

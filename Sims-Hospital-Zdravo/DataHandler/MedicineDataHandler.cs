@@ -12,7 +12,6 @@ namespace Sims_Hospital_Zdravo.DataHandler
     {
         public ObservableCollection<Medicine> ReadAll()
         {
-            Console.WriteLine("Usao u funkciju");
             string medicineSerialized = System.IO.File.ReadAllText(Path);
             ObservableCollection<Medicine> medicines = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Medicine>>(medicineSerialized);
             return medicines;

@@ -7,9 +7,9 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.ObjectModel;
+
 namespace Repository
 {
-
     public class DoctorRepository
     {
         public DoctorDataHandler docHandler;
@@ -53,7 +53,6 @@ namespace Repository
                     return;
                 }
             }
-
         }
 
 
@@ -61,18 +60,17 @@ namespace Repository
         {
             foreach (Doctor doc in doctors)
             {
-                Console.WriteLine("Id of doctor in list is " + doc._Id);
-                Console.WriteLine("Id of doctor search is " + id);
                 if (doc._Id == id) return doc;
             }
+
             return null;
         }
 
         public ref ObservableCollection<Doctor> ReadAll()
         {
             return ref this.doctors;
-
         }
+
         public void LoadDataFromFile()
         {
             this.doctors = docHandler.ReadAll();
@@ -82,7 +80,5 @@ namespace Repository
         {
             docHandler.Write(doctors);
         }
-
-
     }
 }

@@ -35,10 +35,8 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
-           
             foreach (Appointment app in appointments)
             {
-               
                 if (app._Id == appointment._Id)
                 {
                     app._Time = appointment._Time;
@@ -46,7 +44,7 @@ namespace Repository
                     app._Patient = appointment._Patient;
                     app._Room = appointment._Room;
                     app._Type = appointment._Type;
-                    
+
                     loadDataToFile();
                     return;
                 }
@@ -76,7 +74,6 @@ namespace Repository
         public ObservableCollection<Appointment> FindByDoctorId(int id)
         {
             ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
-            Console.WriteLine(this.appointments.Count + " duzina");
             foreach (Appointment app in this.appointments)
             {
                 if (app._Doctor == null) continue;
@@ -85,8 +82,9 @@ namespace Repository
                     doctorsApps.Add(app);
                 }
             }
-             var doctorsapps = doctorsApps.OrderBy(i => i._Time.Start.Date).ToList();
-            doctorsApps =  new ObservableCollection<Appointment> (doctorsapps);
+
+            var doctorsapps = doctorsApps.OrderBy(i => i._Time.Start.Date).ToList();
+            doctorsApps = new ObservableCollection<Appointment>(doctorsapps);
             return doctorsApps;
         }
 
@@ -167,7 +165,7 @@ namespace Repository
 
             return apps;
         }
-        
+
         public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
@@ -179,6 +177,5 @@ namespace Repository
 
             return appointmentsForDate;
         }
-
     }
 }
