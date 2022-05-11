@@ -258,6 +258,9 @@
     <Compile Include="View\ViewDoctor\PrescriptionWindow.xaml.cs">
       <DependentUpon>PrescriptionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\SearchPatient.xaml.cs">
+      <DependentUpon>SearchPatient.xaml</DependentUpon>
+    </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -394,6 +397,10 @@
     <Page Include="View\ViewDoctor\PrescriptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\SearchPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
