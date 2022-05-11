@@ -9,6 +9,7 @@ using DataHandler;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
@@ -34,9 +35,15 @@ namespace Sims_Hospital_Zdravo
         internal PrescriptionController _prescriptionController;
         internal TaskScheduleTimer _taskScheduleTimer;
         internal MedicineController _medicineController;
+        internal NotificationController _notificationController;
 
         public App()
         {
+            NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
+            NotificationRepository notificationRepository = new NotificationRepository(notificationDataHandler);
+            NotificationService notificationService = new NotificationService(notificationRepository);
+            _notificationController = new NotificationController(notificationService);
+
             RoomDataHandler roomDataHandler = new RoomDataHandler();
             RoomRepository roomRepository = new RoomRepository(roomDataHandler);
             RoomService roomService = new RoomService(roomRepository);
@@ -55,13 +62,13 @@ namespace Sims_Hospital_Zdravo
 
             MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
             MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
-            MedicineService medicineService = new MedicineService(medicineRepository);
+            MedicineService medicineService = new MedicineService(medicineRepository, notificationRepository);
             _medicineController = new MedicineController(medicineService);
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
             MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
-            _recordController = new MedicalRecordController(recordService,prescriptionService);
+            _recordController = new MedicalRecordController(recordService, prescriptionService);
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
@@ -108,7 +115,7 @@ namespace Sims_Hospital_Zdravo
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            
+
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
             _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
@@ -118,14 +125,13 @@ namespace Sims_Hospital_Zdravo
             _anamnesisController = new AnamnesisController(anamnesisService);
 
             SecretaryAppointmentService secretaryAppointmentService =
-                new SecretaryAppointmentService(appointmentRepository,patientRepository, timeSchedulerService, roomRepository, doctorRepository);
+                new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, roomRepository, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
-            
-            
+
             _prescriptionController = new PrescriptionController(prescriptionService);
 
-            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController,_doctorAppointmentController, _prescriptionController);
+            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController);
         }
     }
 }

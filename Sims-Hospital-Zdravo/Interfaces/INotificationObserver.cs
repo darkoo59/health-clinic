@@ -1,7 +1,9 @@
-﻿namespace Sims_Hospital_Zdravo.Interfaces
+﻿using Sims_Hospital_Zdravo.Model;
+
+namespace Sims_Hospital_Zdravo.Interfaces
 {
     public interface INotificationObserver
     {
-        void Notify(string description);
+        void Notify(Notification notification);
     }
 }

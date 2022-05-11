@@ -13,6 +13,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -23,22 +24,25 @@ namespace Sims_Hospital_Zdravo.Utils
         private EquipmentTransferController _relocationController;
         private RenovationController _renovationController;
         private PrescriptionController _prescriptionController;
+        private DoctorAppointmentController _doctorAppointmentController;
+        private NotificationController _notificationController;
         private DateTime dateTime;
         private DateTime dateTime1;
-        private DoctorAppointmentController _doctorAppointmentController;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
-            PrescriptionController prescriptionController)
+            PrescriptionController prescriptionController, NotificationController notificationController)
         {
             this._relocationController = relocationController;
             this._renovationController = renovationController;
             this._prescriptionController = prescriptionController;
+            this._notificationController = notificationController;
+            this._doctorAppointmentController = doctorAppointmentController;
+
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
                 prescription._Flag = true;
             }
 
-            this._doctorAppointmentController = doctorAppointmentController;
             observers = new List<INotificationObserver>();
             SetTimer();
         }
@@ -46,7 +50,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void SetTimer()
         {
-            timer = new Timer(10000);
+            timer = new Timer(2000);
             timer.Elapsed += FireScheduledTask;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -58,6 +62,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfThereShouldBeNotification();
+            CheckNotificationForManager();
             AppointmentDone();
             dateTime = DateTime.Now;
             dateTime1 = DateTime.Now.AddSeconds(10);
@@ -84,6 +89,15 @@ namespace Sims_Hospital_Zdravo.Utils
                 {
                     App.Current.Dispatcher.Invoke((Action)delegate { _renovationController.FinishRenovationAppointment(renovation.Id); });
                 }
+            }
+        }
+
+        private void CheckNotificationForManager()
+        {
+            List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
+            foreach (Notification notification in notifications)
+            {
+                Notify(notification);
             }
         }
 
@@ -119,7 +133,7 @@ namespace Sims_Hospital_Zdravo.Utils
                         if (prescription._Flag)
                         {
                             prescription._Flag = false;
-                            Notify("You need to take " + prescription._Medicine._Name + ".");
+                            Notify(new Notification("You need to take " + prescription._Medicine._Name + ".", _notificationController.GenerateId()));
                         }
                     }
                     else
@@ -141,11 +155,11 @@ namespace Sims_Hospital_Zdravo.Utils
             observers.Remove(observer);
         }
 
-        public void Notify(string description)
+        public void Notify(Notification notification)
         {
             foreach (INotificationObserver observer in observers)
             {
-                observer.Notify(description);
+                observer.Notify(notification);
             }
         }
     }
