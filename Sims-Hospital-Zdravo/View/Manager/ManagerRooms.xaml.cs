@@ -2,6 +2,8 @@
 using Model;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using Sims_Hospital_Zdravo.View.Manager;
 
 
 namespace Sims_Hospital_Zdravo.View
@@ -9,16 +11,20 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for ManagerRooms.xaml
     /// </summary>
-    public partial class ManagerRooms : Window
+    public partial class ManagerRooms : Page
     {
         private RoomController roomController;
+        private Frame ManagerContent;
+        private App app;
 
-        public ManagerRooms(RoomController roomController)
+        public ManagerRooms()
         {
+            app = Application.Current as App;
             InitializeComponent();
-            this.roomController = roomController;
+            this.roomController = app._roomController;
             this.DataContext = this;
             RoomsTable.ItemsSource = this.roomController.ReadAll();
+            RetrieveMainFrame();
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
@@ -52,6 +58,17 @@ namespace Sims_Hospital_Zdravo.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void RetrieveMainFrame()
+        {
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerContent;
+                }
             }
         }
     }

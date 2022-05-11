@@ -53,5 +53,10 @@ namespace Controller
         {
             _roomService.DeleteById(id);
         }
+
+        public int GenerateId()
+        {
+            return _roomService.GenerateId();
+        }
     }
 }
