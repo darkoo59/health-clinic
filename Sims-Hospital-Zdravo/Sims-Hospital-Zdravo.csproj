@@ -175,46 +175,16 @@
     </Compile>
     <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
     <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
-    <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
-      <DependentUpon>ExaminationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml.cs">
-      <DependentUpon>NewAppointmentChooseDate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml.cs">
-      <DependentUpon>NewAppointmentChoosePatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
-      <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs">
-      <DependentUpon>UpdateChooseDoctorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
-      <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
-      <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
-    <Compile Include="View\Secretary\SecretaryHome.xaml.cs">
-      <DependentUpon>SecretaryHome.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml.cs">
-      <DependentUpon>SecretaryWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Service\AppointmentPatientService.cs" />
     <Compile Include="Service\DoctorAppointmentService.cs" />
     <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Service\RoomService.cs" />
-    <Compile Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml.cs">
-      <DependentUpon>UpdateRecordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\RoomValidator.cs" />
     <Compile Include="View\DoctorAppointments.xaml.cs">
       <DependentUpon>DoctorAppointments.xaml</DependentUpon>
@@ -243,6 +213,16 @@
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml.cs" />
+    <Compile Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml.cs" />
+    <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs" />
+    <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs" />
+    <Compile Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml.cs" />
+    <Compile Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml.cs" />
+    <Compile Include="View\Secretary\SecretaryHome.xaml.cs" />
     <Compile Include="View\ViewDoctor\AnamnesisList.xaml.cs" />
     <Compile Include="View\ViewDoctor\AnamnesisWindow.xaml.cs" />
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
@@ -280,34 +260,6 @@
     </Page>
     <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
     <Page Include="View\Manager\ManagerRenovations.xaml" />
-    <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -328,16 +280,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\SecretaryHome.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml">
-    </Page>
-    <Page Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,7 +319,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Secretary\WindowStyles.xaml" />
+    <Page Include="View\Secretary\Examination\ExaminationWindow.xaml" />
+    <Page Include="View\Secretary\Examination\NewAppointmentChooseDate.xaml" />
+    <Page Include="View\Secretary\Examination\NewAppointmentChoosePatient.xaml" />
+    <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml" />
+    <Page Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml" />
+    <Page Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml" />
+    <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml" />
+    <Page Include="View\Secretary\MedicalRecordCRUD\SecretaryWindow.xaml" />
+    <Page Include="View\Secretary\MedicalRecordCRUD\UpdateRecordWindow.xaml" />
+    <Page Include="View\Secretary\SecretaryHome.xaml" />
+    <Page Include="View\Secretary\SecretaryWindowStyles.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
@@ -475,18 +427,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\anamnesis.txt" />
-    <Resource Include="Resources\img\Secretary\ToggleMenu.png" />
-    <Resource Include="Resources\img\Secretary\Home.png" />
-    <Resource Include="Resources\img\Secretary\About.png" />
-    <Resource Include="Resources\img\Secretary\Accounts.png" />
-    <Resource Include="Resources\img\Secretary\Appointment.png" />
-    <Resource Include="Resources\img\Secretary\Contact.png" />
-    <Resource Include="Resources\img\Secretary\Equipment.png" />
-    <Resource Include="Resources\img\Secretary\MedicalRecords.png" />
-    <Resource Include="Resources\img\Secretary\Meeting.png" />
-    <Resource Include="Resources\img\Secretary\Profile.png" />
-    <Resource Include="Resources\img\Secretary\Settings.png" />
-    <Resource Include="Resources\img\Secretary\Close.png" />
+    <Resource Include="Resources\img\Secretary\ToggleMenu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\About.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Accounts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Appointment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Contact.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\MedicalRecords.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Meeting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\img\Secretary\Light\About.png" />
     <Content Include="Resources\img\Secretary\Light\Accounts.png" />
     <Content Include="Resources\img\Secretary\Light\Appointment.png" />
@@ -500,8 +476,12 @@
     <Content Include="Resources\img\Secretary\Light\Settings.png" />
     <Content Include="Resources\img\Secretary\Light\SignOut.png" />
     <Content Include="Resources\img\Secretary\Light\ToggleMenu.png" />
-    <Resource Include="Resources\img\Secretary\SignOut.png" />
-    <Content Include="Resources\img\Secretary\ToggleMenu_MouseOver.png" />
+    <Resource Include="Resources\img\Secretary\SignOut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\ToggleMenu_MouseOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\medicines.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />

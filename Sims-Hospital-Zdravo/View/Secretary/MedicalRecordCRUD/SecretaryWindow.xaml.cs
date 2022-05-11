@@ -83,5 +83,42 @@ namespace Sims_Hospital_Zdravo
             dataColumn.Binding = new Binding("_MaritalStatus");
             ContentGrid.Columns.Add(dataColumn);
         }
+        
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if(TgButton.IsChecked == true)
+            {
+                tt_home.Visibility = Visibility.Collapsed;
+                tt_profile.Visibility = Visibility.Collapsed;
+                tt_about.Visibility = Visibility.Collapsed;
+                tt_meetings.Visibility = Visibility.Collapsed;
+                tt_accounts.Visibility = Visibility.Collapsed;
+                tt_equipment.Visibility = Visibility.Collapsed;
+                tt_appointments.Visibility = Visibility.Collapsed;
+                tt_contacts.Visibility = Visibility.Collapsed;
+                tt_medical_records.Visibility = Visibility.Collapsed;
+                tt_settings.Visibility = Visibility.Collapsed;
+                tt_sign_out.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tt_home.Visibility = Visibility.Visible;
+                tt_profile.Visibility = Visibility.Visible;
+                tt_about.Visibility = Visibility.Visible;
+                tt_meetings.Visibility = Visibility.Visible;
+                tt_accounts.Visibility = Visibility.Visible;
+                tt_equipment.Visibility = Visibility.Visible;
+                tt_appointments.Visibility = Visibility.Visible;
+                tt_contacts.Visibility = Visibility.Visible;
+                tt_medical_records.Visibility = Visibility.Visible;
+                tt_settings.Visibility = Visibility.Visible;
+                tt_sign_out.Visibility = Visibility.Visible;
+            }
+        }
+        
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
