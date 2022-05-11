@@ -377,6 +377,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\WindowStyles.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
@@ -474,6 +475,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\img\Secretary\ToggleMenu.png" />
+    <Resource Include="Resources\img\Secretary\Home.png" />
+    <Resource Include="Resources\img\Secretary\About.png" />
+    <Resource Include="Resources\img\Secretary\Accounts.png" />
+    <Resource Include="Resources\img\Secretary\Appointment.png" />
+    <Resource Include="Resources\img\Secretary\Contact.png" />
+    <Resource Include="Resources\img\Secretary\Equipment.png" />
+    <Resource Include="Resources\img\Secretary\MedicalRecords.png" />
+    <Resource Include="Resources\img\Secretary\Meeting.png" />
+    <Resource Include="Resources\img\Secretary\Profile.png" />
+    <Resource Include="Resources\img\Secretary\Settings.png" />
+    <Resource Include="Resources\img\Secretary\Close.png" />
+    <Content Include="Resources\img\Secretary\Light\About.png" />
+    <Content Include="Resources\img\Secretary\Light\Accounts.png" />
+    <Content Include="Resources\img\Secretary\Light\Appointment.png" />
+    <Content Include="Resources\img\Secretary\Light\Close.png" />
+    <Content Include="Resources\img\Secretary\Light\Contact.png" />
+    <Content Include="Resources\img\Secretary\Light\Equipment.png" />
+    <Content Include="Resources\img\Secretary\Light\Home.png" />
+    <Content Include="Resources\img\Secretary\Light\MedicalRecords.png" />
+    <Content Include="Resources\img\Secretary\Light\Meeting.png" />
+    <Content Include="Resources\img\Secretary\Light\Profile.png" />
+    <Content Include="Resources\img\Secretary\Light\Settings.png" />
+    <Content Include="Resources\img\Secretary\Light\SignOut.png" />
+    <Content Include="Resources\img\Secretary\Light\ToggleMenu.png" />
+    <Resource Include="Resources\img\Secretary\SignOut.png" />
     <Content Include="Resources\medicines.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
