@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -80,9 +81,10 @@ namespace Sims_Hospital_Zdravo
             }
         }
 
-        public void Notify(string description)
+        public void Notify(Notification notification)
         {
-            MessageBox.Show(description);
+            if (typeof(MedicineApprovalNotification).IsInstanceOfType(notification)) return;
+            MessageBox.Show(notification.Content);
         }
     }
 }

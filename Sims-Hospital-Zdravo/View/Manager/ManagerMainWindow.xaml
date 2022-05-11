@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
+        xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         Title="Manager Dashboard"
         MinHeight="805"
@@ -36,15 +37,31 @@
                     Margin="0, 0, 40, 0">
                 Tutorial
             </Button>
+
             <Label Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"> Hospital - Zdravo</Label>
 
         </DockPanel>
+
+
         <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
+
         <Frame Grid.Column="1"
                Grid.Row="1"
                x:Name="ManagerContent"
                NavigationUIVisibility="Hidden"
                Padding="0">
         </Frame>
+
+        <notifications:NotificationArea
+            Grid.Row="1"
+            Grid.Column="1"
+            Height="300"
+            Width="400"
+            Background="#0a718a"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="20"
+            x:Name="WindowArea"
+            MaxItems="3" />
     </Grid>
 </Window>
