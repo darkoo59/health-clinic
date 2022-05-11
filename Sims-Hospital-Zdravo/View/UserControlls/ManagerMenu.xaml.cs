@@ -10,7 +10,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
     public partial class ManagerMenu : UserControl
     {
         private Frame ManagerContent;
-        private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Surveys" };
+        private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Medicines" };
         private int currentMenuItem = 1;
 
         public ManagerMenu()
@@ -57,7 +57,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Equipment":
                     currentMenuItem = 0;
                     break;
-                case "Surveys":
+                case "Medicines":
                     currentMenuItem = 3;
                     break;
                 case "Rooms":
@@ -92,7 +92,8 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Equipment":
                     ManagerContent.Source = new Uri("ManagerEquipment.xaml", UriKind.Relative);
                     break;
-                case "Surveys":
+                case "Medicines":
+                    ManagerContent.Source = new Uri("ManagerMedicines.xaml", UriKind.Relative);
                     break;
                 case "Rooms":
                     ManagerContent.Source = new Uri("ManagerRooms.xaml", UriKind.Relative);
@@ -104,7 +105,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         {
             RenovationsBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
             EquipmentBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
-            SurveysBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
+            MedicinesBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
             RoomsBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
         }
 
@@ -115,7 +116,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             {
                 case "Renovations": return RenovationsBorder;
                 case "Equipment": return EquipmentBorder;
-                case "Surveys": return SurveysBorder;
+                case "Medicines": return MedicinesBorder;
                 case "Rooms": return RoomsBorder;
                 default: return null;
             }

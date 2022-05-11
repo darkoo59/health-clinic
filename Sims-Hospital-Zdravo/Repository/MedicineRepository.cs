@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo.Repository
             List<Medicine> medicinesByStatus = new List<Medicine>();
             foreach (Medicine medicine in medicines)
             {
-                if (medicine._MedicineStatus == medicineStatus)
+                if (medicine._Status == medicineStatus)
                 {
                     medicinesByStatus.Add(medicine);
                 }

@@ -21,7 +21,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string allergens;
         private string description;
         private string strength;
-        private MedicineStatus medicineStatus;
+        private MedicineStatus status;
 
         public Medicine(string name, string strength, string allergens, string description)
         {
@@ -29,7 +29,7 @@ namespace Sims_Hospital_Zdravo.Model
             this.allergens = allergens;
             this.description = description;
             this.strength = strength;
-            this.medicineStatus = MedicineStatus.PENDING;
+            this.status = MedicineStatus.PENDING;
         }
 
 
@@ -65,11 +65,11 @@ namespace Sims_Hospital_Zdravo.Model
             set { strength = value; }
         }
 
-        public MedicineStatus _MedicineStatus
+        public MedicineStatus _Status
         {
-            get { return medicineStatus; }
+            get { return status; }
 
-            set { medicineStatus = value; }
+            set { status = value; }
         }
     }
 }

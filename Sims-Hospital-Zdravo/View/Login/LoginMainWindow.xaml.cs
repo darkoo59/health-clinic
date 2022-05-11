@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.View.Login
             switch (role)
             {
                 case RoleType.MANAGER: return new ManagerMainWindow();
-                //case RoleType.DOCTOR: return new DoctorMain();
+                // case RoleType.DOCTOR: return new DoctorMain();
                 case RoleType.PATIENT: return new PatientWindow();
                 case RoleType.SECRETARY: return new SecretaryHome();
                 default: return null;
@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.Login
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
             Window window = GetWindowByRole(account._Role);
-            accountController.AddLoggedAccount(username,password);
+            accountController.AddLoggedAccount(username, password);
             window.Show();
             Close();
             // if (account != null)
