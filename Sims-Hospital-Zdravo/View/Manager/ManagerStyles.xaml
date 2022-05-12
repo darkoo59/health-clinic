@@ -86,4 +86,8 @@
         </Setter>
     </Style>
 
+    <Style TargetType="CheckBox">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+
 </ResourceDictionary>

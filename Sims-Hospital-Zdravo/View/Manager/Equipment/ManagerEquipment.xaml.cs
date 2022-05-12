@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.Factories;
+using Sims_Hospital_Zdravo.Utils.FilterPipelines;
+using Sims_Hospital_Zdravo.Utils.Filters;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
@@ -23,10 +27,13 @@ namespace Sims_Hospital_Zdravo.View.Manager
     {
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
-
         private RoomController roomController;
         private Frame ManagerContent;
         private App app;
+        private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
+        private RoomEquipmentFilterFactory roomEquipmentFilterFactory;
+        public bool ShowConsumableEquipment { get; set; }
+        public bool ShowStaticEquipment { get; set; }
 
         public ManagerEquipment()
         {
@@ -34,25 +41,20 @@ namespace Sims_Hospital_Zdravo.View.Manager
             this.equipmentController = app._equipmentController;
             this.equipmentTransferController = app._equipmentTransferController;
             this.roomController = app._roomController;
+            ShowConsumableEquipment = true;
+            ShowStaticEquipment = true;
+            roomEquipmentFilterFactory = new RoomEquipmentFilterFactory();
+            roomEquipmentPipeline = roomEquipmentFilterFactory.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
 
             InitializeComponent();
+            DataContext = this;
             RoomPicker.ItemsSource = roomController.ReadAll();
             RoomPicker.SelectedIndex = 0;
-            equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
+
+            EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
+
 
             RetrieveMainFrame();
-        }
-
-        private void InsertRoom_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void UpdateRoom_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void DeleteRoom_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
@@ -62,7 +64,12 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void RoomChanged_Selection(object sender, SelectionChangedEventArgs e)
         {
-            equipmentTable.ItemsSource = ((Room)RoomPicker.SelectedItem).RoomEquipment;
+            RefreshItems();
+        }
+
+        private void RefreshItems()
+        {
+            EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
         }
 
         private void RetrieveMainFrame()
@@ -74,6 +81,12 @@ namespace Sims_Hospital_Zdravo.View.Manager
                     ManagerContent = ((ManagerMainWindow)win).ManagerContent;
                 }
             }
+        }
+
+        private void ChbValueChanged(object sender, RoutedEventArgs e)
+        {
+            roomEquipmentPipeline = roomEquipmentFilterFactory.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
+            RefreshItems();
         }
     }
 }

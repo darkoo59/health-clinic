@@ -138,6 +138,26 @@ namespace Model
             NotifyUpdated();
         }
 
+        public bool HasEquipment(string equipmentName)
+        {
+            if (GetRoomEquipmentByName(equipmentName) != null)
+                return true;
+            return false;
+        }
+
+        public RoomEquipment GetRoomEquipmentByName(string equipmentName)
+        {
+            foreach (RoomEquipment roomEquipment in _roomEquipment)
+            {
+                if (roomEquipment.Equipment.Name.Equals(equipmentName))
+                {
+                    return roomEquipment;
+                }
+            }
+
+            return null;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()

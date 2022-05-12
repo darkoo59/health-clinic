@@ -129,6 +129,8 @@
       <DependentUpon>HomePatient.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
+    <Compile Include="Interfaces\IFilter.cs" />
+    <Compile Include="Interfaces\IFilterPipeline.cs" />
     <Compile Include="Interfaces\INotificationObservable.cs" />
     <Compile Include="Interfaces\INotificationObserver.cs" />
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
@@ -184,6 +186,9 @@
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\AppointmentSecretaryValidator.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
+    <Compile Include="Utils\Factories\RoomEquipmentFilterFactory.cs" />
+    <Compile Include="Utils\FilterPipelines\RoomEquipmentFilterPipeline.cs" />
+    <Compile Include="Utils\Filters\EquipmentTypeFilter.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="Utils\RenovationValidator.cs" />
     <Compile Include="Utils\TaskScheduleTimer.cs" />

@@ -30,7 +30,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             string allergens = TxtAllergens.Text;
             string description = TxtDescription.Text;
             string strength = TxtStrength.Text;
-            Medicine medicine = new Medicine(name, strength, allergens, description, new List<Medicine>());
+            Medicine medicine = new Medicine(name, strength, allergens, description);
             MedicineApprovalNotification notification = new MedicineApprovalNotification("Medicine " + name + " added!", 1, medicine, 0);
             medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
         }

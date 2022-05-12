@@ -30,19 +30,9 @@ namespace Sims_Hospital_Zdravo.Model
             this.allergens = allergens;
             this.description = description;
             this.strength = strength;
+            substitution = new List<Medicine>();
             this.status = MedicineStatus.PENDING;
         }
-
-        public Medicine(string name, string strength, string allergens, string description, List<Medicine> substitution)
-        {
-            this.name = name;
-            this.allergens = allergens;
-            this.description = description;
-            this.strength = strength;
-            this.substitution = substitution;
-            this.status = MedicineStatus.PENDING;
-        }
-
 
         public string _Description
         {
