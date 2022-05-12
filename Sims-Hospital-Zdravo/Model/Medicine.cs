@@ -22,7 +22,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string description;
         private string strength;
         private MedicineStatus status;
-        private List<Medicine> simillar;
+        private List<Medicine> substitution;
 
         public Medicine(string name, string strength, string allergens, string description)
         {
@@ -33,13 +33,13 @@ namespace Sims_Hospital_Zdravo.Model
             this.status = MedicineStatus.PENDING;
         }
 
-        public Medicine(string name, string strength, string allergens, string description, List<Medicine> simillar)
+        public Medicine(string name, string strength, string allergens, string description, List<Medicine> substitution)
         {
             this.name = name;
             this.allergens = allergens;
             this.description = description;
             this.strength = strength;
-            this.simillar = simillar;
+            this.substitution = substitution;
             this.status = MedicineStatus.PENDING;
         }
 
@@ -83,11 +83,11 @@ namespace Sims_Hospital_Zdravo.Model
             set { status = value; }
         }
 
-        public List<Medicine> Simillar
+        public List<Medicine> _Substitution
         {
-            get { return simillar; }
+            get { return substitution; }
 
-            set { simillar = value; }
+            set { substitution = value; }
         }
     }
 }

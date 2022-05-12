@@ -5,20 +5,83 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Medicines"
       mc:Ignorable="d"
-      Title="ManagerMedicineInsert" Height="450" Width="800">
+      Title="ManagerMedicineInsert"
+      Height="718"
+      Width="924">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+        </ResourceDictionary>
+
+
+    </Page.Resources>
     <Grid>
-        <!-- private string name; -->
-        <!-- private int id; -->
-        <!-- private string allergens; -->
-        <!-- private string description; -->
-        <!-- private string strength; -->
-        <!-- private MedicineStatus status; -->
-        <!-- private List<Medicine> simillar; -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-
-        <StackPanel>
-            <Label>Name</Label>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label>Name:</Label>
             <TextBox x:Name="TxtMedicineName"></TextBox>
         </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Label>Allergens:</Label>
+            <TextBox x:Name="TxtAllergens"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <Label>Description:</Label>
+            <TextBox x:Name="TxtDescription"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label>Strength:</Label>
+            <TextBox x:Name="TxtStrength"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label> Substitution medicines:</Label>
+        </StackPanel>
+
+        <Button Grid.Row="4" HorizontalAlignment="Right" Margin="0, 0, 20, 0" Grid.Column="0"
+                Click="SaveMedicine_Click">
+            Save
+        </Button>
+        <Button Grid.Row="4" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Grid.Column="1" Click="Cancel_Click">Cancel</Button>
+
     </Grid>
 </Page>
