@@ -31,9 +31,18 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox Height="30"></TextBox>
-            <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right" Click="InsertRoom_Click">Insert</Button>
-            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right" Click="UpdateRoom_Click">Update</Button>
-            <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right" Click="DeleteRoom_Click">Delete</Button>
+            <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click">
+                Insert
+            </Button>
+            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="UpdateRoom_Click">
+                Update
+            </Button>
+            <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="DeleteRoom_Click">
+                Delete
+            </Button>
         </Grid>
         <DataGrid
             x:Name="RoomsTable"

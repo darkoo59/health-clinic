@@ -12,14 +12,17 @@ namespace Sims_Hospital_Zdravo.Controller
     public class AccountController
     {
         public AccountService accountService;
+
         public AccountController(AccountService accService)
         {
             accountService = accService;
         }
+
         public void Create(User account)
         {
             accountService.Create(account);
         }
+
         public ref ObservableCollection<User> ReadAll()
         {
             return ref accountService.ReadAll();
@@ -40,20 +43,25 @@ namespace Sims_Hospital_Zdravo.Controller
             return accountService.FindAccountById(id);
         }
 
-        public User GetAccountByUsernameAndPassword(String username,String password)
+        public User GetAccountByUsernameAndPassword(String username, String password)
         {
             return accountService.GetAccountByUsernameAndPassword(username, password);
         }
-        
-        
+
+
         public User GetLoggedAccount()
         {
             return accountService.GetLoggedAccount();
         }
 
-        public void AddLoggedAccount(String username, String password)
+        public void Login(String username, String password)
         {
-            accountService.AddLoggedAccount(username, password);
+            accountService.Login(username, password);
+        }
+
+        public void Logout()
+        {
+            accountService.Logout();
         }
     }
 }

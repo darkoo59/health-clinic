@@ -2,15 +2,27 @@
 {
     public class MedicineApprovalNotification : Notification
     {
-        private int doctorId;
-        private int managerId;
-        private Medicine medicine;
+        private int _doctorId;
+        private Medicine _medicine;
 
-        public MedicineApprovalNotification(string content, int managerId, int doctorId, Medicine medicine, int id) : base(content, id)
+        public MedicineApprovalNotification(string content, int doctorId, Medicine medicine, int id) : base(content, id)
         {
-            this.doctorId = doctorId;
-            this.managerId = managerId;
-            this.medicine = medicine;
+            this._doctorId = doctorId;
+            this._medicine = medicine;
+        }
+
+
+        public int DoctorId
+        {
+            get { return _doctorId; }
+            set { _doctorId = value; }
+        }
+
+        public Medicine Medicine
+        {
+            get { return _medicine; }
+
+            set { _medicine = value; }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             this.accHandler = accHandler;
             this.accounts = new ObservableCollection<User>();
+            loggedAccount = null;
             LoadDataFromFile();
         }
 
@@ -46,7 +47,6 @@ namespace Sims_Hospital_Zdravo.Repository
                     return;
                 }
             }
-
         }
 
 
@@ -56,24 +56,25 @@ namespace Sims_Hospital_Zdravo.Repository
             {
                 if (acc._Id == id) return acc;
             }
+
             return null;
         }
 
         public ref ObservableCollection<User> ReadAll()
         {
             return ref this.accounts;
-
         }
 
         public User GetAccountByUsernameAndPassword(String username, String password)
         {
-            foreach(User acc in accounts)
+            foreach (User acc in accounts)
             {
-                if(acc._Password.Equals(password) && acc._Username.Equals(username))
+                if (acc._Password.Equals(password) && acc._Username.Equals(username))
                 {
                     return acc;
                 }
             }
+
             return null;
         }
 
@@ -81,18 +82,26 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             return loggedAccount;
         }
-        
-        public void AddLoggedAccount(String username, String password)
+
+        public void Login(string username, string password)
         {
-            foreach(User acc in accounts)
+            foreach (User acc in accounts)
             {
-                if(acc._Password.Equals(password) && acc._Username.Equals(username))
+                if (acc._Password.Equals(password) && acc._Username.Equals(username))
                 {
                     loggedAccount = acc;
+                    return;
                 }
             }
+
+            loggedAccount = null;
         }
-        
+
+        public void Logout()
+        {
+            loggedAccount = null;
+        }
+
         public void LoadDataFromFile()
         {
             this.accounts = accHandler.ReadAll();

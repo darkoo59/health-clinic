@@ -12,14 +12,17 @@ namespace Sims_Hospital_Zdravo.Service
     public class AccountService
     {
         public AccountRepository accountRepository;
+
         public AccountService(AccountRepository accRepository)
         {
             this.accountRepository = accRepository;
         }
+
         public void Create(User account)
         {
             accountRepository.Create(account);
         }
+
         public ref ObservableCollection<User> ReadAll()
         {
             return ref accountRepository.ReadAll();
@@ -44,17 +47,27 @@ namespace Sims_Hospital_Zdravo.Service
         {
             return accountRepository.GetAccountByUsernameAndPassword(username, password);
         }
-        
-        
+
+
         public User GetLoggedAccount()
         {
-            return accountRepository.GetLoggedAccount();
-        }
-        
-        public void AddLoggedAccount(String username, String password)
-        {
-            accountRepository.AddLoggedAccount(username, password);
+            User loggedUser = accountRepository.GetLoggedAccount();
+            if (loggedUser == null)
+            {
+                throw new Exception("Username or password incorrect!");
+            }
+
+            return loggedUser;
         }
 
+        public void Login(String username, String password)
+        {
+            accountRepository.Login(username, password);
+        }
+
+        public void Logout()
+        {
+            accountRepository.Logout();
+        }
     }
 }
