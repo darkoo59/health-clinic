@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.View.Login
             {
                 case RoleType.MANAGER: return new ManagerDashboard();
                 //case RoleType.DOCTOR: return new DoctorMain();
-                case RoleType.PATIENT: return new PatientWindow();
+                case RoleType.PATIENT: return new PatientDashboard();
                 case RoleType.SECRETARY: return new SecretaryHome();
                 default: return null;
             }
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.View.Login
                         break;
                     case RoleType.PATIENT:
                         AppointmentPatientController appointmentPatientController = app._appointmentPatientController;
-                        PatientWindow pw = new PatientWindow();
+                        PatientDashboard pw = new PatientDashboard();
                         this.Close();
                         pw.Show();
                         break;

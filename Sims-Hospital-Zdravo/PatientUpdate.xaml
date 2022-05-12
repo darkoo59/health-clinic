@@ -1,4 +1,4 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.PatientUpdate"
+﻿<Page x:Class="Sims_Hospital_Zdravo.PatientUpdate"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,4 +25,4 @@
         <Button Grid.Row="4" Grid.Column="0" Click="Button_Click" Margin="-30,193,30,-193">Submit</Button>
         <Button Grid.Row="4" Grid.Column="1" Click="Button_Click_1" Margin="0,193,0,-193">Cancel</Button>
     </Grid>
-</Window>
+</Page>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.PatientDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
+        mc:Ignorable="d"
+        Title="PatientDashboard" Height="450" Width="800">
+    <Grid Background="#FF60BBC9">
+        <Menu Name="Menu" HorizontalAlignment="Stretch" Height="40" VerticalAlignment="Top" Width="782" Background="#FF3183CB" FontSize="20">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Right"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Zdravo" Name="Zdravo" IsEnabled="False" HorizontalAlignment="Left"  Width="400"  Focusable="False" IsCheckable="False"/>
+            <MenuItem Header="Home" Click="Home_Click" Name="Home" HorizontalAlignment="Right"/>
+            <MenuItem Header="Appointment" Click="Appointment_Click" Name="Appointment" HorizontalAlignment="Right"/>
+            <MenuItem Header="Therapy" Click="Therapy_Click"  Name="Therapy" HorizontalAlignment="Right"/>
+            <MenuItem Header="Profile" Click="Profile_Click" Name="Profile" HorizontalAlignment="Right"/>
+
+        </Menu>
+        <Button Name ="Notification" Click="Notification_Click" Content="N" HorizontalAlignment="Left" Margin="670,52,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+        <Frame Content="" NavigationUIVisibility="Hidden" Name="Patient"  HorizontalAlignment="Left" Height="327" Margin="0,92,0,0" VerticalAlignment="Top" Width="792" Background="#FF60BBC9"/>
+
+    </Grid>
+</Window>

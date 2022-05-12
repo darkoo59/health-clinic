@@ -21,7 +21,7 @@ namespace Sims_Hospital_Zdravo
     /// <summary>
     /// Interaction logic for PatientUpdate.xaml
     /// </summary>
-    public partial class PatientUpdate : Window
+    public partial class PatientUpdate : Page
     {
         public AppointmentPatientController appointmentPatientController;
         public Appointment appointment;
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo
                 appointmentPatientController.ValidateReshedule(appointment,timeInterval);
                 appointment._Time = timeInterval;
                 appointmentPatientController.Update(appointment);
-                Close();
+               // Close();
             }
             catch (Exception ex) 
             {
@@ -87,7 +87,7 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Close();
+           // Close();
         }
     }
 }

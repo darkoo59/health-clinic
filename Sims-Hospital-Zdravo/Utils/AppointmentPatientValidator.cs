@@ -12,6 +12,9 @@ namespace Sims_Hospital_Zdravo.Utils
     class AppointmentPatientValidator
     {
         private AppointmentRepository appointmentRepository;
+        private int i;
+        private int j = 365;
+        private int z = 365;
         public AppointmentPatientValidator(AppointmentRepository appointmentRepository)
         {
             this.appointmentRepository = appointmentRepository;
@@ -35,72 +38,18 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void RescheduleAppointment(Appointment appointment, TimeInterval timeInterval) 
         {
-            if (timeInterval.Start.Hour < 8 || timeInterval.Start.Hour > 11)
-            {
-                throw new Exception("Hospital works between 8h and 12h");
-            }
-            if (timeInterval.Start.Minute != 0 && timeInterval.Start.Minute != 30)
-            {
-                throw new Exception("Minutes must be 0 or 30");
-            }
-            DateTime now = DateTime.Now;
-            if (now.CompareTo(timeInterval.Start) > 0)
-            {
-                throw new Exception("You can not time travel");
-            }
-            int i;
-            int j = 365;
-            int z = 365;
-            if (timeInterval.Start.Year % 4 == 0)
-            {
-                if (timeInterval.Start.Year % 100 == 0)
-                {
-                    if (timeInterval.Start.Year % 400 == 0)
-                    {
-                        z = 366;
-                    }
-                }
-                else z = 366;
-            }
+            CheckIfHospitalWorks(timeInterval);
+            CheckIfMinutesAreGood(timeInterval);
+            CheckIfTimeIsInPast(timeInterval);
+            SetTimeIntervalIfLeapYear(timeInterval);
             foreach (Appointment app in appointmentRepository.FindByPatientId(1)) 
             {
                 if (app._Id == appointment._Id)
                 {
-                    if (app._Time.Start.Year % 4 == 0)
+                    SetAppointmentIfLeapYear(app);
+                    if (CheckIfYearIsRight(timeInterval, app) || CheckIf1(timeInterval, app) ||CheckIf2(timeInterval, app))
                     {
-                        if (app._Time.Start.Year % 100 == 0)
-                        {
-                            if (app._Time.Start.Year % 400 == 0)
-                            {
-                                j = 366;
-                            }
-                        }
-                        else j = 366;
-                    }
-                    if (timeInterval.Start.Year == app._Time.Start.Year)
-                    {
-                        if (timeInterval.Start.DayOfYear - app._Time.Start.DayOfYear > 2 || app._Time.Start.DayOfYear - timeInterval.Start.DayOfYear > 2)
-                        {
-                            throw new Exception("You cant move appointment more than 2 days from original day");
-                        }
-                    }
-                    else if (timeInterval.Start.Year - app._Time.Start.Year == 1)
-                    {
-                        i = timeInterval.Start.DayOfYear;
-                        i = i + j;
-                        if (i - app._Time.Start.DayOfYear > 2)
-                        {
-                            throw new Exception("You cant move appointment more than 2 days from original day");
-                        }
-                    }
-                    else if (app._Time.Start.Year - timeInterval.Start.Year == 1)
-                    {
-                        i = app._Time.Start.DayOfYear;
-                        i = i + z;
-                        if (i - timeInterval.Start.DayOfYear > 2)
-                        {
-                            throw new Exception("You cant move appointment more than 2 days from original day");
-                        }
+                        throw new Exception("You cant move appointment more than 2 days from original day");
                     }
                     DateTime dateTime = DateTime.Now;
                     if (dateTime.Year == app._Time.Start.Year)
@@ -140,15 +89,106 @@ namespace Sims_Hospital_Zdravo.Utils
                 {
                     if (timeInterval.Start.CompareTo(app._Time.Start) == 0)
                     {
-                        if (appointment._Doctor._Id == app._Doctor._Id)
-                        {
-                            if (appointment._Patient._Id != app._Patient._Id)
-                            {
-                                throw new Exception("Appointment already exists");
-                            }
-                        }
+                        CheckIfAppointmentExists(appointment, app);
                     }
                 }
+            }
+        }
+        public bool CheckIfYearIsRight(TimeInterval timeInterval,Appointment app)
+        {
+            if (timeInterval.Start.Year == app._Time.Start.Year)
+            {
+                if (timeInterval.Start.DayOfYear - app._Time.Start.DayOfYear > 2 || app._Time.Start.DayOfYear - timeInterval.Start.DayOfYear > 2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckIf1(TimeInterval timeInterval, Appointment app)
+        {
+            if (timeInterval.Start.Year - app._Time.Start.Year == 1)
+            {
+                i = timeInterval.Start.DayOfYear;
+                i = i + j;
+                if (i - app._Time.Start.DayOfYear > 2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckIf2(TimeInterval timeInterval, Appointment app)
+        {
+            if (app._Time.Start.Year - timeInterval.Start.Year == 1)
+            {
+                i = app._Time.Start.DayOfYear;
+                i = i + z;
+                if (i - timeInterval.Start.DayOfYear > 2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void CheckIfAppointmentExists(Appointment appointment, Appointment app)
+        {
+                if (appointment._Doctor._Id == app._Doctor._Id)
+                {
+                    if (appointment._Patient._Id != app._Patient._Id)
+                    {
+                        throw new Exception("Appointment already exists");
+                    }
+                }
+        }
+        public void CheckIfHospitalWorks(TimeInterval timeInterval)
+        {
+            if (timeInterval.Start.Hour < 8 || timeInterval.Start.Hour > 11)
+            {
+                throw new Exception("Hospital works between 8h and 12h");
+            }
+        }
+        public void CheckIfMinutesAreGood(TimeInterval timeInterval)
+        {
+            if (timeInterval.Start.Minute != 0 && timeInterval.Start.Minute != 30)
+            {
+                throw new Exception("Minutes must be 0 or 30");
+            }
+        }
+        public void CheckIfTimeIsInPast(TimeInterval timeInterval)
+        {
+            DateTime now = DateTime.Now;
+            if (now.CompareTo(timeInterval.Start) > 0)
+            {
+                throw new Exception("You can not time travel");
+            }
+        }
+        public void SetTimeIntervalIfLeapYear(TimeInterval timeInterval)
+        {
+            if (timeInterval.Start.Year % 4 == 0)
+            {
+                if (timeInterval.Start.Year % 100 == 0)
+                {
+                    if (timeInterval.Start.Year % 400 == 0)
+                    {
+                        z = 366;
+                    }
+                }
+                else z = 366;
+            }
+        }
+        public void SetAppointmentIfLeapYear(Appointment app)
+        {
+            if (app._Time.Start.Year % 4 == 0)
+            {
+                if (app._Time.Start.Year % 100 == 0)
+                {
+                    if (app._Time.Start.Year % 400 == 0)
+                    {
+                        j = 366;
+                    }
+                }
+                else j = 366;
             }
         }
     }

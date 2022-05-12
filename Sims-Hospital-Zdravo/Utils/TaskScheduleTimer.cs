@@ -53,8 +53,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            CheckIfRelocationAppointmentDone();
-            CheckIfRenovationAppointmentDone();
+            //CheckIfRelocationAppointmentDone();
+            //CheckIfRenovationAppointmentDone();
             CheckIfThereShouldBeNotification();
             AppointmentDone();
             dateTime = DateTime.Now;
@@ -101,15 +101,9 @@ namespace Sims_Hospital_Zdravo.Utils
             ObservableCollection<Prescription> prescriptions = _prescriptionController.ReadAll();
             foreach (Prescription prescription in prescriptions)
             {
-                string[] s = prescription._Dosage.Split('x');
-                int frequency = Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
-                DateTime dt = new DateTime(prescription._PrescriptionDate.Year, prescription._PrescriptionDate.Month, prescription._PrescriptionDate.Day);
-                dt = dt.AddHours(prescription._PrescriptionDate.Hour);
-                dt = dt.AddMinutes(prescription._PrescriptionDate.Minute);
-                Console.WriteLine(prescription._TimeInterval);
-                int p = prescription._TimeInterval.End.DayOfYear - prescription._TimeInterval.Start.DayOfYear;
-                p = p * Int32.Parse(s[0]);
-                for (int i = 0; i < p; i++)
+                int frequency = GetFrequency(prescription);
+                DateTime dt = GetDateTime(prescription);
+                for (int i = 0; i < GetQuantity(prescription); i++)
                 {
                     if (dt.CompareTo(dateTime) > 0 && dt.CompareTo(dateTime1) < 0)
                     {
@@ -126,6 +120,25 @@ namespace Sims_Hospital_Zdravo.Utils
                     }
                 }
             }
+        }
+        public int GetFrequency(Prescription prescription)
+        {
+            string[] s = prescription._Dosage.Split('x');
+            return Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
+        }
+        public DateTime GetDateTime(Prescription prescription)
+        {
+            DateTime dt = new DateTime(prescription._PrescriptionDate.Year, prescription._PrescriptionDate.Month, prescription._PrescriptionDate.Day);
+            dt = dt.AddHours(prescription._PrescriptionDate.Hour);
+            dt = dt.AddMinutes(prescription._PrescriptionDate.Minute);
+            return dt;
+        }
+        public int GetQuantity(Prescription prescription)
+        {
+            string[] s = prescription._Dosage.Split('x');
+            int p = prescription._TimeInterval.End.DayOfYear - prescription._TimeInterval.Start.DayOfYear;
+            p = p * Int32.Parse(s[0]);
+            return p;
         }
 
         public void AddObserver(INotificationObserver observer)

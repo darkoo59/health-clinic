@@ -35,7 +35,6 @@ namespace Repository
 
         public void Update(Model.Appointment appointment)
         {
-           
             foreach (Appointment app in appointments)
             {
                
@@ -47,20 +46,6 @@ namespace Repository
                     app._Room = appointment._Room;
                     app._Type = appointment._Type;
                     
-                    loadDataToFile();
-                    return;
-                }
-            }
-
-            foreach (Appointment app in patientApps)
-            {
-                if (app._Id == appointment._Id)
-                {
-                    app._Time = appointment._Time;
-                    app._Doctor = appointment._Doctor;
-                    app._Patient = appointment._Patient;
-                    app._Room = appointment._Room;
-                    app._Type = appointment._Type;
                     loadDataToFile();
                 }
             }

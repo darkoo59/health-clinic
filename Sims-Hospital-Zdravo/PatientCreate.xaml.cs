@@ -22,7 +22,7 @@ namespace Sims_Hospital_Zdravo
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class PatientCreate : Window
+    public partial class PatientCreate : Page
     {
 
         public AppointmentPatientController appointmentPatientController;
@@ -93,8 +93,8 @@ namespace Sims_Hospital_Zdravo
                 string priority = DateOrDoctors.SelectedItem.ToString();
                 appointmentPatientController.ValidateAppointment(appointment);
                 AppointmentList al = new AppointmentList(appointmentPatientController, appointment, priority);
-                al.Show();
-                Close();
+                //al.Show();
+                //Close();
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

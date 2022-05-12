@@ -20,7 +20,7 @@ namespace Sims_Hospital_Zdravo
     /// <summary>
     /// Interaction logic for AppointmentList.xaml
     /// </summary>
-    public partial class AppointmentList : Window
+    public partial class AppointmentList : Page
     {
         public AppointmentPatientController appointmentPatientController;
         public Appointment appointment;
@@ -71,12 +71,12 @@ namespace Sims_Hospital_Zdravo
         {
             appointment = (Appointment) Apps.SelectedItem;
             appointmentPatientController.Create(appointment);
-            Close();
+            //Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Close();
+            //Close();
         }
     }
 }
