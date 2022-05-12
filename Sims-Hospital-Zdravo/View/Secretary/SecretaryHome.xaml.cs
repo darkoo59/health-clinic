@@ -85,8 +85,22 @@ namespace Sims_Hospital_Zdravo
         
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
                 this.DragMove();
+        }
+
+        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            window.Show();
+            this.Close();
+        }
+
+        private void Appointment_Click(object sender, MouseButtonEventArgs e)
+        {
+            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
         }
     }
 }

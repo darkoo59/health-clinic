@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,10 @@ namespace Sims_Hospital_Zdravo
     public partial class SecretaryWindow : Window
     {
         private MedicalRecordController medicalController;
+        private App app;
         public SecretaryWindow(MedicalRecordController controller)
         {
+            app = Application.Current as App;
             InitializeComponent();
             this.medicalController = controller;
             this.DataContext = this;
@@ -39,13 +42,25 @@ namespace Sims_Hospital_Zdravo
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
-            Patient patient = medical._Patient;
-            UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient, medical) { DataContext = ContentGrid.SelectedItem };
-            updateWindow.Show();
+            if (ContentGrid.SelectedItem != null)
+            {
+                try
+                {
+                    MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
+                    Patient patient = medical._Patient;
+                    UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient, medical) { DataContext = ContentGrid.SelectedItem };
+                    updateWindow.Show();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                MessageBox.Show("Please select medical record first!", "Select medical record",MessageBoxButton.OK);
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+            private void Delete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
@@ -118,6 +133,26 @@ namespace Sims_Hospital_Zdravo
         
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            this.Close();
+        }
+        
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
+                this.DragMove();
+        }
+
+        private void Home_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryHome window = new SecretaryHome();
+            window.Show();
+            this.Close();
+        }
+
+        private void Appointment_Click(object sender, MouseButtonEventArgs e)
+        {
+            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
             this.Close();
         }
     }
