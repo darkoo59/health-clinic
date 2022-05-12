@@ -7,11 +7,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
+using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
 {
@@ -21,10 +29,18 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
     public partial class SuppliesHome : Window
     {
         private App app;
+        private SuppliesController _suppliesController;
+        private List<String> addedSupplies;
         public SuppliesHome()
         {
             app = Application.Current as App;
             InitializeComponent();
+            this._suppliesController = app._suppliesController;
+            this.addedSupplies = new List<string>();
+            foreach (RoomEquipment roomEquipment in _suppliesController.FindAllEquipment())
+            {
+                ListBoxAvaialble.Items.Add(roomEquipment.ToString());
+            }
         }
         
         
@@ -87,12 +103,68 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
 
         private void SendRequest_Click(object sender, RoutedEventArgs e)
         {
+            if (!ListBoxAddedSupplies.Items.IsEmpty)
+            {
+                try
+                {
+                    List<String> equipmentNames = new List<String>();
+                    List<int> equipmentQuantity = new List<int>();
+                    for (int i = 0; i < ListBoxAddedSupplies.Items.Count; i++)
+                    {
+                        String[] parts = ListBoxAddedSupplies.Items[i].ToString().Split(':');
+                        equipmentNames.Add(parts[0]);
+                        equipmentQuantity.Add(Int32.Parse(parts[1]));
+                    }
 
+                    List<RoomEquipment> roomEquipments = new List<RoomEquipment>();
+                    for (int i = 0; i < equipmentNames.Count; i++)
+                    {
+                        Equipment equipment = _suppliesController.CreateNewEquipment(equipmentNames[i]);
+                        roomEquipments.Add(new RoomEquipment(equipment, equipmentQuantity[i]));
+                    }
+                    DateTime start = DateTime.Now;
+                    DateTime end = DateTime.Now;
+                    end = end.AddDays(3);
+                    TimeInterval interval = new TimeInterval(start, end);
+                    SuppliesAcquisition suppliesAcquisition =
+                        new SuppliesAcquisition(_suppliesController.GenerateSuppliesAcquistionId(), roomEquipments,
+                            interval);
+                    _suppliesController.MakeSuppliesAcquisition(suppliesAcquisition);
+                    MessageBox.Show("Successfully made supplies acquisition!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }else
+                MessageBox.Show("First add some supplies!");
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            if(txtName.Text.Length != 0 && txtQuantity.Text.Length != 0)
+            {
+                try
+                {
+                    ListBoxAddedSupplies.Items.Add(txtName.Text + ":" + txtQuantity.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                } 
+            }
+            else
+            {
+                MessageBox.Show("Name or quanitity is empty", "Add data", MessageBoxButton.OK);
+            }
+        }
+        
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxAddedSupplies.SelectedItem != null)
+            {
+                ListBoxAddedSupplies.Items.Remove(ListBoxAddedSupplies.SelectedItem);
+            }
         }
     }
 }
