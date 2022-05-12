@@ -267,6 +267,7 @@
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Supplies\SuppliesHome.xaml.cs" />
     <Compile Include="View\UserControlls\ManagerMenu.xaml.cs">
       <DependentUpon>ManagerMenu.xaml</DependentUpon>
     </Compile>
@@ -410,6 +411,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Secretary\SecretaryWindowStyles.xaml" />
+    <Page Include="View\Secretary\Supplies\SuppliesHome.xaml" />
     <Page Include="View\UserControlls\ManagerMenu.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />

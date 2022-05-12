@@ -1,6 +1,4 @@
-﻿using Controller;
-using Sims_Hospital_Zdravo.View.Secretary.Examination;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,40 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.Controller;
-using Sims_Hospital_Zdravo.View.Secretary.Supplies;
+using Sims_Hospital_Zdravo.View.Secretary.Examination;
 
-namespace Sims_Hospital_Zdravo
+namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
 {
     /// <summary>
-    /// Interaction logic for SecretaryHome.xaml
+    /// Interaction logic for SuppliesHome.xaml
     /// </summary>
-    public partial class SecretaryHome : Window
+    public partial class SuppliesHome : Window
     {
-        private MedicalRecordController medicalController;
-        private SecretaryAppointmentController appointmentController;
         private App app;
-
-        public SecretaryHome()
+        public SuppliesHome()
         {
             app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = app._recordController;
-            this.appointmentController = app._secretaryAppointmentController;
         }
-
-        private void MedicalRecordsClick(object sender, RoutedEventArgs e)
-        {
-            SecretaryWindow secretaryWindow = new SecretaryWindow(medicalController);
-            secretaryWindow.Show();
-        }
-
-        private void Examination_Click(object sender, RoutedEventArgs e)
-        {
-            ExaminationWindow examinationWindow = new ExaminationWindow(appointmentController);
-            examinationWindow.Show();
-        }
-
+        
+        
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             if(TgButton.IsChecked == true)
@@ -89,7 +70,7 @@ namespace Sims_Hospital_Zdravo
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
                 this.DragMove();
         }
-
+        
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
             SecretaryWindow window = new SecretaryWindow(app._recordController);
@@ -104,11 +85,14 @@ namespace Sims_Hospital_Zdravo
             this.Close();
         }
 
-        private void Equipment_Click(object sender, MouseButtonEventArgs e)
+        private void SendRequest_Click(object sender, RoutedEventArgs e)
         {
-            SuppliesHome window = new SuppliesHome();
-            window.Show();
-            this.Close();
+
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
