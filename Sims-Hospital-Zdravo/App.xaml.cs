@@ -36,6 +36,7 @@ namespace Sims_Hospital_Zdravo
         internal TaskScheduleTimer _taskScheduleTimer;
         internal MedicineController _medicineController;
         internal NotificationController _notificationController;
+        internal SuppliesController _suppliesController;
 
         public App()
         {
@@ -128,10 +129,16 @@ namespace Sims_Hospital_Zdravo
                 new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, roomRepository, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
+            SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
+            SuppliesAcquisitionRepository _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository(_suppliesAcquisitionDataHandler);
+            SuppliesService suppliesService =
+                new SuppliesService(roomRepository,equipmentRepository,_suppliesAcquisitionRepository);
+            _suppliesController = new SuppliesController(suppliesService);
+
 
             _prescriptionController = new PrescriptionController(prescriptionService);
 
-            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController);
+            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController, _suppliesController);
         }
     }
 }

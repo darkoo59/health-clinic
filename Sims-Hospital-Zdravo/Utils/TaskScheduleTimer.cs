@@ -26,17 +26,19 @@ namespace Sims_Hospital_Zdravo.Utils
         private PrescriptionController _prescriptionController;
         private DoctorAppointmentController _doctorAppointmentController;
         private NotificationController _notificationController;
+        private SuppliesController _suppliesController;
         private DateTime dateTime;
         private DateTime dateTime1;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
-            PrescriptionController prescriptionController, NotificationController notificationController)
+            PrescriptionController prescriptionController, NotificationController notificationController,SuppliesController suppliesController)
         {
             this._relocationController = relocationController;
             this._renovationController = renovationController;
             this._prescriptionController = prescriptionController;
             this._notificationController = notificationController;
             this._doctorAppointmentController = doctorAppointmentController;
+            this._suppliesController = suppliesController;
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -59,8 +61,9 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            //CheckIfRelocationAppointmentDone();
-            //CheckIfRenovationAppointmentDone();
+            CheckIfRelocationAppointmentDone();
+            CheckIfRenovationAppointmentDone();
+            CheckIfSuppliesAcquisitionDone();
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             AppointmentDone();
@@ -91,6 +94,23 @@ namespace Sims_Hospital_Zdravo.Utils
                 }
             }
         }
+
+        private void CheckIfSuppliesAcquisitionDone()
+        {
+            ObservableCollection<SuppliesAcquisition> suppliesAcquisitions =
+                new ObservableCollection<SuppliesAcquisition>(_suppliesController.ReadAllSuppliesAcquisitions());
+            foreach (SuppliesAcquisition acquisition in suppliesAcquisitions)
+            {
+                if (acquisition.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0 && acquisition.Time.End.TimeOfDay.CompareTo(DateTime.Now.TimeOfDay) <= 0 && acquisition.AcquistionFlag == true)
+                {
+                    acquisition.AcquistionFlag = false;
+                    _suppliesController.Update(acquisition);
+                    _suppliesController.FinishSuppliesAcquisition(acquisition.Id);
+                    Notify(new Notification("Supplies are delivered to hospital", _notificationController.GenerateId()));
+                }
+            }
+        }
+        
 
         private void CheckNotificationForManager()
         {
