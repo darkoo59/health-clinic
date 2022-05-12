@@ -27,7 +27,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             app._taskScheduleTimer.AddObserver(this);
             InitializeComponent();
 
-            ManagerContent.Source = new Uri("ManagerRenovations.xaml", UriKind.Relative);
+            ManagerContent.Source = new Uri("Renovations/ManagerRenovations.xaml", UriKind.Relative);
             this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
         }
 

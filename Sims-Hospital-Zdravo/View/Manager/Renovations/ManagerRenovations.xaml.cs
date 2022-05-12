@@ -24,7 +24,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void BasicRenovation_Click(object sender, RoutedEventArgs e)
         {
-            ManagerContent.Source = new Uri("ManagerRenovationBasic.xaml", UriKind.Relative);
+            ManagerContent.Source = new Uri("Renovations/ManagerRenovationBasic.xaml", UriKind.Relative);
         }
 
 
@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void AdvancedRenovation_Click(object sender, RoutedEventArgs e)
         {
-            ManagerContent.Source = new Uri("ManagerRenovationAdvanced.xaml", UriKind.Relative);
+            ManagerContent.Source = new Uri("Renovations/ManagerRenovationAdvanced.xaml", UriKind.Relative);
         }
     }
 }

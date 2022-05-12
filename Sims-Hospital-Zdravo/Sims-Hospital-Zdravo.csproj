@@ -188,23 +188,34 @@
     <Compile Include="View\Manager\Dialogs\RenovationRoomDialog.xaml.cs">
       <DependentUpon>RenovationRoomDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
+    <Compile Include="View\Manager\Equipment\EquipmentTransfer.xaml.cs">
       <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
+    <Compile Include="View\Manager\Equipment\ManagerEquipment.xaml.cs">
       <DependentUpon>ManagerEquipment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\ManagerMedicines.xaml.cs">
+    <Compile Include="View\Manager\Medicines\ManagerMedicines.xaml.cs">
       <DependentUpon>ManagerMedicines.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\ManagerRenovationAdvanced.xaml.cs">
+    <Compile Include="View\Manager\Renovations\ManagerRenovationAdvanced.xaml.cs">
       <DependentUpon>ManagerRenovationAdvanced.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
-    <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
+    <Compile Include="View\Manager\Renovations\ManagerRenovationBasic.xaml.cs" />
+    <Compile Include="View\Manager\Renovations\ManagerRenovations.xaml.cs">
+      <DependentUpon>ManagerRenovations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Rooms\ManagerInsertRoom.xaml.cs">
+      <DependentUpon>ManagerInsertRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Rooms\ManagerRooms.xaml.cs">
+      <DependentUpon>ManagerRooms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Rooms\ManagerUpdateRoom.xaml.cs">
+      <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
       <DependentUpon>ExaminationWindow.xaml</DependentUpon>
     </Compile>
@@ -258,18 +269,6 @@
     <Compile Include="View\DoctorUpdateAppointment.xaml.cs">
       <DependentUpon>DoctorUpdateAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Manager\ManagerDashboard.xaml.cs">
-      <DependentUpon>ManagerDashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Manager\ManagerInsertRoom.xaml.cs">
-      <DependentUpon>ManagerInsertRoom.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Manager\ManagerRooms.xaml.cs">
-      <DependentUpon>ManagerRooms.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Manager\ManagerUpdateRoom.xaml.cs">
-      <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
@@ -313,20 +312,32 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Manager\Dialogs\RenovationRoomDialog.xaml" />
-    <Page Include="View\Manager\EquipmentTransfer.xaml">
+    <Page Include="View\Manager\Equipment\EquipmentTransfer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Manager\ManagerEquipment.xaml">
+    <Page Include="View\Manager\Equipment\ManagerEquipment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Manager\ManagerMainWindow.xaml" />
-    <Page Include="View\Manager\ManagerMedicines.xaml" />
-    <Page Include="View\Manager\ManagerRenovationAdvanced.xaml" />
-    <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
-    <Page Include="View\Manager\ManagerRenovations.xaml" />
     <Page Include="View\Manager\ManagerStyles.xaml" />
+    <Page Include="View\Manager\Medicines\ManagerMedicines.xaml" />
+    <Page Include="View\Manager\Renovations\ManagerRenovationAdvanced.xaml" />
+    <Page Include="View\Manager\Renovations\ManagerRenovationBasic.xaml" />
+    <Page Include="View\Manager\Renovations\ManagerRenovations.xaml" />
+    <Page Include="View\Manager\Rooms\ManagerInsertRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\Rooms\ManagerRooms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\Rooms\ManagerUpdateRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,22 +412,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorUpdateAppointment.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Manager\ManagerDashboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Manager\ManagerInsertRoom.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Manager\ManagerRooms.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Manager\ManagerUpdateRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

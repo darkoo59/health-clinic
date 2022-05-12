@@ -10,7 +10,7 @@
       Margin="0">
 
     <Page.Resources>
-        <ResourceDictionary Source="ManagerStyles.xaml">
+        <ResourceDictionary Source="../ManagerStyles.xaml">
         </ResourceDictionary>
     </Page.Resources>
 

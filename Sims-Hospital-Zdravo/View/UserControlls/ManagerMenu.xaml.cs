@@ -87,16 +87,16 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             switch (text)
             {
                 case "Renovations":
-                    ManagerContent.Source = new Uri("ManagerRenovations.xaml", UriKind.Relative);
+                    ManagerContent.Source = new Uri("Renovations/ManagerRenovations.xaml", UriKind.Relative);
                     break;
                 case "Equipment":
-                    ManagerContent.Source = new Uri("ManagerEquipment.xaml", UriKind.Relative);
+                    ManagerContent.Source = new Uri("Equipment/ManagerEquipment.xaml", UriKind.Relative);
                     break;
                 case "Medicines":
-                    ManagerContent.Source = new Uri("ManagerMedicines.xaml", UriKind.Relative);
+                    ManagerContent.Source = new Uri("Medicines/ManagerMedicines.xaml", UriKind.Relative);
                     break;
                 case "Rooms":
-                    ManagerContent.Source = new Uri("ManagerRooms.xaml", UriKind.Relative);
+                    ManagerContent.Source = new Uri("Rooms/ManagerRooms.xaml", UriKind.Relative);
                     break;
             }
         }

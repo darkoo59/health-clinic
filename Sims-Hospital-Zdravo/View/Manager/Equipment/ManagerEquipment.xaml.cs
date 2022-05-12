@@ -57,7 +57,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void Transfer_Click(object sender, RoutedEventArgs e)
         {
-            ManagerContent.Source = new Uri("EquipmentTransfer.xaml", UriKind.Relative);
+            ManagerContent.Source = new Uri("Equipment/EquipmentTransfer.xaml", UriKind.Relative);
         }
 
         private void RoomChanged_Selection(object sender, SelectionChangedEventArgs e)
