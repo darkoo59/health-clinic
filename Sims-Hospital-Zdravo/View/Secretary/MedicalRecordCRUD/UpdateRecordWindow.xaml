@@ -5,429 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
-        Title="UpdateRecordWindow"  Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
-    <Window.Resources>
-        <ResourceDictionary Source="../../Secretary/SecretaryWindowStyles.xaml"></ResourceDictionary>
-    </Window.Resources>
-    <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="63,35,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="163,35,0,0" TextWrapping="Wrap"
-                 Text="{Binding _Name, Mode=OneTime}" VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Margin="63,61,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="-2.298,-3.19" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtSurname" HorizontalAlignment="Left" Height="23" Margin="163,63,0,0" TextWrapping="Wrap"
-                  VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Birth date" HorizontalAlignment="Left" Margin="63,89,0,0" VerticalAlignment="Top" Width="66" Style="{StaticResource label_style}"/>
-        <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="283,91,-10,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtBirth" HorizontalAlignment="Left" Height="23" Margin="163,91,0,0" TextWrapping="Wrap"
-                  VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="63,116,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="163,119,0,0" TextWrapping="Wrap"
-                  VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Jmbg" HorizontalAlignment="Left" Margin="63,144,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.272,-0.333" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtJmbg" HorizontalAlignment="Left" Height="23" Margin="163,147,0,0" TextWrapping="Wrap"
-                  VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Phone number" HorizontalAlignment="Left" Margin="63,173,0,0" VerticalAlignment="Top"
-               Width="92" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="23" Margin="163,175,0,0" TextWrapping="Wrap"
-                  VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Gender" HorizontalAlignment="Left" Margin="63,202,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
-        <ComboBox x:Name="ComboGender" HorizontalAlignment="Left" Margin="163,203,0,0" VerticalAlignment="Top"
-                  Width="120" Text="{Binding _Gender, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Label Content="Blood type" HorizontalAlignment="Left" Margin="63,228,0,0" VerticalAlignment="Top"
-               Width="92" Style="{StaticResource label_style}"/>
-        <ComboBox x:Name="ComboBlood" HorizontalAlignment="Left" Margin="163,230,0,0" VerticalAlignment="Top"
-                  Width="120" Text="{Binding _BloodType, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Label Content="Marital status" HorizontalAlignment="Left" Margin="63,257,0,0" VerticalAlignment="Top"
-               Width="92" Style="{StaticResource label_style}"/>
-        <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="163,257,0,0" VerticalAlignment="Top"
-                  Width="120" Text="{Binding _MaritalStatus, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
+        Title="UpdateRecordWindow" Height="700" Width="800">
+    <Grid Margin="0,-84,0,84">
+        <Label Content="Name" HorizontalAlignment="Left" Margin="268,120,0,0" VerticalAlignment="Top" Width="49" />
+        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="388,120,0,0" TextWrapping="Wrap"
+                 Text="{Binding _Name, Mode=OneTime}" VerticalAlignment="Top" Width="120" />
+        <Label Content="Surname" HorizontalAlignment="Left" Margin="268,160,0,0" VerticalAlignment="Top" Width="66" />
+        <TextBox x:Name="TxtSurname" HorizontalAlignment="Left" Height="23" Margin="388,160,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Birth date" HorizontalAlignment="Left" Margin="268,200,0,0" VerticalAlignment="Top" Width="66" />
+        <TextBox x:Name="TxtBirth" HorizontalAlignment="Left" Height="23" Margin="388,200,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Email" HorizontalAlignment="Left" Margin="268,240,0,0" VerticalAlignment="Top" Width="49" />
+        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="388,240,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Jmbg" HorizontalAlignment="Left" Margin="268,280,0,0" VerticalAlignment="Top" Width="49" />
+        <TextBox x:Name="TxtJmbg" HorizontalAlignment="Left" Height="23" Margin="388,280,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Phone number" HorizontalAlignment="Left" Margin="268,320,0,0" VerticalAlignment="Top"
+               Width="92" />
+        <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="23" Margin="388,320,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Gender" HorizontalAlignment="Left" Margin="268,360,0,0" VerticalAlignment="Top" Width="92" />
+        <ComboBox x:Name="ComboGender" HorizontalAlignment="Left" Margin="388,360,0,0" VerticalAlignment="Top"
+                  Width="120" Text="{Binding _Gender, Mode=OneTime}" />
+        <Label Content="Blood type" HorizontalAlignment="Left" Margin="268,400,0,-20" VerticalAlignment="Top"
+               Width="92" />
+        <ComboBox x:Name="ComboBlood" HorizontalAlignment="Left" Margin="388,400,0,-16" VerticalAlignment="Top"
+                  Width="120" Text="{Binding _BloodType, Mode=OneTime}" />
+        <Label Content="Marital status" HorizontalAlignment="Left" Margin="268,440,0,-47" VerticalAlignment="Top"
+               Width="92" />
+        <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="388,440,0,-43" VerticalAlignment="Top"
+                  Width="120" Text="{Binding _MaritalStatus, Mode=OneTime}" />
         <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85" />
-        <Button Content="Update" HorizontalAlignment="Left" Margin="130,470,0,10" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
-        <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="88" Margin="63,314,0,0"
-                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">\
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="88" Margin="218,314,0,0"
-                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <Label Content="Patient allergic to:" HorizontalAlignment="Left" Margin="63,288,0,0" VerticalAlignment="Top"
-               RenderTransformOrigin="0.513,-0.135" Width="106" Style="{StaticResource label_style}"/>
-        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="218,288,0,0" VerticalAlignment="Top"
-               RenderTransformOrigin="0.513,-0.135" Width="93" Style="{StaticResource label_style}"/>
-        <Image x:Name="ImageToLeft" Source="../../../Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="30" Margin="177,314,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
-        <Image x:Name="ImageToRight" Source="../../../Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="30" Margin="177,372,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
-
-        <!-- //Menu bar panel // -->
-        <Grid x:Name="MenuBarPanel" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
-            <StackPanel x:Name="StackPanel">
-                <!--Grid for toggle button-->
-                <Grid Height="65">
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="0"
-                               Margin="49,-13,0,0"
-                               Text="M E N U"
-                               Foreground="White"
-                               FontSize="22"
-                               Background="Transparent"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource font_style}">
-                        
-                         <!--Shadow effect-->
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="10"
-                                              ShadowDepth="1"
-                                              Direction="-90"
-                                              Color="Gray"></DropShadowEffect>
-                        </TextBlock.Effect>
-                    </TextBlock>
-                    <ToggleButton x:Name="TgButton"
-                                  Grid.Column="0"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
-                                  Margin="5,5,0,15"
-                                  Height="30"
-                                  Width="30"
-                                  BorderThickness="0"
-                                  Style="{StaticResource tb_style}"
-                                  >
-                        <ToggleButton.Background>
-                            <ImageBrush ImageSource="../../../Resources/img/Secretary/ToggleMenu.png"></ImageBrush>
-                        </ToggleButton.Background>
-                        <ToggleButton.Triggers>
-                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                <BeginStoryboard>
-                                    <Storyboard Name="HideStackPanel">
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="MenuBarPanel"
-                                            Storyboard.TargetProperty="Width"
-                                            BeginTime="0:0:0"
-                                            From = "150" To="40"
-                                            Duration="0:0:0.2">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="ToggleButton.Checked">
-                                <BeginStoryboard>
-                                    <Storyboard Name="ShowStackPanel">
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="MenuBarPanel"
-                                            Storyboard.TargetProperty="Width"
-                                            BeginTime="0:0:0"
-                                            From = "40" To="150"
-                                            Duration="0:0:0.2">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ToggleButton.Triggers>
-
-                    </ToggleButton>
-                </Grid>
-
-                <!-- Menu items -->
-                <ListView Name="LV"
-                          Background="Transparent"
-                          BorderBrush="Transparent"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" RenderTransformOrigin="1.058,0.812">
-                    <!-- Home -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="Home_Click">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Home.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20" RenderTransformOrigin="2.91,-0.17"/>
-                            <TextBlock Text = "Home"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_home"
-                                     Content="Home"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Profile -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Profile.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Profile"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_profile"
-                                     Content="Profile"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- About -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/About.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "About"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_about"
-                                     Content="About"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Contact -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Contact.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Contacts"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_contacts"
-                                     Content="Contacts"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Meetings -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Meeting.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Meetings"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_meetings"
-                                     Content="Meetings"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Managing accounts -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Accounts.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Accounts"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_accounts"
-                                     Content="Managing accounts"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Equipment Acquisition -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Equipment.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Equipment"
-                                       Margin = "11,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="70"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_equipment"
-                                     Content="Equipment Acquisition"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Managing appointments -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="Appointment_Click">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Appointment.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Appointments"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="75"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_appointments"
-                                     Content="Managing appointments"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Medical records -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/MedicalRecords.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Medical records"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="90"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_medical_records"
-                                     Content="Medical records"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Settings -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Settings.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Settings"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_settings"
-                                     Content="Settings"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- Sign out -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Image Source="../../../Resources/img/Secretary/SignOut.png"
-                                   Margin="0,0,0,4"
-                                   Width="28"
-                                   Height="20"/>
-                            <TextBlock Text = "Sign out"
-                                       Margin = "13,0,0,4"
-                                       Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip Name="tt_sign_out"
-                                     Content="Sign out"
-                                     Style="{StaticResource tt_style}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <!-- List view items style -->
-
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                        <Border Name="Bd"
-                                                Height="40"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                Background="{TemplateBinding Background}"
-                                                Padding="{TemplateBinding Padding}"
-                                                SnapsToDevicePixels="True">
-
-                                            <ContentPresenter 
-                                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                                            </ContentPresenter>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <MultiTrigger>
-                                                <MultiTrigger.Conditions>
-                                                    <Condition Property="IsMouseOver" Value="True" />
-                                                </MultiTrigger.Conditions>
-
-                                                <Setter Property="Background"
-                                                        TargetName="Bd"
-                                                        Value="#01DDE5" />
-                                                <Setter Property="BorderBrush"
-                                                        TargetName="Bd"
-                                                        Value="#01DDE5"></Setter>
-                                            </MultiTrigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-
-                </ListView>
-
-            </StackPanel>
-
-        </Grid>
-        <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-       
+        <Button Content="Update" HorizontalAlignment="Left" Margin="326,646,0,-13" Width="115" Click="Update_Click" />
+        <Label Content="Allergens" HorizontalAlignment="Left" Margin="268,480,0,0" VerticalAlignment="Top"
+               RenderTransformOrigin="0.513,-0.135" />
+        <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="88" Margin="388,511,0,0"
+                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" />
+        <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="88" Margin="573,511,0,0"
+                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" />
+        <Label Content="Patient allergic to:" HorizontalAlignment="Left" Margin="388,480,0,0" VerticalAlignment="Top"
+               RenderTransformOrigin="0.513,-0.135" />
+        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="568,480,0,0" VerticalAlignment="Top"
+               RenderTransformOrigin="0.513,-0.135" />
+        <Image x:Name="ImageToLeft" Source="../../../Resources/img/TransferAllergens.png" HorizontalAlignment="Left" Height="30" Margin="517,511,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToRight" Source="../../../Resources/img/TransferAllergens.png" HorizontalAlignment="Left" Height="30" Margin="494,542,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 </Window>
