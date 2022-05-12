@@ -20,20 +20,21 @@ namespace Sims_Hospital_Zdravo.View.Manager
     /// <summary>
     /// Interaction logic for EquipmentTransfer.xaml
     /// </summary>
-    public partial class EquipmentTransfer : Window
+    public partial class EquipmentTransfer : Page
     {
         private EquipmentController equipmentController;
         private EquipmentTransferController equipmentTransferController;
         private RoomController roomController;
 
         private ObservableCollection<Room> rooms;
+        private App app;
 
-        public EquipmentTransfer(RoomController roomController, EquipmentController equipmentController,
-            EquipmentTransferController equipmentTransferController)
+        public EquipmentTransfer()
         {
-            this.equipmentController = equipmentController;
-            this.equipmentTransferController = equipmentTransferController;
-            this.roomController = roomController;
+            app = Application.Current as App;
+            this.equipmentController = app._equipmentController;
+            this.equipmentTransferController = app._equipmentTransferController;
+            this.roomController = app._roomController;
             InitializeComponent();
 
             rooms = roomController.ReadAll();
@@ -65,6 +66,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -97,7 +99,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
                     return;
                 }
 
-                Close();
+                // Close();
+                NavigationService.GoBack();
             }
             catch (Exception ex)
             {

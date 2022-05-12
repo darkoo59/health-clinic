@@ -12,7 +12,7 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
-    public partial class ManagerRenovationBasic : Window
+    public partial class ManagerRenovationBasic : Page
     {
         private RenovationController renovationController;
         private RoomController roomController;
@@ -49,7 +49,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 RenovationType type = RenovationType.BASIC;
                 renovationController.MakeRenovationAppointment(schedule, room, type, description);
                 MessageBox.Show("Successfully made appointment for renovation!");
-                Close();
+                NavigationService.GoBack();
             }
             catch (Exception exception)
             {

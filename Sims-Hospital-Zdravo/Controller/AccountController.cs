@@ -44,5 +44,16 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             return accountService.GetAccountByUsernameAndPassword(username, password);
         }
+        
+        
+        public User GetLoggedAccount()
+        {
+            return accountService.GetLoggedAccount();
+        }
+
+        public void AddLoggedAccount(String username, String password)
+        {
+            accountService.AddLoggedAccount(username, password);
+        }
     }
 }

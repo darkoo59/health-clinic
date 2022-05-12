@@ -1,11 +1,14 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.View.Manager.ManagerEquipment"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
-        mc:Ignorable="d"
-        Title="ManagerEquipment" Height="450" Width="800">
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.ManagerEquipment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
+      mc:Ignorable="d"
+      Title="ManagerEquipment" Height="718" Width="924">
+    <Page.Resources>
+        <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
@@ -22,11 +25,14 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="RoomPicker" Height="30" SelectionChanged="RoomChanged_Selection"></ComboBox>
-            <Button Grid.Column="2" Width="100" Height="30" Click="Transfer_Click">Transfer</Button>
-            <Button Grid.Column="3" Width="100" Height="30" Click="InsertRoom_Click">Insert</Button>
-            <Button Grid.Column="5" Width="100" Height="30" Click="UpdateRoom_Click">Update</Button>
-            <Button Grid.Column="4" Width="100" Height="30" Click="DeleteRoom_Click">Delete</Button>
+            <TextBox Height="30"></TextBox>
+            <ComboBox Grid.Column="1" x:Name="RoomPicker" Height="30" Width="100" HorizontalAlignment="Right"
+                      SelectionChanged="RoomChanged_Selection">
+            </ComboBox>
+            <Button Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right" Click="Transfer_Click">Transfer</Button>
+            <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right" Click="InsertRoom_Click">Insert</Button>
+            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right" Click="UpdateRoom_Click">Update</Button>
+            <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right" Click="DeleteRoom_Click">Delete</Button>
         </Grid>
         <DataGrid AutoGenerateColumns="False" SelectionMode="Single" x:Name="equipmentTable" Grid.Row="2"
                   ColumnWidth="*"
@@ -40,4 +46,4 @@
 
         </DataGrid>
     </Grid>
-</Window>
+</Page>

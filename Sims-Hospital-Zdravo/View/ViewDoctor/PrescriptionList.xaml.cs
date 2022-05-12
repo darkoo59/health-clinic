@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecord medicalRecord;
         private ObservableCollection<Prescription> prescriptions;
         private int doctorId;
+
         public PrescriptionList(MedicalRecordController medicalRecordController,MedicalRecord medicalRecord,Prescription prescription,int id)
         {
             InitializeComponent();

@@ -34,6 +34,8 @@ namespace Sims_Hospital_Zdravo.Repository
             prescriptions.Remove(prescription);
         }
 
+       
+      
         public ObservableCollection<Prescription> ReadAll()
         {
             return prescriptions;

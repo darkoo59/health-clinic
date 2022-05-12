@@ -51,6 +51,24 @@ namespace Sims_Hospital_Zdravo.View
             }
 
             Patients.ItemsSource = patients;
+
+            var startTime =DateTime.Parse( "8:00");
+            var endTime = DateTime.Parse("21:00");
+            List<string> time_list = new List<string>();
+
+            while (startTime < endTime)
+            {
+
+                time_list.Add(startTime.ToShortTimeString() + " - " + startTime.AddMinutes(30).ToShortTimeString());
+                startTime = startTime.AddMinutes(30);
+            }
+            comboTimeAppointment.ItemsSource = time_list;
+
+
+
+
+
+
         }
 
         private Patient pat;

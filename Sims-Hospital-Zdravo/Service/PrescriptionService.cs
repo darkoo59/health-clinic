@@ -26,5 +26,7 @@ namespace Sims_Hospital_Zdravo.Service
         {
             prescriptionRepository.Create(prescription);
         }
+
+        
     }
 }

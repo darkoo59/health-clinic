@@ -1,9 +1,0 @@
-[
-
-{ "_Name":"panklav","_Id":22,"_Strength":"50mg" ,"_Allergens":"peniclin","_Description":"For infections"},
-
-{ "_Name":"bromazepam","_Id":32,"_Strength":"2mg" ,"_Allergens":"peniclin","_Description":"For anxiety"},
-{ "_Name":"aspirin","_Id":22,"_Strength":"10mg" ,"_Allergens":"penicilin","_Description":"for heart"}
-
-
-]

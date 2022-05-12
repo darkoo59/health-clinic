@@ -10,6 +10,8 @@ using Sims_Hospital_Zdravo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+
 
 namespace Repository
 {
@@ -27,6 +29,7 @@ namespace Repository
 
         public void Create(Room room)
         {
+            StackTrace stackTrace = new StackTrace();
             _rooms.Add(room);
             room.AddObserver(this);
             LoadDataToFile();
@@ -76,6 +79,7 @@ namespace Repository
         {
             Room room = FindById(id);
             if (room != null) _rooms.Remove(room);
+            LoadDataToFile();
         }
 
         public Room FindByType(RoomType type)
@@ -89,6 +93,27 @@ namespace Repository
             }
 
             return null;
+        }
+
+        public Room FindByRoomNumber(string roomNumber)
+        {
+            foreach (Room room in _rooms)
+            {
+                if (room.RoomNumber.Equals(roomNumber))
+                {
+                    return room;
+                }
+            }
+
+            return null;
+        }
+
+        public void RemoveMultiple(List<Room> rooms)
+        {
+            foreach (Room room in rooms)
+            {
+                DeleteById(room.Id);
+            }
         }
 
         private void LoadDataFromFiles()

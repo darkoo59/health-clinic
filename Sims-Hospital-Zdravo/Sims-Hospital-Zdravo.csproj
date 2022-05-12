@@ -5,7 +5,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C04F39BD-348B-43B3-A4A2-21D1672D48D3}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <!--    <OutputType>WinExe</OutputType>-->
+    <OutputType>Exe</OutputType>
+    <DisableWinExeInference>true</DisableWinExeInference>
     <RootNamespace>Sims_Hospital_Zdravo</RootNamespace>
     <AssemblyName>Sims-Hospital-Zdravo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -59,6 +61,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Notifications.Wpf.0.1.1\lib\net461\Notifications.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -103,6 +108,7 @@
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
+    <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="Controller\PrescriptionController.cs" />
     <Compile Include="Controller\RenovationController.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
     <Compile Include="DataHandler\MedicineDataHandler.cs" />
+    <Compile Include="DataHandler\NotificationDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
     <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
     <Compile Include="DataHandler\RelocationAppointmentDataHandler.cs" />
@@ -125,10 +132,13 @@
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
     <Compile Include="Interfaces\IUpdateFilesObserver.cs" />
     <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\AdvancedRenovationAppointment.cs" />
     <Compile Include="Model\Allergens.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Medicine.cs" />
+    <Compile Include="Model\MedicineApprovalNotification.cs" />
+    <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
@@ -148,11 +158,13 @@
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
+    <Compile Include="Repository\NotificationRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PrescriptionRepository.cs" />
     <Compile Include="Repository\RenovationRepository.cs" />
     <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\MedicineService.cs" />
+    <Compile Include="Service\NotificationService.cs" />
     <Compile Include="Service\PatientMedicalRecordService.cs" />
     <Compile Include="Service\PrescriptionService.cs" />
     <Compile Include="Service\RenovationService.cs" />
@@ -173,11 +185,23 @@
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Dialogs\RenovationRoomDialog.xaml.cs">
+      <DependentUpon>RenovationRoomDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\EquipmentTransfer.xaml.cs">
       <DependentUpon>EquipmentTransfer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\ManagerEquipment.xaml.cs">
       <DependentUpon>ManagerEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerMainWindow.xaml.cs">
+      <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerMedicines.xaml.cs">
+      <DependentUpon>ManagerMedicines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\ManagerRenovationAdvanced.xaml.cs">
+      <DependentUpon>ManagerRenovationAdvanced.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\ManagerRenovationBasic.xaml.cs" />
     <Compile Include="View\Manager\ManagerRenovations.xaml.cs" />
@@ -249,6 +273,10 @@
     <Compile Include="PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Supplies\SuppliesHome.xaml.cs" />
+    <Compile Include="View\UserControlls\ManagerMenu.xaml.cs">
+      <DependentUpon>ManagerMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\AnamnesisList.xaml.cs" />
     <Compile Include="View\ViewDoctor\AnamnesisWindow.xaml.cs" />
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
@@ -284,6 +312,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Manager\Dialogs\RenovationRoomDialog.xaml" />
     <Page Include="View\Manager\EquipmentTransfer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -292,8 +321,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Manager\ManagerMainWindow.xaml" />
+    <Page Include="View\Manager\ManagerMedicines.xaml" />
+    <Page Include="View\Manager\ManagerRenovationAdvanced.xaml" />
     <Page Include="View\Manager\ManagerRenovationBasic.xaml" />
     <Page Include="View\Manager\ManagerRenovations.xaml" />
+    <Page Include="View\Manager\ManagerStyles.xaml" />
     <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -391,6 +424,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\SecretaryWindowStyles.xaml" />
+    <Page Include="View\Secretary\Supplies\SuppliesHome.xaml" />
+    <Page Include="View\UserControlls\ManagerMenu.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
@@ -488,7 +524,106 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\img\image-equipment.ico" />
+    <Resource Include="Resources\img\image-renovation.ico" />
+    <Resource Include="Resources\img\image-rooms.ico" />
+    <Resource Include="Resources\img\image-surveys.ico" />
+    <Resource Include="Resources\img\Secretary\About.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Accounts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Appointment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\ArrowToLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\ArrowToRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Contact.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\img\Secretary\Dark\About.png" />
+    <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
+    <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
+    <Content Include="Resources\img\Secretary\Dark\Close.png" />
+    <Content Include="Resources\img\Secretary\Dark\Contact.png" />
+    <Content Include="Resources\img\Secretary\Dark\Equipment.png" />
+    <Content Include="Resources\img\Secretary\Dark\GoBack.png" />
+    <Content Include="Resources\img\Secretary\Dark\Home.png" />
+    <Content Include="Resources\img\Secretary\Dark\icons8-close-100.png" />
+    <Content Include="Resources\img\Secretary\Dark\MedicalRecords.png" />
+    <Content Include="Resources\img\Secretary\Dark\Meeting.png" />
+    <Content Include="Resources\img\Secretary\Dark\Profile.png" />
+    <Content Include="Resources\img\Secretary\Dark\Settings.png" />
+    <Content Include="Resources\img\Secretary\Dark\SignOut.png" />
+    <Content Include="Resources\img\Secretary\Dark\ToggleMenu.png" />
+    <Resource Include="Resources\img\Secretary\Edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\img\Secretary\Light\About.png" />
+    <Content Include="Resources\img\Secretary\Light\Accounts.png" />
+    <Content Include="Resources\img\Secretary\Light\Appointment.png" />
+    <Content Include="Resources\img\Secretary\Light\Close.png" />
+    <Content Include="Resources\img\Secretary\Light\Contact.png" />
+    <Content Include="Resources\img\Secretary\Light\Equipment.png" />
+    <Content Include="Resources\img\Secretary\Light\Home.png" />
+    <Content Include="Resources\img\Secretary\Light\MedicalRecords.png" />
+    <Content Include="Resources\img\Secretary\Light\Meeting.png" />
+    <Content Include="Resources\img\Secretary\Light\Profile.png" />
+    <Content Include="Resources\img\Secretary\Light\Settings.png" />
+    <Content Include="Resources\img\Secretary\Light\SignOut.png" />
+    <Content Include="Resources\img\Secretary\Light\ToggleMenu.png" />
+    <Resource Include="Resources\img\Secretary\MedicalRecords.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Meeting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Remove.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Reschedule.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Schedule.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\SignOut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\ToggleMenu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\ToggleMenu_MouseOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\medicines.txt" />
+    <Content Include="Resources\notifications.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>

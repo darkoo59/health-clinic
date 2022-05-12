@@ -37,7 +37,6 @@ namespace Service
             List<TimeInterval> takenIntervals = new List<TimeInterval>(takenIntervalsRoom1.Concat(takenIntervalsRoom2));
 
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            // takenIntervals = CompactIntervals(takenIntervals);
             takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
             return takenIntervals;
         }
@@ -63,13 +62,12 @@ namespace Service
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
-
             }
 
             return true;
         }
 
-        public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)   //TODO
+        public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
         {
             List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
             intervals = intervals.OrderBy(o => o.Start).ToList();
@@ -100,7 +98,6 @@ namespace Service
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
                 if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
-
             }
 
             return true;
@@ -121,6 +118,7 @@ namespace Service
                     if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
                 }
             }
+
             return true;
         }
 
@@ -136,7 +134,6 @@ namespace Service
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
                 if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
                 if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
-
             }
 
             return true;
@@ -157,12 +154,13 @@ namespace Service
                     if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
                 }
             }
+
             return true;
         }
 
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
-            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0));
+            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0, "", 10));
             List<TimeInterval> takenIntervalRenovation = _renovationRepository.FindTakenIntervalsForRoom(roomId);
             List<TimeInterval> takenIntervalRelocation = _relocationRepository.FindTakenIntervalsForRoom(roomId);
 
@@ -228,7 +226,7 @@ namespace Service
         }
 
 
-        public Appointment findAppointmentByDate(DateTime date, int id,Patient pat)
+        public Appointment findAppointmentByDate(DateTime date, int id, Patient pat)
         {
             foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
             {
@@ -240,12 +238,11 @@ namespace Service
                     }
                 }
             }
+
             return null;
-
-
         }
-        
-        
+
+
         /*public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);

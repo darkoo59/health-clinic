@@ -20,9 +20,7 @@ namespace Sims_Hospital_Zdravo.Controller
 
         public ref ObservableCollection<Medicine> ReadAllMedicines()
         {
-            Console.WriteLine("ajdeeee");
             return ref medicineService.ReadAllMedicine();
         }
-
     }
 }
