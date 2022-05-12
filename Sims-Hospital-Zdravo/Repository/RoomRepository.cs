@@ -50,6 +50,7 @@ namespace Repository
                     rm.Id = room.Id;
                     rm.Floor = room.Floor;
                     rm.Type = room.Type;
+                    rm.RoomEquipment = room.RoomEquipment;
                     LoadDataToFile();
                     return;
                 }
@@ -114,6 +115,28 @@ namespace Repository
             {
                 DeleteById(room.Id);
             }
+        }
+        
+        public List<RoomEquipment> FindAllEquipment()
+        {
+            List<RoomEquipment> allEquipment = new List<RoomEquipment>();
+            foreach (Room room in _rooms)
+            {
+                foreach (RoomEquipment equipment in room.RoomEquipment)
+                {
+                    if (!allEquipment.Contains(equipment) && equipment.Equipment.Type == EquipmentType.Consumable)
+                        allEquipment.Add(equipment);
+                    else
+                    {
+                        foreach (RoomEquipment equimp in allEquipment)
+                        {
+                            if (equimp == equipment)
+                                equimp.Quantity += equipment.Quantity;
+                        }
+                    }
+                }
+            }
+            return allEquipment;
         }
 
         private void LoadDataFromFiles()

@@ -113,6 +113,7 @@
     <Compile Include="Controller\PrescriptionController.cs" />
     <Compile Include="Controller\RenovationController.cs" />
     <Compile Include="Controller\SecretaryAppointmentController.cs" />
+    <Compile Include="Controller\SuppliesController.cs" />
     <Compile Include="DataHandler\AccountDataHandler.cs" />
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="DataHandler\AnamnesisDataHandler.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="HomePatient.xaml.cs">
       <DependentUpon>HomePatient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
     <Compile Include="Interfaces\INotificationObservable.cs" />
     <Compile Include="Interfaces\INotificationObserver.cs" />
     <Compile Include="Interfaces\IUpdateFilesObservable.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
+    <Compile Include="Model\SuppliesAcquisition.cs" />
     <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PrescriptionRepository.cs" />
     <Compile Include="Repository\RenovationRepository.cs" />
+    <Compile Include="Repository\SuppliesAcquisitionRepository.cs" />
     <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\NotificationService.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Service\PrescriptionService.cs" />
     <Compile Include="Service\RenovationService.cs" />
     <Compile Include="Service\SecretaryAppointmentService.cs" />
+    <Compile Include="Service\SuppliesService.cs" />
     <Compile Include="Service\TimeAppointmentService.cs" />
     <Compile Include="Utils\AppointmentDoctorValidator.cs" />
     <Compile Include="Utils\AppointmentPatientValidator.cs" />
@@ -524,6 +529,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\supplies_acquisition.txt" />
     <Resource Include="Resources\img\image-equipment.ico" />
     <Resource Include="Resources\img\image-renovation.ico" />
     <Resource Include="Resources\img\image-rooms.ico" />
@@ -620,6 +626,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\img\Secretary\ToggleMenu_MouseOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Minus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\medicines.txt" />
