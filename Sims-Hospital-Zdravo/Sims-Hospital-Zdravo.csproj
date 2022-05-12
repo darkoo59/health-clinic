@@ -186,7 +186,6 @@
     <Compile Include="Service\TimeSchedulerService.cs" />
     <Compile Include="Utils\AppointmentSecretaryValidator.cs" />
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
-    <Compile Include="Utils\Factories\RoomEquipmentFilterFactory.cs" />
     <Compile Include="Utils\FilterPipelines\RoomEquipmentFilterPipeline.cs" />
     <Compile Include="Utils\Filters\EquipmentTypeFilter.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />

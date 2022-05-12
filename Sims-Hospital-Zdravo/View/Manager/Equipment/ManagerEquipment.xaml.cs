@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Interfaces;
-using Sims_Hospital_Zdravo.Utils.Factories;
 using Sims_Hospital_Zdravo.Utils.FilterPipelines;
 using Sims_Hospital_Zdravo.Utils.Filters;
 
@@ -31,7 +30,6 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private Frame ManagerContent;
         private App app;
         private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
-        private RoomEquipmentFilterFactory roomEquipmentFilterFactory;
         public bool ShowConsumableEquipment { get; set; }
         public bool ShowStaticEquipment { get; set; }
 
@@ -43,8 +41,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             this.roomController = app._roomController;
             ShowConsumableEquipment = true;
             ShowStaticEquipment = true;
-            roomEquipmentFilterFactory = new RoomEquipmentFilterFactory();
-            roomEquipmentPipeline = roomEquipmentFilterFactory.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
+            roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
 
             InitializeComponent();
             DataContext = this;
@@ -72,6 +69,12 @@ namespace Sims_Hospital_Zdravo.View.Manager
             EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
         }
 
+        private void ChbValueChanged(object sender, RoutedEventArgs e)
+        {
+            roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
+            RefreshItems();
+        }
+
         private void RetrieveMainFrame()
         {
             foreach (Window win in Application.Current.Windows)
@@ -81,12 +84,6 @@ namespace Sims_Hospital_Zdravo.View.Manager
                     ManagerContent = ((ManagerMainWindow)win).ManagerContent;
                 }
             }
-        }
-
-        private void ChbValueChanged(object sender, RoutedEventArgs e)
-        {
-            roomEquipmentPipeline = roomEquipmentFilterFactory.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
-            RefreshItems();
         }
     }
 }

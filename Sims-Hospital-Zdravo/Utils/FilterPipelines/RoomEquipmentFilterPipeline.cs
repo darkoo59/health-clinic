@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Model;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.Filters;
 
 namespace Sims_Hospital_Zdravo.Utils.FilterPipelines
 {
     public class RoomEquipmentFilterPipeline : IFilterPipeline<RoomEquipment>
     {
-        public RoomEquipmentFilterPipeline()
+        protected RoomEquipmentFilterPipeline()
         {
             filters = new List<IFilter<RoomEquipment>>();
         }
@@ -26,6 +27,30 @@ namespace Sims_Hospital_Zdravo.Utils.FilterPipelines
         {
             filters.Add(filter);
             return this;
+        }
+
+        public static IFilterPipeline<RoomEquipment> CreateEquipmentFilterPipeline(bool showStatic, bool showConsumable)
+        {
+            if (showStatic && showConsumable)
+            {
+                return new RoomEquipmentFilterPipeline();
+            }
+
+            if (showStatic)
+            {
+                return (new RoomEquipmentFilterPipeline())
+                    .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Static));
+            }
+
+            if (showConsumable)
+            {
+                return (new RoomEquipmentFilterPipeline())
+                    .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable));
+            }
+
+            return (new RoomEquipmentFilterPipeline())
+                .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable))
+                .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Static));
         }
     }
 }
