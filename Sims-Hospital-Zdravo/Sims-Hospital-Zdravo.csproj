@@ -202,6 +202,9 @@
     <Compile Include="View\Manager\ManagerMainWindow.xaml.cs">
       <DependentUpon>ManagerMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Medicines\ManagerMedicineInsert.xaml.cs">
+      <DependentUpon>ManagerMedicineInsert.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\Medicines\ManagerMedicines.xaml.cs">
       <DependentUpon>ManagerMedicines.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,7 @@
     </Page>
     <Page Include="View\Manager\ManagerMainWindow.xaml" />
     <Page Include="View\Manager\ManagerStyles.xaml" />
+    <Page Include="View\Manager\Medicines\ManagerMedicineInsert.xaml" />
     <Page Include="View\Manager\Medicines\ManagerMedicines.xaml" />
     <Page Include="View\Manager\Renovations\ManagerRenovationAdvanced.xaml" />
     <Page Include="View\Manager\Renovations\ManagerRenovationBasic.xaml" />

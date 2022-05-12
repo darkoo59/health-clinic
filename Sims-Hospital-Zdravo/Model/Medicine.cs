@@ -22,6 +22,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string description;
         private string strength;
         private MedicineStatus status;
+        private List<Medicine> simillar;
 
         public Medicine(string name, string strength, string allergens, string description)
         {
@@ -29,6 +30,16 @@ namespace Sims_Hospital_Zdravo.Model
             this.allergens = allergens;
             this.description = description;
             this.strength = strength;
+            this.status = MedicineStatus.PENDING;
+        }
+
+        public Medicine(string name, string strength, string allergens, string description, List<Medicine> simillar)
+        {
+            this.name = name;
+            this.allergens = allergens;
+            this.description = description;
+            this.strength = strength;
+            this.simillar = simillar;
             this.status = MedicineStatus.PENDING;
         }
 
@@ -70,6 +81,13 @@ namespace Sims_Hospital_Zdravo.Model
             get { return status; }
 
             set { status = value; }
+        }
+
+        public List<Medicine> Simillar
+        {
+            get { return simillar; }
+
+            set { simillar = value; }
         }
     }
 }

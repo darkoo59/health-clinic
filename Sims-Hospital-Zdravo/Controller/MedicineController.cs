@@ -11,16 +11,21 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     public class MedicineController
     {
-        private MedicineService medicineService;
+        private MedicineService _medicineService;
 
         public MedicineController(MedicineService medicineService)
         {
-            this.medicineService = medicineService;
+            this._medicineService = medicineService;
         }
 
         public ref ObservableCollection<Medicine> ReadAllMedicines()
         {
-            return ref medicineService.ReadAllMedicine();
+            return ref _medicineService.ReadAllMedicine();
+        }
+
+        public void CreateMedicineWithNotifyingDoctor(Medicine medicine, Notification notification)
+        {
+            _medicineService.CreateMedicineWithNotifyingDoctor(medicine, notification);
         }
     }
 }
