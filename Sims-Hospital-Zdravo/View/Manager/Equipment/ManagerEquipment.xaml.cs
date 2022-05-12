@@ -30,27 +30,28 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private Frame ManagerContent;
         private App app;
         private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
-        public bool ShowConsumableEquipment { get; set; }
-        public bool ShowStaticEquipment { get; set; }
+        public bool ShowConsumableEquipment { get; }
+        public bool ShowStaticEquipment { get; }
 
         public ManagerEquipment()
         {
             app = Application.Current as App;
-            this.equipmentController = app._equipmentController;
-            this.equipmentTransferController = app._equipmentTransferController;
-            this.roomController = app._roomController;
+            equipmentController = app._equipmentController;
+            equipmentTransferController = app._equipmentTransferController;
+            roomController = app._roomController;
+            
             ShowConsumableEquipment = true;
             ShowStaticEquipment = true;
+            
             roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
 
             InitializeComponent();
+            
             DataContext = this;
             RoomPicker.ItemsSource = roomController.ReadAll();
             RoomPicker.SelectedIndex = 0;
 
             EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
-
-
             RetrieveMainFrame();
         }
 
