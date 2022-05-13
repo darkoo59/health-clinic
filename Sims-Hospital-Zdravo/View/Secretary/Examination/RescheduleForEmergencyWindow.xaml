@@ -12,6 +12,7 @@
     </Window.Resources>
     <Grid>
 
+        <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10,45" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}"/>
         <!-- //Menu bar panel // -->
         <Grid x:Name="MenuBarPanel" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
             <StackPanel x:Name="StackPanel">
@@ -353,5 +354,8 @@
 
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <Label Content="Choose appointment to reschedule :" HorizontalAlignment="Left" Margin="45,29,0,0" VerticalAlignment="Top" Height="42" Width="305" FontSize="18" Style="{StaticResource label_style}"/>
+
+
     </Grid>
 </Window>

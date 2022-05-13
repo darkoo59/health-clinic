@@ -88,7 +88,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     }
                     else
                     {
-
+                        RescheduleForEmergencyWindow window =
+                            new RescheduleForEmergencyWindow(patient, (SpecialtyType)comboSpeciality.SelectedItem);
+                        window.Show();
+                        this.Close();
                     }
                 }
                 else

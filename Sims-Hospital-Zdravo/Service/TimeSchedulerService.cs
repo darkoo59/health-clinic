@@ -51,6 +51,13 @@ namespace Service
             return takenIntervals;
         }
 
+        public List<TimeInterval> FindReservedDatesForDoctor(Doctor doctor)
+        {
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            return takenIntervals;
+        }
+
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
             List<Appointment> appointments = _appointmentRepository.FindByRoomId(roomId);
@@ -166,7 +173,7 @@ namespace Service
 
             return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }
-
+        
         private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
             List<TimeInterval> dates = new List<TimeInterval>(intervals.Select(x => new TimeInterval(x.Start.Date, x.End.Date)));

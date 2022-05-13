@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 {
@@ -20,10 +21,18 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     public partial class RescheduleForEmergencyWindow : Window
     {
         private App app;
-        public RescheduleForEmergencyWindow()
+        private Patient patient;
+        private SpecialtyType doctorType;
+        public RescheduleForEmergencyWindow(Patient patient,SpecialtyType type)
         {
             app = Application.Current as App;
             InitializeComponent();
+            this.patient = patient;
+            this.doctorType = type;
+            this.DataContext = this;
+            UpdateGridView();
+            ContentGrid.ItemsSource =
+                app._secretaryAppointmentController.FindAllAppointmentsToRescheduleForEmergency(type);
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -56,6 +65,28 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 tt_settings.Visibility = Visibility.Visible;
                 tt_sign_out.Visibility = Visibility.Visible;
             }
+        }
+        
+        private void UpdateGridView()
+        {
+            ContentGrid.AutoGenerateColumns = false;
+            ContentGrid.CanUserSortColumns = false;
+            DataGridTextColumn dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Start";
+            dataColumn.Binding = new Binding("Appointment._Time.Start");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "End";
+            dataColumn.Binding = new Binding("Appointment._Time.End");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "Start after rescheduling";
+            dataColumn.Binding = new Binding("RescheduledDate.Start");
+            ContentGrid.Columns.Add(dataColumn);
+            dataColumn = new DataGridTextColumn();
+            dataColumn.Header = "End after rescheduling";
+            dataColumn.Binding = new Binding("RescheduledDate.End");
+            ContentGrid.Columns.Add(dataColumn);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

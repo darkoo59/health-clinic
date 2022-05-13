@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model;
 using Repository;
 using Service;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Service
@@ -151,6 +153,43 @@ namespace Sims_Hospital_Zdravo.Service
                 }
             }
             return availablePatients;
+        }
+
+        public TimeInterval FindFirstDateToReschedule(Appointment appointment)
+        {
+            DateTime startDate = appointment._Time.Start;
+            DateTime endDate = appointment._Time.End;
+            TimeSpan appointmentLength = appointment._Time.End - appointment._Time.Start;
+            startDate = appointment._Time.Start.AddHours(1);
+            endDate = startDate;
+            endDate = endDate.Add(appointmentLength);
+            TimeInterval interval = new TimeInterval(startDate, endDate);
+            while (true)
+            {
+                if (timeSchedulerService.IsDoctorFreeInInterval(appointment._Doctor._Id,
+                        interval))
+                {
+                    return interval;
+                }
+                interval.Start = interval.Start.AddMinutes(30);
+                interval.End = interval.End.AddMinutes(30);
+            }
+        }
+
+        public List<EmergencyReschedule> FindAllAppointmentsToRescheduleForEmergency(SpecialtyType type)
+        {
+            //Uzimamo samo appointmente u narednih 24h
+            List<Appointment> appointmentsToReschedule = appointmentRepository.FindByDoctorSpecialityBeforeDate(type, DateTime.Now.AddDays(1));
+            List<EmergencyReschedule> appointmentsAndRescheduleDate = new List<EmergencyReschedule>();
+            foreach(Appointment app in appointmentsToReschedule)
+            {
+                TimeInterval rescheduleTo = FindFirstDateToReschedule(app);
+                EmergencyReschedule rescheduledAppointment = new EmergencyReschedule(app, rescheduleTo);
+                appointmentsAndRescheduleDate.Add(rescheduledAppointment);
+            }
+
+            appointmentsAndRescheduleDate.Sort((x,y) => x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
+            return appointmentsAndRescheduleDate;
         }
 
 

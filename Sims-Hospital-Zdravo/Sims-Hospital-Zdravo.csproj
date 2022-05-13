@@ -140,6 +140,7 @@
     <Compile Include="Model\Allergens.cs" />
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\EmergencyReschedule.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineApprovalNotification.cs" />
     <Compile Include="Model\Notification.cs" />

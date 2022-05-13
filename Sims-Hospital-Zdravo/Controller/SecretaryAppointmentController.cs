@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Controller
@@ -63,6 +64,11 @@ namespace Sims_Hospital_Zdravo.Controller
         public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type)
         {
             return secretaryAppointmenService.FindAndScheduleEmergencyAppointmentIfCan(patient,type);
+        }
+
+        public List<EmergencyReschedule> FindAllAppointmentsToRescheduleForEmergency(SpecialtyType type)
+        {
+            return secretaryAppointmenService.FindAllAppointmentsToRescheduleForEmergency(type);
         }
 
         public int GenerateId()
