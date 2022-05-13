@@ -73,6 +73,11 @@
             <TextBox x:Name="TxtStrength"></TextBox>
         </StackPanel>
 
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label> Doctor:</Label>
+            <ComboBox x:Name="ComboDoctors"></ComboBox>
+        </StackPanel>
+
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label> Substitution medicines:</Label>
         </StackPanel>

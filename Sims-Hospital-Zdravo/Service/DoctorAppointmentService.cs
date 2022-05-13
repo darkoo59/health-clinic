@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Sims_Hospital_Zdravo.Utils;
+
 namespace Service
 {
     public class DoctorAppointmentService
@@ -22,30 +23,34 @@ namespace Service
         private AppointmentDoctorValidator validator;
         private Appointment app;
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo,TimeSchedulerService timeSchedulerService,RoomService roomService)
+        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo, TimeSchedulerService timeSchedulerService, RoomService roomService)
         {
             this.timeSchedulerService = timeSchedulerService;
             this.appointmentRepository = appointmentRepository;
             this.patientRepository = patientRepository;
             this.doctorRepo = docRepo;
-            this.validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService,roomService);
+            this.validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService, roomService);
         }
+
         public Doctor GetDoctor(int id)
         {
             return doctorRepo.FindDoctorById(id);
         }
+
+        public List<Doctor> ReadAllDoctors()
+        {
+            return doctorRepo.ReadAll().ToList();
+        }
+
         public void Create(Appointment appointment)
         {
             validator.ValidateAppointment(appointment);
             appointmentRepository.Create(appointment);
-            
-                
         }
 
         public void DeleteByID(Appointment appointment)
         {
             appointmentRepository.Delete(appointment);
-
         }
 
         public ObservableCollection<Appointment> ReadAll(int id)
@@ -53,12 +58,11 @@ namespace Service
             return appointmentRepository.FindByDoctorId(id);
         }
 
-        
+
         public ref ObservableCollection<Patient> GetPatients()
         {
             return ref patientRepository.ReadAll();
             //Zamijeniti pravim funkcijama
-
         }
 
         public void Update(Appointment appointment)
@@ -91,12 +95,13 @@ namespace Service
             {
                 ids.Add(app._Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
-            return id;
 
+            return id;
         }
 
         public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
@@ -106,36 +111,27 @@ namespace Service
             AppointmentsDate = new ObservableCollection<Appointment>(appDate);
 
             return AppointmentsDate;
-
-
         }
-        public void DeleteAfterExaminationIsDone(DateTime tl,int id ,Patient pat)
+
+        public void DeleteAfterExaminationIsDone(DateTime tl, int id, Patient pat)
         {
-           app =  timeSchedulerService.findAppointmentByDate(tl, id,pat);
+            app = timeSchedulerService.findAppointmentByDate(tl, id, pat);
             appointmentRepository.Delete(app);
         }
 
-        public Appointment FindAppointmentByDateAndPatient(DateTime date,Patient pat,int id)
+        public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
         {
             ObservableCollection<Appointment> appointments = appointmentRepository.FindByDoctorId(id);
-            
+
             foreach (Appointment appointment in appointments)
             {
-
                 if (appointment._Time.Start.Date.Equals(date.Date) && appointment._Patient._Jmbg.Equals(pat._Jmbg))
                 {
-
                     app = appointment;
                 }
-
             }
+
             return app;
-
         }
-        
-
-
-
-
     }
 }

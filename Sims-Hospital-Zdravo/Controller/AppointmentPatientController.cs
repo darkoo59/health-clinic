@@ -12,36 +12,36 @@ using System.Collections.ObjectModel;
 
 namespace Controller
 {
-   public class AppointmentPatientController
-   {
-
+    public class AppointmentPatientController
+    {
         public AppointmentPatientController(AppointmentPatientService appointmentPatientService)
         {
             this.appointmentPatientService = appointmentPatientService;
         }
+
         public void Create(Appointment appointment)
-      {
+        {
             appointmentPatientService.Create(appointment);
-      }
-      
-      public void Update(Appointment appointment)
-      {
+        }
+
+        public void Update(Appointment appointment)
+        {
             appointmentPatientService.Update(appointment);
-      }
-      
-      public void Delete(Appointment appointment)
-      {
+        }
+
+        public void Delete(Appointment appointment)
+        {
             appointmentPatientService.Delete(appointment);
-      }
-      
-      public ref ObservableCollection<Appointment> FindByPatientID(int id)
+        }
+
+        public ref ObservableCollection<Appointment> FindByPatientID(int id)
         {
             return ref appointmentPatientService.FindByPatientID(id);
         }
 
-        public ref ObservableCollection<Doctor> ReadDoctors()
+        public ObservableCollection<Doctor> ReadDoctors()
         {
-            return ref appointmentPatientService.ReadDoctors();
+            return appointmentPatientService.ReadDoctors();
         }
 
         public ObservableCollection<Appointment> FindAll()
@@ -49,20 +49,21 @@ namespace Controller
             return appointmentPatientService.FindAll();
         }
 
-        public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority) 
+        public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority)
         {
-            return appointmentPatientService.InitializeList(appointment,priority);
+            return appointmentPatientService.InitializeList(appointment, priority);
         }
 
-        public void ValidateAppointment(Appointment appointment) 
+        public void ValidateAppointment(Appointment appointment)
         {
             appointmentPatientService.ValidateAppointment(appointment);
         }
+
         public void ValidateReshedule(Appointment appointment, TimeInterval timeInterval)
         {
             appointmentPatientService.ValidateReschedule(appointment, timeInterval);
         }
+
         public Service.AppointmentPatientService appointmentPatientService;
-   
-   }
+    }
 }

@@ -79,9 +79,9 @@ namespace Repository
             return docs;
         }
 
-        public ref ObservableCollection<Doctor> ReadAll()
+        public ObservableCollection<Doctor> ReadAll()
         {
-            return ref this.doctors;
+            return this.doctors;
         }
 
         public void LoadDataFromFile()

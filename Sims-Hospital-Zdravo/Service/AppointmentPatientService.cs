@@ -15,20 +15,20 @@ namespace Service
 {
     public class AppointmentPatientService
     {
-
         private AppointmentPatientValidator appointmentPatientValidator;
+
         public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.doctorRepository = doctorRepository;
             this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
         }
+
         public void Create(Appointment appointment)
         {
             appointment._Id = GenerateId();
             appointmentRepository.Create(appointment);
         }
-      
 
 
         public void Update(Appointment appointment)
@@ -39,31 +39,31 @@ namespace Service
         public void Delete(Appointment appointment)
         {
             appointmentRepository.Delete(appointment);
-
-      }
-      
-      public ref ObservableCollection<Appointment> FindByPatientID(int id)
-      {
-            return ref appointmentRepository.FindByPatientId(id);
-      }
-
-        public ref ObservableCollection<Doctor> ReadDoctors()
-        {
-            return ref doctorRepository.ReadAll();
         }
 
-        public ObservableCollection<Appointment> FindAll() 
+        public ref ObservableCollection<Appointment> FindByPatientID(int id)
+        {
+            return ref appointmentRepository.FindByPatientId(id);
+        }
+
+        public ObservableCollection<Doctor> ReadDoctors()
+        {
+            return doctorRepository.ReadAll();
+        }
+
+        public ObservableCollection<Appointment> FindAll()
         {
             return appointmentRepository.FindAll();
         }
 
-        public void ValidateAppointment(Appointment appointment) 
+        public void ValidateAppointment(Appointment appointment)
         {
             appointmentPatientValidator.ValidateAppointment(appointment);
         }
-        public void ValidateReschedule(Appointment appointment,TimeInterval timeInterval)
+
+        public void ValidateReschedule(Appointment appointment, TimeInterval timeInterval)
         {
-            appointmentPatientValidator.RescheduleAppointment(appointment,timeInterval);
+            appointmentPatientValidator.RescheduleAppointment(appointment, timeInterval);
         }
 
         public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority)
@@ -72,10 +72,11 @@ namespace Service
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
             ObservableCollection<DateTime> dates = AddingTimes(appointment);
             ObservableCollection<Doctor> doctors = new ObservableCollection<Doctor>();
-            foreach (Doctor d in ReadDoctors()) 
+            foreach (Doctor d in ReadDoctors())
             {
                 doctors.Add(d);
             }
+
             if (priority.Equals("Date"))
             {
                 foreach (Appointment app in FindAll())
@@ -84,17 +85,21 @@ namespace Service
                     {
                         if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
                         {
-                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) && (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
+                                (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
                             {
                                 free = false;
                             }
                         }
                     }
+
                     if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
                     {
-                        if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) && (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                        if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
+                            (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
                         {
-                            foreach (Doctor d in ReadDoctors()) {
+                            foreach (Doctor d in ReadDoctors())
+                            {
                                 if (d._Id == app._Doctor._Id)
                                 {
                                     doctors.Remove(d);
@@ -113,24 +118,25 @@ namespace Service
                     {
                         if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
                         {
-                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) && (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
+                                (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
                             {
                                 free = false;
                             }
+
                             dates.Remove(app._Time.Start);
                         }
-
                     }
-                    
                 }
             }
+
             if (free)
             {
                 appointments.Add(appointment);
             }
             else if (priority.Equals("Date"))
             {
-                foreach (Doctor d in doctors) 
+                foreach (Doctor d in doctors)
                 {
                     Appointment app = new Appointment(null, d, appointment._Patient, appointment._Time, AppointmentType.EXAMINATION);
                     appointments.Add(app);
@@ -145,9 +151,11 @@ namespace Service
                     appointments.Add(app);
                 }
             }
+
             return appointments;
         }
-        public ObservableCollection<DateTime> AddingTimes(Appointment appointment) 
+
+        public ObservableCollection<DateTime> AddingTimes(Appointment appointment)
         {
             ObservableCollection<DateTime> dates = new ObservableCollection<DateTime>();
             DateTime dt = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
@@ -180,8 +188,10 @@ namespace Service
             dates.Add(dt7);
             return dates;
         }
+
         public AppointmentRepository appointmentRepository;
         public DoctorRepository doctorRepository;
+
         public int GenerateId()
         {
             ObservableCollection<Appointment> appointments = appointmentRepository.FindAll();
@@ -191,10 +201,12 @@ namespace Service
             {
                 ids.Add(app._Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
+
             return id;
         }
     }

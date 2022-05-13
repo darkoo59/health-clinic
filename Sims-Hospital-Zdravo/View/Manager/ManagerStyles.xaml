@@ -34,6 +34,7 @@
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="IsReadOnly" Value="True"></Setter>
         <Setter Property="CanUserAddRows" Value="False"></Setter>
+        <Setter Property="CanUserSortColumns" Value="True"></Setter>
     </Style>
     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
            TargetType="{x:Type DataGridColumnHeader}">
@@ -88,6 +89,11 @@
 
     <Style TargetType="CheckBox">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+
+    <Style TargetType="ComboBox">
+
     </Style>
 
 </ResourceDictionary>

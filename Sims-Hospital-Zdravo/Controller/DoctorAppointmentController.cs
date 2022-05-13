@@ -14,11 +14,16 @@ namespace Controller
 {
     public class DoctorAppointmentController
     {
-
         public Doctor getDoctor(int id)
         {
             return doctorAppointmentService.GetDoctor(id);
         }
+
+        public List<Doctor> ReadAllDoctors()
+        {
+            return doctorAppointmentService.ReadAllDoctors();
+        }
+
         public void Create(Appointment appointment)
         {
             doctorAppointmentService.Create(appointment);
@@ -38,6 +43,7 @@ namespace Controller
         {
             return doctorAppointmentService.ReadAll(id);
         }
+
         public ref ObservableCollection<Patient> getPatients()
         {
             return ref doctorAppointmentService.GetPatients();
@@ -53,6 +59,7 @@ namespace Controller
             // TODO: implement
             return doctorAppointmentService.ReadAll(id);
         }
+
         public Service.DoctorAppointmentService doctorAppointmentService;
         //public DoctorAppointmentService doctorAppService;
 
@@ -69,13 +76,11 @@ namespace Controller
         public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
         {
             return doctorAppointmentService.FilterAppointmentsByDate(date);
-
-
         }
-        public void DeleteAfterExaminationIsDone(DateTime date,int id,Patient pat)
+
+        public void DeleteAfterExaminationIsDone(DateTime date, int id, Patient pat)
         {
             doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
         }
-
     }
 }
