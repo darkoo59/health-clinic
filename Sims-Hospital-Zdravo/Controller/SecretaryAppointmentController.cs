@@ -55,6 +55,16 @@ namespace Sims_Hospital_Zdravo.Controller
             return secretaryAppointmenService.FindAvailablePatientsForInterval(startEndTime);
         }
 
+        public List<Doctor> FindAvailableDoctorsForSpeciality(SpecialtyType type)
+        {
+            return secretaryAppointmenService.FindAvailableDoctorsForSpeciality(type);
+        }
+
+        public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type)
+        {
+            return secretaryAppointmenService.FindAndScheduleEmergencyAppointmentIfCan(patient,type);
+        }
+
         public int GenerateId()
         {
             return secretaryAppointmenService.GenerateId();
@@ -63,6 +73,11 @@ namespace Sims_Hospital_Zdravo.Controller
         public void ValidateAppointmentInterval(TimeInterval interval)
         {
             secretaryAppointmenService.ValidateAppointmentInterval(interval);
+        }
+
+        public int GeneratePatientId()
+        {
+            return secretaryAppointmenService.GeneratePatientId();
         }
     }
 }
