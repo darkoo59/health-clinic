@@ -32,21 +32,15 @@ namespace Sims_Hospital_Zdravo.Utils.FilterPipelines
         public static IFilterPipeline<RoomEquipment> CreateEquipmentFilterPipeline(bool showStatic, bool showConsumable)
         {
             if (showStatic && showConsumable)
-            {
                 return new RoomEquipmentFilterPipeline();
-            }
 
             if (showStatic)
-            {
                 return (new RoomEquipmentFilterPipeline())
                     .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Static));
-            }
 
             if (showConsumable)
-            {
                 return (new RoomEquipmentFilterPipeline())
                     .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable));
-            }
 
             return (new RoomEquipmentFilterPipeline())
                 .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable))

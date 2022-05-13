@@ -188,6 +188,7 @@
     <Compile Include="Utils\EquipmentTransferValidator.cs" />
     <Compile Include="Utils\FilterPipelines\RoomEquipmentFilterPipeline.cs" />
     <Compile Include="Utils\Filters\EquipmentTypeFilter.cs" />
+    <Compile Include="Utils\Filters\RoomEquipmentSearchFilter.cs" />
     <Compile Include="Utils\MedicalRecordValidator.cs" />
     <Compile Include="Utils\RenovationValidator.cs" />
     <Compile Include="Utils\TaskScheduleTimer.cs" />

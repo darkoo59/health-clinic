@@ -30,8 +30,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private Frame ManagerContent;
         private App app;
         private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
-        public bool ShowConsumableEquipment { get; }
-        public bool ShowStaticEquipment { get; }
+        public bool ShowConsumableEquipment { get; set; }
+        public bool ShowStaticEquipment { get; set; }
 
         public ManagerEquipment()
         {
@@ -39,14 +39,14 @@ namespace Sims_Hospital_Zdravo.View.Manager
             equipmentController = app._equipmentController;
             equipmentTransferController = app._equipmentTransferController;
             roomController = app._roomController;
-            
+
             ShowConsumableEquipment = true;
             ShowStaticEquipment = true;
-            
+
             roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
 
             InitializeComponent();
-            
+
             DataContext = this;
             RoomPicker.ItemsSource = roomController.ReadAll();
             RoomPicker.SelectedIndex = 0;
@@ -70,9 +70,14 @@ namespace Sims_Hospital_Zdravo.View.Manager
             EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
         }
 
-        private void ChbValueChanged(object sender, RoutedEventArgs e)
+        private void RefreshFilters()
         {
             roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
+        }
+
+        private void ChbValueChanged(object sender, RoutedEventArgs e)
+        {
+            RefreshFilters();
             RefreshItems();
         }
 
@@ -84,6 +89,17 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 {
                     ManagerContent = ((ManagerMainWindow)win).ManagerContent;
                 }
+            }
+        }
+
+        private void Search_Click(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RefreshFilters();
+                string parameter = SearchBox.Text;
+                roomEquipmentPipeline.AddFilter(new RoomEquipmentSearchFilter(parameter));
+                RefreshItems();
             }
         }
     }

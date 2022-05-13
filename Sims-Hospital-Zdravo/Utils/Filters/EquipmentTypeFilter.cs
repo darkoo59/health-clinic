@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Model;
 using Sims_Hospital_Zdravo.Interfaces;
 
@@ -16,16 +17,7 @@ namespace Sims_Hospital_Zdravo.Utils.Filters
 
         public List<RoomEquipment> Filter(List<RoomEquipment> objects)
         {
-            List<RoomEquipment> filteredEquipment = new List<RoomEquipment>();
-            foreach (RoomEquipment roomEquipment in objects)
-            {
-                if (roomEquipment.Equipment.Type == equipmentType)
-                {
-                    filteredEquipment.Add(roomEquipment);
-                }
-            }
-
-            return filteredEquipment;
+            return objects.Where(roomEquipment => roomEquipment.Equipment.Type == equipmentType).ToList();
         }
     }
 }
