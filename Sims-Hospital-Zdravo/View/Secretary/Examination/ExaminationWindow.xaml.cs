@@ -168,6 +168,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             this.Close();
         }
 
+        private void Emergency_Click(object sender, RoutedEventArgs e)
+        {
+            EmergencyExaminationWindow window = new EmergencyExaminationWindow();
+            window.Show();
+            this.Close();
+        }
+
         private void Home_Click(object sender, MouseButtonEventArgs e)
         {
             SecretaryHome window = new SecretaryHome();

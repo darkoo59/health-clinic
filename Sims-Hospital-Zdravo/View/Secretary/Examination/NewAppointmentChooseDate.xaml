@@ -12,11 +12,11 @@
     <Grid>
         <Grid>
             <Label Content="Start at:" HorizontalAlignment="Left" Margin="65,161,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
-            <Label Content="End at:" HorizontalAlignment="Left" Margin="65,224,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
+            <Label Content="End at:" HorizontalAlignment="Left" Margin="65,269,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
             <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="199,161,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
-            <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="199,224,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
-            <TextBox x:Name="txtStartTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="471,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontSize="20"/>
-            <TextBox x:Name="txtEndTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="471,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontSize="20"/>
+            <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="199,269,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
+            <TextBox x:Name="txtStartTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="199,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" FontSize="20" Style="{StaticResource textBox_style}"/>
+            <TextBox x:Name="txtEndTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="199,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" FontSize="20" Style="{StaticResource textBox_style}"/>
             <Label Content="If patient doesn't exist,&#xD;&#xA;please create medical  record first!" HorizontalAlignment="Left" Margin="49,25,0,0" VerticalAlignment="Top" Height="57" Width="251" FontSize="13" Style="{StaticResource label_style}"/>
             <Image Source="../../../Resources/img/Secretary/Add.png" Height="45" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="199,25,-51,0" MouseLeftButtonDown="btnCreateRecord_Click">
                 <Image.ToolTip>

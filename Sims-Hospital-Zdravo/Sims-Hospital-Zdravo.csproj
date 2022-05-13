@@ -228,6 +228,12 @@
     <Compile Include="View\Manager\Rooms\ManagerUpdateRoom.xaml.cs">
       <DependentUpon>ManagerUpdateRoom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\Examination\ChooseDoctorSpecialityWindow.xaml.cs">
+      <DependentUpon>ChooseDoctorSpecialityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\EmergencyExaminationWindow.xaml.cs">
+      <DependentUpon>EmergencyExaminationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\Examination\ExaminationWindow.xaml.cs">
       <DependentUpon>ExaminationWindow.xaml</DependentUpon>
     </Compile>
@@ -239,6 +245,9 @@
     </Compile>
     <Compile Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml.cs">
       <DependentUpon>RescheduleExaminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Examination\RescheduleForEmergencyWindow.xaml.cs">
+      <DependentUpon>RescheduleForEmergencyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Secretary\Examination\UpdateChooseDoctorWindow.xaml.cs">
       <DependentUpon>UpdateChooseDoctorWindow.xaml</DependentUpon>
@@ -351,6 +360,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\Examination\ChooseDoctorSpecialityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\EmergencyExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Secretary\Examination\ExaminationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Secretary\Examination\RescheduleExaminationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Examination\RescheduleForEmergencyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

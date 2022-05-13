@@ -16,6 +16,8 @@ namespace DataHandler
       {
             string doctorSerialized = System.IO.File.ReadAllText(Path);
             ObservableCollection<Doctor> doctors = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Doctor>>(doctorSerialized);
+            foreach (Doctor doc in doctors)
+                Console.WriteLine(doc._Specialty.ToString());
             return doctors;
       }
       
