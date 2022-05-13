@@ -69,6 +69,16 @@ namespace Sims_Hospital_Zdravo.Service
             return availableRooms;
         }
 
+        public Room FindAvailableRoomForEmergencyAppointment(TimeInterval interval)
+        {
+            List<Room> availableRooms = new List<Room>();
+            foreach (Room room in roomRepository.ReadAll())
+            {
+                if ((room.Type == RoomType.OPERATION || room.Type == RoomType.EXAMINATION) && timeSchedulerService.IsRoomFreeInInterval(room.Id, interval))
+                    return room;
+            }
+            return null;
+        }
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
             List<Doctor> availableDoctors = new List<Doctor>();
@@ -80,6 +90,43 @@ namespace Sims_Hospital_Zdravo.Service
                 }
             }
             return availableDoctors;
+        }
+
+        public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type) //TODO
+        {//timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval)
+            TimeInterval interval = new TimeInterval(DateTime.Now.AddMinutes(5), DateTime.Now.AddHours(1));
+            int counter = 0;
+            DateTime minStart = new DateTime();
+            Appointment appointment = null;
+            foreach (Doctor doctor in doctorRepo.FindDoctorsBySpeciality(type))
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    if (timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
+                    {
+                        if(counter == 0)
+                        {
+                            minStart = interval.Start;
+                            appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
+                            appointment._Id = GenerateId();
+                            counter++;
+                        }
+                        else if(interval.Start.CompareTo(minStart)<0)
+                        {
+                            minStart = interval.Start;
+                            appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
+                            appointment._Id = GenerateId();
+                        }
+                    }
+                    interval.Start.AddMinutes(5);
+                }
+                interval.Start = DateTime.Now.AddMinutes(5);
+            }
+            return appointment;
+        }
+        public List<Doctor> FindAvailableDoctorsForSpeciality(SpecialtyType type)
+        {
+            return doctorRepo.FindDoctorsBySpeciality(type);
         }
 
         public bool IsDoctorFreeInIntervalWithoutSelectedAppointment(int doctorId, Appointment app)
@@ -106,6 +153,7 @@ namespace Sims_Hospital_Zdravo.Service
             return availablePatients;
         }
 
+
         public int GenerateId()
         {
             ObservableCollection<Appointment> appointments = appointmentRepository.FindAll();
@@ -121,6 +169,22 @@ namespace Sims_Hospital_Zdravo.Service
             }
             return id;
 
+        }
+
+        public int GeneratePatientId()
+        {
+            ObservableCollection<Patient> patients = patientRepository.ReadAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (Patient patient in patients)
+            {
+                ids.Add(patient._Id);
+            }
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
 
         public void ValidateAppointmentInterval(TimeInterval interval)

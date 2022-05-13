@@ -1,53 +1,29 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.ExaminationWindow"
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.EmergencyExaminationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
         mc:Ignorable="d"
-        Title="SecretaryHome" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
+        Title="EmergencyExaminationWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
 
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Image Source="../../../Resources/img/Secretary/Schedule.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="85,26,53,0" MouseLeftButtonDown="Schedule_Click" Grid.ColumnSpan="2">
-            <Image.ToolTip>
-                <ToolTip Name="tt_schedule"
-                                     Content="Schedule"
-                                     Style="{StaticResource tt_medicalRecord_style}"/>
-            </Image.ToolTip>
-        </Image>
-        <Image Source="../../../Resources/img/Secretary/Reschedule.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="155,26,0,0" MouseLeftButtonDown="Reschedule_Click" Grid.Column="1" Grid.ColumnSpan="2">
-            <Image.ToolTip>
-                <ToolTip Name="tt_reschedule"
-                                     Content="Reschedule"
-                                     Style="{StaticResource tt_medicalRecord_style}"/>
-            </Image.ToolTip>
-        </Image>
-        <Image Source="../../../Resources/img/Secretary/Remove.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="270,26,0,0" MouseLeftButtonDown="Cancel_Click" Grid.Column="2" Grid.ColumnSpan="2">
-            <Image.ToolTip>
-                <ToolTip Name="tt_remove"
-                                     Content="Cancel"
-                                     Style="{StaticResource tt_medicalRecord_style}"/>
-            </Image.ToolTip>
-        </Image>
-        <DatePicker x:Name="appointmentsDatePicker" SelectedDateChanged="appDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Height="30" Width="104"/>
-        <DataGrid x:Name="GridAppointments"
-                  HorizontalScrollBarVisibility="Disabled"
-                  VerticalScrollBarVisibility="Disabled"
-                  SelectionMode="Single"
-                  Width="auto"
-                  Height="auto"
-                  ColumnWidth="*"
-                  VerticalAlignment="Stretch"
-                  HorizontalAlignment="Stretch"
-                  Margin="60,80,20,65"
-                  CanUserResizeColumns="True"
-                  CanUserResizeRows="False"/>
+        <!-- Other goes here -->
 
-        <Button Content="Emergency examination" HorizontalAlignment="Left" Margin="126,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
-
+        <ListBox x:Name="ListPatients" HorizontalAlignment="Left" Height="254" Margin="52,178,0,0" VerticalAlignment="Top" Width="288" SelectionMode="Single"/>
+        <Label Content="Select patient :" HorizontalAlignment="Left" Margin="57,131,0,0" VerticalAlignment="Top" Height="42" Width="156" FontSize="22" Style="{StaticResource label_style}" />
+        <Button Content="Guest" HorizontalAlignment="Left" Margin="138,72,0,0" VerticalAlignment="Top" Width="108" Height="39" Click="Guest_Click" Style="{StaticResource btn_style}" RenderTransformOrigin="1.926,-2.584"/>
+        <Label Content="For non registerd patients:" HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Height="42" Width="271" FontSize="22" Style="{StaticResource label_style}" />
+        <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,437,44,0" MouseLeftButtonDown="Next_Click">
+            <Image.ToolTip>
+                <ToolTip x:Name="tt_next"
+                    Content="Next"
+                    Style="{StaticResource tt_medicalRecord_style}"/>
+            </Image.ToolTip>
+        </Image>
         <!-- //Menu bar panel // -->
         <Grid x:Name="MenuBarPanel" Height="510" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
             <StackPanel x:Name="StackPanel">
@@ -389,6 +365,6 @@
 
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        
+
     </Grid>
 </Window>
