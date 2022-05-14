@@ -29,18 +29,15 @@ namespace Sims_Hospital_Zdravo.Service
             _renovationValidator = new RenovationValidator(roomRepository, renovationRepository, timeSchedulerService);
         }
 
-        public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type,
-            string description)
+        public void MakeRenovationAppointment(RenovationAppointment renovationAppointment)
         {
-            _renovationValidator.ValidateRenovation(room, time);
-            RenovationAppointment renovationAppointment = new RenovationAppointment(time, room, description, type, GenerateId());
+            _renovationValidator.ValidateRenovation(renovationAppointment.Room, renovationAppointment.Time);
             Create(renovationAppointment);
         }
 
-        public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
+        public void MakeAdvancedRenovationAppointment(AdvancedRenovationAppointment renovationAppointment)
         {
-            _renovationValidator.ValidateAdvancedRenovation(room, rooms, time, roomRenovationType);
-            AdvancedRenovationAppointment renovationAppointment = new AdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType, GenerateId());
+            _renovationValidator.ValidateAdvancedRenovation(renovationAppointment);
             Create(renovationAppointment);
         }
 
@@ -53,7 +50,6 @@ namespace Sims_Hospital_Zdravo.Service
                 FinishAdvancedRenovationAppointment((AdvancedRenovationAppointment)renovationAppointment);
             }
 
-            Console.WriteLine("Calling renovation appointment and deleting renApp");
             _renovationRepository.DeleteById(renovationId);
         }
 
@@ -103,6 +99,11 @@ namespace Sims_Hospital_Zdravo.Service
             return quadrature;
         }
 
+        public List<TimeInterval> GetTakenDateIntervals(List<Room> rooms)
+        {
+            return timeSchedulerService.FindReservedDatesForRooms(rooms);
+        }
+
         public List<TimeInterval> GetTakenDateIntervals(Room room)
         {
             return timeSchedulerService.FindReservedDatesForRoom(room);
@@ -138,7 +139,7 @@ namespace Sims_Hospital_Zdravo.Service
             return _renovationRepository.FindById(renovationId);
         }
 
-        private int GenerateId()
+        public int GenerateId()
         {
             ObservableCollection<RenovationAppointment> appointments = _renovationRepository.ReadAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -43,11 +44,11 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 Room room = (Room)RenovationRooms.SelectedItem;
                 DateTime start = DateTime.Parse(StartDate.Text);
                 DateTime end = DateTime.Parse(EndDate.Text).AddHours(23).AddMinutes(59).AddSeconds(59);
-
                 TimeInterval schedule = new TimeInterval(start, end);
                 string description = Description.Text;
-                RenovationType type = RenovationType.BASIC;
-                renovationController.MakeRenovationAppointment(schedule, room, type, description);
+
+                RenovationAppointment renovationAppointment = new RenovationAppointment(schedule, room, description, RenovationType.BASIC, renovationController.GenerateId());
+                renovationController.MakeRenovationAppointment(renovationAppointment);
                 MessageBox.Show("Successfully made appointment for renovation!");
                 NavigationService.GoBack();
             }

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Manager.Dialogs;
 
 namespace Sims_Hospital_Zdravo.View.Manager
@@ -78,11 +80,14 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             try
             {
+                Validate();
                 RoomRenovationType roomRenovationType = GetRoomRenovationType();
                 TimeInterval time = FormTimeIntervalFromDates();
                 string description = Description.Text;
                 (Room, List<Room>) roomData = GetRoomData();
-                _renovationController.MakeAdvancedRenovationAppointment(time, roomData.Item1, description, roomData.Item2, roomRenovationType);
+                AdvancedRenovationAppointment advancedRenovationAppointment =
+                    new AdvancedRenovationAppointment(time, roomData.Item1, description, roomData.Item2, roomRenovationType, _renovationController.GenerateId());
+                _renovationController.MakeAdvancedRenovationAppointment(advancedRenovationAppointment);
                 NavigationService.GoBack();
             }
             catch (Exception ex)
@@ -93,9 +98,14 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private (Room, List<Room>) GetRoomDataForJoinRenovation()
         {
+            Room room = null;
             List<Room> roomsForJoining = new List<Room>();
             roomsForJoining.AddRange(RenovationRooms.SelectedItems.Cast<Room>().ToArray());
-            Room room = roomsForAdding[0];
+            if (roomsForAdding.Count != 0)
+            {
+                room = roomsForAdding[0];
+            }
+
             return (room, roomsForJoining);
         }
 
@@ -108,7 +118,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private TimeInterval FormTimeIntervalFromDates()
         {
             DateTime start = DateTime.Parse(StartDate.Text);
-            DateTime end = DateTime.Parse(EndDate.Text);
+            DateTime end = DateTime.Parse(EndDate.Text).AddHours(23).AddMinutes(59).AddSeconds(59);
             return new TimeInterval(start, end);
         }
 
@@ -125,6 +135,56 @@ namespace Sims_Hospital_Zdravo.View.Manager
             }
 
             return GetRoomDataForJoinRenovation();
+        }
+
+        private void RenovationRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var roomData = GetRoomData();
+
+            if (_isSplit)
+            {
+                List<TimeInterval> timeIntervals = _renovationController.GetTakenDateIntervals(roomData.Item1);
+                TakenDates.ItemsSource = timeIntervals;
+            }
+            else
+            {
+                List<TimeInterval> timeIntervals = _renovationController.GetTakenDateIntervals(roomData.Item2);
+                TakenDates.ItemsSource = timeIntervals;
+            }
+        }
+
+
+        private void Validate()
+        {
+            ValidateTxtField(Description, "Description");
+            ValidateListBox(RenovationRooms, "Renovation rooms");
+            ValidateListBox(RoomsToBeAdded, "Rooms to be added");
+            ValidateDatePicker(StartDate, "Start Date");
+            ValidateDatePicker(EndDate, "End Date");
+        }
+
+        private void ValidateTxtField(TextBox txt, string name)
+        {
+            if (txt.Text.Equals(""))
+            {
+                throw new Exception("Field " + name + " shouldn't be empty!");
+            }
+        }
+
+        private void ValidateListBox(ListBox list, string name)
+        {
+            if (list.Items.Count == 0)
+            {
+                throw new Exception("There should be at least one room in " + name + "!");
+            }
+        }
+
+        private void ValidateDatePicker(DatePicker datePicker, string name)
+        {
+            if (datePicker.Text.Equals(""))
+            {
+                throw new Exception(name + " should have a value!");
+            }
         }
     }
 

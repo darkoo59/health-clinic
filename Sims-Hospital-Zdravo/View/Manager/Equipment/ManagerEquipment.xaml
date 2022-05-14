@@ -3,20 +3,25 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
       Title="ManagerEquipment" Height="718" Width="924">
     <Page.Resources>
-        <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
-    <Grid>
-
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
-        <Grid Margin="20, 0, 20, 0">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -25,27 +30,33 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox Height="30" x:Name="SearchBox" KeyDown="Search_Click"></TextBox>
+            <xctk:WatermarkTextBox Height="30" x:Name="SearchBox" KeyDown="Search_Click" Watermark="Search..."></xctk:WatermarkTextBox>
             <ComboBox Grid.Column="1" x:Name="RoomPicker" Height="30" Width="120" HorizontalAlignment="Right"
                       SelectionChanged="RoomChanged_Selection">
             </ComboBox>
             <CheckBox Grid.Column="3"
                       IsChecked="{Binding Path=ShowStaticEquipment, Mode=TwoWay}"
                       Checked="ChbValueChanged"
-                      Unchecked="ChbValueChanged">
+                      Unchecked="ChbValueChanged"
+                      FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 Static Equipment
             </CheckBox>
             <CheckBox Grid.Column="4"
                       IsChecked="{Binding Path=ShowConsumableEquipment, Mode=TwoWay}"
                       Checked="ChbValueChanged"
-                      Unchecked="ChbValueChanged">
+                      Unchecked="ChbValueChanged"
+                      FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 Consumable Equipment
             </CheckBox>
-            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right" Click="Transfer_Click">Transfer</Button>
+            <Button Grid.Column="5" Width="100" Height="30"
+                    HorizontalAlignment="Right" Click="Transfer_Click"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
+                Transfer
+            </Button>
         </Grid>
         <DataGrid AutoGenerateColumns="False" SelectionMode="Single" x:Name="EquipmentTable" Grid.Row="1"
                   ColumnWidth="*"
-                  VerticalAlignment="Stretch" Margin="20, 0, 20, 20"
+                  VerticalAlignment="Stretch"
                   CanUserResizeColumns="False"
                   CanUserResizeRows="False">
             <DataGrid.Columns>

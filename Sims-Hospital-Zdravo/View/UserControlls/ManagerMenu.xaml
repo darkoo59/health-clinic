@@ -48,7 +48,7 @@
             </Border>
             <Border x:Name="MedicinesBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
-                    <Image Source="../../Resources/img/image-surveys.ico" Height="30" Width="30"></Image>
+                    <Image Source="../../Resources/img/image-medicines.ico" Height="30" Width="30"></Image>
                     <Button Click="SwitchMenu_Click" Style="{StaticResource SomeButtonStyle}"> Medicines </Button>
                 </StackPanel>
             </Border>

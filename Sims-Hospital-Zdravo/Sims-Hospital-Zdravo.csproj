@@ -583,6 +583,7 @@
     <Resource Include="Resources\img\Secretary\Contact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\img\image-medicines.ico" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
@@ -660,6 +661,9 @@
     <Content Include="Resources\notifications.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Manager\Custom" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

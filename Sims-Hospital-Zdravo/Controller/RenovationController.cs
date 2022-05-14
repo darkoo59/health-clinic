@@ -20,19 +20,38 @@ namespace Sims_Hospital_Zdravo.Controller
             this._renovationService = renovationService;
         }
 
-        public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
+        // public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
+        // {
+        //     _renovationService.MakeRenovationAppointment(time, room, type, description);
+        // }
+        //
+        // public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
+        // {
+        //     _renovationService.MakeAdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType);
+        // }
+        public void MakeRenovationAppointment(RenovationAppointment renovationAppointment)
         {
-            _renovationService.MakeRenovationAppointment(time, room, type, description);
+            _renovationService.MakeRenovationAppointment(renovationAppointment);
         }
 
-        public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
+        public void MakeAdvancedRenovationAppointment(AdvancedRenovationAppointment advancedRenovationAppointment)
         {
-            _renovationService.MakeAdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType);
+            _renovationService.MakeAdvancedRenovationAppointment(advancedRenovationAppointment);
+        }
+
+        public int GenerateId()
+        {
+            return _renovationService.GenerateId();
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)
         {
             return _renovationService.GetTakenDateIntervals(room);
+        }
+
+        public List<TimeInterval> GetTakenDateIntervals(List<Room> rooms)
+        {
+            return _renovationService.GetTakenDateIntervals(rooms);
         }
 
         public void FinishRenovationAppointment(int renovationId)

@@ -115,7 +115,7 @@ namespace Service
 
         public void DeleteAfterExaminationIsDone(DateTime tl, int id, Patient pat)
         {
-            app = timeSchedulerService.findAppointmentByDate(tl, id, pat);
+            app = timeSchedulerService.FindAppointmentByDate(tl, id, pat);
             appointmentRepository.Delete(app);
         }
 
