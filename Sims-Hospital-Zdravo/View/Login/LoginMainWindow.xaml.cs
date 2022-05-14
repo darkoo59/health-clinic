@@ -37,10 +37,16 @@ namespace Sims_Hospital_Zdravo.View.Login
 
         private Window GetWindowByRole(RoleType role)
         {
+            AccountController accountController = app._accountController;
+            String username = txtUsername.Text;
+            String password = txtPassword.Password.ToString();
+            User account = accountController.GetAccountByUsernameAndPassword(username, password);
+            int id = account._Id;
+            //             DoctorMain doctorMain = new DoctorMain(id);
             switch (role)
             {
                 case RoleType.MANAGER: return new ManagerMainWindow();
-                //case RoleType.DOCTOR: return new DoctorMain();
+                case RoleType.DOCTOR: return new DoctorMain(id);
                 case RoleType.PATIENT: return new PatientWindow();
                 case RoleType.SECRETARY: return new SecretaryHome();
                 default: return null;

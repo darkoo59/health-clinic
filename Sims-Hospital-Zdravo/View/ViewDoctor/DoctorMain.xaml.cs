@@ -65,5 +65,31 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             AnamnesisList anamnesisList = new AnamnesisList(anamnesisController,doctorId,docController);
             anamnesisList.Show();
         }
+
+        private void PatientMenuItem_Click(object sender, RoutedEventArgs e)
+
+
+        {
+            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController,FrameForMain);
+            FrameForMain.Content = searchPatient;
+        }
+
+        private void MyAppointmentMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MyAppointmentPage appointmentPage = new MyAppointmentPage(docController, anamnesisController, medicalRecordController, doctorId);
+            FrameForMain.Content = appointmentPage;
+        }
+
+        private void schedule_Appointment_Click(object sender, RoutedEventArgs e)
+        {
+            ScheduleAppointmentSpecialist scheduleAppointmentSpecialist = new ScheduleAppointmentSpecialist(docController);
+            FrameForMain.Content = scheduleAppointmentSpecialist;
+        }
+
+        private void operation_click(object sender, RoutedEventArgs e)
+        {
+            OperationForm operationform = new OperationForm(docController);
+            FrameForMain.Content = operationform;
+        }
     }
 }

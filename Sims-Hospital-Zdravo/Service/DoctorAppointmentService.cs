@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Sims_Hospital_Zdravo.Utils;
+using System.Windows;
+
 namespace Service
 {
     public class DoctorAppointmentService
@@ -36,9 +38,16 @@ namespace Service
         }
         public void Create(Appointment appointment)
         {
-            validator.ValidateAppointment(appointment);
-            appointmentRepository.Create(appointment);
-            
+            try
+            {
+                validator.ValidateAppointment(appointment);
+
+                appointmentRepository.Create(appointment);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
                 
         }
 
@@ -133,9 +142,25 @@ namespace Service
 
         }
         
+        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecaltyType specaltyType)
+        {
+           return  doctorRepo.FindDoctorsBySpecalty(specaltyType);
+        }
 
 
+        public void IfUrgentRescheduleAllAppointment(int doctorID)
+        {
+            //ObservableCollection<>
+        }
 
+        public void UrgentSurgery(Appointment appointment,double duration)
+        {
+            
+            TimeInterval tl = timeSchedulerService.FindIntervalForOperation(appointment,duration);
+            appointment._Time = tl;
+            Create(appointment);
+
+        }
 
     }
 }
