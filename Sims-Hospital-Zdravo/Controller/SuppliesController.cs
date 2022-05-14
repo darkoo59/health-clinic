@@ -42,11 +42,6 @@ namespace Sims_Hospital_Zdravo.Controller
             return _suppliesService.CreateNewEquipment(name);
         }
 
-        public int GenerateEquipmentId()
-        {
-            return _suppliesService.GenerateEquipmentId();
-        }
-
         public int GenerateSuppliesAcquistionId()
         {
             return _suppliesService.GenerateSuppliesAcquistionId();
