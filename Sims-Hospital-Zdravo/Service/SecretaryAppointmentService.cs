@@ -88,9 +88,7 @@ namespace Sims_Hospital_Zdravo.Service
             foreach (Doctor doctor in doctorRepo.ReadAll())
             {
                 if (timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
-                {
                     availableDoctors.Add(doctor);
-                }
             }
             return availableDoctors;
         }
@@ -103,7 +101,7 @@ namespace Sims_Hospital_Zdravo.Service
             Appointment appointment = null;
             foreach (Doctor doctor in doctorRepo.FindDoctorsBySpeciality(type))
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     if (timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
                     {
@@ -120,10 +118,9 @@ namespace Sims_Hospital_Zdravo.Service
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
                             appointment._Id = GenerateId();
                             appointment._Patient._Id = GeneratePatientId();
-                            Create(appointment);
                         }
                     }
-                    interval.Start.AddMinutes(5);
+                    interval.Start.AddMinutes(10);
                 }
                 interval.Start = DateTime.Now.AddMinutes(5);
             }

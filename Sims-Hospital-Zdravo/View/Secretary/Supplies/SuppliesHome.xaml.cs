@@ -143,7 +143,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
                     SuppliesAcquisition suppliesAcquisition =
                         new SuppliesAcquisition(_suppliesController.GenerateSuppliesAcquistionId(), roomEquipments,
                             interval);
-                    _suppliesController.MakeSuppliesAcquisition(suppliesAcquisition);
+                    _suppliesController.Create(suppliesAcquisition);
                     MessageBox.Show("Successfully made supplies acquisition!");
                 }
                 catch (Exception ex)

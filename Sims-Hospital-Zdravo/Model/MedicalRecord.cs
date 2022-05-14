@@ -22,7 +22,6 @@ namespace Model
         private int Id;
         private Patient Patient;
 
-        private List<String> Allergens;
         private ObservableCollection<Prescription> prescriptions;
         private ObservableCollection<Anamnesis> anamnesis;
 
