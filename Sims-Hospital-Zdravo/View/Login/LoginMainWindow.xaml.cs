@@ -47,7 +47,7 @@ namespace Sims_Hospital_Zdravo.View.Login
             {
                 case RoleType.MANAGER: return new ManagerMainWindow();
                 case RoleType.DOCTOR: return new DoctorMain(id);
-                case RoleType.PATIENT: return new PatientWindow();
+                //case RoleType.PATIENT: return new PatientWindow();
                 // case RoleType.DOCTOR: return new DoctorMain();
                 case RoleType.PATIENT: return new PatientDashboard();
                 case RoleType.SECRETARY: return new SecretaryHome();

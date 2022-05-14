@@ -66,9 +66,9 @@ namespace Repository
             return null;
         }
 
-        public List<Doctor> FindDoctorsBySpeciality(SpecialtyType type)
+       
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecaltyType specalty)
+        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
         {
             
             ObservableCollection<Doctor> doctorss = new ObservableCollection<Doctor>();
@@ -86,7 +86,7 @@ namespace Repository
             
 
         }
-        public ref ObservableCollection<Doctor> ReadAll()
+        public List<Doctor> FindDoctorsBySpeciality(SpecialtyType type)
         {
             List<Doctor> docs = new List<Doctor>();
             foreach (Doctor doc in doctors)

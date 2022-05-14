@@ -306,13 +306,31 @@
     </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
     <Compile Include="View\ViewDoctor\MedicalReport.xaml.cs" />
+    <Compile Include="View\ViewDoctor\MyAppointmentPage.xaml.cs">
+      <DependentUpon>MyAppointmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\MyAppointments.xaml.cs" />
+    <Compile Include="View\ViewDoctor\OperationForm.xaml.cs">
+      <DependentUpon>OperationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs" />
+    <Compile Include="View\ViewDoctor\PatientMedicalRecordPage.xaml.cs">
+      <DependentUpon>PatientMedicalRecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\PatientTabs.xaml.cs">
+      <DependentUpon>PatientTabs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\PrescriptionList.xaml.cs">
       <DependentUpon>PrescriptionList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\PrescriptionWindow.xaml.cs">
       <DependentUpon>PrescriptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\ScheduleAppointmentSpecialist.xaml.cs">
+      <DependentUpon>ScheduleAppointmentSpecialist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\SearchPatient.xaml.cs">
+      <DependentUpon>SearchPatient.xaml</DependentUpon>
     </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
@@ -466,13 +484,37 @@
     </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
+    <Page Include="View\ViewDoctor\MyAppointmentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewDoctor\MyAppointments.xaml" />
+    <Page Include="View\ViewDoctor\OperationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml" />
+    <Page Include="View\ViewDoctor\PatientMedicalRecordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\PatientTabs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewDoctor\PrescriptionList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ViewDoctor\PrescriptionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\ScheduleAppointmentSpecialist.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\SearchPatient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

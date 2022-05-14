@@ -144,7 +144,7 @@ namespace Service
             return app;
         }
         
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecaltyType specaltyType)
+        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
            return  doctorRepo.FindDoctorsBySpecalty(specaltyType);
         }

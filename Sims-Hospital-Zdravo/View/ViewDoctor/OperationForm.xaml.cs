@@ -36,7 +36,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.app = App.Current as App;
             this.roomController = app._roomController;
             this.patientController = app._appointmentPatientController;
-            SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecaltyType)).Cast<SpecaltyType>();
+            SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
             
 
         }
@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         ObservableCollection<Doctor> FillDoctorComboBox()
         {
             if (SpecilatyComboBox.SelectedValue != null)
-                return doctorAppointmentController.FindDoctorsBySpecalty((SpecaltyType)SpecilatyComboBox.SelectedValue);
+                return doctorAppointmentController.FindDoctorsBySpecalty((SpecialtyType)SpecilatyComboBox.SelectedValue);
             else
                 throw new Exception("You must choose sepcilaty first");
         }

@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 startTime = startTime.AddMinutes(30);
             }
             SpecialistAppointmentTimeComboBox.ItemsSource = time_list;
-           SpecialistComboBox.ItemsSource = Enum.GetValues(typeof(SpecaltyType)).Cast<SpecaltyType>();
+           SpecialistComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
             
 
 
@@ -67,7 +67,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         ObservableCollection<Doctor> FillDoctorComboBox()
         {
             if (SpecialistComboBox.SelectedValue != null)
-                return doctorAppointmentController.FindDoctorsBySpecalty((SpecaltyType)SpecialistComboBox.SelectedValue);
+                return doctorAppointmentController.FindDoctorsBySpecalty((SpecialtyType)SpecialistComboBox.SelectedValue);
             else
                 throw new Exception("You must choose sepcilaty first");
         }
