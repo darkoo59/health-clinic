@@ -80,9 +80,14 @@ namespace Controller
             return medicalRecordService.GenreatePatientId();
         }
 
-        public List<String> ReadAllAllergens()
+        public List<String> ReadAllCommonAllergens()
         {
-            return medicalRecordService.ReadAllAllergens();
+            return medicalRecordService.ReadAllCommonAllergens();
+        }
+
+        public List<String> ReadAllMedicalAllergens()
+        {
+            return medicalRecordService.ReadAllMedicalAllergens();
         }
 
         public ObservableCollection<Prescription> ReadAllPrescriptions()

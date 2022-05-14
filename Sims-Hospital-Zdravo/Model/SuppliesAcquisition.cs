@@ -12,14 +12,14 @@ namespace Sims_Hospital_Zdravo.Model
         private int _id;
         private List<RoomEquipment> _roomEquipments;
         private TimeInterval _time;
-        private Boolean _acquistionFlag;
+        private Boolean _acquistionDone;
 
         public SuppliesAcquisition(int id, List<RoomEquipment> equipments,TimeInterval time)
         {
             this._time = time;
             this._roomEquipments = equipments;
             this._id = id;
-            this._acquistionFlag = true;
+            this._acquistionDone = false;
         }
 
 
@@ -30,11 +30,11 @@ namespace Sims_Hospital_Zdravo.Model
             set { _id = value; }
         }
 
-        public Boolean AcquistionFlag
+        public Boolean AcquistionDone
         {
-            get { return _acquistionFlag; }
+            get { return _acquistionDone; }
 
-            set { _acquistionFlag = value;  }
+            set { _acquistionDone = value;  }
         }
 
         public TimeInterval Time

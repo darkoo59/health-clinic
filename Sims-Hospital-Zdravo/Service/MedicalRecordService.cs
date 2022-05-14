@@ -79,9 +79,15 @@ namespace Service
             return medicalRecordRepository.FindPatientById(id);
         }
 
-        public List<String> ReadAllAllergens()
+        public List<String> ReadAllCommonAllergens()
         {
-            return allergensRepository.ReadAll();
+            return allergensRepository.ReadAllCommonAllergens();
+        }
+
+
+        public List<String> ReadAllMedicalAllergens()
+        {
+            return allergensRepository.ReadAllMedicalAllergens();
         }
 
         public int GenerateId()

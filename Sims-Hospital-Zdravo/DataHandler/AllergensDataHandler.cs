@@ -10,14 +10,14 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class AllergensDataHandler
     {
-        public List<String> ReadAll()
+        public Allergens ReadAll()
         {
             string allergensSerialized = System.IO.File.ReadAllText(Path);
-            List<String> allergens = Newtonsoft.Json.JsonConvert.DeserializeObject<List<String>>(allergensSerialized);
+            Allergens allergens = Newtonsoft.Json.JsonConvert.DeserializeObject<Allergens>(allergensSerialized);
             return allergens;
         }
 
-        public void Write(List<String> allergens)
+        public void Write(Allergens allergens)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(allergens);
             System.IO.File.WriteAllText(Path, serialized);

@@ -56,11 +56,6 @@ namespace Sims_Hospital_Zdravo.Controller
             return secretaryAppointmenService.FindAvailablePatientsForInterval(startEndTime);
         }
 
-        public List<Doctor> FindAvailableDoctorsForSpeciality(SpecialtyType type)
-        {
-            return secretaryAppointmenService.FindAvailableDoctorsForSpeciality(type);
-        }
-
         public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type)
         {
             return secretaryAppointmenService.FindAndScheduleEmergencyAppointmentIfCan(patient,type);

@@ -42,9 +42,9 @@
         <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="163,257,0,0" VerticalAlignment="Top"
                   Width="120" Text="{Binding _MaritalStatus, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
         <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85" />
-        <Button Content="Update" HorizontalAlignment="Left" Margin="130,470,0,10" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
-        <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="88" Margin="63,314,0,0"
-                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">\
+        <Button Content="Update" HorizontalAlignment="Left" Margin="130,475,0,5" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
+        <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="55" Margin="63,314,0,0"
+                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -61,7 +61,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="88" Margin="218,314,0,0"
+        <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="55" Margin="218,314,0,0"
                  VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -83,8 +83,50 @@
                RenderTransformOrigin="0.513,-0.135" Width="106" Style="{StaticResource label_style}"/>
         <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="218,288,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.513,-0.135" Width="93" Style="{StaticResource label_style}"/>
-        <Image x:Name="ImageToLeft" Source="../../../Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="30" Margin="177,314,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
-        <Image x:Name="ImageToRight" Source="../../../Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="30" Margin="177,372,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToLeftCommon" Source="../../../Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="20" Margin="177,314,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToRightCommon" Source="../../../Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="20" Margin="177,349,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+
+        <ListBox Name="ListPatientMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="63,415,0,0" VerticalAlignment="Top" Width="100" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox Name="ListOtherMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="218,415,0,0" VerticalAlignment="Top" Width="100" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <Label Content="Patient medical&#xD;&#xA;allergens:" HorizontalAlignment="Left" Margin="63,369,0,0" VerticalAlignment="Top"
+            RenderTransformOrigin="0.513,-0.135" Width="100" Style="{StaticResource label_style}" Height="46"/>
+        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="218,384,0,0" VerticalAlignment="Top"
+            RenderTransformOrigin="0.513,-0.135" Width="93" Style="{StaticResource label_style}"/>
+        <Image x:Name="ImageToLeftMedical" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="20" Margin="177,415,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToRightMedical" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="20" Margin="177,450,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
+
 
         <!-- //Menu bar panel // -->
         <Grid x:Name="MenuBarPanel" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
@@ -427,7 +469,5 @@
 
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-
-
     </Grid>
 </Window>

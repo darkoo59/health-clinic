@@ -81,11 +81,9 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 if (comboSpeciality.SelectedItem != null)
                 {
                     Appointment appointment = app._secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient, (SpecialtyType)comboSpeciality.SelectedItem);
-                    if (appointment != null)
-                    {
-                        appointment._Type = AppointmentType.URGENCY;
                         if (appointment != null)
                         {
+                            appointment._Type = AppointmentType.URGENCY;
                             app._secretaryAppointmentController.Create(appointment);
                             MessageBox.Show("Emergency appointment successfully scheduled");
                             this.Close();
@@ -97,11 +95,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                             window.Show();
                             this.Close();
                         }
-                    }else
-                    {
-                        MessageBox.Show("There isn't available doctors and appointments to reschedule. Probably there is another" +
-                            " emergency appointment right now!", "Can't schedule emergency appointment!");
-                    }
                 }
                 else
                     MessageBox.Show("Speciality isn't selected", "Please select speciality");

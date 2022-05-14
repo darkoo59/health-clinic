@@ -101,12 +101,11 @@ namespace Sims_Hospital_Zdravo.Utils
                 new ObservableCollection<SuppliesAcquisition>(_suppliesController.ReadAllSuppliesAcquisitions());
             foreach (SuppliesAcquisition acquisition in suppliesAcquisitions)
             {
-                if (acquisition.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0 && acquisition.Time.End.TimeOfDay.CompareTo(DateTime.Now.TimeOfDay) <= 0 && acquisition.AcquistionFlag == true)
+                if (acquisition.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0 && acquisition.Time.End.TimeOfDay.CompareTo(DateTime.Now.TimeOfDay) <= 0 && acquisition.AcquistionDone == false)
                 {
-                    acquisition.AcquistionFlag = false;
+                    acquisition.AcquistionDone = true;
                     _suppliesController.Update(acquisition);
                     _suppliesController.FinishSuppliesAcquisition(acquisition.Id);
-                    Notify(new Notification("Supplies are delivered to hospital", _notificationController.GenerateId()));
                 }
             }
         }

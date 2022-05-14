@@ -45,13 +45,18 @@ namespace Sims_Hospital_Zdravo
                 ListPatientAllergens.Items.Add(str);
             }
 
+            foreach (String str in medicalRecord._PatientAllergens._MedicalAllergens)
+            {
+                ListPatientMedicalAllergens.Items.Add(str);
+            }
+
             TxtName.Text = patient._Name;
             TxtSurname.Text = patient._Surname;
             TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
             TxtEmail.Text = patient._Email;
             TxtJmbg.Text = patient._Jmbg;
             TxtPhone.Text = patient._PhoneNumber;
-            foreach (String str in medicalController.ReadAllAllergens())
+            foreach (String str in medicalController.ReadAllCommonAllergens())
             {
                 if (!medicalRecord._PatientAllergens._Allergens.Contains(str))
                 {
@@ -59,16 +64,34 @@ namespace Sims_Hospital_Zdravo
                 }
             }
 
+            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            {
+                if (!medicalRecord._PatientAllergens._MedicalAllergens.Contains(str))
+                {
+                    ListOtherMedicalAllergens.Items.Add(str);
+                }
+            }
+
             //Images listeners
 
-            ImageToLeft.MouseLeftButtonDown += (s, e) =>
+            ImageToLeftCommon.MouseLeftButtonDown += (s, e) =>
             {
-                imageToLeftFunctionality();
+                imageToLeftCommonFunctionality();
             };
 
-            ImageToRight.MouseLeftButtonDown += (s, e) =>
+            ImageToRightCommon.MouseLeftButtonDown += (s, e) =>
             {
-                ImageToRightFunctionality();
+                ImageToRightCommonFunctionality();
+            };
+
+            ImageToLeftMedical.MouseLeftButtonDown += (s, e) =>
+            {
+                imageToLeftMedicalFunctionality();
+            };
+
+            ImageToRightMedical.MouseLeftButtonDown += (s, e) =>
+            {
+                ImageToRightMedicalFunctionality();
             };
         }
 
@@ -78,13 +101,19 @@ namespace Sims_Hospital_Zdravo
             {
                 Patient patientUpdated = new Patient(patient._Id, TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergens = new List<String>();
+                List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
                 {
                     allergens.Add(str);
                 }
+                foreach (String str in ListPatientMedicalAllergens.Items)
+                {
+                    medicalAllergens.Add(str);
+                }
 
                 Allergens updatedAllergens = new Allergens();
                 updatedAllergens._Allergens = allergens;
+                updatedAllergens._MedicalAllergens = medicalAllergens;
                 MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
@@ -96,7 +125,7 @@ namespace Sims_Hospital_Zdravo
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void imageToLeftCommonFunctionality()
         {
             foreach (String str in ListOtherAllergens.SelectedItems)
             {
@@ -104,29 +133,14 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListOtherAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllAllergens())
+            foreach (String str in medicalController.ReadAllCommonAllergens())
             {
                 if (!ListPatientAllergens.Items.Contains(str))
                     ListOtherAllergens.Items.Add(str);
             }
         }
 
-        private void imageToLeftFunctionality()
-        {
-            foreach (String str in ListOtherAllergens.SelectedItems)
-            {
-                ListPatientAllergens.Items.Add(str);
-            }
-
-            ListOtherAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllAllergens())
-            {
-                if (!ListPatientAllergens.Items.Contains(str))
-                    ListOtherAllergens.Items.Add(str);
-            }
-        }
-
-        private void ImageToRightFunctionality()
+        private void ImageToRightCommonFunctionality()
         {
             foreach (String str in ListPatientAllergens.SelectedItems)
             {
@@ -134,10 +148,40 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListPatientAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllAllergens())
+            foreach (String str in medicalController.ReadAllCommonAllergens())
             {
                 if (!ListOtherAllergens.Items.Contains(str))
                     ListPatientAllergens.Items.Add(str);
+            }
+        }
+
+        private void imageToLeftMedicalFunctionality()
+        {
+            foreach (String str in ListOtherMedicalAllergens.SelectedItems)
+            {
+                ListPatientMedicalAllergens.Items.Add(str);
+            }
+
+            ListOtherMedicalAllergens.Items.Clear();
+            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            {
+                if (!ListPatientMedicalAllergens.Items.Contains(str))
+                    ListOtherMedicalAllergens.Items.Add(str);
+            }
+        }
+
+        private void ImageToRightMedicalFunctionality()
+        {
+            foreach (String str in ListPatientMedicalAllergens.SelectedItems)
+            {
+                ListOtherMedicalAllergens.Items.Add(str);
+            }
+
+            ListPatientMedicalAllergens.Items.Clear();
+            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            {
+                if (!ListOtherMedicalAllergens.Items.Contains(str))
+                    ListPatientMedicalAllergens.Items.Add(str);
             }
         }
 
