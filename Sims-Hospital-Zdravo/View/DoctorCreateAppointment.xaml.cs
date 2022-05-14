@@ -105,9 +105,12 @@ namespace Sims_Hospital_Zdravo.View
                 ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
 
 
-
-            string start = cbItem.Content.ToString();
-            string end = cbItemEnd.Content.ToString();
+                string appointmentTime = comboTimeAppointment.SelectedItem.ToString();
+            string[] array = appointmentTime.Split('-');
+            string start = array[0];
+            string end = array[1];
+            //string start = cbItem.Content.ToString();
+            //string end = cbItemEnd.Content.ToString();
             string d = DatePick.Text;
             var dt_start = DateTime.Parse(d + " " + start);
             var dt_end = DateTime.Parse(d + " " + end);

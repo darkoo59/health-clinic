@@ -82,5 +82,16 @@ namespace Controller
         {
             doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
         }
+
+        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecaltyType specaltyType)
+        {
+            return doctorAppointmentService.FindDoctorsBySpecalty(specaltyType);
+        }
+
+        public void UrgentSurgery(Appointment appointment,double duration)
+        {
+            doctorAppointmentService.UrgentSurgery(appointment,duration);
+        }
+
     }
 }

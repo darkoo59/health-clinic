@@ -65,10 +65,13 @@ namespace Repository
 
         public Room FindById(int id)
         {
+            Console.WriteLine("da li dodje dovde");
             foreach (Room room in _rooms)
             {
+                Console.WriteLine(room.Id+ "nestoooooooooo"+room.Floor);
                 if (id == room.Id)
                 {
+                    Console.WriteLine("lalalaal usao u funkciju");
                     return room;
                 }
             }

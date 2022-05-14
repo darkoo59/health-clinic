@@ -1,0 +1,27 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.PatientTabs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+      mc:Ignorable="d" 
+      Height="768" Width="800"
+      Title="PatientTabs">
+
+    <Grid>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="PatientInfo" Name="PatientInfoTab">
+                
+            </TabItem>
+            <TabItem Header="Labaratory results" Name="LabResultsTab">
+                
+            </TabItem>
+            <TabItem Header="Medical history" Name="MedicalHistoryTab">
+                
+            </TabItem>
+            <TabItem Header="Therapy" Name="TherapyTab">
+                
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

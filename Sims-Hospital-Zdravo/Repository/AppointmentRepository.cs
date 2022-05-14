@@ -180,6 +180,18 @@ namespace Repository
             return apps;
         }
 
+        public List<TimeInterval> getTimeIntervalsForDoctor(Doctor doctor)
+        {
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+            ObservableCollection<Appointment> appointments = FindByDoctorId(doctor._Id);
+            foreach(Appointment app in appointments)
+            {
+                timeIntervals.Add(app._Time);
+
+            }
+            return timeIntervals;
+        }
+        
         public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();

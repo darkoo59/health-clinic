@@ -5,26 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Controller;
-
-using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Model;
 using Sims_Hospital_Zdravo.Controller;
+using System.Collections.ObjectModel;
+using Model;
 using Controller;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
-    /// Interaction logic for MyAppointments.xaml
+    /// Interaction logic for MyAppointmentPage.xaml
     /// </summary>
-    public partial class MyAppointments : Window
+    public partial class MyAppointmentPage : Page
     {
+
         public DoctorAppointmentController docController;
         public MedicalRecordController medicalRecordController;
         private PatientMedicalRecordController PatientMedicalRecordController;
@@ -33,26 +33,27 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private int doctorId;
         private DateTime AppointmentDate;
         private AnamnesisController anamnesisController;
-        
-        public MyAppointments(DoctorAppointmentController doctorAppointmentController,AnamnesisController anamnesisController,MedicalRecordController medicalRecordController,int id )
+        public MyAppointmentPage(DoctorAppointmentController doctorAppointmentController, AnamnesisController anamnesisController, MedicalRecordController medicalRecordController, int id)
         {
-            app = App.Current as App;
-            
             InitializeComponent();
-           // this.DataContext = this;
-            this.doctorId = id;
-            
-           this.medicalRecordController = medicalRecordController;
-            this.PatientMedicalRecordController = app._patientMedRecController;
-            this.docController =doctorAppointmentController;
 
-            this.appointmentsScheduled = docController.GetByDoctorID(2);
+            app = App.Current as App;
+
+            
+            // this.DataContext = this;
+            this.doctorId = id;
+
+            this.medicalRecordController = medicalRecordController;
+            this.PatientMedicalRecordController = app._patientMedRecController;
+            this.docController = doctorAppointmentController;
+
+            this.appointmentsScheduled = docController.GetByDoctorID(id);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
             this.anamnesisController = anamnesisController;
             DoctorAppointments.AutoGenerateColumns = false;
             //Button btnmedical = new Button();
-           
-             DataGridTextColumn data_column = new DataGridTextColumn();
+
+            DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Start Time";
             data_column.Binding = new Binding("_Time.Start");
             DoctorAppointments.Columns.Add(data_column);
@@ -82,7 +83,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             data_column = new DataGridTextColumn();
             data_column.Header = " Medical records";
             DoctorAppointments.Columns.Add(data_column);
-            
+
 
         }
 
@@ -96,7 +97,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 Patient patient = appointment._Patient;
                 MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
                 PatientMedicalRecord medRed = new PatientMedicalRecord(medicalRecordController, docController, anamnesisController, appointment, record, doctorId);
-               // medRed.Show();
+                //medRed.Show();
             }
             else
             {
@@ -113,21 +114,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 AppointmentDate = AppointmentShow.SelectedDate.Value;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Chose date");
             }
 
-        
-                this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
-                this.DoctorAppointments.ItemsSource = appointmentsScheduled;
-            
-            
-               
-            
+
+            this.appointmentsScheduled = docController.FilterAppointmentsByDate(AppointmentDate);
+            this.DoctorAppointments.ItemsSource = appointmentsScheduled;
+
+
+
+
 
         }
 
-        
     }
-}
+ }
+
