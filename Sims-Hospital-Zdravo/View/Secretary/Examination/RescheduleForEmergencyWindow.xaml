@@ -12,7 +12,15 @@
     </Window.Resources>
     <Grid>
 
-        <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10,45" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}"/>
+        <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10.4,89.4" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}"/>
+        <Label Content="Choose appointment to reschedule :" HorizontalAlignment="Left" Margin="45,29,0,0" VerticalAlignment="Top" Height="42" Width="305" FontSize="18" Style="{StaticResource label_style}"/>
+        <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,438,44,0" MouseLeftButtonDown="btnSubmit_Click">
+            <Image.ToolTip>
+                <ToolTip x:Name="tt_next"
+                    Content="Next"
+                    Style="{StaticResource tt_medicalRecord_style}"/>
+            </Image.ToolTip>
+        </Image>
         <!-- //Menu bar panel // -->
         <Grid x:Name="MenuBarPanel" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
             <StackPanel x:Name="StackPanel">
@@ -208,7 +216,7 @@
                     </ListViewItem>
 
                     <!-- Equipment Acquisition -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="Equipment_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Equipment.png"
@@ -248,7 +256,7 @@
                     </ListViewItem>
 
                     <!-- Medical records -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="MedicalRecord_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/MedicalRecords.png"
@@ -354,7 +362,6 @@
 
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        <Label Content="Choose appointment to reschedule :" HorizontalAlignment="Left" Margin="45,29,0,0" VerticalAlignment="Top" Height="42" Width="305" FontSize="18" Style="{StaticResource label_style}"/>
 
 
     </Grid>

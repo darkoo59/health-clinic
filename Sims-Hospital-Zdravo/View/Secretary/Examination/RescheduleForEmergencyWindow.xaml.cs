@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 {
@@ -66,8 +68,37 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 tt_sign_out.Visibility = Visibility.Visible;
             }
         }
-        
-        private void UpdateGridView()
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            if (ContentGrid.SelectedItem != null)
+            {
+                try
+                {
+                    EmergencyReschedule emergencyReschedule = (EmergencyReschedule)ContentGrid.SelectedValue;
+                    Appointment rescheduleAppointment = emergencyReschedule.Appointment;
+                    rescheduleAppointment._Time.Start = emergencyReschedule.RescheduledDate.Start;
+                    rescheduleAppointment._Time.End = emergencyReschedule.RescheduledDate.End;
+                    app._secretaryAppointmentController.Update(rescheduleAppointment);
+                    Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment._Room,
+                        emergencyReschedule.Appointment._Doctor, patient, emergencyReschedule.Appointment._Time,
+                        AppointmentType.URGENCY);
+                    app._secretaryAppointmentController.Create(emergencyAppointment);
+                    MessageBox.Show("Emergency appointment successfully created!", "Appointment created", MessageBoxButton.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select appointment to reschedule!", "Select appointment", MessageBoxButton.OK);
+            }
+        }
+
+            private void UpdateGridView()
         {
             ContentGrid.AutoGenerateColumns = false;
             ContentGrid.CanUserSortColumns = false;
@@ -109,6 +140,20 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
             ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
+        }
+        
+        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            window.Show();
+            this.Close();
+        }
+        
+        private void Equipment_Click(object sender, MouseButtonEventArgs e)
+        {
+            SuppliesHome window = new SuppliesHome();
             window.Show();
             this.Close();
         }

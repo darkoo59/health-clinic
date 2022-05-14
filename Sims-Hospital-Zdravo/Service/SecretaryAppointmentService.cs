@@ -41,6 +41,7 @@ namespace Sims_Hospital_Zdravo.Service
         public void Create(Appointment appointment)
         {
             validator.ValidateCreate(appointment);
+            appointment._Id = GenerateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -95,7 +96,7 @@ namespace Sims_Hospital_Zdravo.Service
         }
 
         public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type) //TODO
-        {//timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval)
+        {
             TimeInterval interval = new TimeInterval(DateTime.Now.AddMinutes(5), DateTime.Now.AddHours(1));
             int counter = 0;
             DateTime minStart = new DateTime();
@@ -118,6 +119,8 @@ namespace Sims_Hospital_Zdravo.Service
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
                             appointment._Id = GenerateId();
+                            appointment._Patient._Id = GeneratePatientId();
+                            Create(appointment);
                         }
                     }
                     interval.Start.AddMinutes(5);
@@ -167,7 +170,7 @@ namespace Sims_Hospital_Zdravo.Service
             while (true)
             {
                 if (timeSchedulerService.IsDoctorFreeInInterval(appointment._Doctor._Id,
-                        interval))
+                        interval) && timeSchedulerService.IsPatientFreeInInterval(appointment._Patient._Id,interval))
                 {
                     return interval;
                 }
@@ -183,9 +186,12 @@ namespace Sims_Hospital_Zdravo.Service
             List<EmergencyReschedule> appointmentsAndRescheduleDate = new List<EmergencyReschedule>();
             foreach(Appointment app in appointmentsToReschedule)
             {
-                TimeInterval rescheduleTo = FindFirstDateToReschedule(app);
-                EmergencyReschedule rescheduledAppointment = new EmergencyReschedule(app, rescheduleTo);
-                appointmentsAndRescheduleDate.Add(rescheduledAppointment);
+                if (app._Type != AppointmentType.URGENCY)
+                {
+                    TimeInterval rescheduleTo = FindFirstDateToReschedule(app);
+                    EmergencyReschedule rescheduledAppointment = new EmergencyReschedule(app, rescheduleTo);
+                    appointmentsAndRescheduleDate.Add(rescheduledAppointment);
+                }
             }
 
             appointmentsAndRescheduleDate.Sort((x,y) => x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));

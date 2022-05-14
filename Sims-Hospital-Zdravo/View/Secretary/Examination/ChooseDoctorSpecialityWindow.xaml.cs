@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 {
@@ -80,18 +81,26 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 if (comboSpeciality.SelectedItem != null)
                 {
                     Appointment appointment = app._secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient, (SpecialtyType)comboSpeciality.SelectedItem);
-                    if(appointment != null)
+                    if (appointment != null)
                     {
-                        app._secretaryAppointmentController.Create(appointment);
-                        MessageBox.Show("Emergency appointment successfully scheduled");
-                        this.Close();
-                    }
-                    else
+                        appointment._Type = AppointmentType.URGENCY;
+                        if (appointment != null)
+                        {
+                            app._secretaryAppointmentController.Create(appointment);
+                            MessageBox.Show("Emergency appointment successfully scheduled");
+                            this.Close();
+                        }
+                        else
+                        {
+                            RescheduleForEmergencyWindow window =
+                                new RescheduleForEmergencyWindow(patient, (SpecialtyType)comboSpeciality.SelectedItem);
+                            window.Show();
+                            this.Close();
+                        }
+                    }else
                     {
-                        RescheduleForEmergencyWindow window =
-                            new RescheduleForEmergencyWindow(patient, (SpecialtyType)comboSpeciality.SelectedItem);
-                        window.Show();
-                        this.Close();
+                        MessageBox.Show("There isn't available doctors and appointments to reschedule. Probably there is another" +
+                            " emergency appointment right now!", "Can't schedule emergency appointment!");
                     }
                 }
                 else
@@ -109,10 +118,24 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             window.Show();
             this.Close();
         }
+        
+        private void Appointment_Click(object sender, MouseButtonEventArgs e)
+        {
+            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
+        }
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
             SecretaryWindow window = new SecretaryWindow(app._recordController);
+            window.Show();
+            this.Close();
+        }
+        
+        private void Equipment_Click(object sender, MouseButtonEventArgs e)
+        {
+            SuppliesHome window = new SuppliesHome();
             window.Show();
             this.Close();
         }
