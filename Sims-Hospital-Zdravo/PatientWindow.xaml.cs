@@ -25,11 +25,11 @@ namespace Sims_Hospital_Zdravo
     {
         AppointmentPatientController appointmentPatientController;
         App app;
-        Frame patient;
-        public PatientWindow(Frame patient)
+        Frame frame;
+        public PatientWindow(Frame frame)
         {
             app = Application.Current as App;
-            this.patient = patient; 
+            this.frame = frame; 
             InitializeComponent();
             app._taskScheduleTimer.AddObserver(this);
             this.appointmentPatientController = app._appointmentPatientController;
@@ -68,24 +68,38 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            patient.Content = new PatientCreate(appointmentPatientController);
+            frame.Content = new PatientCreate(frame);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment)McDataGrid.SelectedValue;
-            patient.Content = new PatientUpdate(appointmentPatientController, appointment) { DataContext = McDataGrid.SelectedItem };
+            frame.Content = new PatientUpdate(frame, appointment) { DataContext = McDataGrid.SelectedItem };
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
-            //if (dialogResult == MessageBoxResult.Yes)
-            //{
-            appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
-            //}
+            if (CheckIfPatientNotBlocked())
+            {
+                appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
+                app._accountController.GetLoggedAccount().Cancels.Add(DateTime.Now);
+            }
         }
-
+        private bool CheckIfPatientNotBlocked()
+        {
+            List<DateTime> cancels = app._accountController.GetLoggedAccount().Cancels;
+            if(cancels.Count > 4)
+            {
+                DateTime last = cancels.Last();
+                DateTime first = cancels.ElementAt(cancels.Count - 5);
+                if (last.DayOfYear - first.DayOfYear < 30)
+                {
+                    app._accountController.GetLoggedAccount().Blocked = true;
+                    return false;
+                }
+            }
+            return true;
+        }
         public void Notify(Notification notification)
         {
             if (typeof(MedicineApprovalNotification).IsInstanceOfType(notification)) return;

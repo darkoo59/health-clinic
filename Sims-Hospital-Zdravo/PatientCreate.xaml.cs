@@ -29,12 +29,15 @@ namespace Sims_Hospital_Zdravo
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
         string pattern = @"\d?\d:\d\d";
-
-        public PatientCreate(AppointmentPatientController appointmentPatientController)
+        private Frame frame;
+        App app;
+        public PatientCreate(Frame frame)
         {
+            this.frame = frame;
+            app = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.appointmentPatientController = appointmentPatientController;
+            this.appointmentPatientController = app._appointmentPatientController;
             doctors = new ObservableCollection<string>();
             doctorordate = new ObservableCollection<string>();
             doctorordate.Add("Doctor");
@@ -78,7 +81,8 @@ namespace Sims_Hospital_Zdravo
                     string[] time = Time.Text.Split(':');
                     dateTime = dateTime.AddHours(Int32.Parse(time[0]));
                     dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
-                }else
+                }
+                else
                 {
                     throw new Exception("Time format must be HH:mm (10:00)");                
                 }
@@ -92,9 +96,7 @@ namespace Sims_Hospital_Zdravo
                 Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
                 string priority = DateOrDoctors.SelectedItem.ToString();
                 appointmentPatientController.ValidateAppointment(appointment);
-                AppointmentList al = new AppointmentList(appointmentPatientController, appointment, priority);
-                //al.Show();
-                //Close();
+                frame.Content = new AppointmentList(frame, appointment, priority);
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

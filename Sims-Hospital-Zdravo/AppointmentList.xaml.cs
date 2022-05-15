@@ -22,16 +22,19 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class AppointmentList : Page
     {
+        App app;
         public AppointmentPatientController appointmentPatientController;
         public Appointment appointment;
         public ObservableCollection<Appointment> appointments;
         public ObservableCollection<Doctor> doctors;
-
+        private Frame frame;
         public string priority;
-        public AppointmentList(AppointmentPatientController appointmentPatientController, Appointment appointment, string priority)
+        public AppointmentList(Frame frame, Appointment appointment, string priority)
         {
+            this.frame = frame;
             InitializeComponent();
-            this.appointmentPatientController = appointmentPatientController;
+            app = Application.Current as App;
+            this.appointmentPatientController = app._appointmentPatientController;
             this.appointment = appointment;
             this.priority = priority;
             this.DataContext = this;
@@ -71,12 +74,12 @@ namespace Sims_Hospital_Zdravo
         {
             appointment = (Appointment) Apps.SelectedItem;
             appointmentPatientController.Create(appointment);
-            //Close();
+            frame.Content = new PatientWindow(frame);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //Close();
+            frame.Content = new PatientCreate(frame);
         }
     }
 }

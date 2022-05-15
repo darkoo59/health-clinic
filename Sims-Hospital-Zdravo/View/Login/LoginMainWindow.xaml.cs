@@ -56,7 +56,6 @@ namespace Sims_Hospital_Zdravo.View.Login
             String username = txtUsername.Text;
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
-			
             /*if (account != null)
             {
                 switch (account._Role)
@@ -93,8 +92,11 @@ namespace Sims_Hospital_Zdravo.View.Login
                 MessageBox.Show(" Incorrect Username/Password. Login Denied ", " Error! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }*/
             Window window = GetWindowByRole(account._Role);
-            accountController.AddLoggedAccount(username, password);
-            window.Show();
+            if (account._Role!=RoleType.PATIENT || account.Blocked == false)
+            {
+                accountController.AddLoggedAccount(username, password);
+                window.Show();
+            }
             Close();
             // if (account != null)
             // {

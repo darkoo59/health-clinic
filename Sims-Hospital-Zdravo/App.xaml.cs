@@ -36,6 +36,7 @@ namespace Sims_Hospital_Zdravo
         internal TaskScheduleTimer _taskScheduleTimer;
         internal MedicineController _medicineController;
         internal NotificationController _notificationController;
+        internal SurveyController _surveyController;
 
         public App()
         {
@@ -123,6 +124,13 @@ namespace Sims_Hospital_Zdravo
             AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
+
+            DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
+            HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
+            DoctorSurveyRepository doctorSurveyRepository = new DoctorSurveyRepository(doctorSurveyDataHandler);
+            HospitalSurveyRepository hospitalSurveyRepository = new HospitalSurveyRepository(hospitalSurveyDataHandler);
+            SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository);
+            _surveyController = new SurveyController(surveyService);
 
             SecretaryAppointmentService secretaryAppointmentService =
                 new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, roomRepository, doctorRepository);
