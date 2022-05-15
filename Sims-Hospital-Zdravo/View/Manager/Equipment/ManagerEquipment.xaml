@@ -51,7 +51,7 @@
             <Button Grid.Column="5" Width="100" Height="30"
                     HorizontalAlignment="Right" Click="Transfer_Click"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                Transfer
+                <AccessText>_Transfer</AccessText>
             </Button>
         </Grid>
         <DataGrid AutoGenerateColumns="False" SelectionMode="Single" x:Name="EquipmentTable" Grid.Row="1"

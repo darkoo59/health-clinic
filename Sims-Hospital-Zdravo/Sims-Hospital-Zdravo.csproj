@@ -584,6 +584,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\img\image-medicines.ico" />
+    <Resource Include="Resources\img\image-logout.ico" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />

@@ -10,12 +10,14 @@ using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View.Manager.Medicines
 {
-    public partial class ManagerMedicineInsert : Page
+    public partial class ManagerMedicineInsert : Window
     {
         private App app;
         private MedicineController medicineController;
         private NotificationController notificationController;
         private DoctorAppointmentController doctorAppointmentController;
+        public MedicineApprovalNotification ApprovalNotification { get; set; }
+        public Medicine Medicine { get; set; }
 
         public ManagerMedicineInsert()
         {
@@ -37,11 +39,11 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 string allergens = TxtAllergens.Text;
                 string description = TxtDescription.Text;
                 string strength = TxtStrength.Text;
-                Medicine medicine = new Medicine(name, strength, allergens, description);
                 Doctor doctor = (Doctor)ComboDoctors.SelectedItem;
-                MedicineApprovalNotification notification = new MedicineApprovalNotification("Medicine " + name + " added!", doctor._Id, medicine, notificationController.GenerateId());
-                medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
-                NavigationService.GoBack();
+
+                this.Medicine = new Medicine(name, strength, allergens, description);
+                this.ApprovalNotification = new MedicineApprovalNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                Close();
             }
             catch (Exception ex)
             {
@@ -80,11 +82,6 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             {
                 throw new Exception(name + " should have a value!");
             }
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

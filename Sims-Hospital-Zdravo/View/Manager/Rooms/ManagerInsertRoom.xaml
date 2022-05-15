@@ -5,30 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View"
         mc:Ignorable="d"
-        Title="ManagerInsertRoom" Height="450" Width="800">
+        Title="ManagerInsertRoom" Height="500" Width="500" Background="#2f343d">
     <Window.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBox">
                 <Setter Property="Height" Value="30"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
             </Style>
             <Style TargetType="Label">
                 <Setter Property="Height" Value="30"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
             </Style>
             <Style TargetType="ComboBox">
                 <Setter Property="Height" Value="30"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-
-    <Grid>
+    <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,25 +40,32 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2">
+        <Label Grid.Row="0" Height="50" HorizontalContentAlignment="Center" Width="400" HorizontalAlignment="Center"
+               FontWeight="Bold" FontSize="20">
+            Insert Room
+        </Label>
+
+        <StackPanel Grid.Row="1">
             <Label>Floor</Label>
             <TextBox x:Name="FloorTxt"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="2" Grid.Column="0">
             <Label>Type</Label>
             <ComboBox x:Name="RoomTypeCmb"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="3" Grid.Column="0">
             <Label>Room Number</Label>
             <TextBox x:Name="RoomNumberTxt"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <StackPanel Grid.Row="4" Grid.Column="0">
             <Label>Quadrature</Label>
             <TextBox x:Name="QuadratureTxt"></TextBox>
         </StackPanel>
-        <Button Grid.ColumnSpan="2" Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top" Margin="0, 20, 0, 0"
+        <Button Grid.Row="5" Height="30" Width="200" VerticalAlignment="Top" Margin="0, 20, 0, 0"
                 Click="SaveInsertedRoom_Click">
             Save
         </Button>

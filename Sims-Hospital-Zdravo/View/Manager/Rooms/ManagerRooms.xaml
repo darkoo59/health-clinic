@@ -10,6 +10,7 @@
       Width="924"
       Margin="0">
 
+
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml">
         </ResourceDictionary>
@@ -33,16 +34,17 @@
             </Grid.ColumnDefinitions>
             <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click">
-                Insert
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click"
+                    x:Name="InsertBtn">
+                <AccessText>_Insert</AccessText>
             </Button>
             <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="UpdateRoom_Click">
-                Update
+                <AccessText>_Update</AccessText>
             </Button>
             <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="DeleteRoom_Click">
-                Delete
+                <AccessText> _Delete </AccessText>
             </Button>
 
 

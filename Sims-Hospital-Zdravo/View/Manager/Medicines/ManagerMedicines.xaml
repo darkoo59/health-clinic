@@ -34,15 +34,15 @@
             <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="3" Width="100" Height="30"
                     HorizontalAlignment="Right" Click="InsertMedicine_Click">
-                Insert
+                <AccessText>_Insert</AccessText>
             </Button>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="4" Width="100" Height="30"
                     HorizontalAlignment="Right">
-                Update
+                <AccessText>_Update</AccessText>
             </Button>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="5" Width="100" Height="30"
                     HorizontalAlignment="Right">
-                Delete
+                <AccessText>_Delete</AccessText>
             </Button>
         </Grid>
         <DataGrid

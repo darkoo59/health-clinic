@@ -34,8 +34,16 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
             RoomsToBeAdded.ItemsSource = roomsForAdding;
             RenovationRooms.ItemsSource = _roomController.ReadAll();
+            this.KeyDown += new KeyEventHandler(GoBack);
         }
 
+        private void GoBack(object sender, KeyEventArgs args)
+        {
+            if (args.Key == Key.Escape)
+            {
+                NavigationService.GoBack();
+            }
+        }
 
         public bool IsSplit
         {

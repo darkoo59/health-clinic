@@ -3,7 +3,10 @@ using Model;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Ink;
+using System.Windows.Input;
 using Sims_Hospital_Zdravo.View.Manager;
+using Sims_Hospital_Zdravo.View.Manager.Dialogs;
 
 
 namespace Sims_Hospital_Zdravo.View
@@ -17,23 +20,53 @@ namespace Sims_Hospital_Zdravo.View
         private Frame ManagerContent;
         private App app;
 
+        public static RoutedUICommand insertCommand = new RoutedUICommand("InsertCommand", "InsertCommand",
+            typeof(RoutedCommand),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.I, ModifierKeys.Control)
+            }
+        );
+
         public ManagerRooms()
         {
             app = Application.Current as App;
             InitializeComponent();
-            this.roomController = app._roomController;
-            this.DataContext = this;
-            RoomsTable.ItemsSource = this.roomController.ReadAll();
+            roomController = app._roomController;
+            DataContext = this;
+            RoomsTable.ItemsSource = roomController.ReadAll();
             RetrieveMainFrame();
         }
 
         private void InsertRoom_Click(object sender, RoutedEventArgs e)
         {
-            ManagerInsertRoom managerInRoom = new ManagerInsertRoom(roomController);
-            managerInRoom.Show();
+            OpenInsertRoom();
         }
 
         private void UpdateRoom_Click(object sender, RoutedEventArgs e)
+        {
+            OpenUpdateRoom();
+        }
+
+        private void DeleteRoom_Click(object sender, RoutedEventArgs e)
+        {
+            OpenDeleteRoom();
+        }
+
+        private void OpenInsertRoom()
+        {
+            RenovationRoomDialog roomDialog = new RenovationRoomDialog();
+            if (roomDialog.ShowDialog() == false)
+            {
+                Room room = roomDialog.Room;
+                if (room == null) return;
+                room.Id = roomController.GenerateId();
+                roomController.Create(room);
+            }
+        }
+
+
+        private void OpenUpdateRoom()
         {
             if (RoomsTable.SelectedItem == null)
             {
@@ -45,7 +78,7 @@ namespace Sims_Hospital_Zdravo.View
             managerUpdateRoom.Show();
         }
 
-        private void DeleteRoom_Click(object sender, RoutedEventArgs e)
+        private void OpenDeleteRoom()
         {
             try
             {
@@ -60,6 +93,7 @@ namespace Sims_Hospital_Zdravo.View
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         private void RetrieveMainFrame()
         {
