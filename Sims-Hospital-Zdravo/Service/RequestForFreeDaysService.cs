@@ -8,25 +8,44 @@ using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Model;
 using Repository;
 using Model;
+using System.Windows;
+using Sims_Hospital_Zdravo.Utils;
 namespace Sims_Hospital_Zdravo.Service
 {
-    internal class RequestForFreeDaysService
+    public class RequestForFreeDaysService
     {
         private RequestForFreeDaysRepository _requestForFreeDaysRepository;
         private AppointmentRepository _appointmentRepository;
+        private RequestForFreeDaysValidator freeDaysValidator;
 
-        public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository,AppointmentRepository appointmentRepository)
+        public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository, AppointmentRepository appointmentRepository)
         {
             this._requestForFreeDaysRepository = requestForFreeDaysRepository;
             this._appointmentRepository = appointmentRepository;
+            this.freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository,requestForFreeDaysRepository);
+
         }
 
 
         public void Create(FreeDaysRequest request)
         {
-            _requestForFreeDaysRepository.Create(request);
+            try
+            {
+                freeDaysValidator.ValidateSchedulingDaysOff(request);
+                _requestForFreeDaysRepository.Create(request);
+                MessageBox.Show("Request pending");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
         }
 
+        public void CreateUrgent(FreeDaysRequest request)
+        {
+            _requestForFreeDaysRepository.Create(request);
+        }
         public void Delete (FreeDaysRequest request)
         {
             _requestForFreeDaysRepository.Delete(request);
@@ -39,12 +58,7 @@ namespace Sims_Hospital_Zdravo.Service
 
 
 
-        public ObservableCollection<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request ,AppointmentRepository appointmentRepository)
-        {
-            var timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request._Doctor._Id);
-            var takenTimeIntervals =(ObservableCollection<TimeInterval>) timeIntervals.Where(i => i.Start.Date >= request._TimeInterval.Start.Date && i.Start.Date <= request._TimeInterval.End.Date);
-            return  takenTimeIntervals;
-        }
+        
 
     }
 }

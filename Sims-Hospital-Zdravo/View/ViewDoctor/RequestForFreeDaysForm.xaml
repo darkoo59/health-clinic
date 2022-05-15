@@ -39,8 +39,12 @@
             <DatePicker Name="ToDateTxt"></DatePicker>
         </StackPanel>
         <DockPanel Grid.Column="1" Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
-            <Button Name="SendRequestBtn" Content="Send Request" Height="39"></Button>
+            <Button Name="SendRequestBtn" Click="SendRequestClick" Content="Send Request" Height="39"></Button>
             <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="100" Height="41"/>
         </DockPanel>
+        <StackPanel Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
+            <Label Content="Urgent request:"></Label>
+            <CheckBox Name="UrgentBox"></CheckBox>
+        </StackPanel>
     </Grid>
 </Page>

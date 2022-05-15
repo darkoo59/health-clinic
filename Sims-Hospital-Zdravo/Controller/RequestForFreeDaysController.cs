@@ -9,7 +9,7 @@ using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Controller
 {
-    internal class RequestForFreeDaysController
+    public class RequestForFreeDaysController
     {
         private RequestForFreeDaysService requestForFreeDaysService;
 
@@ -22,6 +22,12 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             requestForFreeDaysService.Create(request);
         }
+
+        public void CreateUrgent(FreeDaysRequest request)
+        {
+            requestForFreeDaysService.CreateUrgent(request);
+        }
+
 
         public void Delete(FreeDaysRequest request)
         {
