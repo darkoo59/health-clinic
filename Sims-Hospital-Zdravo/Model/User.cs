@@ -5,18 +5,19 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 namespace Model
 {
 
     public enum RoleType { MANAGER, SECRETARY, DOCTOR, PATIENT };
     public class User : INotifyPropertyChanged
-   {
-      public bool ChangePassword(string newPassowrd)
-      {
-         // TODO: implement
-         return false;
-      }
+    {
+        public bool ChangePassword(string newPassowrd)
+        {
+            // TODO: implement
+            return false;
+        }
 
         private string Username;
         private string Password;
@@ -33,6 +34,8 @@ namespace Model
         private String Jmbg;
         private String PhoneNumber;
         private RoleType Role;
+        public List<DateTime> Cancels {get; set;}
+        public bool Blocked { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
