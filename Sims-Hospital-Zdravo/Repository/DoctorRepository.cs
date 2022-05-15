@@ -66,6 +66,26 @@ namespace Repository
             return null;
         }
 
+       
+
+        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
+        {
+            
+            ObservableCollection<Doctor> doctorss = new ObservableCollection<Doctor>();
+
+            foreach(Doctor doc in doctors.ToList())
+            {
+                
+                if (doc._Specialty == specalty)
+                {
+                    doctorss.Add(doc);
+                }
+            }
+            
+            return doctorss;
+            
+
+        }
         public List<Doctor> FindDoctorsBySpeciality(SpecialtyType type)
         {
             List<Doctor> docs = new List<Doctor>();

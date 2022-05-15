@@ -74,6 +74,21 @@ namespace Repository
             return doctorsApps;
         }
 
+        public List<Appointment> FindByDoctorSpecialityBeforeDate(SpecialtyType type,DateTime endDate)
+        {
+            List<Appointment> doctorsApps = new List<Appointment>();
+            foreach (Appointment app in this.appointments)
+            {
+                if (app._Doctor == null) continue;
+                if (app._Doctor._Specialty == type && app._Time.Start < endDate)
+                {
+                    doctorsApps.Add(app);
+                }
+            }
+            return doctorsApps;
+            
+        }
+
         ObservableCollection<Appointment> patientApps;
 
         public ref ObservableCollection<Appointment> FindByPatientId(int id)
@@ -138,6 +153,19 @@ namespace Repository
             return timeIntervals;
         }
 
+        public List<TimeInterval> GetTimeIntervalsForDoctor(int id)
+        {
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+            foreach (Appointment app in appointments)
+            {
+                if (app._Doctor._Id == id)
+                {
+                    timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
+                }
+            }
+            return timeIntervals;
+        }
+
         public List<Appointment> FindByRoomId(int roomId)
         {
             List<Appointment> apps = new List<Appointment>();
@@ -152,6 +180,18 @@ namespace Repository
             return apps;
         }
 
+        public List<TimeInterval> getTimeIntervalsForDoctor(Doctor doctor)
+        {
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+            ObservableCollection<Appointment> appointments = FindByDoctorId(doctor._Id);
+            foreach(Appointment app in appointments)
+            {
+                timeIntervals.Add(app._Time);
+
+            }
+            return timeIntervals;
+        }
+        
         public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();

@@ -93,10 +93,24 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
             window.Show();
             this.Close();
         }
+        
+        private void Home_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryHome window = new SecretaryHome();
+            window.Show();
+            this.Close();
+        }
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
             ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
+        }
+        
+        private void Equipment_Click(object sender, MouseButtonEventArgs e)
+        {
+            SuppliesHome window = new SuppliesHome();
             window.Show();
             this.Close();
         }
@@ -129,7 +143,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
                     SuppliesAcquisition suppliesAcquisition =
                         new SuppliesAcquisition(_suppliesController.GenerateSuppliesAcquistionId(), roomEquipments,
                             interval);
-                    _suppliesController.MakeSuppliesAcquisition(suppliesAcquisition);
+                    _suppliesController.Create(suppliesAcquisition);
                     MessageBox.Show("Successfully made supplies acquisition!");
                 }
                 catch (Exception ex)

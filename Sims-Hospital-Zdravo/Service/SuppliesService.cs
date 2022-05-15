@@ -21,6 +21,12 @@ namespace Sims_Hospital_Zdravo.Service
             this._suppliesAcquisitionRepository = suppliesRepo;
         }
 
+
+        public void Create(SuppliesAcquisition suppliesAcquisition)
+        {
+            _suppliesAcquisitionRepository.Create(suppliesAcquisition);
+        }
+
         public void Update(SuppliesAcquisition suppliesAcquisition)
         {
             _suppliesAcquisitionRepository.Update(suppliesAcquisition);
@@ -41,25 +47,17 @@ namespace Sims_Hospital_Zdravo.Service
             return this._suppliesAcquisitionRepository.FindById(id);
         }
 
-        public void MakeSuppliesAcquisition(SuppliesAcquisition suppliesAcquisition)
-        {
-            _suppliesAcquisitionRepository.Create(suppliesAcquisition);
-        }
-
         public Equipment CreateNewEquipment(string name)
         {
-            foreach(Equipment equipment in _equipmentRepository.ReadAll())
-            {
-                if (equipment.Name == name)
-                    return equipment;
-            }
+            if (_equipmentRepository.FindByName(name) != null)
+                return _equipmentRepository.FindByName(name);
 
             Equipment _equipment = new Equipment(GenerateEquipmentId(), name, EquipmentType.Consumable);
             _equipmentRepository.Create(_equipment);
             return _equipment;
         }
 
-        public void FinishSuppliesAcquisition(int acquisitionId) //TODO
+        public void FinishSuppliesAcquisition(int acquisitionId)
         {
             SuppliesAcquisition suppliesAcquisition = FindSuppliesAcquisitionById(acquisitionId);
             Room room = _roomRepository.FindByType(RoomType.WAREHOUSE);

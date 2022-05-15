@@ -33,18 +33,7 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             this.medicalController = app._recordController;
             this.appointmentController = app._secretaryAppointmentController;
-        }
-
-        private void MedicalRecordsClick(object sender, RoutedEventArgs e)
-        {
-            SecretaryWindow secretaryWindow = new SecretaryWindow(medicalController);
-            secretaryWindow.Show();
-        }
-
-        private void Examination_Click(object sender, RoutedEventArgs e)
-        {
-            ExaminationWindow examinationWindow = new ExaminationWindow(appointmentController);
-            examinationWindow.Show();
+            lblName.Content = app._accountController.GetLoggedAccount()._Name + " " + app._accountController.GetLoggedAccount()._Surname;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)

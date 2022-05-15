@@ -64,6 +64,15 @@ namespace Repository
 
             return null;
         }
+        public Equipment FindByName(String name)
+        {
+            foreach (Equipment equipment in _equipment)
+            {
+                if (equipment.Name == name)
+                    return equipment;
+            }
+            return null;
+        }
 
         public void DeleteById(int id)
         {

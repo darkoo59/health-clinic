@@ -26,6 +26,7 @@ namespace Model
         private TimeInterval time;
         private int Id;
         public static int GlobalId = 1;
+        public bool Rated { get; set; }        
         public Appointment(Room room, Doctor doctor, Patient patient, TimeInterval time, AppointmentType type)
         {
             this._Doctor = doctor;
@@ -33,6 +34,7 @@ namespace Model
             this._Room = room;
             this._Time = time;
             this._Type = type;
+            this.Rated = false;
         }
         
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Controller;
+
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -32,13 +33,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private int doctorId;
         private DateTime AppointmentDate;
         private AnamnesisController anamnesisController;
+        
         public MyAppointments(DoctorAppointmentController doctorAppointmentController,AnamnesisController anamnesisController,MedicalRecordController medicalRecordController,int id )
         {
             app = App.Current as App;
             
             InitializeComponent();
-            this.DataContext = this;
+           // this.DataContext = this;
             this.doctorId = id;
+            
            this.medicalRecordController = medicalRecordController;
             this.PatientMedicalRecordController = app._patientMedRecController;
             this.docController =doctorAppointmentController;
@@ -83,7 +86,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         }
 
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -92,15 +95,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 Patient patient = appointment._Patient;
                 MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
-                PatientMedicalRecord medRed = new PatientMedicalRecord(medicalRecordController, docController, anamnesisController, appointment,record,doctorId);
-                medRed.Show();
+                PatientMedicalRecord medRed = new PatientMedicalRecord(medicalRecordController, docController, anamnesisController, appointment, record, doctorId);
+               // medRed.Show();
             }
             else
             {
                 MessageBox.Show("Chose whose medical record you want to see.");
             }
-            
-            
+
+
 
         }
 

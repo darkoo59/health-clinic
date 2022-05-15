@@ -32,10 +32,10 @@
         <ComboBox Name="ComboGender"  HorizontalAlignment="Left" Margin="170,202,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
         <ComboBox Name="ComboBlood"  HorizontalAlignment="Left" Margin="170,229,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
         <ComboBox Name="ComboMarital" HorizontalAlignment="Left" Margin="170,256,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="141,462,0,0" VerticalAlignment="Top" Width="76" Height="20" Click="Insert_Click" Style="{StaticResource btn_style}"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="140,479,0,0" VerticalAlignment="Top" Width="76" Height="20" Click="Insert_Click" Style="{StaticResource btn_style}"/>
         <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="290,90,-17,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
         <Label Content="Marital status" HorizontalAlignment="Left" Margin="59,255,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
-        <ListBox x:Name="AllergensList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="143" Margin="173,295,0,0" VerticalAlignment="Top" Width="117" Background="White" Foreground="#FF4A90E2">
+        <ListBox x:Name="AllergensList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="89" Margin="173,283,0,0" VerticalAlignment="Top" Width="117" Background="White" Foreground="#FF4A90E2">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -52,9 +52,25 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Label Content="Allergens" HorizontalAlignment="Left" Margin="59,295,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
-
-
+        <Label Content="Allergens" HorizontalAlignment="Left" Margin="59,286,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}" RenderTransformOrigin="0.533,0.038"/>
+        <Label Content="Medical allergens" HorizontalAlignment="Left" Margin="58,369,0,0" VerticalAlignment="Top" Width="105" Style="{StaticResource label_style}"/>
+        <ListBox Name="MedicalAllergensListBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="87" Margin="173,377,0,0" VerticalAlignment="Top" Width="117" Background="White" Foreground="#FF4A90E2">
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="ListBoxItem">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True" >
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Foreground" Value="#FF4A90E2" />
+                    </Trigger>
+                </Style.Triggers>
+                <Style.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                </Style.Resources>
+            </Style>
+        </ListBox.ItemContainerStyle>
+        </ListBox>
 
         <!-- //Menu bar panel // -->
         <Grid x:Name="MenuBarPanel" HorizontalAlignment="Left" Width="40" Background="#4A90E2" Grid.ColumnSpan="2">
@@ -251,7 +267,7 @@
                     </ListViewItem>
 
                     <!-- Equipment Acquisition -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseUp="Equipment_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Equipment.png"
@@ -291,7 +307,7 @@
                     </ListViewItem>
 
                     <!-- Medical records -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="MedicalRecord_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/MedicalRecords.png"

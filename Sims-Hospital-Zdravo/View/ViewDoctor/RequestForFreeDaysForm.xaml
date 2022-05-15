@@ -1,0 +1,46 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.RequestForFreeDaysForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RequestForFreeDaysForm">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="Type of request"></Label>
+            <TextBox Name="ReasonForFreeDaysTxt"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="0,112,0,0" Grid.RowSpan="2">
+            <Label Content="From">
+            </Label>
+            <DatePicker Name="FromDateTxt"></DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="0,112,0,2" Grid.RowSpan="2">
+            <Label Content="To:">
+
+            </Label>
+            <DatePicker Name="ToDateTxt"></DatePicker>
+        </StackPanel>
+        <DockPanel Grid.Column="1" Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
+            <Button Name="SendRequestBtn" Content="Send Request" Height="39"></Button>
+            <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="100" Height="41"/>
+        </DockPanel>
+    </Grid>
+</Page>

@@ -10,6 +10,7 @@ using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Model;
 using Model;
 using Service;
+using System.Collections.ObjectModel;
 namespace Sims_Hospital_Zdravo.Utils
 {
     public  class AppointmentDoctorValidator
@@ -27,18 +28,18 @@ namespace Sims_Hospital_Zdravo.Utils
         }
 
 
-        public  void ValidateAppointmentTimeTooLong(Appointment appointment)
-        {
-            DateTime start = appointment._Time.Start;
-            DateTime end = appointment._Time.End;
-            Console.WriteLine((end - start).TotalMinutes+"minutaa");
-            if ((end - start).TotalMinutes > 30) 
+        //public  void ValidateAppointmentTimeTooLong(Appointment appointment)
+        //{
+        //    DateTime start = appointment._Time.Start;
+        //    DateTime end = appointment._Time.End;
+        //    Console.WriteLine((end - start).TotalMinutes+"minutaa");
+        //    if ((end - start).TotalMinutes > 30) 
             
-                {
-                    throw new Exception("Appoitment must be 30 minutes long");
-                }
+        //        {
+        //            throw new Exception("Appoitment must be 30 minutes long");
+        //        }
             
-        }
+        //}
 
         public void ValidateAppointmentRoomTaken(TimeInterval time, int id)
         {
@@ -66,10 +67,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateAppointment(Appointment appointment)
         {
-            ValidateAppointmentTimeTooLong(appointment);
+            //ValidateAppointmentTimeTooLong(appointment);
             ValidateAppointmentRoomTaken(appointment._Time, appointment._Id);
             ValidateDatePast(appointment);
-            //ValidateRoom(appointment);
+            ValidateIfAppointmentTaken(appointment);
             ValidateIfNull(appointment);
         }
 
@@ -95,7 +96,17 @@ namespace Sims_Hospital_Zdravo.Utils
             
         }
 
-        
+        public void ValidateIfAppointmentTaken(Appointment appoitnment)
+        {
+            int doctorId = appoitnment._Doctor._Id;
+            TimeInterval tl = appoitnment._Time;
+            if(!(timeSchedulerService.IsDoctorFreeInInterval(doctorId, tl)))
+            {
+                throw new Exception("Appointment is already taken");
+            }
+            
+            
+        }
 
 
     }

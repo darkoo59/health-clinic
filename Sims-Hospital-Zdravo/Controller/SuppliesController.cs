@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.Controller
             return this._suppliesService.ReadAllSuppliesAcquisitions();
         }
 
-        public void FinishSuppliesAcquisition(int acquisitionId)    //TODO
+        public void FinishSuppliesAcquisition(int acquisitionId)
         {
             this._suppliesService.FinishSuppliesAcquisition(acquisitionId);
         }
@@ -42,19 +42,14 @@ namespace Sims_Hospital_Zdravo.Controller
             return _suppliesService.CreateNewEquipment(name);
         }
 
-        public int GenerateEquipmentId()
-        {
-            return _suppliesService.GenerateEquipmentId();
-        }
-
         public int GenerateSuppliesAcquistionId()
         {
             return _suppliesService.GenerateSuppliesAcquistionId();
         }
 
-        public void MakeSuppliesAcquisition(SuppliesAcquisition suppliesAcquisition)
+        public void Create(SuppliesAcquisition suppliesAcquisition)
         {
-            _suppliesService.MakeSuppliesAcquisition(suppliesAcquisition);
+            _suppliesService.Create(suppliesAcquisition);
         }
     }
 }

@@ -63,6 +63,13 @@ namespace Service
             return takenIntervals;
         }
 
+        public List<TimeInterval> FindReservedDatesForDoctor(Doctor doctor)
+        {
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+            return takenIntervals;
+        }
+
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
             List<Appointment> appointments = _appointmentRepository.FindByRoomId(roomId);
@@ -98,6 +105,7 @@ namespace Service
             return true;
         }
 
+         
         public bool IsDoctorFreeInInterval(int doctorId, TimeInterval ti)
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
@@ -108,6 +116,7 @@ namespace Service
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
+                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
                 if (start.CompareTo(ti.Start) == 0 || end.CompareTo(ti.End) == 0) return false;
             }
 
@@ -180,6 +189,113 @@ namespace Service
             return timeIntervals;
         }
 
+        public TimeInterval checkifDurationIsLongEnough(Doctor doctor,double duration)
+        {
+            var time = new TimeInterval(DateTime.Now, DateTime.Now);
+            List<TimeInterval> freeTimeIntervals = GetFreeTimeIntervalsForDoctor(doctor);
+            foreach(TimeInterval interval in freeTimeIntervals)
+            {
+                if ((interval.End - interval.Start).TotalHours >= duration) {
+                    
+                    time = new TimeInterval(interval.Start,interval.Start.AddHours(duration));
+                    
+                    break;
+                   
+                }
+                else
+                {
+                    time = null;
+                    break;
+                    
+                }
+               
+            }
+
+            return time;
+
+        }
+        public TimeInterval FindIntervalForOperation(Appointment appointment,double duration)
+        {
+            TimeInterval tl;
+            if (IsDoctorFreeInInterval(appointment._Doctor._Id, appointment._Time))
+            {
+
+
+                tl = appointment._Time;
+            }
+            else
+            {
+                Console.WriteLine("usao u funkciju findinterval for operation");
+
+                tl = MakeAppointmentForSurgery(appointment, duration);
+            }
+            return tl;
+        }
+        public TimeInterval MakeAppointmentForSurgery(Appointment appointment,double duration)
+        {
+            TimeInterval tl = new TimeInterval(DateTime.Now,DateTime.Now);
+            
+               if (checkifDurationIsLongEnough(appointment._Doctor, duration)!= null)
+                {
+                    tl = checkifDurationIsLongEnough(appointment._Doctor, duration);
+                
+                }
+                else
+                {
+                    CancelAppointmentsForOperation(appointment);
+                    tl = appointment._Time;
+                }
+                
+            return tl;
+        }
+        public void CancelAppointmentsForOperation(Appointment appointment)
+        {
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment._Doctor._Id);
+             var AppointmentsToDelete = appointments.Where(i=> i._Time.Start>= appointment._Time.Start && i._Time.End<=appointment._Time.End).ToList();
+            foreach (Appointment appointmentToDelete in AppointmentsToDelete)
+            {
+                appointments.Remove(appointmentToDelete);
+            }
+
+
+            
+        }
+
+        public List<TimeInterval> GetFreeTimeIntervalsForDoctor(Doctor doctor)
+        {
+             
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor);
+            var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
+            List<TimeInterval> freeTimeIntervals = new List<TimeInterval>();
+   
+          
+
+            for (int i = 0; i < orderedAppointment.Length - 1; i++)
+            {
+                if(!(orderedAppointment[i].End==orderedAppointment[i+1].Start))
+                freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End,orderedAppointment[i+1].Start));
+                
+            }
+            var FirstAppoitment = orderedAppointment.First();
+            var dateappointment = FirstAppoitment.Start.Date.ToShortDateString();
+            //var timeAppointment = DateTime.Parse("8:00");
+            //var timesAppointment = "21:00"
+            var dateTimeApp = DateTime.Parse(dateappointment + " " + "8:00");
+            var dateTimeApp1 = DateTime.Parse(dateappointment + " " + "21:00");
+            var LastAppoitment = orderedAppointment.Last();
+            if (FirstAppoitment.Start.Hour > 8)
+                freeTimeIntervals.Add(new TimeInterval(dateTimeApp,FirstAppoitment.Start) );
+            if(LastAppoitment.End.Hour < 21)
+                freeTimeIntervals.Add(new TimeInterval(LastAppoitment.End,dateTimeApp1) );
+           
+          
+            
+            return freeTimeIntervals;
+
+
+
+
+    }
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
             List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0, "", 10));
@@ -188,7 +304,7 @@ namespace Service
 
             return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }
-
+        
         private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
             List<TimeInterval> dates = new List<TimeInterval>(intervals.Select(x => new TimeInterval(x.Start.Date, x.End.Date)));
@@ -260,6 +376,30 @@ namespace Service
         private bool IntervalsTouching(TimeInterval baseInterval, TimeInterval newInterval)
         {
             return baseInterval.End.CompareTo(newInterval.Start) == 0;
+        }
+
+
+        public Appointment findAppointmentByDate(DateTime date, int id, Patient pat)
+        {
+            foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
+            {
+                if (app._Time.Start.Date.Equals(date.Date))
+                {
+                    if (app._Patient._Jmbg.Equals(pat._Jmbg))
+                    {
+                        return app;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+
+        public void UrgentSurgeryForPatient(Appointment appointement)
+        {
+            TimeInterval timeInterval = appointement._Time;
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,19 +12,29 @@ namespace Sims_Hospital_Zdravo.Repository
     public class AllergensRepository
     {
         private AllergensDataHandler allergensDataHandler;
-        public List<String> allergens;
+        public Allergens allergens;
 
         public AllergensRepository(AllergensDataHandler dataHandler)
         {
             this.allergensDataHandler = dataHandler;
-            allergens = new List<string>();
+            this.allergens = new Allergens();
             LoadDataFromFile();
         }
 
-        public List<String> ReadAll()
+        public Allergens ReadAll()
         {
             return this.allergens;
 
+        }
+
+        public List<String> ReadAllCommonAllergens()
+        {
+            return allergens._Allergens;
+        }
+
+        public List<String> ReadAllMedicalAllergens()
+        {
+            return allergens._MedicalAllergens;
         }
 
         public void LoadDataFromFile()

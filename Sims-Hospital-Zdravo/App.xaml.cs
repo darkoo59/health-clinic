@@ -37,7 +37,8 @@ namespace Sims_Hospital_Zdravo
         internal MedicineController _medicineController;
         internal NotificationController _notificationController;
         internal SuppliesController _suppliesController;
-
+        internal RequestForFreeDaysController _requestForFreeDaysController;
+        internal SurveyController _surveyController;
         public App()
         {
             NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
@@ -125,6 +126,13 @@ namespace Sims_Hospital_Zdravo
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
 
+            DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
+            HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
+            DoctorSurveyRepository doctorSurveyRepository = new DoctorSurveyRepository(doctorSurveyDataHandler);
+            HospitalSurveyRepository hospitalSurveyRepository = new HospitalSurveyRepository(hospitalSurveyDataHandler);
+            SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository);
+            _surveyController = new SurveyController(surveyService);
+
             SecretaryAppointmentService secretaryAppointmentService =
                 new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, roomRepository, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
@@ -139,6 +147,13 @@ namespace Sims_Hospital_Zdravo
             _prescriptionController = new PrescriptionController(prescriptionService);
 
             _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController, _suppliesController);
+
+            RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
+            RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository,appointmentRepository);
+            _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
+
+
         }
     }
 }

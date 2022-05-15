@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model;
 using Repository;
 using Service;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Service
@@ -39,6 +41,7 @@ namespace Sims_Hospital_Zdravo.Service
         public void Create(Appointment appointment)
         {
             validator.ValidateCreate(appointment);
+            appointment._Id = GenerateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -85,22 +88,20 @@ namespace Sims_Hospital_Zdravo.Service
             foreach (Doctor doctor in doctorRepo.ReadAll())
             {
                 if (timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
-                {
                     availableDoctors.Add(doctor);
-                }
             }
             return availableDoctors;
         }
 
         public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type) //TODO
-        {//timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval)
+        {
             TimeInterval interval = new TimeInterval(DateTime.Now.AddMinutes(5), DateTime.Now.AddHours(1));
             int counter = 0;
             DateTime minStart = new DateTime();
             Appointment appointment = null;
             foreach (Doctor doctor in doctorRepo.FindDoctorsBySpeciality(type))
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     if (timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
                     {
@@ -116,9 +117,10 @@ namespace Sims_Hospital_Zdravo.Service
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
                             appointment._Id = GenerateId();
+                            appointment._Patient._Id = GeneratePatientId();
                         }
                     }
-                    interval.Start.AddMinutes(5);
+                    interval.Start.AddMinutes(10);
                 }
                 interval.Start = DateTime.Now.AddMinutes(5);
             }
@@ -151,6 +153,46 @@ namespace Sims_Hospital_Zdravo.Service
                 }
             }
             return availablePatients;
+        }
+
+        public TimeInterval FindFirstDateToReschedule(Appointment appointment)
+        {
+            DateTime startDate = appointment._Time.Start;
+            DateTime endDate = appointment._Time.End;
+            TimeSpan appointmentLength = appointment._Time.End - appointment._Time.Start;
+            startDate = appointment._Time.Start.AddHours(1);
+            endDate = startDate;
+            endDate = endDate.Add(appointmentLength);
+            TimeInterval interval = new TimeInterval(startDate, endDate);
+            while (true)
+            {
+                if (timeSchedulerService.IsDoctorFreeInInterval(appointment._Doctor._Id,
+                        interval) && timeSchedulerService.IsPatientFreeInInterval(appointment._Patient._Id,interval))
+                {
+                    return interval;
+                }
+                interval.Start = interval.Start.AddMinutes(30);
+                interval.End = interval.End.AddMinutes(30);
+            }
+        }
+
+        public List<EmergencyReschedule> FindAllAppointmentsToRescheduleForEmergency(SpecialtyType type)
+        {
+            //Uzimamo samo appointmente u narednih 24h
+            List<Appointment> appointmentsToReschedule = appointmentRepository.FindByDoctorSpecialityBeforeDate(type, DateTime.Now.AddDays(1));
+            List<EmergencyReschedule> appointmentsAndRescheduleDate = new List<EmergencyReschedule>();
+            foreach(Appointment app in appointmentsToReschedule)
+            {
+                if (app._Type != AppointmentType.URGENCY)
+                {
+                    TimeInterval rescheduleTo = FindFirstDateToReschedule(app);
+                    EmergencyReschedule rescheduledAppointment = new EmergencyReschedule(app, rescheduleTo);
+                    appointmentsAndRescheduleDate.Add(rescheduledAppointment);
+                }
+            }
+
+            appointmentsAndRescheduleDate.Sort((x,y) => x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
+            return appointmentsAndRescheduleDate;
         }
 
 

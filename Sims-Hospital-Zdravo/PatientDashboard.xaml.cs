@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Sims_Hospital_Zdravo
         public PatientDashboard()
         {
             InitializeComponent();
-            Patient.Content = new HomePatient();
+            Patient.Content = new HomePatient(Patient);
         }
 
         private void Notification_Click(object sender, RoutedEventArgs e)
@@ -32,7 +33,7 @@ namespace Sims_Hospital_Zdravo
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Patient.Content = new HomePatient();
+            Patient.Content = new HomePatient(Patient);
         }
 
         private void Appointment_Click(object sender, RoutedEventArgs e)

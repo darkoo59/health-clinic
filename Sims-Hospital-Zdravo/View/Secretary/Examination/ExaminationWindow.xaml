@@ -243,7 +243,7 @@
                     </ListViewItem>
 
                     <!-- Equipment Acquisition -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="Equipment_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Equipment.png"
@@ -263,7 +263,7 @@
                     </ListViewItem>
 
                     <!-- Managing appointments -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseUp="Appointment_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Appointment.png"

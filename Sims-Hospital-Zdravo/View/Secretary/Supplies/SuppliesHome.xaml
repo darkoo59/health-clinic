@@ -108,7 +108,7 @@
                           BorderBrush="Transparent"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <!-- Home -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseUp="Home_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Home.png"
@@ -228,7 +228,7 @@
                     </ListViewItem>
 
                     <!-- Equipment Acquisition -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseUp="Equipment_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Equipment.png"
