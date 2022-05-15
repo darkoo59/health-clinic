@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using Controller;
 using Sims_Hospital_Zdravo.Controller;
 

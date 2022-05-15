@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Sims_Hospital_Zdravo.View.Manager;
 
 namespace Sims_Hospital_Zdravo.View.UserControlls
@@ -10,6 +12,8 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
     public partial class ManagerMenu : UserControl
     {
         private Frame ManagerContent;
+        private Label HeaderLabel;
+        private ManagerMainWindow mainWindow;
         private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Medicines" };
         private int currentMenuItem = 1;
 
@@ -19,12 +23,38 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
         }
 
-        public void UserControl_Loaded(object sender, RoutedEventArgs args)
+
+        public void RotateMenu(int direction)
+        {
+            currentMenuItem += direction;
+            if (currentMenuItem >= menuitems.Length)
+            {
+                currentMenuItem = 0;
+            }
+
+            if (currentMenuItem < 0)
+            {
+                currentMenuItem = menuitems.Length - 1;
+            }
+
+            SwitchMenu(menuitems[currentMenuItem]);
+        }
+
+        public void SetMenuItem(string text)
+        {
+            SetCurrentMenuItem(text);
+            SwitchMenu(text);
+            SetMenuItemTitle(text);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs args)
         {
             Window parentWindow = Window.GetWindow(this);
             if (parentWindow is ManagerMainWindow)
             {
+                mainWindow = ((ManagerMainWindow)parentWindow);
                 ManagerContent = ((ManagerMainWindow)parentWindow).ManagerContent;
+                HeaderLabel = ((ManagerMainWindow)parentWindow).HeaderLabel;
             }
         }
 
@@ -33,6 +63,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             string buttonText = GetButtonText(sender);
             SetCurrentMenuItem(buttonText);
             SwitchMenu(buttonText);
+            SetMenuItemTitle(buttonText);
         }
 
         private void SwitchMenu(string text)
@@ -44,10 +75,17 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 SetAllBordersBackgroundsToDefault();
                 border.Background = new SolidColorBrush(Color.FromRgb(47, 52, 61));
                 SwitchPage(text);
+                SetMenuItemTitle(text);
+                ShowTooltipForButton(text);
             }
         }
 
-        public void SetCurrentMenuItem(string text)
+        private void SetMenuItemTitle(string text)
+        {
+            HeaderLabel.Content = text;
+        }
+
+        private void SetCurrentMenuItem(string text)
         {
             switch (text)
             {
@@ -66,21 +104,6 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             }
         }
 
-        public void RotateMenu(int direction)
-        {
-            currentMenuItem += direction;
-            if (currentMenuItem >= menuitems.Length)
-            {
-                currentMenuItem = 0;
-            }
-
-            if (currentMenuItem < 0)
-            {
-                currentMenuItem = menuitems.Length - 1;
-            }
-
-            SwitchMenu(menuitems[currentMenuItem]);
-        }
 
         private void SwitchPage(string text)
         {
@@ -98,6 +121,50 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Rooms":
                     ManagerContent.Source = new Uri("Rooms/ManagerRooms.xaml", UriKind.Relative);
                     break;
+            }
+        }
+
+        private void ShowTooltipForButton(string text)
+        {
+            Button btn = GetButtonByText(text);
+            if (btn == null) return;
+            if (btn.ToolTip is ToolTip)
+            {
+                var castToolTip = (ToolTip)btn.ToolTip;
+                castToolTip.IsOpen = true;
+            }
+            else
+            {
+                var toolTip = new ToolTip();
+                toolTip.Content = btn.ToolTip;
+                toolTip.StaysOpen = false;
+                toolTip.PlacementTarget = btn;
+                toolTip.Placement = PlacementMode.Bottom;
+                toolTip.IsOpen = true;
+                ScheduleToolTipRemoval(toolTip);
+            }
+        }
+
+        private void ScheduleToolTipRemoval(ToolTip toolTip)
+        {
+            DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.5) };
+            timer.Tick += delegate(object sender, EventArgs e)
+            {
+                ((DispatcherTimer)timer).Stop();
+                if (toolTip.IsOpen) toolTip.IsOpen = false;
+            };
+            timer.Start();
+        }
+
+        private Button GetButtonByText(string text)
+        {
+            switch (text)
+            {
+                case "Medicines": return BtnMedicines;
+                case "Equipment": return BtnEquipment;
+                case "Renovations": return BtnRenovations;
+                case "Rooms": return BtnRooms;
+                default: return null;
             }
         }
 
@@ -127,6 +194,11 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         {
             Button b = sender as Button;
             return b.Content.ToString();
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Logout();
         }
     }
 }

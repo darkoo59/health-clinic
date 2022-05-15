@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="718" d:DesignWidth="100">
     <UserControl.Resources>
-        <Style x:Key="SomeButtonStyle" TargetType="Button">
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -23,38 +23,67 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="#272c33">
-        <StackPanel>
+    <DockPanel Background="#272c33">
+        <StackPanel DockPanel.Dock="Top">
             <Border x:Name="EquipmentBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-equipment.ico" MinHeight="30" MinWidth="30"
                            Height="30"
                            Width="30">
                     </Image>
-                    <Button Click="SwitchMenu_Click" Style="{StaticResource SomeButtonStyle}">Equipment</Button>
+                    <Button x:Name="BtnEquipment" Focusable="False" Click="SwitchMenu_Click"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <Button.ToolTip>
+                            Shift + 1
+                        </Button.ToolTip>
+                        Equipment
+                    </Button>
                 </StackPanel>
             </Border>
             <Border x:Name="RenovationsBorder" Padding="8, 20, 8, 10" Background="#2f343d">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-renovation.ico" Height="30" Width="30"></Image>
-                    <Button Click="SwitchMenu_Click" Style="{StaticResource SomeButtonStyle}">Renovations</Button>
+                    <Button x:Name="BtnRenovations" Focusable="False" Click="SwitchMenu_Click"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <Button.ToolTip>
+                            Shift + 2
+                        </Button.ToolTip>
+                        Renovations
+                    </Button>
                 </StackPanel>
             </Border>
             <Border x:Name="RoomsBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-rooms.ico" Height="30" Width="30"></Image>
-                    <Button Click="SwitchMenu_Click" Style="{StaticResource SomeButtonStyle}">Rooms</Button>
+                    <Button x:Name="BtnRooms" Focusable="False" Click="SwitchMenu_Click"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <Button.ToolTip>
+                            Shift + 3
+                        </Button.ToolTip>
+                        Rooms
+                    </Button>
                 </StackPanel>
             </Border>
             <Border x:Name="MedicinesBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
-                    <Image Source="../../Resources/img/image-surveys.ico" Height="30" Width="30"></Image>
-                    <Button Click="SwitchMenu_Click" Style="{StaticResource SomeButtonStyle}"> Medicines </Button>
+                    <Image Source="../../Resources/img/image-medicines.ico" Height="30" Width="30"></Image>
+                    <Button x:Name="BtnMedicines" Focusable="True" Click="SwitchMenu_Click"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <Button.ToolTip>
+                            Shift + 4
+                        </Button.ToolTip>
+                        Medicines
+                    </Button>
                 </StackPanel>
             </Border>
-
-
         </StackPanel>
 
-    </Grid>
+        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Image Source="pack://application:,,,/Resources/img/image-logout.ico" Height="30" Width="30"></Image>
+            <Button Focusable="False" ToolTip="Shift + L" Click="Logout_Click" Style="{StaticResource MenuButtonStyle}">
+                <AccessText>_Logout</AccessText>
+            </Button>
+        </StackPanel>
+
+    </DockPanel>
 </UserControl>

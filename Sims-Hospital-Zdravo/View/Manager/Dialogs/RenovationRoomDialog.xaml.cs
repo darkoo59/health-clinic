@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Model;
 
 namespace Sims_Hospital_Zdravo.View.Manager.Dialogs
@@ -13,6 +14,15 @@ namespace Sims_Hospital_Zdravo.View.Manager.Dialogs
         {
             InitializeComponent();
             RoomTypeCmb.ItemsSource = Enum.GetValues(typeof(RoomType)).Cast<RoomType>();
+            this.KeyDown += new KeyEventHandler(GoBack);
+        }
+
+        private void GoBack(object sender, KeyEventArgs args)
+        {
+            if (args.Key == Key.Escape)
+            {
+                Close();
+            }
         }
 
         private void SaveInsertedRoom_Click(object sender, RoutedEventArgs e)
