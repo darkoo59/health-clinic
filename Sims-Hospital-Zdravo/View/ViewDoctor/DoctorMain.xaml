@@ -74,6 +74,12 @@
                         <AccessText Text="Operation" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118" FontFamily="Comic Sans MS" ></AccessText>
                     </MenuItem.Header>
                 </MenuItem>
+                <MenuItem  Name="RequestForFreeDaysItem" Height="50" Click="DaysOff_Click" >
+                    
+                    <MenuItem.Header>
+                        <AccessText Text="Daysoff/Vacation" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118" FontFamily="Comic Sans MS" ></AccessText>
+                    </MenuItem.Header>
+                </MenuItem>
             </Menu>
 
         </StackPanel>

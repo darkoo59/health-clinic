@@ -143,6 +143,8 @@ namespace Service
 
             return app;
         }
+
+        
         
         public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {

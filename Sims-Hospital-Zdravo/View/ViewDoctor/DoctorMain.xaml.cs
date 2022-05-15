@@ -91,5 +91,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             OperationForm operationform = new OperationForm(docController);
             FrameForMain.Content = operationform;
         }
+
+        private void DaysOff_Click(object sender, RoutedEventArgs e)
+        {
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm();
+            FrameForMain.Content = requestForFreeDaysForm;
+        }
     }
 }

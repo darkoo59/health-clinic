@@ -37,6 +37,7 @@ namespace Sims_Hospital_Zdravo
         internal MedicineController _medicineController;
         internal NotificationController _notificationController;
         internal SuppliesController _suppliesController;
+        internal RequestForFreeDaysController _requestForFreeDaysController;
 
         public App()
         {
@@ -139,6 +140,13 @@ namespace Sims_Hospital_Zdravo
             _prescriptionController = new PrescriptionController(prescriptionService);
 
             _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController, _suppliesController);
+
+            RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
+            RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository,appointmentRepository);
+            _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
+
+
         }
     }
 }
