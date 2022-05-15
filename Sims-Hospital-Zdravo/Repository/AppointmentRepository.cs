@@ -163,6 +163,10 @@ namespace Repository
                     timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
                 }
             }
+            foreach(TimeInterval timeInterval in timeIntervals)
+            {
+                Console.WriteLine(timeInterval.Start + "sshshhs" + timeInterval.End);
+            }
             return timeIntervals;
         }
 

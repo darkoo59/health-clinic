@@ -23,7 +23,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string reasonForFreeDays;
         private RequestStatus status;
 
-        public FreeDaysRequest(TimeInterval timeInterval, Doctor doctor, string reasonForFreeDays, RequestStatus status)
+        public FreeDaysRequest(TimeInterval timeInterval, Doctor doctor, string reasonForFreeDays,RequestStatus status)
         {
             this.timeInterval = timeInterval;
             this.doctor = doctor;

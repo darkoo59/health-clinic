@@ -25,6 +25,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController medicalRecordController;
         private AnamnesisController anamnesisController;
         private PatientMedicalRecordController patientMedicalRecordController;
+        private RequestForFreeDaysController requestForFreeDaysController;
+        private DoctorAppointmentController doctorAppointmentController;
         
         private int doctorId;
         
@@ -38,6 +40,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.medicalRecordController = app._recordController;
             this.anamnesisController = app._anamnesisController;
             this.patientMedicalRecordController = app._patientMedRecController;
+            this.requestForFreeDaysController = app._requestForFreeDaysController;
+            this.doctorAppointmentController = app._doctorAppointmentController;
 
         }
 
@@ -94,7 +98,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)
         {
-            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm();
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController,requestForFreeDaysController,doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
         }
     }
