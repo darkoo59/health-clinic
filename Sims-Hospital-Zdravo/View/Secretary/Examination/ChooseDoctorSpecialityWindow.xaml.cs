@@ -80,7 +80,9 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             {
                 if (comboSpeciality.SelectedItem != null)
                 {
-                    Appointment appointment = app._secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient, (SpecialtyType)comboSpeciality.SelectedItem);
+                    Appointment appointment =
+                            app._secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient,
+                                (SpecialtyType)comboSpeciality.SelectedItem);
                         if (appointment != null)
                         {
                             appointment._Type = AppointmentType.URGENCY;
@@ -95,7 +97,8 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                             window.Show();
                             this.Close();
                         }
-                }
+                    
+            }
                 else
                     MessageBox.Show("Speciality isn't selected", "Please select speciality");
             }

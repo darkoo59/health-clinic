@@ -72,30 +72,33 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if (ContentGrid.SelectedItem != null)
-            {
-                try
                 {
-                    EmergencyReschedule emergencyReschedule = (EmergencyReschedule)ContentGrid.SelectedValue;
-                    Appointment rescheduleAppointment = emergencyReschedule.Appointment;
-                    TimeInterval emergencyTimeInterval = new TimeInterval(emergencyReschedule.Appointment._Time.Start, emergencyReschedule.Appointment._Time.End);
-                    rescheduleAppointment._Time.Start = emergencyReschedule.RescheduledDate.Start;
-                    rescheduleAppointment._Time.End = emergencyReschedule.RescheduledDate.End;
-                    app._secretaryAppointmentController.Update(rescheduleAppointment);
-                    Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment._Room,
-                        emergencyReschedule.Appointment._Doctor, patient, emergencyTimeInterval,
-                        AppointmentType.URGENCY);
-                    app._secretaryAppointmentController.Create(emergencyAppointment);
-                    MessageBox.Show("Emergency appointment successfully created!", "Appointment created", MessageBoxButton.OK);
-                    this.Close();
+                    try
+                    {
+                        EmergencyReschedule emergencyReschedule = (EmergencyReschedule)ContentGrid.SelectedValue;
+                        Appointment rescheduleAppointment = emergencyReschedule.Appointment;
+                        TimeInterval emergencyTimeInterval = new TimeInterval(
+                            emergencyReschedule.Appointment._Time.Start, emergencyReschedule.Appointment._Time.End);
+                        rescheduleAppointment._Time.Start = emergencyReschedule.RescheduledDate.Start;
+                        rescheduleAppointment._Time.End = emergencyReschedule.RescheduledDate.End;
+                        app._secretaryAppointmentController.Update(rescheduleAppointment);
+                        Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment._Room,
+                            emergencyReschedule.Appointment._Doctor, patient, emergencyTimeInterval,
+                            AppointmentType.URGENCY);
+                        app._secretaryAppointmentController.Create(emergencyAppointment);
+                        MessageBox.Show("Emergency appointment successfully created!", "Appointment created",
+                            MessageBoxButton.OK);
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
             else
             {
-                MessageBox.Show("Please select appointment to reschedule!", "Select appointment", MessageBoxButton.OK);
+                MessageBox.Show("Please select appointment to reschedule!", "Select appointment",
+                    MessageBoxButton.OK);
             }
         }
 
