@@ -74,7 +74,7 @@ namespace Repository
             return doctorsApps;
         }
 
-        public List<Appointment> FindByDoctorSpecialityBeforeDate(SpecialtyType type,DateTime endDate)
+        public List<Appointment> FindByDoctorSpecialityBeforeDate(SpecialtyType type, DateTime endDate)
         {
             List<Appointment> doctorsApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
@@ -85,8 +85,8 @@ namespace Repository
                     doctorsApps.Add(app);
                 }
             }
+
             return doctorsApps;
-            
         }
 
         ObservableCollection<Appointment> patientApps;
@@ -141,16 +141,12 @@ namespace Repository
         public List<TimeInterval> GetTimeIntervalsForRoom(Room room)
         {
             if (room == null) return new List<TimeInterval>();
-            List<TimeInterval> timeIntervals = new List<TimeInterval>();
-            foreach (Appointment app in appointments)
-            {
-                if (app._Room.Id == room.Id)
-                {
-                    timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
-                }
-            }
+            return (from app in appointments where app._Room.Id == room.Id select new TimeInterval(app._Time.Start, app._Time.End)).ToList();
+        }
 
-            return timeIntervals;
+        public List<TimeInterval> GetTimeIntervalsForRoom(int roomId)
+        {
+            return (from app in appointments where app._Room.Id == roomId select new TimeInterval(app._Time.Start, app._Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForDoctor(int id)
@@ -163,6 +159,7 @@ namespace Repository
                     timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
                 }
             }
+
             return timeIntervals;
         }
 
@@ -184,14 +181,14 @@ namespace Repository
         {
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
             ObservableCollection<Appointment> appointments = FindByDoctorId(doctor._Id);
-            foreach(Appointment app in appointments)
+            foreach (Appointment app in appointments)
             {
                 timeIntervals.Add(app._Time);
-
             }
+
             return timeIntervals;
         }
-        
+
         public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
