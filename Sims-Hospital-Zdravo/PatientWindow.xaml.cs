@@ -26,10 +26,11 @@ namespace Sims_Hospital_Zdravo
         AppointmentPatientController appointmentPatientController;
         App app;
         Frame frame;
+
         public PatientWindow(Frame frame)
         {
             app = Application.Current as App;
-            this.frame = frame; 
+            this.frame = frame;
             InitializeComponent();
             app._taskScheduleTimer.AddObserver(this);
             this.appointmentPatientController = app._appointmentPatientController;
@@ -85,10 +86,11 @@ namespace Sims_Hospital_Zdravo
                 app._accountController.GetLoggedAccount().Cancels.Add(DateTime.Now);
             }
         }
+
         private bool CheckIfPatientNotBlocked()
         {
             List<DateTime> cancels = app._accountController.GetLoggedAccount().Cancels;
-            if(cancels.Count > 4)
+            if (cancels.Count > 4)
             {
                 DateTime last = cancels.Last();
                 DateTime first = cancels.ElementAt(cancels.Count - 5);
@@ -98,11 +100,13 @@ namespace Sims_Hospital_Zdravo
                     return false;
                 }
             }
+
             return true;
         }
+
         public void Notify(Notification notification)
         {
-            if (typeof(MedicineApprovalNotification).IsInstanceOfType(notification)) return;
+            if (typeof(MedicineCreatedNotification).IsInstanceOfType(notification)) return;
             MessageBox.Show(notification.Content);
         }
     }

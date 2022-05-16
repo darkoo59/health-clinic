@@ -1,11 +1,11 @@
 ﻿namespace Sims_Hospital_Zdravo.Model
 {
-    public class MedicineApprovalNotification : Notification
+    public class MedicineCreatedNotification : Notification
     {
         private int _doctorId;
         private Medicine _medicine;
 
-        public MedicineApprovalNotification(string content, int doctorId, Medicine medicine, int id) : base(content, id)
+        public MedicineCreatedNotification(string content, int doctorId, Medicine medicine, int id) : base(content, id)
         {
             this._doctorId = doctorId;
             this._medicine = medicine;

@@ -29,7 +29,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             if (medicineInsert.ShowDialog() == false)
             {
                 Medicine medicine = medicineInsert.Medicine;
-                Notification notification = medicineInsert.ApprovalNotification;
+                Notification notification = medicineInsert._CreatedNotification;
                 if (medicine != null)
                 {
                     medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
