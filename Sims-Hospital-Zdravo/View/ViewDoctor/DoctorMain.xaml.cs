@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private PatientMedicalRecordController patientMedicalRecordController;
         private RequestForFreeDaysController requestForFreeDaysController;
         private DoctorAppointmentController doctorAppointmentController;
+
         
         private int doctorId;
         
@@ -100,6 +101,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController,requestForFreeDaysController,doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
+        }
+
+        private void MedcinesClick(object sender, RoutedEventArgs e)
+        {
+            DoctorMedicines doctorMedicines = new DoctorMedicines(FrameForMain);
+            FrameForMain.Content = doctorMedicines;
         }
     }
 }

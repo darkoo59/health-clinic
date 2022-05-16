@@ -325,8 +325,14 @@
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
       <DependentUpon>DoctorMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\DoctorMedicines.xaml.cs">
+      <DependentUpon>DoctorMedicines.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
     <Compile Include="View\ViewDoctor\MedicalReport.xaml.cs" />
+    <Compile Include="View\ViewDoctor\MedicinesToValidate.xaml.cs">
+      <DependentUpon>MedicinesToValidate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\MyAppointmentPage.xaml.cs">
       <DependentUpon>MyAppointmentPage.xaml</DependentUpon>
     </Compile>
@@ -355,6 +361,9 @@
     </Compile>
     <Compile Include="View\ViewDoctor\SearchPatient.xaml.cs">
       <DependentUpon>SearchPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
+      <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
@@ -514,8 +523,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ViewDoctor\DoctorMedicines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
+    <Page Include="View\ViewDoctor\MedicinesToValidate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\MyAppointmentPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -553,6 +570,10 @@
     <Page Include="View\ViewDoctor\SearchPatient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\ValidateMedicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -747,7 +768,7 @@
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Manager\Custom" />
+    <Folder Include="View\Manager\Custom\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
