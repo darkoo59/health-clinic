@@ -38,5 +38,29 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             
             
         }
+
+        public void ValidateSelection()
+        {
+            if( MedicinesDataGrid.SelectedValue == null)
+            {
+                throw new Exception("Click on medicine you want to review and validate");
+            }
+        }
+        private void To_Validate_Medicine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ValidateSelection();
+                Medicine medicine = MedicinesDataGrid.SelectedValue as Medicine;
+                ValidateMedicine validateMedicine = new ValidateMedicine(medicine);
+                validateMedicine.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                
+            }
+        }
     }
 }

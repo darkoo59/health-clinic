@@ -67,7 +67,21 @@ namespace Sims_Hospital_Zdravo.Repository
             return notifications.OfType<MedicineCreatedNotification>().Cast<Notification>().ToList();
         }
 
-        private void LoadDataFromFiles()
+        public List<Notification> ReadAllDoctorMedicineNotifications()
+        {
+            List<Notification> doctorNotifications = new List<Notification> ();
+            foreach(Notification notification in notifications)
+            {
+                if (typeof(ReviewMedicineNotification).IsInstanceOfType(notification))
+                {
+                    doctorNotifications.Add(notification);
+                }
+            }
+
+            return doctorNotifications;
+        }
+
+        public void LoadDataFromFiles()
         {
             notifications = _notificationDataHandler.ReadAll();
         }

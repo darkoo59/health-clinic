@@ -162,6 +162,7 @@
     <Compile Include="Model\QuestionForSurvey.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
+    <Compile Include="Model\ReviewMedicineNotification.cs" />
     <Compile Include="Model\SuppliesAcquisition.cs" />
     <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />

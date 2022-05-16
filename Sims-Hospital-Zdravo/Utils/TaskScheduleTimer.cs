@@ -66,6 +66,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfSuppliesAcquisitionDone();
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
+            CheckNotificationForDoctor();
             AppointmentDone();
             dateTime = DateTime.Now;
             dateTime1 = DateTime.Now.AddSeconds(10);
@@ -120,6 +121,14 @@ namespace Sims_Hospital_Zdravo.Utils
             }
         }
 
+        public void CheckNotificationForDoctor()
+        {
+            List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications();
+            foreach(Notification notification in notifications)
+            {
+                Notify(notification);
+            }
+        }
         public void AppointmentDone()
         {
             ObservableCollection<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);

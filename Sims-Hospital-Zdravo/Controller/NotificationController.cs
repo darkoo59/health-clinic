@@ -44,6 +44,11 @@ namespace Sims_Hospital_Zdravo.Controller
             return _notificationService.ReadAllManagerMedicineNotifications();
         }
 
+        public List<Notification> ReadAllDoctorMedicineNotifications()
+        {
+            return _notificationService.ReadAllDoctorMedicineNotifications();
+        }
+
         public int GenerateId()
         {
             return _notificationService.GenerateId();
