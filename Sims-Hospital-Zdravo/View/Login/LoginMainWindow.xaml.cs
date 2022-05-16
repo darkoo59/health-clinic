@@ -57,7 +57,7 @@ namespace Sims_Hospital_Zdravo.View.Login
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-			
+            Console.WriteLine("Clicked");
             AccountController accountController = app._accountController;
             String username = txtUsername.Text;
             String password = txtPassword.Password.ToString();

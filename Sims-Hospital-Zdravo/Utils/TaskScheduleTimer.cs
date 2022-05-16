@@ -117,7 +117,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckNotificationForManager()
         {
-            if (!_accountController.GetLoggedAccount()._Role.Equals(RoleType.MANAGER)) return;
+
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.MANAGER)) return;
 
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
             foreach (Notification notification in notifications)
@@ -129,6 +132,7 @@ namespace Sims_Hospital_Zdravo.Utils
         public void CheckNotificationForDoctor()
         {
             User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
 
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account._Id);
