@@ -69,8 +69,8 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> ReadAllDoctorMedicineNotifications()
         {
-            List<Notification> doctorNotifications = new List<Notification> ();
-            foreach(Notification notification in notifications)
+            List<Notification> doctorNotifications = new List<Notification>();
+            foreach (Notification notification in notifications)
             {
                 if (typeof(ReviewMedicineNotification).IsInstanceOfType(notification))
                 {
