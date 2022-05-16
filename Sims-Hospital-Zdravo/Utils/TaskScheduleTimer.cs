@@ -123,7 +123,6 @@ namespace Sims_Hospital_Zdravo.Utils
             foreach (Notification notification in notifications)
             {
                 Notify(notification);
-                _notificationController.DeleteById(notification.Id);
             }
         }
 
@@ -136,7 +135,6 @@ namespace Sims_Hospital_Zdravo.Utils
             foreach (Notification notification in notifications)
             {
                 Notify(notification);
-                _notificationController.DeleteById(notification.Id);
             }
         }
 
