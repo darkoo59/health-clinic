@@ -80,6 +80,12 @@
                         <AccessText Text="Daysoff/Vacation" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118" FontFamily="Comic Sans MS" ></AccessText>
                     </MenuItem.Header>
                 </MenuItem>
+                <MenuItem  Name="MedicinesItem" Height="50" Click="MedcinesClick" >
+
+                    <MenuItem.Header>
+                        <AccessText Text="Medicines" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118" FontFamily="Comic Sans MS" ></AccessText>
+                    </MenuItem.Header>
+                </MenuItem>
             </Menu>
 
         </StackPanel>

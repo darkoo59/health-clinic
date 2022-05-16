@@ -170,27 +170,25 @@ namespace Service
 
         public TimeInterval CheckifDurationIsLongEnough(Doctor doctor, double duration)
         {
-            var time = new TimeInterval(DateTime.Now, DateTime.Now);
+            TimeInterval time = new TimeInterval(DateTime.Now, DateTime.Now);
             List<TimeInterval> freeTimeIntervals = GetFreeTimeIntervalsForDoctor(doctor);
             foreach (TimeInterval interval in freeTimeIntervals)
             {
                 if ((interval.End - interval.Start).TotalHours >= duration)
                 {
-                    time = new TimeInterval(interval.Start, interval.Start.AddHours(duration));
-
+                    time = new TimeInterval(interval.Start,interval.Start.AddHours(duration));
                     break;
                 }
-                else
-                {
-                    time = null;
-                    break;
-                }
+         
             }
-
-            return time;
+           return time;
         }
 
-        public TimeInterval FindIntervalForOperation(Appointment appointment, double duration)
+          
+
+        
+
+        public TimeInterval FindIntervalForOperation(Appointment appointment,double duration)
         {
             TimeInterval tl;
             if (IsDoctorFreeInInterval(appointment._Doctor._Id, appointment._Time))
@@ -199,66 +197,77 @@ namespace Service
             }
             else
             {
-                Console.WriteLine("usao u funkciju findinterval for operation");
-
                 tl = MakeAppointmentForSurgery(appointment, duration);
             }
 
             return tl;
         }
 
-        public TimeInterval MakeAppointmentForSurgery(Appointment appointment, double duration)
+
+    public TimeInterval MakeAppointmentForSurgery(Appointment appointment, double duration)
+    {
+        TimeInterval tl = new TimeInterval(DateTime.Now, DateTime.Now);
+
+        if (CheckifDurationIsLongEnough(appointment._Doctor, duration) != null)
         {
-            TimeInterval tl = new TimeInterval(DateTime.Now, DateTime.Now);
-
-            if (CheckifDurationIsLongEnough(appointment._Doctor, duration) != null)
-            {
-                tl = CheckifDurationIsLongEnough(appointment._Doctor, duration);
-            }
-            else
-            {
-                CancelAppointmentsForOperation(appointment);
-                tl = appointment._Time;
-            }
-
-            return tl;
+            tl = CheckifDurationIsLongEnough(appointment._Doctor, duration);
         }
+        else
+        {
+            CancelAppointmentsForOperation(appointment);
+            tl = appointment._Time;
+        }
+            return tl;
+    }
+
+
+           
 
         public void CancelAppointmentsForOperation(Appointment appointment)
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment._Doctor._Id);
-            var AppointmentsToDelete = appointments.Where(i => i._Time.Start >= appointment._Time.Start && i._Time.End <= appointment._Time.End).ToList();
-            foreach (Appointment appointmentToDelete in AppointmentsToDelete)
+            List<Appointment> appointmentsToDelete = appointments.Where(i=> i._Time.Start>= appointment._Time.Start && i._Time.End<=appointment._Time.End).ToList();
+            foreach (Appointment appToDelete in appointmentsToDelete)
             {
-                appointments.Remove(appointmentToDelete);
-            }
+                appointments.Remove(appToDelete);
+            }  
         }
+
+
+        public List<TimeInterval> GetFreeIntervalsOrdered(Doctor doctor)
+        {
+            List<TimeInterval> takenIntervals = _appointmentRepository.getTimeIntervalsForDoctor(doctor);
+            var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
+            List<TimeInterval> freeTimeIntervals = new List<TimeInterval>();
+            for (int i = 0; i < orderedAppointment.Length - 1; i++)
+            {
+                if (!(orderedAppointment[i].End == orderedAppointment[i + 1].Start))
+                    freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End, orderedAppointment[i + 1].Start));
+            }
+            return freeTimeIntervals;
+        }
+
 
         public List<TimeInterval> GetFreeTimeIntervalsForDoctor(Doctor doctor)
         {
             List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
             var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
             List<TimeInterval> freeTimeIntervals = new List<TimeInterval>();
-
-
             for (int i = 0; i < orderedAppointment.Length - 1; i++)
             {
                 if (!(orderedAppointment[i].End == orderedAppointment[i + 1].Start))
                     freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End, orderedAppointment[i + 1].Start));
             }
 
-            var FirstAppoitment = orderedAppointment.First();
-            var dateappointment = FirstAppoitment.Start.Date.ToShortDateString();
-            //var timeAppointment = DateTime.Parse("8:00");
-            //var timesAppointment = "21:00"
-            var dateTimeApp = DateTime.Parse(dateappointment + " " + "8:00");
-            var dateTimeApp1 = DateTime.Parse(dateappointment + " " + "21:00");
-            var LastAppoitment = orderedAppointment.Last();
-            if (FirstAppoitment.Start.Hour > 8)
-                freeTimeIntervals.Add(new TimeInterval(dateTimeApp, FirstAppoitment.Start));
-            if (LastAppoitment.End.Hour < 21)
-                freeTimeIntervals.Add(new TimeInterval(LastAppoitment.End, dateTimeApp1));
-
+            TimeInterval firstAppoitment = orderedAppointment.First();
+            string dateappointment = firstAppoitment.Start.Date.ToShortDateString();
+            DateTime dateTimeStart = DateTime.Parse(dateappointment + " " + "8:00");
+            DateTime DateTimeEnd = DateTime.Parse(dateappointment + " " + "21:00");
+            TimeInterval lastAppoitment = orderedAppointment.Last();
+            if (firstAppoitment.Start.Hour > 8)
+                freeTimeIntervals.Add(new TimeInterval(dateTimeStart,firstAppoitment.Start));
+            if(lastAppoitment.End.Hour < 21)
+                freeTimeIntervals.Add(new TimeInterval(lastAppoitment.End,DateTimeEnd));
 
             return freeTimeIntervals;
         }
