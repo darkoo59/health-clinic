@@ -156,7 +156,7 @@
     <Compile Include="Model\DoctorSurvey.cs" />
     <Compile Include="Model\HospitalSurvey.cs" />
     <Compile Include="Model\Medicine.cs" />
-    <Compile Include="Model\MedicineApprovalNotification.cs" />
+    <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\QuestionForSurvey.cs" />

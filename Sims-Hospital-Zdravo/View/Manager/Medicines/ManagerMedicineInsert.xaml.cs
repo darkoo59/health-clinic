@@ -16,7 +16,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         private MedicineController medicineController;
         private NotificationController notificationController;
         private DoctorAppointmentController doctorAppointmentController;
-        public MedicineApprovalNotification ApprovalNotification { get; set; }
+        public MedicineCreatedNotification _CreatedNotification { get; set; }
         public Medicine Medicine { get; set; }
 
         public ManagerMedicineInsert()
@@ -42,7 +42,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 Doctor doctor = (Doctor)ComboDoctors.SelectedItem;
 
                 this.Medicine = new Medicine(name, strength, allergens, description);
-                this.ApprovalNotification = new MedicineApprovalNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
             catch (Exception ex)
