@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
@@ -29,6 +30,15 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
             MedicineSubstitues.ItemsSource = medicineController.ReadAllMedicines();
+            this.KeyDown += new KeyEventHandler(GoBack);
+        }
+
+        private void GoBack(object sender, KeyEventArgs args)
+        {
+            if (args.Key == Key.Escape)
+            {
+                Close();
+            }
         }
 
         private void SaveMedicine_Click(object sender, RoutedEventArgs e)

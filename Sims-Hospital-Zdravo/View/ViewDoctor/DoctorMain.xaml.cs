@@ -13,13 +13,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Notifications.Wpf;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
     /// Interaction logic for DoctorMain.xaml
     /// </summary>
-    public partial class DoctorMain : Window
+    public partial class DoctorMain : Window, INotificationObserver
     {
         private DoctorAppointmentController docController;
         private MedicalRecordController medicalRecordController;
@@ -27,11 +30,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private PatientMedicalRecordController patientMedicalRecordController;
         private RequestForFreeDaysController requestForFreeDaysController;
         private DoctorAppointmentController doctorAppointmentController;
+        private NotificationController notificationController;
+        private NotificationManager notificationManager;
 
-        
         private int doctorId;
-        
+
         private App app;
+
         public DoctorMain(int DoctorId)
         {
             app = App.Current as App;
@@ -43,7 +48,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.patientMedicalRecordController = app._patientMedRecController;
             this.requestForFreeDaysController = app._requestForFreeDaysController;
             this.doctorAppointmentController = app._doctorAppointmentController;
-
+            this.notificationController = this.app._notificationController;
+            notificationManager = new NotificationManager();
+            this.app._taskScheduleTimer.AddObserver(this);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,23 +58,22 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow(docController);
             CrudWindow.Show();
         }
+
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController,medicalRecordController,doctorId);
+            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController, medicalRecordController, doctorId);
             myAppointments.Show();
-
         }
 
         private void button_medical_report_click(object sender, RoutedEventArgs e)
         {
             MedicalReport medicalReportWindow = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId);
             medicalReportWindow.Show();
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AnamnesisList anamnesisList = new AnamnesisList(anamnesisController,doctorId,docController);
+            AnamnesisList anamnesisList = new AnamnesisList(anamnesisController, doctorId, docController);
             anamnesisList.Show();
         }
 
@@ -75,7 +81,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
 
         {
-            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController,FrameForMain);
+            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain);
             FrameForMain.Content = searchPatient;
         }
 
@@ -99,7 +105,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)
         {
-            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController,requestForFreeDaysController,doctorId);
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController, requestForFreeDaysController, doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
         }
 
@@ -107,6 +113,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             DoctorMedicines doctorMedicines = new DoctorMedicines(FrameForMain);
             FrameForMain.Content = doctorMedicines;
+        }
+
+        public void Notify(Notification notification)
+        {
+            MedicineCreatedNotification medicineCreatedNotification = notification as MedicineCreatedNotification;
+            if (medicineCreatedNotification is null) return;
+
+            notificationManager.Show(
+                new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine._Name + " is waiting for approval!" },
+                areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
+
+            notificationController.Delete(notification);
         }
     }
 }

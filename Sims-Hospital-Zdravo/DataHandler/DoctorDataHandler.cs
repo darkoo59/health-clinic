@@ -10,24 +10,21 @@ using System.Collections.ObjectModel;
 
 namespace DataHandler
 {
-   public class DoctorDataHandler
-   {
-      public ObservableCollection<Doctor> ReadAll()
-      {
+    public class DoctorDataHandler
+    {
+        public ObservableCollection<Doctor> ReadAll()
+        {
             string doctorSerialized = System.IO.File.ReadAllText(Path);
             ObservableCollection<Doctor> doctors = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Doctor>>(doctorSerialized);
-            foreach (Doctor doc in doctors)
-                Console.WriteLine(doc._Specialty.ToString());
             return doctors;
-      }
-      
-      public void Write(ObservableCollection<Doctor> doctors)
-      {
+        }
+
+        public void Write(ObservableCollection<Doctor> doctors)
+        {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(doctors);
             System.IO.File.WriteAllText(Path, serialized);
         }
-   
-      private String Path = @"..\..\Resources\doctor.txt";
-   
-   }
+
+        private String Path = @"..\..\Resources\doctor.txt";
+    }
 }

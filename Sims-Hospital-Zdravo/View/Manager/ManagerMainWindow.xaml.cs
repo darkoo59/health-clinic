@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -92,10 +93,29 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         public void Notify(Notification notification)
         {
+            ReviewMedicineNotification reviewMedicineNotification = notification as ReviewMedicineNotification;
+            if (reviewMedicineNotification is null) return;
+
             notificationManager.Show(
-                new NotificationContent { Title = "Medicine notification", Message = notification.Content },
+                new NotificationContent { Title = "Medicine notification", Message = CreateNotificationMessageFromNotification(reviewMedicineNotification) },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
             notificationController.Delete(notification);
+        }
+
+
+        private string CreateNotificationMessageFromNotification(ReviewMedicineNotification notification)
+        {
+            if (notification._ValidationType == MedicineValidationType.MEDICINE_APPROVED)
+            {
+                return "Medicine " + notification._Medicine._Name + " has been approved!";
+            }
+
+            return "Medicine " + notification._Medicine._Name + " has beeen declined!";
+        }
+
+        private void WindowClosing(object sender, CancelEventArgs e)
+        {
+            app._taskScheduleTimer.RemoveObserver(this);
         }
     }
 }

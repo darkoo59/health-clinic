@@ -39,6 +39,7 @@ namespace Sims_Hospital_Zdravo
         internal SuppliesController _suppliesController;
         internal RequestForFreeDaysController _requestForFreeDaysController;
         internal SurveyController _surveyController;
+
         public App()
         {
             NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
@@ -140,20 +141,27 @@ namespace Sims_Hospital_Zdravo
             SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
             SuppliesAcquisitionRepository _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository(_suppliesAcquisitionDataHandler);
             SuppliesService suppliesService =
-                new SuppliesService(roomRepository,equipmentRepository,_suppliesAcquisitionRepository);
+                new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
 
 
             _prescriptionController = new PrescriptionController(prescriptionService);
 
-            _taskScheduleTimer = new TaskScheduleTimer(_equipmentTransferController, _renovationController, _doctorAppointmentController, _prescriptionController, _notificationController, _suppliesController);
+            _taskScheduleTimer = new TaskScheduleTimer
+            (
+                _equipmentTransferController,
+                _renovationController,
+                _doctorAppointmentController,
+                _prescriptionController,
+                _notificationController,
+                _suppliesController,
+                _accountController
+            );
 
             RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
-            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository,appointmentRepository);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
             _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
-
-
         }
     }
 }

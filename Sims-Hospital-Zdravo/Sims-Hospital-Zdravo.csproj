@@ -218,6 +218,7 @@
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Custom\CustomTimeIntervalSorter.cs" />
     <Compile Include="View\Manager\Dialogs\RenovationRoomDialog.xaml.cs">
       <DependentUpon>RenovationRoomDialog.xaml</DependentUpon>
     </Compile>

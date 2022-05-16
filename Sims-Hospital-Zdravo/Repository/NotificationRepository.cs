@@ -64,21 +64,12 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> ReadAllManagerMedicineNotifications()
         {
-            return notifications.OfType<MedicineCreatedNotification>().Cast<Notification>().ToList();
+            return notifications.OfType<ReviewMedicineNotification>().Cast<Notification>().ToList();
         }
 
-        public List<Notification> ReadAllDoctorMedicineNotifications()
+        public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
-            List<Notification> doctorNotifications = new List<Notification>();
-            foreach (Notification notification in notifications)
-            {
-                if (typeof(ReviewMedicineNotification).IsInstanceOfType(notification))
-                {
-                    doctorNotifications.Add(notification);
-                }
-            }
-
-            return doctorNotifications;
+            return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
         public void LoadDataFromFiles()

@@ -13,7 +13,8 @@
         Width="1040"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Background="#2f343d"
-        ResizeMode="CanResize">
+        ResizeMode="CanResize"
+        Closing="WindowClosing">
 
     <Window.Resources>
         <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>

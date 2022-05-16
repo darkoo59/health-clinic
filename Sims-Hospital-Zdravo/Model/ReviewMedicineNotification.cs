@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 public enum MedicineValidationType
-{ MEDICINE_APPROVED,
-
-   MEDICINE_REJECTED
+{
+    MEDICINE_APPROVED,
+    MEDICINE_REJECTED
 }
+
 namespace Sims_Hospital_Zdravo.Model
 {
     public class ReviewMedicineNotification : Notification
@@ -17,7 +18,7 @@ namespace Sims_Hospital_Zdravo.Model
         private MedicineValidationType validationType;
         private Medicine medicine;
 
-        public ReviewMedicineNotification(string content,string reasonForNotValidating, Medicine medicine,int id,MedicineValidationType medicineValidationType) : base(content,id)
+        public ReviewMedicineNotification(string content, string reasonForNotValidating, Medicine medicine, int id, MedicineValidationType medicineValidationType) : base(content, id)
         {
             this.reasonForNotValidating = reasonForNotValidating;
             this.validationType = medicineValidationType;
@@ -26,44 +27,23 @@ namespace Sims_Hospital_Zdravo.Model
 
         public string _ReasonForNotValidating
         {
-            get
-            {
-                return reasonForNotValidating;
-            }
+            get { return reasonForNotValidating; }
 
-            set
-            {
-                reasonForNotValidating = value;
-            }
+            set { reasonForNotValidating = value; }
         }
 
         public Medicine _Medicine
         {
-            get
-            {
-                return medicine;
-            }
+            get { return medicine; }
 
-            set
-            {
-                medicine = value;
-            }
+            set { medicine = value; }
         }
 
         public MedicineValidationType _ValidationType
         {
-            get
-            {
-                return validationType;
-            }
+            get { return validationType; }
 
-            set
-            {
-                validationType = value;
-            }
+            set { validationType = value; }
         }
-
-
-
     }
 }
