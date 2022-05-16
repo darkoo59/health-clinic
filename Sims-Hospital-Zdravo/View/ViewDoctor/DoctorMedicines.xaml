@@ -11,5 +11,6 @@
         <DataGrid Margin="84,129,202,88" Name="MedicinesDataGrid">
             
         </DataGrid>
+        <Button Margin="84,41,622,382" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
     </Grid>
 </Page>
