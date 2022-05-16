@@ -28,6 +28,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             InitializeComponent();
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
+            MedicineSubstitues.ItemsSource = medicineController.ReadAllMedicines();
         }
 
         private void SaveMedicine_Click(object sender, RoutedEventArgs e)
@@ -40,8 +41,10 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 string description = TxtDescription.Text;
                 string strength = TxtStrength.Text;
                 Doctor doctor = (Doctor)ComboDoctors.SelectedItem;
+                List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
 
                 this.Medicine = new Medicine(name, strength, allergens, description);
+                this.Medicine._Substitution = substitutes;
                 this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }

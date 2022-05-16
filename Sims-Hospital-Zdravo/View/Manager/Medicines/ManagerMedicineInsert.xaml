@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Medicines"
         mc:Ignorable="d"
         Title="ManagerMedicineInsert"
-        Height="500"
+        Height="550"
         Width="500"
         Background="#2f343d">
     <Window.Resources>
@@ -47,6 +47,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Label FontWeight="Bold" FontSize="20" Height="50" HorizontalAlignment="Center"
@@ -78,11 +79,13 @@
             <ComboBox x:Name="ComboDoctors"></ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="0">
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.RowSpan="2">
             <Label> Substitution medicines:</Label>
+            <ListBox Height="60" Width="200" SelectionMode="Multiple" x:Name="MedicineSubstitues"></ListBox>
         </StackPanel>
 
-        <Button Grid.Row="7" Grid.Column="0"
+
+        <Button Grid.Row="8" Grid.Column="0"
                 Width="200"
                 Height="30"
                 Click="SaveMedicine_Click"
