@@ -6,22 +6,26 @@
 
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Service
 {
     public class AppointmentPatientService
     {
         private AppointmentPatientValidator appointmentPatientValidator;
+        public AccountRepository accountRepository;
 
-        public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository)
+        public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, AccountRepository accountRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.doctorRepository = doctorRepository;
             this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
+            this.accountRepository = accountRepository;
         }
 
         public void Create(Appointment appointment)
@@ -33,15 +37,34 @@ namespace Service
 
         public void Update(Appointment appointment)
         {
+            CheckIfPatientNotBlocked();
             appointmentRepository.Update(appointment);
         }
 
         public void Delete(Appointment appointment)
         {
+            CheckIfPatientNotBlocked();
             appointmentRepository.Delete(appointment);
         }
-
-        public ref ObservableCollection<Appointment> FindByPatientID(int id)
+        public ObservableCollection<Appointment> FindByPatientIdOld(int id)
+        {
+            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            foreach (Appointment app in FindByPatientId(id)) 
+            {
+                if (app._Time.End.CompareTo(DateTime.Now) < 0) appointments.Add(app);
+            }
+            return appointments;
+        }
+        public ObservableCollection<Appointment> FindByPatientIdNew(int id)
+        {
+            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            foreach (Appointment app in FindByPatientId(id))
+            {
+                if (app._Time.End.CompareTo(DateTime.Now) > 0) appointments.Add(app);
+            }
+            return appointments;
+        }
+        public ref ObservableCollection<Appointment> FindByPatientId(int id)
         {
             return ref appointmentRepository.FindByPatientId(id);
         }
@@ -65,7 +88,10 @@ namespace Service
         {
             appointmentPatientValidator.RescheduleAppointment(appointment, timeInterval);
         }
-
+        public void CheckIfPatientNotBlocked()
+        {
+            appointmentPatientValidator.CheckIfPatientNotBlocked(accountRepository);
+        }
         public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority)
         {
             bool free = true;

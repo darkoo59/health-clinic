@@ -26,48 +26,36 @@ namespace Sims_Hospital_Zdravo
         private App app;
         private SurveyController surveyController;
         private ObservableCollection<QuestionForSurvey> questions;
-        private Frame patient;
+        private Frame frame;
         public HospitalSurveyPage(Frame frame)
         {
             InitializeComponent();
-            this.patient = frame;
+            this.frame = frame;
             app = Application.Current as App;
             this.surveyController = app._surveyController;
-            InitializeComponent();
             this.DataContext = this;
             Survey.ItemsSource = getQuestions();
+
             Survey.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Rate how much do you agree with this statements";
             data_column.Binding = new Binding("Text");
             data_column.Width = 484;
             Survey.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
+            Survey.Columns.Add(data_column);
+            Survey.Columns.Add(getCheckBox("1", "One"));
+            Survey.Columns.Add(getCheckBox("2", "Two"));
+            Survey.Columns.Add(getCheckBox("3", "Three"));
+            Survey.Columns.Add(getCheckBox("4", "Four"));
+            Survey.Columns.Add(getCheckBox("5", "Five"));
+        }
+        private DataGridCheckBoxColumn getCheckBox(string header, string binding)
+        {
             DataGridCheckBoxColumn checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "1";
-            checkBox.Binding = new Binding("One");
+            checkBox.Header = header;
+            checkBox.Binding = new Binding(binding);
             checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "2";
-            checkBox.Binding = new Binding("Two");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "3";
-            checkBox.Binding = new Binding("Three");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "4";
-            checkBox.Binding = new Binding("Four");
-            Survey.Columns.Add(checkBox);
-            checkBox.Width = 40;
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "5";
-            checkBox.Binding = new Binding("Five");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
+            return checkBox;
         }
         public ObservableCollection<QuestionForSurvey> getQuestions()
         {
@@ -89,7 +77,7 @@ namespace Sims_Hospital_Zdravo
                 i++;
             }
             surveyController.CreateHospitalSurvey(new HospitalSurvey(rates[0], rates[1], rates[2], rates[3], rates[4]));
-            patient.Content = new HomePatient(patient);
+            frame.Content = new HomePatient(frame);
         }
         private int CheckIfComboBoxChecked(QuestionForSurvey questionForSurvey)
         {

@@ -36,18 +36,17 @@ namespace Sims_Hospital_Zdravo
             this.DataContext = this;
 
             McDataGrid.AutoGenerateColumns = false;
-            MultiBinding date = new MultiBinding();
-            date.StringFormat = "{0}/{1}/{2}";
-            date.Bindings.Add(new Binding("_Time.Start.Day"));
-            date.Bindings.Add(new Binding("_Time.Start.Month"));
-            date.Bindings.Add(new Binding("_Time.Start.Year"));
+            Binding date = new Binding("_Time.Start");
+            date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
-            data_column.Binding = new Binding("_Time.Start.TimeOfDay");
+            Binding time = new Binding("_Time.Start");
+            time.StringFormat = "{0:HH:mm}";
+            data_column.Binding = time;
             McDataGrid.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
@@ -56,13 +55,14 @@ namespace Sims_Hospital_Zdravo
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
+            data_column.Width = 190;
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
             data_column.Binding = new Binding("_Room._Id");
             McDataGrid.Columns.Add(data_column);
 
-            McDataGrid.ItemsSource = appointmentPatientController.FindByPatientID(1);
+            McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(1);
             McDataGrid.Items.Refresh();
         }
 
@@ -79,26 +79,14 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            if (CheckIfPatientNotBlocked())
+            try
             {
                 appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
-                app._accountController.GetLoggedAccount().Cancels.Add(DateTime.Now);
             }
-        }
-        private bool CheckIfPatientNotBlocked()
-        {
-            List<DateTime> cancels = app._accountController.GetLoggedAccount().Cancels;
-            if(cancels.Count > 4)
+            catch (Exception m)
             {
-                DateTime last = cancels.Last();
-                DateTime first = cancels.ElementAt(cancels.Count - 5);
-                if (last.DayOfYear - first.DayOfYear < 30)
-                {
-                    app._accountController.GetLoggedAccount().Blocked = true;
-                    return false;
-                }
+                MessageBox.Show(m.Message);
             }
-            return true;
         }
         public void Notify(Notification notification)
         {

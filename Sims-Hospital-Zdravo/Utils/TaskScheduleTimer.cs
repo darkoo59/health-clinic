@@ -27,8 +27,6 @@ namespace Sims_Hospital_Zdravo.Utils
         private DoctorAppointmentController _doctorAppointmentController;
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
-        private DateTime dateTime;
-        private DateTime dateTime1;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
             PrescriptionController prescriptionController, NotificationController notificationController,SuppliesController suppliesController)
@@ -67,8 +65,6 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             AppointmentDone();
-            dateTime = DateTime.Now;
-            dateTime1 = DateTime.Now.AddSeconds(10);
         }
 
         private void CheckIfRelocationAppointmentDone()
@@ -134,6 +130,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckIfThereShouldBeNotification()
         {
+            DateTime dateTime = DateTime.Now;
+            DateTime dateTime1 = DateTime.Now.AddSeconds(10);
             ObservableCollection<Prescription> prescriptions = _prescriptionController.ReadAll();
             foreach (Prescription prescription in prescriptions)
             {

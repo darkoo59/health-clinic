@@ -6,6 +6,41 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
         Title="AppointmentList" Height="327" Width="792">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="#Segoe UI"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data=""/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E59400" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="OrangeRed" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid Margin="0,0,2,-1">
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
@@ -15,9 +50,9 @@
             <ColumnDefinition Width="320*"/>
             <ColumnDefinition Width="321*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="185" Margin="150,90,0,0" VerticalAlignment="Top" Width="495" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button HorizontalAlignment="Left" Margin="280,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click">Submit</Button>
-        <Button HorizontalAlignment="Left" Margin="41,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1">Cancel</Button>
-        <TextBlock Name="Text" HorizontalAlignment="Left" Margin="300,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="190" Height="45"/>
+        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="185" Margin="150,80,0,0" VerticalAlignment="Top" Width="495" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button HorizontalAlignment="Left" Margin="260,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250" FontSize="20" Height="31" Click="Button_Click">Submit</Button>
+        <Button HorizontalAlignment="Left" Margin="46,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250" FontSize="20" Height="31" Grid.Column="1" Click="Button_Click_1">Cancel</Button>
+        <TextBlock Name="Text" HorizontalAlignment="Left" Margin="300,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="18"  Width="190" Height="45"/>
     </Grid>
 </Page>
