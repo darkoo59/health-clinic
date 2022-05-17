@@ -43,11 +43,11 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="240" Margin="50,55,0,0" VerticalAlignment="Top" Width="410" FontSize="15" >
+        <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="240" Margin="50,55,0,0" VerticalAlignment="Top" Width="410" FontSize="18" >
         </DataGrid>
         <Label Content="Appointment History:" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,1" FontSize="20"/>
-        <Button FontFamily="#Segoe UI" Content="Rate" HorizontalAlignment="Left" Margin="495,80,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Rate_Click"/>
-        <Button x:Name="Type" Content="Appointment Details" HorizontalAlignment="Left" Margin="495,150,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Details_Click"/>
-        <Button Content="Hospital Survey" HorizontalAlignment="Left" Margin="495,220,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Button_Click"/>
+        <Button Content="Rate" Height ="31" HorizontalAlignment="Left" Margin="495,80,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Rate_Click"/>
+        <Button x:Name="Type" Height ="31" Content="Appointment Details" HorizontalAlignment="Left" Margin="495,150,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Details_Click"/>
+        <Button Content="Hospital Survey" Height ="31" HorizontalAlignment="Left" Margin="495,220,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Button_Click"/>
     </Grid>
 </Page>

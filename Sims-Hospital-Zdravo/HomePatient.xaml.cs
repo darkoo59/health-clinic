@@ -22,33 +22,28 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class HomePatient : Page
     {
-        public Frame patient;
+        public Frame frame;
         public AppointmentPatientController appointmentPatientController;
         App app;
-        public HomePatient(Frame patient)
+        public HomePatient(Frame frame)
         {
             InitializeComponent();
             app = Application.Current as App;
-            this.patient = patient;
+            this.frame = frame;
             this.appointmentPatientController = app._appointmentPatientController;
             this.DataContext = this;
 
             Apps.AutoGenerateColumns = false;
-            MultiBinding date = new MultiBinding();
-            date.StringFormat = "{0}/{1}/{2}";
-            date.Bindings.Add(new Binding("_Time.Start.Day"));
-            date.Bindings.Add(new Binding("_Time.Start.Month"));
-            date.Bindings.Add(new Binding("_Time.Start.Year"));
+            Binding date = new Binding("_Time.Start");
+            date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
             Apps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
-            MultiBinding time = new MultiBinding();
-            time.StringFormat = "{}{0:00}:{1:00}";
-            time.Bindings.Add(new Binding("_Time.Start.TimeOfDay.Hours"));
-            time.Bindings.Add(new Binding("_Time.Start.TimeOfDay.Minutes"));
+            Binding time = new Binding("_Time.Start");
+            time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
             Apps.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
@@ -58,18 +53,19 @@ namespace Sims_Hospital_Zdravo
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
+            data_column.Width = 195;
             Apps.Columns.Add(data_column);
             DataGridCheckBoxColumn data_check_box = new DataGridCheckBoxColumn();
             data_check_box.Header = "Rated";
             data_check_box.Binding = new Binding("Rated");
             Apps.Columns.Add(data_check_box);
-            Apps.ItemsSource = appointmentPatientController.FindByPatientID(1);
+            Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(1);
             Apps.Items.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            patient.Content = new HospitalSurveyPage(patient);
+            frame.Content = new HospitalSurveyPage(frame);
         }
 
         private void Details_Click(object sender, RoutedEventArgs e)
@@ -80,7 +76,7 @@ namespace Sims_Hospital_Zdravo
         private void Rate_Click(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment) Apps.SelectedItem;
-            patient.Content = new DoctorSurveyPage(appointment, patient);
+            if(appointment.Rated == false) frame.Content = new DoctorSurveyPage(appointment, frame);
         }
     }
 }

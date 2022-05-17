@@ -1,6 +1,7 @@
 ﻿using Model;
 using Repository;
 using Service;
+using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,23 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 throw new Exception("You can not time travel");
             }
+        }
+        public void CheckIfPatientNotBlocked(AccountRepository accountRepository)
+        {
+            List<DateTime> cancels = accountRepository.GetLoggedAccount().Cancels;
+            if (cancels.Count > 3)
+            {
+                if (TooManyInThirtyDays(cancels))
+                {
+                    accountRepository.GetLoggedAccount().Blocked = true;
+                    throw new Exception("You are blocked");
+                }
+            }
+            accountRepository.GetLoggedAccount().Cancels.Add(DateTime.Now);
+        }
+        private bool TooManyInThirtyDays(List<DateTime> cancels)
+        {
+            return (DateTime.Now.DayOfYear - cancels.ElementAt(cancels.Count - 4).DayOfYear < 30);
         }
         public void RescheduleAppointment(Appointment appointment, TimeInterval timeInterval) 
         {

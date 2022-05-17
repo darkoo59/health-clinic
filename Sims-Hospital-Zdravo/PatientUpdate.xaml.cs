@@ -80,32 +80,17 @@ namespace Sims_Hospital_Zdravo
                 TimeInterval timeInterval = new TimeInterval(date, date.AddMinutes(30));
                 appointmentPatientController.ValidateReshedule(appointment, timeInterval);
                 appointment._Time = timeInterval;
-                if (CheckIfPatientNotBlocked())
-                {
-                    appointmentPatientController.Update(appointment);
-                    app._accountController.GetLoggedAccount().Cancels.Add(DateTime.Now);
-                    patient.Content = new PatientWindow(patient);
-                }
+                appointmentPatientController.Update(appointment);
+                patient.Content = new PatientWindow(patient);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-        private bool CheckIfPatientNotBlocked()
-        {
-            List<DateTime> cancels = app._accountController.GetLoggedAccount().Cancels;
-            if (cancels.Count > 4)
-            {
-                DateTime last = cancels.Last();
-                DateTime first = cancels.ElementAt(cancels.Count - 5);
-                if (last.DayOfYear - first.DayOfYear < 30)
+                if (ex.Message.Equals("You are blocked"))
                 {
-                    app._accountController.GetLoggedAccount().Blocked = true;
-                    return false;
+                    
                 }
             }
-            return true;
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

@@ -20,6 +20,7 @@ namespace Sims_Hospital_Zdravo.Repository
         }
         public void Create(DoctorSurvey doctorSurvey)
         {
+            doctorSurvey.Appointment.Rated = true;
             surveys.Add(doctorSurvey);
             LoadDataToFile();
         }

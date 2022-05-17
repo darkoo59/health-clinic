@@ -82,6 +82,11 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             return loggedAccount;
         }
+        public void blockUser()
+        {
+            loggedAccount.Blocked = true;
+            LoadDataToFile();
+        }
 
         public void Login(string username, string password)
         {

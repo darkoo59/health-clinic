@@ -28,49 +28,37 @@ namespace Sims_Hospital_Zdravo
         App app;
         private SurveyController surveyController;
         List<QuestionForSurvey> questions;
-        Frame Patient;
-        public DoctorSurveyPage(Appointment appointment, Frame patient)
+        Frame frame;
+        public DoctorSurveyPage(Appointment appointment, Frame frame)
         {
-            Patient = patient;
+            InitializeComponent();
+            this.frame = frame;
             app = Application.Current as App;
             this.surveyController = app._surveyController;
             this.appointment = appointment;
             this.appointment.Rated = false;
-            InitializeComponent();
             this.DataContext = this;
             Survey.ItemsSource = getQuestions();
+
             Survey.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Rate how much do you agree with this statements";
             data_column.Binding = new Binding("Text");
             data_column.Width = 484;
             Survey.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
+            Survey.Columns.Add(getCheckBox("1", "One"));
+            Survey.Columns.Add(getCheckBox("2", "Two"));
+            Survey.Columns.Add(getCheckBox("3", "Three"));
+            Survey.Columns.Add(getCheckBox("4", "Four"));
+            Survey.Columns.Add(getCheckBox("5", "Five"));
+        }
+        private DataGridCheckBoxColumn getCheckBox(string header, string binding)
+        {
             DataGridCheckBoxColumn checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "1";
-            checkBox.Binding = new Binding("One");
+            checkBox.Header = header;
+            checkBox.Binding = new Binding(binding);
             checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "2";
-            checkBox.Binding = new Binding("Two");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "3";
-            checkBox.Binding = new Binding("Three");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "4";
-            checkBox.Binding = new Binding("Four");
-            Survey.Columns.Add(checkBox);
-            checkBox.Width = 40;
-            checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = "5";
-            checkBox.Binding = new Binding("Five");
-            checkBox.Width = 40;
-            Survey.Columns.Add(checkBox);
+            return checkBox;
         }
         public List<QuestionForSurvey> getQuestions()
         {
@@ -91,53 +79,18 @@ namespace Sims_Hospital_Zdravo
                 rates[i] = CheckIfComboBoxChecked(questionForSurvey);
                 i++;
             }
-            appointment.Rated = true;
-            surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment,rates[0], rates[1], rates[2], rates[3], rates[4]));
-            Patient.Content = new HomePatient(Patient);
+            surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment, rates[0], rates[1], rates[2], rates[3], rates[4]));
+            frame.Content = new HomePatient(frame);
         }
 
         private int CheckIfComboBoxChecked(QuestionForSurvey questionForSurvey) 
         {
-            int checkbox = 0;
-            if (questionForSurvey.One) checkbox = 1;
-            if (questionForSurvey.Two) checkbox = 2;
-            if (questionForSurvey.Three) checkbox = 3;
-            if (questionForSurvey.Four) checkbox = 4;
-            if (questionForSurvey.Five) checkbox = 5;
-            return checkbox;
-        }
-        private void IsCheckable(int checkbox) 
-        {
-            if (checkbox != 0)
-            {
-                int i = 0;
-                foreach (DataGridColumn dataGridColumn in Survey.Columns)
-                {
-                    if (i != checkbox) dataGridColumn.IsReadOnly = true;
-                    i++;
-                }
-            }
-            else
-            {
-                foreach (DataGridColumn dataGridColumn in Survey.Columns)
-                {
-                    dataGridColumn.IsReadOnly = false;
-                }
-            }
-        }
-        private void Survey_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            //if ((QuestionForSurvey)Survey.CurrentCell.Item != null)
-            //{
-                //QuestionForSurvey questionForSurvey = (QuestionForSurvey)Survey.CurrentCell.Item;
-                //IsCheckable(CheckIfComboBoxChecked(questionForSurvey));
-            //}
-        }
-
-        private void Survey_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
-        {
-            //QuestionForSurvey questionForSurvey = (QuestionForSurvey)Survey.CurrentCell.Item;
-            //IsCheckable(CheckIfComboBoxChecked(questionForSurvey));
+            if (questionForSurvey.One) return 1;
+            if (questionForSurvey.Two) return 2;
+            if (questionForSurvey.Three) return 3;
+            if (questionForSurvey.Four) return 4;
+            if (questionForSurvey.Five) return 5;
+            return 0;
         }
     }
 }

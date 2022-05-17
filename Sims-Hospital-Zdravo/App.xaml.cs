@@ -73,12 +73,17 @@ namespace Sims_Hospital_Zdravo
             MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             _recordController = new MedicalRecordController(recordService, prescriptionService);
 
+            AccountDataHandler accountDataHandler = new AccountDataHandler();
+            AccountRepository accountRepository = new AccountRepository(accountDataHandler);
+            AccountService accountService = new AccountService(accountRepository);
+            _accountController = new AccountController(accountService);
+
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
             DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
             AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(appointmentRepository, doctorRepository);
+                new AppointmentPatientService(appointmentRepository, doctorRepository, accountRepository);
             _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
@@ -112,11 +117,6 @@ namespace Sims_Hospital_Zdravo
             EquipmentTransferService equipmentTransferService =
                 new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
             _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
-
-            AccountDataHandler accountDataHandler = new AccountDataHandler();
-            AccountRepository accountRepository = new AccountRepository(accountDataHandler);
-            AccountService accountService = new AccountService(accountRepository);
-            _accountController = new AccountController(accountService);
 
 
             PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);

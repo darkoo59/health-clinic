@@ -34,11 +34,18 @@ namespace Controller
             appointmentPatientService.Delete(appointment);
         }
 
-        public ref ObservableCollection<Appointment> FindByPatientID(int id)
+        public ref ObservableCollection<Appointment> FindByPatientId(int id)
         {
-            return ref appointmentPatientService.FindByPatientID(id);
+            return ref appointmentPatientService.FindByPatientId(id);
         }
-
+        public ObservableCollection<Appointment> FindByPatientIdOld(int id)
+        {
+            return appointmentPatientService.FindByPatientIdOld(id);
+        }
+        public ObservableCollection<Appointment> FindByPatientIdNew(int id)
+        {
+            return appointmentPatientService.FindByPatientIdNew(id);
+        }
         public ObservableCollection<Doctor> ReadDoctors()
         {
             return appointmentPatientService.ReadDoctors();
