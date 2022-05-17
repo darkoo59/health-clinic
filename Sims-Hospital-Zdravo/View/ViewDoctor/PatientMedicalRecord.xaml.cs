@@ -99,8 +99,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Prescribe_medicine(object sender, RoutedEventArgs e)
         {
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(_medicalRecordController,medRecord,doctorId);
-            prescriptionWindow.Show();
+            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(_medicalRecordController,medRecord,doctorId);
+            //prescriptionWindow.Show();
 
         }
     }

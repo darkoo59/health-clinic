@@ -100,7 +100,10 @@ namespace Controller
             prescriptionService.Create(prescription);
         }
 
-
+        public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord (MedicalRecord medicalRecord)
+        {
+            return medicalRecordService.GetPrescriptionByMedicalRecord(medicalRecord);
+        }
 
     }
 }

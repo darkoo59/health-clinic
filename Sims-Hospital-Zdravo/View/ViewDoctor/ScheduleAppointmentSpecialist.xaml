@@ -38,17 +38,17 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Label Content="Patient:"></Label>
-            <TextBox Name="PatientTxt"  IsReadOnly="False" Height="33" Width="152"/>
+            <TextBox Name="PatientTxt"  IsReadOnly="False" Height="35" Width="130"/>
 
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="Date:" />
-            <DatePicker x:Name="dateTxt" Width="136" Height="36" Style="{DynamicResource styleDatePicker}" />
+            <DatePicker x:Name="dateTxt" Width="130" Height="35" Style="{DynamicResource styleDatePicker}" />
             
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0">
             <Label >Time:</Label>
-            <ComboBox Name="SpecialistAppointmentTimeComboBox" Width="137" FontSize="13"
+            <ComboBox Name="SpecialistAppointmentTimeComboBox" Width="130" Height="35" FontSize="13"
     Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
     HorizontalContentAlignment="Left"
@@ -62,19 +62,19 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="0">
             <Label  >Room:</Label>
-        <TextBox Width="130" Name="RoomText" ></TextBox>
+        <TextBox Width="130" Name="RoomText" Height="35" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="0">
             <Label >Procedure:</Label>
-        <TextBox Width="130" ></TextBox>
+        <TextBox Width="130" Height="35" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0">
             <Label >Specialty:</Label>
-            <ComboBox Width="135" Name="SpecialistComboBox" SelectionChanged="SpecialistComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
+            <ComboBox Width="130" Height="35" Name="SpecialistComboBox" SelectionChanged="SpecialistComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
     HorizontalContentAlignment="Left"
     VerticalAlignment="Center"
-    MinWidth="100"
+    MinWidth="130"
     MaxWidth="375"
     Grid.Row="1"
     Grid.Column="1"
@@ -82,7 +82,7 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="0">
             <Label >Doctor:</Label>
-            <ComboBox Name="DoctorComboBox" Width="136" Height="36" SelectionChanged="DoctorComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
+            <ComboBox Name="DoctorComboBox" Width="130" Height="35" SelectionChanged="DoctorComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
     HorizontalContentAlignment="Left"
     VerticalAlignment="Center"
@@ -94,7 +94,7 @@
         </StackPanel>
         <StackPanel Grid.Row="7" Grid.Column="0">
             <Label >Appointment type:</Label>
-            <ComboBox Name="TypeOfAppointment" Width="136" Height="36"  Style="{DynamicResource theComboBox}"
+            <ComboBox Name="TypeOfAppointment" Width="130" Height="35"  Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
     HorizontalContentAlignment="Left"
     VerticalAlignment="Center"
@@ -103,11 +103,11 @@
     Grid.Row="1"
     Grid.Column="1"
     ItemContainerStyle="{DynamicResource theComboBoxItem}" ></ComboBox>
+        </StackPanel >
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Add appointment" Margin="0,0,50,0" Width="120" Height="50" Name="SpecialistButton" Click="SpecialistButton_Click" />
+        <Button Content="Cancel" x:Name="CancelBtn"  Width="120" Height="50" />
         </StackPanel>
-        
-        <Button Content="Add appointment" Name="SpecialistButton" Click="SpecialistButton_Click" Margin="17,10,3,111" Grid.Column="2" Grid.Row="3"/>
-        <Button Content="Cancel" x:Name="CancelBtn" DockPanel.Dock="Right" Grid.Column="3" Margin="30,10,10,111" Grid.Row="3"/>
-
 
     </Grid>
 </Page>

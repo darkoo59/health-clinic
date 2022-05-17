@@ -26,11 +26,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private DoctorAppointmentController doctorAppointmentController;
         private MedicalRecordController medicalRecordController;
         private Frame frame;
-        public SearchPatient(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,MedicalRecordController medicalRecordController,Frame frame)
+        private int doctorID;
+        public SearchPatient(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,MedicalRecordController medicalRecordController,Frame frame,int id)
         {
             InitializeComponent();
             this.DataContext = this;
             this.frame = frame;
+            this.doctorID = id;
             this.anamnesisController = anamnesisController;
             this.doctorAppointmentController = doctorAppointmentController;
             this.medicalRecordController = medicalRecordController;
@@ -70,6 +72,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 MessageBox.Show("Chose whose medical record you want to see.");
             }
+        }
+
+        private void PrescriptionClick(object sender, RoutedEventArgs e)
+        {
+            MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
+            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID,frame);
+            frame.Content= prescriptionWindow;
         }
     }
 }

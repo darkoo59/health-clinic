@@ -24,7 +24,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// <summary>
     /// Interaction logic for PrescriptionWindow.xaml
     /// </summary>
-    public partial class PrescriptionWindow : Window
+    public partial class PrescriptionWindow : Page
     {
         private MedicalRecordController medicalRecordController;
         private MedicineController medicineController;
@@ -38,7 +38,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private string strength;
         private DateTime startDate;
         private DateTime endDate;
-
+        private Frame frame;
         public Medicine _Medicine
         {
             get
@@ -50,13 +50,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 medicine = value;
             }
         }
-        public PrescriptionWindow(MedicalRecordController medicalRecordController, MedicalRecord medicalRecord, int id)
+        public PrescriptionWindow(MedicalRecordController medicalRecordController, MedicalRecord medicalRecord, int id, Frame frame)
         {
             InitializeComponent();
             this.medicalRecordController = medicalRecordController;
             this.medicalRecord = medicalRecord;
             this.doctorId = id;
             app = App.Current as App;
+            this.frame = frame;
             this.medicineController = app._medicineController;
             medicines = medicineController.ReadAllMedicines();
             PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
@@ -132,8 +133,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 medicalRecordController.createPrescription(prescription);
 
                 medicalRecord._Prescriptions.Add(prescription);
-                PrescriptionList prescriptionList = new PrescriptionList(medicalRecordController, medicalRecord, prescription, doctorId);
-                prescriptionList.Show();
+                PrescriptionList prescriptionList = new PrescriptionList(medicalRecordController,  medicalRecord, doctorId,frame);
+                frame.Content = prescriptionList;
+                //prescriptionList.Show();
             }
         }
 

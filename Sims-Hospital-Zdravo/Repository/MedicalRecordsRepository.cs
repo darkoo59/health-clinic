@@ -9,6 +9,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Model;
 
 namespace Repository
 {
@@ -110,6 +111,11 @@ namespace Repository
         public void LoadDataToFile()
         {
             medicalRecordDataHandler.Write(medicalRecords);
+        }
+
+        public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord)
+        {
+            return medicalRecord._Prescriptions;
         }
     }
 }

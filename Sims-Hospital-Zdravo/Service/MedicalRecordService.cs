@@ -123,9 +123,9 @@ namespace Service
             return id;
         }
 
-        public void CreatePrescription(Prescription prescription)
+        public ObservableCollection<Prescription> GetPrescriptionByMedicalRecord(MedicalRecord medicalRecord)
         {
-
+            return medicalRecordRepository.GetPrescriptionsByMedicalRecord(medicalRecord);
         }
 
    

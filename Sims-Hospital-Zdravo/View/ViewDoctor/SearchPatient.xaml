@@ -20,6 +20,7 @@
             <TextBox TextWrapping="Wrap" Name="SearchTxt" Width="120" Height="40" Margin="0,0,25,0" />
             <Button Content="Search" Margin="0,0,25,0" Width="120" Height="40" />
             <Button Content="Patient Medical Record" Click="PatientMedicalRecordClick" Width="120" Height="40"  Margin="0,0,25,0"/>
+            <Button Content="Prescription" Width="120" Height="40" Click="PrescriptionClick"/>
         </StackPanel>
     </Grid>
 </Page>
