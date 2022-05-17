@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             data_column.Binding = new Binding("_Time.Start");
             DoctorAppointments.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
-            data_column.Header = "Start Time";
+            data_column.Header = "End Time";
             data_column.Binding = new Binding("_Time.End");
 
             DoctorAppointments.Columns.Add(data_column);
@@ -80,9 +80,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             data_column.Binding = new Binding("_Type");
             DoctorAppointments.Columns.Add(data_column);
 
-            data_column = new DataGridTextColumn();
-            data_column.Header = " Medical records";
-            DoctorAppointments.Columns.Add(data_column);
+            
 
 
         }

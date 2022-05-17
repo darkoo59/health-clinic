@@ -692,6 +692,13 @@
     </Resource>
     <Resource Include="Resources\img\image-medicines.ico" />
     <Resource Include="Resources\img\image-logout.ico" />
+    <Resource Include="Resources\img\icons8-crowd-patient-96.png" />
+    <Resource Include="Resources\img\icons8-medical-100.png" />
+    <Resource Include="Resources\img\icons8-stethoscope-64.png" />
+    <Resource Include="Resources\img\icons8-treatment-list-96.png" />
+    <Resource Include="Resources\img\icons8-day-off-96.png" />
+    <Resource Include="Resources\img\icons8-surgery-100.png" />
+    <Resource Include="Resources\img\icons8-medicine-64.png" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
@@ -773,6 +780,8 @@
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\img\Doctor\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

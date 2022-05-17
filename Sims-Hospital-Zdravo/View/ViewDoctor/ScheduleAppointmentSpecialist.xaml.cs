@@ -104,7 +104,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
         public Patient FindPatient()
         {
-            string patient = PatientText.Text;
+            string patient = PatientTxt.Text;
             Console.WriteLine("haahahsahahhjs" + patient);
             string[] patientFull = patient.Split(' ');
             foreach (Patient pat in this.doctorAppointmentController.getPatients())

@@ -35,6 +35,26 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.doctorAppointmentController = doctorAppointmentController;
             this.medicalRecordController = medicalRecordController;
             MedicalRecordDataGrid.ItemsSource = medicalRecordController.ReadAll();
+            MedicalRecordDataGrid.AutoGenerateColumns = false;
+            DataGridTextColumn data_column = new DataGridTextColumn();
+            data_column.Header = "Patient Name:";
+            data_column.Binding = new Binding("_Patient._Name");
+            MedicalRecordDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "BirthDate";
+            data_column.Binding = new Binding("_Patient._BirthDate");
+
+            MedicalRecordDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Patient UID";
+            data_column.Binding = new Binding("_Patient._Jmbg");
+            MedicalRecordDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Patient blood type";
+            data_column.Binding = new Binding("_BloodType");
+            MedicalRecordDataGrid.Columns.Add(data_column);
+            
+            
         }
 
         private void PatientMedicalRecordClick(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
-        Title="DoctorMain" Height="768" Width="1024" WindowStyle="None"  AllowsTransparency="True" >
+        Title="DoctorMain" Height="768" Width="1024" >
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml" ></ResourceDictionary>
     </Window.Resources>
@@ -25,10 +25,10 @@
             <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
-        <StackPanel Background="CornflowerBlue" Margin="0,0,81,0">
+        <StackPanel Background="CornflowerBlue" Width="250">
 
         </StackPanel>
-        <StackPanel Background="CornflowerBlue" HorizontalAlignment="Left" Grid.RowSpan="3" Width="175" Grid.Row="1">
+        <StackPanel Background="CornflowerBlue" HorizontalAlignment="Left" Grid.RowSpan="3" Width="250" Grid.Row="1">
             <Menu Background="Transparent">
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -40,77 +40,86 @@
                 </Menu.ItemsPanel>
                 <MenuItem Name="MyAppointmentMenuItem" Height="50" Click="MyAppointmentMenuItem_Click">
                     <MenuItem.Icon>
-                        <Image Source="../../Resources/img/DoctorImg/icons8-medical-100.png" Margin="0,0,-12,-4"
+                        <Image Source="../../Resources/img/icons8-medical-100.png" Margin="0,0,-12,-4"
                                Width="35" VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
                         <AccessText Text="My Appointments" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="118" FontFamily="Comic Sans MS">
+                                    Width="250" FontFamily="Comic Sans MS" FontSize="20">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="ScheduleMenuItem" Click="schedule_Appointment_Click" Height="50">
                     <MenuItem.Icon>
-                        <Image Source="../../Resources/img/DoctorImg/icons8-treatment-list-96.png" Margin="0,0,0,0"
+                        <Image Source="../../Resources/img/icons8-treatment-list-96.png" Height="70"
                                Width="35" VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
                         <AccessText Text="Schedule appointment" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="118" FontFamily="Comic Sans MS">
+                                    Width="250" FontFamily="Comic Sans MS" FontSize="20" >
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="PatientMenuItem" Height="50" Click="PatientMenuItem_Click">
                     <MenuItem.Icon>
-                        <Image Source="../../Resources/img/DoctorImg/icons8-crowd-patient-96.png" Margin="0,0,0,0"
-                               Width="35" VerticalAlignment="Top">
+                        <Image Source="../../Resources/img/icons8-crowd-patient-96.png" Margin="0,0,0,0"
+                               Width="50" VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
-                        <AccessText Text="Patients" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS">
+                        <AccessText Text="Patients" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
+                                    FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="ExaminationMenuItem" Height="50">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/img/DoctorImg/icons8-stethoscope-64.png" Margin="0,0,0,0"
-                               Width="35" VerticalAlignment="Top">
+                               Width="35" VerticalAlignment="Top" >
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
                         <AccessText Text="Examination" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="118" FontFamily="Comic Sans MS">
+                                    Width="220" FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Name="OperationMenuItem" Height="50" Click="operation_click">
+                <MenuItem Name="OperationMenuItem" Height="53" Click="operation_click">
                     <MenuItem.Icon>
-                        <Image Source="../../Resources/img/DoctorImg/icons8-stethoscope-64.png" Margin="0,0,0,0"
-                               Width="35" VerticalAlignment="Top">
+                        <Image Source="../../Resources/img/icons8-surgery-100.png" Margin="0,0,0,0"
+                               Width="70"  VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
                         <AccessText Text="Operation" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS">
+                                    FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="RequestForFreeDaysItem" Height="50" Click="DaysOff_Click">
-
+                    <MenuItem.Icon>
+                        <Image Source="../../Resources/img/icons8-day-off-96.png" 
+                               Width="35" Height="50" VerticalAlignment="Top">
+                        </Image>
+                    </MenuItem.Icon>
                     <MenuItem.Header>
-                        <AccessText Text="Daysoff/Vacation" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="118" FontFamily="Comic Sans MS">
+                        <AccessText Text="Days off" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Width="250" FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="MedicinesItem" Height="50" Click="MedcinesClick">
-
+                    <MenuItem.Icon>
+                        <Image Source="../../Resources/img/icons8-medicine-64.png" 
+                               Width="35" Height="50" VerticalAlignment="Top">
+                        </Image>
+                    </MenuItem.Icon>
+                    
                     <MenuItem.Header>
                         <AccessText Text="Medicines" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS">
+                                    FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
@@ -134,7 +143,7 @@
 
         </StackPanel>
 
-        <Frame Name="FrameForMain" Grid.ColumnSpan="4" Margin="180,96,10,0" Grid.RowSpan="4" NavigationUIVisibility="Hidden" />
+        <Frame Name="FrameForMain" Grid.ColumnSpan="3" Margin="10,96,10,0" Grid.RowSpan="4" NavigationUIVisibility="Hidden" Grid.Column="1" />
 
         <notifications:NotificationArea
             Grid.Row="2"

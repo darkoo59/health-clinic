@@ -10,11 +10,16 @@
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
         <Frame  Margin="211,0,0,0"/>
-        <DataGrid Name="MedicalRecordDataGrid" Margin="236,128,31,199"/>
-        <TextBox TextWrapping="Wrap" Name="SearchTxt" Width="120" Margin="236,66,668,660"/>
-        <Button Content="Search" Margin="396,66,529,660"/>
-        <Button Content="Patient Medical Record" Click="PatientMedicalRecordClick" Margin="568,66,324,660"/>
+        <DataGrid Name="MedicalRecordDataGrid" Grid.Row="1" Margin="10,10,10,10" ColumnWidth="150"/>
+        <StackPanel Grid.Row="0"  Orientation="Horizontal">
+            <TextBox TextWrapping="Wrap" Name="SearchTxt" Width="120" Height="40" Margin="0,0,25,0" />
+            <Button Content="Search" Margin="0,0,25,0" Width="120" Height="40" />
+            <Button Content="Patient Medical Record" Click="PatientMedicalRecordClick" Width="120" Height="40"  Margin="0,0,25,0"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using Notifications.Wpf;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View;
+using Sims_Hospital_Zdravo.View.Login;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -32,6 +34,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private DoctorAppointmentController doctorAppointmentController;
         private NotificationController notificationController;
         private NotificationManager notificationManager;
+        private AccountController accountController;
 
         private int doctorId;
 
@@ -138,5 +141,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicalReport medicalReport = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId,FrameForMain);
             FrameForMain.Content = medicalReport;
         }
+
+
+        public void Logout()
+        {
+            accountController.Logout();
+            LoginMainWindow loginMainWindow = new LoginMainWindow();
+            loginMainWindow.Show();
+            Close();
+        }
+
+
+
     }
 }

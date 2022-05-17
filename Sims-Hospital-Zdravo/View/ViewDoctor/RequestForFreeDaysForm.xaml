@@ -7,13 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RequestForFreeDaysForm">
-
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml">
+            
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,26 +24,30 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0">
             <Label Content="Type of request"></Label>
-            <TextBox Name="ReasonForFreeDaysTxt"></TextBox>
+            <TextBox Name="ReasonForFreeDaysTxt" Height="30" Width="150" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
-        <StackPanel Margin="0,112,0,0" Grid.RowSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,25,0">
+            <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="From">
             </Label>
-            <DatePicker Name="FromDateTxt"></DatePicker>
+            <DatePicker Name="FromDateTxt" Width="150" Height="29" HorizontalAlignment="Left"></DatePicker>
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="0,112,0,2" Grid.RowSpan="2">
+        <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="To:">
 
             </Label>
-            <DatePicker Name="ToDateTxt"></DatePicker>
+            <DatePicker Name="ToDateTxt" Width="150" Height="30" HorizontalAlignment="Left" Margin="25,0,0,0"></DatePicker>
         </StackPanel>
-        <DockPanel Grid.Column="1" Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
-            <Button Name="SendRequestBtn" Click="SendRequestClick" Content="Send Request" Height="39"></Button>
-            <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="100" Height="41"/>
+        </StackPanel>
+        <DockPanel Grid.Row="4" HorizontalAlignment="Center" Width="400">
+            <Button Name="SendRequestBtn" HorizontalAlignment="Center" Click="SendRequestClick" Content="Send Request" Margin="25,0,25,0" Width="120" Height="50"></Button>
+            <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="120" Height="50"/>
         </DockPanel>
         <StackPanel Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
             <Label Content="Urgent request:"></Label>
