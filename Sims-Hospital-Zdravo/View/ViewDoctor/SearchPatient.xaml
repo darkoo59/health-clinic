@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="SearchPatient" Height="768" Width="1024">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid>
 
         <Frame  Margin="211,0,0,0"/>

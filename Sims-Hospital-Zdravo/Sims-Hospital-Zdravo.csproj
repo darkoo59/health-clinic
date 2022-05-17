@@ -529,6 +529,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ViewDoctor\DoctorStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
     <Page Include="View\ViewDoctor\MedicinesToValidate.xaml">
@@ -769,8 +773,6 @@
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Manager\Custom\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

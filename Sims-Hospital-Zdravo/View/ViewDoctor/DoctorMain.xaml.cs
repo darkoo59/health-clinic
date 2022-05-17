@@ -56,7 +56,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow(docController);
-            CrudWindow.Show();
+            //CrudWindow.Show();
         }
 
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
@@ -67,8 +67,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void button_medical_report_click(object sender, RoutedEventArgs e)
         {
-            MedicalReport medicalReportWindow = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId);
-            medicalReportWindow.Show();
+            //MedicalReport medicalReportWindow = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId);
+            //medicalReportWindow.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -125,6 +125,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
 
             notificationController.Delete(notification);
+        }
+
+        private void AppointmentsClick(object sender, RoutedEventArgs e)
+        {
+            DoctorCRUDWindow doctorCRUDWindow = new DoctorCRUDWindow(docController);
+            FrameForMain.Content = doctorCRUDWindow;
+        }
+
+        private void AnamnesisClick(object sender, RoutedEventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId,FrameForMain);
+            FrameForMain.Content = medicalReport;
         }
     }
 }

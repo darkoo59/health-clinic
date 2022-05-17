@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
-        Title="DoctorMain" Height="768" Width="1024" WindowStyle="None" AllowsTransparency="True">
+        Title="DoctorMain" Height="768" Width="1024" WindowStyle="None"  AllowsTransparency="True" >
+    <Window.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml" ></ResourceDictionary>
+    </Window.Resources>
     <Grid Background="FloralWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -111,22 +114,27 @@
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
+                <MenuItem Name="appointmentsItem" Height="50" Click="AppointmentsClick">
+
+                    <MenuItem.Header>
+                        <AccessText Text="Appointments" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
+                                    FontFamily="Comic Sans MS">
+                        </AccessText>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Name="anamnesisItem" Height="50" Click="AnamnesisClick">
+
+                    <MenuItem.Header>
+                        <AccessText Text="Medical reports" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
+                                    FontFamily="Comic Sans MS">
+                        </AccessText>
+                    </MenuItem.Header>
+                </MenuItem>
             </Menu>
 
         </StackPanel>
-        <Button Content="Crud " HorizontalAlignment="Center" Height="41" Margin="0,96,0,0" VerticalAlignment="Top"
-                Width="144" Click="Button_Click" Grid.Column="3" />
-        <Button Content="Prescribe therapy" HorizontalAlignment="Left" Height="38" Margin="60,168,0,0"
-                VerticalAlignment="Top" Width="140" Grid.Column="3" Grid.RowSpan="2" />
-        <Button Content="Medical history/anamnesis" HorizontalAlignment="Left" Height="46" Margin="60,136,0,0"
-                VerticalAlignment="Top" Width="142" Grid.Row="1" Grid.Column="3" />
-        <Button Content="My appointments" HorizontalAlignment="Center" Height="46" Margin="0,50,0,0"
-                VerticalAlignment="Top" Width="170" Click="Button_Click_Appointment" Grid.Column="3" Grid.Row="1" />
-        <Button Content="Write medical report" Click="button_medical_report_click" Margin="28,96,43,27" Grid.Row="2"
-                Grid.Column="3" />
-        <Button Grid.Column="3" Content="Medical Reports" HorizontalAlignment="Left" Height="39" Margin="62,10,0,0"
-                Grid.Row="2" VerticalAlignment="Top" Width="140" Click="Button_Click_1" />
-        <Frame Name="FrameForMain" Grid.ColumnSpan="4" Margin="180,0,233,0" Grid.RowSpan="4" Height="768" Width="650" />
+
+        <Frame Name="FrameForMain" Grid.ColumnSpan="4" Margin="180,96,10,0" Grid.RowSpan="4" NavigationUIVisibility="Hidden" />
 
         <notifications:NotificationArea
             Grid.Row="2"
