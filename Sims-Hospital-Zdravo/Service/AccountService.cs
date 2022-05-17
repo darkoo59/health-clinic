@@ -51,13 +51,7 @@ namespace Sims_Hospital_Zdravo.Service
 
         public User GetLoggedAccount()
         {
-            User loggedUser = accountRepository.GetLoggedAccount();
-            if (loggedUser == null)
-            {
-                throw new Exception("Username or password incorrect!");
-            }
-
-            return loggedUser;
+            return accountRepository.GetLoggedAccount();
         }
 
         public void Login(String username, String password)

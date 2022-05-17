@@ -35,20 +35,12 @@ namespace Sims_Hospital_Zdravo.View.Login
             app = System.Windows.Application.Current as App;
         }
 
-        private Window GetWindowByRole(RoleType role)
+        private Window GetWindowByRole(RoleType role, User account)
         {
-            AccountController accountController = app._accountController;
-            String username = txtUsername.Text;
-            String password = txtPassword.Password.ToString();
-            User account = accountController.GetAccountByUsernameAndPassword(username, password);
-            int id = account._Id;
-            //             DoctorMain doctorMain = new DoctorMain(id);
             switch (role)
             {
                 case RoleType.MANAGER: return new ManagerMainWindow();
-                case RoleType.DOCTOR: return new DoctorMain(id);
-                //case RoleType.PATIENT: return new PatientWindow();
-                // case RoleType.DOCTOR: return new DoctorMain();
+                case RoleType.DOCTOR: return new DoctorMain(account._Id);
                 case RoleType.PATIENT: return new PatientDashboard();
                 case RoleType.SECRETARY: return new SecretaryHome();
                 default: return null;
@@ -57,70 +49,19 @@ namespace Sims_Hospital_Zdravo.View.Login
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-			
             AccountController accountController = app._accountController;
             String username = txtUsername.Text;
             String password = txtPassword.Password.ToString();
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
-            /*if (account != null)
-            {
-                AccountController accountController = app._accountController;
-                String username = txtUsername.Text;
-                String password = txtPassword.Password.ToString();
-                accountController.Login(username, password);
-                User account = accountController.GetLoggedAccount();
-                Window window = GetWindowByRole(account._Role);
-                window.Show();
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-                MessageBox.Show(" Incorrect Username/Password. Login Denied ", " Error! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-            Window window = GetWindowByRole(account._Role);
-            if (account._Role!=RoleType.PATIENT || account.Blocked == false)
+
+            if (account._Role != RoleType.PATIENT || account.Blocked == false)
             {
                 accountController.Login(username, password);
+                Window window = GetWindowByRole(account._Role, account);
                 window.Show();
             }
+
             Close();
-            // if (account != null)
-            // {
-            //     switch (account._Role)
-            //     {
-            //         case RoleType.MANAGER:
-            //             ManagerDashboard manaegerHome = new ManagerDashboard();
-            //             this.Close();
-            //             manaegerHome.Show();
-            //             break;
-            //         case RoleType.SECRETARY:
-            //             MedicalRecordController medicalController = app._recordController;
-            //             SecretaryHome secretaryHomeWindow = new SecretaryHome();
-            //             this.Close();
-            //             secretaryHomeWindow.Show();
-            //             break;
-            //         case RoleType.DOCTOR:
-            //             DoctorAppointmentController doctorAppController = app._doctorAppointmentController;
-            //             RoomController roomControl = app._roomController;
-            //             int id = account._Id;
-            //             DoctorMain doctorMain = new DoctorMain(id);
-            //             this.Close();
-            //             doctorMain.Show();
-            //             break;
-            //         case RoleType.PATIENT:
-            //             AppointmentPatientController appointmentPatientController = app._appointmentPatientController;
-            //             PatientWindow pw = new PatientWindow();
-            //             this.Close();
-            //             pw.Show();
-            //             break;
-            //     }
-            // }
-            // else
-            // {
-            //     MessageBox.Show(" Incorrect Username/Password. Login Denied ", " Error! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            // }
         }
     }
 }

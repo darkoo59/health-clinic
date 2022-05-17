@@ -10,16 +10,23 @@
       Title="ManagerRenovationAdvanced">
 
     <Page.Resources>
-        <local:AdvancedRenovationBoolConverter x:Key="advRenConverter"></local:AdvancedRenovationBoolConverter>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White"></Setter>
-        </Style>
-        <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Margin" Value="0, 10, 0, 10"></Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <local:AdvancedRenovationBoolConverter x:Key="AdvRenConverter"></local:AdvancedRenovationBoolConverter>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="Margin" Value="0, 10, 0, 10"></Setter>
+            </Style>
+        </ResourceDictionary>
+
+
     </Page.Resources>
-    <Grid>
+    <Grid Margin="40">
 
 
         <Grid.RowDefinitions>
@@ -33,59 +40,56 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+
+        <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30">
+            Advanced Renovation
+        </Label>
+        <RadioButton Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=IsSplit}"
+                     GroupName="SplitJoin">
+            Split Rooms
+        </RadioButton>
+        <RadioButton Grid.Row="1" Grid.Column="1"
+                     IsChecked="{Binding Path=IsSplit, Converter={StaticResource AdvRenConverter}}"
+                     GroupName="SplitJoin">
+            Join Rooms
+        </RadioButton>
+
+
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
+            <Label>Start date:</Label>
+            <DatePicker x:Name="StartDate" Background="White" Margin="0, 0, 10, 0"></DatePicker>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+            <Label>End date:</Label>
+            <DatePicker x:Name="EndDate" Background="White" Focusable="True"></DatePicker>
+        </StackPanel>
+
+
+        <DockPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2">
             <Label DockPanel.Dock="Top">Rooms for renovation:</Label>
-            <ListBox x:Name="RenovationRooms"></ListBox>
+            <ListBox x:Name="RenovationRooms" SelectionChanged="RenovationRooms_SelectionChanged"></ListBox>
         </DockPanel>
 
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3">
-            <Label>Choose start date:</Label>
-            <DatePicker x:Name="StartDate"></DatePicker>
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4">
-            <Label>Choose end date:</Label>
-            <DatePicker x:Name="EndDate"></DatePicker>
-        </StackPanel>
-
-        <DockPanel Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5">
+        <DockPanel Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5">
             <Label DockPanel.Dock="Top">Description:</Label>
             <TextBox x:Name="Description"></TextBox>
         </DockPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="5">
-            <RadioButton IsChecked="{Binding Path=IsSplit}"
-                         GroupName="SplitJoin">
-                Split
-            </RadioButton>
-            <RadioButton IsChecked="{Binding Path=IsSplit, Converter={StaticResource advRenConverter}}"
-                         GroupName="SplitJoin">
-                Join
-            </RadioButton>
-        </StackPanel>
-
-        <DockPanel Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Label DockPanel.Dock="Top"> Already taken dates: </Label>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl Background="White" x:Name="TakenDates"></ItemsControl>
-            </ScrollViewer>
-        </DockPanel>
-
-        <DockPanel Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="3">
+        <DockPanel Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <Label DockPanel.Dock="Top"> Rooms to be added: </Label>
             <Button DockPanel.Dock="Bottom" Height="30" Click="AddNewRoom_Click"> Add More Rooms</Button>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -101,6 +105,17 @@
             </ScrollViewer>
         </DockPanel>
 
-        <Button Grid.Row="8" Grid.Column="3" Height="30" Grid.ColumnSpan="3" Click="ScheduleAdvancedRenovation_Click">Schedule renovation</Button>
+        <DockPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="9" Grid.ColumnSpan="2" Focusable="False">
+            <Label DockPanel.Dock="Top"> Already taken dates: </Label>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Background="White" x:Name="TakenDates" Focusable="False"></ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3"
+                Height="30" Width="150"
+                Click="ScheduleAdvancedRenovation_Click">
+            Schedule renovation
+        </Button>
     </Grid>
 </Page>

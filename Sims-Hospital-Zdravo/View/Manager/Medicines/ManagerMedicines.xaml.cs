@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View.Manager.Medicines;
 
 namespace Sims_Hospital_Zdravo.View.Manager
 {
@@ -23,7 +25,17 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void InsertMedicine_Click(object sender, RoutedEventArgs e)
         {
-            ManagerContent.Source = new Uri("Medicines/ManagerMedicineInsert.xaml", UriKind.Relative);
+            ManagerMedicineInsert medicineInsert = new ManagerMedicineInsert();
+            if (medicineInsert.ShowDialog() == false)
+            {
+                Medicine medicine = medicineInsert.Medicine;
+                Notification notification = medicineInsert._CreatedNotification;
+                if (medicine != null)
+                {
+                    medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
+                }
+            }
+            // ManagerContent.Source = new Uri("Medicines/ManagerMedicineInsert.xaml", UriKind.Relative);
         }
 
         private void RetrieveMainFrame()

@@ -22,7 +22,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// <summary>
     /// Interaction logic for MedicalReport.xaml
     /// </summary>
-    public partial class MedicalReport : Window
+    public partial class MedicalReport : Page
     {
         private AnamnesisController anamnesisController;
         private DoctorAppointmentController doctorAppointmentController;
@@ -30,11 +30,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private PatientMedicalRecordController patientMedicalRecordController;
         private int DoctorId;
         private DateTime date;
-        public MedicalReport(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,PatientMedicalRecordController patientMedicalRecordController,int id)
+        private Frame frame;
+        public MedicalReport(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,PatientMedicalRecordController patientMedicalRecordController,int id,Frame frame)
         {
             InitializeComponent();
             this.DoctorId = id;
             this.anamnesisController = anamnesisController;
+            this.frame = frame;
             this.doctorAppointmentController = doctorAppointmentController;
             this.patientMedicalRecordController = patientMedicalRecordController;
             DoctorTxt.Text = doctorAppointmentController.getDoctor(DoctorId)._Name + doctorAppointmentController.getDoctor(DoctorId)._Surname;
@@ -91,7 +93,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Anamnesis anamnesis = new Anamnesis(doctor, med, date, null, diagnosis, medical_report);
             anamnesisController.Create(anamnesis);
             doctorAppointmentController.DeleteAfterExaminationIsDone(date, DoctorId, Pat);
-            Close();
+            AnamnesisList anamnesisList = new AnamnesisList(anamnesisController, DoctorId, doctorAppointmentController);
+            //Close();
+            anamnesisList.Show();
 
 
         }

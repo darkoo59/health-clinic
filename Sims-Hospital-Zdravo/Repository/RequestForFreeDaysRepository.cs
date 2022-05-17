@@ -26,11 +26,13 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Create(FreeDaysRequest request)
         {
             requests.Add(request);
+            LoadDataToFile();
         }
 
         public void Delete(FreeDaysRequest request)
         {
             requests.Remove(request);
+            LoadDataToFile();
         }
 
         public ref ObservableCollection<FreeDaysRequest> ReadAll()
@@ -42,7 +44,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public ObservableCollection<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
         {
-             ObservableCollection<FreeDaysRequest> requestsBySpecialty = new ObservableCollection<FreeDaysRequest>();
+            ObservableCollection<FreeDaysRequest> requestsBySpecialty = new ObservableCollection<FreeDaysRequest>();
             foreach(FreeDaysRequest request in requests)
             {
                 if(request._Doctor.Specialty.Equals(doctor.Specialty))
@@ -52,10 +54,10 @@ namespace Sims_Hospital_Zdravo.Repository
             }
             return requestsBySpecialty;
         }
-        public ObservableCollection<FreeDaysRequest> RequestPendinfOrApproved(Doctor doctor)
+        public ObservableCollection<FreeDaysRequest> RequestPendingOrApproved(Doctor doctor)
         {
             ObservableCollection<FreeDaysRequest> requestsPendingOrAccepted = new ObservableCollection<FreeDaysRequest>();
-            var requests = FindRequestByDoctorSpecialty(doctor);
+            ObservableCollection<FreeDaysRequest> requests = FindRequestByDoctorSpecialty(doctor);
             foreach(FreeDaysRequest request in requests)
             {
                 if(request._Status == RequestStatus.ACCEPTED || request._Status == RequestStatus.PENDING)
@@ -69,7 +71,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             requests = requestForFreeDaysDataHandler.ReadAll();
         }
-        public void WriteDataToFiles()
+        public void LoadDataToFile()
         {
             requestForFreeDaysDataHandler.Write(requests);
         }

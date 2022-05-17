@@ -5,42 +5,41 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
+      Height="500" Width="500"
       Title="MyAppointmentPage">
 
     <Grid>
-        
-
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
 
 
-            <DataGrid HorizontalAlignment="Left" Name="DoctorAppointments" Height="188" Margin="40,83,0,0" VerticalAlignment="Top" Width="728"  SelectionMode="Single"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" RenderTransformOrigin="0.502,0.316" Grid.RowSpan="3" />
-            <Button Content="patient Medical record" Margin="10,47,71,79" Click="Button_Click" Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2"/>
-            <Label Content="Choose date:" Margin="65,47,126,29" Grid.RowSpan="2" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
-            <DatePicker Margin="62,47,89,27" Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
 
-            </DatePicker>
 
-        
+        <DataGrid HorizontalAlignment="Left" Name="DoctorAppointments" Width="480"  SelectionMode="Single" Grid.Row="2" Margin="10,10,0,10" Grid.RowSpan="5" Grid.ColumnSpan="6" />
+        <Label Content="Choose date:" Margin="83,8,70,7" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <DatePicker Margin="62,47,89,27" Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"  >
+
+
+        </DatePicker>
+
+
     </Grid>
 </Page>

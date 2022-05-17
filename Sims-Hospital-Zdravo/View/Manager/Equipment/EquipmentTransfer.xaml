@@ -6,9 +6,30 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
-      Title="EquipmentTransfer" Height="450" Width="800">
-    <Grid>
+      Title="EquipmentTransfer"
+      Height="718"
+      Width="924">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+
+            <Style TargetType="ComboBox">
+                <Setter Property="Height" Value="30"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="40">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -25,49 +46,58 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            FontWeight="Bold"
+            FontSize="30">
+            Equipment Transfer
+        </Label>
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label>From Room:</Label>
-            <ComboBox Height="30" x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
+            <ComboBox x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
             <Label>To Room:</Label>
-            <ComboBox Height="30" SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
+            <ComboBox SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="2">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
             <Label>Equipment:</Label>
-            <ComboBox Height="30" x:Name="ComboEquipment"></ComboBox>
+            <ComboBox x:Name="ComboEquipment"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="3">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
             <Label>Quantity: </Label>
-            <TextBox Height="30" x:Name="Quantity"></TextBox>
+            <TextBox x:Name="Quantity"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0">
             <Label>Duration:</Label>
-            <TextBox Height="30" x:Name="IntervalDuration"></TextBox>
+            <TextBox x:Name="IntervalDuration"></TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
             <Label>Starts:</Label>
-            <xctk:DateTimeUpDown x:Name="IntervalStarts"></xctk:DateTimeUpDown>
+            <xctk:DateTimeUpDown x:Name="IntervalStarts" Height="30"></xctk:DateTimeUpDown>
         </StackPanel>
-        <DockPanel Grid.Row="1" Grid.Column="5" Grid.RowSpan="4" Grid.ColumnSpan="3">
+        <DockPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="6" Grid.ColumnSpan="2">
             <Label DockPanel.Dock="Top">Already reserved intervals: </Label>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl BorderThickness="1" BorderBrush="Black" VerticalContentAlignment="Stretch"
+                <ItemsControl Background="White"
+                              VerticalContentAlignment="Stretch"
                               x:Name="ListIntervals">
                 </ItemsControl>
             </ScrollViewer>
         </DockPanel>
 
-        <Button Grid.Row="5" Grid.Column="5" Height="40" Grid.ColumnSpan="2" x:Name="SaveAppointment"
-                Click="SaveApp_Click">
+        <Button Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" Height="30" Width="150" Grid.ColumnSpan="3"
+                x:Name="SaveAppointment"
+                Click="SaveApp_Click"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}">
             Schedule
         </Button>
 

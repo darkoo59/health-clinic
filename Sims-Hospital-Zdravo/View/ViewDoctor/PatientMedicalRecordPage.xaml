@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PatientMedicalRecordPage">
-
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -23,42 +25,29 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <StackPanel>
-            <Label Content="Patient name:"></Label>
-            <TextBox  Name="PatienNameTxt"></TextBox>
-        </StackPanel>
-        <StackPanel Margin="0,102,0,10" Grid.RowSpan="2">
-            <Label Content="Patient surname:"></Label>
-            <TextBox  Name="PatientSurnameTxt"></TextBox>
-        </StackPanel>
-        <StackPanel Margin="0,108,0,6" Grid.RowSpan="2" Grid.Row="1">
-            <Label Content="Birth date:"></Label>
-            <TextBox  Name="BirthDateTxt"></TextBox>
-        </StackPanel>
-        <StackPanel>
-            <Label Content="Address:"></Label>
-            <TextBox  Name="AdressTxt"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Margin="0,106,0,6" Grid.RowSpan="2" Grid.Row="1">
+        
+            <StackPanel Margin="0,0,0,12" Grid.RowSpan="4" HorizontalAlignment="Center">
+                <Label Content="Patient name:"></Label>
+            <TextBox  Name="PatienNameTxt" Height="22"></TextBox>
+            <Label Content="Patient surname:" ></Label>
+                <TextBox  Name="PatientSurnameTxt"></TextBox>
+            
+            
+                <Label Content="Birth date:" Width="134"></Label>
+                <TextBox  Name="BirthDateTxt"></TextBox>
+            
+                <Label Content="Address:"></Label>
+            <TextBox  Name="AdressTxt" Height="17"></TextBox>
             <Label Content="Gender"/>
             <TextBox Name="Gendertxt"/>
-
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="10,108,190,5" Grid.RowSpan="2">
             <Label Content="Phone number"/>
             <TextBox Name="numberTxt"/>
-
-        </StackPanel>
-        <StackPanel Grid.Column="2" Margin="0,103,0,10" Grid.RowSpan="2">
             <Label Content="Marital status"/>
-            <TextBox Name="maritalStatusTxt"/>
-
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="10,108,190,5" Grid.RowSpan="2">
+            <TextBox Name="maritalStatusTxt" Height="24" Width="155"/>
             <Label Content="Identification bumber"/>
-            <TextBox Name="UIDTxt"/>
+                <TextBox Name="UIDTxt"/>
 
-        </StackPanel>
-
+            </StackPanel>
+        
     </Grid>
 </Page>

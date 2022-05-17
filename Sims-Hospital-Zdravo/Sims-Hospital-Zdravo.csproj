@@ -156,12 +156,13 @@
     <Compile Include="Model\DoctorSurvey.cs" />
     <Compile Include="Model\HospitalSurvey.cs" />
     <Compile Include="Model\Medicine.cs" />
-    <Compile Include="Model\MedicineApprovalNotification.cs" />
+    <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\QuestionForSurvey.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
+    <Compile Include="Model\ReviewMedicineNotification.cs" />
     <Compile Include="Model\SuppliesAcquisition.cs" />
     <Compile Include="Model\TimeInterval.cs" />
     <Compile Include="Model\User.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Custom\CustomTimeIntervalSorter.cs" />
     <Compile Include="View\Manager\Dialogs\RenovationRoomDialog.xaml.cs">
       <DependentUpon>RenovationRoomDialog.xaml</DependentUpon>
     </Compile>
@@ -325,8 +327,14 @@
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
       <DependentUpon>DoctorMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\DoctorMedicines.xaml.cs">
+      <DependentUpon>DoctorMedicines.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
     <Compile Include="View\ViewDoctor\MedicalReport.xaml.cs" />
+    <Compile Include="View\ViewDoctor\MedicinesToValidate.xaml.cs">
+      <DependentUpon>MedicinesToValidate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\MyAppointmentPage.xaml.cs">
       <DependentUpon>MyAppointmentPage.xaml</DependentUpon>
     </Compile>
@@ -355,6 +363,9 @@
     </Compile>
     <Compile Include="View\ViewDoctor\SearchPatient.xaml.cs">
       <DependentUpon>SearchPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
+      <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
     <Page Include="AppointmentList.xaml">
       <SubType>Designer</SubType>
@@ -514,8 +525,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ViewDoctor\DoctorMedicines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\DoctorStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
+    <Page Include="View\ViewDoctor\MedicinesToValidate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\MyAppointmentPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -553,6 +576,10 @@
     <Page Include="View\ViewDoctor\SearchPatient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\ValidateMedicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -633,6 +660,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
     <Resource Include="Resources\img\image-equipment.ico" />
     <Resource Include="Resources\img\image-renovation.ico" />
@@ -662,6 +690,8 @@
     <Resource Include="Resources\img\Secretary\Contact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\img\image-medicines.ico" />
+    <Resource Include="Resources\img\image-logout.ico" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
@@ -743,5 +773,6 @@
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

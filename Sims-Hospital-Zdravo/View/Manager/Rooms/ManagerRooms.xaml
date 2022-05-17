@@ -3,11 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d"
       Title="ManagerRooms"
       Height="718"
       Width="924"
       Margin="0">
+
 
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml">
@@ -30,19 +32,22 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox Height="30"></TextBox>
+            <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click">
-                Insert
-            </Button>
-            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="UpdateRoom_Click">
-                Update
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click"
+                    x:Name="InsertBtn">
+                <AccessText>_Insert</AccessText>
             </Button>
             <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="DeleteRoom_Click">
-                Delete
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="UpdateRoom_Click">
+                <AccessText>_Update</AccessText>
             </Button>
+            <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="DeleteRoom_Click">
+                <AccessText> _Delete </AccessText>
+            </Button>
+
+
         </Grid>
         <DataGrid
             x:Name="RoomsTable"

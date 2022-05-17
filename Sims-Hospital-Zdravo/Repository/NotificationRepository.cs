@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
 
@@ -13,6 +14,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             this._notificationDataHandler = notificationDataHandler;
             this.notifications = new List<Notification>();
+            LoadDataFromFiles();
         }
 
         public List<Notification> ReadAll()
@@ -62,16 +64,12 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> ReadAllManagerMedicineNotifications()
         {
-            List<Notification> managerNotifications = new List<Notification>();
-            foreach (Notification notification in notifications)
-            {
-                if (typeof(MedicineApprovalNotification).IsInstanceOfType(notification))
-                {
-                    managerNotifications.Add(notification);
-                }
-            }
+            return notifications.OfType<ReviewMedicineNotification>().Cast<Notification>().ToList();
+        }
 
-            return managerNotifications;
+        public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
+        {
+            return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
         public void LoadDataFromFiles()
@@ -79,7 +77,7 @@ namespace Sims_Hospital_Zdravo.Repository
             notifications = _notificationDataHandler.ReadAll();
         }
 
-        public void LoadDataToFile()
+        private void LoadDataToFile()
         {
             _notificationDataHandler.Write(notifications);
         }

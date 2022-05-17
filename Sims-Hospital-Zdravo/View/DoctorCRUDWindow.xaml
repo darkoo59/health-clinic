@@ -1,4 +1,4 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.View.DoctorCRUDWindow"
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.DoctorCRUDWindow"
         x:Name="WindowDoctor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -17,4 +17,4 @@
         <Button x:Name="deleteButton" Content="delete appointment" HorizontalAlignment="Left" Height="25"
                 Margin="604,62,0,0" VerticalAlignment="Top" Width="122" Click="deleteButton_Click" />
     </Grid>
-</Window>
+</Page>

@@ -79,5 +79,10 @@ namespace Sims_Hospital_Zdravo.Model
 
             set { substitution = value; }
         }
+
+        public override string ToString()
+        {
+            return name + " " + strength;
+        }
     }
 }

@@ -13,6 +13,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using System.Collections.ObjectModel;
+using System.Runtime.Remoting.Messaging;
 using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Utils
@@ -27,9 +28,10 @@ namespace Sims_Hospital_Zdravo.Utils
         private DoctorAppointmentController _doctorAppointmentController;
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
+        private AccountController _accountController;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
-            PrescriptionController prescriptionController, NotificationController notificationController,SuppliesController suppliesController)
+            PrescriptionController prescriptionController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
         {
             this._relocationController = relocationController;
             this._renovationController = renovationController;
@@ -37,6 +39,7 @@ namespace Sims_Hospital_Zdravo.Utils
             this._notificationController = notificationController;
             this._doctorAppointmentController = doctorAppointmentController;
             this._suppliesController = suppliesController;
+            this._accountController = accountController;
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -64,6 +67,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfSuppliesAcquisitionDone();
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
+            CheckNotificationForDoctor();
             AppointmentDone();
         }
 
@@ -105,11 +109,29 @@ namespace Sims_Hospital_Zdravo.Utils
                 }
             }
         }
-        
+
 
         private void CheckNotificationForManager()
         {
+
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.MANAGER)) return;
+
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
+            foreach (Notification notification in notifications)
+            {
+                Notify(notification);
+            }
+        }
+
+        public void CheckNotificationForDoctor()
+        {
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.DOCTOR)) return;
+
+            List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account._Id);
             foreach (Notification notification in notifications)
             {
                 Notify(notification);
@@ -155,11 +177,13 @@ namespace Sims_Hospital_Zdravo.Utils
                 }
             }
         }
+
         public int GetFrequency(Prescription prescription)
         {
             string[] s = prescription._Dosage.Split('x');
             return Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
         }
+
         public DateTime GetDateTime(Prescription prescription)
         {
             DateTime dt = new DateTime(prescription._PrescriptionDate.Year, prescription._PrescriptionDate.Month, prescription._PrescriptionDate.Day);
@@ -167,6 +191,7 @@ namespace Sims_Hospital_Zdravo.Utils
             dt = dt.AddMinutes(prescription._PrescriptionDate.Minute);
             return dt;
         }
+
         public int GetQuantity(Prescription prescription)
         {
             string[] s = prescription._Dosage.Split('x');

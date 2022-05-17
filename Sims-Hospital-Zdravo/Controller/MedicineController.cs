@@ -27,5 +27,10 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             _medicineService.CreateMedicineWithNotifyingDoctor(medicine, notification);
         }
+
+        public void ValidateMedicineWithNotifyindMenager(Medicine medicine,Notification notification)
+        {
+            _medicineService.ValidateMedicineWithNotifyingDoctor(medicine,notification);
+        }
     }
 }

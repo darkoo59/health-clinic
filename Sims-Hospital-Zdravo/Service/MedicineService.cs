@@ -51,5 +51,10 @@ namespace Sims_Hospital_Zdravo.Service
             Create(medicine);
             notificationRepository.Create(notification);
         }
+
+        public void ValidateMedicineWithNotifyingDoctor(Medicine medicine,Notification notification)
+        {
+            notificationRepository.Create(notification);
+        }
     }
 }

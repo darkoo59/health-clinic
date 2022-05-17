@@ -13,7 +13,12 @@
         Width="1040"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Background="#2f343d"
-        ResizeMode="CanResize">
+        ResizeMode="CanResize"
+        Closing="WindowClosing">
+
+    <Window.Resources>
+        <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,11 +39,19 @@
                     FontWeight="Bold"
                     Background="#0a718a"
                     BorderThickness="1"
-                    Margin="0, 0, 40, 0">
+                    Margin="0, 0, 40, 0"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 Tutorial
             </Button>
 
-            <Label Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"> Hospital - Zdravo</Label>
+            <Label Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"
+                   Margin="20, 0, 0 ,0">
+                Hospital - Zdravo
+            </Label>
+
+            <Label x:Name="HeaderLabel" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Center">
+            </Label>
 
         </DockPanel>
 

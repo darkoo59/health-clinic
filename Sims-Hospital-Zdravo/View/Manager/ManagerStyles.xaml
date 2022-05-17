@@ -5,7 +5,7 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle Margin="-2" StrokeThickness="1" Stroke="Red" StrokeDashArray="1 2" />
+                    <Rectangle Margin="-2" StrokeThickness="3" Stroke="#42f56c" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -78,7 +78,7 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="Yellow" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="#42f56c" />
                             <Setter Property="BorderThickness" Value="6"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -93,7 +93,7 @@
     </Style>
 
     <Style TargetType="ComboBox">
-
+        <Setter Property="Foreground" Value="#0a718a"></Setter>
     </Style>
 
 </ResourceDictionary>

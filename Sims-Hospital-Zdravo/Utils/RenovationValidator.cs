@@ -132,15 +132,15 @@ namespace Sims_Hospital_Zdravo.Utils
             ValidateDateCorrect(ti);
         }
 
-        public void ValidateAdvancedRenovation(Room room, List<Room> rooms, TimeInterval time, RoomRenovationType roomRenovationType)
+        public void ValidateAdvancedRenovation(AdvancedRenovationAppointment advancedRenovationAppointment)
         {
-            if (roomRenovationType == RoomRenovationType.JOIN)
+            if (advancedRenovationAppointment.RoomRenovationType == RoomRenovationType.JOIN)
             {
-                ValidateJoinAdvancedRenovation(room, rooms, time);
+                ValidateJoinAdvancedRenovation(advancedRenovationAppointment.Room, advancedRenovationAppointment.Rooms, advancedRenovationAppointment.Time);
             }
             else
             {
-                ValidateSplitAdvancedRenovation(room, rooms, time);
+                ValidateSplitAdvancedRenovation(advancedRenovationAppointment.Room, advancedRenovationAppointment.Rooms, advancedRenovationAppointment.Time);
             }
         }
     }

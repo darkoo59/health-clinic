@@ -26,10 +26,11 @@ namespace Sims_Hospital_Zdravo
         AppointmentPatientController appointmentPatientController;
         App app;
         Frame frame;
+
         public PatientWindow(Frame frame)
         {
             app = Application.Current as App;
-            this.frame = frame; 
+            this.frame = frame;
             InitializeComponent();
             app._taskScheduleTimer.AddObserver(this);
             this.appointmentPatientController = app._appointmentPatientController;
@@ -88,9 +89,10 @@ namespace Sims_Hospital_Zdravo
                 MessageBox.Show(m.Message);
             }
         }
+
         public void Notify(Notification notification)
         {
-            if (typeof(MedicineApprovalNotification).IsInstanceOfType(notification)) return;
+            if (typeof(MedicineCreatedNotification).IsInstanceOfType(notification)) return;
             MessageBox.Show(notification.Content);
         }
     }

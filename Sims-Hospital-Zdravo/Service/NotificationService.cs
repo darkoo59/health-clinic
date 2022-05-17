@@ -44,6 +44,12 @@ namespace Sims_Hospital_Zdravo.Service
             return _notificationRepository.ReadAllManagerMedicineNotifications();
         }
 
+
+        public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
+        {
+            return _notificationRepository.ReadAllDoctorMedicineNotifications(doctorId);
+        }
+
         public int GenerateId()
         {
             List<Notification> appointments = _notificationRepository.ReadAll();

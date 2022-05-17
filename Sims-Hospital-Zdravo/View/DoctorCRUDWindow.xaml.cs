@@ -22,7 +22,7 @@ namespace Sims_Hospital_Zdravo.View
     /// <summary>
     /// Interaction logic for DoctorCRUDWindow.xaml
     /// </summary>
-    public partial class DoctorCRUDWindow : Window, IUpdateFilesObserver
+    public partial class DoctorCRUDWindow : Page, IUpdateFilesObserver
     {
         public ObservableCollection<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;

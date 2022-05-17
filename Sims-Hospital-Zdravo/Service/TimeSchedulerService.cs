@@ -41,13 +41,25 @@ namespace Service
             return takenIntervals;
         }
 
+        public List<TimeInterval> FindReservedDatesForRooms(List<Room> rooms)
+        {
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRooms(rooms);
+            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
+
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
+            takenIntervals = ConvertIntervalsToTakenDates(takenIntervals);
+
+            return takenIntervals;
+        }
+
         public List<TimeInterval> FindReservedDatesForRoom(Room room)
         {
             List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(room.Id);
             takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
 
+            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
             takenIntervals = ConvertIntervalsToTakenDates(takenIntervals);
+
             return takenIntervals;
         }
 
@@ -60,18 +72,8 @@ namespace Service
 
         public bool IsRoomFreeInInterval(int roomId, TimeInterval ti)
         {
-            List<Appointment> appointments = _appointmentRepository.FindByRoomId(roomId);
-            foreach (Appointment app in appointments)
-            {
-                DateTime start = app._Time.Start;
-                DateTime end = app._Time.End;
-                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
-                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
-                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
-                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
-            }
-
-            return true;
+            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
+            return takenIntervals.All(interval => !interval.IsOverlaping(ti));
         }
 
         public bool IsRoomFreeInDateInterval(int roomId, TimeInterval ti)
@@ -79,21 +81,10 @@ namespace Service
             List<TimeInterval> intervals = CaptureAllTakenIntervalsForRoom(roomId);
             intervals = intervals.OrderBy(o => o.Start).ToList();
             intervals = CompactIntervals(intervals, IntervalsTouching, IsThereGapInIntervals);
-
-            foreach (TimeInterval app in intervals)
-            {
-                DateTime start = app.Start;
-                DateTime end = app.End;
-                if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
-                if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
-                if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
-                if (start.CompareTo(ti.Start) == 0 && end.CompareTo(ti.End) == 0) return false;
-            }
-
-            return true;
+            return intervals.All(x => !x.IsOverlaping(ti));
         }
 
-         
+
         public bool IsDoctorFreeInInterval(int doctorId, TimeInterval ti)
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
@@ -165,122 +156,128 @@ namespace Service
 
             return true;
         }
-        public TimeInterval checkifDurationIsLongEnough(Doctor doctor,double duration)
+
+        private List<TimeInterval> CaptureAllTakenIntervalsForRooms(List<Room> rooms)
         {
-            var time = new TimeInterval(DateTime.Now, DateTime.Now);
-            List<TimeInterval> freeTimeIntervals = GetFreeTimeIntervalsForDoctor(doctor);
-            foreach(TimeInterval interval in freeTimeIntervals)
+            List<TimeInterval> timeIntervals = new List<TimeInterval>();
+            foreach (Room room in rooms)
             {
-                if ((interval.End - interval.Start).TotalHours >= duration) {
-                    
-                    time = new TimeInterval(interval.Start,interval.Start.AddHours(duration));
-                    
-                    break;
-                   
-                }
-                else
+                timeIntervals.AddRange(CaptureAllTakenIntervalsForRoom(room.Id));
+            }
+
+            return timeIntervals;
+        }
+
+        public TimeInterval CheckifDurationIsLongEnough(Doctor doctor, double duration)
+        {
+            TimeInterval time = new TimeInterval(DateTime.Now, DateTime.Now);
+            List<TimeInterval> freeTimeIntervals = GetFreeTimeIntervalsForDoctor(doctor);
+            foreach (TimeInterval interval in freeTimeIntervals)
+            {
+                if ((interval.End - interval.Start).TotalHours >= duration)
                 {
-                    time = null;
+                    time = new TimeInterval(interval.Start, interval.Start.AddHours(duration));
                     break;
-                    
                 }
-               
             }
 
             return time;
-
         }
-        public TimeInterval FindIntervalForOperation(Appointment appointment,double duration)
+
+
+        public TimeInterval FindIntervalForOperation(Appointment appointment, double duration)
         {
             TimeInterval tl;
             if (IsDoctorFreeInInterval(appointment._Doctor._Id, appointment._Time))
             {
-
-
                 tl = appointment._Time;
             }
             else
             {
-                Console.WriteLine("usao u funkciju findinterval for operation");
-
                 tl = MakeAppointmentForSurgery(appointment, duration);
             }
+
             return tl;
         }
-        public TimeInterval MakeAppointmentForSurgery(Appointment appointment,double duration)
+
+
+        public TimeInterval MakeAppointmentForSurgery(Appointment appointment, double duration)
         {
-            TimeInterval tl = new TimeInterval(DateTime.Now,DateTime.Now);
-            
-               if (checkifDurationIsLongEnough(appointment._Doctor, duration)!= null)
-                {
-                    tl = checkifDurationIsLongEnough(appointment._Doctor, duration);
-                
-                }
-                else
-                {
-                    CancelAppointmentsForOperation(appointment);
-                    tl = appointment._Time;
-                }
-                
+            TimeInterval tl = new TimeInterval(DateTime.Now, DateTime.Now);
+
+            if (CheckifDurationIsLongEnough(appointment._Doctor, duration) != null)
+            {
+                tl = CheckifDurationIsLongEnough(appointment._Doctor, duration);
+            }
+            else
+            {
+                CancelAppointmentsForOperation(appointment);
+                tl = appointment._Time;
+            }
+
             return tl;
         }
+
+
         public void CancelAppointmentsForOperation(Appointment appointment)
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment._Doctor._Id);
-             var AppointmentsToDelete = appointments.Where(i=> i._Time.Start>= appointment._Time.Start && i._Time.End<=appointment._Time.End).ToList();
-            foreach (Appointment appointmentToDelete in AppointmentsToDelete)
+            List<Appointment> appointmentsToDelete = appointments.Where(i => i._Time.Start >= appointment._Time.Start && i._Time.End <= appointment._Time.End).ToList();
+            foreach (Appointment appToDelete in appointmentsToDelete)
             {
-                appointments.Remove(appointmentToDelete);
+                appointments.Remove(appToDelete);
             }
-
-
-            
         }
 
-        public List<TimeInterval> GetFreeTimeIntervalsForDoctor(Doctor doctor)
+
+        public List<TimeInterval> GetFreeIntervalsOrdered(Doctor doctor)
         {
-             
             List<TimeInterval> takenIntervals = _appointmentRepository.getTimeIntervalsForDoctor(doctor);
             var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
             List<TimeInterval> freeTimeIntervals = new List<TimeInterval>();
-   
-          
-
             for (int i = 0; i < orderedAppointment.Length - 1; i++)
             {
-                if(!(orderedAppointment[i].End==orderedAppointment[i+1].Start))
-                freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End,orderedAppointment[i+1].Start));
-                
+                if (!(orderedAppointment[i].End == orderedAppointment[i + 1].Start))
+                    freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End, orderedAppointment[i + 1].Start));
             }
-            var FirstAppoitment = orderedAppointment.First();
-            var dateappointment = FirstAppoitment.Start.Date.ToShortDateString();
-            //var timeAppointment = DateTime.Parse("8:00");
-            //var timesAppointment = "21:00"
-            var dateTimeApp = DateTime.Parse(dateappointment + " " + "8:00");
-            var dateTimeApp1 = DateTime.Parse(dateappointment + " " + "21:00");
-            var LastAppoitment = orderedAppointment.Last();
-            if (FirstAppoitment.Start.Hour > 8)
-                freeTimeIntervals.Add(new TimeInterval(dateTimeApp,FirstAppoitment.Start) );
-            if(LastAppoitment.End.Hour < 21)
-                freeTimeIntervals.Add(new TimeInterval(LastAppoitment.End,dateTimeApp1) );
-           
-          
-            
+
             return freeTimeIntervals;
+        }
 
 
+        public List<TimeInterval> GetFreeTimeIntervalsForDoctor(Doctor doctor)
+        {
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
+            var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
+            List<TimeInterval> freeTimeIntervals = new List<TimeInterval>();
+            for (int i = 0; i < orderedAppointment.Length - 1; i++)
+            {
+                if (!(orderedAppointment[i].End == orderedAppointment[i + 1].Start))
+                    freeTimeIntervals.Add(new TimeInterval(orderedAppointment[i].End, orderedAppointment[i + 1].Start));
+            }
 
+            TimeInterval firstAppointment = orderedAppointment.First();
+            string dateAppointment = firstAppointment.Start.Date.ToShortDateString();
+            DateTime dateTimeStart = DateTime.Parse(dateAppointment + " " + "8:00");
+            DateTime dateTimeEnd = DateTime.Parse(dateAppointment + " " + "21:00");
+            TimeInterval lastAppointment = orderedAppointment.Last();
+            if (firstAppointment.Start.Hour > 8)
+                freeTimeIntervals.Add(new TimeInterval(dateTimeStart, firstAppointment.Start));
+            if (lastAppointment.End.Hour < 21)
+                freeTimeIntervals.Add(new TimeInterval(lastAppointment.End, dateTimeEnd));
 
-    }
+            return freeTimeIntervals;
+        }
+
         private List<TimeInterval> CaptureAllTakenIntervalsForRoom(int roomId)
         {
-            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(new Room(-1, roomId, 0, "", 10));
+            List<TimeInterval> takenIntervalsApp = _appointmentRepository.GetTimeIntervalsForRoom(roomId);
             List<TimeInterval> takenIntervalRenovation = _renovationRepository.FindTakenIntervalsForRoom(roomId);
             List<TimeInterval> takenIntervalRelocation = _relocationRepository.FindTakenIntervalsForRoom(roomId);
 
             return new List<TimeInterval>(takenIntervalRelocation.Concat(takenIntervalRenovation).Concat(takenIntervalsApp));
         }
-        
+
         private List<TimeInterval> ConvertIntervalsToTakenDates(List<TimeInterval> intervals)
         {
             List<TimeInterval> dates = new List<TimeInterval>(intervals.Select(x => new TimeInterval(x.Start.Date, x.End.Date)));
@@ -318,6 +315,21 @@ namespace Service
             return compactedIntervals;
         }
 
+        public Appointment FindAppointmentByDate(DateTime date, int id, Patient pat)
+        {
+            foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
+            {
+                if (app._Time.Start.Date.Equals(date.Date))
+                {
+                    if (app._Patient._Jmbg.Equals(pat._Jmbg))
+                    {
+                        return app;
+                    }
+                }
+            }
+
+            return null;
+        }
 
         private bool IsSameOrNextDate(TimeInterval timeInterval, TimeInterval dateInterval)
         {
@@ -357,34 +369,9 @@ namespace Service
         }
 
 
-
         public void UrgentSurgeryForPatient(Appointment appointement)
         {
             TimeInterval timeInterval = appointement._Time;
-
         }
-
-        /*public List<TimeInterval> FindFreeIntervals(List<TimeInterval> unavailable1, List<TimeInterval> unavailable2, int minutes)
-        {
-            List<TimeInterval> takenIntervals = CaptureAllTakenIntervalsForRoom(roomId);
-            takenIntervals = takenIntervals.OrderBy(o => o.Start).ToList();
-            takenIntervals = CompactIntervals(takenIntervals, IntervalsTouching, IsThereGapInIntervals);
-
-            foreach (TimeInterval takenInterval in takenIntervals)
-            {
-                DateTime startDate = takenInterval.Start.Date;
-                DateTime endDate = takenInterval.End.Date;
-                
-                DateTime startDateNew = ti.Start.Date;
-                DateTime endDateNew = ti.End.Date;
-
-                if (startDate == startDateNew || endDate == endDateNew) return false;
-                if (startDate > startDateNew && startDate < endDateNew) return false;
-                if (endDate > startDateNew && endDate < endDateNew) return false;
-                if (startDate < startDateNew && endDate > endDateNew) return false;
-            }
-
-            return true;
-        }*/
     }
 }
