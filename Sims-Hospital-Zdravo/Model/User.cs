@@ -34,8 +34,8 @@ namespace Model
         private String Jmbg;
         private String PhoneNumber;
         private RoleType Role;
-        public List<DateTime> Cancels {get; set;}
-        public bool Blocked { get; set; }
+        private List<DateTime> _cancels;
+        private bool _blocked;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -114,7 +114,28 @@ namespace Model
                 OnPropertyChanged();
             }
         }
-
+        public List<DateTime> Cancels
+        {
+            get
+            {
+                return _cancels;
+            }
+            set
+            {
+                this._cancels = value;
+            }
+        }
+        public bool Blocked
+        {
+            get
+            {
+                return _blocked;
+            }
+            set
+            {
+                this._blocked = value;
+            }
+        }
         private void OnPropertyChanged(string name="")
         {
             PropertyChangedEventHandler handler = PropertyChanged;

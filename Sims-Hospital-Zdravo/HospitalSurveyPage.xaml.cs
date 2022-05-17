@@ -42,7 +42,6 @@ namespace Sims_Hospital_Zdravo
             data_column.Binding = new Binding("Text");
             data_column.Width = 484;
             Survey.Columns.Add(data_column);
-            Survey.Columns.Add(data_column);
             Survey.Columns.Add(getCheckBox("1", "One"));
             Survey.Columns.Add(getCheckBox("2", "Two"));
             Survey.Columns.Add(getCheckBox("3", "Three"));

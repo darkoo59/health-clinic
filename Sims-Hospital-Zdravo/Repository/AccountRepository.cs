@@ -82,11 +82,6 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             return loggedAccount;
         }
-        public void blockUser()
-        {
-            loggedAccount.Blocked = true;
-            LoadDataToFile();
-        }
 
         public void Login(string username, string password)
         {
@@ -105,6 +100,12 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Logout()
         {
             loggedAccount = null;
+        }
+
+        public void BlockLoggedAccount()
+        {
+            loggedAccount.Blocked = true;
+            LoadDataToFile();
         }
 
         public void LoadDataFromFile()

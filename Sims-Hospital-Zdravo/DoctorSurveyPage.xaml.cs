@@ -64,10 +64,10 @@ namespace Sims_Hospital_Zdravo
         {
             questions = new List<QuestionForSurvey>();
             questions.Add(new QuestionForSurvey("Doctor was polite."));
-            questions.Add(new QuestionForSurvey("Doctor was professional."));
             questions.Add(new QuestionForSurvey("Room was clean."));
             questions.Add(new QuestionForSurvey("Appointment held on schedule."));
             questions.Add(new QuestionForSurvey("Doctor explained everything in understandable way."));
+            questions.Add(new QuestionForSurvey("Doctor is good overall."));
             return questions;
         }
         private void Button_Click(object sender, RoutedEventArgs e)

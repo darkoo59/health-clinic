@@ -8,21 +8,27 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class QuestionForSurvey
     {
-        public string Text { get; set; }
-        public bool One { get; set; }
-        public bool Two { get; set; }
-        public bool Three { get; set; }
-        public bool Four { get; set; }
-        public bool Five { get; set; }
+        private string _text;
+        private bool _one;
+        private bool _two;
+        private bool _three;
+        private bool _four;
+        private bool _five;
 
         public QuestionForSurvey(string text)
         {
-            Text = text;
-            One = false;
-            Two = false;
-            Three = false;
-            Four = false;
-            Five = false;
+            _text = text;
+            _one = false;
+            _two = false;
+            _three = false;
+            _four = false;
+            _five = false;
         }
+        public string Text { get { return _text; }set { this._text = value; } }
+        public bool One { get { return _one; } set { this._one = value; } }
+        public bool Two { get { return _two; } set { this._two = value; } }
+        public bool Three { get { return _three; } set { this._three = value; } }
+        public bool Four { get { return _four; } set { this._four = value; } }
+        public bool Five { get { return _five; } set { this._five = value; } }
     }
 }

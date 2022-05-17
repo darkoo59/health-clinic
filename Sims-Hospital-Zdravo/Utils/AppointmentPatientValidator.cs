@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 if (TooManyInThirtyDays(cancels))
                 {
-                    accountRepository.GetLoggedAccount().Blocked = true;
+                    accountRepository.BlockLoggedAccount();
                     throw new Exception("You are blocked");
                 }
             }
