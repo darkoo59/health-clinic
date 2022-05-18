@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View"
         mc:Ignorable="d"
-        Title="DoctorUpdateAppointment" Height="450" Width="800">
+        Title="DoctorUpdateAppointment" Height="500" Width="300">
     <Window.Resources>
         <ResourceDictionary Source="ViewDoctor/DoctorStyleDictionary.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,23 +23,23 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+
+
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Label Height="30" VerticalAlignment="Top"  HorizontalAlignment="Right" >Date :</Label>
-        <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Right"  ></TextBox>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <Label Height="30" VerticalAlignment="Top"  HorizontalAlignment="Left" >Date :</Label>
+        <TextBox x:Name="DateTxt" Grid.Row="1" Width="150" Height="30" HorizontalAlignment="Left"  ></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <Label Height="30" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left">Time:</Label>
         <TextBox Name="TimeTxt"  Width="150" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center">
             <Label  Height="30" Width="120" VerticalAlignment="Top"  HorizontalAlignment="Left">Patient :</Label>
             <ComboBox   Name="Patientcb" Width="120" HorizontalAlignment="Left" SelectionChanged="Patientcb_SelectionChanged" Style="{DynamicResource theComboBox}" >
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="4">
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center">
             <Label Grid.Row="4" Height="30" Width="150" VerticalAlignment="Top"  HorizontalAlignment="Left" >Room:</Label>
         
             <TextBox x:Name="RoomTxt"  Width="150" Height="30" HorizontalAlignment="Left"  ></TextBox>
@@ -47,14 +47,14 @@
         <StackPanel Grid.Row="7">
             <Button  VerticalAlignment="Center" Width="120" Height="30" Click="Button_Click">Save</Button>
         </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
             <Label Height="30" Width="150" VerticalAlignment="Top"  HorizontalAlignment="Left" Content=" End Time:" />
-            <TextBox Name="endtime" HorizontalAlignment="Left" Height="31"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  />
+            <TextBox Name="endtime" HorizontalAlignment="Left" Height="31"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="150"  />
         
         </StackPanel>
 
 
-        <StackPanel Grid.Row="6">
+        <StackPanel Grid.Row="5" HorizontalAlignment="Center">
             <Label Content="Type:"></Label>
             <ComboBox  Name="AppType" SelectedIndex="0" Width="120" HorizontalAlignment="Left" Text="{ Binding _Type}" Style="{DynamicResource theComboBox}"/>
         
