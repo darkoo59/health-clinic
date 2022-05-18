@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View"
              mc:Ignorable="d" 
-             Height="768" Width="1024">
+             Height="500" Width="300">
     <Window.Resources>
         <ResourceDictionary Source="ViewDoctor/DoctorStyleDictionary.xaml">
             
@@ -14,7 +14,7 @@
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,33 +25,32 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
             <Label Height="30" Width="150" HorizontalAlignment="Left" Content="Patient:" />
             <ComboBox Height="32" Width="134" x:Name="Patients" HorizontalAlignment="Left" SelectionChanged="Patients_SelectionChanged" Style="{DynamicResource theComboBox}"/>
         </StackPanel>
-        <StackPanel  Grid.Row="1">
-            <Label Height="30" VerticalAlignment="Top" Margin="0,107,192,0" HorizontalAlignment="Right"  Width="67"  Content="Date :"/>
-            <DatePicker x:Name="DatePick" HorizontalAlignment="Left" Height="29" Margin="21,13,0,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Grid.Column="2"/>
+        <StackPanel  Grid.Row="1" HorizontalAlignment="Center">
+            <Label Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="67"  Content="Date :"/>
+            <DatePicker x:Name="DatePick" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="150" Grid.Column="2"/>
         </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
             <Label  Height="30" Width="150" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Column="1" Content=" Time:"/>
             <ComboBox Name="comboTimeAppointment" Style="{DynamicResource theComboBox}"  Width="120" HorizontalAlignment="Left"/>
         </StackPanel>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center">
             <Label  Height="30" Width="150" VerticalAlignment="Top"  HorizontalAlignment="Left"  Content="Room:"/>
             <TextBox x:Name="RoomTxt" Width="150" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
-        <StackPanel Grid.Row="5">
+        <StackPanel Grid.Row="5" HorizontalAlignment="Center">
             <Button  Height="36" VerticalAlignment="Top" Width="120" HorizontalAlignment="Center" Click="Button_Click" >Save</Button>
 
         </StackPanel>
 
 
-        <StackPanel Grid.Row="4">
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center">
             <Label  Content="Type:" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="47" />
             <ComboBox Width="120"  Style="{DynamicResource theComboBox}" HorizontalAlignment="Left" Name="AppType" />
 
