@@ -6,7 +6,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
-      Title="ManagerMedicines" Height="718"
+      Title="ManagerMedicines" Height="686"
       Width="924"
       Margin="0">
 

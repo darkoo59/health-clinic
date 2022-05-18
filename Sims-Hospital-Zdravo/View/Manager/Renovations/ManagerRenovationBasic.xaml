@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
       Title="ManagerRenovations"
-      Height="718"
+      Height="686"
       Width="924">
 
     <Page.Resources>
