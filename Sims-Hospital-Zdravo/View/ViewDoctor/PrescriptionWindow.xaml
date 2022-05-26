@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="PrescriptionWindow" Height="700" Width="700">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml">
+            
+        </ResourceDictionary>
+    </Page.Resources>
+        
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -26,7 +32,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Label Content="Choose medicine" />
-            <ComboBox Width="120" Name="Medicinecb" IsEditable="True"  SelectionChanged="Medicinecb_SelectionChanged" />
+            <ComboBox Width="120" Name="Medicinecb" IsEditable="True" Style="{DynamicResource theComboBox}" SelectionChanged="Medicinecb_SelectionChanged" />
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Allergens" />

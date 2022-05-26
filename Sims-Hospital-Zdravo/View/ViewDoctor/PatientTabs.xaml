@@ -5,23 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      Height="768" Width="800"
+      Height="700" Width="800"
       Title="PatientTabs">
 
-    <Grid>
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="PatientInfo" Name="PatientInfoTab">
-                
-            </TabItem>
-            <TabItem Header="Labaratory results" Name="LabResultsTab">
-                
-            </TabItem>
-            <TabItem Header="Medical history" Name="MedicalHistoryTab">
-                
-            </TabItem>
-            <TabItem Header="Therapy" Name="TherapyTab">
-                
-            </TabItem>
-        </TabControl>
+    <Grid >
+        <Frame Name="FrameForPatient" Height="530" Width="800"/>
+        <Menu Height="80" VerticalAlignment="Top" >
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Medical record" Name="MedicalRecordItem" Click="MedcialRecordClick"  />
+            <MenuItem Header="Medical history" Click="MedicalHistoryClick"/>
+            <MenuItem Header="Labaratory results"/>
+            <MenuItem Header="Therapy"/>
+            
+
+        </Menu>
     </Grid>
 </Page>

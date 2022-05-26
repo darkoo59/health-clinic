@@ -342,6 +342,9 @@
     <Compile Include="View\ViewDoctor\OperationForm.xaml.cs">
       <DependentUpon>OperationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\PatientMedicalHistory.xaml.cs">
+      <DependentUpon>PatientMedicalHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs" />
     <Compile Include="View\ViewDoctor\PatientMedicalRecordPage.xaml.cs">
       <DependentUpon>PatientMedicalRecordPage.xaml</DependentUpon>
@@ -547,6 +550,10 @@
     <Page Include="View\ViewDoctor\OperationForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\PatientMedicalHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml" />
     <Page Include="View\ViewDoctor\PatientMedicalRecordPage.xaml">
