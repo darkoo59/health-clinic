@@ -11,7 +11,7 @@ using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.View.Manager.Medicines
 {
-    public partial class ManagerMedicineInsert : Window
+    public partial class ManagerMedicineUpdate : Window
     {
         private App app;
         private MedicineController medicineController;
@@ -20,8 +20,10 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         public MedicineCreatedNotification _CreatedNotification { get; set; }
         public Medicine Medicine { get; set; }
 
-        public ManagerMedicineInsert()
+
+        public ManagerMedicineUpdate(Medicine medicine)
         {
+            Medicine = medicine;
             app = Application.Current as App;
             medicineController = app._medicineController;
             notificationController = app._notificationController;
@@ -29,7 +31,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             InitializeComponent();
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
-            MedicineSubstitues.ItemsSource = medicineController.ReadAllMedicines();
+            MedicineSubstitues.ItemsSource = FilterSelfFromMedicines(medicineController.ReadAllMedicines().ToList());
             this.KeyDown += new KeyEventHandler(GoBack);
         }
 
@@ -41,28 +43,40 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             }
         }
 
-        private void SaveMedicine_Click(object sender, RoutedEventArgs e)
+
+        private void SaveMedicine_Click(object sender, RoutedEventArgs args)
         {
             try
             {
                 Validate();
-                string name = TxtMedicineName.Text;
-                string allergens = TxtAllergens.Text;
-                string description = TxtDescription.Text;
-                string strength = TxtStrength.Text;
+
                 Doctor doctor = (Doctor)ComboDoctors.SelectedItem;
                 List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
 
-                this.Medicine = new Medicine(name, strength, allergens, description);
-                Medicine._Id = medicineController.GenerateId();
-                this.Medicine._Substitution = substitutes;
-                this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                FillMedicine();
+                Medicine._Substitution = substitutes;
+                _CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void FillMedicine()
+        {
+            string name = TxtMedicineName.Text;
+            string allergens = TxtAllergens.Text;
+            string description = TxtDescription.Text;
+            string strength = TxtStrength.Text;
+            List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
+            Medicine._Name = name;
+            Medicine._Allergens = allergens;
+            Medicine._Description = description;
+            Medicine._Strength = strength;
+            Medicine._Substitution = substitutes;
+            Medicine._Status = MedicineStatus.PENDING;
         }
 
         private void Validate()
@@ -90,12 +104,9 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             }
         }
 
-        private void ValidateDatePicker(DatePicker datePicker, string name)
+        private List<Medicine> FilterSelfFromMedicines(List<Medicine> medicines)
         {
-            if (datePicker.Text.Equals(""))
-            {
-                throw new Exception(name + " should have a value!");
-            }
+            return medicines.Where(medicine => medicine._Id != this.Medicine._Id).ToList();
         }
     }
 }

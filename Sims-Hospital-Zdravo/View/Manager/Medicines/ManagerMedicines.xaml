@@ -37,7 +37,7 @@
                 <AccessText>_Insert</AccessText>
             </Button>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="4" Width="100" Height="30"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right" Click="UpdateMedicine_Click">
                 <AccessText>_Update</AccessText>
             </Button>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="5" Width="100" Height="30"
