@@ -22,13 +22,20 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            int direction = int.Parse(parameter.ToString());
-            if (menu == null)
+            try
             {
-                RetrieveMenu();
-            }
+                int direction = int.Parse(parameter.ToString());
+                if (menu == null)
+                {
+                    RetrieveMenu();
+                }
 
-            menu.RotateMenu(direction);
+                menu.RotateMenu(direction);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
         private void RetrieveMenu()
@@ -37,7 +44,7 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
             {
                 if (win.GetType() == typeof(ManagerMainWindow))
                 {
-                    menu = ((ManagerMainWindow)win).ManagerMenu;
+                    menu = ((ManagerMainWindow)win).Menu;
                 }
             }
         }

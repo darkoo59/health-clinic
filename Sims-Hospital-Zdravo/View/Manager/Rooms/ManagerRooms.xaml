@@ -11,6 +11,17 @@
       Margin="0">
 
 
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding InsertRoomCommand}" Key="I" Modifiers="Control"></KeyBinding>
+        <KeyBinding Command="{Binding UpdateRoomCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
+                    Key="U" Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding Command="{Binding DeleteRoomCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
+                    Key="D" Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml">
         </ResourceDictionary>
@@ -34,16 +45,16 @@
             </Grid.ColumnDefinitions>
             <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="InsertRoom_Click"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}"
                     x:Name="InsertBtn">
                 <AccessText>_Insert</AccessText>
             </Button>
             <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="UpdateRoom_Click">
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 <AccessText>_Update</AccessText>
             </Button>
             <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}" Click="DeleteRoom_Click">
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 <AccessText> _Delete </AccessText>
             </Button>
 
@@ -51,6 +62,7 @@
         </Grid>
         <DataGrid
             x:Name="RoomsTable"
+            ItemsSource="{Binding Rooms}"
             Grid.Row="1"
             AutoGenerateColumns="False">
 

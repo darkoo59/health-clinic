@@ -223,7 +223,9 @@
         <Compile Include="ViewModel\Commands\RotateMenuCommand.cs" />
         <Compile Include="ViewModel\Commands\SetMenuItemCommand.cs" />
         <Compile Include="ViewModel\Manager\ManagerMedicinesViewModel.cs" />
+        <Compile Include="ViewModel\Manager\RenovationBasicViewModel.cs" />
         <Compile Include="ViewModel\Manager\RenovationsViewModel.cs" />
+        <Compile Include="ViewModel\Manager\RoomViewModel.cs" />
         <Compile Include="View\Login\LoginMainWindow.xaml.cs">
             <DependentUpon>LoginMainWindow.xaml</DependentUpon>
         </Compile>

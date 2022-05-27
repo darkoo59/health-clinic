@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Login;
+using Sims_Hospital_Zdravo.View.UserControlls;
 using Application = System.Windows.Application;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 
@@ -20,28 +22,20 @@ namespace Sims_Hospital_Zdravo.View.Manager
         private App app;
         private NotificationController notificationController;
         private NotificationManager notificationManager;
-        private AccountController accountController;
+
+        public ManagerMenu Menu => ManagerMenu;
+        public Frame ManagerPager => ManagerContent;
 
         public ManagerMainWindow()
         {
             app = Application.Current as App;
             notificationController = app._notificationController;
-            accountController = app._accountController;
             notificationManager = new NotificationManager();
 
             app._taskScheduleTimer.AddObserver(this);
             InitializeComponent();
 
             ManagerContent.Source = new Uri("Renovations/ManagerRenovations.xaml", UriKind.Relative);
-        }
-
-
-        public void Logout()
-        {
-            accountController.Logout();
-            LoginMainWindow loginMainWindow = new LoginMainWindow();
-            loginMainWindow.Show();
-            Close();
         }
 
         public void Notify(Notification notification)

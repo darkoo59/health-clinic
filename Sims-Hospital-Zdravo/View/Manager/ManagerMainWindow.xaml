@@ -15,6 +15,71 @@
         ResizeMode="CanResize"
         Closing="WindowClosing">
 
+
+    <Window.Resources>
+        <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="#189AB4" Grid.ColumnSpan="2">
+            <Button DockPanel.Dock="Right"
+                    Height="30"
+                    Width="80"
+                    BorderBrush="White"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Background="#0a718a"
+                    BorderThickness="1"
+                    Margin="0, 0, 40, 0"
+                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
+                Tutorial
+            </Button>
+
+            <Label Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"
+                   Margin="20, 0, 0 ,0">
+                Hospital - Zdravo
+            </Label>
+
+            <Label x:Name="HeaderLabel" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Center">
+            </Label>
+
+        </DockPanel>
+        <Frame Grid.Column="1"
+               Grid.Row="1"
+               x:Name="ManagerContent"
+               NavigationUIVisibility="Hidden"
+               Padding="0"
+               Focusable="False">
+        </Frame>
+
+        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
+
+
+        <notifications:NotificationArea
+            Grid.Row="1"
+            Grid.Column="1"
+            Height="300"
+            Width="400"
+            Background="#0a718a"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="20"
+            x:Name="WindowArea"
+            Focusable="False"
+            MaxItems="3" />
+    </Grid>
+
+
     <Window.InputBindings>
         <KeyBinding
             Command="cmd:Commands.RotateMenuCommand"
@@ -64,67 +129,4 @@
         </KeyBinding>
 
     </Window.InputBindings>
-    <Window.Resources>
-        <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
-    </Window.Resources>
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <DockPanel Background="#189AB4" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Right"
-                    Height="30"
-                    Width="80"
-                    BorderBrush="White"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    Background="#0a718a"
-                    BorderThickness="1"
-                    Margin="0, 0, 40, 0"
-                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                Tutorial
-            </Button>
-
-            <Label Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"
-                   Margin="20, 0, 0 ,0">
-                Hospital - Zdravo
-            </Label>
-
-            <Label x:Name="HeaderLabel" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"
-                   HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Center">
-            </Label>
-
-        </DockPanel>
-
-
-        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
-
-        <Frame Grid.Column="1"
-               Grid.Row="1"
-               x:Name="ManagerContent"
-               NavigationUIVisibility="Hidden"
-               Padding="0"
-               Focusable="False">
-        </Frame>
-
-        <notifications:NotificationArea
-            Grid.Row="1"
-            Grid.Column="1"
-            Height="300"
-            Width="400"
-            Background="#0a718a"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-            Margin="20"
-            x:Name="WindowArea"
-            Focusable="False"
-            MaxItems="3" />
-    </Grid>
 </Window>

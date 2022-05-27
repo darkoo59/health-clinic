@@ -19,6 +19,19 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         public ManagerMenu()
         {
             InitializeComponent();
+            LoadMainWindowParts();
+        }
+
+        private void LoadMainWindowParts()
+        {
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerPager;
+                    HeaderLabel = ((ManagerMainWindow)win).HeaderLabel;
+                }
+            }
         }
 
 
