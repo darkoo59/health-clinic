@@ -155,6 +155,7 @@
     <Compile Include="Model\FreeDaysRequest.cs" />
     <Compile Include="Model\DoctorSurvey.cs" />
     <Compile Include="Model\HospitalSurvey.cs" />
+    <Compile Include="Model\HospitalSurveyStatistics.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />

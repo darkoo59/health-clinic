@@ -14,7 +14,6 @@ using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using System.Collections.ObjectModel;
 using System.Runtime.Remoting.Messaging;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Utils
 {

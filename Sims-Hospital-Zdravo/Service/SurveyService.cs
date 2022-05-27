@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 
-namespace Sims_Hospital_Zdravo.Service
+namespace Sims_Hospital_Zdravo.Model
 {
     public class SurveyService
     {
@@ -26,5 +26,7 @@ namespace Sims_Hospital_Zdravo.Service
         {
             hospitalSurveyRepository.Create(hospitalSurvey);
         }
+        
+        
     }
 }

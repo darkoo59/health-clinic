@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Repository
 {

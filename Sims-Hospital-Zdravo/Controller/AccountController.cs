@@ -1,5 +1,5 @@
 ﻿using Model;
-using Sims_Hospital_Zdravo.Service;
+using Sims_Hospital_Zdravo.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

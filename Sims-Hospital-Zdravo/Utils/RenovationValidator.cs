@@ -6,7 +6,6 @@ using Repository;
 using Service;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
