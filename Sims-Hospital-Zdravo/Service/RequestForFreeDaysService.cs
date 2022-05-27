@@ -10,6 +10,7 @@ using Repository;
 using Model;
 using System.Windows;
 using Sims_Hospital_Zdravo.Utils;
+
 namespace Sims_Hospital_Zdravo.Model
 {
     public class RequestForFreeDaysService
@@ -22,10 +23,8 @@ namespace Sims_Hospital_Zdravo.Model
         {
             this._requestForFreeDaysRepository = requestForFreeDaysRepository;
             this._appointmentRepository = appointmentRepository;
-            this.freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository,requestForFreeDaysRepository);
-
+            this.freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
         }
-
 
         public void Create(FreeDaysRequest request)
         {
@@ -38,7 +37,6 @@ namespace Sims_Hospital_Zdravo.Model
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 
@@ -46,19 +44,15 @@ namespace Sims_Hospital_Zdravo.Model
         {
             _requestForFreeDaysRepository.Create(request);
         }
-        public void Delete (FreeDaysRequest request)
+
+        public void Delete(FreeDaysRequest request)
         {
             _requestForFreeDaysRepository.Delete(request);
         }
 
-        public  ref ObservableCollection<FreeDaysRequest> ReadAll()
+        public ref ObservableCollection<FreeDaysRequest> ReadAll()
         {
-            return  ref _requestForFreeDaysRepository.ReadAll();
+            return ref _requestForFreeDaysRepository.ReadAll();
         }
-
-
-
-        
-
     }
 }

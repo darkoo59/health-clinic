@@ -33,55 +33,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
             InitializeComponent();
 
             ManagerContent.Source = new Uri("Renovations/ManagerRenovations.xaml", UriKind.Relative);
-            this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
         }
 
-        private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift && e.Key == Key.W)
-            {
-                ManagerMenu.RotateMenu(-1);
-            }
-            else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && e.Key == Key.S)
-            {
-                ManagerMenu.RotateMenu(1);
-            }
-            else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && e.Key == Key.D1)
-            {
-                ManagerMenu.SetMenuItem("Equipment");
-            }
-            else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && e.Key == Key.D2)
-            {
-                ManagerMenu.SetMenuItem("Renovations");
-            }
-            else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && e.Key == Key.D3)
-            {
-                ManagerMenu.SetMenuItem("Rooms");
-            }
-            else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && e.Key == Key.D4)
-            {
-                ManagerMenu.SetMenuItem("Medicines");
-            }
-            else if (e.Key == Key.Escape)
-            {
-                if (ManagerContent.CanGoBack && !IsMainWindowPage(ManagerContent.Source.OriginalString))
-                {
-                    ManagerContent.GoBack();
-                }
-            }
-        }
-
-        private bool IsMainWindowPage(string uri)
-        {
-            switch (uri)
-            {
-                case "Sims-Hospital-Zdravo;component/view/manager/Rooms/ManagerRooms.xaml": return true;
-                case "Sims-Hospital-Zdravo;component/view/manager/Equipment/ManagerEquipment.xaml": return true;
-                case "Sims-Hospital-Zdravo;component/view/manager/Medicines/ManagerMedicines.xaml": return true;
-                case "Sims-Hospital-Zdravo;component/view/manager/Renovations/ManagerRenovations.xaml": return true;
-                default: return false;
-            }
-        }
 
         public void Logout()
         {
