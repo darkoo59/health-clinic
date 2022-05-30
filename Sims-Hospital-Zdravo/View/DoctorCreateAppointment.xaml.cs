@@ -100,9 +100,7 @@ namespace Sims_Hospital_Zdravo.View
         {
             
             
-                //String date = dateTxt.Text;
-                ComboBoxItem cbItem = cbTime.SelectedItem as ComboBoxItem;
-                ComboBoxItem cbItemEnd = cbTimeEnd.SelectedItem as ComboBoxItem;
+                
 
 
                 string appointmentTime = comboTimeAppointment.SelectedItem.ToString();

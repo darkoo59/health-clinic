@@ -1,0 +1,96 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Manager.Medicines.ManagerMedicineUpdate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Medicines"
+        Title="ManagerMedicineInsert"
+        Height="550"
+        Width="500"
+        Background="#2f343d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="200"></Setter>
+            </Style>
+        </ResourceDictionary>
+
+
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label FontWeight="Bold" FontSize="20" Height="50" HorizontalAlignment="Center"
+               HorizontalContentAlignment="Center">
+            Insert Medicine
+        </Label>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label>Name:</Label>
+            <TextBox x:Name="TxtMedicineName" Text="{Binding Path=_Name, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Label>Allergens:</Label>
+            <TextBox x:Name="TxtAllergens" Text="{Binding Path=_Allergens, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <Label>Description:</Label>
+            <TextBox x:Name="TxtDescription" Text="{Binding Path=_Description, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="0">
+            <Label>Strength:</Label>
+            <TextBox x:Name="TxtStrength" Text="{Binding Path=_Strength, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="0">
+            <Label> Doctor:</Label>
+            <ComboBox x:Name="ComboDoctors" Text="{Binding Path=_Doctor, Mode=TwoWay}"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.RowSpan="2">
+            <Label> Substitution medicines:</Label>
+            <ListBox Height="60" Width="200" SelectionMode="Multiple" x:Name="MedicineSubstitues"></ListBox>
+        </StackPanel>
+
+
+        <Button Grid.Row="8" Grid.Column="0"
+                Width="200"
+                Height="30"
+                Click="SaveMedicine_Click"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}">
+            Save
+        </Button>
+
+    </Grid>
+</Window>

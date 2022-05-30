@@ -7,9 +7,7 @@
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         Title="Manager Dashboard"
-        MinHeight="805"
-        MinWidth="1040"
-        Height="805"
+        Height="768"
         Width="1040"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Background="#2f343d"
@@ -23,11 +21,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="924"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="718"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <DockPanel Background="#189AB4" Grid.ColumnSpan="2">

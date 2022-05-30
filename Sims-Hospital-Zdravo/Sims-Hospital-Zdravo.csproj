@@ -256,6 +256,9 @@
     <Compile Include="View\Manager\Medicines\ManagerMedicines.xaml.cs">
       <DependentUpon>ManagerMedicines.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Medicines\ManagerMedicineUpdate.xaml.cs">
+      <DependentUpon>ManagerMedicineUpdate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\Renovations\ManagerRenovationAdvanced.xaml.cs">
       <DependentUpon>ManagerRenovationAdvanced.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,9 @@
     <Compile Include="View\ViewDoctor\OperationForm.xaml.cs">
       <DependentUpon>OperationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\PatientMedicalHistory.xaml.cs">
+      <DependentUpon>PatientMedicalHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\PatientMedicalRecord.xaml.cs" />
     <Compile Include="View\ViewDoctor\PatientMedicalRecordPage.xaml.cs">
       <DependentUpon>PatientMedicalRecordPage.xaml</DependentUpon>
@@ -447,6 +453,7 @@
     <Page Include="View\Manager\ManagerStyles.xaml" />
     <Page Include="View\Manager\Medicines\ManagerMedicineInsert.xaml" />
     <Page Include="View\Manager\Medicines\ManagerMedicines.xaml" />
+    <Page Include="View\Manager\Medicines\ManagerMedicineUpdate.xaml" />
     <Page Include="View\Manager\Renovations\ManagerRenovationAdvanced.xaml" />
     <Page Include="View\Manager\Renovations\ManagerRenovationBasic.xaml" />
     <Page Include="View\Manager\Renovations\ManagerRenovations.xaml" />
@@ -586,6 +593,10 @@
     <Page Include="View\ViewDoctor\OperationForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\PatientMedicalHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml" />
     <Page Include="View\ViewDoctor\PatientMedicalRecordPage.xaml">

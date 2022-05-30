@@ -52,9 +52,30 @@ namespace Sims_Hospital_Zdravo.Service
             notificationRepository.Create(notification);
         }
 
-        public void ValidateMedicineWithNotifyingDoctor(Medicine medicine,Notification notification)
+        public void ResubmitMedicineWithNotifyingDoctor(Medicine medicine, Notification notification)
+        {
+            DeleteById(medicine._Id);
+            CreateMedicineWithNotifyingDoctor(medicine, notification);
+        }
+
+        public void ValidateMedicineWithNotifyingDoctor(Medicine medicine, Notification notification)
         {
             notificationRepository.Create(notification);
+        }
+
+        public int GenerateId()
+        {
+            List<Medicine> medicines = new List<Medicine>(medicineRepository.ReadAll());
+            List<int> ids = new List<int>(medicines.Select(x => x._Id));
+
+            int id = 0;
+
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+
+            return id;
         }
     }
 }

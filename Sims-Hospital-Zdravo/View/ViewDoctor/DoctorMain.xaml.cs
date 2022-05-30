@@ -35,6 +35,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private NotificationController notificationController;
         private NotificationManager notificationManager;
         private AccountController accountController;
+        private Frame frame;
 
         private int doctorId;
 
@@ -46,6 +47,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.doctorId = DoctorId;
             this.docController = app._doctorAppointmentController;
+            this.accountController = app._accountController;
             this.medicalRecordController = app._recordController;
             this.anamnesisController = app._anamnesisController;
             this.patientMedicalRecordController = app._patientMedRecController;
@@ -84,7 +86,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
 
         {
-            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain);
+            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain,doctorId);
             FrameForMain.Content = searchPatient;
         }
 
@@ -151,7 +153,16 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Close();
         }
 
+        private void LogOutClick(object sender, RoutedEventArgs e)
+        {
+            Logout();
 
 
+        }
+
+        private void Prescription_Click(object sender, RoutedEventArgs e)
+        {
+            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController,  doctorId, frame);
+        }
     }
 }

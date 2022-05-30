@@ -52,8 +52,8 @@
                 </MenuItem>
                 <MenuItem Name="ScheduleMenuItem" Click="schedule_Appointment_Click" Height="50">
                     <MenuItem.Icon>
-                        <Image Source="../../Resources/img/icons8-treatment-list-96.png" Height="70"
-                               Width="35" VerticalAlignment="Top">
+                        <Image Source="../../Resources/img/icons8-treatment-list-96.png" Height="30"
+                               Width="50" VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
@@ -74,14 +74,14 @@
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Name="ExaminationMenuItem" Height="50">
+                <MenuItem Name="PrescriptionsItem" Height="50" Click="Prescription_Click">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/img/DoctorImg/icons8-stethoscope-64.png" Margin="0,0,0,0"
                                Width="35" VerticalAlignment="Top" >
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
-                        <AccessText Text="Examination" HorizontalAlignment="Left" VerticalAlignment="Center"
+                        <AccessText Text="Presciptions" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Width="220" FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
@@ -98,22 +98,22 @@
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Name="RequestForFreeDaysItem" Height="50" Click="DaysOff_Click">
+                <MenuItem Name="RequestForFreeDaysItem" Height="50" Width="250" Click="DaysOff_Click">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/img/icons8-day-off-96.png" 
-                               Width="35" Height="50" VerticalAlignment="Top">
+                               Width="100" Height="50" >
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
-                        <AccessText Text="Days off" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="250" FontFamily="Comic Sans MS" FontSize="25">
+                        <AccessText Text="Days off" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Width="200" FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="MedicinesItem" Height="50" Click="MedcinesClick">
                     <MenuItem.Icon>
                         <Image Source="../../Resources/img/icons8-medicine-64.png" 
-                               Width="35" Height="50" VerticalAlignment="Top">
+                               Width="50" Height="20" VerticalAlignment="Top">
                         </Image>
                     </MenuItem.Icon>
                     
@@ -126,16 +126,24 @@
                 <MenuItem Name="appointmentsItem" Height="50" Click="AppointmentsClick">
 
                     <MenuItem.Header>
-                        <AccessText Text="Appointments" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS">
+                        <AccessText Text="Appointments" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
+                                    FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Name="anamnesisItem" Height="50" Click="AnamnesisClick">
 
                     <MenuItem.Header>
-                        <AccessText Text="Medical reports" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS">
+                        <AccessText Text="Medical reports" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
+                                    FontFamily="Comic Sans MS" FontSize="25">
+                        </AccessText>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Name="LogOutItem" Height="50" Click="LogOutClick">
+
+                    <MenuItem.Header>
+                        <AccessText Text="Log out" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
+                                    FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
                 </MenuItem>
@@ -144,7 +152,6 @@
         </StackPanel>
 
         <Frame Name="FrameForMain" Grid.ColumnSpan="3" Margin="10,96,10,0" Grid.RowSpan="4" NavigationUIVisibility="Hidden" Grid.Column="1" />
-
         <notifications:NotificationArea
             Grid.Row="2"
             Grid.Column="3"

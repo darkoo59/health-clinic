@@ -48,5 +48,35 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 }
             }
         }
+
+        private void UpdateMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            Medicine medicine = (Medicine)MedicinesTable.SelectedItem;
+            if (medicine == null)
+            {
+                MessageBox.Show("Medicine should be selected");
+                return;
+            }
+
+            if (medicine._Status != MedicineStatus.ABORTED)
+            {
+                MessageBox.Show("Medicine is already accepted or pending!");
+                return;
+            }
+
+            ManagerMedicineUpdate medicineUpdate = new ManagerMedicineUpdate(medicine)
+            {
+                DataContext = medicine
+            };
+            if (medicineUpdate.ShowDialog() == false)
+            {
+                Medicine med = medicineUpdate.Medicine;
+                Notification notification = medicineUpdate._CreatedNotification;
+                if (med != null)
+                {
+                    medicineController.ResubmitMedicineWithNotifyingDoctor(medicine, notification);
+                }
+            }
+        }
     }
 }

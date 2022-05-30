@@ -21,22 +21,23 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// <summary>
     /// Interaction logic for PrescriptionList.xaml
     /// </summary>
-    public partial class PrescriptionList : Window
+    public partial class PrescriptionList : Page
     {
         private MedicalRecordController medicalRecordController;
         private MedicalRecord medicalRecord;
         private ObservableCollection<Prescription> prescriptions;
         private int doctorId;
-
-        public PrescriptionList(MedicalRecordController medicalRecordController,MedicalRecord medicalRecord,Prescription prescription,int id)
+        private Frame frame;
+        public PrescriptionList(MedicalRecordController medicalRecordController,MedicalRecord medicalRecord,int id, Frame frame)
         {
             InitializeComponent();
-            this.DataContext = prescription;
+            this.DataContext = this;
             this.doctorId = id;
+            this.frame = frame;
             this.medicalRecordController = medicalRecordController;
             this.medicalRecord = medicalRecord;
             this.prescriptions = medicalRecord._Prescriptions;
-            PrescriptionListPatient.ItemsSource = prescriptions;
+            PrescriptionListPatient.ItemsSource = medicalRecordController.GetPrescriptionsByMedicalRecord(medicalRecord);
             PrescriptionListPatient.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Medicine";
@@ -63,9 +64,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord,doctorId);
-            prescriptionWindow.Show();
-            Close();
+            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord,doctorId,frame);
+            frame.Content = prescriptionWindow;
+            //prescriptionWindow.Show();
+            //Close();
 
         }
     }
