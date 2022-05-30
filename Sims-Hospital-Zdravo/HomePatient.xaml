@@ -41,11 +41,46 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="SeparatorBrush" Value="DarkRed" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontFamily" Value="#Segoe UI"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Grid>
+                            <Border x:Name="columnHeaderBorder"
+		BorderThickness="1"
+		Padding="3,0,3,0">
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="0" Color="#A5A5A5" />
+                                        <GradientStop Offset="1" Color="#4B4B4B" />
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="0" Color="LightGray" />
+                                        <GradientStop Offset="1" Color="DarkGray" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     <Grid>
         <DataGrid x:Name="Apps" HorizontalAlignment="Left" Height="240" Margin="50,55,0,0" VerticalAlignment="Top" Width="410" FontSize="18" >
         </DataGrid>
-        <Label Content="Appointment History:" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,1" FontSize="20"/>
+        <Label Content="Appointment History:" FontFamily="#Segoe UI" FontWeight="DemiBold"  HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,1" FontSize="20"/>
         <Button Content="Rate" Height ="31" HorizontalAlignment="Left" Margin="495,80,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Rate_Click"/>
         <Button x:Name="Type" Height ="31" Content="Appointment Details" HorizontalAlignment="Left" Margin="495,150,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Details_Click"/>
         <Button Content="Hospital Survey" Height ="31" HorizontalAlignment="Left" Margin="495,220,0,0" VerticalAlignment="Top" Width="250" FontSize="20" Click="Button_Click"/>

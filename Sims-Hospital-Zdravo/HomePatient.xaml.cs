@@ -60,7 +60,6 @@ namespace Sims_Hospital_Zdravo
             data_check_box.Binding = new Binding("Rated");
             Apps.Columns.Add(data_check_box);
             Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(1);
-            Apps.Items.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,7 +69,8 @@ namespace Sims_Hospital_Zdravo
 
         private void Details_Click(object sender, RoutedEventArgs e)
         {
-
+            Appointment appointment = (Appointment)Apps.SelectedItem;
+            frame.Content = new AppointmentDetailsPage(appointment);
         }
 
         private void Rate_Click(object sender, RoutedEventArgs e)

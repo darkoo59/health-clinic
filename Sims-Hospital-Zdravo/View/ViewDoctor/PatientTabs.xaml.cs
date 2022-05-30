@@ -32,21 +32,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.medicalRecord = medicalRecord;
-            this.frame = frame;
+            PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame);
+            // this.frame = new Frame();
+            FrameForPatient.Content = patientMedicalRecordPage;
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MedcialRecordClick(object sender, RoutedEventArgs e)
         {
-            TabControl tc = sender as TabControl;
-            if (tc != null)
-            {
-               TabItem item = tc.SelectedItem as TabItem;
-                if(item.Name == "PatientInfoTab")
-                {
-                    PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord,frame);
-                    frame.Content = patientMedicalRecordPage;
-                }
-            }
+            PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame);
+            FrameForPatient.Content = patientMedicalRecordPage;
+        }
+
+        private void MedicalHistoryClick(object sender, RoutedEventArgs e)
+        {
+            PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory();
+            FrameForPatient.Content = patientMedicalHistory;
         }
     }
 }

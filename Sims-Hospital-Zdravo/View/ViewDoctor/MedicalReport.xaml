@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="MedicalReport" Height="450" Width="800">
+        Title="MedicalReport" Height="450" Width="700">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
             
@@ -32,13 +32,13 @@
             <Label Content="Patient" />
             <ComboBox  Name="cbPatients" SelectionChanged="cbPatients_SelectionChanged" Width="120" Height="30" HorizontalAlignment="Left" Style="{DynamicResource theComboBox}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" >
             <Label  Name="DateTxt" Content="Examination date and time" />
             <DatePicker  Name="dateExamination" HorizontalAlignment="Left" Width="130"  VerticalAlignment="Top" SelectedDateChanged="dateExamination_SelectedDateChanged" Style="{DynamicResource styleDatePicker}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" >
             <Label Content="Anamnesis/Report" />
-            <TextBox TextWrapping="Wrap"  Name="AnamnesisTxt" Height="150" />
+            <TextBox TextWrapping="Wrap"  Name="AnamnesisTxt" Height="140" HorizontalAlignment="Left"  Width="350"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Label Content="Diagnosis" />

@@ -152,7 +152,6 @@
         </StackPanel>
 
         <Frame Name="FrameForMain" Grid.ColumnSpan="3" Margin="10,96,10,0" Grid.RowSpan="4" NavigationUIVisibility="Hidden" Grid.Column="1" />
-
         <notifications:NotificationArea
             Grid.Row="2"
             Grid.Column="3"

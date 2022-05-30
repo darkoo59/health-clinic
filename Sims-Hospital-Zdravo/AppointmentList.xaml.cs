@@ -42,20 +42,30 @@ namespace Sims_Hospital_Zdravo
             Apps.ItemsSource = appointments;
             Apps.AutoGenerateColumns = false;
 
+            Binding date = new Binding("_Time.Start");
+            date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
-            data_column.Header = "Date and Time";
-            data_column.Binding = new Binding("_Time.Start");
+            data_column.Header = "Date";
+            data_column.Binding = date;
             Apps.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
-            data_column.Header = "Doctor Name";
-            data_column.Binding = new Binding("_Doctor._Name");
+            data_column.Header = "Time";
+            Binding time = new Binding("_Time.Start");
+            time.StringFormat = "{0:HH:mm}";
+            data_column.Binding = time;
             Apps.Columns.Add(data_column);
 
+            MultiBinding doctor = new MultiBinding();
+            doctor.StringFormat = "{0} {1}";
+            doctor.Bindings.Add(new Binding("_Doctor._Name"));
+            doctor.Bindings.Add(new Binding("_Doctor._Surname"));
             data_column = new DataGridTextColumn();
-            data_column.Header = "Doctor Surname";
-            data_column.Binding = new Binding("_Doctor._Surname");
+            data_column.Header = "Doctor";
+            data_column.Binding = doctor;
+            data_column.Width = 338;
             Apps.Columns.Add(data_column);
+
             if (appointments.Contains(appointment))
             {
                 Apps.SelectedIndex = 0;

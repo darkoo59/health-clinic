@@ -41,45 +41,26 @@ namespace Sims_Hospital_Zdravo
             Survey.ItemsSource = getQuestions();
 
             Survey.AutoGenerateColumns = false;
-            DataGridTextColumn data_column = new DataGridTextColumn();
-            data_column.Header = "Rate how much do you agree with this statements";
-            data_column.Binding = new Binding("Text");
-            data_column.Width = 484;
-            Survey.Columns.Add(data_column);
-            Survey.Columns.Add(getCheckBox("1", "One"));
-            Survey.Columns.Add(getCheckBox("2", "Two"));
-            Survey.Columns.Add(getCheckBox("3", "Three"));
-            Survey.Columns.Add(getCheckBox("4", "Four"));
-            Survey.Columns.Add(getCheckBox("5", "Five"));
-        }
-        private DataGridCheckBoxColumn getCheckBox(string header, string binding)
-        {
-            DataGridCheckBoxColumn checkBox = new DataGridCheckBoxColumn();
-            checkBox.Header = header;
-            checkBox.Binding = new Binding(binding);
-            checkBox.Width = 40;
-            return checkBox;
         }
         public List<QuestionForSurvey> getQuestions()
         {
             questions = new List<QuestionForSurvey>();
-            questions.Add(new QuestionForSurvey("Doctor was polite."));
-            questions.Add(new QuestionForSurvey("Room was clean."));
-            questions.Add(new QuestionForSurvey("Appointment held on schedule."));
-            questions.Add(new QuestionForSurvey("Doctor explained everything in understandable way."));
-            questions.Add(new QuestionForSurvey("Doctor is good overall."));
+            foreach (string s in surveyController.GetDoctorQuestions())
+            {
+                questions.Add(new QuestionForSurvey(s));
+            }
             return questions;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int[] rates = {0,0,0,0,0};
-            int i = 0;
+            List<QuestionAndRate> questionsAndRates = new List<QuestionAndRate>();
+            int i = 1;
             foreach (QuestionForSurvey questionForSurvey in questions)
             {
-                rates[i] = CheckIfComboBoxChecked(questionForSurvey);
+                questionsAndRates.Add(new QuestionAndRate(i, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
                 i++;
             }
-            surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment, rates[0], rates[1], rates[2], rates[3], rates[4]));
+            surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment, questionsAndRates));
             frame.Content = new HomePatient(frame);
         }
 
