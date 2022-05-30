@@ -14,19 +14,19 @@ namespace Sims_Hospital_Zdravo.Service
     {
         private AnamnesisRepository anamnesisRepository;
 
-        public AnamnesisService( AnamnesisRepository anamnesisRepository)
+        public AnamnesisService(AnamnesisRepository anamnesisRepository)
         {
-            this.anamnesisRepository = anamnesisRepository; 
+            this.anamnesisRepository = anamnesisRepository;
         }
 
         public void Create(Anamnesis anamnesis)
         {
-            anamnesisRepository.Create (anamnesis); 
+            anamnesisRepository.Create(anamnesis);
         }
 
-        public  void Update(Anamnesis anamnesis)
+        public void Update(Anamnesis anamnesis)
         {
-            anamnesisRepository.Update (anamnesis);
+            anamnesisRepository.Update(anamnesis);
         }
 
         public ref ObservableCollection<Anamnesis> ReadAll()
@@ -34,10 +34,13 @@ namespace Sims_Hospital_Zdravo.Service
             return ref anamnesisRepository.ReadAll();
         }
 
-        public ObservableCollection<Anamnesis> findAnamnesisByDoctor( int id)
+        public ObservableCollection<Anamnesis> findAnamnesisByDoctor(int id)
         {
-            return anamnesisRepository.FindAnamnesisByDoctor (id);
+            return anamnesisRepository.FindAnamnesisByDoctor(id);
         }
-
+        public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
+        {
+            return anamnesisRepository.FindAnamnesisByAppointment(appointment);
+        }
     }
 }

@@ -100,6 +100,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnamnesisPage.xaml.cs">
+      <DependentUpon>AnamnesisPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppointmentDetailsPage.xaml.cs">
+      <DependentUpon>AppointmentDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppointmentList.xaml.cs">
       <DependentUpon>AppointmentList.xaml</DependentUpon>
     </Compile>
@@ -120,8 +126,10 @@
     <Compile Include="DataHandler\AllergensDataHandler.cs" />
     <Compile Include="DataHandler\AnamnesisDataHandler.cs" />
     <Compile Include="DataHandler\DoctorDataHandler.cs" />
+    <Compile Include="DataHandler\DoctorQuestionDataHandler.cs" />
     <Compile Include="DataHandler\DoctorSurveyDataHandler.cs" />
     <Compile Include="DataHandler\EquipmentDataHandler.cs" />
+    <Compile Include="DataHandler\HospitalQuestionDataHandler.cs" />
     <Compile Include="DataHandler\HospitalSurveyDataHandler.cs" />
     <Compile Include="DataHandler\MedicineDataHandler.cs" />
     <Compile Include="DataHandler\NotificationDataHandler.cs" />
@@ -131,6 +139,9 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
+    <Compile Include="DiagnosisPage.xaml.cs">
+      <DependentUpon>DiagnosisPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Interfaces\IFilterPipeline.cs" />
     <Compile Include="DoctorSurveyPage.xaml.cs">
@@ -159,6 +170,7 @@
     <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\Prescription.cs" />
+    <Compile Include="Model\QuestionAndRate.cs" />
     <Compile Include="Model\QuestionForSurvey.cs" />
     <Compile Include="Model\RelocationAppointment.cs" />
     <Compile Include="Model\RenovationAppointment.cs" />
@@ -174,6 +186,12 @@
     <Compile Include="PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrescriptionParameters.xaml.cs">
+      <DependentUpon>PrescriptionParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prescriptions.xaml.cs">
+      <DependentUpon>Prescriptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
@@ -185,6 +203,7 @@
     <Compile Include="Repository\NotificationRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PrescriptionRepository.cs" />
+    <Compile Include="Repository\QuestionRepository.cs" />
     <Compile Include="Repository\RenovationRepository.cs" />
     <Compile Include="Repository\RequestForFreeDaysRepository.cs" />
     <Compile Include="Repository\SuppliesAcquisitionRepository.cs" />
@@ -367,7 +386,19 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
+    <Page Include="AnamnesisPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppointmentDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppointmentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiagnosisPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -388,6 +419,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrescriptionParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prescriptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

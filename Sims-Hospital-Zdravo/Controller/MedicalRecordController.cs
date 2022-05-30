@@ -100,7 +100,24 @@ namespace Controller
             prescriptionService.Create(prescription);
         }
 
+        public Anamnesis GetAnamnesis(Appointment appointment) 
+        {
+            return medicalRecordService.GetAnamnesis(appointment);
+        }
 
+        public void AddNotes(Appointment appointment, Anamnesis anamnesis, string notes)
+        {
+            medicalRecordService.AddNotes(appointment, anamnesis, notes);
+        }
 
+        public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment) 
+        {
+            return medicalRecordService.GetPrescriptions(appointment);
+        }
+
+        public void AddStartDate(DateTime dateTime, Prescription prescription, Appointment appointment) 
+        {
+            medicalRecordService.AddStartDate(dateTime, prescription, appointment);
+        }
     }
 }

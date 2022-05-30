@@ -56,6 +56,7 @@ namespace Sims_Hospital_Zdravo
                 Time.Text = Time.Text + appointment._Time.Start.Minute;
             }
             datePicker.SelectedDate = appointment._Time.Start;
+            Doctor.Text = appointment._Doctor._Name + " " + appointment._Doctor._Surname;
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {

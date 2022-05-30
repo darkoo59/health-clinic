@@ -20,11 +20,11 @@
             <MenuItem Header="Profile" Click="Profile_Click" Name="Profile" HorizontalAlignment="Right"/>
 
         </Menu>
-        <Button Name ="Notification" Click="Notification_Click" Background="#FF60BBC9" BorderBrush="#FF60BBC9" HorizontalAlignment="Left" Margin="670,52,0,0" VerticalAlignment="Top" Width="30" Height="30">
-            <Image Source="C:\Users\I\Desktop\Sesti semestar\Specifikacija i modeliranje softvera\Projekat\SIMS-PROJEKAT\Sims-Hospital-Zdravo\Resources\img\notification.png"></Image>
+        <Button Name ="Notification" Click="Notification_Click" Background="#FF60BBC9" BorderBrush="#FF60BBC9" HorizontalAlignment="Left" Margin="665,54,0,0" VerticalAlignment="Top" Width="30" Height="30">
+            <Image Source="C:\Users\I\Desktop\Sesti semestar\Specifikacija i modeliranje softvera\Projekat\SIMS-PROJEKAT\Sims-Hospital-Zdravo\Resources\img\notification.png" RenderTransformOrigin="-7.385,0.615"></Image>
         </Button>
         <Frame Content="" NavigationUIVisibility="Hidden" Name="Patient"  HorizontalAlignment="Left" Height="327" Margin="0,92,0,0" VerticalAlignment="Top" Width="792" Background="#FF60BBC9"/>
-        <Button Click="Log_Out_Click" BorderBrush="#FF60BBC9" Background="#FF60BBC9" Content="Log Out" FontSize="15" HorizontalAlignment="Left" Margin="712,54,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF931919" Height="28" FontWeight="SemiBold"/>
+        <Button Click="Log_Out_Click" BorderBrush="#FF60BBC9" Background="#FF60BBC9" Content="Log Out" FontSize="15" HorizontalAlignment="Left" Margin="700,56,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF931919" Height="28" FontWeight="SemiBold"/>
 
     </Grid>
 </Window>
