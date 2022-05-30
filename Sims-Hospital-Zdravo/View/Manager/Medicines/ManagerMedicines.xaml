@@ -10,6 +10,17 @@
       Width="924"
       Margin="0">
 
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding Path=InsertMedicine_Command}"
+                    Key="I"
+                    Modifiers="Control" />
+        <KeyBinding Command="{Binding Path=UpdateMedicine_Command}"
+                    Key="U"
+                    Modifiers="Control"
+                    CommandParameter="{Binding SelectedItem, ElementName=MedicinesTable}" />
+
+
+    </Page.InputBindings>
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml">
         </ResourceDictionary>
@@ -32,12 +43,18 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
-            <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="3" Width="100" Height="30"
-                    HorizontalAlignment="Right" Click="InsertMedicine_Click">
+            <Button FocusVisualStyle="{DynamicResource MyFocusVisual}"
+                    Grid.Column="3" Width="100" Height="30"
+                    Command="{Binding Path=InsertMedicine_Command}"
+                    HorizontalAlignment="Right">
                 <AccessText>_Insert</AccessText>
             </Button>
-            <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="4" Width="100" Height="30"
-                    HorizontalAlignment="Right" Click="UpdateMedicine_Click">
+            <Button
+                Command="{Binding UpdateMedicine_Command}"
+                CommandParameter="{Binding SelectedItem, ElementName=MedicinesTable}"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}"
+                Grid.Column="4" Width="100" Height="30"
+                HorizontalAlignment="Right">
                 <AccessText>_Update</AccessText>
             </Button>
             <Button FocusVisualStyle="{DynamicResource MyFocusVisual}" Grid.Column="5" Width="100" Height="30"
@@ -48,7 +65,10 @@
         <DataGrid
             x:Name="MedicinesTable"
             Grid.Row="1"
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding Path=Medicines}"
+            SelectionUnit="FullRow"
+            SelectionMode="Single">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding _Name}"> </DataGridTextColumn>

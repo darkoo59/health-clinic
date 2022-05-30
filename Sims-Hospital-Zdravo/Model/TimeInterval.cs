@@ -20,6 +20,8 @@ namespace Model
 
         public bool IsOverlaping(TimeInterval interval)
         {
+            Console.WriteLine(interval);
+            Console.WriteLine(this.Start + " " + this.End);
             return IsIntervalInside(interval, this)
                    || IsIntervalInside(this, interval)
                    || IsDateInsideInterval(this, interval.Start)

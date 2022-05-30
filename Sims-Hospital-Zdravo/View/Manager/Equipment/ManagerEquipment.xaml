@@ -31,7 +31,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <xctk:WatermarkTextBox Height="30" x:Name="SearchBox" KeyDown="Search_Click" Watermark="Search..."></xctk:WatermarkTextBox>
-            <ComboBox Grid.Column="1" x:Name="RoomPicker" Height="30" Width="120" HorizontalAlignment="Right"
+            <ComboBox Grid.Column="1"
+                      x:Name="RoomPicker"
+                      Height="30"
+                      Width="120"
+                      HorizontalAlignment="Right"
                       SelectionChanged="RoomChanged_Selection">
             </ComboBox>
             <CheckBox Grid.Column="3"

@@ -12,22 +12,31 @@ namespace Sims_Hospital_Zdravo.Repository
     {
         public DoctorSurveyDataHandler doctorSurveyDataHandler;
         public List<DoctorSurvey> surveys;
+
         public DoctorSurveyRepository(DoctorSurveyDataHandler doctorSurveyDataHandler)
         {
             this.doctorSurveyDataHandler = doctorSurveyDataHandler;
             this.surveys = new List<DoctorSurvey>();
             LoadDataFromFile();
         }
+
         public void Create(DoctorSurvey doctorSurvey)
         {
             doctorSurvey.Appointment.Rated = true;
             surveys.Add(doctorSurvey);
             LoadDataToFile();
         }
+
+        public List<DoctorSurvey> ReadAll()
+        {
+            return surveys;
+        }
+
         public void LoadDataFromFile()
         {
             surveys = doctorSurveyDataHandler.ReadAll();
         }
+
         public void LoadDataToFile()
         {
             doctorSurveyDataHandler.Write(surveys);

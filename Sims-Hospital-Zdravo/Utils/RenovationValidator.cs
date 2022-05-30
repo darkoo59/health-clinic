@@ -6,7 +6,6 @@ using Repository;
 using Service;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -26,6 +25,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void ValidateRoomTaken(Room room, TimeInterval ti)
         {
+            Console.WriteLine(room);
             if (!_timeSchedulerService.IsRoomFreeInDateInterval(room.Id, ti))
             {
                 throw new Exception("Room taken in given interval");
