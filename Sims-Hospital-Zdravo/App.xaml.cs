@@ -11,6 +11,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
+using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo
