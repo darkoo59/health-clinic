@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Controller
 {

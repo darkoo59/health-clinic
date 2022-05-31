@@ -60,7 +60,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.frame = frame;
             this.medicineController = app._medicineController;
             medicines = medicineController.ReadAllMedicines();
-            PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
+            PatientTxt.Text = medicalRecord.Patient._Name + medicalRecord.Patient._Surname;
             // DateTxt.Text = DateTime.Now.ToString();
 
             meds = new List<string>();
@@ -132,7 +132,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 Prescription prescription = new Prescription(_Medicine, date, strength, tl, doctor, dosage, numOfDays);
                 medicalRecordController.createPrescription(prescription);
 
-                medicalRecord._Prescriptions.Add(prescription);
+                medicalRecord.Prescriptions.Add(prescription);
                 PrescriptionList prescriptionList = new PrescriptionList(medicalRecordController,  medicalRecord, doctorId,frame);
                 frame.Content = prescriptionList;
                 //prescriptionList.Show();

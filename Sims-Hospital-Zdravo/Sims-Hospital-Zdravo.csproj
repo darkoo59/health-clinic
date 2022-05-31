@@ -100,15 +100,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
-      <DependentUpon>AnamnesisPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Patient\AppointmentDetailsPage.xaml.cs">
-      <DependentUpon>AppointmentDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Patient\AppointmentList.xaml.cs">
-      <DependentUpon>AppointmentList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
@@ -139,9 +130,16 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
-    <Compile Include="View\Patient\DiagnosisPage.xaml.cs">
-      <DependentUpon>DiagnosisPage.xaml</DependentUpon>
+    <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
+      <DependentUpon>AnamnesisPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Patient\AppointmentDetailsPage.xaml.cs">
+      <DependentUpon>AppointmentDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\AppointmentList.xaml.cs">
+      <DependentUpon>AppointmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\DiagnosisPage.xaml.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Interfaces\IFilterPipeline.cs" />
     <Compile Include="View\Patient\DoctorSurveyPage.xaml.cs">
@@ -166,6 +164,7 @@
     <Compile Include="Model\FreeDaysRequest.cs" />
     <Compile Include="Model\DoctorSurvey.cs" />
     <Compile Include="Model\HospitalSurvey.cs" />
+    <Compile Include="Model\HospitalSurveyStatistics.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />
@@ -186,12 +185,8 @@
     <Compile Include="View\Patient\PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Patient\PrescriptionParameters.xaml.cs">
-      <DependentUpon>PrescriptionParameters.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Patient\Prescriptions.xaml.cs">
-      <DependentUpon>Prescriptions.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="View\Patient\PrescriptionParameters.xaml.cs" />
+    <Compile Include="View\Patient\Prescriptions.xaml.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
@@ -234,6 +229,16 @@
     <Compile Include="Utils\RenovationValidator.cs" />
     <Compile Include="Utils\RequestForFreeDaysValidator.cs" />
     <Compile Include="Utils\TaskScheduleTimer.cs" />
+    <Compile Include="ViewModel\Commands\Commands.cs" />
+    <Compile Include="ViewModel\Commands\GoBackCommand.cs" />
+    <Compile Include="ViewModel\Commands\LogoutCommand.cs" />
+    <Compile Include="ViewModel\Commands\NavigateToCommand.cs" />
+    <Compile Include="ViewModel\Commands\RotateMenuCommand.cs" />
+    <Compile Include="ViewModel\Commands\SetMenuItemCommand.cs" />
+    <Compile Include="ViewModel\Manager\ManagerMedicinesViewModel.cs" />
+    <Compile Include="ViewModel\Manager\RenovationBasicViewModel.cs" />
+    <Compile Include="ViewModel\Manager\RenovationsViewModel.cs" />
+    <Compile Include="ViewModel\Manager\RoomViewModel.cs" />
     <Compile Include="View\Login\LoginMainWindow.xaml.cs">
       <DependentUpon>LoginMainWindow.xaml</DependentUpon>
     </Compile>
@@ -392,22 +397,13 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Patient\AnamnesisPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Patient\AppointmentDetailsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Include="View\Patient\AnamnesisPage.xaml" />
+    <Page Include="View\Patient\AppointmentDetailsPage.xaml" />
     <Page Include="View\Patient\AppointmentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Patient\DiagnosisPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Include="View\Patient\DiagnosisPage.xaml" />
     <Page Include="View\Patient\DoctorSurveyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -428,14 +424,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Patient\PrescriptionParameters.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Patient\Prescriptions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Include="View\Patient\PrescriptionParameters.xaml" />
+    <Page Include="View\Patient\Prescriptions.xaml" />
     <Page Include="View\Login\LoginMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -594,10 +584,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ViewDoctor\PatientMedicalHistory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Include="View\ViewDoctor\PatientMedicalHistory.xaml" />
     <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml" />
     <Page Include="View\ViewDoctor\PatientMedicalRecordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -749,6 +736,7 @@
     <Resource Include="Resources\img\icons8-day-off-96.png" />
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
+    <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />

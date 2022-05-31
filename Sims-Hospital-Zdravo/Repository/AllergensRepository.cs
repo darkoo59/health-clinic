@@ -11,40 +11,40 @@ namespace Sims_Hospital_Zdravo.Repository
 {
     public class AllergensRepository
     {
-        private AllergensDataHandler allergensDataHandler;
-        public Allergens allergens;
+        private AllergensDataHandler _allergensDataHandler;
+        public Allergens _allergens;
 
         public AllergensRepository(AllergensDataHandler dataHandler)
         {
-            this.allergensDataHandler = dataHandler;
-            this.allergens = new Allergens();
+            this._allergensDataHandler = dataHandler;
+            this._allergens = new Allergens();
             LoadDataFromFile();
         }
 
         public Allergens ReadAll()
         {
-            return this.allergens;
+            return this._allergens;
 
         }
 
         public List<String> ReadAllCommonAllergens()
         {
-            return allergens._Allergens;
+            return _allergens.CommonAllergens;
         }
 
         public List<String> ReadAllMedicalAllergens()
         {
-            return allergens._MedicalAllergens;
+            return _allergens.MedicalAllergens;
         }
 
         public void LoadDataFromFile()
         {
-            this.allergens = allergensDataHandler.ReadAll();
+            this._allergens = _allergensDataHandler.ReadAll();
         }
 
         public void LoadDataToFile()
         {
-            allergensDataHandler.Write(allergens);
+            _allergensDataHandler.Write(_allergens);
         }
 
     }

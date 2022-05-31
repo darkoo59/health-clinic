@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.Model;
 using Model;
 using Sims_Hospital_Zdravo;
-using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Repository;
 using Repository;
 using System.Collections.ObjectModel;

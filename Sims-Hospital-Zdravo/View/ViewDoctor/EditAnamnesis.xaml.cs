@@ -38,15 +38,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.anamnesis = anamnesis;
             observers = new List<IUpdateFilesObserver>();
             this.doctorAppointmentController = doctorAppointmentController;
-            PatientTxt.Text = anamnesis._MedicalRecord._Patient._Name + anamnesis._MedicalRecord._Patient._Surname;
-            MedicalRecordTxt.Text = anamnesis._MedicalRecord._Id.ToString();
+            PatientTxt.Text = anamnesis._MedicalRecord.Patient._Name + anamnesis._MedicalRecord.Patient._Surname;
+            MedicalRecordTxt.Text = anamnesis._MedicalRecord.Id.ToString();
             DoctorTxt.Text = anamnesis._Doctor._Name + anamnesis._Doctor._Surname;
             Editanam.Text = DateTime.Now.ToString();
             DiagnosisTxt.Text = anamnesis._Diagnosis;
             AnamnesisTxt.Text = anamnesis._Anamensis;
             DoctorId = anamnesis._Doctor._Id;
             DateTime date = anamnesis._Date;
-            Patient pat = anamnesis._MedicalRecord._Patient;
+            Patient pat = anamnesis._MedicalRecord.Patient;
             ExaminatonTxt.Text = DateTime.Now.Date.ToString();
 
 

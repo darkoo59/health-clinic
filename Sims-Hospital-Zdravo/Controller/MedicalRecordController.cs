@@ -6,7 +6,6 @@
 
 using Model;
 using Service;
-using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;

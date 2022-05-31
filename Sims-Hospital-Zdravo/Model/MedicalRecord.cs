@@ -19,154 +19,154 @@ namespace Model
 {
     public class MedicalRecord : INotifyPropertyChanged
     {
-        private int Id;
-        private Patient Patient;
+        private int _id;
+        private Patient _patient;
 
-        private ObservableCollection<Prescription> prescriptions;
-        private ObservableCollection<Anamnesis> anamnesis;
+        private ObservableCollection<Prescription> _prescriptions;
+        private ObservableCollection<Anamnesis> _anamnesis;
 
-        private Allergens PatientAllergens;
+        private Allergens _patientAllergens;
 
-        private GenderType Gender;
-        private BloodType BloodType;
-        private MaritalType MaritalStatus;
+        private GenderType _gender;
+        private BloodType _bloodType;
+        private MaritalType _maritalStatus;
 
         public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,Allergens allergens)
         {
-            this._Id = id;
-            this._Patient = patient;
-            this._Gender = gender;
-            this._BloodType = blood;
-            this._MaritalStatus = maritalStatus;
-            this.prescriptions = new ObservableCollection<Prescription>();
-            this.anamnesis = new ObservableCollection<Anamnesis>();
+            this._id = id;
+            this.Patient = patient;
+            this.Gender = gender;
+            this.BloodType = blood;
+            this.MaritalStatus = maritalStatus;
+            this._prescriptions = new ObservableCollection<Prescription>();
+            this._anamnesis = new ObservableCollection<Anamnesis>();
 
-            this._PatientAllergens = allergens;
+            this.PatientAllergens = allergens;
 
         }
 
-        public Patient _Patient {
+        public Patient Patient {
             get
             {
-                return Patient;
+                return _patient;
             }
             set
             {
-                if(this.Patient != value)
+                if(this._patient != value)
                 {
-                    this.Patient = value;
+                    this._patient = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public Allergens _PatientAllergens
+        public Allergens PatientAllergens
         {
             get
             {
-                return PatientAllergens;
+                return _patientAllergens;
             }
             set
             {
-                if (this.PatientAllergens != value)
+                if (this._patientAllergens != value)
                 {
-                    this.PatientAllergens = value;
+                    this._patientAllergens = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public GenderType _Gender
+        public GenderType Gender
         {
             get
             {
-                return Gender;
+                return _gender;
             }
             set
             {
-                if (this.Gender != value)
+                if (this._gender != value)
                 {
-                    this.Gender = value;
+                    this._gender = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public int _Id
+        public int Id
         {
             get
             {
-                return Id;
+                return _id;
             }
             set
             {
-                if (this.Id != value)
+                if (this._id != value)
                 {
-                    this.Id = value;
+                    this._id = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public BloodType _BloodType
+        public BloodType BloodType
         {
             get
             {
-                return BloodType;
+                return _bloodType;
             }
             set
             {
-                if (this.BloodType != value)
+                if (this._bloodType != value)
                 {
-                    this.BloodType = value;
+                    this._bloodType = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public MaritalType _MaritalStatus
+        public MaritalType MaritalStatus
         {
             get
             {
-                return MaritalStatus;
+                return _maritalStatus;
             }
             set
             {
-                if (this.MaritalStatus != value)
+                if (this._maritalStatus != value)
                 {
-                    this.MaritalStatus = value;
+                    this._maritalStatus = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public ObservableCollection<Prescription> _Prescriptions
+        public ObservableCollection<Prescription> Prescriptions
         {
             get
             {
-                return prescriptions;
+                return _prescriptions;
             }
             set
             {
-                if(this.prescriptions != value)
+                if(this._prescriptions != value)
                 {
-                    this.prescriptions = value;
+                    this._prescriptions = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public ObservableCollection<Anamnesis> _Anamnesis
+        public ObservableCollection<Anamnesis> Anamnesis
         {
             get
             {
-                return anamnesis;
+                return _anamnesis;
             }
             set
             {
-                if (this.anamnesis != value)
+                if (this._anamnesis != value)
                 {
-                    this.anamnesis = value;
+                    this._anamnesis = value;
                     OnPropertyChanged();
                 }
             }

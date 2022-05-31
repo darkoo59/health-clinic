@@ -40,12 +40,12 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            foreach (String str in medicalRecord._PatientAllergens._Allergens)
+            foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
             {
                 ListPatientAllergens.Items.Add(str);
             }
 
-            foreach (String str in medicalRecord._PatientAllergens._MedicalAllergens)
+            foreach (String str in medicalRecord.PatientAllergens.MedicalAllergens)
             {
                 ListPatientMedicalAllergens.Items.Add(str);
             }
@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo
             TxtPhone.Text = patient._PhoneNumber;
             foreach (String str in medicalController.ReadAllCommonAllergens())
             {
-                if (!medicalRecord._PatientAllergens._Allergens.Contains(str))
+                if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
                 {
                     ListOtherAllergens.Items.Add(str);
                 }
@@ -66,7 +66,7 @@ namespace Sims_Hospital_Zdravo
 
             foreach (String str in medicalController.ReadAllMedicalAllergens())
             {
-                if (!medicalRecord._PatientAllergens._MedicalAllergens.Contains(str))
+                if (!medicalRecord.PatientAllergens.MedicalAllergens.Contains(str))
                 {
                     ListOtherMedicalAllergens.Items.Add(str);
                 }
@@ -112,9 +112,9 @@ namespace Sims_Hospital_Zdravo
                 }
 
                 Allergens updatedAllergens = new Allergens();
-                updatedAllergens._Allergens = allergens;
-                updatedAllergens._MedicalAllergens = medicalAllergens;
-                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord._Id, patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
+                updatedAllergens.CommonAllergens = allergens;
+                updatedAllergens.MedicalAllergens = medicalAllergens;
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord.Id, patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
                 medicalController.Update(medicalRecordUpdated, patientUpdated);
                 Close();

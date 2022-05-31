@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using Repository;
 using Sims_Hospital_Zdravo.Model;
 
-namespace Sims_Hospital_Zdravo.Service
+namespace Sims_Hospital_Zdravo.Model
 {
     public class MedicineService
     {

@@ -16,30 +16,30 @@ namespace Repository
 {
     public class MedicalRecordsRepository
     {
-        public ObservableCollection<MedicalRecord> medicalRecords;
-        public DataHandler.MedicalRecordDataHandler medicalRecordDataHandler;
-        public ObservableCollection<Patient> patients;
+        public ObservableCollection<MedicalRecord> _medicalRecords;
+        public DataHandler.MedicalRecordDataHandler _medicalRecordDataHandler;
+        public ObservableCollection<Patient> _patients;
 
         public MedicalRecordsRepository(MedicalRecordDataHandler recordDataHandler)
         {
-            medicalRecords = new ObservableCollection<MedicalRecord>();
-            medicalRecordDataHandler = recordDataHandler;
+            _medicalRecords = new ObservableCollection<MedicalRecord>();
+            _medicalRecordDataHandler = recordDataHandler;
             LoadDataFromFile();
         }
 
         public void Create(Model.MedicalRecord medicalRecord)
         {
             // TODO: implement
-            this.medicalRecords.Add(medicalRecord);
+            this._medicalRecords.Add(medicalRecord);
             LoadDataToFile();
         }
 
         public MedicalRecord FindById(int id)
         {
             // TODO: implement
-            foreach(MedicalRecord record in medicalRecords)
+            foreach(MedicalRecord record in _medicalRecords)
             {
-                if (record._Id == id)
+                if (record.Id == id)
                     return record;
             }
             return null;
@@ -47,31 +47,31 @@ namespace Repository
 
         public Patient FindPatientById(int id)
         {
-            foreach(MedicalRecord medicalRecord in medicalRecords)
+            foreach(MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord._Patient._Id == id)
-                    return medicalRecord._Patient;
+                if (medicalRecord.Patient._Id == id)
+                    return medicalRecord.Patient;
             }
             return null;
         }
 
         public ref ObservableCollection<MedicalRecord> ReadAll()
         {
-            return ref medicalRecords;
+            return ref _medicalRecords;
         }
 
         public void Update(MedicalRecord medicalRecord)
         {
             // TODO: implement
-            foreach (MedicalRecord record in medicalRecords)
+            foreach (MedicalRecord record in _medicalRecords)
             {
-                if (record._Id == medicalRecord._Id)
+                if (record.Id == medicalRecord.Id)
                 {
-                    record._BloodType = medicalRecord._BloodType;
-                    record._Gender = medicalRecord._Gender;
-                    record._MaritalStatus = medicalRecord._MaritalStatus;
-                    record._PatientAllergens = medicalRecord._PatientAllergens;
-                    record._Patient = medicalRecord._Patient;
+                    record.BloodType = medicalRecord.BloodType;
+                    record.Gender = medicalRecord.Gender;
+                    record.MaritalStatus = medicalRecord.MaritalStatus;
+                    record.PatientAllergens = medicalRecord.PatientAllergens;
+                    record.Patient = medicalRecord.Patient;
                     LoadDataToFile();
                     break;
                 }
@@ -82,11 +82,11 @@ namespace Repository
         public void DeleteById(int id)
         {
             // TODO: implement
-            foreach(MedicalRecord record in medicalRecords)
+            foreach(MedicalRecord record in _medicalRecords)
             {
-                if(record._Id == id)
+                if(record.Id == id)
                 {
-                    medicalRecords.Remove(record);
+                    _medicalRecords.Remove(record);
                     LoadDataToFile();
                     return;
                 }
@@ -98,17 +98,17 @@ namespace Repository
         public void Delete(MedicalRecord medicalRecord)
         {
             // TODO: implement
-            medicalRecords.Remove(medicalRecord);
+            _medicalRecords.Remove(medicalRecord);
             LoadDataToFile();
         }
 
         public void AddNotes(Appointment appointment, Anamnesis anamnesis, string notes) 
         {
-            foreach (MedicalRecord medical in medicalRecords) 
+            foreach (MedicalRecord medical in _medicalRecords) 
             {
-                if (appointment._Patient._Id == medical._Patient._Id) 
+                if (appointment._Patient._Id == medical.Patient._Id) 
                 {
-                    foreach(Anamnesis ana in medical._Anamnesis)
+                    foreach(Anamnesis ana in medical.Anamnesis)
                     {
                         if (ana._TimeInterval.Start.Equals(anamnesis._TimeInterval.Start)) 
                         {
@@ -122,11 +122,11 @@ namespace Repository
         }
         public void AddStartDate(DateTime dateTime, Prescription prescription, Appointment appointment)
         {
-            foreach (MedicalRecord medical in medicalRecords)
+            foreach (MedicalRecord medical in _medicalRecords)
             {
-                if (appointment._Patient._Id == medical._Patient._Id)
+                if (appointment._Patient._Id == medical.Patient._Id)
                 {
-                    foreach (Prescription pres in medical._Prescriptions)
+                    foreach (Prescription pres in medical.Prescriptions)
                     {
                         if (pres._Doctor._Id == prescription._Doctor._Id && pres._TimeInterval.Start.Equals(prescription._TimeInterval.Start))
                         {
@@ -140,11 +140,11 @@ namespace Repository
         }
         public Anamnesis GetAnamnesis(Appointment appointment)
         {
-            foreach (MedicalRecord medicalRecord in medicalRecords)
+            foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord._Patient._Id == appointment._Patient._Id)
+                if (medicalRecord.Patient._Id == appointment._Patient._Id)
                 {
-                    foreach (Anamnesis anamnesis in medicalRecord._Anamnesis)
+                    foreach (Anamnesis anamnesis in medicalRecord.Anamnesis)
                     {
                         if (anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
                         {
@@ -158,11 +158,11 @@ namespace Repository
         public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment)
         {
             ObservableCollection<Prescription> prescriptions = new ObservableCollection<Prescription>();
-            foreach (MedicalRecord medicalRecord in medicalRecords)
+            foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord._Patient._Id == appointment._Patient._Id)
+                if (medicalRecord.Patient._Id == appointment._Patient._Id)
                 {
-                    foreach (Prescription prescription in medicalRecord._Prescriptions)
+                    foreach (Prescription prescription in medicalRecord.Prescriptions)
                     {
                         if (prescription._TimeInterval.Start.Equals(appointment._Time.Start))
                         {
@@ -176,19 +176,19 @@ namespace Repository
         }
         public void LoadDataFromFile()
         {
-            medicalRecords = medicalRecordDataHandler.ReadAll();
+            _medicalRecords = _medicalRecordDataHandler.ReadAll();
         }
 
         
 
         public void LoadDataToFile()
         {
-            medicalRecordDataHandler.Write(medicalRecords);
+            _medicalRecordDataHandler.Write(_medicalRecords);
         }
 
         public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord)
         {
-            return medicalRecord._Prescriptions;
+            return medicalRecord.Prescriptions;
         }
     }
 }

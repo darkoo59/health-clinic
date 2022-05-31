@@ -8,7 +8,7 @@ using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using Model;
 
-namespace Sims_Hospital_Zdravo.Service
+namespace Sims_Hospital_Zdravo.Model
 {
     public class AnamnesisService
     {

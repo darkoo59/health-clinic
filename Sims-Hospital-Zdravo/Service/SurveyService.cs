@@ -20,10 +20,12 @@ namespace Sims_Hospital_Zdravo.Service
             this.hospitalSurveyRepository = hospitalSurveyRepository;
             this.questionRepository = questionRepository;
         }
-        public void CreateDoctorSurvey(DoctorSurvey doctorSurvey) 
+
+        public void CreateDoctorSurvey(DoctorSurvey doctorSurvey)
         {
             doctorSurveyRepository.Create(doctorSurvey);
         }
+
         public void CreateHospitalSurvey(HospitalSurvey hospitalSurvey)
         {
             hospitalSurveyRepository.Create(hospitalSurvey);
