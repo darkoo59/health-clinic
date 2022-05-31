@@ -86,7 +86,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Doctor doctor = anamnesis.Doctor;
             //MedicalRecord med = anamnesis._MedicalRecord;
             //TimeInterval tl = 
-            Anamnesis anam = new Anamnesis(doctor,medicalRecord._Patient, date, null, diagnosis, medical_report);
+            Anamnesis anam = new Anamnesis(doctor,medicalRecord.Patient, date, null, diagnosis, medical_report);
             anamnesisController.Update(anam);
             Close();
         }

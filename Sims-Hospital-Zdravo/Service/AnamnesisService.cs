@@ -36,12 +36,12 @@ namespace Sims_Hospital_Zdravo.Model
 
         public ObservableCollection<Anamnesis> findAnamnesisByDoctor(int id)
         {
-            return anamnesisRepository.FindAnamnesisByDoctor(id);
+            return _anamnesisRepository.FindAnamnesisByDoctor(id);
         }
-        public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
-        {
-            return _anamnesisRepository.FindAnamnesisByDoctor (id);
-        }
+        //public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
+        //{
+        //    return _anamnesisRepository.FindAnamnesisByDoctor(id);
+        //}
         public ObservableCollection<Anamnesis> FindAnamnesisByPatient(MedicalRecord medicalRecord)
         {
             return _anamnesisRepository.FindAnamesisByPatient (medicalRecord);

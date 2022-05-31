@@ -36,8 +36,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.medicalRecord = medicalRecord;
             this.appointment = app;
             this.doctorAppointment = doctorAppointmentController;
-            PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
-            MedicalRecordTxt.Text = medicalRecord._Id.ToString();
+           // PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
+            //MedicalRecordTxt.Text = medicalRecord._Id.ToString();
             ExaminatonTxt.Text = app.Time.Start.ToString();
             DoctorTxt.Text = app.Doctor._Name + app.Doctor._Surname;
         }

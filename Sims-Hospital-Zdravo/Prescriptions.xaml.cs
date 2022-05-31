@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo
             medicines = new ObservableCollection<string>();
             foreach (Prescription prescription in prescriptions)
             {
-                medicines.Add(prescription._Medicine._Name);
+                medicines.Add(prescription.Medicine.Name);
             }
             return medicines;
         }

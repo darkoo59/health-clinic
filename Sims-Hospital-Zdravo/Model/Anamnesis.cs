@@ -15,7 +15,7 @@ namespace Sims_Hospital_Zdravo.Model
         private TimeInterval _timeInterval;
         private string _diagnosis;
         private string _anamensis;
-        private int _anamnesisID;
+        private string _notes;
 
         public Anamnesis(Doctor doctor,Patient patient,  DateTime date, TimeInterval timeInterval, string diagnosis, string anamensis)
         {
@@ -25,6 +25,7 @@ namespace Sims_Hospital_Zdravo.Model
             this._timeInterval = timeInterval;
             this._diagnosis = diagnosis;
             this._anamensis = anamensis;
+            Notes = "";
         }
         
         public Patient Patient
@@ -111,6 +112,17 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
         
+        public string Notes
+        {
+            get
+            {
+                return _notes;
+            }
+            set
+            {
+                _notes = value;
+            }
+        }
         private void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

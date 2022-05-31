@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
         private void SelectedPatient(MedicalRecord medicalRecord)
         {
-            PatTxt.Text = medicalRecord._Patient._Name +" " + medicalRecord._Patient._Surname;
+            PatTxt.Text = medicalRecord.Patient._Name +" " + medicalRecord.Patient._Surname;
             
         }
        
@@ -88,10 +88,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string medical_report = AnamnesisTxt.Text;
             Doctor doctor = doctorAppointmentController.GetDoctor(DoctorId);
             //MedicalRecord med = patientMedicalRecordController.findMedicalRecordByPatient(Pat);
-            Anamnesis anamnesis = new Anamnesis(doctor,medicalRecord._Patient, date, null, diagnosis, medical_report);
+            Anamnesis anamnesis = new Anamnesis(doctor,medicalRecord.Patient, date, null, diagnosis, medical_report);
 
             anamnesisController.Create(anamnesis);
-            medicalRecord._Anamnesis.Add(anamnesis);
+            medicalRecord.Anamnesis.Add(anamnesis);
             
         }
     }

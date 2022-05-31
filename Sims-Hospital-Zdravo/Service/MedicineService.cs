@@ -85,7 +85,7 @@ namespace Sims_Hospital_Zdravo.Service
             ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
             foreach (Medicine med in medicines)
             {
-                if (medicalRecord._PatientAllergens._MedicalAllergens.Contains(med.Name))
+                if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(med.Name))
                 {
                     med.NotAllergic = false;  
                 }
@@ -108,7 +108,7 @@ namespace Sims_Hospital_Zdravo.Service
             {
                 foreach(string ingredient in med.Ingredients)
                 {
-                    if (medicalRecord._PatientAllergens._MedicalAllergens.Contains(ingredient))
+                    if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(ingredient))
                     {
                         med.NotAllergic = false;
                     }

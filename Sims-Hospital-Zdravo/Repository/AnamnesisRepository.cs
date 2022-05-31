@@ -62,7 +62,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
             ObservableCollection<Anamnesis> listOfPatientAnamnesis = new ObservableCollection<Anamnesis>();
-            listOfPatientAnamnesis = medicalRecord._Anamnesis;
+            listOfPatientAnamnesis = medicalRecord.Anamnesis;
             foreach(Anamnesis anma in listOfPatientAnamnesis)
             {
                 Console.WriteLine(anma.Diagnosis+"xnxnxn");

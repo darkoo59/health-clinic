@@ -26,7 +26,7 @@ namespace Sims_Hospital_Zdravo
         public AnamnesisPage(Anamnesis anamnesis)
         {
             InitializeComponent();
-            if(anamnesis != null) AnamnesisLabel.Content = anamnesis._Anamensis;
+            if(anamnesis != null) AnamnesisLabel.Content = anamnesis.Anamensis;
         }
     }
 }

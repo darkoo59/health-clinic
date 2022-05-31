@@ -37,29 +37,29 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             
             this.frame = frame;
             this.DataContext = med;
-            Binding binding = new Binding("_Patient._Name");
+            Binding binding = new Binding("Patient._Name");
             binding.Source = med;
             PatienNameTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Surname");
+            binding = new Binding("Patient._Surname");
             PatientSurnameTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._BirthDate");
+            binding = new Binding("Patient._BirthDate");
             BirthDateTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Gender");
+            binding = new Binding("Gender");
             Gendertxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._PhoneNumber");
+            binding = new Binding("Patient._PhoneNumber");
             numberTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Address");
+            binding = new Binding("Patient._Address");
             //AdressTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_MaritalStatus");
+            binding = new Binding("MaritalStatus");
             maritalStatusTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Jmbg");
+            binding = new Binding("Patient._Jmbg");
            UIDTxt.SetBinding(TextBox.TextProperty, binding);
         }
 

@@ -17,7 +17,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string _dosage;
         private int _numberOfDays;
         private bool _flag;
-
+        private DateTime _startDate;
 
         public Prescription(Medicine medicine, DateTime prescriptionDate, string strength, TimeInterval timeInterval, Doctor doctor, string dosage, int numberOfDays)
 
@@ -128,15 +128,15 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
 
-        public DateTime _StartDate
+        public DateTime StartDate
         {
             get
             {
-                return startDate;
+                return _startDate;
             }
             set
             {
-                startDate = value;
+                _startDate = value;
             }
         }
 

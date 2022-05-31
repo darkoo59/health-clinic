@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.Model
         public void Create(Appointment appointment)
         {
             _validator.ValidateCreate(appointment);
-            appointment._Id = GenerateId();
+            appointment.Id = GenerateId();
             _appointmentRepository.Create(appointment);
         }
 
@@ -166,8 +166,8 @@ namespace Sims_Hospital_Zdravo.Model
             TimeInterval interval = new TimeInterval(startDate, endDate);
             while (true)
             {
-                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment._Doctor._Id,
-                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment._Patient._Id,interval))
+                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor._Id,
+                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id,interval))
                 {
                     return interval;
                 }

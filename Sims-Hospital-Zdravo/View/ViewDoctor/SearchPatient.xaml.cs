@@ -40,20 +40,20 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicalRecordDataGrid.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Patient Name:";
-            data_column.Binding = new Binding("_Patient._Name");
+            data_column.Binding = new Binding("Patient._Name");
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "BirthDate";
-            data_column.Binding = new Binding("_Patient._BirthDate");
+            data_column.Binding = new Binding("Patient._BirthDate");
 
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient UID";
-            data_column.Binding = new Binding("_Patient._Jmbg");
+            data_column.Binding = new Binding("Patient._Jmbg");
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient blood type";
-            data_column.Binding = new Binding("_BloodType");
+            data_column.Binding = new Binding("BloodType");
             MedicalRecordDataGrid.Columns.Add(data_column);
             
             

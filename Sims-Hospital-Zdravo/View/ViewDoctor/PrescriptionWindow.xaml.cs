@@ -49,7 +49,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.frame = frame;
             MedicineTxt.Text = medicine.Name;
             strengthTxt.Text = medicine.Strength;
-            PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
+            PatientTxt.Text = medicalRecord.Patient._Name + medicalRecord.Patient._Surname;
             
             
 

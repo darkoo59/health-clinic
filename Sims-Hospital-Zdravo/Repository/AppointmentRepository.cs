@@ -146,8 +146,8 @@ namespace Repository
 
         public List<TimeInterval> GetTimeIntervalsForRoom(int roomId)
         {
-            return (from app in appointments where app.Room.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
-            return (from app in appointments where app._Room?.Id == roomId select new TimeInterval(app._Time.Start, app._Time.End)).ToList();
+            //return (from app in appointments where app.Room.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
+            return (from app in appointments where app.Room?.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForDoctor(int id)
