@@ -9,16 +9,16 @@ namespace Controller
 {
     public class PatientMedicalRecordController
     {
-        private PatientMedicalRecordService patMedRecService;
+        private PatientMedicalRecordService _patMedRecService;
 
         public PatientMedicalRecordController(PatientMedicalRecordService patientMedicalRecordService)
         {
-            this.patMedRecService = patientMedicalRecordService;
+            this._patMedRecService = patientMedicalRecordService;
         }
 
         public MedicalRecord findMedicalRecordByPatient(Patient patient)
         {
-            return patMedRecService.findMedicalRecordByPatient(patient);
+            return _patMedRecService.FindMedicalRecordByPatient(patient);
         }
 
     }

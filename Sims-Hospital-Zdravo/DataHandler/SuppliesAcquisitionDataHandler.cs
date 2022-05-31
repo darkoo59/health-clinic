@@ -12,7 +12,7 @@ namespace Sims_Hospital_Zdravo.DataHandler
     {
         public ObservableCollection<SuppliesAcquisition> ReadAll()
         {
-            string suppliesSerialized = System.IO.File.ReadAllText(Path);
+            string suppliesSerialized = System.IO.File.ReadAllText(_path);
             ObservableCollection<SuppliesAcquisition> supplies = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<SuppliesAcquisition>>(suppliesSerialized);
             return supplies;
         }
@@ -20,9 +20,9 @@ namespace Sims_Hospital_Zdravo.DataHandler
         public void Write(ObservableCollection<SuppliesAcquisition> supplies)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(supplies);
-            System.IO.File.WriteAllText(Path, serialized);
+            System.IO.File.WriteAllText(_path, serialized);
         }
 
-        private String Path = @"..\..\Resources\supplies_acquisition.txt";
+        private String _path = @"..\..\Resources\supplies_acquisition.txt";
     }
 }

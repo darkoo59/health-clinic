@@ -78,12 +78,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                         EmergencyReschedule emergencyReschedule = (EmergencyReschedule)ContentGrid.SelectedValue;
                         Appointment rescheduleAppointment = emergencyReschedule.Appointment;
                         TimeInterval emergencyTimeInterval = new TimeInterval(
-                            emergencyReschedule.Appointment._Time.Start, emergencyReschedule.Appointment._Time.End);
-                        rescheduleAppointment._Time.Start = emergencyReschedule.RescheduledDate.Start;
-                        rescheduleAppointment._Time.End = emergencyReschedule.RescheduledDate.End;
+                            emergencyReschedule.Appointment.Time.Start, emergencyReschedule.Appointment.Time.End);
+                        rescheduleAppointment.Time.Start = emergencyReschedule.RescheduledDate.Start;
+                        rescheduleAppointment.Time.End = emergencyReschedule.RescheduledDate.End;
                         app._secretaryAppointmentController.Update(rescheduleAppointment);
-                        Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment._Room,
-                            emergencyReschedule.Appointment._Doctor, patient, emergencyTimeInterval,
+                        Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment.Room,
+                            emergencyReschedule.Appointment.Doctor, patient, emergencyTimeInterval,
                             AppointmentType.URGENCY);
                         app._secretaryAppointmentController.Create(emergencyAppointment);
                         MessageBox.Show("Emergency appointment successfully created!", "Appointment created",

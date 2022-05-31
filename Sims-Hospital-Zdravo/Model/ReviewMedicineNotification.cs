@@ -14,36 +14,36 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class ReviewMedicineNotification : Notification
     {
-        private string reasonForNotValidating;
-        private MedicineValidationType validationType;
-        private Medicine medicine;
+        private string _reasonForNotValidating;
+        private MedicineValidationType _validationType;
+        private Medicine _medicine;
 
         public ReviewMedicineNotification(string content, string reasonForNotValidating, Medicine medicine, int id, MedicineValidationType medicineValidationType) : base(content, id)
         {
-            this.reasonForNotValidating = reasonForNotValidating;
-            this.validationType = medicineValidationType;
-            this.medicine = medicine;
+            this._reasonForNotValidating = reasonForNotValidating;
+            this._validationType = medicineValidationType;
+            this._medicine = medicine;
         }
 
-        public string _ReasonForNotValidating
+        public string ReasonForNotValidating
         {
-            get { return reasonForNotValidating; }
+            get { return _reasonForNotValidating; }
 
-            set { reasonForNotValidating = value; }
+            set { _reasonForNotValidating = value; }
         }
 
-        public Medicine _Medicine
+        public Medicine Medicine
         {
-            get { return medicine; }
+            get { return _medicine; }
 
-            set { medicine = value; }
+            set { _medicine = value; }
         }
 
-        public MedicineValidationType _ValidationType
+        public MedicineValidationType ValidationType
         {
-            get { return validationType; }
+            get { return _validationType; }
 
-            set { validationType = value; }
+            set { _validationType = value; }
         }
     }
 }

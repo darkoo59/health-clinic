@@ -45,7 +45,7 @@ namespace Sims_Hospital_Zdravo.View
             patients = new ObservableCollection<string>();
             AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
 
-            foreach (Patient pat in this.docAppController.getPatients())
+            foreach (Patient pat in this.docAppController.GetPatients())
             {
                 patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
             }
@@ -85,7 +85,7 @@ namespace Sims_Hospital_Zdravo.View
         {
             string name = Patients.SelectedItem.ToString();
             string[] names = name.Split(' ');
-            foreach (Patient pat in this.docAppController.getPatients())
+            foreach (Patient pat in this.docAppController.GetPatients())
             {
                 if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
 
@@ -107,8 +107,6 @@ namespace Sims_Hospital_Zdravo.View
             string[] array = appointmentTime.Split('-');
             string start = array[0];
             string end = array[1];
-            //string start = cbItem.Content.ToString();
-            //string end = cbItemEnd.Content.ToString();
             string d = DatePick.Text;
             var dt_start = DateTime.Parse(d + " " + start);
             var dt_end = DateTime.Parse(d + " " + end);
@@ -116,11 +114,11 @@ namespace Sims_Hospital_Zdravo.View
 
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = this.roomController.FindById(numOfRoom);
-            Doctor doc = this.docAppController.getDoctor(2);
+            Doctor doc = this.docAppController.GetDoctor(2);
             TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
             try { 
             Appointment app = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
-            app._Id = this.docAppController.GenerateId();
+            app.Id = this.docAppController.GenerateId();
             
                 docAppController.Create(app);
             }

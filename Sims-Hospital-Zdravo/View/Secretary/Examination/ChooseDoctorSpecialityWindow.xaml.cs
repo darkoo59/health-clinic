@@ -85,7 +85,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                                 (SpecialtyType)comboSpeciality.SelectedItem);
                         if (appointment != null)
                         {
-                            appointment._Type = AppointmentType.URGENCY;
+                            appointment.Type = AppointmentType.URGENCY;
                             app._secretaryAppointmentController.Create(appointment);
                             MessageBox.Show("Emergency appointment successfully scheduled");
                             this.Close();

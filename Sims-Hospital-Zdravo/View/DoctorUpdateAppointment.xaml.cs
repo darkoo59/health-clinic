@@ -39,24 +39,24 @@ namespace Sims_Hospital_Zdravo.View
             this.roomControl = rom;
 
             Patients = new ObservableCollection<string>();
-            foreach (Patient pat in this.docController.getPatients())
+            foreach (Patient pat in this.docController.GetPatients())
             {
                 Patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
             }
 
             Patientcb.ItemsSource = Patients;
             
-            Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app._Patient._Name + " " + app._Patient._Surname + " " + app._Patient._BirthDate.ToString()
+            Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app.Patient._Name + " " + app.Patient._Surname + " " + app.Patient._BirthDate.ToString()
                 );
             
             Console.WriteLine(Patientcb.Text);
-                TimeInterval dt = app._Time;
+                TimeInterval dt = app.Time;
                 DateTxt.Text = dt.Start.ToString("yyyy-MM-dd");
                 TimeTxt.Text = dt.Start.ToString("HH:mm:ss");
                 endtime.Text = dt.End.ToString("HH:mm:ss");
                 AppType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
-                RoomTxt.Text = app._Room.Id.ToString();
-                id_app = app._Id;
+                RoomTxt.Text = app.Room.Id.ToString();
+                id_app = app.Id;
             
         }
 
@@ -74,7 +74,7 @@ namespace Sims_Hospital_Zdravo.View
         {
             string name = Patientcb.SelectedItem.ToString();
             string[] names = name.Split(' ');
-            foreach (Patient pat in this.docController.getPatients())
+            foreach (Patient pat in this.docController.GetPatients())
             {
                 if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
 
@@ -105,13 +105,13 @@ namespace Sims_Hospital_Zdravo.View
             string end_time = endtime.Text;
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
-            Doctor doc = this.docController.getDoctor(2);
+            Doctor doc = this.docController.GetDoctor(2);
 
 
             TimeInterval timeInterval = new TimeInterval(start, end);
             Appointment appoi = new Appointment(room, doc, Pat, timeInterval, (AppointmentType)AppType.SelectedValue);
 
-            appoi._Id = id_app;
+            appoi.Id = id_app;
             try
             {
                 docController.Update(appoi);

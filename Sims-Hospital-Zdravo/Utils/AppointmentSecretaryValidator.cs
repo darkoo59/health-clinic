@@ -32,24 +32,24 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void DoctorAlreadyHaveAppointment(Appointment appointment)
         {
-            if(!_appointmentService.IsDoctorFreeInIntervalWithoutSelectedAppointment(appointment._Doctor._Id,appointment))
+            if(!_appointmentService.IsDoctorFreeInIntervalWithoutSelectedAppointment(appointment.Doctor._Id,appointment))
                 throw new Exception("Doctor isn't available at selected time!");
         }
 
         public void PatientAlreadyHaveAppointment(Appointment appointment)
         {
-            if(!_appointmentService.IsPatientFreeInIntervalWithoutSelectedAppointment(appointment._Patient._Id,appointment))
+            if(!_appointmentService.IsPatientFreeInIntervalWithoutSelectedAppointment(appointment.Patient._Id,appointment))
                 throw new Exception("Patient isn't available at selected time!");
         }
         
         public void ValidateCreate(Appointment appointment)
         {
-            SchedulingAppointmentInWrongTime(appointment._Time);
+            SchedulingAppointmentInWrongTime(appointment.Time);
         }
 
         public void ValidateRescheduling(Appointment appointment)
         {
-            SchedulingAppointmentInWrongTime(appointment._Time);
+            SchedulingAppointmentInWrongTime(appointment.Time);
             DoctorAlreadyHaveAppointment(appointment);
             PatientAlreadyHaveAppointment(appointment);
         }

@@ -10,15 +10,15 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     class PrescriptionController
     {
-        private PrescriptionService prescriptionService;
+        private PrescriptionService _prescriptionService;
 
         public PrescriptionController(PrescriptionService prescriptionService)
         {
-            this.prescriptionService = prescriptionService;
+            this._prescriptionService = prescriptionService;
         }
         public ObservableCollection<Prescription> ReadAll()
         {
-            return this.prescriptionService.ReadAll();
+            return this._prescriptionService.ReadAll();
         }
     }
 }

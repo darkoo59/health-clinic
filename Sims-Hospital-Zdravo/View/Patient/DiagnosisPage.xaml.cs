@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo
             medicalRecordController = app._recordController;
             this.anamnesis = anamnesis;
             this.appointment = appointment;
-            if(anamnesis != null)DiagnosisLabel.Content = anamnesis._Diagnosis;
+            if(anamnesis != null)DiagnosisLabel.Content = anamnesis.Diagnosis;
         }
 
         private void Notes_LostFocus(object sender, RoutedEventArgs e)

@@ -9,133 +9,118 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class Anamnesis : INotifyPropertyChanged
     {
-
-        private Doctor doctor;
-        private MedicalRecord medicalRecord;
-        private DateTime date;
-        private TimeInterval timeInterval;
-        private string Diagnosis;
-        private string Anamensis;
-        private int anamnesisID;
+        private Patient _patient;
+        private Doctor _doctor;
+        private DateTime _date;
+        private TimeInterval _timeInterval;
+        private string _diagnosis;
+        private string _anamensis;
         private string _notes;
 
-        public Anamnesis(Doctor doctor, MedicalRecord medicalRecord, DateTime date, TimeInterval timeInterval, string diagnosis, string anamensis)
+        public Anamnesis(Doctor doctor,Patient patient,  DateTime date, TimeInterval timeInterval, string diagnosis, string anamensis)
         {
-            this.doctor = doctor;
-            this.medicalRecord = medicalRecord;
-            this.date = date;
-            this.timeInterval = timeInterval;
-            Diagnosis = diagnosis;
-            Anamensis = anamensis;
+            this._doctor = doctor;
+            this._patient = patient;
+            this._date = date;
+            this._timeInterval = timeInterval;
+            this._diagnosis = diagnosis;
+            this._anamensis = anamensis;
             Notes = "";
         }
+        
+        public Patient Patient
+        {
+            get
+            {
+                return _patient;
+            }
+            set
+            {
+                _patient = value;
+            }
+        }
 
-        public Doctor _Doctor
+        public Doctor Doctor
         {
             get { 
-                return doctor; 
+                return _doctor; 
                 }
 
 
             set {
-                doctor = value;
-                OnPropertyChanged("_Doctor");
+                _doctor = value;
+                OnPropertyChanged("Doctor");
             }
 
         }
-        public string Notes
-        {
-            get 
-            {
-                return _notes;
-            }
-            set 
-            {
-                _notes = value;
-                OnPropertyChanged("Notes");
-            }
-        }
-        public DateTime _Date
+        public DateTime Date
         {
             get
             {
-                return date.Date;
+                return _date;
             }
 
 
             set
             {
-                date = value;
-                OnPropertyChanged("_Date");
+                _date = value;
+                OnPropertyChanged("Date");
             }
 
         }
 
-        public MedicalRecord _MedicalRecord
-        {
-            get
-            {
-                return medicalRecord;
-            }
-
-
-            set
-            {
-                medicalRecord = value;
-                OnPropertyChanged("_MedicalRecord");
-            }
-
-        }
+        
         public TimeInterval _TimeInterval
         {
             get
             {
-                return timeInterval;
+                return _timeInterval;
             }
 
 
             set
             {
-                timeInterval = value;
+                _timeInterval = value;
             }
 
         }
-        public string _Diagnosis
+        public string Diagnosis
         {
             get
             {
-                return Diagnosis;
+                return _diagnosis;
             }
 
 
             set
             {
-                Diagnosis = value;
-                OnPropertyChanged("_Diagnosis");
+                _diagnosis = value;
+                OnPropertyChanged("Diagnosis");
             }
 
         }
-        public string _Anamensis
+        public string Anamensis
         {
             get
             {
-                return Anamensis;
+                return _anamensis;
             }
             set
             {
-                Anamensis = value;
-                OnPropertyChanged("_Anamnesis");
+                _anamensis = value;
+                OnPropertyChanged("Anamnesis");
             }
         }
-        public int _AnamnesisID
+        
+        public string Notes
         {
             get
             {
-                return anamnesisID;
+                return _notes;
             }
             set
             {
-                anamnesisID = value;
+                _notes = value;
             }
         }
         private void OnPropertyChanged(string name)

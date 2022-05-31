@@ -10,26 +10,26 @@ namespace Service
 {
     public class PatientMedicalRecordService
     {
-        private MedicalRecordsRepository MedicalRecordsRepository;
-        private PatientRepository PatientRepository;
+        private MedicalRecordsRepository _medicalRecordsRepository;
+        private PatientRepository _patientRepository;
         private ObservableCollection<Patient> patients;
-        private ObservableCollection<MedicalRecord> records;
+        private ObservableCollection<MedicalRecord> _records;
 
 
         public PatientMedicalRecordService(MedicalRecordsRepository medRepo, PatientRepository patRepo)
         {
-            this.MedicalRecordsRepository = medRepo;
-            this.PatientRepository = patRepo;
+            this._medicalRecordsRepository = medRepo;
+            this._patientRepository = patRepo;
             
         }
     
 
-        public MedicalRecord findMedicalRecordByPatient(Patient patient)
+        public MedicalRecord FindMedicalRecordByPatient(Patient patient)
 
         {
             Console.WriteLine(patient._Id);
-            records = MedicalRecordsRepository.ReadAll();
-            foreach(MedicalRecord record in records)
+            _records = _medicalRecordsRepository.ReadAll();
+            foreach(MedicalRecord record in _records)
             {
                 Console.WriteLine(record.Patient._Id);
                 if (record.Patient._Id.Equals(patient._Id))

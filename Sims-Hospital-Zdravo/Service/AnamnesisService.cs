@@ -12,35 +12,39 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class AnamnesisService
     {
-        private AnamnesisRepository anamnesisRepository;
+        private AnamnesisRepository _anamnesisRepository;
 
         public AnamnesisService(AnamnesisRepository anamnesisRepository)
         {
-            this.anamnesisRepository = anamnesisRepository;
+            this._anamnesisRepository = anamnesisRepository; 
         }
 
         public void Create(Anamnesis anamnesis)
         {
-            anamnesisRepository.Create(anamnesis);
+            _anamnesisRepository.Create (anamnesis); 
         }
 
         public void Update(Anamnesis anamnesis)
         {
-            anamnesisRepository.Update(anamnesis);
+            _anamnesisRepository.Update (anamnesis);
         }
 
         public ref ObservableCollection<Anamnesis> ReadAll()
         {
-            return ref anamnesisRepository.ReadAll();
+            return ref _anamnesisRepository.ReadAll();
         }
 
         public ObservableCollection<Anamnesis> findAnamnesisByDoctor(int id)
         {
-            return anamnesisRepository.FindAnamnesisByDoctor(id);
+            return _anamnesisRepository.FindAnamnesisByDoctor(id);
         }
-        public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
+        //public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
+        //{
+        //    return _anamnesisRepository.FindAnamnesisByDoctor(id);
+        //}
+        public ObservableCollection<Anamnesis> FindAnamnesisByPatient(MedicalRecord medicalRecord)
         {
-            return anamnesisRepository.FindAnamnesisByAppointment(appointment);
+            return _anamnesisRepository.FindAnamesisByPatient (medicalRecord);
         }
     }
 }

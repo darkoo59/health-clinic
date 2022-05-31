@@ -92,7 +92,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Appointment appointment = DoctorAppointments.SelectedValue as Appointment;
             if (appointment != null)
             {
-                Patient patient = appointment._Patient;
+                Patient patient = appointment.Patient;
                 MedicalRecord record = PatientMedicalRecordController.findMedicalRecordByPatient(patient);
                 PatientMedicalRecord medRed = new PatientMedicalRecord(medicalRecordController, docController, anamnesisController, appointment, record, doctorId);
                 //medRed.Show();

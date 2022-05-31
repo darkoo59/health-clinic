@@ -35,10 +35,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.medicineController = app._medicineController;
             this.notificationController = app._notificationController;
             this.medicine = medicine;
-            MedicineNameTxt.Text = medicine._Name;
-            StrenghtTxt.Text = medicine._Strength;
-            UsingForTxt.Text = medicine._Description;
-            AllegensTxt.Text = medicine._Allergens;
+            MedicineNameTxt.Text = medicine.Name;
+            StrenghtTxt.Text = medicine.Strength;
+            UsingForTxt.Text = medicine.Description;
+            AllegensTxt.Text = medicine.Allergens;
 
         }
 
@@ -46,7 +46,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
 
             string validateMedicine = "Medicine approved";
-            string name = medicine._Name;
+            string name = medicine.Name;
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_APPROVED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine,medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
@@ -57,7 +57,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             string validateMedicine = ReasonForRejectinMedicineTxt.Text;
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_REJECTED;
-            string name = medicine._Name;
+            string name = medicine.Name;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "rejected", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine,reviewMedicineNotification);
 

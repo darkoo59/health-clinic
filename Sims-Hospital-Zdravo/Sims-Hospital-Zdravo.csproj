@@ -359,6 +359,9 @@
       <DependentUpon>ManagerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\AnamnesisList.xaml.cs" />
+    <Compile Include="View\ViewDoctor\AnamnesisListPage.xaml.cs">
+      <DependentUpon>AnamnesisListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\AnamnesisWindow.xaml.cs" />
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
       <DependentUpon>DoctorMain.xaml</DependentUpon>
@@ -367,6 +370,9 @@
       <DependentUpon>DoctorMedicines.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
+    <Compile Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml.cs">
+      <DependentUpon>ListOfMedecinesinSystem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\MedicalReport.xaml.cs" />
     <Compile Include="View\ViewDoctor\MedicinesToValidate.xaml.cs">
       <DependentUpon>MedicinesToValidate.xaml</DependentUpon>
@@ -567,6 +573,10 @@
     <Page Include="View\Secretary\Supplies\SuppliesHome.xaml" />
     <Page Include="View\UserControlls\ManagerMenu.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
+    <Page Include="View\ViewDoctor\AnamnesisListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
       <SubType>Designer</SubType>
@@ -581,6 +591,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
+    <Page Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
     <Page Include="View\ViewDoctor\MedicinesToValidate.xaml">
       <SubType>Designer</SubType>

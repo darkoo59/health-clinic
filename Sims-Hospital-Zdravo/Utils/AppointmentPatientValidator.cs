@@ -25,17 +25,17 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void ValidateAppointment(Appointment appointment) 
         {
-            Console.WriteLine(appointment._Time.Start.Hour);
-            if (appointment._Time.Start.Hour < 8 || appointment._Time.Start.Hour > 11) 
+            Console.WriteLine(appointment.Time.Start.Hour);
+            if (appointment.Time.Start.Hour < 8 || appointment.Time.Start.Hour > 11) 
             {
                 throw new Exception("Hospital works between 8h and 12h");
             }
-            if (appointment._Time.Start.Minute != 0 && appointment._Time.Start.Minute != 30)
+            if (appointment.Time.Start.Minute != 0 && appointment.Time.Start.Minute != 30)
             {
                 throw new Exception("Minutes must be 0 or 30");
             }
             DateTime now = DateTime.Now;
-            if (now.CompareTo(appointment._Time.Start) > 0) 
+            if (now.CompareTo(appointment.Time.Start) > 0) 
             {
                 throw new Exception("You can not time travel");
             }
@@ -65,7 +65,7 @@ namespace Sims_Hospital_Zdravo.Utils
             SetTimeIntervalIfLeapYear(timeInterval);
             foreach (Appointment app in appointmentRepository.FindByPatientId(1)) 
             {
-                if (app._Id == appointment._Id)
+                if (app.Id == appointment.Id)
                 {
                     SetAppointmentIfLeapYear(app);
                     if (CheckIfYearIsRight(timeInterval, app) || CheckIf1(timeInterval, app) ||CheckIf2(timeInterval, app))
@@ -73,33 +73,33 @@ namespace Sims_Hospital_Zdravo.Utils
                         throw new Exception("You cant move appointment more than 2 days from original day");
                     }
                     DateTime dateTime = DateTime.Now;
-                    if (dateTime.Year == app._Time.Start.Year)
+                    if (dateTime.Year == app.Time.Start.Year)
                     {
-                        if (app._Time.Start.DayOfYear - dateTime.DayOfYear < 1)
+                        if (app.Time.Start.DayOfYear - dateTime.DayOfYear < 1)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app._Time.Start.Hour < dateTime.Hour)
+                        else if (app.Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app.Time.Start.Hour < dateTime.Hour)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app._Time.Start.Hour == dateTime.Hour)
+                        else if (app.Time.Start.DayOfYear - dateTime.DayOfYear == 1 && app.Time.Start.Hour == dateTime.Hour)
                         {
-                            if (((app._Time.Start.Minute * 60) + app._Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
+                            if (((app.Time.Start.Minute * 60) + app.Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
                             {
                                 throw new Exception("You cant change appointment less than 24 hours before appointment");
                             }
                         }
                     }
-                    else if (dateTime.Year - app._Time.Start.Year == 1 && dateTime.DayOfYear == j && app._Time.Start.DayOfYear == 1)
+                    else if (dateTime.Year - app.Time.Start.Year == 1 && dateTime.DayOfYear == j && app.Time.Start.DayOfYear == 1)
                     {
-                        if (app._Time.Start.Hour < dateTime.Hour)
+                        if (app.Time.Start.Hour < dateTime.Hour)
                         {
                             throw new Exception("You cant change appointment less than 24 hours before appointment");
                         }
-                        else if (app._Time.Start.Hour < dateTime.Hour)
+                        else if (app.Time.Start.Hour < dateTime.Hour)
                         {
-                            if (((app._Time.Start.Minute * 60) + app._Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
+                            if (((app.Time.Start.Minute * 60) + app.Time.Start.Second) < ((dateTime.Minute * 60) + dateTime.Second))
                             {
                                 throw new Exception("You cant change appointment less than 24 hours before appointment");
                             }
@@ -108,7 +108,7 @@ namespace Sims_Hospital_Zdravo.Utils
                 }
                 else
                 {
-                    if (timeInterval.Start.CompareTo(app._Time.Start) == 0)
+                    if (timeInterval.Start.CompareTo(app.Time.Start) == 0)
                     {
                         CheckIfAppointmentExists(appointment, app);
                     }
@@ -117,9 +117,9 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public bool CheckIfYearIsRight(TimeInterval timeInterval,Appointment app)
         {
-            if (timeInterval.Start.Year == app._Time.Start.Year)
+            if (timeInterval.Start.Year == app.Time.Start.Year)
             {
-                if (timeInterval.Start.DayOfYear - app._Time.Start.DayOfYear > 2 || app._Time.Start.DayOfYear - timeInterval.Start.DayOfYear > 2)
+                if (timeInterval.Start.DayOfYear - app.Time.Start.DayOfYear > 2 || app.Time.Start.DayOfYear - timeInterval.Start.DayOfYear > 2)
                 {
                     return true;
                 }
@@ -128,11 +128,11 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public bool CheckIf1(TimeInterval timeInterval, Appointment app)
         {
-            if (timeInterval.Start.Year - app._Time.Start.Year == 1)
+            if (timeInterval.Start.Year - app.Time.Start.Year == 1)
             {
                 i = timeInterval.Start.DayOfYear;
                 i = i + j;
-                if (i - app._Time.Start.DayOfYear > 2)
+                if (i - app.Time.Start.DayOfYear > 2)
                 {
                     return true;
                 }
@@ -141,9 +141,9 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public bool CheckIf2(TimeInterval timeInterval, Appointment app)
         {
-            if (app._Time.Start.Year - timeInterval.Start.Year == 1)
+            if (app.Time.Start.Year - timeInterval.Start.Year == 1)
             {
-                i = app._Time.Start.DayOfYear;
+                i = app.Time.Start.DayOfYear;
                 i = i + z;
                 if (i - timeInterval.Start.DayOfYear > 2)
                 {
@@ -154,9 +154,9 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void CheckIfAppointmentExists(Appointment appointment, Appointment app)
         {
-                if (appointment._Doctor._Id == app._Doctor._Id)
+                if (appointment.Doctor._Id == app.Doctor._Id)
                 {
-                    if (appointment._Patient._Id != app._Patient._Id)
+                    if (appointment.Patient._Id != app.Patient._Id)
                     {
                         throw new Exception("Appointment already exists");
                     }
@@ -200,11 +200,11 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void SetAppointmentIfLeapYear(Appointment app)
         {
-            if (app._Time.Start.Year % 4 == 0)
+            if (app.Time.Start.Year % 4 == 0)
             {
-                if (app._Time.Start.Year % 100 == 0)
+                if (app.Time.Start.Year % 100 == 0)
                 {
-                    if (app._Time.Start.Year % 400 == 0)
+                    if (app.Time.Start.Year % 400 == 0)
                     {
                         j = 366;
                     }

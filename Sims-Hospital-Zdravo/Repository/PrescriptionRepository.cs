@@ -13,41 +13,41 @@ namespace Sims_Hospital_Zdravo.Repository
 
     public class PrescriptionRepository
     {
-        private ObservableCollection<Prescription> prescriptions;
-        private PrescriptionDataHandler prescriptionDataHandler;
+        private ObservableCollection<Prescription> _prescriptions;
+        private PrescriptionDataHandler _prescriptionDataHandler;
         public PrescriptionRepository(PrescriptionDataHandler prescriptionDataHandler)
         {
-            this.prescriptionDataHandler = prescriptionDataHandler;
-            this.prescriptions = new ObservableCollection<Prescription>();
-            this.prescriptionDataHandler = prescriptionDataHandler;
+            this._prescriptionDataHandler = prescriptionDataHandler;
+            this._prescriptions = new ObservableCollection<Prescription>();
+            this._prescriptionDataHandler = prescriptionDataHandler;
             LoadDataFromFiles();
 
         }
 
         public void Create(Prescription prescription)
         {
-            prescriptions.Add(prescription);
+            _prescriptions.Add(prescription);
             LoadDataToFiles();
         }
         public void Delete(Prescription prescription)
         {
-            prescriptions.Remove(prescription);
+            _prescriptions.Remove(prescription);
         }
 
        
       
         public ObservableCollection<Prescription> ReadAll()
         {
-            return prescriptions;
+            return _prescriptions;
         }
         
         public void LoadDataFromFiles()
         {
-            prescriptions = prescriptionDataHandler.ReadAll();
+            _prescriptions = _prescriptionDataHandler.ReadAll();
         }
             public void LoadDataToFiles()
             {
-                prescriptionDataHandler.Write(prescriptions);
+                _prescriptionDataHandler.Write(_prescriptions);
             }
 
 

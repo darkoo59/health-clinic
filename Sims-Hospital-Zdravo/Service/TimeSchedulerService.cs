@@ -90,8 +90,8 @@ namespace Service
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
             foreach (Appointment app in appointments)
             {
-                DateTime start = app._Time.Start;
-                DateTime end = app._Time.End;
+                DateTime start = app.Time.Start;
+                DateTime end = app.Time.End;
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
@@ -107,14 +107,14 @@ namespace Service
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
             foreach (Appointment app in appointments)
             {
-                if (app._Id != appointment._Id)
+                if (app.Id != appointment.Id)
                 {
-                    DateTime start = app._Time.Start;
-                    DateTime end = app._Time.End;
-                    if (start.CompareTo(appointment._Time.Start) < 0 && end.CompareTo(appointment._Time.Start) > 0) return false;
-                    if (start.CompareTo(appointment._Time.End) < 0 && end.CompareTo(appointment._Time.End) > 0) return false;
-                    if (start.CompareTo(appointment._Time.Start) > 0 && end.CompareTo(appointment._Time.End) < 0) return false;
-                    if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
+                    DateTime start = app.Time.Start;
+                    DateTime end = app.Time.End;
+                    if (start.CompareTo(appointment.Time.Start) < 0 && end.CompareTo(appointment.Time.Start) > 0) return false;
+                    if (start.CompareTo(appointment.Time.End) < 0 && end.CompareTo(appointment.Time.End) > 0) return false;
+                    if (start.CompareTo(appointment.Time.Start) > 0 && end.CompareTo(appointment.Time.End) < 0) return false;
+                    if (start.CompareTo(appointment.Time.Start) == 0 && end.CompareTo(appointment.Time.End) == 0) return false;
                 }
             }
 
@@ -126,8 +126,8 @@ namespace Service
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
             foreach (Appointment app in appointments)
             {
-                DateTime start = app._Time.Start;
-                DateTime end = app._Time.End;
+                DateTime start = app.Time.Start;
+                DateTime end = app.Time.End;
                 if (start.CompareTo(ti.Start) < 0 && end.CompareTo(ti.Start) > 0) return false;
                 if (start.CompareTo(ti.End) < 0 && end.CompareTo(ti.End) > 0) return false;
                 if (start.CompareTo(ti.Start) > 0 && end.CompareTo(ti.End) < 0) return false;
@@ -143,14 +143,14 @@ namespace Service
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
             foreach (Appointment app in appointments)
             {
-                if (app._Id != appointment._Id)
+                if (app.Id != appointment.Id)
                 {
-                    DateTime start = app._Time.Start;
-                    DateTime end = app._Time.End;
-                    if (start.CompareTo(appointment._Time.Start) < 0 && end.CompareTo(appointment._Time.Start) > 0) return false;
-                    if (start.CompareTo(appointment._Time.End) < 0 && end.CompareTo(appointment._Time.End) > 0) return false;
-                    if (start.CompareTo(appointment._Time.Start) > 0 && end.CompareTo(appointment._Time.End) < 0) return false;
-                    if (start.CompareTo(appointment._Time.Start) == 0 && end.CompareTo(appointment._Time.End) == 0) return false;
+                    DateTime start = app.Time.Start;
+                    DateTime end = app.Time.End;
+                    if (start.CompareTo(appointment.Time.Start) < 0 && end.CompareTo(appointment.Time.Start) > 0) return false;
+                    if (start.CompareTo(appointment.Time.End) < 0 && end.CompareTo(appointment.Time.End) > 0) return false;
+                    if (start.CompareTo(appointment.Time.Start) > 0 && end.CompareTo(appointment.Time.End) < 0) return false;
+                    if (start.CompareTo(appointment.Time.Start) == 0 && end.CompareTo(appointment.Time.End) == 0) return false;
                 }
             }
 
@@ -188,9 +188,9 @@ namespace Service
         public TimeInterval FindIntervalForOperation(Appointment appointment, double duration)
         {
             TimeInterval tl;
-            if (IsDoctorFreeInInterval(appointment._Doctor._Id, appointment._Time))
+            if (IsDoctorFreeInInterval(appointment.Doctor._Id, appointment.Time))
             {
-                tl = appointment._Time;
+                tl = appointment.Time;
             }
             else
             {
@@ -205,14 +205,14 @@ namespace Service
         {
             TimeInterval tl = new TimeInterval(DateTime.Now, DateTime.Now);
 
-            if (CheckifDurationIsLongEnough(appointment._Doctor, duration) != null)
+            if (CheckifDurationIsLongEnough(appointment.Doctor, duration) != null)
             {
-                tl = CheckifDurationIsLongEnough(appointment._Doctor, duration);
+                tl = CheckifDurationIsLongEnough(appointment.Doctor, duration);
             }
             else
             {
                 CancelAppointmentsForOperation(appointment);
-                tl = appointment._Time;
+                tl = appointment.Time;
             }
 
             return tl;
@@ -221,8 +221,8 @@ namespace Service
 
         public void CancelAppointmentsForOperation(Appointment appointment)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment._Doctor._Id);
-            List<Appointment> appointmentsToDelete = appointments.Where(i => i._Time.Start >= appointment._Time.Start && i._Time.End <= appointment._Time.End).ToList();
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
+            List<Appointment> appointmentsToDelete = appointments.Where(i => i.Time.Start >= appointment.Time.Start && i.Time.End <= appointment.Time.End).ToList();
             foreach (Appointment appToDelete in appointmentsToDelete)
             {
                 appointments.Remove(appToDelete);
@@ -319,9 +319,9 @@ namespace Service
         {
             foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
             {
-                if (app._Time.Start.Date.Equals(date.Date))
+                if (app.Time.Start.Date.Equals(date.Date))
                 {
-                    if (app._Patient._Jmbg.Equals(pat._Jmbg))
+                    if (app.Patient._Jmbg.Equals(pat._Jmbg))
                     {
                         return app;
                     }
@@ -356,9 +356,9 @@ namespace Service
         {
             foreach (Appointment app in _appointmentRepository.FindByDoctorId(id))
             {
-                if (app._Time.Start.Date.Equals(date.Date))
+                if (app.Time.Start.Date.Equals(date.Date))
                 {
-                    if (app._Patient._Jmbg.Equals(pat._Jmbg))
+                    if (app.Patient._Jmbg.Equals(pat._Jmbg))
                     {
                         return app;
                     }
@@ -371,7 +371,7 @@ namespace Service
 
         public void UrgentSurgeryForPatient(Appointment appointement)
         {
-            TimeInterval timeInterval = appointement._Time;
+            TimeInterval timeInterval = appointement.Time;
         }
     }
 }

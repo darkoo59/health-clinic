@@ -17,39 +17,39 @@ namespace Service
 {
     public class DoctorAppointmentService
     {
-        public DoctorRepository doctorRepo;
-        public AppointmentRepository appointmentRepository;
-        public PatientRepository patientRepository;
-        public TimeSchedulerService timeSchedulerService;
-        private AppointmentDoctorValidator validator;
-        private Appointment app;
+        public DoctorRepository _doctorRepo;
+        public AppointmentRepository _appointmentRepository;
+        public PatientRepository _patientRepository;
+        public TimeSchedulerService _timeSchedulerService;
+        private AppointmentDoctorValidator _validator;
+        private Appointment _app;
 
         public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo, TimeSchedulerService timeSchedulerService, RoomService roomService)
         {
-            this.timeSchedulerService = timeSchedulerService;
-            this.appointmentRepository = appointmentRepository;
-            this.patientRepository = patientRepository;
-            this.doctorRepo = docRepo;
-            this.validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService, roomService);
+            this._timeSchedulerService = timeSchedulerService;
+            this._appointmentRepository = appointmentRepository;
+            this._patientRepository = patientRepository;
+            this._doctorRepo = docRepo;
+            this._validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService, roomService);
         }
 
         public Doctor GetDoctor(int id)
         {
-            return doctorRepo.FindDoctorById(id);
+            return _doctorRepo.FindDoctorById(id);
         }
 
         public List<Doctor> ReadAllDoctors()
         {
-            return doctorRepo.ReadAll().ToList();
+            return _doctorRepo.ReadAll().ToList();
         }
 
         public void Create(Appointment appointment)
         {
             try
             {
-                validator.ValidateAppointment(appointment);
+                _validator.ValidateAppointment(appointment);
 
-                appointmentRepository.Create(appointment);
+                _appointmentRepository.Create(appointment);
             }
             catch(Exception ex)
             {
@@ -60,26 +60,26 @@ namespace Service
 
         public void DeleteByID(Appointment appointment)
         {
-            appointmentRepository.Delete(appointment);
+            _appointmentRepository.Delete(appointment);
         }
 
         public ObservableCollection<Appointment> ReadAll(int id)
         {
-            return appointmentRepository.FindByDoctorId(id);
+            return _appointmentRepository.FindByDoctorId(id);
         }
 
 
         public ref ObservableCollection<Patient> GetPatients()
         {
-            return ref patientRepository.ReadAll();
+            return ref _patientRepository.ReadAll();
             //Zamijeniti pravim funkcijama
         }
 
         public void Update(Appointment appointment)
         {
             // TODO: implement
-            validator.ValidateAppointment(appointment);
-            appointmentRepository.Update(appointment);
+            _validator.ValidateAppointment(appointment);
+            _appointmentRepository.Update(appointment);
         }
 
         public Appointment GetByID(Appointment appointment)
@@ -87,23 +87,19 @@ namespace Service
             // TODO: implement
             //return appointmentRepository.GetByID(appointment);
             return null;
-            //return null;
+           
         }
 
 
-        /// <summary>
-        /// Appointment repository patient zamijeniti sa patient handlerom ili sta vec bude trebalo
-        /// </summary>
-        /// <param name="appointmentRepo"></param>
-        /// <param name="appRepoPatient"></param>
+        
         public int GenerateId()
         {
-            ObservableCollection<Appointment> appointments = appointmentRepository.FindAll();
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Appointment app in appointments)
             {
-                ids.Add(app._Id);
+                ids.Add(app.Id);
             }
 
             while (ids.Contains(id))
@@ -116,39 +112,39 @@ namespace Service
 
         public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
         {
-            var AppointmentsDate = appointmentRepository.FindByDoctorId(2);
-            var appDate = AppointmentsDate.Where(i => i._Time.Start.Date == date).ToList();
-            AppointmentsDate = new ObservableCollection<Appointment>(appDate);
+            var appointmentsDate = _appointmentRepository.FindByDoctorId(2);
+            var appDate = appointmentsDate.Where(i => i.Time.Start.Date == date).ToList();
+            appointmentsDate = new ObservableCollection<Appointment>(appDate);
 
-            return AppointmentsDate;
+            return appointmentsDate;
         }
 
         public void DeleteAfterExaminationIsDone(DateTime tl, int id, Patient pat)
         {
-            app = timeSchedulerService.FindAppointmentByDate(tl, id, pat);
-            appointmentRepository.Delete(app);
+            _app = _timeSchedulerService.FindAppointmentByDate(tl, id, pat);
+            _appointmentRepository.Delete(_app);
         }
 
         public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
         {
-            ObservableCollection<Appointment> appointments = appointmentRepository.FindByDoctorId(id);
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
 
             foreach (Appointment appointment in appointments)
             {
-                if (appointment._Time.Start.Date.Equals(date.Date) && appointment._Patient._Jmbg.Equals(pat._Jmbg))
+                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient._Jmbg.Equals(pat._Jmbg))
                 {
-                    app = appointment;
+                    _app = appointment;
                 }
             }
 
-            return app;
+            return _app;
         }
 
         
         
         public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
-           return  doctorRepo.FindDoctorsBySpecalty(specaltyType);
+           return  _doctorRepo.FindDoctorsBySpecalty(specaltyType);
         }
 
 
@@ -160,8 +156,8 @@ namespace Service
         public void UrgentSurgery(Appointment appointment,double duration)
         {
             
-            TimeInterval tl = timeSchedulerService.FindIntervalForOperation(appointment,duration);
-            appointment._Time = tl;
+            TimeInterval tl = _timeSchedulerService.FindIntervalForOperation(appointment,duration);
+            appointment.Time = tl;
             Create(appointment);
 
         }

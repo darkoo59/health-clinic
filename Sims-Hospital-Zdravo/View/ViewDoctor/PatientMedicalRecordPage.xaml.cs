@@ -34,37 +34,47 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.medRecord = med;
-            //this.app = app;
-            //this.doctorId = id;
             
-            //this._medicalRecordController = medicalRecordController;
+            this.frame = frame;
             this.DataContext = med;
-            //this._doctorAppointmentController = doctorAppointmentController;
-           // this.anamnesisController = anamnesisController;
-            Binding binding = new Binding("_Patient._Name");
+            Binding binding = new Binding("Patient._Name");
             binding.Source = med;
             PatienNameTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Surname");
+            binding = new Binding("Patient._Surname");
             PatientSurnameTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._BirthDate");
+            binding = new Binding("Patient._BirthDate");
             BirthDateTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Gender");
+            binding = new Binding("Gender");
             Gendertxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._PhoneNumber");
+            binding = new Binding("Patient._PhoneNumber");
             numberTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Address");
+            binding = new Binding("Patient._Address");
             //AdressTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_MaritalStatus");
+            binding = new Binding("MaritalStatus");
             maritalStatusTxt.SetBinding(TextBox.TextProperty, binding);
 
-            binding = new Binding("_Patient._Jmbg");
+            binding = new Binding("Patient._Jmbg");
            UIDTxt.SetBinding(TextBox.TextProperty, binding);
+        }
+
+        private void PrescribeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord,frame);
+            frame.Content = listOfMedecinesinSystem;
+        }
+
+       
+
+        private void MedicalreprotClick(object sender, RoutedEventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(medRecord,doctorId, frame);
+            frame.Content = medicalReport;
         }
     }
 }

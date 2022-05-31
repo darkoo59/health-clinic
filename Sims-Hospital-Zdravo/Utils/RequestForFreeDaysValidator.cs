@@ -41,15 +41,15 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, AppointmentRepository appointmentRepository)
         {
-            List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request._Doctor._Id);
-            List<TimeInterval> takenTimeIntervals = timeIntervals.Where(i => i.Start.Date >= request._TimeInterval.Start.Date && i.Start.Date <= request._TimeInterval.End.Date).ToList();
+            List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request.Doctor._Id);
+            List<TimeInterval> takenTimeIntervals = timeIntervals.Where(i => i.Start.Date >= request.TimeInterval.Start.Date && i.Start.Date <= request.TimeInterval.End.Date).ToList();
             return takenTimeIntervals;
         }
 
         public void CheckIfIsTooLateForSchedulingVacation(FreeDaysRequest request)
         {
             DateTime dateTime = DateTime.Now;
-            if (( request._TimeInterval.Start.Date - dateTime.Date).Days <= 2)
+            if (( request.TimeInterval.Start.Date - dateTime.Date).Days <= 2)
             {
                 throw new Exception("Days off can't be scheduled two days before the start of time period");
             }
@@ -57,11 +57,11 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public ObservableCollection<TimeInterval> GetTimeIntervalsForSpecialistRequests(FreeDaysRequest request)
         {
-            ObservableCollection<FreeDaysRequest> specialistFreeDaysRequests = requestForFreeDaysRepository.RequestPendingOrApproved(request._Doctor);
+            ObservableCollection<FreeDaysRequest> specialistFreeDaysRequests = requestForFreeDaysRepository.RequestPendingOrApproved(request.Doctor);
             ObservableCollection<TimeInterval> timeIntervals = new ObservableCollection<TimeInterval>();
             foreach(FreeDaysRequest freeDaysRequest in specialistFreeDaysRequests)
             {
-              timeIntervals.Add(freeDaysRequest._TimeInterval);
+              timeIntervals.Add(freeDaysRequest.TimeInterval);
             }
             return timeIntervals;
         }
@@ -72,7 +72,7 @@ namespace Sims_Hospital_Zdravo.Utils
             ObservableCollection<TimeInterval> timeIntervals = GetTimeIntervalsForSpecialistRequests(request);
             foreach (TimeInterval interval in timeIntervals)  
             {
-                if(interval.Start.Date< request._TimeInterval.End.Date && request._TimeInterval.Start <interval.End.Date  )
+                if(interval.Start.Date< request.TimeInterval.End.Date && request.TimeInterval.Start <interval.End.Date  )
                 {
                     overlap = true;
                 }

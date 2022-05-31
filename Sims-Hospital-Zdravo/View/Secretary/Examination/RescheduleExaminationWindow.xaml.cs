@@ -34,10 +34,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             this.DataContext = this;
             this.selectedAppointment = appointment;
             this.secretaryAppointmentController = controller;
-            startDatePicker.SelectedDate = appointment._Time.Start;
-            endDatePicker.SelectedDate = appointment._Time.End;
-            txtStartTime.Text = appointment._Time.Start.TimeOfDay.ToString();
-            txtEndTime.Text = appointment._Time.End.TimeOfDay.ToString();
+            startDatePicker.SelectedDate = appointment.Time.Start;
+            endDatePicker.SelectedDate = appointment.Time.End;
+            txtStartTime.Text = appointment.Time.Start.TimeOfDay.ToString();
+            txtEndTime.Text = appointment.Time.End.TimeOfDay.ToString();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
@@ -56,8 +56,8 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 endDate = endDate.AddHours(Int32.Parse(endTime[0]));
                 endDate = endDate.AddMinutes(Int32.Parse(endTime[1]));
                 TimeInterval time = new TimeInterval(startDate, endDate);
-                Appointment app = new Appointment(selectedAppointment._Room, selectedAppointment._Doctor, selectedAppointment._Patient, time, selectedAppointment._Type);
-                app._Id = selectedAppointment._Id;
+                Appointment app = new Appointment(selectedAppointment.Room, selectedAppointment.Doctor, selectedAppointment.Patient, time, selectedAppointment.Type);
+                app.Id = selectedAppointment.Id;
 
                 secretaryAppointmentController.Update(app);
                 Close();

@@ -35,10 +35,10 @@ namespace Sims_Hospital_Zdravo
             this.appointment = appointment;
             InitializeComponent();
             this.prescription = prescription;
-            if (prescription._StartDate != null) 
+            if (prescription.StartDate != null) 
             {
-                Date.SelectedDate = prescription._StartDate;
-                Time.Text = prescription._StartDate.ToString("{0:HH:mm}");
+                Date.SelectedDate = prescription.StartDate;
+                Time.Text = prescription.StartDate.ToString("{0:HH:mm}");
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -47,11 +47,11 @@ namespace Sims_Hospital_Zdravo
             string[] time = Time.Text.Split(':');
             dateTime = dateTime.AddHours(Int32.Parse(time[0]));
             dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
-            if (prescription._StartDate == null)
+            if (prescription.StartDate == null)
             {
                 medicalRecordController.AddStartDate(dateTime, prescription, appointment);
             }
-            else if(prescription._StartDate.CompareTo(DateTime.Now) < 0)
+            else if(prescription.StartDate.CompareTo(DateTime.Now) < 0)
             {
                 medicalRecordController.AddStartDate(dateTime, prescription, appointment);
             }

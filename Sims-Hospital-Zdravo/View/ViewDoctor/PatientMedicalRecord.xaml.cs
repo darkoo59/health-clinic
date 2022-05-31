@@ -54,29 +54,29 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DataContext = med;
             this._doctorAppointmentController = doctorAppointmentController;
             this.anamnesisController = anamnesisController;
-            Binding binding = new Binding("_Patient._Name");
+            Binding binding = new Binding("Patient._Name");
             binding.Source = med;
             Patientname.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Patient._Surname");
+            binding = new Binding("Patient._Surname");
             Patientsurname.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Patient._BirthDate");
+            binding = new Binding("Patient._BirthDate");
             birthdate.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Gender");
+            binding = new Binding("Gender");
             genderPat.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Patient._PhoneNumber");
+            binding = new Binding("Patient._PhoneNumber");
             number.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Patient._Address");
+            binding = new Binding("Patient._Address");
             adress.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_MaritalStatus");
+            binding = new Binding("MaritalStatus");
             marital.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("_Patient._Jmbg");
+            binding = new Binding("Patient._Jmbg");
             uid.SetBinding(TextBlock.TextProperty, binding);
             
             

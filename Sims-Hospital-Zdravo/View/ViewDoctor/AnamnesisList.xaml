@@ -1,4 +1,4 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.AnamnesisList"
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.AnamnesisList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,4 +11,4 @@
         <Label Content="Medical reports:" Margin="91,128,590,269" />
         <Button Content="Edit" Margin="91,44,559,348" Click="Button_Click"/>
     </Grid>
-</Window>
+</Page>

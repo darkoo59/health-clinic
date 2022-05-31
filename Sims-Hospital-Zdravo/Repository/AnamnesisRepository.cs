@@ -11,13 +11,13 @@ namespace Sims_Hospital_Zdravo.Repository
 {
     public class AnamnesisRepository
     {
-        private AnamnesisDataHandler AnamnesisDataHandler;
-        private ObservableCollection<Anamnesis> Anamnesis;
+        private AnamnesisDataHandler _anamnesisDataHandler;
+        private ObservableCollection<Anamnesis> _anamnesis;
         public AnamnesisRepository(AnamnesisDataHandler anamnesisDataHandler)
         {
 
-            this.AnamnesisDataHandler = anamnesisDataHandler;
-            Anamnesis = new ObservableCollection<Anamnesis>();
+            this._anamnesisDataHandler = anamnesisDataHandler;
+            _anamnesis = new ObservableCollection<Anamnesis>();
             LoadDataFromFiles();
 
         }
@@ -25,18 +25,18 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create (Anamnesis anamnesis)
         {
-            Anamnesis.Add(anamnesis);
+            _anamnesis.Add(anamnesis);
             LoadDataToFiles();
         }
 
         public void Update (Anamnesis anamnesis)
         {
-            foreach( Anamnesis anam in Anamnesis)
+            foreach( Anamnesis anam in _anamnesis)
             {
-                if (anam._Doctor == anamnesis._Doctor)
+                if (anam.Doctor == anam.Doctor)
                 {
-                    anam._Diagnosis = anamnesis._Diagnosis;
-                    anam._Anamensis = anamnesis._Anamensis;
+                    anam.Diagnosis = anam.Diagnosis;
+                    anam.Anamensis = anam.Anamensis;
                     LoadDataToFiles();
                     return;
                 }
@@ -48,9 +48,9 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             ObservableCollection<Anamnesis> listOfAnamnesisByDoctor = new ObservableCollection<Anamnesis>();
             
-            foreach(Anamnesis anam in Anamnesis)
+            foreach(Anamnesis anam in _anamnesis)
             {
-                if(anam._Doctor._Id == id)
+                if(anam.Doctor._Id == id)
                 {
                     listOfAnamnesisByDoctor.Add(anam);
                 }
@@ -59,54 +59,45 @@ namespace Sims_Hospital_Zdravo.Repository
             
             
         }
-        //public ObservableCollection<Anamnesis> FindAnamesisByPatient(int id)
-        //{
-        //    ObservableCollection<Anamnesis> listOfPatientAnamnesis = new ObservableCollection<Anamnesis>();
-
-        //    foreach( Anamnesis anam in Anamnesis)
-        //    {
-        //        if(anam.pa)
-        //    }
-
-
-        //}
-        
-        public ObservableCollection<Anamnesis> FindAnamnesisByPatient (MedicalRecord med)
+        public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
-            ObservableCollection<Anamnesis> list = new ObservableCollection<Anamnesis>();
-            foreach(Anamnesis anam in Anamnesis)
+            ObservableCollection<Anamnesis> listOfPatientAnamnesis = new ObservableCollection<Anamnesis>();
+            listOfPatientAnamnesis = medicalRecord.Anamnesis;
+            foreach(Anamnesis anma in listOfPatientAnamnesis)
             {
-                if (anam._MedicalRecord.Patient._Jmbg == med.Patient._Jmbg)
-                {
-                    list.Add(anam);
-                }
+                Console.WriteLine(anma.Diagnosis+"xnxnxn");
             }
-            return list;
+            return listOfPatientAnamnesis;
+            
+
+
         }
-        public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
-        {
-            foreach (Anamnesis anamnesis in Anamnesis) 
-            { 
-                if(anamnesis._MedicalRecord.Patient._Id == appointment._Patient._Id && anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
-                {
-                    return anamnesis;
-                }
-            }
-            return null;
-        }
+
+        //public ObservableCollection<Anamnesis> FindAnamnesisByPatient (MedicalRecord med)
+        //{
+        //    ObservableCollection<Anamnesis> list = new ObservableCollection<Anamnesis>();
+        //    foreach(Anamnesis anam in Anamnesis)
+        //    {
+        //        if (anam._MedicalRecord._Patient._Jmbg == med._Patient._Jmbg)
+        //        {
+        //            list.Add(anam);
+        //        }
+        //    }
+        //    return list;
+        //}
         public ref ObservableCollection<Anamnesis> ReadAll()
         {
-            return ref Anamnesis;
+            return ref _anamnesis;
         }
 
         public void LoadDataFromFiles()
         {
-            Anamnesis = AnamnesisDataHandler.ReadAll();
+            _anamnesis = _anamnesisDataHandler.ReadAll();
         }
 
         public void LoadDataToFiles()
         {
-            AnamnesisDataHandler.Write(Anamnesis);
+            _anamnesisDataHandler.Write(_anamnesis);
         }
 
 

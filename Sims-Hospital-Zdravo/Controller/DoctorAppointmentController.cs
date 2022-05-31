@@ -14,83 +14,83 @@ namespace Controller
 {
     public class DoctorAppointmentController
     {
-        public Doctor getDoctor(int id)
+        public Doctor GetDoctor(int id)
         {
-            return doctorAppointmentService.GetDoctor(id);
+            return _doctorAppointmentService.GetDoctor(id);
         }
 
         public List<Doctor> ReadAllDoctors()
         {
-            return doctorAppointmentService.ReadAllDoctors();
+            return _doctorAppointmentService.ReadAllDoctors();
         }
 
         public void Create(Appointment appointment)
         {
-            doctorAppointmentService.Create(appointment);
+            _doctorAppointmentService.Create(appointment);
         }
 
         public void Update(Appointment appointment)
         {
-            doctorAppointmentService.Update(appointment);
+            _doctorAppointmentService.Update(appointment);
         }
 
         public Appointment GetByID(Appointment appointment)
         {
-            return doctorAppointmentService.GetByID(appointment);
+            return _doctorAppointmentService.GetByID(appointment);
         }
 
         public ObservableCollection<Appointment> GetByDoctorID(int id)
         {
-            return doctorAppointmentService.ReadAll(id);
+            return _doctorAppointmentService.ReadAll(id);
         }
 
-        public ref ObservableCollection<Patient> getPatients()
+        public ref ObservableCollection<Patient> GetPatients()
         {
-            return ref doctorAppointmentService.GetPatients();
+            return ref _doctorAppointmentService.GetPatients();
         }
 
         public void DeleteByID(Appointment appointment)
         {
-            doctorAppointmentService.DeleteByID(appointment);
+            _doctorAppointmentService.DeleteByID(appointment);
         }
 
         public ObservableCollection<Appointment> ReadAll(int id)
         {
             // TODO: implement
-            return doctorAppointmentService.ReadAll(id);
+            return _doctorAppointmentService.ReadAll(id);
         }
 
-        public Service.DoctorAppointmentService doctorAppointmentService;
-        //public DoctorAppointmentService doctorAppService;
+        public Service.DoctorAppointmentService _doctorAppointmentService;
+        
 
         public int GenerateId()
         {
-            return doctorAppointmentService.GenerateId();
+            return _doctorAppointmentService.GenerateId();
         }
 
         public DoctorAppointmentController(DoctorAppointmentService AppService)
         {
-            this.doctorAppointmentService = AppService;
+            this._doctorAppointmentService = AppService;
         }
 
         public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
         {
-            return doctorAppointmentService.FilterAppointmentsByDate(date);
+            return _doctorAppointmentService.FilterAppointmentsByDate(date);
         }
 
         public void DeleteAfterExaminationIsDone(DateTime date, int id, Patient pat)
         {
-            doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
+            _doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
         }
 
         public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
-            return doctorAppointmentService.FindDoctorsBySpecalty(specaltyType);
+            return _doctorAppointmentService.FindDoctorsBySpecalty(specaltyType);
         }
 
         public void UrgentSurgery(Appointment appointment,double duration)
         {
-            doctorAppointmentService.UrgentSurgery(appointment,duration);
+            _doctorAppointmentService.UrgentSurgery(appointment,duration);
         }
 
     }

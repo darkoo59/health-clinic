@@ -38,26 +38,25 @@ namespace Sims_Hospital_Zdravo
             this.DataContext = this;
             this.appointmentPatientController = app._appointmentPatientController;
             this.appointment = appointment;
-            dateTime = appointment._Time.Start;
-            if (appointment._Time.Start.Hour < 10)
+            dateTime = appointment.Time.Start;
+            if (appointment.Time.Start.Hour < 10)
             {
-                Time.Text ="0" + appointment._Time.Start.Hour;
+                Time.Text ="0" + appointment.Time.Start.Hour;
             }
             else
             {
-                Time.Text ="" +appointment._Time.Start.Hour;
+                Time.Text ="" +appointment.Time.Start.Hour;
             }
             Time.Text = Time.Text + ":";
-            if (appointment._Time.Start.Minute < 10)
+            if (appointment.Time.Start.Minute < 10)
             {
-                Time.Text = Time.Text + "0" + appointment._Time.Start.Minute;
+                Time.Text = Time.Text + "0" + appointment.Time.Start.Minute;
             }
             else
             {
-                Time.Text = Time.Text + appointment._Time.Start.Minute;
+                Time.Text = Time.Text + appointment.Time.Start.Minute;
             }
-            datePicker.SelectedDate = appointment._Time.Start;
-            Doctor.Text = appointment._Doctor._Name + " " + appointment._Doctor._Surname;
+            datePicker.SelectedDate = appointment.Time.Start;
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -81,7 +80,7 @@ namespace Sims_Hospital_Zdravo
                 }
                 TimeInterval timeInterval = new TimeInterval(date, date.AddMinutes(30));
                 appointmentPatientController.ValidateReshedule(appointment, timeInterval);
-                appointment._Time = timeInterval;
+                appointment.Time = timeInterval;
                 appointmentPatientController.Update(appointment);
                 patient.Content = new PatientWindow(patient);
             }

@@ -11,20 +11,20 @@ namespace Sims_Hospital_Zdravo.Model
 {
    public class PrescriptionService
     {
-        private PrescriptionRepository prescriptionRepository;
+        private PrescriptionRepository _prescriptionRepository;
 
         public PrescriptionService(PrescriptionRepository prescriptionRepository)
         {
-            this.prescriptionRepository = prescriptionRepository;
+            this._prescriptionRepository = prescriptionRepository;
         }
         public ObservableCollection<Prescription> ReadAll()
         {
-            return this.prescriptionRepository.ReadAll();
+            return this._prescriptionRepository.ReadAll();
         }
 
         public void Create(Prescription prescription)
         {
-            prescriptionRepository.Create(prescription);
+            _prescriptionRepository.Create(prescription);
         }
 
         

@@ -107,7 +107,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string patient = PatientTxt.Text;
             Console.WriteLine("haahahsahahhjs" + patient);
             string[] patientFull = patient.Split(' ');
-            foreach (Patient pat in this.doctorAppointmentController.getPatients())
+            foreach (Patient pat in this.doctorAppointmentController.GetPatients())
             {
                 if (pat._Name.Equals(patientFull[0]) && pat._Surname.Equals(patientFull[1]))
                 {

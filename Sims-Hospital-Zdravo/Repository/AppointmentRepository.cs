@@ -37,13 +37,13 @@ namespace Repository
         {
             foreach (Appointment app in appointments)
             {
-                if (app._Id == appointment._Id)
+                if (app.Id == appointment.Id)
                 {
-                    app._Time = appointment._Time;
-                    app._Doctor = appointment._Doctor;
-                    app._Patient = appointment._Patient;
-                    app._Room = appointment._Room;
-                    app._Type = appointment._Type;
+                    app.Time = appointment.Time;
+                    app.Doctor = appointment.Doctor;
+                    app.Patient = appointment.Patient;
+                    app.Room = appointment.Room;
+                    app.Type = appointment.Type;
 
                     loadDataToFile();
                 }
@@ -62,14 +62,14 @@ namespace Repository
             ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
             foreach (Appointment app in this.appointments)
             {
-                if (app._Doctor == null) continue;
-                if (app._Doctor._Id == id)
+                if (app.Doctor == null) continue;
+                if (app.Doctor._Id == id)
                 {
                     doctorsApps.Add(app);
                 }
             }
 
-            var doctorsapps = doctorsApps.OrderBy(i => i._Time.Start.Date).ToList();
+            var doctorsapps = doctorsApps.OrderBy(i => i.Time.Start.Date).ToList();
             doctorsApps = new ObservableCollection<Appointment>(doctorsapps);
             return doctorsApps;
         }
@@ -79,8 +79,8 @@ namespace Repository
             List<Appointment> doctorsApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
             {
-                if (app._Doctor == null) continue;
-                if (app._Doctor._Specialty == type && app._Time.Start < endDate)
+                if (app.Doctor == null) continue;
+                if (app.Doctor.Specialty == type && app.Time.Start < endDate)
                 {
                     doctorsApps.Add(app);
                 }
@@ -96,7 +96,7 @@ namespace Repository
             patientApps = new ObservableCollection<Appointment>();
             foreach (Appointment app in this.appointments)
             {
-                if (app._Patient._Id == id)
+                if (app.Patient._Id == id)
                 {
                     patientApps.Add(app);
                 }
@@ -127,7 +127,7 @@ namespace Repository
 
             foreach (Appointment appoi in appointments)
             {
-                if (appoi._Id == app._Id)
+                if (appoi.Id == app.Id)
                 {
                     return appoi;
                     ;
@@ -141,12 +141,13 @@ namespace Repository
         public List<TimeInterval> GetTimeIntervalsForRoom(Room room)
         {
             if (room == null) return new List<TimeInterval>();
-            return (from app in appointments where app._Room.Id == room.Id select new TimeInterval(app._Time.Start, app._Time.End)).ToList();
+            return (from app in appointments where app.Room.Id == room.Id select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForRoom(int roomId)
         {
-            return (from app in appointments where app._Room?.Id == roomId select new TimeInterval(app._Time.Start, app._Time.End)).ToList();
+            //return (from app in appointments where app.Room.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
+            return (from app in appointments where app.Room?.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForDoctor(int id)
@@ -154,9 +155,9 @@ namespace Repository
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
             foreach (Appointment app in appointments)
             {
-                if (app._Doctor._Id == id)
+                if (app.Doctor._Id == id)
                 {
-                    timeIntervals.Add(new TimeInterval(app._Time.Start, app._Time.End));
+                    timeIntervals.Add(new TimeInterval(app.Time.Start, app.Time.End));
                 }
             }
 
@@ -168,7 +169,7 @@ namespace Repository
             List<Appointment> apps = new List<Appointment>();
             foreach (Appointment app in appointments)
             {
-                if (app._Room.Id == roomId)
+                if (app.Room.Id == roomId)
                 {
                     apps.Add(app);
                 }
@@ -183,7 +184,7 @@ namespace Repository
             ObservableCollection<Appointment> appointments = FindByDoctorId(doctor._Id);
             foreach (Appointment app in appointments)
             {
-                timeIntervals.Add(app._Time);
+                timeIntervals.Add(app.Time);
             }
 
             return timeIntervals;
@@ -194,7 +195,7 @@ namespace Repository
             ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
             foreach (Appointment app in FindAll())
             {
-                if (app._Time.Start.Date == date.Date)
+                if (app.Time.Start.Date == date.Date)
                     appointmentsForDate.Add(app);
             }
 

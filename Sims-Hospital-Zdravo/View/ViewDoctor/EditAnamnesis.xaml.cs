@@ -26,30 +26,38 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     {
         private AnamnesisController anamnesisController;
         private DoctorAppointmentController doctorAppointmentController;
-        
+        private MedicalRecord medicalRecord;
+        private App app;
         private PatientMedicalRecordController patientMedicalRecordController;
         private int DoctorId;
         private Anamnesis anamnesis;
         private List<IUpdateFilesObserver> observers;
-        public EditAnamnesis( Anamnesis anamnesis,   AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController)
+        public EditAnamnesis( Anamnesis anamnesis, MedicalRecord medicalRecord)
         {
             InitializeComponent();
-            this.anamnesisController = anamnesisController;
+            this.app = App.Current as App;
+            this.anamnesisController = app._anamnesisController;
             this.anamnesis = anamnesis;
+            this.medicalRecord = medicalRecord;
             observers = new List<IUpdateFilesObserver>();
-            this.doctorAppointmentController = doctorAppointmentController;
-            PatientTxt.Text = anamnesis._MedicalRecord.Patient._Name + anamnesis._MedicalRecord.Patient._Surname;
-            MedicalRecordTxt.Text = anamnesis._MedicalRecord.Id.ToString();
-            DoctorTxt.Text = anamnesis._Doctor._Name + anamnesis._Doctor._Surname;
+            this.doctorAppointmentController = app._doctorAppointmentController;
+           
+            DoctorTxt.Text = anamnesis.Doctor._Name + anamnesis.Doctor._Surname;
             Editanam.Text = DateTime.Now.ToString();
-            DiagnosisTxt.Text = anamnesis._Diagnosis;
-            AnamnesisTxt.Text = anamnesis._Anamensis;
-            DoctorId = anamnesis._Doctor._Id;
-            DateTime date = anamnesis._Date;
-            Patient pat = anamnesis._MedicalRecord.Patient;
+            DiagnosisTxt.Text = anamnesis.Diagnosis;
+            AnamnesisTxt.Text = anamnesis.Anamensis;
+            DoctorId = anamnesis.Doctor._Id;
+            DateTime date = anamnesis.Date;
+            //Patient pat = anamnesis._MedicalRecord._Patient;
             ExaminatonTxt.Text = DateTime.Now.Date.ToString();
 
 
+        }
+        private void CreateColumn()
+        {
+            DataGridTemplateColumn templateColumn = new DataGridTemplateColumn();
+            Button editButton = new Button();
+            templateColumn.CellTemplate.DataType = editButton;
         }
 
         public void AddObserver(IUpdateFilesObserver observer)
@@ -75,10 +83,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DateTime date = DateTime.Parse(Editanam.Text);
             string diagnosis = DiagnosisTxt.Text;
             string medical_report = AnamnesisTxt.Text;
-            Doctor doctor = anamnesis._Doctor;
-            MedicalRecord med = anamnesis._MedicalRecord;
+            Doctor doctor = anamnesis.Doctor;
+            //MedicalRecord med = anamnesis._MedicalRecord;
             //TimeInterval tl = 
-            Anamnesis anam = new Anamnesis(doctor, med, date, null, diagnosis, medical_report);
+            Anamnesis anam = new Anamnesis(doctor,medicalRecord.Patient, date, null, diagnosis, medical_report);
             anamnesisController.Update(anam);
             Close();
         }

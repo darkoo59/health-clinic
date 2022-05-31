@@ -78,8 +78,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AnamnesisList anamnesisList = new AnamnesisList(anamnesisController, doctorId, docController);
-            anamnesisList.Show();
+            //AnamnesisList anamnesisList = new AnamnesisList( doctorId, medicalRecord);
+            //anamnesisList.Show();
         }
 
         private void PatientMenuItem_Click(object sender, RoutedEventArgs e)
@@ -126,7 +126,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             if (medicineCreatedNotification is null) return;
 
             notificationManager.Show(
-                new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine._Name + " is waiting for approval!" },
+                new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine.Name + " is waiting for approval!" },
                 areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
 
             notificationController.Delete(notification);
@@ -140,8 +140,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void AnamnesisClick(object sender, RoutedEventArgs e)
         {
-            MedicalReport medicalReport = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId,FrameForMain);
-            FrameForMain.Content = medicalReport;
+          // MedicalReport medicalReport = new MedicalReport( doctorId,FrameForMain);
+            //FrameForMain.Content = medicalReport;
         }
 
 
@@ -162,7 +162,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
-            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController,  doctorId, frame);
+            //ListOfMedecinesinSystem listOfMedecineList = new ListOfMedecinesinSystem( doctorId);
+            //FrameForMain.Content = listOfMedecineList;
         }
     }
 }

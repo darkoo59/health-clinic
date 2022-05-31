@@ -10,32 +10,32 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     public class RequestForFreeDaysController
     {
-        private RequestForFreeDaysService requestForFreeDaysService;
+        private RequestForFreeDaysService _requestForFreeDaysService;
 
         public RequestForFreeDaysController(RequestForFreeDaysService requestForFreeDaysService)
         {
-            this.requestForFreeDaysService = requestForFreeDaysService;
+            this._requestForFreeDaysService = requestForFreeDaysService;
         }
 
         public void Create(FreeDaysRequest request)
         {
-            requestForFreeDaysService.Create(request);
+            _requestForFreeDaysService.Create(request);
         }
 
         public void CreateUrgent(FreeDaysRequest request)
         {
-            requestForFreeDaysService.CreateUrgent(request);
+            _requestForFreeDaysService.CreateUrgent(request);
         }
 
 
         public void Delete(FreeDaysRequest request)
         {
-            requestForFreeDaysService.Delete(request);
+            _requestForFreeDaysService.Delete(request);
         }
 
         public ref  ObservableCollection<FreeDaysRequest> ReadAll()
         {
-            return  ref requestForFreeDaysService.ReadAll();
+            return  ref _requestForFreeDaysService.ReadAll();
         }
 
 

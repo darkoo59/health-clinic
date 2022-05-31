@@ -18,66 +18,66 @@ namespace Sims_Hospital_Zdravo.Model
     public class FreeDaysRequest
     {
 
-        private TimeInterval timeInterval;
-        private Doctor doctor;
-        private string reasonForFreeDays;
-        private RequestStatus status;
+        private TimeInterval _timeInterval;
+        private Doctor _doctor;
+        private string _reasonForFreeDays;
+        private RequestStatus _status;
 
         public FreeDaysRequest(TimeInterval timeInterval, Doctor doctor, string reasonForFreeDays,RequestStatus status)
         {
-            this.timeInterval = timeInterval;
-            this.doctor = doctor;
-            this.reasonForFreeDays = reasonForFreeDays;
-            this.status = status;
+            this._timeInterval = timeInterval;
+            this._doctor = doctor;
+            this._reasonForFreeDays = reasonForFreeDays;
+            this._status = status;
         }
 
 
-        public TimeInterval _TimeInterval
+        public TimeInterval TimeInterval
         {
             get
             {
-                return timeInterval;
+                return _timeInterval;
             }
             set
             {
                 if(value!= null)
-                timeInterval = value;
+                _timeInterval = value;
             }
         }
 
-        public Doctor _Doctor
+        public Doctor Doctor
         {
             get
             {
-                return doctor;
+                return _doctor;
             }
             set
             {
                 if (value != null)
-                    doctor = value;
+                    _doctor = value;
             }
         }
-        public string _ReasonForfreeDays
+        public string ReasonForfreeDays
         {
             get
             {
-                return reasonForFreeDays;
+                return _reasonForFreeDays;
             }
             set
             {
                 if (value != null)
-                    reasonForFreeDays = value;
+                    _reasonForFreeDays = value;
             }
         }
-        public RequestStatus _Status
+        public RequestStatus Status
         {
             get
             {
-                return status;
+                return _status;
             }
             set
             {
-                    status = value;
+                    _status = value;
             }
         }
     }

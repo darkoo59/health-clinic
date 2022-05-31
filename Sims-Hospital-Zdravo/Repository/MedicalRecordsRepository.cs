@@ -106,7 +106,7 @@ namespace Repository
         {
             foreach (MedicalRecord medical in _medicalRecords) 
             {
-                if (appointment._Patient._Id == medical.Patient._Id) 
+                if (appointment.Patient._Id == medical.Patient._Id) 
                 {
                     foreach(Anamnesis ana in medical.Anamnesis)
                     {
@@ -124,13 +124,13 @@ namespace Repository
         {
             foreach (MedicalRecord medical in _medicalRecords)
             {
-                if (appointment._Patient._Id == medical.Patient._Id)
+                if (appointment.Patient._Id == medical.Patient._Id)
                 {
                     foreach (Prescription pres in medical.Prescriptions)
                     {
-                        if (pres._Doctor._Id == prescription._Doctor._Id && pres._TimeInterval.Start.Equals(prescription._TimeInterval.Start))
+                        if (pres._Doctor._Id == prescription._Doctor._Id && pres.TimeInterval.Start.Equals(prescription.TimeInterval.Start))
                         {
-                            pres._StartDate = dateTime;
+                            pres.StartDate = dateTime;
                             LoadDataToFile();
                             return;
                         }
@@ -142,11 +142,11 @@ namespace Repository
         {
             foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Patient._Id == appointment._Patient._Id)
+                if (medicalRecord.Patient._Id == appointment.Patient._Id)
                 {
                     foreach (Anamnesis anamnesis in medicalRecord.Anamnesis)
                     {
-                        if (anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
+                        if (anamnesis.Doctor._Id == appointment.Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment.Time.Start))
                         {
                             return anamnesis;
                         }
@@ -160,11 +160,11 @@ namespace Repository
             ObservableCollection<Prescription> prescriptions = new ObservableCollection<Prescription>();
             foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Patient._Id == appointment._Patient._Id)
+                if (medicalRecord.Patient._Id == appointment.Patient._Id)
                 {
                     foreach (Prescription prescription in medicalRecord.Prescriptions)
                     {
-                        if (prescription._TimeInterval.Start.Equals(appointment._Time.Start))
+                        if (prescription.TimeInterval.Start.Equals(appointment.Time.Start))
                         {
                             prescriptions.Add(prescription);
                         }

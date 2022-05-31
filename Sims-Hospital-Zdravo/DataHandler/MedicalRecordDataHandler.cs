@@ -16,7 +16,7 @@ namespace DataHandler
       public ObservableCollection<MedicalRecord> ReadAll()
       {
             // TODO: implement
-            string recordsSerialized = System.IO.File.ReadAllText(Path);
+            string recordsSerialized = System.IO.File.ReadAllText(_path);
             ObservableCollection<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<MedicalRecord>>(recordsSerialized);
             return records;
         }
@@ -25,10 +25,10 @@ namespace DataHandler
       {
             // TODO: implement
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(medicalRecords);
-            System.IO.File.WriteAllText(Path, serialized);
+            System.IO.File.WriteAllText(_path, serialized);
         }
    
-      private String Path = @"..\..\Resources\medicalRecord.txt";
+      private String _path = @"..\..\Resources\medicalRecord.txt";
 
     }
 }
