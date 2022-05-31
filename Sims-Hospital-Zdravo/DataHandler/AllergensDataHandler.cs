@@ -13,9 +13,9 @@ namespace Sims_Hospital_Zdravo.DataHandler
         public Allergens ReadAll()
         {
             string allergensSerialized = System.IO.File.ReadAllText(Path);
-            //Allergens allergens = Newtonsoft.Json.JsonConvert.DeserializeObject<Allergens>(allergensSerialized);
-            //return allergens;
-            return null;
+            Allergens allergens = Newtonsoft.Json.JsonConvert.DeserializeObject<Allergens>(allergensSerialized);
+            return allergens;
+            //return null;
             
         }
 
