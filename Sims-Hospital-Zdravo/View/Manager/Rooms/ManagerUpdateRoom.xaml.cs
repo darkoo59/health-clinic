@@ -21,12 +21,14 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class ManagerUpdateRoom : Window
     {
+        private App app;
         private RoomController roomController;
 
-        public ManagerUpdateRoom(RoomController roomController)
+        public ManagerUpdateRoom()
         {
             InitializeComponent();
-            this.roomController = roomController;
+            app = Application.Current as App;
+            this.roomController = app._roomController;
             RoomTypeCmb.ItemsSource = Enum.GetValues(typeof(RoomType)).Cast<RoomType>();
             this.KeyDown += new KeyEventHandler(GoBack);
         }

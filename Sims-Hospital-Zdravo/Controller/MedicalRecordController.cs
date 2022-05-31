@@ -6,7 +6,6 @@
 
 using Model;
 using Service;
-using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
@@ -104,6 +103,24 @@ namespace Controller
         {
             return medicalRecordService.GetPrescriptionByMedicalRecord(medicalRecord);
         }
+        public Anamnesis GetAnamnesis(Appointment appointment) 
+        {
+            return medicalRecordService.GetAnamnesis(appointment);
+        }
 
+        public void AddNotes(Appointment appointment, Anamnesis anamnesis, string notes)
+        {
+            medicalRecordService.AddNotes(appointment, anamnesis, notes);
+        }
+
+        public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment) 
+        {
+            return medicalRecordService.GetPrescriptions(appointment);
+        }
+
+        public void AddStartDate(DateTime dateTime, Prescription prescription, Appointment appointment) 
+        {
+            medicalRecordService.AddStartDate(dateTime, prescription, appointment);
+        }
     }
 }

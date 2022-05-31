@@ -5,7 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
-        Title="PatientUpdate" Height="450" Width="800">
+        Title="PatientUpdate" Height="327" Width="792">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="#Segoe UI"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data=""/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E59400" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="OrangeRed" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,11 +53,13 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="4" Margin="-30,48,30,-53">Date:</TextBlock>
-        <DatePicker Grid.Column="1" Grid.Row="4"  Width="30" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker" Margin="2,48,10,-52"/>
-        <TextBlock Grid.Column="0" Grid.Row="4" Margin="-30,119,30,-117">Time:</TextBlock>
-        <TextBox x:Name="Time" Grid.Column="1" Grid.Row="4" Margin="0,119,0,-117"></TextBox>
-        <Button Grid.Row="4" Grid.Column="0" Click="Button_Click" Margin="-30,193,30,-193">Submit</Button>
-        <Button Grid.Row="4" Grid.Column="1" Click="Button_Click_1" Margin="0,193,0,-193">Cancel</Button>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-30,76,30,-69">Date:</TextBlock>
+        <DatePicker Grid.Column="1" Grid.Row="4" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker" Margin="0,82,0,-62"/>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-30,160,30,-151">Time:</TextBlock>
+        <TextBox FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" x:Name="Time" Grid.Column="1" Grid.Row="4" Margin="0,160,0,-151"></TextBox>
+        <Button Width="250" FontSize="20" Height="31" Grid.Row="4" Grid.Column="0" Click="Button_Click" Margin="-30,236,30,-233">Submit</Button>
+        <Button Width="250" FontSize="20" Height="31" Grid.Row="4" Grid.Column="1" Click="Button_Click_1" Margin="0,236,0,-233">Cancel</Button>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-15,6,45,5">Doctor:</TextBlock>
+        <TextBlock Name ="Doctor" FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="1" Grid.Row="4" Margin="0,6,0,5"/>
     </Grid>
 </Page>

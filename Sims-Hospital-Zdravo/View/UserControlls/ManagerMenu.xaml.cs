@@ -13,14 +13,25 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
     {
         private Frame ManagerContent;
         private Label HeaderLabel;
-        private ManagerMainWindow mainWindow;
         private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Medicines" };
         private int currentMenuItem = 1;
 
         public ManagerMenu()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(UserControl_Loaded);
+            LoadMainWindowParts();
+        }
+
+        private void LoadMainWindowParts()
+        {
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win.GetType() == typeof(ManagerMainWindow))
+                {
+                    ManagerContent = ((ManagerMainWindow)win).ManagerPager;
+                    HeaderLabel = ((ManagerMainWindow)win).HeaderLabel;
+                }
+            }
         }
 
 
@@ -45,25 +56,6 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             SetCurrentMenuItem(text);
             SwitchMenu(text);
             SetMenuItemTitle(text);
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs args)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow is ManagerMainWindow)
-            {
-                mainWindow = ((ManagerMainWindow)parentWindow);
-                ManagerContent = ((ManagerMainWindow)parentWindow).ManagerContent;
-                HeaderLabel = ((ManagerMainWindow)parentWindow).HeaderLabel;
-            }
-        }
-
-        private void SwitchMenu_Click(object sender, RoutedEventArgs e)
-        {
-            string buttonText = GetButtonText(sender);
-            SetCurrentMenuItem(buttonText);
-            SwitchMenu(buttonText);
-            SetMenuItemTitle(buttonText);
         }
 
         private void SwitchMenu(string text)
@@ -194,11 +186,6 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         {
             Button b = sender as Button;
             return b.Content.ToString();
-        }
-
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            mainWindow.Logout();
         }
     }
 }

@@ -16,89 +16,88 @@ using Sims_Hospital_Zdravo.Model;
 
 namespace Service
 {
-   public class MedicalRecordService
-   {
+    public class MedicalRecordService
+    {
 
-        public Repository.MedicalRecordsRepository medicalRecordRepository;
-        public PatientRepository patientRepository;
-        public AllergensRepository allergensRepository;
-        public MedicalRecordValidator validator;
-        
+        private MedicalRecordsRepository _medicalRecordRepository;
+        private PatientRepository _patientRepository;
+        private AllergensRepository _allergensRepository;
+        private MedicalRecordValidator _validator;
 
         public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
         {
-            medicalRecordRepository = medicalRepo;
-            patientRepository = patientRepo;
-            allergensRepository = alergRepo;
-            validator = new MedicalRecordValidator(this);
+            _medicalRecordRepository = medicalRepo;
+            _patientRepository = patientRepo;
+            _allergensRepository = alergRepo;
+            _validator = new MedicalRecordValidator(this);
         }
-      public void Create(MedicalRecord medicalRecord, Patient patient)
-      {
+        public void Create(MedicalRecord medicalRecord, Patient patient)
+        {
             // TODO: implement
-            validator.InsertValidation(patient._Jmbg);
-            medicalRecordRepository.Create(medicalRecord);
-            patientRepository.Create(patient);
-         return;
-      }
-      
-      public MedicalRecord FindById(int id)
-      {
+            _validator.InsertValidation(patient._Jmbg);
+            _medicalRecordRepository.Create(medicalRecord);
+            _patientRepository.Create(patient);
+            return;
+        }
+
+        public MedicalRecord FindById(int id)
+        {
             // TODO: implement
-            return medicalRecordRepository.FindById(id);
-      }
+            return _medicalRecordRepository.FindById(id);
+        }
 
 
-       public ref ObservableCollection<MedicalRecord> ReadAll()
-      {
-         // TODO: implement
-         return ref medicalRecordRepository.ReadAll();
-      }
-      
-      public void Update(MedicalRecord medicalRecord, Patient patient)
-      {
+        public ref ObservableCollection<MedicalRecord> ReadAll()
+        {
             // TODO: implement
-            validator.UpdateValidation(patient._Jmbg);
-            patientRepository.Update(patient);
-            medicalRecordRepository.Update(medicalRecord);
-         return;
-      }
-      
-      public void DeleteById(int id)
-      {
+            return ref _medicalRecordRepository.ReadAll();
+        }
+
+        public void Update(MedicalRecord medicalRecord, Patient patient)
+        {
             // TODO: implement
-            medicalRecordRepository.DeleteById(id);
-      }
-      
-      public void Delete(MedicalRecord medicalRecord)
-      {
+            _validator.UpdateValidation(patient._Jmbg);
+            _patientRepository.Update(patient);
+            _medicalRecordRepository.Update(medicalRecord);
+            return;
+        }
+
+        public void DeleteById(int id)
+        {
             // TODO: implement
-            medicalRecordRepository.Delete(medicalRecord);
-      }
-      
+            _medicalRecordRepository.DeleteById(id);
+        }
+
+        public void Delete(MedicalRecord medicalRecord)
+        {
+            // TODO: implement
+            _medicalRecordRepository.Delete(medicalRecord);
+        }
+
         public Patient FindPatientById(int id)
         {
-            return medicalRecordRepository.FindPatientById(id);
+            return _medicalRecordRepository.FindPatientById(id);
         }
 
         public List<String> ReadAllCommonAllergens()
         {
-            return allergensRepository.ReadAllCommonAllergens();
+            return _allergensRepository.ReadAllCommonAllergens();
         }
 
 
         public List<String> ReadAllMedicalAllergens()
         {
-            return allergensRepository.ReadAllMedicalAllergens();
+            return _allergensRepository.ReadAllMedicalAllergens();
         }
 
         public int GenerateId()
         {
-            ObservableCollection<MedicalRecord> medicalRecords = medicalRecordRepository.ReadAll();
+            ObservableCollection<MedicalRecord> medicalRecords = _medicalRecordRepository.ReadAll();
             List<int> ids = new List<int>();
             int id = 0;
-            foreach(MedicalRecord record in medicalRecords)
+            foreach (MedicalRecord record in medicalRecords)
             {
-                ids.Add(record._Id);
+                ids.Add(record.Id);
             }
             while (ids.Contains(id))
             {
@@ -110,7 +109,7 @@ namespace Service
 
         public int GenreatePatientId()
         {
-            ObservableCollection<Patient> patients = patientRepository.ReadAll();
+            ObservableCollection<Patient> patients = _patientRepository.ReadAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Patient patient in patients)
@@ -126,9 +125,24 @@ namespace Service
 
         public ObservableCollection<Prescription> GetPrescriptionByMedicalRecord(MedicalRecord medicalRecord)
         {
-            return medicalRecordRepository.GetPrescriptionsByMedicalRecord(medicalRecord);
+            return _medicalRecordRepository.GetPrescriptionsByMedicalRecord(medicalRecord);
         }
 
-       
+        public Anamnesis GetAnamnesis(Appointment appointment)
+        {
+            return _medicalRecordRepository.GetAnamnesis(appointment);
+        }
+        public void AddNotes(Appointment appointment, Anamnesis anamnesis, string notes)
+        {
+            _medicalRecordRepository.AddNotes(appointment, anamnesis, notes);
+        }
+        public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment)
+        {
+            return _medicalRecordRepository.GetPrescriptions(appointment);
+        }
+        public void AddStartDate(DateTime dateTime, Prescription prescription, Appointment appointment)
+        {
+            _medicalRecordRepository.AddStartDate(dateTime, prescription, appointment);
+        }
    }
 }

@@ -127,8 +127,18 @@ namespace Sims_Hospital_Zdravo.Model
                 _flag = value;
             }
         }
-        
 
+        public DateTime _StartDate
+        {
+            get
+            {
+                return startDate;
+            }
+            set
+            {
+                startDate = value;
+            }
+        }
 
     }
 }

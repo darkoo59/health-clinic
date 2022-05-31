@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Model;
 using Service;
 using Sims_Hospital_Zdravo.Model;
-using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Controller
 {

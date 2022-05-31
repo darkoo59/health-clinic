@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
@@ -13,6 +14,7 @@
         Background="#2f343d"
         ResizeMode="CanResize"
         Closing="WindowClosing">
+
 
     <Window.Resources>
         <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
@@ -52,10 +54,6 @@
             </Label>
 
         </DockPanel>
-
-
-        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
-
         <Frame Grid.Column="1"
                Grid.Row="1"
                x:Name="ManagerContent"
@@ -63,6 +61,9 @@
                Padding="0"
                Focusable="False">
         </Frame>
+
+        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
+
 
         <notifications:NotificationArea
             Grid.Row="1"
@@ -77,4 +78,55 @@
             Focusable="False"
             MaxItems="3" />
     </Grid>
+
+
+    <Window.InputBindings>
+        <KeyBinding
+            Command="cmd:Commands.RotateMenuCommand"
+            CommandParameter="-1"
+            Key="W"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.RotateMenuCommand"
+            CommandParameter="1"
+            Key="S"
+            Modifiers="Shift">
+        </KeyBinding>
+
+        <KeyBinding
+            Command="cmd:Commands.SetMenuItemCommand"
+            CommandParameter="Equipment"
+            Key="D1"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.SetMenuItemCommand"
+            CommandParameter="Renovations"
+            Key="D2"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.SetMenuItemCommand"
+            CommandParameter="Rooms"
+            Key="D3"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.SetMenuItemCommand"
+            CommandParameter="Medicines"
+            Key="D4"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.GoBackCommand"
+            Key="Esc">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.LogoutCommand"
+            Key="L"
+            Modifiers="Control">
+        </KeyBinding>
+
+    </Window.InputBindings>
 </Window>

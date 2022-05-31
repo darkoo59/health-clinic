@@ -8,23 +8,11 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class HospitalSurvey
     {
-        private int _kindness;
-        private int _professional;
-        private int _hygiene;
-        private int _application;
-        private int _waitingRoom;
-        public HospitalSurvey(int kindness, int professional, int hygiene, int application, int waitingRoom)
+        private List<QuestionAndRate> _questionsAndRates;
+        public HospitalSurvey(List<QuestionAndRate> questionsAndRates)
         {
-            _kindness = kindness;
-            _professional = professional;
-            _hygiene = hygiene;
-            _application = application;
-            _waitingRoom = waitingRoom;
+            QuestionsAndRates = questionsAndRates;
         }
-        public int Kindness { get { return _kindness; } set { this._kindness = value; } }
-        public int Professional { get { return _professional; } set { this._professional = value; } }
-        public int Hygiene { get { return _hygiene; } set { this._hygiene = value; } }
-        public int Application { get { return _application; } set { this._application = value; } }
-        public int WaitingRoom { get { return _waitingRoom; } set { this._waitingRoom = value; } }
+        public List<QuestionAndRate> QuestionsAndRates { get { return _questionsAndRates; } set { this._questionsAndRates = value; } }
     }
 }

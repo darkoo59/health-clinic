@@ -58,8 +58,8 @@ namespace Sims_Hospital_Zdravo
                 }
 
                 Allergens allergens = new Allergens();
-                allergens._Allergens = allergensItems;
-                allergens._MedicalAllergens = medicalAllergensList;
+                allergens.CommonAllergens = allergensItems;
+                allergens.MedicalAllergens = medicalAllergensList;
                 MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
                 medicalController.Create(medicalRecord, patient);
                 Close();

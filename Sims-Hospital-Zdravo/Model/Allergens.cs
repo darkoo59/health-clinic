@@ -9,17 +9,17 @@ namespace Sims_Hospital_Zdravo.Model
 {
      public class Allergens
     {
-        private List<String> allergens;
-        private List<String> medicalAllergens;
+        private List<String> _commonAllergens;
+        private List<String> _medicalAllergens;
 
         public Allergens()
         {
-            allergens = new List<String>();
-            medicalAllergens = new List<string>();
+            _commonAllergens = new List<String>();
+            _medicalAllergens = new List<string>();
         }
 
-        public List<String> _Allergens { get; set; }
+        public List<String> CommonAllergens { get; set; }
 
-        public List<String> _MedicalAllergens { get; set; }
+        public List<String> MedicalAllergens { get; set; }
     }
 }

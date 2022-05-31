@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
              mc:Ignorable="d"
              d:DesignHeight="718" d:DesignWidth="100">
+
     <UserControl.Resources>
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -31,7 +33,10 @@
                            Height="30"
                            Width="30">
                     </Image>
-                    <Button x:Name="BtnEquipment" Focusable="False" Click="SwitchMenu_Click"
+                    <Button x:Name="BtnEquipment"
+                            Focusable="False"
+                            Command="cmd:Commands.SetMenuItemCommand"
+                            CommandParameter="Equipment"
                             Style="{StaticResource MenuButtonStyle}">
                         <Button.ToolTip>
                             Shift + 1
@@ -43,7 +48,10 @@
             <Border x:Name="RenovationsBorder" Padding="8, 20, 8, 10" Background="#2f343d">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-renovation.ico" Height="30" Width="30"></Image>
-                    <Button x:Name="BtnRenovations" Focusable="False" Click="SwitchMenu_Click"
+                    <Button x:Name="BtnRenovations"
+                            Focusable="False"
+                            Command="cmd:Commands.SetMenuItemCommand"
+                            CommandParameter="Renovations"
                             Style="{StaticResource MenuButtonStyle}">
                         <Button.ToolTip>
                             Shift + 2
@@ -55,7 +63,10 @@
             <Border x:Name="RoomsBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-rooms.ico" Height="30" Width="30"></Image>
-                    <Button x:Name="BtnRooms" Focusable="False" Click="SwitchMenu_Click"
+                    <Button x:Name="BtnRooms"
+                            Focusable="False"
+                            Command="cmd:Commands.SetMenuItemCommand"
+                            CommandParameter="Rooms"
                             Style="{StaticResource MenuButtonStyle}">
                         <Button.ToolTip>
                             Shift + 3
@@ -67,7 +78,10 @@
             <Border x:Name="MedicinesBorder" Padding="8, 20, 8, 10">
                 <StackPanel>
                     <Image Source="../../Resources/img/image-medicines.ico" Height="30" Width="30"></Image>
-                    <Button x:Name="BtnMedicines" Focusable="True" Click="SwitchMenu_Click"
+                    <Button x:Name="BtnMedicines"
+                            Focusable="True"
+                            Command="cmd:Commands.SetMenuItemCommand"
+                            CommandParameter="Medicines"
                             Style="{StaticResource MenuButtonStyle}">
                         <Button.ToolTip>
                             Shift + 4
@@ -80,7 +94,9 @@
 
         <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
             <Image Source="pack://application:,,,/Resources/img/image-logout.ico" Height="30" Width="30"></Image>
-            <Button Focusable="False" ToolTip="Shift + L" Click="Logout_Click" Style="{StaticResource MenuButtonStyle}">
+            <Button Focusable="False" ToolTip="Control + L"
+                    Command="cmd:Commands.LogoutCommand"
+                    Style="{StaticResource MenuButtonStyle}">
                 <AccessText>_Logout</AccessText>
             </Button>
         </StackPanel>

@@ -36,7 +36,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.frame = frame;
             this.medicalRecordController = medicalRecordController;
             this.medicalRecord = medicalRecord;
-            this.prescriptions = medicalRecord._Prescriptions;
+            this.prescriptions = medicalRecord.Prescriptions;
             PrescriptionListPatient.ItemsSource = medicalRecordController.GetPrescriptionsByMedicalRecord(medicalRecord);
             PrescriptionListPatient.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();

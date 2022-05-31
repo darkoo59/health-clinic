@@ -99,7 +99,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 Prescription prescription = new Prescription(medicine, date, strength, tl, doctor, dosage, numOfDays);
                 medicalRecordController.createPrescription(prescription);
 
-                medicalRecord._Prescriptions.Add(prescription);
+                medicalRecord.Prescriptions.Add(prescription);
                 PrescriptionList prescriptionList = new PrescriptionList(medicalRecordController,  medicalRecord, doctorId,frame);
                 frame.Content = prescriptionList;
                 Close();

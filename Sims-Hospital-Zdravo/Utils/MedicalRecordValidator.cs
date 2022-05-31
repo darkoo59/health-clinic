@@ -11,15 +11,15 @@ namespace Sims_Hospital_Zdravo.Utils
 {
     public class MedicalRecordValidator
     {
-        private MedicalRecordService recordService;
+        private MedicalRecordService _recordService;
 
 
         public MedicalRecordValidator(MedicalRecordService service)
         {
-            this.recordService = service;
+            this._recordService = service;
         }
 
-        private void jmbgRightFormat(String jmbg)
+        private void JmbgRightFormat(String jmbg)
         {
             if(jmbg.Length != 13)
             {
@@ -38,12 +38,12 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void InsertValidation(String jmbg)
         {
-            jmbgRightFormat(jmbg);
+            JmbgRightFormat(jmbg);
         }
 
         public void UpdateValidation(String jmbg)
         {
-            jmbgRightFormat(jmbg);
+            JmbgRightFormat(jmbg);
         }
     }
 }

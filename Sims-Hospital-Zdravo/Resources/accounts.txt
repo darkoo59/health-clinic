@@ -1,5 +1,5 @@
 [{"_Username":"manager","_Password":"manager","_Id":1,"_Role":0}
 ,{"_Username":"secretary","_Password":"secretary","_Id":2,"_Role":1}
 ,{"_Username":"doctor","_Password":"doctor","_Id":2,"_Role":2}
-,{"_Username":"patient","_Password":"patient","_Id":4,"_Role":3},
-{"_Username":"doctor1","_Password":"doctor1","_Id":3,"_Role":2}]
+,{"_Username":"patient","_Password":"patient","_Id":4,"_Role":3,"Blocked":false,"Cancels":[]}
+,{"_Username":"doctor1","_Password":"doctor1","_Id":3,"_Role":2}]

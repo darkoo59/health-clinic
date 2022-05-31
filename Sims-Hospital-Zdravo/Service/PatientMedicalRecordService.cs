@@ -31,8 +31,8 @@ namespace Service
             _records = _medicalRecordsRepository.ReadAll();
             foreach(MedicalRecord record in _records)
             {
-                Console.WriteLine(record._Patient._Id);
-                if (record._Patient._Id.Equals(patient._Id))
+                Console.WriteLine(record.Patient._Id);
+                if (record.Patient._Id.Equals(patient._Id))
                 {
                     return record;
                     

@@ -7,7 +7,7 @@ using Repository;
 using System.Collections.ObjectModel;
 using Model;
 
-namespace Sims_Hospital_Zdravo.Service
+namespace Sims_Hospital_Zdravo.Model
 {
     public class TimeAppointmentService
     {
