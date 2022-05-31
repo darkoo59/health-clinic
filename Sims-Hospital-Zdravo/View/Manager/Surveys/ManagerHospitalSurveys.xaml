@@ -1,0 +1,52 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.Surveys.ManagerHospitalSurveys"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Surveys"
+      mc:Ignorable="d"
+      Height="686"
+      Width="924"
+      Margin="0">
+    <Page.Resources>
+        <ResourceDictionary Source="../ManagerStyles.xaml">
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30">
+            Hospital Survey Results
+        </Label>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <ItemsControl x:Name="SurveyStats" Background="#2f343d" Foreground="White">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="Transparent"
+                                    Orientation="Vertical"
+                                    Width="{Binding ActualWidth, ElementName=SurveyStats}">
+                            <TextBox FontWeight="Bold"
+                                     FontSize="20"
+                                     IsEnabled="False"
+                                     Background="Transparent"
+                                     Foreground="White"
+                                     Width="{Binding ActualWidth, ElementName=SurveyStats}"
+                                     Text="{Binding Path=QuestionContent}">
+                            </TextBox>
+                            <ItemsControl
+                                Background="#2f343d"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                FontSize="15"
+                                Width="{Binding ActualWidth, ElementName=SurveyStats}"
+                                ItemsSource="{Binding Marks}">
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

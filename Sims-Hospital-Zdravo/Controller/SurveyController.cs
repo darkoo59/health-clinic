@@ -26,13 +26,25 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             surveyService.CreateHospitalSurvey(hospitalSurvey);
         }
+
         public List<QuestionForSurvey> GetHospitalQuestions()
         {
             return surveyService.GetHospitalQuestions();
         }
+
         public List<QuestionForSurvey> GetDoctorQuestions()
         {
             return surveyService.GetDoctorQuestions();
+        }
+
+        public SurveyStatistics GetDoctorSurveyStatistics(int doctorId)
+        {
+            return surveyService.GetDoctorSurveyStatistics(doctorId);
+        }
+
+        public SurveyStatistics GetHospitalSurveyStatistics()
+        {
+            return surveyService.GetHospitalSurveyStatistics();
         }
     }
 }

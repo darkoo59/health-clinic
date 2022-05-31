@@ -6,8 +6,8 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d"
       Title="ManagerRooms"
-      Height="686"
-      Width="924"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
       Margin="0">
 
 

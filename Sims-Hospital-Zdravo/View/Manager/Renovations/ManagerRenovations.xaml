@@ -8,7 +8,9 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 
       mc:Ignorable="d"
-      Title="ManagerRenovations" Height="686" Width="924">
+      Title="ManagerRenovations"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
     </Page.Resources>

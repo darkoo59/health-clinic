@@ -1,0 +1,46 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.Surveys.ManagerSurveys"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Surveys"
+      xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
+      mc:Ignorable="d"
+      Title="ManagerSurveys"
+      Height="686"
+      Width="924"
+      Margin="0">
+    <Page.Resources>
+        <ResourceDictionary Source="../ManagerStyles.xaml">
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button
+            Grid.Row="3"
+            Grid.Column="1"
+            FocusVisualStyle="{DynamicResource MyFocusVisual}"
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Surveys/ManagerHospitalSurveys.xaml">
+            Hospital Statistics
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" FocusVisualStyle="{DynamicResource MyFocusVisual}">Doctor Statistics</Button>
+
+    </Grid>
+</Page>

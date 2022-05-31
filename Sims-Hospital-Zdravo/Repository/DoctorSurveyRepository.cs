@@ -32,6 +32,11 @@ namespace Sims_Hospital_Zdravo.Repository
             return surveys;
         }
 
+        public List<DoctorSurvey> ReadAllByDoctorId(int id)
+        {
+            return surveys.FindAll(survey => survey.Appointment._Doctor._Id == id);
+        }
+
         public void LoadDataFromFile()
         {
             surveys = doctorSurveyDataHandler.ReadAll();

@@ -130,6 +130,15 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
+    <Compile Include="Interfaces\ISurveyStatistic.cs" />
+    <Compile Include="Model\MarkStatistic.cs" />
+    <Compile Include="Model\QuestionStatistic.cs" />
+    <Compile Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml.cs">
+      <DependentUpon>ManagerHospitalSurveys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Surveys\ManagerSurveys.xaml.cs">
+      <DependentUpon>ManagerSurveys.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
     </Compile>
@@ -164,7 +173,7 @@
     <Compile Include="Model\FreeDaysRequest.cs" />
     <Compile Include="Model\DoctorSurvey.cs" />
     <Compile Include="Model\HospitalSurvey.cs" />
-    <Compile Include="Model\HospitalSurveyStatistics.cs" />
+    <Compile Include="Model\SurveyStatistics.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\MedicineCreatedNotification.cs" />
     <Compile Include="Model\Notification.cs" />
@@ -397,6 +406,8 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
+    <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Patient\AnamnesisPage.xaml" />
     <Page Include="View\Patient\AppointmentDetailsPage.xaml" />
     <Page Include="View\Patient\AppointmentList.xaml">

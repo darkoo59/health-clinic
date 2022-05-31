@@ -13,7 +13,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
     {
         private Frame ManagerContent;
         private Label HeaderLabel;
-        private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Medicines" };
+        private string[] menuitems = { "Equipment", "Renovations", "Rooms", "Medicines", "Surveys" };
         private int currentMenuItem = 1;
 
         public ManagerMenu()
@@ -93,6 +93,9 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Rooms":
                     currentMenuItem = 2;
                     break;
+                case "Surveys":
+                    currentMenuItem = 4;
+                    break;
             }
         }
 
@@ -112,6 +115,9 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                     break;
                 case "Rooms":
                     ManagerContent.Source = new Uri("Rooms/ManagerRooms.xaml", UriKind.Relative);
+                    break;
+                case "Surveys":
+                    ManagerContent.Source = new Uri("Surveys/ManagerSurveys.xaml", UriKind.Relative);
                     break;
             }
         }
@@ -156,6 +162,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Equipment": return BtnEquipment;
                 case "Renovations": return BtnRenovations;
                 case "Rooms": return BtnRooms;
+                case "Surveys": return BtnSurveys;
                 default: return null;
             }
         }
@@ -166,6 +173,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             EquipmentBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
             MedicinesBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
             RoomsBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
+            SurveysBorder.Background = new SolidColorBrush(Color.FromRgb(39, 44, 51));
         }
 
 
@@ -177,6 +185,7 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
                 case "Equipment": return EquipmentBorder;
                 case "Medicines": return MedicinesBorder;
                 case "Rooms": return RoomsBorder;
+                case "Surveys": return SurveysBorder;
                 default: return null;
             }
         }

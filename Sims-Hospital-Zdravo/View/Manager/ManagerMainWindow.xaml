@@ -119,6 +119,12 @@
             Modifiers="Shift">
         </KeyBinding>
         <KeyBinding
+            Command="cmd:Commands.SetMenuItemCommand"
+            CommandParameter="Surveys"
+            Key="D5"
+            Modifiers="Shift">
+        </KeyBinding>
+        <KeyBinding
             Command="cmd:Commands.GoBackCommand"
             Key="Esc">
         </KeyBinding>

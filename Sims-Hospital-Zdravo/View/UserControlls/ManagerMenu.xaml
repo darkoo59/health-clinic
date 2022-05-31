@@ -90,6 +90,21 @@
                     </Button>
                 </StackPanel>
             </Border>
+            <Border x:Name="SurveysBorder" Padding="8, 20, 8, 10">
+                <StackPanel>
+                    <Image Source="../../Resources/img/image-surveys.ico" Height="30" Width="30"></Image>
+                    <Button x:Name="BtnSurveys"
+                            Focusable="True"
+                            Command="cmd:Commands.SetMenuItemCommand"
+                            CommandParameter="Surveys"
+                            Style="{StaticResource MenuButtonStyle}">
+                        <Button.ToolTip>
+                            Shift + 5
+                        </Button.ToolTip>
+                        Medicines
+                    </Button>
+                </StackPanel>
+            </Border>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">

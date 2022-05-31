@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
       mc:Ignorable="d"
-      Height="686"
-      Width="924"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
       Title="ManagerRenovationAdvanced">
 
     <Page.Resources>
