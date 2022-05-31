@@ -27,7 +27,7 @@ namespace Sims_Hospital_Zdravo
         private Appointment appointment;
         App app;
         private SurveyController surveyController;
-        List<QuestionForSurvey> questions;
+        ObservableCollection<QuestionForSurvey> questions;
         Frame frame;
         public DoctorSurveyPage(Appointment appointment, Frame frame)
         {
@@ -38,27 +38,34 @@ namespace Sims_Hospital_Zdravo
             this.appointment = appointment;
             this.appointment.Rated = false;
             this.DataContext = this;
-            Survey.ItemsSource = getQuestions();
+            InitalizeList();
+            Survey.ItemsSource = questions;
 
             Survey.AutoGenerateColumns = false;
         }
-        public List<QuestionForSurvey> getQuestions()
+        private void InitalizeList()
         {
-            questions = new List<QuestionForSurvey>();
-            foreach (string s in surveyController.GetDoctorQuestions())
+            questions = new ObservableCollection<QuestionForSurvey>();
+            foreach (QuestionForSurvey questionForSurvey in surveyController.GetDoctorQuestions())
             {
-                questions.Add(new QuestionForSurvey(s));
+                SetRadioButtons(questionForSurvey);
+                questions.Add(questionForSurvey);
             }
-            return questions;
+        }
+        private void SetRadioButtons(QuestionForSurvey questionForSurvey)
+        {
+            questionForSurvey.One = false;
+            questionForSurvey.Two = false;
+            questionForSurvey.Three = false;
+            questionForSurvey.Four = false;
+            questionForSurvey.Five = false;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<QuestionAndRate> questionsAndRates = new List<QuestionAndRate>();
-            int i = 1;
             foreach (QuestionForSurvey questionForSurvey in questions)
             {
-                questionsAndRates.Add(new QuestionAndRate(i, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
-                i++;
+                questionsAndRates.Add(new QuestionAndRate(questionForSurvey.Id, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
             }
             surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment, questionsAndRates));
             frame.Content = new HomePatient(frame);

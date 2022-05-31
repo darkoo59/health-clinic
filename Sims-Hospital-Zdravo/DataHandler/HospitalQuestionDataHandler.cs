@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sims_Hospital_Zdravo.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,12 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class HospitalQuestionDataHandler
     {
-        public List<string> ReadAll()
+        public List<QuestionForSurvey> ReadAll()
         {
             string questionSerialized = System.IO.File.ReadAllText(Path);
-            List<string> questions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(questionSerialized);
+            List<QuestionForSurvey> questions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<QuestionForSurvey>>(questionSerialized);
             return questions;
         }
-        private String Path = @"..\..\Resources\questions_hospital.txt";
+        private string Path = @"..\..\Resources\questions_hospital.txt";
     }
 }

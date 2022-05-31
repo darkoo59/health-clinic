@@ -15,9 +15,11 @@ namespace Sims_Hospital_Zdravo.Model
         private bool _three;
         private bool _four;
         private bool _five;
+        private int _id;
 
-        public QuestionForSurvey(string text)
+        public QuestionForSurvey(string text, int id)
         {
+            _id = id;
             _text = text;
             _one = false;
             _two = false;
@@ -25,6 +27,7 @@ namespace Sims_Hospital_Zdravo.Model
             _four = false;
             _five = false;
         }
+        public int Id { get { return _id; } set { this._id = value; OnPropertyChanged("_text"); } }
         public string Text { get { return _text; }set { this._text = value; OnPropertyChanged("_text"); } }
         public bool One { get { return _one; } set { this._one = value; OnPropertyChanged("_one"); } }
         public bool Two { get { return _two; } set { this._two = value; OnPropertyChanged("_two"); } }
