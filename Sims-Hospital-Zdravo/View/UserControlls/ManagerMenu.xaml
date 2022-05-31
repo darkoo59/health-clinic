@@ -101,7 +101,7 @@
                         <Button.ToolTip>
                             Shift + 5
                         </Button.ToolTip>
-                        Medicines
+                        Surveys
                     </Button>
                 </StackPanel>
             </Border>
