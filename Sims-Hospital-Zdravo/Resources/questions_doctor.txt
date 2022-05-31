@@ -1,1 +1,1 @@
-["Doctor was polite.","Room was clean.","Appointment held on schedule.","Doctor explained everything in understandable way.","Doctor is good overall."]
+[{"Id":1,"Text":"Doctor was polite."},{"Id":2,"Text":"Room was clean."},{"Id":3,"Text":"Appointment held on schedule."},{"Id":4,"Text":"Doctor explained everything in understandable way."},{"Id":5,"Text":"Doctor is good overall."}]

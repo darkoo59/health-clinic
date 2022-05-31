@@ -30,13 +30,11 @@ namespace Sims_Hospital_Zdravo.Service
         {
             hospitalSurveyRepository.Create(hospitalSurvey);
         }
-
-        public List<string> GetHospitalQuestions()
+        public List<QuestionForSurvey> GetHospitalQuestions()
         {
             return questionRepository.GetHospitalQuestions();
         }
-
-        public List<string> GetDoctorQuestions()
+        public List<QuestionForSurvey> GetDoctorQuestions()
         {
             return questionRepository.GetDoctorQuestions();
         }

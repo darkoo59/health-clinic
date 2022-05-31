@@ -100,13 +100,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AnamnesisPage.xaml.cs" />
-    <Compile Include="AppointmentDetailsPage.xaml.cs">
-      <DependentUpon>AppointmentDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AppointmentList.xaml.cs">
-      <DependentUpon>AppointmentList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\EquipmentController.cs" />
@@ -137,16 +130,25 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
-    <Compile Include="DiagnosisPage.xaml.cs" />
+    <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
+      <DependentUpon>AnamnesisPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\AppointmentDetailsPage.xaml.cs">
+      <DependentUpon>AppointmentDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\AppointmentList.xaml.cs">
+      <DependentUpon>AppointmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\DiagnosisPage.xaml.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Interfaces\IFilterPipeline.cs" />
-    <Compile Include="DoctorSurveyPage.xaml.cs">
+    <Compile Include="View\Patient\DoctorSurveyPage.xaml.cs">
       <DependentUpon>DoctorSurveyPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomePatient.xaml.cs">
+    <Compile Include="View\Patient\HomePatient.xaml.cs">
       <DependentUpon>HomePatient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HospitalSurveyPage.xaml.cs">
+    <Compile Include="View\Patient\HospitalSurveyPage.xaml.cs">
       <DependentUpon>HospitalSurveyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\INotificationObservable.cs" />
@@ -177,14 +179,14 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\RoomEquipment.cs" />
-    <Compile Include="PatientDashboard.xaml.cs">
+    <Compile Include="View\Patient\PatientDashboard.xaml.cs">
       <DependentUpon>PatientDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientUpdate.xaml.cs">
+    <Compile Include="View\Patient\PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrescriptionParameters.xaml.cs" />
-    <Compile Include="Prescriptions.xaml.cs" />
+    <Compile Include="View\Patient\PrescriptionParameters.xaml.cs" />
+    <Compile Include="View\Patient\Prescriptions.xaml.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
@@ -308,7 +310,7 @@
     <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientWindow.xaml.cs">
+    <Compile Include="View\Patient\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\AppointmentRepository.cs" />
@@ -340,7 +342,7 @@
     <Compile Include="View\DoctorUpdateAppointment.xaml.cs">
       <DependentUpon>DoctorUpdateAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientCreate.xaml.cs">
+    <Compile Include="View\Patient\PatientCreate.xaml.cs">
       <DependentUpon>PatientCreate.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Secretary\Supplies\SuppliesHome.xaml.cs" />
@@ -348,9 +350,6 @@
       <DependentUpon>ManagerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\AnamnesisList.xaml.cs" />
-    <Compile Include="View\ViewDoctor\AnamnesisListPage.xaml.cs">
-      <DependentUpon>AnamnesisListPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewDoctor\AnamnesisWindow.xaml.cs" />
     <Compile Include="View\ViewDoctor\DoctorMain.xaml.cs">
       <DependentUpon>DoctorMain.xaml</DependentUpon>
@@ -359,9 +358,6 @@
       <DependentUpon>DoctorMedicines.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
-    <Compile Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml.cs">
-      <DependentUpon>ListOfMedecinesinSystem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewDoctor\MedicalReport.xaml.cs" />
     <Compile Include="View\ViewDoctor\MedicinesToValidate.xaml.cs">
       <DependentUpon>MedicinesToValidate.xaml</DependentUpon>
@@ -401,35 +397,35 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
-    <Page Include="AnamnesisPage.xaml" />
-    <Page Include="AppointmentDetailsPage.xaml" />
-    <Page Include="AppointmentList.xaml">
+    <Page Include="View\Patient\AnamnesisPage.xaml" />
+    <Page Include="View\Patient\AppointmentDetailsPage.xaml" />
+    <Page Include="View\Patient\AppointmentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DiagnosisPage.xaml" />
-    <Page Include="DoctorSurveyPage.xaml">
+    <Page Include="View\Patient\DiagnosisPage.xaml" />
+    <Page Include="View\Patient\DoctorSurveyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomePatient.xaml">
+    <Page Include="View\Patient\HomePatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HospitalSurveyPage.xaml">
+    <Page Include="View\Patient\HospitalSurveyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientDashboard.xaml">
+    <Page Include="View\Patient\PatientDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientUpdate.xaml">
+    <Page Include="View\Patient\PatientUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PrescriptionParameters.xaml" />
-    <Page Include="Prescriptions.xaml" />
+    <Page Include="View\Patient\PrescriptionParameters.xaml" />
+    <Page Include="View\Patient\Prescriptions.xaml" />
     <Page Include="View\Login\LoginMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -522,7 +518,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PatientWindow.xaml">
+    <Page Include="View\Patient\PatientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -552,7 +548,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientCreate.xaml">
+    <Page Include="View\Patient\PatientCreate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -560,10 +556,6 @@
     <Page Include="View\Secretary\Supplies\SuppliesHome.xaml" />
     <Page Include="View\UserControlls\ManagerMenu.xaml" />
     <Page Include="View\ViewDoctor\AnamnesisList.xaml" />
-    <Page Include="View\ViewDoctor\AnamnesisListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\ViewDoctor\AnamnesisWindow.xaml" />
     <Page Include="View\ViewDoctor\DoctorMain.xaml">
       <SubType>Designer</SubType>
@@ -578,10 +570,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
-    <Page Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\ViewDoctor\MedicalReport.xaml" />
     <Page Include="View\ViewDoctor\MedicinesToValidate.xaml">
       <SubType>Designer</SubType>

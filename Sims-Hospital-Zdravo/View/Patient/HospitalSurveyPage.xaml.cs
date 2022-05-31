@@ -34,40 +34,46 @@ namespace Sims_Hospital_Zdravo
             app = Application.Current as App;
             this.surveyController = app._surveyController;
             this.DataContext = this;
-            Survey.ItemsSource = getQuestions();
+            InitalizeList();
+            Survey.ItemsSource = questions;
 
             Survey.AutoGenerateColumns = false;   
         }
-        public ObservableCollection<QuestionForSurvey> getQuestions()
+        private void InitalizeList()
         {
             questions = new ObservableCollection<QuestionForSurvey>();
-            foreach (string s in surveyController.GetHospitalQuestions())
+            foreach (QuestionForSurvey questionForSurvey in surveyController.GetHospitalQuestions())
             {
-                questions.Add(new QuestionForSurvey(s));
+                SetRadioButtons(questionForSurvey);
+                questions.Add(questionForSurvey);
             }
-            return questions;
+        }
+        private void SetRadioButtons(QuestionForSurvey questionForSurvey)
+        {
+            questionForSurvey.One = false;
+            questionForSurvey.Two = false;
+            questionForSurvey.Three = false;
+            questionForSurvey.Four = false;
+            questionForSurvey.Five = false;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<QuestionAndRate> questionsAndRates = new List<QuestionAndRate>();
-            int i = 1;
             foreach (QuestionForSurvey questionForSurvey in questions)
             {
-                questionsAndRates.Add(new QuestionAndRate(i, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
-                i++;
+                questionsAndRates.Add(new QuestionAndRate(questionForSurvey.Id, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
             }
             surveyController.CreateHospitalSurvey(new HospitalSurvey(questionsAndRates));
             frame.Content = new HomePatient(frame);
         }
         private int CheckIfComboBoxChecked(QuestionForSurvey questionForSurvey)
         {
-            int checkbox = 0;
-            if (questionForSurvey.One) checkbox = 1;
-            if (questionForSurvey.Two) checkbox = 2;
-            if (questionForSurvey.Three) checkbox = 3;
-            if (questionForSurvey.Four) checkbox = 4;
-            if (questionForSurvey.Five) checkbox = 5;
-            return checkbox;
+            if (questionForSurvey.One) return 1;
+            if (questionForSurvey.Two) return 2;
+            if (questionForSurvey.Three) return 3;
+            if (questionForSurvey.Four) return 4;
+            if (questionForSurvey.Five) return 5;
+            return 0;
         }
     }
 }
