@@ -10,10 +10,10 @@ namespace Sims_Hospital_Zdravo.Utils
 {
     public class AppointmentSecretaryValidator
     {
-        SecretaryAppointmentService appointmentService;
+        private SecretaryAppointmentService _appointmentService;
         public AppointmentSecretaryValidator(SecretaryAppointmentService appointmentService)
         {
-            this.appointmentService = appointmentService;
+            this._appointmentService = appointmentService;
         }
 
 
@@ -32,13 +32,13 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void DoctorAlreadyHaveAppointment(Appointment appointment)
         {
-            if(!appointmentService.IsDoctorFreeInIntervalWithoutSelectedAppointment(appointment._Doctor._Id,appointment))
+            if(!_appointmentService.IsDoctorFreeInIntervalWithoutSelectedAppointment(appointment._Doctor._Id,appointment))
                 throw new Exception("Doctor isn't available at selected time!");
         }
 
         public void PatientAlreadyHaveAppointment(Appointment appointment)
         {
-            if(!appointmentService.IsPatientFreeInIntervalWithoutSelectedAppointment(appointment._Patient._Id,appointment))
+            if(!_appointmentService.IsPatientFreeInIntervalWithoutSelectedAppointment(appointment._Patient._Id,appointment))
                 throw new Exception("Patient isn't available at selected time!");
         }
         

@@ -36,8 +36,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.medicalRecord = medicalRecord;
             this.appointment = app;
             this.doctorAppointment = doctorAppointmentController;
-            PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
-            MedicalRecordTxt.Text = medicalRecord._Id.ToString();
+            PatientTxt.Text = medicalRecord.Patient._Name + medicalRecord.Patient._Surname;
+            MedicalRecordTxt.Text = medicalRecord.Id.ToString();
             ExaminatonTxt.Text = app._Time.Start.ToString();
             DoctorTxt.Text = app._Doctor._Name + app._Doctor._Surname;
         }
@@ -50,10 +50,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             doctorId = doctor._Id;
             TimeInterval timeInterval = appointment._Time;
             DateTime date = appointment._Time.Start;
-            Patient patient = medicalRecord._Patient;
+            Patient patient = medicalRecord.Patient;
             Anamnesis anamnesis = new Anamnesis(doctor, medicalRecord, date, timeInterval, diagnosis, medical_report);
             anamnesisController.Create(anamnesis);
-            medicalRecord._Anamnesis.Add(anamnesis);
+            medicalRecord.Anamnesis.Add(anamnesis);
             doctorAppointment.DeleteAfterExaminationIsDone(date, doctorId, patient);
             Close();
             

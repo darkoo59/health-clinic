@@ -48,7 +48,7 @@ namespace Sims_Hospital_Zdravo
                 try
                 {
                     MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
-                    Patient patient = medical._Patient;
+                    Patient patient = medical.Patient;
                     UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient, medical) { DataContext = ContentGrid.SelectedItem };
                     updateWindow.Show();
                 }

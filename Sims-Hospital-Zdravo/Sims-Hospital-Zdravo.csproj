@@ -734,6 +734,7 @@
         <Resource Include="Resources\img\icons8-day-off-96.png" />
         <Resource Include="Resources\img\icons8-surgery-100.png" />
         <Resource Include="Resources\img\icons8-medicine-64.png" />
+        <Content Include="Resources\doctor_surveys.txt" />
         <Content Include="Resources\img\Secretary\Dark\About.png" />
         <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
         <Content Include="Resources\img\Secretary\Dark\Appointment.png" />

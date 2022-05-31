@@ -76,7 +76,7 @@ namespace Sims_Hospital_Zdravo.Repository
             ObservableCollection<Anamnesis> list = new ObservableCollection<Anamnesis>();
             foreach(Anamnesis anam in Anamnesis)
             {
-                if (anam._MedicalRecord._Patient._Jmbg == med._Patient._Jmbg)
+                if (anam._MedicalRecord.Patient._Jmbg == med.Patient._Jmbg)
                 {
                     list.Add(anam);
                 }
@@ -87,7 +87,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             foreach (Anamnesis anamnesis in Anamnesis) 
             { 
-                if(anamnesis._MedicalRecord._Patient._Id == appointment._Patient._Id && anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
+                if(anamnesis._MedicalRecord.Patient._Id == appointment._Patient._Id && anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
                 {
                     return anamnesis;
                 }
