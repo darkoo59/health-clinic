@@ -68,7 +68,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
-            AppointmentDone();
+            //AppointmentDone();
         }
 
         private void CheckIfRelocationAppointmentDone()
