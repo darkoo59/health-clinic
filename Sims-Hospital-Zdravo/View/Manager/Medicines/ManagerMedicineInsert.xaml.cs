@@ -54,8 +54,8 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
 
                 this.Medicine = new Medicine(name, strength, allergens, description);
-                Medicine._Id = medicineController.GenerateId();
-                this.Medicine._Substitution = substitutes;
+                Medicine.Id = medicineController.GenerateId();
+                this.Medicine.Substitution = substitutes;
                 this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }

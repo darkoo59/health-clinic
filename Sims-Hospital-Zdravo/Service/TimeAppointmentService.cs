@@ -21,9 +21,9 @@ namespace Sims_Hospital_Zdravo.Service
         {
             foreach(Appointment app in appointmentRepository.FindByDoctorId(id))
             {
-                if (app._Time.Start.Date.Equals(date.Date))
+                if (app.Time.Start.Date.Equals(date.Date))
                 {
-                    if(date.CompareTo(app._Time.Start.Date) >= 0)
+                    if(date.CompareTo(app.Time.Start.Date) >= 0)
                     {
                         return app;
                     }

@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
 
                 FillMedicine();
-                Medicine._Substitution = substitutes;
+                Medicine.Substitution = substitutes;
                 _CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
@@ -71,12 +71,12 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             string description = TxtDescription.Text;
             string strength = TxtStrength.Text;
             List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
-            Medicine._Name = name;
-            Medicine._Allergens = allergens;
-            Medicine._Description = description;
-            Medicine._Strength = strength;
-            Medicine._Substitution = substitutes;
-            Medicine._Status = MedicineStatus.PENDING;
+            Medicine.Name = name;
+            Medicine.Allergens = allergens;
+            Medicine.Description = description;
+            Medicine.Strength = strength;
+            Medicine.Substitution = substitutes;
+            Medicine.Status = MedicineStatus.PENDING;
         }
 
         private void Validate()
@@ -106,7 +106,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
 
         private List<Medicine> FilterSelfFromMedicines(List<Medicine> medicines)
         {
-            return medicines.Where(medicine => medicine._Id != this.Medicine._Id).ToList();
+            return medicines.Where(medicine => medicine.Id != this.Medicine.Id).ToList();
         }
     }
 }

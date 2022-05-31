@@ -48,7 +48,7 @@ namespace Repository
                     doc._Password = newDoc._Password;
                     doc._Surname = newDoc._Surname;
                     doc._Username = newDoc._Username;
-                    doc._Specialty = newDoc._Specialty;
+                    doc.Specialty = newDoc.Specialty;
                     LoadDataToFile();
                     return;
                 }
@@ -76,7 +76,7 @@ namespace Repository
             foreach(Doctor doc in doctors.ToList())
             {
                 
-                if (doc._Specialty == specalty)
+                if (doc.Specialty == specalty)
                 {
                     doctorss.Add(doc);
                 }
@@ -91,8 +91,8 @@ namespace Repository
             List<Doctor> docs = new List<Doctor>();
             foreach (Doctor doc in doctors)
             {
-                Console.WriteLine(doc._Specialty);
-                if (doc._Specialty == type)
+                Console.WriteLine(doc.Specialty);
+                if (doc.Specialty == type)
                     docs.Add(doc);
             }
 

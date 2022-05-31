@@ -12,24 +12,24 @@ namespace Sims_Hospital_Zdravo.Repository
 {
     public class MedicineRepository
     {
-        private MedicineDataHandler medicineDataHandler;
-        private ObservableCollection<Medicine> medicines;
+        private MedicineDataHandler _medicineDataHandler;
+        private ObservableCollection<Medicine> _medicines;
 
         public MedicineRepository(MedicineDataHandler medicineDataHandler)
         {
-            this.medicineDataHandler = medicineDataHandler;
-            this.medicines = new ObservableCollection<Medicine>();
+            this._medicineDataHandler = medicineDataHandler;
+            this._medicines = new ObservableCollection<Medicine>();
             LoadDataFromFile();
         }
 
         public ref ObservableCollection<Medicine> ReadAll()
         {
-            return ref this.medicines;
+            return ref this._medicines;
         }
 
         public void Delete(Medicine medicine)
         {
-            medicines.Remove(medicine);
+            _medicines.Remove(medicine);
             LoadDataToFiles();
         }
 
@@ -42,9 +42,9 @@ namespace Sims_Hospital_Zdravo.Repository
         public List<Medicine> FindByStatus(MedicineStatus medicineStatus)
         {
             List<Medicine> medicinesByStatus = new List<Medicine>();
-            foreach (Medicine medicine in medicines)
+            foreach (Medicine medicine in _medicines)
             {
-                if (medicine._Status == medicineStatus)
+                if (medicine.Status == medicineStatus)
                 {
                     medicinesByStatus.Add(medicine);
                 }
@@ -55,9 +55,9 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public Medicine FindById(int id)
         {
-            foreach (Medicine medicine in medicines)
+            foreach (Medicine medicine in _medicines)
             {
-                if (medicine._Id == id) return medicine;
+                if (medicine.Id == id) return medicine;
             }
 
             return null;
@@ -65,18 +65,18 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create(Medicine medicine)
         {
-            medicines.Add(medicine);
+            _medicines.Add(medicine);
             LoadDataToFiles();
         }
 
         public void LoadDataFromFile()
         {
-            this.medicines = medicineDataHandler.ReadAll();
+            this._medicines = _medicineDataHandler.ReadAll();
         }
 
         public void LoadDataToFiles()
         {
-            medicineDataHandler.Write(medicines);
+            _medicineDataHandler.Write(_medicines);
         }
     }
 }

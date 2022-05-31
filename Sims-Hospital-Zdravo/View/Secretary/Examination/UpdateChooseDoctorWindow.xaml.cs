@@ -51,7 +51,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     Doctor selectedDoctor = (Doctor)ListDoctors.SelectedItem;
                     Appointment appointment = new Appointment(selectedRoom, selectedDoctor, selectedPatient,
                         selectedTime, (AppointmentType)comboAppointmentType.SelectedValue);
-                    appointment._Id = app._secretaryAppointmentController.GenerateId();
+                    appointment.Id = app._secretaryAppointmentController.GenerateId();
                     app._secretaryAppointmentController.Create(appointment);
                     this.Close();
                 }

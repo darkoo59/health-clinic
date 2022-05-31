@@ -19,8 +19,9 @@
             <MenuItem Header="Medical record" Name="MedicalRecordItem" Click="MedcialRecordClick"  />
             <MenuItem Header="Medical history" Click="MedicalHistoryClick"/>
             <MenuItem Header="Labaratory results"/>
-            <MenuItem Header="Therapy"/>
-            
+            <MenuItem Header="Therapy" Click="TherapyClick"/>
+            <MenuItem Header="Medical Reports" Click="PatientMedicalRecordClick"/>
+
 
         </Menu>
     </Grid>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Model;
+using Model;
 
 namespace Sims_Hospital_Zdravo.Controller
 {
@@ -41,6 +42,21 @@ namespace Sims_Hospital_Zdravo.Controller
         public int GenerateId()
         {
             return _medicineService.GenerateId();
+        }
+
+        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord)
+        {
+            _medicineService.CheckIfPatientAllergicToMedicine(medicalRecord);
+        }
+         public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord)
+        {
+            _medicineService.CheckIfPatientAllergicToMedicineIngredients(medicalRecord);
+
+        }
+
+        public void ReturnListOfMedicineToStart()
+        {
+            _medicineService.ReturnListOfMedicinesToStart();
         }
     }
 }

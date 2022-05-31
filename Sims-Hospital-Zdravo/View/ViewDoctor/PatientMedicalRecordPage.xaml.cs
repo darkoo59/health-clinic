@@ -34,13 +34,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.medRecord = med;
-            //this.app = app;
-            //this.doctorId = id;
             
-            //this._medicalRecordController = medicalRecordController;
+            this.frame = frame;
             this.DataContext = med;
-            //this._doctorAppointmentController = doctorAppointmentController;
-           // this.anamnesisController = anamnesisController;
             Binding binding = new Binding("_Patient._Name");
             binding.Source = med;
             PatienNameTxt.SetBinding(TextBox.TextProperty, binding);
@@ -65,6 +61,20 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             binding = new Binding("_Patient._Jmbg");
            UIDTxt.SetBinding(TextBox.TextProperty, binding);
+        }
+
+        private void PrescribeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord,frame);
+            frame.Content = listOfMedecinesinSystem;
+        }
+
+       
+
+        private void MedicalreprotClick(object sender, RoutedEventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(medRecord,doctorId, frame);
+            frame.Content = medicalReport;
         }
     }
 }

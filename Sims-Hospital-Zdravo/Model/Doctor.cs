@@ -25,24 +25,24 @@ namespace Model
    public class Doctor : User
    {
 
-        public SpecialtyType Specialty;
+        public SpecialtyType _specialty;
         public Doctor (int id,string name,string surname, SpecialtyType specialty)
         {
             this._Id = id;
             this._Name = name;
             this._Surname = surname;
-            this._Specialty = specialty;
+            this.Specialty = specialty;
         }
 
-        public SpecialtyType _Specialty
+        public SpecialtyType Specialty
         {
             get
             {
-                return Specialty;
+                return _specialty;
             }
             set
             {
-                this.Specialty = value;
+                this._specialty = value;
             }
         }
 

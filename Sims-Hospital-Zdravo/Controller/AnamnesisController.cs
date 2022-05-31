@@ -13,34 +13,38 @@ namespace Sims_Hospital_Zdravo.Controller
     public class AnamnesisController
     {
 
-        private AnamnesisService anamnesisService;
+        private AnamnesisService _anamnesisService;
 
         public AnamnesisController( AnamnesisService anamnesisService)
         {
-            this.anamnesisService = anamnesisService;
+            this._anamnesisService = anamnesisService;
         }
 
         public void Create (Anamnesis anamnesis)
         {
-            anamnesisService.Create (anamnesis);
+            _anamnesisService.Create (anamnesis);
         }
 
         public void Update (Anamnesis anamnesis)
         {
-            anamnesisService.Update(anamnesis);
+            _anamnesisService.Update(anamnesis);
         }
 
         public ref ObservableCollection<Anamnesis> ReadAll()
         {
-            return  ref anamnesisService.ReadAll();
+            return  ref _anamnesisService.ReadAll();
 
         }
-         public ObservableCollection<Anamnesis> findAnamnesisByDoctor(int id)
+         public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
         {
-            return anamnesisService.findAnamnesisByDoctor (id);
+            return _anamnesisService.findAnamnesisByDoctor (id);
 
         }
 
+        public ObservableCollection<Anamnesis> FindAnamnesisByPatient(MedicalRecord medicalRecord)
+        {
+            return _anamnesisService.FindAnamnesisByPatient(medicalRecord);
+        }
 
 
     }

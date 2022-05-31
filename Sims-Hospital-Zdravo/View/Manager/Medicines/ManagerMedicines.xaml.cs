@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 return;
             }
 
-            if (medicine._Status != MedicineStatus.ABORTED)
+            if (medicine.Status != MedicineStatus.ABORTED)
             {
                 MessageBox.Show("Medicine is already accepted or pending!");
                 return;

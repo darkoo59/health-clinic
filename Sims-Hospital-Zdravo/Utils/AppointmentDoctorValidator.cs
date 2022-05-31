@@ -56,10 +56,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateDatePast(Appointment appointment)
         {
-            DateTime date = appointment._Time.End;
+            DateTime date = appointment.Time.End;
             if (date.CompareTo(DateTime.Now) < 0)
             { throw new Exception("Date has already passed."); }
-            else if( appointment._Time.Start.TimeOfDay > appointment._Time.End.TimeOfDay)
+            else if( appointment.Time.Start.TimeOfDay > appointment.Time.End.TimeOfDay)
             {
                 throw new Exception("Date of start of appointment must be before date of end.");
             }
@@ -68,7 +68,7 @@ namespace Sims_Hospital_Zdravo.Utils
         public void ValidateAppointment(Appointment appointment)
         {
             //ValidateAppointmentTimeTooLong(appointment);
-            ValidateAppointmentRoomTaken(appointment._Time, appointment._Id);
+            ValidateAppointmentRoomTaken(appointment.Time, appointment.Id);
             ValidateDatePast(appointment);
             ValidateIfAppointmentTaken(appointment);
             ValidateIfNull(appointment);
@@ -76,7 +76,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateRoom(Appointment appointment)
         {
-            Room room = appointment._Room;
+            Room room = appointment.Room;
             roomValidator.ValidateCreate(room);
 
 
@@ -85,11 +85,11 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             if (appointment == null)
             { throw new Exception("All fields must be filled"); }
-            else if (appointment._Patient == null)
+            else if (appointment.Patient == null)
             {
                 throw new Exception("Patient field is empty");
             }
-            else if (appointment._Time == null)
+            else if (appointment.Time == null)
             {
                 throw new Exception();
             }
@@ -98,8 +98,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateIfAppointmentTaken(Appointment appoitnment)
         {
-            int doctorId = appoitnment._Doctor._Id;
-            TimeInterval tl = appoitnment._Time;
+            int doctorId = appoitnment.Doctor._Id;
+            TimeInterval tl = appoitnment.Time;
             if(!(timeSchedulerService.IsDoctorFreeInInterval(doctorId, tl)))
             {
                 throw new Exception("Appointment is already taken");

@@ -38,24 +38,24 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.doctorAppointment = doctorAppointmentController;
             PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
             MedicalRecordTxt.Text = medicalRecord._Id.ToString();
-            ExaminatonTxt.Text = app._Time.Start.ToString();
-            DoctorTxt.Text = app._Doctor._Name + app._Doctor._Surname;
+            ExaminatonTxt.Text = app.Time.Start.ToString();
+            DoctorTxt.Text = app.Doctor._Name + app.Doctor._Surname;
         }
 
         private void SaveAnamnesis_Click(object sender, RoutedEventArgs e)
         {
-            string diagnosis = DiagnosisTxt.Text;
-            string medical_report = AnamnesisTxt.Text;
-            Doctor doctor = appointment._Doctor;
-            doctorId = doctor._Id;
-            TimeInterval timeInterval = appointment._Time;
-            DateTime date = appointment._Time.Start;
-            Patient patient = medicalRecord._Patient;
-            Anamnesis anamnesis = new Anamnesis(doctor, medicalRecord, date, timeInterval, diagnosis, medical_report);
-            anamnesisController.Create(anamnesis);
-            medicalRecord._Anamnesis.Add(anamnesis);
-            doctorAppointment.DeleteAfterExaminationIsDone(date, doctorId, patient);
-            Close();
+            //string diagnosis = DiagnosisTxt.Text;
+            //string medical_report = AnamnesisTxt.Text;
+            //Doctor doctor = appointment.Doctor;
+            //doctorId = doctor._Id;
+            //TimeInterval timeInterval = appointment.Time;
+            //DateTime date = appointment.Time.Start;
+            //Patient patient = medicalRecord._Patient;
+            //Anamnesis anamnesis = new Anamnesis(doctor, date, timeInterval, diagnosis, medical_report);
+            //anamnesisController.Create(anamnesis);
+            //medicalRecord._Anamnesis.Add(anamnesis);
+            //doctorAppointment.DeleteAfterExaminationIsDone(date, doctorId, patient);
+            //Close();
             
 
             //anamnesisController.Create

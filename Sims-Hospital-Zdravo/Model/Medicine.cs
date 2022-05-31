@@ -16,81 +16,107 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class Medicine
     {
-        private string name;
+        private string _name;
         private int id;
         private string allergens;
-        private string description;
-        private string strength;
-        private MedicineStatus status;
-        private List<string> ingredients;
-        private List<Medicine> substitution;
+        private string _description;
+        private string _strength;
+        private MedicineStatus _status;
+        private List<string> _ingredients;
+        private List<Medicine> _substitution;
+        private bool _notAllergic;
 
         public Medicine(string name, string strength, string allergens, string description)
         {
-            this.name = name;
+            this._name = name;
             this.allergens = allergens;
-            this.description = description;
-            this.strength = strength;
-            substitution = new List<Medicine>();
-            this.status = MedicineStatus.PENDING;
-            ingredients = new List<string>();
+            this._description = description;
+            this._strength = strength;
+            _substitution = new List<Medicine>();
+            this._status = MedicineStatus.PENDING;
+            _ingredients = new List<string>();
+            this._notAllergic = false;
         }
 
-        public string _Description
+        public string Description
         {
-            get { return description; }
-            set { description = value; }
+            get { return _description; }
+            set { _description = value; }
         }
 
 
-        public string _Allergens
+        public string Allergens
         {
             get { return allergens; }
             set { allergens = value; }
         }
 
-        public int _Id
+        public int Id
         {
             get { return id; }
             set { id = value; }
         }
 
-        public string _Name
+        public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
 
-        public string _Strength
+        public string Strength
         {
-            get { return strength; }
-            set { strength = value; }
+            get { return _strength; }
+            set { _strength = value; }
         }
 
-        public MedicineStatus _Status
+        public MedicineStatus Status
         {
-            get { return status; }
+            get { return _status; }
 
-            set { status = value; }
+            set { _status = value; }
         }
 
-        public List<Medicine> _Substitution
+        public List<Medicine> Substitution
         {
-            get { return substitution; }
+            get { return _substitution; }
 
-            set { substitution = value; }
+            set { _substitution = value; }
         }
 
 
-        public List<string> _Ingredients
+        public List<string> Ingredients
         {
-            get {  return ingredients; }
-            set { ingredients = value; }
+            get {  return _ingredients; }
+            set { _ingredients = value; }
+        }
+
+        public bool NotAllergic
+        {
+            get
+            {
+                return _notAllergic;
+            }
+            set
+            {
+                _notAllergic = value;
+
+            }
+        }
+        public string GetStringAllergic()
+        {
+            if (_notAllergic == false)
+            {
+                return " Allergic";
+            }
+            else
+            {
+                return "Not allergic";
+            }
         }
         public override string ToString()
         {
-            return name + " " + strength;
+            return _name + " " + _strength + " "+ GetStringAllergic();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
-                prescription._Flag = true;
+                prescription.Flag = true;
             }
 
             observers = new List<INotificationObserver>();
@@ -143,7 +143,7 @@ namespace Sims_Hospital_Zdravo.Utils
             ObservableCollection<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);
             foreach (Appointment appointment in appointments)
             {
-                if (appointment._Time.Start.CompareTo(DateTime.Now) < 0)
+                if (appointment.Time.Start.CompareTo(DateTime.Now) < 0)
                 {
                     _doctorAppointmentController.DeleteByID(appointment);
                 }
@@ -163,15 +163,15 @@ namespace Sims_Hospital_Zdravo.Utils
                 {
                     if (dt.CompareTo(dateTime) > 0 && dt.CompareTo(dateTime1) < 0)
                     {
-                        if (prescription._Flag)
+                        if (prescription.Flag)
                         {
-                            prescription._Flag = false;
-                            Notify(new Notification("You need to take " + prescription._Medicine._Name + ".", _notificationController.GenerateId()));
+                            prescription.Flag = false;
+                            Notify(new Notification("You need to take " + prescription.Medicine.Name + ".", _notificationController.GenerateId()));
                         }
                     }
                     else
                     {
-                        prescription._Flag = true;
+                        prescription.Flag = true;
                         dt = dt.AddHours(frequency);
                     }
                 }
@@ -180,7 +180,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public int GetFrequency(Prescription prescription)
         {
-            string[] s = prescription._Dosage.Split('x');
+            string[] s = prescription.Dosage.Split('x');
             return Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
         }
 
@@ -194,8 +194,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public int GetQuantity(Prescription prescription)
         {
-            string[] s = prescription._Dosage.Split('x');
-            int p = prescription._TimeInterval.End.DayOfYear - prescription._TimeInterval.Start.DayOfYear;
+            string[] s = prescription.Dosage.Split('x');
+            int p = prescription.TimeInterval.End.DayOfYear - prescription.TimeInterval.Start.DayOfYear;
             p = p * Int32.Parse(s[0]);
             return p;
         }

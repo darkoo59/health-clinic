@@ -17,106 +17,103 @@ namespace Model
     public class Appointment : INotifyPropertyChanged
     {
 
-        private Room room;
+        private Room _room;
 
-        private Doctor doctor;
-        private Patient patient;
-        private AppointmentType type;
+        private Doctor _doctor;
+        private Patient _patient;
+        private AppointmentType _type;
         
-        private TimeInterval time;
-        private int Id;
+        private TimeInterval _time;
+        private int _id;
         public static int GlobalId = 1;
         public bool Rated { get; set; }        
         public Appointment(Room room, Doctor doctor, Patient patient, TimeInterval time, AppointmentType type)
         {
-            this._Doctor = doctor;
-            this._Patient = patient;
-            this._Room = room;
-            this._Time = time;
-            this._Type = type;
+            this.Doctor = doctor;
+            this.Patient = patient;
+            this.Room = room;
+            this.Time = time;
+            this.Type = type;
             this.Rated = false;
         }
         
 
-        public Doctor _Doctor {
+        public Doctor Doctor {
             get
             {
-                return doctor;
+                return _doctor;
             }
             set
             {
-                this.doctor = value;
-                OnPropertyChanged("_Doctor");
-                OnPropertyChanged("_Doctor._Name");
-                OnPropertyChanged("_Doctor._Surname");
+                this._doctor = value;
+                OnPropertyChanged("Doctor");
+                
             }
         }
-        public Patient _Patient
+        public Patient Patient
         {
             get
             {
-                return patient;
+                return _patient;
             }
             set
             {
-                this.patient = value;
-                OnPropertyChanged("_Patient");
-                OnPropertyChanged("_Patient._Name");
-                OnPropertyChanged("_Patient._Surname");
+                this._patient = value;
+                OnPropertyChanged("Patient");
+                ;
             }
         }
 
         
-        public AppointmentType _Type
+        public AppointmentType Type
         {
             get
             {
-                return type;
+                return _type;
             }
             set
             {
-                this.type = value;
-                OnPropertyChanged("_Type");
+                this._type = value;
+                OnPropertyChanged("Type");
             }
         }
-        public int _Id
+        public int Id
         {
             get
             {
-                return Id;
+                return _id;
             }
             set
             {
-                this.Id = value;
-                OnPropertyChanged("_Id");
+                this._id = value;
+                OnPropertyChanged("Id");
             }
         }
-        public Room _Room
+        public Room Room
         {
             get
             {
-                return room;
+                return _room;
             }
             set
             {
-                this.room = value;
-                OnPropertyChanged("_Room");
-                OnPropertyChanged("_Room._Type");
+                this._room = value;
+                OnPropertyChanged("Room");
+                
             }
         }
 
-        public TimeInterval _Time
+        public TimeInterval Time
         {
             get
             {
-                return time;
+                return _time;
             }
             set
             {
-                this.time = value;
-                OnPropertyChanged("_Time");
-                OnPropertyChanged("_Time.Start");
-                OnPropertyChanged("_Time.End");
+                this._time = value;
+                OnPropertyChanged("Time");
+                
             }
         }
 

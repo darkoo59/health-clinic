@@ -64,8 +64,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord,doctorId,frame);
-            frame.Content = prescriptionWindow;
+            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord,doctorId,frame);
+            //frame.Content = prescriptionWindow;
             //prescriptionWindow.Show();
             //Close();
 

@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.Service
         public void Create(Appointment appointment)
         {
             validator.ValidateCreate(appointment);
-            appointment._Id = GenerateId();
+            appointment.Id = GenerateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -109,15 +109,15 @@ namespace Sims_Hospital_Zdravo.Service
                         {
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
-                            appointment._Id = GenerateId();
+                            appointment.Id = GenerateId();
                             counter++;
                         }
                         else if(interval.Start.CompareTo(minStart)<0)
                         {
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
-                            appointment._Id = GenerateId();
-                            appointment._Patient._Id = GeneratePatientId();
+                            appointment.Id = GenerateId();
+                            appointment.Patient._Id = GeneratePatientId();
                         }
                     }
                     interval.Start.AddMinutes(10);
@@ -157,17 +157,17 @@ namespace Sims_Hospital_Zdravo.Service
 
         public TimeInterval FindFirstDateToReschedule(Appointment appointment)
         {
-            DateTime startDate = appointment._Time.Start;
-            DateTime endDate = appointment._Time.End;
-            TimeSpan appointmentLength = appointment._Time.End - appointment._Time.Start;
-            startDate = appointment._Time.Start.AddHours(1);
+            DateTime startDate = appointment.Time.Start;
+            DateTime endDate = appointment.Time.End;
+            TimeSpan appointmentLength = appointment.Time.End - appointment.Time.Start;
+            startDate = appointment.Time.Start.AddHours(1);
             endDate = startDate;
             endDate = endDate.Add(appointmentLength);
             TimeInterval interval = new TimeInterval(startDate, endDate);
             while (true)
             {
-                if (timeSchedulerService.IsDoctorFreeInInterval(appointment._Doctor._Id,
-                        interval) && timeSchedulerService.IsPatientFreeInInterval(appointment._Patient._Id,interval))
+                if (timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor._Id,
+                        interval) && timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id,interval))
                 {
                     return interval;
                 }
@@ -183,7 +183,7 @@ namespace Sims_Hospital_Zdravo.Service
             List<EmergencyReschedule> appointmentsAndRescheduleDate = new List<EmergencyReschedule>();
             foreach(Appointment app in appointmentsToReschedule)
             {
-                if (app._Type != AppointmentType.URGENCY)
+                if (app.Type != AppointmentType.URGENCY)
                 {
                     TimeInterval rescheduleTo = FindFirstDateToReschedule(app);
                     EmergencyReschedule rescheduledAppointment = new EmergencyReschedule(app, rescheduleTo);
@@ -203,7 +203,7 @@ namespace Sims_Hospital_Zdravo.Service
             int id = 0;
             foreach (Appointment appointment in appointments)
             {
-                ids.Add(appointment._Id);
+                ids.Add(appointment.Id);
             }
             while (ids.Contains(id))
             {

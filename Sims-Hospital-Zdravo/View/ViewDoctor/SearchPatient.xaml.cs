@@ -65,7 +65,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
             if (medicalRecord != null)
             {
-                PatientTabs patientTabs = new PatientTabs(medicalRecord,frame);
+                PatientTabs patientTabs = new PatientTabs(medicalRecord,frame,doctorID);
                 frame.Content = patientTabs;
             }
             else
@@ -77,8 +77,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void PrescriptionClick(object sender, RoutedEventArgs e)
         {
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID,frame);
-            frame.Content= prescriptionWindow;
+            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID,frame);
+            //frame.Content= prescriptionWindow;
         }
     }
 }

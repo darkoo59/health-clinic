@@ -105,12 +105,12 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private string CreateNotificationMessageFromNotification(ReviewMedicineNotification notification)
         {
-            if (notification._ValidationType == MedicineValidationType.MEDICINE_APPROVED)
+            if (notification.ValidationType == MedicineValidationType.MEDICINE_APPROVED)
             {
-                return "Medicine " + notification._Medicine._Name + " has been approved!";
+                return "Medicine " + notification.Medicine.Name + " has been approved!";
             }
 
-            return "Medicine " + notification._Medicine._Name + " has beeen declined!";
+            return "Medicine " + notification.Medicine.Name + " has beeen declined!";
         }
 
         private void WindowClosing(object sender, CancelEventArgs e)

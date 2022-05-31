@@ -1,0 +1,34 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.AnamnesisListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+      mc:Ignorable="d" 
+      Height="450" Width="800"
+      Title="AnamnesisListPage">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml">
+            
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Name="AnamnesisListDoctor" SelectionMode="Single"  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button >Details</Button>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Medical reports:" Grid.Row="0" Margin="10,76,0,0" />
+        <Button Grid.Row="0" Content="Edit" Width="120" Height="30" Click="Button_Click" HorizontalAlignment="Left" Margin="30,41,0,42"/>
+    </Grid>
+</Page>

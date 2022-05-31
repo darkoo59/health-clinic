@@ -23,6 +23,7 @@ namespace Service
         public PatientRepository patientRepository;
         public AllergensRepository allergensRepository;
         public MedicalRecordValidator validator;
+        
 
         public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
         {
@@ -128,6 +129,6 @@ namespace Service
             return medicalRecordRepository.GetPrescriptionsByMedicalRecord(medicalRecord);
         }
 
-   
+       
    }
 }

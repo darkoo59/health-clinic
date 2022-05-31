@@ -30,7 +30,7 @@ namespace Service
 
         public void Create(Appointment appointment)
         {
-            appointment._Id = GenerateId();
+            appointment.Id = GenerateId();
             appointmentRepository.Create(appointment);
         }
 
@@ -51,7 +51,7 @@ namespace Service
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
             foreach (Appointment app in FindByPatientId(id)) 
             {
-                if (app._Time.End.CompareTo(DateTime.Now) < 0) appointments.Add(app);
+                if (app.Time.End.CompareTo(DateTime.Now) < 0) appointments.Add(app);
             }
             return appointments;
         }
@@ -60,7 +60,7 @@ namespace Service
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
             foreach (Appointment app in FindByPatientId(id))
             {
-                if (app._Time.End.CompareTo(DateTime.Now) > 0) appointments.Add(app);
+                if (app.Time.End.CompareTo(DateTime.Now) > 0) appointments.Add(app);
             }
             return appointments;
         }
@@ -107,26 +107,26 @@ namespace Service
             {
                 foreach (Appointment app in FindAll())
                 {
-                    if (app._Doctor._Id == appointment._Doctor._Id)
+                    if (app.Doctor._Id == appointment.Doctor._Id)
                     {
-                        if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
+                        if (app.Time.Start.Year == appointment.Time.Start.Year && app.Time.Start.DayOfYear == appointment.Time.Start.DayOfYear)
                         {
-                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
-                                (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                            if ((appointment.Time.Start.Hour * 60 + appointment.Time.Start.Minute >= app.Time.Start.Hour * 60 + app.Time.Start.Minute) &&
+                                (appointment.Time.End.Hour * 60 + appointment.Time.End.Minute <= app.Time.End.Hour * 60 + app.Time.End.Minute))
                             {
                                 free = false;
                             }
                         }
                     }
 
-                    if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
+                    if (app.Time.Start.Year == appointment.Time.Start.Year && app.Time.Start.DayOfYear == appointment.Time.Start.DayOfYear)
                     {
-                        if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
-                            (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                        if ((appointment.Time.Start.Hour * 60 + appointment.Time.Start.Minute >= app.Time.Start.Hour * 60 + app.Time.Start.Minute) &&
+                            (appointment.Time.End.Hour * 60 + appointment.Time.End.Minute <= app.Time.End.Hour * 60 + app.Time.End.Minute))
                         {
                             foreach (Doctor d in ReadDoctors())
                             {
-                                if (d._Id == app._Doctor._Id)
+                                if (d._Id == app.Doctor._Id)
                                 {
                                     doctors.Remove(d);
                                     break;
@@ -140,17 +140,17 @@ namespace Service
             {
                 foreach (Appointment app in FindAll())
                 {
-                    if (app._Doctor._Id == appointment._Doctor._Id)
+                    if (app.Doctor._Id == appointment.Doctor._Id)
                     {
-                        if (app._Time.Start.Year == appointment._Time.Start.Year && app._Time.Start.DayOfYear == appointment._Time.Start.DayOfYear)
+                        if (app.Time.Start.Year == appointment.Time.Start.Year && app.Time.Start.DayOfYear == appointment.Time.Start.DayOfYear)
                         {
-                            if ((appointment._Time.Start.Hour * 60 + appointment._Time.Start.Minute >= app._Time.Start.Hour * 60 + app._Time.Start.Minute) &&
-                                (appointment._Time.End.Hour * 60 + appointment._Time.End.Minute <= app._Time.End.Hour * 60 + app._Time.End.Minute))
+                            if ((appointment.Time.Start.Hour * 60 + appointment.Time.Start.Minute >= app.Time.Start.Hour * 60 + app.Time.Start.Minute) &&
+                                (appointment.Time.End.Hour * 60 + appointment.Time.End.Minute <= app.Time.End.Hour * 60 + app.Time.End.Minute))
                             {
                                 free = false;
                             }
 
-                            dates.Remove(app._Time.Start);
+                            dates.Remove(app.Time.Start);
                         }
                     }
                 }
@@ -164,7 +164,7 @@ namespace Service
             {
                 foreach (Doctor d in doctors)
                 {
-                    Appointment app = new Appointment(null, d, appointment._Patient, appointment._Time, AppointmentType.EXAMINATION);
+                    Appointment app = new Appointment(null, d, appointment.Patient, appointment.Time, AppointmentType.EXAMINATION);
                     appointments.Add(app);
                 }
             }
@@ -173,7 +173,7 @@ namespace Service
                 foreach (DateTime d in dates)
                 {
                     TimeInterval ti = new TimeInterval(d, d.AddMinutes(30));
-                    Appointment app = new Appointment(null, appointment._Doctor, appointment._Patient, ti, AppointmentType.EXAMINATION);
+                    Appointment app = new Appointment(null, appointment.Doctor, appointment.Patient, ti, AppointmentType.EXAMINATION);
                     appointments.Add(app);
                 }
             }
@@ -184,31 +184,31 @@ namespace Service
         public ObservableCollection<DateTime> AddingTimes(Appointment appointment)
         {
             ObservableCollection<DateTime> dates = new ObservableCollection<DateTime>();
-            DateTime dt = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt = dt.AddHours(8);
             dates.Add(dt);
-            DateTime dt4 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt4 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt4 = dt4.AddHours(8);
             dt4 = dt4.AddMinutes(30);
             dates.Add(dt4);
-            DateTime dt1 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt1 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt1 = dt1.AddHours(9);
             dates.Add(dt1);
-            DateTime dt5 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt5 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt5 = dt5.AddHours(9);
             dt5 = dt5.AddMinutes(30);
             dates.Add(dt5);
-            DateTime dt2 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt2 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt2 = dt2.AddHours(10);
             dates.Add(dt2);
-            DateTime dt6 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt6 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt6 = dt6.AddHours(10);
             dt6 = dt6.AddMinutes(30);
             dates.Add(dt6);
-            DateTime dt3 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt3 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt3 = dt3.AddHours(11);
             dates.Add(dt3);
-            DateTime dt7 = new DateTime(appointment._Time.Start.Year, appointment._Time.Start.Month, appointment._Time.Start.Day);
+            DateTime dt7 = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
             dt7 = dt7.AddHours(11);
             dt7 = dt7.AddMinutes(30);
             dates.Add(dt7);
@@ -225,7 +225,7 @@ namespace Service
             int id = 0;
             foreach (Appointment app in appointments)
             {
-                ids.Add(app._Id);
+                ids.Add(app.Id);
             }
 
             while (ids.Contains(id))

@@ -28,12 +28,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController medicalRecordController;
         private MedicalRecord medicalRecord;
         private Frame frame;
-        public PatientTabs(MedicalRecord medicalRecord,Frame frame)
+        private int doctorID;
+        public PatientTabs(MedicalRecord medicalRecord,Frame frame,int id)
         {
             InitializeComponent();
             this.medicalRecord = medicalRecord;
             PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame);
-            // this.frame = new Frame();
+            this.doctorID = id;
             FrameForPatient.Content = patientMedicalRecordPage;
         }
 
@@ -47,6 +48,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory();
             FrameForPatient.Content = patientMedicalHistory;
+        }
+
+        private void TherapyClick(object sender, RoutedEventArgs e)
+        {
+           // PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID);
+            //FrameForPatient.Content = prescriptionWindow;
+        }
+
+        private void PatientMedicalRecordClick(object sender, RoutedEventArgs e)
+        {
+            AnamnesisListPage anamnesisListPage = new AnamnesisListPage(doctorID, medicalRecord);
+            FrameForPatient.Content = anamnesisListPage;
         }
     }
 }

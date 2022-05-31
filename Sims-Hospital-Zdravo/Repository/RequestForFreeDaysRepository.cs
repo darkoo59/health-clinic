@@ -12,12 +12,12 @@ namespace Sims_Hospital_Zdravo.Repository
 {
     public class RequestForFreeDaysRepository
     {
-        private ObservableCollection<FreeDaysRequest> requests;
-        private RequestForFreeDaysDataHandler requestForFreeDaysDataHandler;
+        private ObservableCollection<FreeDaysRequest> _requests;
+        private RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler;
         public RequestForFreeDaysRepository(RequestForFreeDaysDataHandler requestForFreeDaysDataHandler)
         {
-            requests = new ObservableCollection<FreeDaysRequest>();
-            this.requestForFreeDaysDataHandler = requestForFreeDaysDataHandler;
+            _requests = new ObservableCollection<FreeDaysRequest>();
+            this._requestForFreeDaysDataHandler = requestForFreeDaysDataHandler;
             LoadDataFromFiles();
 
         }
@@ -25,29 +25,29 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create(FreeDaysRequest request)
         {
-            requests.Add(request);
+            _requests.Add(request);
             LoadDataToFile();
         }
 
         public void Delete(FreeDaysRequest request)
         {
-            requests.Remove(request);
+            _requests.Remove(request);
             LoadDataToFile();
         }
 
         public ref ObservableCollection<FreeDaysRequest> ReadAll()
         {
 
-            return ref requests;
+            return ref _requests;
 
         }
 
         public ObservableCollection<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
         {
             ObservableCollection<FreeDaysRequest> requestsBySpecialty = new ObservableCollection<FreeDaysRequest>();
-            foreach(FreeDaysRequest request in requests)
+            foreach(FreeDaysRequest request in _requests)
             {
-                if(request._Doctor.Specialty.Equals(doctor.Specialty))
+                if(request.Doctor._specialty.Equals(doctor._specialty))
                 {
                     requestsBySpecialty.Add(request);
                 }
@@ -60,7 +60,7 @@ namespace Sims_Hospital_Zdravo.Repository
             ObservableCollection<FreeDaysRequest> requests = FindRequestByDoctorSpecialty(doctor);
             foreach(FreeDaysRequest request in requests)
             {
-                if(request._Status == RequestStatus.ACCEPTED || request._Status == RequestStatus.PENDING)
+                if(request.Status == RequestStatus.ACCEPTED || request.Status == RequestStatus.PENDING)
                 {
                     requestsPendingOrAccepted.Add(request);
                 }
@@ -69,11 +69,11 @@ namespace Sims_Hospital_Zdravo.Repository
         }
         public void LoadDataFromFiles()
         {
-            requests = requestForFreeDaysDataHandler.ReadAll();
+            _requests = _requestForFreeDaysDataHandler.ReadAll();
         }
         public void LoadDataToFile()
         {
-            requestForFreeDaysDataHandler.Write(requests);
+            _requestForFreeDaysDataHandler.Write(_requests);
         }
     }
 }

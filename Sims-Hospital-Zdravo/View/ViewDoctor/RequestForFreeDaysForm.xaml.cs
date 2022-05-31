@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string reasonForDaysOff = ReasonForFreeDaysTxt.Text;
             string fromDate = FromDateTxt.Text;
             string toDate = ToDateTxt.Text;
-            Doctor doctor = doctorAppointmentController.getDoctor(doctorId);
+            Doctor doctor = doctorAppointmentController.GetDoctor(doctorId);
             TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate),DateTime.Parse(toDate));
             FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff,RequestStatus.PENDING);
             UrgentVacationChecked(request);

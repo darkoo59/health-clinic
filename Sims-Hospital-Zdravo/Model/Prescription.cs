@@ -9,84 +9,84 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class Prescription
     {
-        private Medicine medicine;
-        private DateTime prescriptionDate;
-        private string strength;
-        private TimeInterval timeInterval;
-        private Doctor doctor;
-        private string dosage;
-        private int numberOfDays;
-        private bool flag;
+        private Medicine _medicine;
+        private DateTime _prescriptionDate;
+        private string _strength;
+        private TimeInterval _timeInterval;
+        private Doctor _doctor;
+        private string _dosage;
+        private int _numberOfDays;
+        private bool _flag;
 
 
         public Prescription(Medicine medicine, DateTime prescriptionDate, string strength, TimeInterval timeInterval, Doctor doctor, string dosage, int numberOfDays)
 
 
         { 
-            this.medicine = medicine;
-            this.prescriptionDate = prescriptionDate;
-            this.doctor = doctor;
-            this.dosage = dosage;
-            this.numberOfDays = numberOfDays;
-            this.timeInterval = timeInterval;
+            this._medicine = medicine;
+            this._prescriptionDate = prescriptionDate;
+            this._doctor = doctor;
+            this._dosage = dosage;
+            this._numberOfDays = numberOfDays;
+            this._timeInterval = timeInterval;
             
-            this._Flag = true;
+            this.Flag = true;
             
         }
 
-        public string _Strength
+        public string Strength
         {
             get
             {
-                return strength;
+                return _strength;
             }
             set
             {
-                strength = value;
+                _strength = value;
             }
         }
-        public string _Dosage
+        public string Dosage
         {
             get
             {
-                return dosage;
+                return _dosage;
             }
             set
             {
-                dosage = value;
+                _dosage = value;
             }
         }
-        public Medicine _Medicine
+        public Medicine Medicine
         {
             get
             {
-                return medicine;
+                return _medicine;
             }
             set
             {
-                medicine = value;
+                _medicine = value;
             }
         }
-        public TimeInterval _TimeInterval
+        public TimeInterval TimeInterval
         {
             get
             {
-                return timeInterval;
+                return _timeInterval;
             }
             set
             {
-                timeInterval = value;
+                _timeInterval = value;
             }
         }
         public DateTime _PrescriptionDate
         {
             get
             {
-                return prescriptionDate;
+                return _prescriptionDate;
             }
             set
             {
-                prescriptionDate = value;
+                _prescriptionDate = value;
             }
         }
         public Doctor _Doctor
@@ -95,11 +95,11 @@ namespace Sims_Hospital_Zdravo.Model
         {
             get
             {
-                return doctor;
+                return _doctor;
             }
             set
             {
-                doctor = value;
+                _doctor = value;
                 
             }
         }
@@ -109,22 +109,22 @@ namespace Sims_Hospital_Zdravo.Model
         {
             get
             {
-                return numberOfDays;
+                return _numberOfDays;
             }
             set
             {
-                numberOfDays = value;
+                _numberOfDays = value;
             }
         }
-        public bool _Flag
+        public bool Flag
         {
             get
             {
-                return flag;
+                return _flag;
             }
             set
             {
-                flag = value;
+                _flag = value;
             }
         }
         

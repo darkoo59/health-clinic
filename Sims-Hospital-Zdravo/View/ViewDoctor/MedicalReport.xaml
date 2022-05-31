@@ -30,11 +30,11 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Label Content="Patient" />
-            <ComboBox  Name="cbPatients" SelectionChanged="cbPatients_SelectionChanged" Width="120" Height="30" HorizontalAlignment="Left" Style="{DynamicResource theComboBox}"/>
+            <TextBox Name="PatTxt"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" >
             <Label  Name="DateTxt" Content="Examination date and time" />
-            <DatePicker  Name="dateExamination" HorizontalAlignment="Left" Width="130"  VerticalAlignment="Top" SelectedDateChanged="dateExamination_SelectedDateChanged" Style="{DynamicResource styleDatePicker}"/>
+            <DatePicker  Name="dateExamination" HorizontalAlignment="Left" Width="130"  VerticalAlignment="Top" SelectedDateChanged="dateExamination_SelectedDateChanged" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" >
             <Label Content="Anamnesis/Report" />
@@ -49,7 +49,7 @@
         <TextBlock TextWrapping="Wrap" Name="DoctorTxt" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="4">
-            <Button Content="Save" Width="120" Height="30" Margin="0,0,50,0" />
+            <Button Content="Save" Width="120" Height="30" Margin="0,0,50,0" Click="SaveMedicalReporClick" />
             <Button Content="Cancel" Width="120" Height="30"/>
         </StackPanel>
         
