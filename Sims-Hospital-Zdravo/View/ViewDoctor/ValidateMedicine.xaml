@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="ValidateMedicine" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -22,32 +22,34 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <Label Content="Name:"></Label>
-            <TextBox Name="MedicineNameTxt"></TextBox>
+            <TextBox Name="MedicineNameTxt" Width="150" Height="25" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Strength:"></Label>
-            <TextBox Name="StrenghtTxt" Height="16"  Width="162">
+            <TextBox Name="StrenghtTxt" Height="25"  Width="150" HorizontalAlignment="Left">
                 
                    
             </TextBox>
         </StackPanel>
         <StackPanel Margin="0,108,0,108" Grid.RowSpan="3" Grid.Row="1">
             <Label Content="Ingredients:"></Label>
-            <TextBox Name="IngredientsTxt"></TextBox>
+            <TextBox Name="IngredientsTxt" Width="150" Height="50" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="0,0,0,108" Grid.RowSpan="2">
+        <StackPanel Grid.Column="0"  Grid.Row="4">
             <Label Content="Description:"></Label>
-            <TextBox x:Name="UsingForTxt"/>
+            <TextBox x:Name="UsingForTxt" Width="150" Height="30" HorizontalAlignment="Left"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Margin="0,-1,0,108" Grid.RowSpan="2">
+        <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Content="Allergens:"></Label>
             <TextBox Name="AllegensTxt"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,0,0" Grid.Row="1">
             <Label Content="Medicine shouldnt be approved because:"></Label>
-            <TextBox Name="ReasonForRejectinMedicineTxt"></TextBox>
+            <TextBox Name="ReasonForRejectinMedicineTxt" Width="150" Height="70" HorizontalAlignment="Left"></TextBox>
+        </StackPanel >
+        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="4">
+            <Button  Margin="0,0,50,0" Content="Approve" Width="150" Height="30" Name="ValidateMedicineBtn" Click="ValidateMedicineBtn_Click"></Button>
+            <Button  Content="Reject" Name="RejectMedcineBtn" Width="150" Height="30" Click="RejectMedicineBtn_Click"></Button>
         </StackPanel>
-        <Button Margin="26,28,26,28" Grid.Column="1" Grid.Row="2" Content="Approve" Name="ValidateMedicineBtn" Click="ValidateMedicineBtn_Click"></Button>
-        <Button Margin="26,28,26,28" Grid.Column="2" Grid.Row="2" Content="Reject" Name="RejectMedcineBtn" Click="RejectMedicineBtn_Click"></Button>
-    </Grid>
+        </Grid>
 </Window>

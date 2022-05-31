@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,12 +20,35 @@ using System.Windows.Shapes;
 
 namespace Sims_Hospital_Zdravo
 {
+    public class StringToTime : ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            try
+            {
+                string pattern = @"\d?\d:\d\d";
+                var s = value as string;
+                Match m = Regex.Match(s, pattern);
+                if (m.Success)
+                {
+                    return new ValidationResult(true, null);
+                }
+                else
+                {
+                    return new ValidationResult(false, "Time format must be HH:mm (10:00)");                
+                }
+            }
+            catch
+            {
+                return new ValidationResult(false, "Unknown error occured.");
+            }
+        }
+    }
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class PatientCreate : Page
+    public partial class PatientCreate : Page, INotifyPropertyChanged
     {
-
         public AppointmentPatientController appointmentPatientController;
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
@@ -57,6 +81,28 @@ namespace Sims_Hospital_Zdravo
             dateTime = datePicker.SelectedDate.Value;
         }
         public Doctor doctor;
+        private string _time;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        public string Time
+        {
+            get 
+            {
+                return _time;
+            }
+            set 
+            {
+                _time = value;
+                OnPropertyChanged("Time");
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void Doctors_Selected(object sender, RoutedEventArgs e)
         {
             string name = Doctors.SelectedItem.ToString();
@@ -70,25 +116,24 @@ namespace Sims_Hospital_Zdravo
                 }
             }
         }
-        Random rnd = new Random();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Match m = Regex.Match(Time.Text, pattern);
+                Match m = Regex.Match(TimeText.Text, pattern);
                 if (m.Success)
                 {
-                    string[] time = Time.Text.Split(':');
+                    string[] time = TimeText.Text.Split(':');
                     dateTime = dateTime.AddHours(Int32.Parse(time[0]));
                     dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
                 }
                 else
                 {
-                    throw new Exception("Time format must be HH:mm (10:00)");                
+                    //throw new Exception("Time format must be HH:mm (10:00)");                
                 }
-                if (datePicker.SelectedDate == null) 
+                if (datePicker.SelectedDate == null)
                 {
-                    throw new Exception("You must pick a date");
+                    //throw new Exception("You must pick a date");
                 }
                 DateTime dateTime1 = new DateTime(1111, 11, 11);
                 Patient patient = new Patient(1, "Jovan", "Nikic", dateTime1, "fdafdasf@gmail.com", "321341413", "+38134213");
@@ -97,7 +142,8 @@ namespace Sims_Hospital_Zdravo
                 string priority = DateOrDoctors.SelectedItem.ToString();
                 appointmentPatientController.ValidateAppointment(appointment);
                 frame.Content = new AppointmentList(frame, appointment, priority);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

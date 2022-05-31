@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
-        mc:Ignorable="d"
+        xmlns:val="clr-namespace:Sims_Hospital_Zdravo"
+      mc:Ignorable="d"
         Title="PatientCreate" Height="450" Width="800">
     <Page.Resources>
         <Style TargetType="{x:Type Button}">
@@ -40,16 +41,18 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Page.Resources>
     <Grid HorizontalAlignment="Left">
-        <TextBlock Width="250" FontSize="20" Height="31" Margin="120,14,97,399" >Doctor:</TextBlock>
-        <TextBlock Width="250" FontSize="20" Height="31" Margin="120,74,97,341">Date:</TextBlock>
-        <TextBlock FontSize="20" Width="250" Height="31" Margin="120,144,97,273" >Time:</TextBlock>
-        <TextBlock Width="250" FontSize="20" Height="31" Margin="120,214,97,204">Priority:</TextBlock>
-        <ComboBox Name="Doctors" SelectionChanged="Doctors_Selected" Height="31" Width="250" FontSize="20" Margin="430,17,-213,402"/>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Margin="120,14,97,399" >Doctor:</TextBlock>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Margin="120,74,97,341">Date:</TextBlock>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" FontSize="18" Width="250" Height="31" Margin="120,144,97,273" >Time:</TextBlock>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Margin="120,214,97,204">Priority:</TextBlock>
+        <ComboBox Name="Doctors" SelectionChanged="Doctors_Selected" Height="31" Width="250" FontSize="18" FontFamily="#Segoe UI" FontWeight="DemiBold" Margin="430,17,-213,402"/>
         <DatePicker Height="31" Width="250" FontSize="20" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker" Margin="430,76,-213,343" RenderTransformOrigin="0.616,0.419"/>
         <ComboBox  FontSize="20" Height ="31" Width= "250" Name="DateOrDoctors" Margin="430,214,-213,204"/>
-        <TextBox  ToolTip="HH:mm" Width="250" FontSize="20" Height="31" x:Name="Time" Margin="430,144,-213,274" HorizontalAlignment="Left"></TextBox>
-        <Button Click="Button_Click" FontSize="20" Width ="250" Height ="31"  Margin="275,280,-58,139">Submit</Button>
+        <TextBox FontFamily="#Segoe UI" FontWeight="DemiBold" ToolTip="HH:mm" Width="250" FontSize="18" Height="31" x:Name="TimeText" Margin="430,144,-213,274" HorizontalAlignment="Left">
+        </TextBox>
+        <Button Click="Button_Click" FontSize="20" Width ="250" Height ="31"  Margin="275,275,-58,144">Submit</Button>
     </Grid>
 </Page>

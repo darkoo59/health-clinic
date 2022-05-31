@@ -16,6 +16,7 @@ namespace Sims_Hospital_Zdravo.Model
         private Doctor doctor;
         private string dosage;
         private int numberOfDays;
+        private DateTime startDate;
         private bool flag;
 
 
@@ -127,8 +128,18 @@ namespace Sims_Hospital_Zdravo.Model
                 flag = value;
             }
         }
-        
 
+        public DateTime _StartDate
+        {
+            get
+            {
+                return startDate;
+            }
+            set
+            {
+                startDate = value;
+            }
+        }
 
     }
 }

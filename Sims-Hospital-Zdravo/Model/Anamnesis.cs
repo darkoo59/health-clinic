@@ -17,6 +17,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string Diagnosis;
         private string Anamensis;
         private int anamnesisID;
+        private string _notes;
 
         public Anamnesis(Doctor doctor, MedicalRecord medicalRecord, DateTime date, TimeInterval timeInterval, string diagnosis, string anamensis)
         {
@@ -26,6 +27,7 @@ namespace Sims_Hospital_Zdravo.Model
             this.timeInterval = timeInterval;
             Diagnosis = diagnosis;
             Anamensis = anamensis;
+            Notes = "";
         }
 
         public Doctor _Doctor
@@ -40,6 +42,18 @@ namespace Sims_Hospital_Zdravo.Model
                 OnPropertyChanged("_Doctor");
             }
 
+        }
+        public string Notes
+        {
+            get 
+            {
+                return _notes;
+            }
+            set 
+            {
+                _notes = value;
+                OnPropertyChanged("Notes");
+            }
         }
         public DateTime _Date
         {

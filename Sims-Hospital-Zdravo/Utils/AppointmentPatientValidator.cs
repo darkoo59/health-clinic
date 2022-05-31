@@ -4,13 +4,16 @@ using Service;
 using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
-    class AppointmentPatientValidator
+    public class AppointmentPatientValidator
     {
         private AppointmentRepository appointmentRepository;
         private int i;

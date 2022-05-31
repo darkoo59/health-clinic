@@ -129,9 +129,12 @@ namespace Sims_Hospital_Zdravo
 
             DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
+            DoctorQuestionDataHandler doctorQuestionDataHandler = new DoctorQuestionDataHandler();
+            HospitalQuestionDataHandler hospitalQuestionDataHandler = new HospitalQuestionDataHandler();
+            QuestionRepository questionRepository = new QuestionRepository(doctorQuestionDataHandler, hospitalQuestionDataHandler);
             DoctorSurveyRepository doctorSurveyRepository = new DoctorSurveyRepository(doctorSurveyDataHandler);
             HospitalSurveyRepository hospitalSurveyRepository = new HospitalSurveyRepository(hospitalSurveyDataHandler);
-            SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository);
+            SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository, questionRepository);
             _surveyController = new SurveyController(surveyService);
 
             SecretaryAppointmentService secretaryAppointmentService =

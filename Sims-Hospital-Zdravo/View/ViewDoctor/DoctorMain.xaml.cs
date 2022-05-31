@@ -35,6 +35,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private NotificationController notificationController;
         private NotificationManager notificationManager;
         private AccountController accountController;
+        private Frame frame;
 
         private int doctorId;
 
@@ -161,7 +162,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
-           //PrescriptionList prescriptionList = new PrescriptionList(medicalRecordController,medicalRecord,doctorId)
+            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController,  doctorId, frame);
         }
     }
 }

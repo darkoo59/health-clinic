@@ -83,6 +83,17 @@ namespace Sims_Hospital_Zdravo.Repository
             }
             return list;
         }
+        public Anamnesis FindAnamnesisByAppointment(Appointment appointment)
+        {
+            foreach (Anamnesis anamnesis in Anamnesis) 
+            { 
+                if(anamnesis._MedicalRecord._Patient._Id == appointment._Patient._Id && anamnesis._Doctor._Id == appointment._Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment._Time.Start))
+                {
+                    return anamnesis;
+                }
+            }
+            return null;
+        }
         public ref ObservableCollection<Anamnesis> ReadAll()
         {
             return ref Anamnesis;

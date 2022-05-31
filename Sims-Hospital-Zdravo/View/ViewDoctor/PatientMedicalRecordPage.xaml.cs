@@ -21,7 +21,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// <summary>
     /// Interaction logic for PatientMedicalRecordPage.xaml
     /// </summary>
-    public partial class PatientMedicalRecordPage : Page
+    public partial class PatientMedicalRecordPage : UserControl
     {
         private DoctorAppointmentController _doctorAppointmentController;
         private MedicalRecordController _medicalRecordController;

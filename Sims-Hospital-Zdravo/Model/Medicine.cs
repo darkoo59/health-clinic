@@ -22,6 +22,7 @@ namespace Sims_Hospital_Zdravo.Model
         private string description;
         private string strength;
         private MedicineStatus status;
+        private List<string> ingredients;
         private List<Medicine> substitution;
 
         public Medicine(string name, string strength, string allergens, string description)
@@ -32,6 +33,7 @@ namespace Sims_Hospital_Zdravo.Model
             this.strength = strength;
             substitution = new List<Medicine>();
             this.status = MedicineStatus.PENDING;
+            ingredients = new List<string>();
         }
 
         public string _Description
@@ -80,6 +82,12 @@ namespace Sims_Hospital_Zdravo.Model
             set { substitution = value; }
         }
 
+
+        public List<string> _Ingredients
+        {
+            get {  return ingredients; }
+            set { ingredients = value; }
+        }
         public override string ToString()
         {
             return name + " " + strength;
