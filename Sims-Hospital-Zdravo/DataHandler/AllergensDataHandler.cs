@@ -12,7 +12,7 @@ namespace Sims_Hospital_Zdravo.DataHandler
     {
         public Allergens ReadAll()
         {
-            string allergensSerialized = System.IO.File.ReadAllText(Path);
+            string allergensSerialized = System.IO.File.ReadAllText(_path);
             Allergens allergens = Newtonsoft.Json.JsonConvert.DeserializeObject<Allergens>(allergensSerialized);
             return allergens;
             //return null;
@@ -22,9 +22,9 @@ namespace Sims_Hospital_Zdravo.DataHandler
         public void Write(Allergens allergens)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(allergens);
-            System.IO.File.WriteAllText(Path, serialized);
+            System.IO.File.WriteAllText(_path, serialized);
         }
 
-        private String Path = @"..\..\Resources\allergens.txt";
+        private String _path = @"..\..\Resources\allergens.txt";
     }
 }
