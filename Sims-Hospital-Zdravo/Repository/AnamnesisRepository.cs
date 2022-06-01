@@ -7,70 +7,66 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.DataHandler;
+
 namespace Sims_Hospital_Zdravo.Repository
 {
     public class AnamnesisRepository
     {
         private AnamnesisDataHandler _anamnesisDataHandler;
         private ObservableCollection<Anamnesis> _anamnesis;
+
         public AnamnesisRepository(AnamnesisDataHandler anamnesisDataHandler)
         {
-
             this._anamnesisDataHandler = anamnesisDataHandler;
             _anamnesis = new ObservableCollection<Anamnesis>();
             LoadDataFromFiles();
-
         }
 
 
-        public void Create (Anamnesis anamnesis)
+        public void Create(Anamnesis anamnesis)
         {
             _anamnesis.Add(anamnesis);
             LoadDataToFiles();
         }
 
-        public void Update (Anamnesis anamnesis)
+        public void Update(Anamnesis anamnesis)
         {
-            foreach( Anamnesis anam in _anamnesis)
+            foreach (Anamnesis anam in _anamnesis)
             {
-                if (anam.Doctor == anam.Doctor)
+                if (anam.Doctor == anamnesis.Doctor)
                 {
-                    anam.Diagnosis = anam.Diagnosis;
-                    anam.Anamensis = anam.Anamensis;
+                    anam.Diagnosis = anamnesis.Diagnosis;
+                    anam.Anamensis = anamnesis.Anamensis;
                     LoadDataToFiles();
                     return;
                 }
             }
-            
-
         }
+
         public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
         {
             ObservableCollection<Anamnesis> listOfAnamnesisByDoctor = new ObservableCollection<Anamnesis>();
-            
-            foreach(Anamnesis anam in _anamnesis)
+
+            foreach (Anamnesis anam in _anamnesis)
             {
-                if(anam.Doctor._Id == id)
+                if (anam.Doctor._Id == id)
                 {
                     listOfAnamnesisByDoctor.Add(anam);
                 }
             }
+
             return listOfAnamnesisByDoctor;
-            
-            
         }
+
         public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
-            ObservableCollection<Anamnesis> listOfPatientAnamnesis = new ObservableCollection<Anamnesis>();
-            listOfPatientAnamnesis = medicalRecord.Anamnesis;
-            foreach(Anamnesis anma in listOfPatientAnamnesis)
+            ObservableCollection<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
+            foreach (Anamnesis anma in listOfPatientAnamnesis)
             {
-                Console.WriteLine(anma.Diagnosis+"xnxnxn");
+                Console.WriteLine(anma.Diagnosis + "xnxnxn");
             }
+
             return listOfPatientAnamnesis;
-            
-
-
         }
 
         //public ObservableCollection<Anamnesis> FindAnamnesisByPatient (MedicalRecord med)
@@ -99,8 +95,5 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             _anamnesisDataHandler.Write(_anamnesis);
         }
-
-
-
     }
 }
