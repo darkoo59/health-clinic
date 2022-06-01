@@ -17,7 +17,7 @@ namespace Sims_Hospital_Zdravo.Model
     public class Medicine
     {
         private string _name;
-        private int id;
+        private int _id;
         private string allergens;
         private string _description;
         private string _strength;
@@ -53,8 +53,8 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int Id
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string Name
