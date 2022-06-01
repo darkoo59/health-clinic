@@ -27,6 +27,11 @@ namespace Model
                    || IsDateInsideInterval(this, interval.Start)
                    || IsDateInsideInterval(this, interval.End);
         }
+        
+        public bool IsLongerThanDuration(double duration)
+        {
+            return (this.End - this.Start).TotalHours >= duration;
+        }
 
         private bool IsIntervalInside(TimeInterval outside, TimeInterval inside)
         {
