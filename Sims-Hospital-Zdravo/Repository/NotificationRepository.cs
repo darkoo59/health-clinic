@@ -67,6 +67,11 @@ namespace Sims_Hospital_Zdravo.Repository
             return notifications.OfType<ReviewMedicineNotification>().Cast<Notification>().ToList();
         }
 
+        public List<Notification> ReadAllSecretaryNotifications()
+        {
+            //return notifications.OfType
+            return null;
+        }
         public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
             return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();

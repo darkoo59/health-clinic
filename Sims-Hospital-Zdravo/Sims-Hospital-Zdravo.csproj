@@ -133,6 +133,7 @@
     <Compile Include="Interfaces\ISurveyStatistic.cs" />
     <Compile Include="Model\MarkStatistic.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
+    <Compile Include="Model\RequestForFreeDaysNotification.cs" />
     <Compile Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml.cs">
       <DependentUpon>ManagerHospitalSurveys.xaml</DependentUpon>
     </Compile>
