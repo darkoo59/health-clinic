@@ -27,25 +27,31 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private DoctorAppointmentController doctorAppointmentController;
         private RequestForFreeDaysController requestForFreeDaysController;
         private int doctorId;
-        public RequestForFreeDaysForm( DoctorAppointmentController doctorAppointmentController,RequestForFreeDaysController requestForFreeDaysController,int doctorId)
+
+        public RequestForFreeDaysForm(DoctorAppointmentController doctorAppointmentController, RequestForFreeDaysController requestForFreeDaysController, int doctorId)
         {
             InitializeComponent();
             this.doctorAppointmentController = doctorAppointmentController;
             this.requestForFreeDaysController = requestForFreeDaysController;
             this.doctorId = doctorId;
-
-
         }
 
         public void UrgentVacationChecked(FreeDaysRequest request)
         {
-            if (UrgentBox.IsChecked == true)
+            try
             {
-                requestForFreeDaysController.CreateUrgent(request);
+                if (UrgentBox.IsChecked == true)
+                {
+                    requestForFreeDaysController.CreateUrgent(request);
+                }
+                else
+                {
+                    requestForFreeDaysController.Create(request);
+                }
             }
-            else
+            catch (Exception e)
             {
-                requestForFreeDaysController.Create(request);
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -56,8 +62,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string fromDate = FromDateTxt.Text;
             string toDate = ToDateTxt.Text;
             Doctor doctor = doctorAppointmentController.GetDoctor(doctorId);
-            TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate),DateTime.Parse(toDate));
-            FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff,RequestStatus.PENDING);
+            TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate), DateTime.Parse(toDate));
+            FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff, RequestStatus.PENDING);
             UrgentVacationChecked(request);
         }
     }

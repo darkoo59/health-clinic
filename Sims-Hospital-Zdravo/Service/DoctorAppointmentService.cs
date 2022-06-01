@@ -45,17 +45,8 @@ namespace Service
 
         public void Create(Appointment appointment)
         {
-            try
-            {
-                _validator.ValidateAppointment(appointment);
-
-                _appointmentRepository.Create(appointment);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-                
+            _validator.ValidateAppointment(appointment);
+            _appointmentRepository.Create(appointment);
         }
 
         public void DeleteByID(Appointment appointment)
@@ -87,11 +78,9 @@ namespace Service
             // TODO: implement
             //return appointmentRepository.GetByID(appointment);
             return null;
-           
         }
 
 
-        
         public int GenerateId()
         {
             ObservableCollection<Appointment> appointments = _appointmentRepository.FindAll();
@@ -140,11 +129,10 @@ namespace Service
             return _app;
         }
 
-        
-        
+
         public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
-           return  _doctorRepo.FindDoctorsBySpecalty(specaltyType);
+            return _doctorRepo.FindDoctorsBySpecalty(specaltyType);
         }
 
 
@@ -153,14 +141,11 @@ namespace Service
             //ObservableCollection<>
         }
 
-        public void UrgentSurgery(Appointment appointment,double duration)
+        public void UrgentSurgery(Appointment appointment, double duration)
         {
-            
-            TimeInterval tl = _timeSchedulerService.FindIntervalForOperation(appointment,duration);
+            TimeInterval tl = _timeSchedulerService.FindIntervalForOperation(appointment, duration);
             appointment.Time = tl;
             Create(appointment);
-
         }
-
     }
 }

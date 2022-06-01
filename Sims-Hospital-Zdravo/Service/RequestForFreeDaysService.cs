@@ -23,22 +23,13 @@ namespace Sims_Hospital_Zdravo.Model
         {
             this._requestForFreeDaysRepository = requestForFreeDaysRepository;
             this._appointmentRepository = appointmentRepository;
-            this._freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository,requestForFreeDaysRepository);
-
+            this._freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
         }
 
         public void Create(FreeDaysRequest request)
         {
-            try
-            {
-                _freeDaysValidator.ValidateSchedulingDaysOff(request);
-                _requestForFreeDaysRepository.Create(request);
-                MessageBox.Show("Request pending");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            _freeDaysValidator.ValidateSchedulingDaysOff(request);
+            _requestForFreeDaysRepository.Create(request);
         }
 
         public void CreateUrgent(FreeDaysRequest request)
