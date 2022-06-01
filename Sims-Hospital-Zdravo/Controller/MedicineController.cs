@@ -38,6 +38,7 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             _medicineService.ValidateMedicineWithNotifyingDoctor(medicine, notification);
         }
+        
 
         public int GenerateId()
         {

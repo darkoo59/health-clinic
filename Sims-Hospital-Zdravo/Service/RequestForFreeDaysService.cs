@@ -18,11 +18,13 @@ namespace Sims_Hospital_Zdravo.Model
         private RequestForFreeDaysRepository _requestForFreeDaysRepository;
         private AppointmentRepository _appointmentRepository;
         private RequestForFreeDaysValidator _freeDaysValidator;
+        private NotificationRepository _notificationRepository;
 
-        public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository, AppointmentRepository appointmentRepository)
+        public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository, AppointmentRepository appointmentRepository,NotificationRepository notificationRepository)
         {
             this._requestForFreeDaysRepository = requestForFreeDaysRepository;
             this._appointmentRepository = appointmentRepository;
+            this._notificationRepository = notificationRepository;
             this._freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
         }
 
@@ -45,6 +47,17 @@ namespace Sims_Hospital_Zdravo.Model
         public ref ObservableCollection<FreeDaysRequest> ReadAll()
         {
             return ref _requestForFreeDaysRepository.ReadAll();
+        }
+
+        public ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+        {
+            return _requestForFreeDaysRepository.ReadAllByDoctor(doctorId);
+        }
+
+        public void SendRequestForFreeDaysWithNotifyingSecretary(FreeDaysRequest freeDaysRequest, Notification notification)
+        {
+            Create(freeDaysRequest);
+            _notificationRepository.Create(notification);
         }
     }
 }

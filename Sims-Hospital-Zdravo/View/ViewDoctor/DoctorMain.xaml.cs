@@ -162,8 +162,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
-            //ListOfMedecinesinSystem listOfMedecineList = new ListOfMedecinesinSystem( doctorId);
-            //FrameForMain.Content = listOfMedecineList;
+            ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
+            FrameForMain.Content = viewRequestForFreeDays;
         }
     }
 }

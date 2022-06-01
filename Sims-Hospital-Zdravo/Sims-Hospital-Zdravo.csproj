@@ -413,6 +413,9 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
+      <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Patient\AnamnesisPage.xaml" />
@@ -641,6 +644,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ViewDoctor\ValidateMedicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

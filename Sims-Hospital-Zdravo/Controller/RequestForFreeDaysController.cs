@@ -38,6 +38,15 @@ namespace Sims_Hospital_Zdravo.Controller
             return  ref _requestForFreeDaysService.ReadAll();
         }
 
+        public ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+        {
+            return _requestForFreeDaysService.ReadAllByDoctor(doctorId);
+        }
+
+        public void SendRequestForFreeDaysWithNotifyingSecretary(FreeDaysRequest freeDaysRequest, Notification notification)
+        {
+            _requestForFreeDaysService.SendRequestForFreeDaysWithNotifyingSecretary(freeDaysRequest, notification);
+        }
 
 
     }

@@ -81,7 +81,7 @@
                         </Image>
                     </MenuItem.Icon>
                     <MenuItem.Header>
-                        <AccessText Text="Presciptions" HorizontalAlignment="Left" VerticalAlignment="Center"
+                        <AccessText Text="Requestsview" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Width="220" FontFamily="Comic Sans MS" FontSize="25">
                         </AccessText>
                     </MenuItem.Header>
