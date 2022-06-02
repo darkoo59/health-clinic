@@ -15,6 +15,7 @@ namespace Sims_Hospital_Zdravo.DataHandler
             List<QuestionForSurvey> questions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<QuestionForSurvey>>(questionSerialized);
             return questions;
         }
+
         private string Path = @"..\..\Resources\questions_doctor.txt";
     }
 }

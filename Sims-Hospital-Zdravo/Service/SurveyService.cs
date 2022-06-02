@@ -81,7 +81,7 @@ namespace Sims_Hospital_Zdravo.Service
         {
             int sum = surveys.Sum(survey => survey.GetMarkSum());
             if (surveys.Count == 0) throw new Exception("No surveys!");
-            return sum * 1.0 / questionCount;
+            return sum * 1.0 / (questionCount * surveys.Count);
         }
 
         private List<QuestionStatistic> CalculateAllQuestionsStatistics(List<ISurveyStatistic> surveys, List<QuestionForSurvey> questions)

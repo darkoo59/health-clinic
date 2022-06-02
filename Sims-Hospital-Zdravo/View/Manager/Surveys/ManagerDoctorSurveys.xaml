@@ -1,4 +1,4 @@
-﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.Surveys.ManagerHospitalSurveys"
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.Surveys.ManagerDoctorSurveys"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -33,7 +33,12 @@
         <Label HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30">
             Hospital Survey Results
         </Label>
-        <Label Grid.Row="1" Content="{Binding Path=AverageMark}" Foreground="White" FontSize="20" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20, 0, 0, 0">
+            <Label VerticalAlignment="Center" Content="{Binding Path=AverageMark}" Foreground="White" FontSize="20" />
+            <ComboBox VerticalAlignment="Center" Width="250" Height="30" ItemsSource="{Binding Doctors}"
+                      SelectedItem="{Binding Selected}">
+            </ComboBox>
+        </StackPanel>
         <ScrollViewer
             Grid.Row="2">
             <ItemsControl
@@ -98,6 +103,3 @@
 
     </Grid>
 </Page>
-
-<!-- Height="686" -->
-<!-- Width="924" -->

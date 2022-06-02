@@ -52,10 +52,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void SetTimer()
         {
-            timer = new Timer(2000);
-            timer.Elapsed += FireScheduledTask;
-            timer.AutoReset = true;
-            timer.Enabled = true;
+            // timer = new Timer(2000);
+            // timer.Elapsed += FireScheduledTask;
+            // timer.AutoReset = true;
+            // timer.Enabled = true;
         }
 
 

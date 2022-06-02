@@ -134,6 +134,11 @@
     <Compile Include="Model\MarkStatistic.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
+    <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
+    <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
+      <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml.cs">
       <DependentUpon>ManagerHospitalSurveys.xaml</DependentUpon>
     </Compile>
@@ -413,6 +418,7 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Patient\AnamnesisPage.xaml" />
@@ -763,6 +769,7 @@
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
     <Content Include="Resources\doctor_surveys.txt" />
+    <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />

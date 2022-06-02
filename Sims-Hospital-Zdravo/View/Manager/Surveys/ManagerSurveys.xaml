@@ -35,12 +35,21 @@
         <Button
             Grid.Row="3"
             Grid.Column="1"
+            TabIndex="0"
             FocusVisualStyle="{DynamicResource MyFocusVisual}"
             Command="cmd:Commands.NavigateToCommand"
             CommandParameter="Surveys/ManagerHospitalSurveys.xaml">
             Hospital Statistics
         </Button>
-        <Button Grid.Row="3" Grid.Column="3" FocusVisualStyle="{DynamicResource MyFocusVisual}">Doctor Statistics</Button>
+        <Button
+            Grid.Row="3"
+            Grid.Column="3"
+            TabIndex="1"
+            FocusVisualStyle="{DynamicResource MyFocusVisual}"
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Surveys/ManagerDoctorSurveys.xaml">
+            Doctor Statistics
+        </Button>
 
     </Grid>
 </Page>
