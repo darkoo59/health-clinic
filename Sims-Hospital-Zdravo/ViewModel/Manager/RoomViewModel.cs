@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Controller;
 using Model;
@@ -20,6 +21,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
         public ICommand InsertRoomCommand => new InsertRoomCommand(roomController);
         public ICommand UpdateRoomCommand => new UpdateRoomCommand();
         public ICommand DeleteRoomCommand => new DeleteRoomCommand(roomController);
+
 
         public RoomViewModel()
         {
@@ -124,6 +126,29 @@ namespace Sims_Hospital_Zdravo.ViewModel
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public event EventHandler CanExecuteChanged;
+    }
+
+
+    public class SearchCommand : ICommand
+    {
+        private TextBox searchBox;
+
+        public SearchCommand(TextBox searchBox)
+        {
+            this.searchBox = searchBox;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            searchBox.Focus();
         }
 
         public event EventHandler CanExecuteChanged;

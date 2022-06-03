@@ -13,6 +13,7 @@
 
     <Page.InputBindings>
         <KeyBinding Command="{Binding InsertRoomCommand}" Key="I" Modifiers="Control"></KeyBinding>
+        <KeyBinding Command="{Binding SearchCommand}" Key="F" Modifiers="Control"></KeyBinding>
         <KeyBinding Command="{Binding UpdateRoomCommand}"
                     CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
                     Key="U" Modifiers="Control">
@@ -43,7 +44,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
+            <xctk:WatermarkTextBox x:Name="SearchBox" Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}"
                     x:Name="InsertBtn">

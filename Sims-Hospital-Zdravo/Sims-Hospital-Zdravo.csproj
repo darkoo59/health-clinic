@@ -145,6 +145,9 @@
     <Compile Include="View\Manager\Surveys\ManagerSurveys.xaml.cs">
       <DependentUpon>ManagerSurveys.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
     </Compile>
@@ -421,6 +424,7 @@
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
+    <Page Include="View\Manager\Tutorial.xaml" />
     <Page Include="View\Patient\AnamnesisPage.xaml" />
     <Page Include="View\Patient\AppointmentDetailsPage.xaml" />
     <Page Include="View\Patient\AppointmentList.xaml">
@@ -768,6 +772,7 @@
     <Resource Include="Resources\img\icons8-day-off-96.png" />
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
+    <Resource Include="Resources\demo.mp4" />
     <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
