@@ -148,7 +148,9 @@ namespace Sims_Hospital_Zdravo
                 new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
 
-            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository);
+            MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
+            MeetingRepository _meetingRepository = new MeetingRepository(_meetingDataHandler);
+            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository,_meetingRepository,notificationRepository);
             _meetingController = new MeetingController(_meetingService);
 
 

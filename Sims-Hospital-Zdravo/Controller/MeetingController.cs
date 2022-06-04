@@ -1,4 +1,5 @@
 ﻿using Model;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Service;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,16 @@ namespace Sims_Hospital_Zdravo.Controller
         public MeetingController(MeetingService meetingService)
         {
             this._meetingService = meetingService;
+        }
+
+        public void Create(Meeting meeting)
+        {
+            _meetingService.Create(meeting);
+        }
+
+        public void CreateMeetingWithNotifying(Meeting meeting, List<Notification> notifications)
+        {
+            _meetingService.CreateMeetingWithNotifying(meeting, notifications);
         }
 
         public List<Room> ReadAllRooms()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Model;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
 
@@ -75,6 +76,39 @@ namespace Sims_Hospital_Zdravo.Repository
         public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
             return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
+        }
+
+        public List<Notification> ReadAllManagerMeetingsNotifications(int managerId)
+        {
+            List<Notification> notificationsToReturn = new List<Notification>();
+            foreach(MeetingCreatedNotifications notification in notifications.OfType<MeetingCreatedNotifications>().Cast<Notification>().ToList())
+            {
+                if (notification.RoleType == RoleType.MANAGER && notification.UserId == managerId)
+                    notificationsToReturn.Add(notification);
+            }
+            return notificationsToReturn;
+        }
+
+        public List<Notification> ReadAllDoctorMeetingsNotifications(int doctorId)
+        {
+            List<Notification> notificationsToReturn = new List<Notification>();
+            foreach (MeetingCreatedNotifications notification in notifications.OfType<MeetingCreatedNotifications>().Cast<Notification>().ToList())
+            {
+                if(notification.RoleType == RoleType.DOCTOR && notification.UserId == doctorId)
+                    notificationsToReturn.Add(notification);
+            }
+            return notificationsToReturn;
+        }
+
+        public List<Notification> ReadAllSecretaryMeetingsNotifications(int secretaryId)
+        {
+            List<Notification> notificationsToReturn = new List<Notification>();
+            foreach (MeetingCreatedNotifications notification in notifications.OfType<MeetingCreatedNotifications>().Cast<Notification>().ToList())
+            {
+                if (notification.RoleType == RoleType.SECRETARY && notification.UserId == secretaryId)
+                    notificationsToReturn.Add(notification);
+            }
+            return notificationsToReturn;
         }
 
         public void LoadDataFromFiles()
