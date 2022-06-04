@@ -23,9 +23,9 @@ namespace Controller
             _equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
         }
 
-        public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
+        public void MakeRelocationAppointment(RelocationAppointment relocationAppointment)
         {
-            _equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
+            _equipmentTransferService.MakeRelocationAppointment(relocationAppointment);
         }
 
         public List<RelocationAppointment> ReadAll()
@@ -33,9 +33,14 @@ namespace Controller
             return _equipmentTransferService.ReadAll();
         }
 
-        public List<TimeInterval> GetFreeTimeIntervals(Room fromRoom, Room toRoom)
+        public List<TimeInterval> GetTakenTimeIntervals(Room fromRoom, Room toRoom)
         {
             return _equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
+        }
+
+        public int GenerateId()
+        {
+            return _equipmentTransferService.GenerateId();
         }
     }
 }

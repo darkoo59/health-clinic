@@ -70,5 +70,15 @@ namespace Utils
             ValidateRoomTaken(fromRoomId, ti);
             ValidateRoomTaken(toRoomId, ti);
         }
+
+        public void ValidateTransferFromRoom(RelocationAppointment relocationAppointment)
+        {
+            RoomExists(relocationAppointment.FromRoom.Id);
+            RoomExists(relocationAppointment.ToRoom.Id);
+            ValidateDateCorrect(relocationAppointment.Scheduled);
+            HasEnoughEquipment(relocationAppointment.FromRoom.Id, relocationAppointment.RoomEquipment.Quantity, relocationAppointment.RoomEquipment.Equipment.Id);
+            ValidateRoomTaken(relocationAppointment.FromRoom.Id, relocationAppointment.Scheduled);
+            ValidateRoomTaken(relocationAppointment.ToRoom.Id, relocationAppointment.Scheduled);
+        }
     }
 }

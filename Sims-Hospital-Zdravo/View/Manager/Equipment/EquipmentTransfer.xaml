@@ -60,43 +60,59 @@
         </Label>
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label>From Room:</Label>
-            <ComboBox x:Name="ComboFromRoom" SelectionChanged="RoomData_Changed"></ComboBox>
+            <ComboBox
+                x:Name="ComboFromRoom"
+                ItemsSource="{Binding Rooms}"
+                SelectedItem="{Binding FromRoom}" />
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
             <Label>To Room:</Label>
-            <ComboBox SelectionChanged="ToRoomData_Changed" x:Name="ComboToRoom"></ComboBox>
+            <ComboBox
+                x:Name="ComboToRoom"
+                ItemsSource="{Binding Rooms}"
+                SelectedItem="{Binding ToRoom}" />
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
             <Label>Equipment:</Label>
-            <ComboBox x:Name="ComboEquipment"></ComboBox>
+            <ComboBox
+                x:Name="ComboEquipment"
+                ItemsSource="{Binding EquipmentForRoom}"
+                SelectedItem="{Binding RoomEquipment}" />
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
-            <Label>Quantity: </Label>
-            <TextBox x:Name="Quantity"></TextBox>
+            <Label>Quantity:</Label>
+            <TextBox
+                x:Name="Quantity"
+                Text="{Binding Quantity}" />
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0">
             <Label>Duration:</Label>
-            <TextBox x:Name="IntervalDuration"></TextBox>
+            <TextBox
+                x:Name="IntervalDuration"
+                Text="{Binding Duration}" />
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
             <Label>Starts:</Label>
-            <xctk:DateTimeUpDown x:Name="IntervalStarts" Height="30"></xctk:DateTimeUpDown>
+            <xctk:DateTimeUpDown
+                x:Name="IntervalStarts"
+                Value="{Binding Starts}"
+                Height="30">
+            </xctk:DateTimeUpDown>
         </StackPanel>
         <DockPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="6" Grid.ColumnSpan="2">
             <Label DockPanel.Dock="Top">Already reserved intervals: </Label>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl Background="White"
                               VerticalContentAlignment="Stretch"
-                              x:Name="ListIntervals">
+                              ItemsSource="{Binding TakenIntervals}">
                 </ItemsControl>
             </ScrollViewer>
         </DockPanel>
 
         <Button Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" Height="30" Width="150" Grid.ColumnSpan="3"
-                x:Name="SaveAppointment"
-                Click="SaveApp_Click"
+                Command="{Binding ScheduleRelocationCommand}"
                 FocusVisualStyle="{DynamicResource MyFocusVisual}">
             Schedule
         </Button>

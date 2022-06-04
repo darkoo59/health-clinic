@@ -187,5 +187,10 @@ namespace Model
         {
             _observers.Remove(observer);
         }
+
+        public List<RoomEquipment> GetAllEquipmentByType(EquipmentType equipmentType)
+        {
+            return _roomEquipment.FindAll(equipment => equipment.Equipment.Type == equipmentType);
+        }
     }
 }
