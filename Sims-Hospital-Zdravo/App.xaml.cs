@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 using Service;
 using Controller;
 using Repository;
@@ -43,6 +44,8 @@ namespace Sims_Hospital_Zdravo
 
         public App()
         {
+            EventManager.RegisterClassHandler(typeof(Window), Window.LoadedEvent,
+                new RoutedEventHandler(WindowLoaded));
             NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
             NotificationRepository notificationRepository = new NotificationRepository(notificationDataHandler);
             NotificationService notificationService = new NotificationService(notificationRepository);
@@ -148,7 +151,7 @@ namespace Sims_Hospital_Zdravo
                 new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
 
-            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository);
+            MeetingService _meetingService = new MeetingService(roomRepository, accountRepository);
             _meetingController = new MeetingController(_meetingService);
 
 
@@ -169,6 +172,14 @@ namespace Sims_Hospital_Zdravo
             RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
             RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
             _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
+        }
+
+        void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            var window = e.Source as Window;
+            System.Threading.Thread.Sleep(100);
+            window.Dispatcher.Invoke(
+                new Action(() => { window.MoveFocus(new TraversalRequest(FocusNavigationDirection.First)); }));
         }
     }
 }

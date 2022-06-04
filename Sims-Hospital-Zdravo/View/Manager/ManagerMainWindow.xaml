@@ -65,7 +65,7 @@
                Focusable="False">
         </Frame>
 
-        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
+        <uc:ManagerMenu Focusable="False" x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
 
 
         <notifications:NotificationArea

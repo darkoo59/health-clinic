@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
       mc:Ignorable="d"
       Title="ManagerRooms"
       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
@@ -13,7 +14,12 @@
 
     <Page.InputBindings>
         <KeyBinding Command="{Binding InsertRoomCommand}" Key="I" Modifiers="Control"></KeyBinding>
-        <KeyBinding Command="{Binding SearchCommand}" Key="F" Modifiers="Control"></KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.SearchCommand"
+            CommandParameter="{Binding ElementName=SearchBox}"
+            Key="F"
+            Modifiers="Control">
+        </KeyBinding>
         <KeyBinding Command="{Binding UpdateRoomCommand}"
                     CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
                     Key="U" Modifiers="Control">

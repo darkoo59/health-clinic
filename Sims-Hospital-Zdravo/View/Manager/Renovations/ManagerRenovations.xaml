@@ -11,6 +11,27 @@
       Title="ManagerRenovations"
       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
       Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
+
+    <Page.InputBindings>
+        <KeyBinding
+            Command="cmd:Commands.SearchCommand"
+            CommandParameter="{Binding ElementName=SearchBox}"
+            Key="F"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Renovations/ManagerRenovationAdvanced.xaml"
+            Key="A"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Renovations/ManagerRenovationBasic.xaml"
+            Key="B"
+            Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
     <Page.Resources>
         <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
     </Page.Resources>
@@ -29,7 +50,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <xctk:WatermarkTextBox Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
+            <xctk:WatermarkTextBox x:Name="SearchBox" Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="4" Width="100" HorizontalAlignment="Right" Height="30"
                     Command="cmd:Commands.NavigateToCommand"
                     CommandParameter="Renovations/ManagerRenovationAdvanced.xaml"
