@@ -54,6 +54,11 @@ namespace Sims_Hospital_Zdravo.Model
             return _notificationRepository.ReadAllDoctorMedicineNotifications(doctorId);
         }
 
+        public List<Notification> ReadAllDoctorFreeDaysNotifications(int doctorId)
+        {
+            return _notificationRepository.ReadAllDoctorFreeDaysNotifications(doctorId);
+        }
+
         public List<Notification> ReadAllManagerMeetingsNotifications(int managerId)
         {
             return _notificationRepository.ReadAllManagerMeetingsNotifications(managerId);

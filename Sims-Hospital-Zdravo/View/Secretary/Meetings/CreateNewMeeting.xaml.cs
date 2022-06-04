@@ -4,6 +4,7 @@ using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
+using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using System;
 using System.Collections.Generic;
@@ -182,6 +183,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 this.DragMove();
         }
 
+        private void Home_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryHome window = new SecretaryHome();
+            window.Show();
+            this.Close();
+        }
+
         private void Equipment_Click(object sender, MouseButtonEventArgs e)
         {
             SuppliesHome window = new SuppliesHome();
@@ -206,6 +214,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
             ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
+        }
+
+        private void FreeDays_Click(object sender, MouseButtonEventArgs e)
+        {
+            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
             window.Show();
             this.Close();
         }
@@ -268,5 +283,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
 
             app._notificationController.Delete(notification);
         }
+
     }
 }

@@ -147,6 +147,11 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 Notify(notification);
             }
+            List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account._Id);
+            foreach(Notification notification in freeDaysNotifications)
+            {
+                Notify(notification);
+            }
         }
 
         public void CheckNotificationForSecretary()

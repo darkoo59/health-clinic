@@ -78,6 +78,17 @@ namespace Sims_Hospital_Zdravo.Repository
             return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
+        public List<Notification> ReadAllDoctorFreeDaysNotifications(int doctorId)
+        {
+            List<Notification> notificationsToReturn = new List<Notification>();
+            foreach (FreeDaysNotification notification in notifications.OfType<FreeDaysNotification>().Cast<Notification>().ToList())
+            {
+                if (notification.FreeDaysRequest.Doctor._Id == doctorId)
+                    notificationsToReturn.Add(notification);
+            }
+            return notificationsToReturn;
+        }
+
         public List<Notification> ReadAllManagerMeetingsNotifications(int managerId)
         {
             List<Notification> notificationsToReturn = new List<Notification>();

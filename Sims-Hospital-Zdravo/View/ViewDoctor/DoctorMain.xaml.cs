@@ -139,6 +139,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
                 notificationController.Delete(notification);
             }
+            else if (notification as FreeDaysNotification != null)
+            {
+                FreeDaysNotification freeDaysNotification = notification as FreeDaysNotification;
+                notificationManager.Show(
+                    new NotificationContent { Title = "Free days notification", Message = freeDaysNotification.Explanation },
+                    areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                notificationController.Delete(notification);
+            }
         }
 
         private void AppointmentsClick(object sender, RoutedEventArgs e)
