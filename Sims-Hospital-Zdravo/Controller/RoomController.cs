@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Sims_Hospital_Zdravo.DTO;
 
 namespace Controller
 {
@@ -42,6 +43,11 @@ namespace Controller
         public void Delete(Room room)
         {
             _roomService.Delete(room);
+        }
+
+        public List<RoomEquipment> FilterRoomEquipment(Room room, RoomEquipmentFilterDTO roomEquipmentFilterDto)
+        {
+            return _roomService.FilterRoomEquipment(room, roomEquipmentFilterDto);
         }
 
         public Room FindById(int id)

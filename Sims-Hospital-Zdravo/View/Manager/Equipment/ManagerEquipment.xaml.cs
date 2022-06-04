@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Controller;
 using Model;
+using Sims_Hospital_Zdravo.DTO;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils.FilterPipelines;
 using Sims_Hospital_Zdravo.Utils.Filters;
@@ -24,26 +25,17 @@ namespace Sims_Hospital_Zdravo.View.Manager
     /// </summary>
     public partial class ManagerEquipment : Page
     {
-        private EquipmentController equipmentController;
-        private EquipmentTransferController equipmentTransferController;
         private RoomController roomController;
         private Frame ManagerContent;
         private App app;
         private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
-        public bool ShowConsumableEquipment { get; set; }
-        public bool ShowStaticEquipment { get; set; }
+        public bool ShowConsumableEquipment { get; set; } = true;
+        public bool ShowStaticEquipment { get; set; } = true;
 
         public ManagerEquipment()
         {
             app = Application.Current as App;
-            equipmentController = app._equipmentController;
-            equipmentTransferController = app._equipmentTransferController;
             roomController = app._roomController;
-
-            ShowConsumableEquipment = true;
-            ShowStaticEquipment = true;
-
-            roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
 
             InitializeComponent();
 
@@ -51,7 +43,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
             RoomPicker.ItemsSource = roomController.ReadAll();
             RoomPicker.SelectedIndex = 0;
 
-            EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
+            EquipmentTable.ItemsSource = roomController.FilterRoomEquipment((Room)RoomPicker.SelectedItem, CreateFilterDTO());
             RetrieveMainFrame();
         }
 
@@ -67,17 +59,16 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         private void RefreshItems()
         {
-            EquipmentTable.ItemsSource = roomEquipmentPipeline.FilterAll(((Room)RoomPicker.SelectedItem).RoomEquipment);
+            EquipmentTable.ItemsSource = roomController.FilterRoomEquipment((Room)RoomPicker.SelectedItem, CreateFilterDTO());
         }
 
-        private void RefreshFilters()
+        private RoomEquipmentFilterDTO CreateFilterDTO()
         {
-            roomEquipmentPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(ShowStaticEquipment, ShowConsumableEquipment);
+            return new RoomEquipmentFilterDTO(ShowStaticEquipment, ShowConsumableEquipment, SearchBox.Text);
         }
 
         private void ChbValueChanged(object sender, RoutedEventArgs e)
         {
-            RefreshFilters();
             RefreshItems();
         }
 
@@ -96,9 +87,6 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             if (e.Key == Key.Enter)
             {
-                RefreshFilters();
-                string parameter = SearchBox.Text;
-                roomEquipmentPipeline.AddFilter(new RoomEquipmentSearchFilter(parameter));
                 RefreshItems();
             }
         }

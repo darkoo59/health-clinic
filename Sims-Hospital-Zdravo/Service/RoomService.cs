@@ -10,7 +10,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.DTO;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils;
+using Sims_Hospital_Zdravo.Utils.FilterPipelines;
 
 namespace Service
 {
@@ -47,6 +50,12 @@ namespace Service
         {
             _validator.ValidateDelete(room);
             _roomRepository.Delete(room);
+        }
+
+        public List<RoomEquipment> FilterRoomEquipment(Room room, RoomEquipmentFilterDTO roomEquipmentFilterDto)
+        {
+            IFilterPipeline<RoomEquipment> roomEquipmentFilterPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(roomEquipmentFilterDto);
+            return roomEquipmentFilterPipeline.FilterAll(room.RoomEquipment);
         }
 
         public Room FindById(int id)
