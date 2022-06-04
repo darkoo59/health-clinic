@@ -122,14 +122,23 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         public void Notify(Notification notification)
         {
-            MedicineCreatedNotification medicineCreatedNotification = notification as MedicineCreatedNotification;
-            if (medicineCreatedNotification is null) return;
+            if (notification as MedicineCreatedNotification != null)
+            {
+                MedicineCreatedNotification medicineCreatedNotification = notification as MedicineCreatedNotification;
+                notificationManager.Show(
+               new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine.Name + " is waiting for approval!" },
+               areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
 
-            notificationManager.Show(
-                new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine.Name + " is waiting for approval!" },
+                notificationController.Delete(notification);
+            }
+            else if (notification as MeetingCreatedNotifications != null)
+            {
+                MeetingCreatedNotifications meetingNotification = notification as MeetingCreatedNotifications;
+                notificationManager.Show(
+                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
                 areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
-
-            notificationController.Delete(notification);
+                notificationController.Delete(notification);
+            }
         }
 
         private void AppointmentsClick(object sender, RoutedEventArgs e)

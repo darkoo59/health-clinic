@@ -130,6 +130,7 @@
         <Compile Include="DataHandler\HospitalQuestionDataHandler.cs" />
         <Compile Include="DataHandler\HospitalSurveyDataHandler.cs" />
         <Compile Include="DataHandler\MedicineDataHandler.cs" />
+        <Compile Include="DataHandler\MeetingDataHandler.cs" />
         <Compile Include="DataHandler\NotificationDataHandler.cs" />
         <Compile Include="DataHandler\PatientDataHandler.cs" />
         <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
@@ -140,10 +141,13 @@
         <Compile Include="DTO\RoomEquipmentFilterDTO.cs" />
         <Compile Include="Interfaces\ISurveyStatistic.cs" />
         <Compile Include="Model\MarkStatistic.cs" />
+        <Compile Include="Model\Meeting.cs" />
+        <Compile Include="Model\MeetingCreatedNotifications.cs" />
         <Compile Include="Model\QuestionStatistic.cs" />
         <Compile Include="Model\RequestForFreeDaysNotification.cs" />
         <Compile Include="ViewModel\Commands\SearchCommand.cs" />
         <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
+        <Compile Include="Repository\MeetingRepository.cs" />
         <Compile Include="Service\MeetingService.cs" />
         <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
         <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
@@ -870,6 +874,7 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Resource>
         <Content Include="Resources\medicines.txt" />
+        <Resource Include="Resources\meetings.txt" />
         <Content Include="Resources\notifications.txt" />
         <Content Include="Resources\prescriptions.txt" />
         <Content Include="Resources\renovation_appointments.txt" />

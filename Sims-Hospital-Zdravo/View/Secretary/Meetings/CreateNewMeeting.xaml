@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Meetings"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Meetings" xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         Title="CreateNewMeeting" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
@@ -440,6 +440,20 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
+
+        <Grid Margin="0,0,0.4,0.4">
+            <notifications:NotificationArea
+            Height="108"
+            Width="355"
+            Background="#FF0067AE"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="-5,0,0,0"
+            x:Name="WindowArea"
+            Focusable="False"
+            MaxItems="3" />
+
+        </Grid>
 
 
 

@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using Sims_Hospital_Zdravo.View.Secretary.Meetings;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
+using Notifications.Wpf;
 
 namespace Sims_Hospital_Zdravo
 {
