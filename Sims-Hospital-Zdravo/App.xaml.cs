@@ -39,6 +39,7 @@ namespace Sims_Hospital_Zdravo
         internal SuppliesController _suppliesController;
         internal RequestForFreeDaysController _requestForFreeDaysController;
         internal SurveyController _surveyController;
+        internal MeetingController _meetingController;
 
         public App()
         {
@@ -146,6 +147,9 @@ namespace Sims_Hospital_Zdravo
             SuppliesService suppliesService =
                 new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
+
+            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository);
+            _meetingController = new MeetingController(_meetingService);
 
 
             _prescriptionController = new PrescriptionController(prescriptionService);

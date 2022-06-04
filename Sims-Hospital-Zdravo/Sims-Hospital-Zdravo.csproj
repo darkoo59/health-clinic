@@ -105,6 +105,7 @@
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
+    <Compile Include="Controller\MeetingController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="Controller\PrescriptionController.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
     <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
+    <Compile Include="Service\MeetingService.cs" />
     <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
     <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
@@ -335,6 +337,9 @@
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="View\Secretary\Meetings\CreateNewMeeting.xaml.cs">
+      <DependentUpon>CreateNewMeeting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
@@ -548,6 +553,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Patient\PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Meetings\CreateNewMeeting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
