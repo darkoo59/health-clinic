@@ -3,17 +3,92 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Meetings"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Meetings" xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         Title="CreateNewMeeting" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ResourceDictionary Source="../../Secretary/SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid>
+        <ComboBox Name="comboRoom" HorizontalAlignment="Left" Margin="60,134,0,0" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="ListOptional" HorizontalAlignment="Left" Height="113" Margin="62,195,0,0"
+            VerticalAlignment="Top" Width="118" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox x:Name="ListOptionalOthers" HorizontalAlignment="Left" Height="112" Margin="225,196,0,0"
+            VerticalAlignment="Top" Width="115" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <Label Content="Optional attendees :" HorizontalAlignment="Left" Margin="55,161,0,0" VerticalAlignment="Top" FontSize="15"
+            RenderTransformOrigin="0.513,-0.135" Width="142" Style="{StaticResource label_style}" Height="29"/>
+        <Image x:Name="ImageToLeftOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="23" Margin="190,204,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
+        <Image x:Name="ImageToRightOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="23" Margin="190,244,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
+        <ListBox x:Name="ListRequired" HorizontalAlignment="Left" Height="120" Margin="62,343,0,0" VerticalAlignment="Top" Width="122" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox x:Name="ListRequiredOthers" HorizontalAlignment="Left" Height="120" Margin="225,343,0,0" VerticalAlignment="Top" Width="115" Background="White" Foreground="#FF4A90E2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Foreground" Value="#FF4A90E2" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
         <Label Content="Meeting start at :" HorizontalAlignment="Left" Margin="55,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="45" Width="184" Style="{StaticResource label_style}"/>
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="60,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="1.205,-1.792"/>
-        <Label Content="Choose room :" HorizontalAlignment="Left" Margin="55,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="45" Width="184" Style="{StaticResource label_style}"/>
+        <Label Content="Choose room :" HorizontalAlignment="Left" Margin="55,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="30" Width="153" Style="{StaticResource label_style}"/>
 
         <Label Content="Required attendees :" HorizontalAlignment="Left" Margin="60,313,0,0" VerticalAlignment="Top" FontSize="15"
             RenderTransformOrigin="0.513,-0.135" Width="148" Style="{StaticResource label_style}" Height="53"/>
@@ -99,7 +174,7 @@
                           BorderBrush="Transparent"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <!-- Home -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="Home_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Home.png"
@@ -179,7 +254,7 @@
                     </ListViewItem>
 
                     <!-- Meetings -->
-                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
+                    <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter" PreviewMouseLeftButtonUp="FreeDays_Click">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
                             <Image Source="../../../Resources/img/Secretary/Meeting.png"
@@ -202,11 +277,11 @@
                     <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Accounts.png"
+                            <Image Source="../../../Resources/img/Secretary/FreeDays.png"
                                    Margin="0,0,0,4"
                                    Width="28"
                                    Height="20"/>
-                            <TextBlock Text = "Accounts"
+                            <TextBlock Text = "Free days requests"
                                        Margin = "13,0,0,4"
                                        Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
                         </StackPanel>
@@ -365,83 +440,18 @@
 
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="305,0,-14.6,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        <ComboBox Name="comboRoom" HorizontalAlignment="Left" Margin="60,134,0,0" VerticalAlignment="Top" Width="120"/>
-        <ListBox x:Name="ListOptional" HorizontalAlignment="Left" Height="113" Margin="62,195,0,0"
-            VerticalAlignment="Top" Width="118" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <ListBox x:Name="ListOptionalOthers" HorizontalAlignment="Left" Height="112" Margin="225,196,0,0"
-            VerticalAlignment="Top" Width="115" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <Label Content="Optional attendees :" HorizontalAlignment="Left" Margin="55,161,0,0" VerticalAlignment="Top" FontSize="15"
-            RenderTransformOrigin="0.513,-0.135" Width="142" Style="{StaticResource label_style}" Height="29"/>
-        <Image x:Name="ImageToLeftOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="23" Margin="190,204,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
-        <Image x:Name="ImageToRightOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="23" Margin="190,244,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
-        <ListBox x:Name="ListRequired" HorizontalAlignment="Left" Height="120" Margin="62,343,0,0" VerticalAlignment="Top" Width="122" Background="White" Foreground="#FF4A90E2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-        <ListBox x:Name="ListRequiredOthers" HorizontalAlignment="Left" Height="120" Margin="225,343,0,0" VerticalAlignment="Top" Width="115" Background="White" Foreground="#FF4A90E2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True" >
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Black" />
-                            <Setter Property="Foreground" Value="#FF4A90E2" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-
-
+        <Grid Margin="0,0,0.4,0.4">
+            <notifications:NotificationArea
+            Height="108"
+            Width="355"
+            Background="#FF0067AE"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="-5,0,0,0"
+            x:Name="WindowArea"
+            Focusable="False"
+            MaxItems="3" />
+        </Grid>
 
     </Grid>
 </Window>

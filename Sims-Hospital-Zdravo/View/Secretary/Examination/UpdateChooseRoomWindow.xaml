@@ -200,11 +200,11 @@
                     <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,0" MouseEnter="ListViewItem_MouseEnter">
                         <StackPanel Orientation="Horizontal"
                                     Width="230">
-                            <Image Source="../../../Resources/img/Secretary/Accounts.png"
+                            <Image Source="../../../Resources/img/Secretary/FreeDays.png"
                                    Margin="0,0,0,4"
                                    Width="28"
                                    Height="20"/>
-                            <TextBlock Text = "Accounts"
+                            <TextBlock Text = "Free days requests"
                                        Margin = "13,0,0,4"
                                        Foreground="White" RenderTransformOrigin="-0.444,-0.259" Height="33" Width="51"/>
                         </StackPanel>

@@ -1,5 +1,6 @@
-﻿using Controller;
+﻿using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
+using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,37 +14,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.Controller;
-using Sims_Hospital_Zdravo.View.Secretary.Supplies;
-using Sims_Hospital_Zdravo.View.Secretary.Meetings;
-using Sims_Hospital_Zdravo.Interfaces;
-using Sims_Hospital_Zdravo.Model;
-using Notifications.Wpf;
-using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 
-namespace Sims_Hospital_Zdravo
+namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
 {
     /// <summary>
-    /// Interaction logic for SecretaryHome.xaml
+    /// Interaction logic for EditRequestWindow.xaml
     /// </summary>
-    public partial class SecretaryHome : Window
+    public partial class EditRequestWindow : Window
     {
-        private MedicalRecordController medicalController;
-        private SecretaryAppointmentController appointmentController;
-        private App app;
 
-        public SecretaryHome()
+        private App app;
+        private FreeDaysRequest _freeDaysRequest;
+        public EditRequestWindow(FreeDaysRequest request)
         {
             app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = app._recordController;
-            this.appointmentController = app._secretaryAppointmentController;
-            lblName.Content = app._accountController.GetLoggedAccount()._Name + " " + app._accountController.GetLoggedAccount()._Surname;
+            this._freeDaysRequest = request;
+            comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();
+            comboStatus.SelectedItem = _freeDaysRequest.Status;
+            txtReason.Text = _freeDaysRequest.ReasonForfreeDays;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(TgButton.IsChecked == true)
+            if (TgButton.IsChecked == true)
             {
                 tt_home.Visibility = Visibility.Collapsed;
                 tt_profile.Visibility = Visibility.Collapsed;
@@ -73,34 +67,44 @@ namespace Sims_Hospital_Zdravo
             }
         }
 
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            if ((RequestStatus)comboStatus.SelectedValue == _freeDaysRequest.Status)
+            {
+                MessageBox.Show("Please change request status first!", "Change status", MessageBoxButton.OK);
+            }
+            else
+            {
+                try
+                {
+                    FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForfreeDays,
+                        (RequestStatus)comboStatus.SelectedValue);
+                    Notification notification = new FreeDaysNotification(txtReason.Text, app._notificationController.GenerateId(),
+                        request);
+                    app._requestForFreeDaysController.UpdateRequestAndNotify(request, notification);
+                    MessageBox.Show("Request succesffully updated!", "Successfully updated!", MessageBoxButton.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
-        
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
                 this.DragMove();
         }
 
-        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
+        private void Home_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
-            window.Show();
-            this.Close();
-        }
-
-        private void Meetings_Click(object sender, MouseButtonEventArgs e)
-        {
-            CreateNewMeeting window = new CreateNewMeeting(app._meetingController);
-            window.Show();
-            this.Close();
-        }
-
-        private void FreeDays_Click(object sender, MouseButtonEventArgs e)
-        {
-            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
+            SecretaryHome window = new SecretaryHome();
             window.Show();
             this.Close();
         }
@@ -108,6 +112,13 @@ namespace Sims_Hospital_Zdravo
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
             ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            window.Show();
+            this.Close();
+        }
+
+        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryWindow window = new SecretaryWindow(app._recordController);
             window.Show();
             this.Close();
         }

@@ -29,6 +29,18 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFile();
         }
 
+        public void Update(FreeDaysRequest request)
+        {
+            foreach(FreeDaysRequest req in _requests)
+            {
+                if(request.Doctor == req.Doctor && request.TimeInterval == req.TimeInterval)
+                {
+                    req.Status = request.Status;
+                }
+            }
+            LoadDataToFile();
+        }
+
         public void Delete(FreeDaysRequest request)
         {
             _requests.Remove(request);

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,27 @@ namespace Sims_Hospital_Zdravo.Service
     {
         private IRoomRepository _roomRepository;
         private AccountRepository _accountRepository;
-
-        public MeetingService(IRoomRepository roomRepo, AccountRepository accRepo)
+        private MeetingRepository _meetingRepository;
+        private NotificationRepository _notificationRepository;
+        public MeetingService(IRoomRepository roomRepo,AccountRepository accRepo,MeetingRepository meetingRepo, NotificationRepository notifyRepo)
         {
             this._roomRepository = roomRepo;
             this._accountRepository = accRepo;
+            this._meetingRepository = meetingRepo;
+            this._notificationRepository = notifyRepo;
         }
 
+        public void Create(Meeting meeting)
+        {
+            _meetingRepository.Create(meeting);
+        }
 
+        public void CreateMeetingWithNotifying(Meeting meeting, List<Notification> notifications)
+        {
+            Create(meeting);
+            foreach(Notification notification in notifications)
+                _notificationRepository.Create(notification);
+        }
         public List<Room> ReadAllRooms()
         {
             return _roomRepository.FindAll().ToList();

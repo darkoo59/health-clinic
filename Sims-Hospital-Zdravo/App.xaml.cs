@@ -151,7 +151,9 @@ namespace Sims_Hospital_Zdravo
                 new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
 
-            MeetingService _meetingService = new MeetingService(roomRepository, accountRepository);
+            MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
+            MeetingRepository _meetingRepository = new MeetingRepository(_meetingDataHandler);
+            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository,_meetingRepository,notificationRepository);
             _meetingController = new MeetingController(_meetingService);
 
 
@@ -170,7 +172,7 @@ namespace Sims_Hospital_Zdravo
 
             RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
-            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository, notificationRepository);
             _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
         }
 

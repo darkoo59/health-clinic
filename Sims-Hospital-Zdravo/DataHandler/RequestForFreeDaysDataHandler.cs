@@ -10,11 +10,6 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class RequestForFreeDaysDataHandler
     {
-
-
-
-
-
         public ObservableCollection<FreeDaysRequest> ReadAll()
         {
             string requestSerialized = System.IO.File.ReadAllText(Path);

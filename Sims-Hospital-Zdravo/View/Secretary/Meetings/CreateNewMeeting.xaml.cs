@@ -1,6 +1,10 @@
 ﻿using Model;
+using Notifications.Wpf;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
+using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using System;
 using System.Collections.Generic;
@@ -21,15 +25,20 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
     /// <summary>
     /// Interaction logic for CreateNewMeeting.xaml
     /// </summary>
-    public partial class CreateNewMeeting : Window
+    public partial class CreateNewMeeting : Window, INotificationObserver
     {
+
+        private MeetingCreatedNotifications _createdNotification;
         private MeetingController _meetingController;
+        private NotificationManager _notificationManager;
         private App app;
         public CreateNewMeeting(MeetingController meetingController)
         {
             app = Application.Current as App;
             InitializeComponent();
+            app._taskScheduleTimer.AddObserver(this);
             this._meetingController = meetingController;
+            this._notificationManager = new NotificationManager();
             comboRoom.ItemsSource = _meetingController.ReadAllRooms();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
@@ -174,6 +183,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 this.DragMove();
         }
 
+        private void Home_Click(object sender, MouseButtonEventArgs e)
+        {
+            SecretaryHome window = new SecretaryHome();
+            window.Show();
+            this.Close();
+        }
+
         private void Equipment_Click(object sender, MouseButtonEventArgs e)
         {
             SuppliesHome window = new SuppliesHome();
@@ -202,9 +218,71 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             this.Close();
         }
 
+        private void FreeDays_Click(object sender, MouseButtonEventArgs e)
+        {
+            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
+            window.Show();
+            this.Close();
+        }
+
         private void ScheduleMeeting_Click(object sender, RoutedEventArgs e)
         {
-
+            if (comboRoom.SelectedValue == null)
+            {
+                MessageBox.Show("Please select room first!", "Select room", MessageBoxButton.OK);
+            }
+            else if (ListRequired.Items == null || ListOptional.Items == null)
+            {
+                MessageBox.Show("Please select at least one attendee!", "Select who will attend", MessageBoxButton.OK);
+            }
+            else if (startDatePicker.SelectedDate == null)
+            {
+                MessageBox.Show("Please select date!", "Select date!", MessageBoxButton.OK);
+            }
+            else
+            {
+                try
+                {
+                    List<User> optional = new List<User>();
+                    foreach (User user in ListOptional.Items)
+                    {
+                        optional.Add(user);
+                    }
+                    List<User> required = new List<User>();
+                    foreach (User user in ListRequired.Items)
+                    {
+                        required.Add(user);
+                    }
+                    Meeting meeting = new Meeting((DateTime)startDatePicker.SelectedDate, (Room)comboRoom.SelectedValue,
+                        optional, required);
+                    //this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                    List<Notification> notificationsToAdd = new List<Notification>();
+                    foreach(User user in meeting.RequiredAttendees)
+                    {
+                        notificationsToAdd.Add(new MeetingCreatedNotifications("You have new meeting on " + meeting.Start.ToString(), meeting.Start,
+    user._Role,user._Id, app._notificationController.GenerateId()));
+                    }
+                    _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
+                    MessageBox.Show("Meeting successfully created!", "Successfully created!", MessageBoxButton.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
+
+        public void Notify(Notification notification)
+        {
+            MeetingCreatedNotifications meetingCreatedNotification = notification as MeetingCreatedNotifications;
+            if (meetingCreatedNotification is null) return;
+
+            _notificationManager.Show(
+                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingCreatedNotification.MeetingStart.ToString() },
+                areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(10));
+
+            app._notificationController.Delete(notification);
+        }
+
     }
 }

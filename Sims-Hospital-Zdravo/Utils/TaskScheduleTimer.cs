@@ -52,10 +52,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void SetTimer()
         {
-            // timer = new Timer(2000);
-            // timer.Elapsed += FireScheduledTask;
-            // timer.AutoReset = true;
-            // timer.Enabled = true;
+            timer = new Timer(2000);
+            timer.Elapsed += FireScheduledTask;
+            timer.AutoReset = true;
+            timer.Enabled = true;
         }
 
 
@@ -67,6 +67,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
+            CheckNotificationForSecretary();
             //AppointmentDone();
         }
 
@@ -122,6 +123,12 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 Notify(notification);
             }
+
+            List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
+            {
+                Notify(notification);
+            }
         }
 
         public void CheckNotificationForDoctor()
@@ -132,6 +139,29 @@ namespace Sims_Hospital_Zdravo.Utils
 
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account._Id);
             foreach (Notification notification in notifications)
+            {
+                Notify(notification);
+            }
+            List<Notification> meetingNotifications = _notificationController.ReadAllDoctorMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
+            {
+                Notify(notification);
+            }
+            List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account._Id);
+            foreach(Notification notification in freeDaysNotifications)
+            {
+                Notify(notification);
+            }
+        }
+
+        public void CheckNotificationForSecretary()
+        {
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.SECRETARY)) return;
+
+            List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
             }
