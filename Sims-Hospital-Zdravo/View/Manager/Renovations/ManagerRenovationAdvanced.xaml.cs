@@ -96,6 +96,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 AdvancedRenovationAppointment advancedRenovationAppointment =
                     new AdvancedRenovationAppointment(time, roomData.Item1, description, roomData.Item2, roomRenovationType, _renovationController.GenerateId());
                 _renovationController.MakeAdvancedRenovationAppointment(advancedRenovationAppointment);
+                MessageBox.Show("Renovation successfully scheduled");
                 NavigationService.GoBack();
             }
             catch (Exception ex)

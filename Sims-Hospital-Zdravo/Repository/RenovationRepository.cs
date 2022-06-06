@@ -67,7 +67,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public void DeleteById(int renovationId)
         {
             RenovationAppointment renovationAppointment = FindById(renovationId);
-            Delete(renovationAppointment);
+            _renovations.Remove(renovationAppointment);
             LoadDataToFile();
         }
 

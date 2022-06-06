@@ -81,6 +81,7 @@ namespace Sims_Hospital_Zdravo.Model
             foreach (Room room in resultRooms)
             {
                 room.Id = GenerateId();
+                Console.WriteLine("Generating id for room " + room.RoomNumber);
                 _roomRepository.Create(room);
             }
 

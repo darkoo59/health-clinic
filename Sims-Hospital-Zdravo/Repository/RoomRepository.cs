@@ -94,7 +94,7 @@ namespace Repository
             LoadDataFromFiles();
             foreach (Room room in rooms)
             {
-                Delete(room);
+                DeleteById(room.Id);
             }
 
             LoadDataToFile();

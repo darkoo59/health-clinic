@@ -28,17 +28,19 @@ namespace Sims_Hospital_Zdravo.Utils
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
         private AccountController _accountController;
+        private bool isRenovationAppointmentInProgress;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
             PrescriptionController prescriptionController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
         {
-            this._relocationController = relocationController;
-            this._renovationController = renovationController;
-            this._prescriptionController = prescriptionController;
-            this._notificationController = notificationController;
-            this._doctorAppointmentController = doctorAppointmentController;
-            this._suppliesController = suppliesController;
-            this._accountController = accountController;
+            _relocationController = relocationController;
+            _renovationController = renovationController;
+            _prescriptionController = prescriptionController;
+            _notificationController = notificationController;
+            _doctorAppointmentController = doctorAppointmentController;
+            _suppliesController = suppliesController;
+            _accountController = accountController;
+            isRenovationAppointmentInProgress = false;
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -78,19 +80,24 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
-                    _relocationController.FinishRelocationAppointment(app.Id);
+                    App.Current.Dispatcher.Invoke((Action)delegate { _relocationController.FinishRelocationAppointment(app.Id); });
                 }
             }
         }
 
         private void CheckIfRenovationAppointmentDone()
         {
-            ObservableCollection<RenovationAppointment> renovations = new ObservableCollection<RenovationAppointment>(_renovationController.FindAll());
+            List<RenovationAppointment> renovations = new List<RenovationAppointment>(_renovationController.FindAll());
             foreach (RenovationAppointment renovation in renovations)
             {
-                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0)
+                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0 && !isRenovationAppointmentInProgress)
                 {
-                    App.Current.Dispatcher.Invoke((Action)delegate { _renovationController.FinishRenovationAppointment(renovation.Id); });
+                    isRenovationAppointmentInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        _renovationController.FinishRenovationAppointment(renovation.Id);
+                        isRenovationAppointmentInProgress = false;
+                    });
                 }
             }
         }
