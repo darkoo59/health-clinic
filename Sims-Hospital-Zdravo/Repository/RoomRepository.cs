@@ -15,29 +15,24 @@ using System.Diagnostics;
 
 namespace Repository
 {
-    public class RoomRepository : IUpdateFilesObserver
+    public class RoomRepository : IUpdateFilesObserver, IRoomRepository
     {
         private RoomDataHandler _roomDataHandler;
-        private ObservableCollection<Room> _rooms;
+        private List<Room> _rooms;
 
         public RoomRepository(RoomDataHandler rmDataHandler)
         {
-            _rooms = new ObservableCollection<Room>();
-            _roomDataHandler = rmDataHandler;
+            _rooms = new List<Room>();
+            _roomDataHandler = new RoomDataHandler();
             LoadDataFromFiles();
         }
 
         public void Create(Room room)
         {
-            StackTrace stackTrace = new StackTrace();
+            LoadDataFromFiles();
             _rooms.Add(room);
             room.AddObserver(this);
             LoadDataToFile();
-        }
-
-        public ref ObservableCollection<Room> ReadAll()
-        {
-            return ref _rooms;
         }
 
         public void Update(Room room)
@@ -65,13 +60,10 @@ namespace Repository
 
         public Room FindById(int id)
         {
-            
             foreach (Room room in _rooms)
             {
-                
                 if (id == room.Id)
                 {
-                    
                     return room;
                 }
             }
@@ -119,7 +111,7 @@ namespace Repository
                 DeleteById(room.Id);
             }
         }
-        
+
         public List<RoomEquipment> FindAllEquipment()
         {
             List<RoomEquipment> allEquipment = new List<RoomEquipment>();
@@ -139,6 +131,7 @@ namespace Repository
                     }
                 }
             }
+
             return allEquipment;
         }
 
@@ -159,6 +152,11 @@ namespace Repository
         public void NotifyUpdated()
         {
             LoadDataToFile();
+        }
+
+        public List<Room> FindAll()
+        {
+            return _roomDataHandler.ReadAll();
         }
     }
 }

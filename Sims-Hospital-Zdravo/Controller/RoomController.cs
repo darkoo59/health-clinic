@@ -30,9 +30,9 @@ namespace Controller
             _roomService.Create(room);
         }
 
-        public ref ObservableCollection<Room> ReadAll()
+        public List<Room> ReadAll()
         {
-            return ref _roomService.ReadAll();
+            return _roomService.ReadAll();
         }
 
         public void Update(Room room)

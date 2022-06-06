@@ -20,10 +20,10 @@ namespace Service
     public class RoomService
     {
         private RoomValidator _validator;
-        private RoomRepository _roomRepository;
+        private IRoomRepository _roomRepository;
 
 
-        public RoomService(RoomRepository roomRepository)
+        public RoomService(IRoomRepository roomRepository)
         {
             this._roomRepository = roomRepository;
             _validator = new RoomValidator(this);
@@ -35,9 +35,9 @@ namespace Service
             _roomRepository.Create(room);
         }
 
-        public ref ObservableCollection<Room> ReadAll()
+        public List<Room> ReadAll()
         {
-            return ref _roomRepository.ReadAll();
+            return _roomRepository.FindAll();
         }
 
         public void Update(Room room)
@@ -81,7 +81,7 @@ namespace Service
 
         public int GenerateId()
         {
-            List<Room> appointments = new List<Room>(_roomRepository.ReadAll());
+            List<Room> appointments = _roomRepository.FindAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

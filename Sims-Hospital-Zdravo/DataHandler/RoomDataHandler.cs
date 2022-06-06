@@ -14,14 +14,14 @@ namespace DataHandler
 {
     public class RoomDataHandler
     {
-        public ObservableCollection<Room> ReadAll()
+        public List<Room> ReadAll()
         {
             string roomsSerialized = System.IO.File.ReadAllText(_path);
-            ObservableCollection<Room> rooms = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Room>>(roomsSerialized);
+            List<Room> rooms = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Room>>(roomsSerialized);
             return rooms;
         }
 
-        public void Write(ObservableCollection<Room> rooms)
+        public void Write(List<Room> rooms)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(rooms);
             System.IO.File.WriteAllText(_path, serialized);

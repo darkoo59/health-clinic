@@ -4,6 +4,7 @@ using Controller;
 using Model;
 using Repository;
 using Service;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 
@@ -12,10 +13,10 @@ namespace Sims_Hospital_Zdravo.Utils
     public class RenovationValidator
     {
         private RenovationRepository renovationRepository;
-        private RoomRepository roomRepository;
+        private IRoomRepository roomRepository;
         private TimeSchedulerService _timeSchedulerService;
 
-        public RenovationValidator(RoomRepository roomRepository, RenovationRepository renovationRepository,
+        public RenovationValidator(IRoomRepository roomRepository, RenovationRepository renovationRepository,
             TimeSchedulerService timeSchedulerService)
         {
             this.renovationRepository = renovationRepository;
@@ -35,7 +36,7 @@ namespace Sims_Hospital_Zdravo.Utils
         private void ValidateRoomExists(Room room)
         {
             if (room == null) throw new Exception("Room not selected!");
-            foreach (Room rm in roomRepository.ReadAll())
+            foreach (Room rm in roomRepository.FindAll())
             {
                 if (rm.Id == room.Id)
                 {
