@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,6 +51,7 @@ namespace Sims_Hospital_Zdravo
     public partial class PatientCreate : Page, INotifyPropertyChanged
     {
         public AppointmentPatientController appointmentPatientController;
+        public AccountController accountController;
         public ObservableCollection<string> doctors;
         public ObservableCollection<string> doctorordate;
         string pattern = @"\d?\d:\d\d";
@@ -59,6 +61,7 @@ namespace Sims_Hospital_Zdravo
         {
             this.frame = frame;
             app = Application.Current as App;
+            this.accountController = app._accountController;
             InitializeComponent();
             this.DataContext = this;
             this.appointmentPatientController = app._appointmentPatientController;
@@ -135,8 +138,7 @@ namespace Sims_Hospital_Zdravo
                 {
                     //throw new Exception("You must pick a date");
                 }
-                DateTime dateTime1 = new DateTime(1111, 11, 11);
-                Patient patient = new Patient(1, "Jovan", "Nikic", dateTime1, "fdafdasf@gmail.com", "321341413", "+38134213");
+                Patient patient = (Patient)accountController.GetLoggedAccount();
                 TimeInterval timeInterval = new TimeInterval(dateTime, dateTime.AddMinutes(30));
                 Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
                 string priority = DateOrDoctors.SelectedItem.ToString();

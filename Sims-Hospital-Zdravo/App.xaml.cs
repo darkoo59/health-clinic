@@ -155,7 +155,7 @@ namespace Sims_Hospital_Zdravo
                 _equipmentTransferController,
                 _renovationController,
                 _doctorAppointmentController,
-                _prescriptionController,
+                _recordController,
                 _notificationController,
                 _suppliesController,
                 _accountController

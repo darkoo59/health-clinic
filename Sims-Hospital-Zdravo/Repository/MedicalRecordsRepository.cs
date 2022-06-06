@@ -128,7 +128,7 @@ namespace Repository
                 {
                     foreach (Prescription pres in medical.Prescriptions)
                     {
-                        if (pres._Doctor._Id == prescription._Doctor._Id && pres.TimeInterval.Start.Equals(prescription.TimeInterval.Start))
+                        if (pres.Doctor._Id == prescription.Doctor._Id && pres.TimeInterval.Start.Equals(prescription.TimeInterval.Start))
                         {
                             pres.StartDate = dateTime;
                             LoadDataToFile();

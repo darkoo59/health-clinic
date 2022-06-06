@@ -9,9 +9,9 @@
       Title="DiagnosisPage">
 
     <Grid>
-        <Label Name="DiagnosisLabel" BorderBrush="Black" Content="" FontSize="20" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Height="96" Width="405"/>
+        <Label Name="DiagnosisLabel" BorderBrush="Black" BorderThickness="2" Content="" FontSize="20" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Height="96" Width="440"/>
         <Label Content="Notes:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,111,0,0" Height="35" Width="100" RenderTransformOrigin="0.45,-0.429"/>
-        <TextBox Name="Notes" LostFocus="Notes_LostFocus" HorizontalAlignment="Left" FontSize="20" Height="156" Margin="115,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="405"/>
+        <TextBox Name="Notes" LostFocus="Notes_LostFocus" HorizontalAlignment="Left" FontSize="20" Height="156" Margin="115,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="440"/>
 
     </Grid>
 </Page>

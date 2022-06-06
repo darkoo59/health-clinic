@@ -9,13 +9,8 @@
       Title="Prescriptions">
 
     <Grid>
-        <ListView Name="PrescriptionList" HorizontalAlignment="Left" Height="297" Margin="0,10,0,0" VerticalAlignment="Top" Width="125">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <ListView FontSize="15" Name="PrescriptionList" HorizontalAlignment="Left" Height="257" Margin="0,60,0,0" VerticalAlignment="Top" Width="100" Background="#FF3183CB">
         </ListView>
-        <Frame Name="Parameters" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Height="307" Width="537"/>
+        <Frame Name="Parameters" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Height="307" Width="567"/>
     </Grid>
 </Page>

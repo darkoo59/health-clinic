@@ -32,7 +32,18 @@ namespace Sims_Hospital_Zdravo
             this.prescriptions = prescriptions;
             InitializeComponent();
             PrescriptionList.ItemsSource = InitializeList();
-            Parameters.Content = new PrescriptionParameters(prescriptions.First(),appointment);
+            if (prescriptions.Count != 0)
+            {
+                Parameters.Content = new PrescriptionParameters(prescriptions.First(), appointment);
+                var converter = new System.Windows.Media.BrushConverter();
+                List<ListViewItem> listViewItems = (List<ListViewItem>)PrescriptionList.ItemsSource;
+                foreach (ListViewItem listViewItem in listViewItems)
+                {
+                    listViewItem.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
+                    listViewItem.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
+                    break;
+                }
+            }
         }
         public ObservableCollection<string> InitializeList() 
         {
@@ -48,6 +59,16 @@ namespace Sims_Hospital_Zdravo
         {
             int index = medicines.IndexOf((string)PrescriptionList.SelectedItem);
             Parameters.Content = new PrescriptionParameters(prescriptions.ElementAt(index), appointment);
+            var converter = new System.Windows.Media.BrushConverter();
+            List<ListViewItem> listViewItems = (List<ListViewItem>)PrescriptionList.ItemsSource;
+            foreach (ListViewItem listViewItem in listViewItems)
+            {
+                listViewItem.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
+                listViewItem.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
+            }
+            ListViewItem prescription = (ListViewItem)PrescriptionList.SelectedItem;
+            prescription.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
+            prescription.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
         }
     }
 }
