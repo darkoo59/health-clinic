@@ -27,20 +27,18 @@ namespace Sims_Hospital_Zdravo.View.Manager
     {
         private RoomController roomController;
         private Frame ManagerContent;
-        private App app;
         private IFilterPipeline<RoomEquipment> roomEquipmentPipeline;
         public bool ShowConsumableEquipment { get; set; } = true;
         public bool ShowStaticEquipment { get; set; } = true;
 
         public ManagerEquipment()
         {
-            app = Application.Current as App;
-            roomController = app._roomController;
+            roomController = new RoomController();
 
             InitializeComponent();
 
             DataContext = this;
-            RoomPicker.ItemsSource = roomController.ReadAll();
+            RoomPicker.ItemsSource = roomController.FindAll();
             RoomPicker.SelectedIndex = 0;
 
             EquipmentTable.ItemsSource = roomController.FilterRoomEquipment((Room)RoomPicker.SelectedItem, CreateFilterDTO());

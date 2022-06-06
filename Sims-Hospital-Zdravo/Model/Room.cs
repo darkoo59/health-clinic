@@ -8,6 +8,7 @@ using Sims_Hospital_Zdravo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 public enum RoomType
 {
@@ -191,6 +192,19 @@ namespace Model
         public List<RoomEquipment> GetAllEquipmentByType(EquipmentType equipmentType)
         {
             return _roomEquipment.FindAll(equipment => equipment.Equipment.Type == equipmentType);
+        }
+
+        public void Update(Room room)
+        {
+            Id = room.Id;
+            Floor = room.Floor;
+            Type = room.Type;
+            RoomEquipment = room.RoomEquipment;
+        }
+
+        public List<RoomEquipment> FindEquipmentByType(EquipmentType type)
+        {
+            return _roomEquipment.Where(re => re.Equipment.Type == type).ToList();
         }
     }
 }

@@ -61,10 +61,10 @@ namespace Sims_Hospital_Zdravo.ViewModel
         public EquipmentTransferViewModel()
         {
             app = Application.Current as App;
-            _roomController = app._roomController;
+            _roomController = new RoomController();
             _equipmentTransferController = app._equipmentTransferController;
 
-            Rooms = _roomController.ReadAll().ToList();
+            Rooms = _roomController.FindAll().ToList();
         }
 
         public void ScheduleEquipmentRelocation()

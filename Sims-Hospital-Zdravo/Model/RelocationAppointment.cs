@@ -57,5 +57,13 @@ namespace Model
 
             set { _id = value; }
         }
+
+        public void Update(RelocationAppointment appointment)
+        {
+            RoomEquipment = appointment.RoomEquipment;
+            Scheduled = appointment.Scheduled;
+            FromRoom = appointment.FromRoom;
+            ToRoom = appointment.ToRoom;
+        }
     }
 }

@@ -16,13 +16,14 @@ namespace Sims_Hospital_Zdravo.Service
         private IRoomRepository _roomRepository;
         private AccountRepository _accountRepository;
         private MeetingRepository _meetingRepository;
-        private NotificationRepository _notificationRepository;
-        public MeetingService(IRoomRepository roomRepo,AccountRepository accRepo,MeetingRepository meetingRepo, NotificationRepository notifyRepo)
+        private INotificationRepository _notificationRepository;
+
+        public MeetingService(AccountRepository accRepo, MeetingRepository meetingRepo)
         {
-            this._roomRepository = roomRepo;
-            this._accountRepository = accRepo;
-            this._meetingRepository = meetingRepo;
-            this._notificationRepository = notifyRepo;
+            _roomRepository = new RoomRepository();
+            _accountRepository = accRepo;
+            _meetingRepository = meetingRepo;
+            _notificationRepository = new NotificationRepository();
         }
 
         public void Create(Meeting meeting)
@@ -33,9 +34,10 @@ namespace Sims_Hospital_Zdravo.Service
         public void CreateMeetingWithNotifying(Meeting meeting, List<Notification> notifications)
         {
             Create(meeting);
-            foreach(Notification notification in notifications)
+            foreach (Notification notification in notifications)
                 _notificationRepository.Create(notification);
         }
+
         public List<Room> ReadAllRooms()
         {
             return _roomRepository.FindAll().ToList();

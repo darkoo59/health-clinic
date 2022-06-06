@@ -8,14 +8,14 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private NotificationService _notificationService;
 
-        public NotificationController(NotificationService notificationService)
+        public NotificationController()
         {
-            this._notificationService = notificationService;
+            _notificationService = new NotificationService();
         }
 
-        public List<Notification> ReadAll()
+        public List<Notification> FindAll()
         {
-            return _notificationService.ReadAll();
+            return _notificationService.FindAll();
         }
 
         public Notification FindById(int id)

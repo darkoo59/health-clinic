@@ -13,14 +13,14 @@ namespace Controller
     {
         private EquipmentService _equipmentService;
 
-        public EquipmentController(EquipmentService equipmentService)
+        public EquipmentController()
         {
-            this._equipmentService = equipmentService;
+            _equipmentService = new EquipmentService();
         }
 
-        public ObservableCollection<Equipment> ReadAll()
+        public List<Equipment> FindAll()
         {
-            return _equipmentService.ReadAll();
+            return _equipmentService.FindAll();
         }
 
         public void Create(Equipment equipment)

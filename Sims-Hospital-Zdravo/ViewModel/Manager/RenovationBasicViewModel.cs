@@ -22,7 +22,6 @@ namespace Sims_Hospital_Zdravo.ViewModel
             set
             {
                 room = value;
-                Console.WriteLine(value.Id);
                 UpdateTimeIntervals();
             }
         }
@@ -44,10 +43,10 @@ namespace Sims_Hospital_Zdravo.ViewModel
         {
             app = Application.Current as App;
             renovationController = app._renovationController;
-            roomController = app._roomController;
+            roomController = new RoomController();
             StartDate = DateTime.Now;
             EndDate = DateTime.Now;
-            rooms = roomController.ReadAll().ToList();
+            rooms = roomController.FindAll().ToList();
         }
 
 

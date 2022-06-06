@@ -11,7 +11,7 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     public class AccountController
     {
-        public AccountService accountService;
+        private AccountService accountService;
 
         public AccountController(AccountService accService)
         {

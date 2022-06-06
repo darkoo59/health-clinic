@@ -22,13 +22,16 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class App : Application
     {
-        internal RoomController _roomController;
+        // internal RoomController _roomController;
         internal MedicalRecordController _recordController;
         internal AppointmentPatientController _appointmentPatientController;
         internal DoctorAppointmentController _doctorAppointmentController;
+
         internal EquipmentTransferController _equipmentTransferController;
-        internal EquipmentController _equipmentController;
+
+        // internal EquipmentController _equipmentController;
         internal AccountController _accountController;
+
         internal RenovationController _renovationController;
         internal PatientMedicalRecordController _patientMedRecController;
         internal AnamnesisController _anamnesisController;
@@ -46,15 +49,15 @@ namespace Sims_Hospital_Zdravo
         {
             EventManager.RegisterClassHandler(typeof(Window), Window.LoadedEvent,
                 new RoutedEventHandler(WindowLoaded));
-            NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
-            NotificationRepository notificationRepository = new NotificationRepository(notificationDataHandler);
-            NotificationService notificationService = new NotificationService(notificationRepository);
-            _notificationController = new NotificationController(notificationService);
+            // NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
+            // NotificationRepository notificationRepository = new NotificationRepository();
+            // NotificationService notificationService = new NotificationService();
+            _notificationController = new NotificationController();
 
-            RoomDataHandler roomDataHandler = new RoomDataHandler();
-            RoomRepository roomRepository = new RoomRepository(roomDataHandler);
-            RoomService roomService = new RoomService(roomRepository);
-            _roomController = new RoomController(roomService);
+            // RoomDataHandler roomDataHandler = new RoomDataHandler();
+            // RoomRepository roomRepository = new RoomRepository();
+            RoomService roomService = new RoomService();
+            // _roomController = new RoomController();
 
             PatientDataHandler patientDataHandler = new PatientDataHandler();
             PatientRepository patientRepository = new PatientRepository(patientDataHandler);
@@ -69,7 +72,7 @@ namespace Sims_Hospital_Zdravo
 
             MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
             MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
-            MedicineService medicineService = new MedicineService(medicineRepository, notificationRepository);
+            MedicineService medicineService = new MedicineService(medicineRepository);
             _medicineController = new MedicineController(medicineService);
 
             MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
@@ -91,35 +94,31 @@ namespace Sims_Hospital_Zdravo
             _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
-            //DoctorAppointmentService doctorAppointmentService =
-            //    new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo,timeSchedulerService);
-            //doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
-            EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
-            EquipmentRepository equipmentRepository = new EquipmentRepository(equipmentDataHandler);
-            EquipmentService equipmentService = new EquipmentService(equipmentRepository);
-            _equipmentController = new EquipmentController(equipmentService);
+            // EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
+            // EquipmentRepository equipmentRepository = new EquipmentRepository();
+            // EquipmentService equipmentService = new EquipmentService();
+            // _equipmentController = new EquipmentController();
 
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository =
-                new RelocationAppointmentRepository(relocationAppointmentDataHandler);
+                new RelocationAppointmentRepository();
             RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
-            RenovationRepository renovationRepository = new RenovationRepository(renovationDataHandler);
+            RenovationRepository renovationRepository = new RenovationRepository();
 
 
-            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository,
-                renovationRepository, relocationAppointmentRepository);
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
 
             DoctorAppointmentService doctorAppointmentService =
                 new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo, timeSchedulerService, roomService);
             _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
-                new RenovationService(renovationRepository, timeSchedulerService, roomRepository);
+                new RenovationService(timeSchedulerService);
             _renovationController = new RenovationController(renovationService);
 
             EquipmentTransferService equipmentTransferService =
-                new EquipmentTransferService(roomRepository, relocationAppointmentRepository, timeSchedulerService);
+                new EquipmentTransferService(timeSchedulerService);
             _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
 
@@ -142,18 +141,18 @@ namespace Sims_Hospital_Zdravo
             _surveyController = new SurveyController(surveyService);
 
             SecretaryAppointmentService secretaryAppointmentService =
-                new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, roomRepository, doctorRepository);
+                new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
             SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
             SuppliesAcquisitionRepository _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository(_suppliesAcquisitionDataHandler);
             SuppliesService suppliesService =
-                new SuppliesService(roomRepository, equipmentRepository, _suppliesAcquisitionRepository);
+                new SuppliesService(_suppliesAcquisitionRepository);
             _suppliesController = new SuppliesController(suppliesService);
 
             MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
             MeetingRepository _meetingRepository = new MeetingRepository(_meetingDataHandler);
-            MeetingService _meetingService = new MeetingService(roomRepository,accountRepository,_meetingRepository,notificationRepository);
+            MeetingService _meetingService = new MeetingService(accountRepository, _meetingRepository);
             _meetingController = new MeetingController(_meetingService);
 
 
@@ -172,7 +171,7 @@ namespace Sims_Hospital_Zdravo
 
             RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
-            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository, notificationRepository);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
             _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
         }
 

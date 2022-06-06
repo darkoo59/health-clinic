@@ -22,12 +22,11 @@ namespace Service
         private RenovationRepository _renovationRepository;
         private RelocationAppointmentRepository _relocationRepository;
 
-        public TimeSchedulerService(AppointmentRepository appointmentRepository,
-            RenovationRepository renovationRepository, RelocationAppointmentRepository relocationRepository)
+        public TimeSchedulerService(AppointmentRepository appointmentRepository)
         {
-            this._appointmentRepository = appointmentRepository;
-            this._renovationRepository = renovationRepository;
-            this._relocationRepository = relocationRepository;
+            _appointmentRepository = appointmentRepository;
+            _renovationRepository = new RenovationRepository();
+            _relocationRepository = new RelocationAppointmentRepository();
         }
 
         public List<TimeInterval> FindReservedTimeForRooms(Room room1, Room room2)

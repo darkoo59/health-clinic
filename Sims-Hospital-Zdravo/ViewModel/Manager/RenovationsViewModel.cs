@@ -28,9 +28,9 @@ namespace Sims_Hospital_Zdravo.ViewModel
         {
             app = Application.Current as App;
             renovationController = app._renovationController;
-            roomController = app._roomController;
+            roomController = new RoomController();
 
-            Renovations = renovationController.ReadAll().ToList();
+            Renovations = renovationController.FindAll().ToList();
             SortingHandler = new DataGridSortingEventHandler(SortHandler);
         }
 

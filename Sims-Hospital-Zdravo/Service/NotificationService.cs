@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 
@@ -7,16 +8,16 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class NotificationService
     {
-        private NotificationRepository _notificationRepository;
+        private INotificationRepository _notificationRepository;
 
-        public NotificationService(NotificationRepository notificationRepository)
+        public NotificationService()
         {
-            this._notificationRepository = notificationRepository;
+            _notificationRepository = new NotificationRepository();
         }
 
-        public List<Notification> ReadAll()
+        public List<Notification> FindAll()
         {
-            return _notificationRepository.ReadAll();
+            return _notificationRepository.FindAll();
         }
 
         public Notification FindById(int id)
@@ -77,7 +78,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int GenerateId()
         {
-            List<Notification> appointments = _notificationRepository.ReadAll();
+            List<Notification> appointments = _notificationRepository.FindAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

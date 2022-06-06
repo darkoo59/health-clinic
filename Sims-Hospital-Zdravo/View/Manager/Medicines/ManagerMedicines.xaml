@@ -78,10 +78,10 @@
             SelectionMode="Single">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding _Name}"> </DataGridTextColumn>
-                <DataGridTextColumn Header="Strength" IsReadOnly="True" Width="*" Binding="{Binding _Strength}"> </DataGridTextColumn>
-                <DataGridTextColumn Header="Description" IsReadOnly="True" Width="*" Binding="{Binding _Description}"> </DataGridTextColumn>
-                <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*" Binding="{Binding _Status}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Strength" IsReadOnly="True" Width="*" Binding="{Binding Strength}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Description" IsReadOnly="True" Width="*" Binding="{Binding Description}"> </DataGridTextColumn>
+                <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*" Binding="{Binding Status}"> </DataGridTextColumn>
 
             </DataGrid.Columns>
 

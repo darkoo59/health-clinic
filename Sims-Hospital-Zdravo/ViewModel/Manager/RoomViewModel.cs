@@ -26,8 +26,8 @@ namespace Sims_Hospital_Zdravo.ViewModel
         public RoomViewModel()
         {
             app = Application.Current as App;
-            roomController = app._roomController;
-            Rooms = roomController.ReadAll().ToList();
+            roomController = new RoomController();
+            Rooms = roomController.FindAll().ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -54,13 +54,20 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public void Execute(object parameter)
         {
-            RenovationRoomDialog roomDialog = new RenovationRoomDialog();
-            if (roomDialog.ShowDialog() == false)
+            try
             {
-                Room room = roomDialog.Room;
-                if (room == null) return;
-                room.Id = roomController.GenerateId();
-                roomController.Create(room);
+                RenovationRoomDialog roomDialog = new RenovationRoomDialog();
+                if (roomDialog.ShowDialog() == false)
+                {
+                    Room room = roomDialog.Room;
+                    if (room == null) return;
+                    room.Id = roomController.GenerateId();
+                    roomController.Create(room);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 

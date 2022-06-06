@@ -15,7 +15,7 @@ namespace Controller
 
         public EquipmentTransferController(EquipmentTransferService equipmentTransferService)
         {
-            this._equipmentTransferService = equipmentTransferService;
+            _equipmentTransferService = equipmentTransferService;
         }
 
         public void FinishRelocationAppointment(int relocationAppointmentId)
@@ -28,9 +28,9 @@ namespace Controller
             _equipmentTransferService.MakeRelocationAppointment(relocationAppointment);
         }
 
-        public List<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> FindAll()
         {
-            return _equipmentTransferService.ReadAll();
+            return _equipmentTransferService.FindAll();
         }
 
         public List<TimeInterval> GetTakenTimeIntervals(Room fromRoom, Room toRoom)

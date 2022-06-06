@@ -12,16 +12,13 @@ namespace Sims_Hospital_Zdravo.Utils
 {
     public class RenovationValidator
     {
-        private RenovationRepository renovationRepository;
-        private IRoomRepository roomRepository;
+        private IRoomRepository _roomRepository;
         private TimeSchedulerService _timeSchedulerService;
 
-        public RenovationValidator(IRoomRepository roomRepository, RenovationRepository renovationRepository,
-            TimeSchedulerService timeSchedulerService)
+        public RenovationValidator(TimeSchedulerService timeSchedulerService)
         {
-            this.renovationRepository = renovationRepository;
-            this.roomRepository = roomRepository;
-            this._timeSchedulerService = timeSchedulerService;
+            _roomRepository = new RoomRepository();
+            _timeSchedulerService = timeSchedulerService;
         }
 
         private void ValidateRoomTaken(Room room, TimeInterval ti)
@@ -36,7 +33,7 @@ namespace Sims_Hospital_Zdravo.Utils
         private void ValidateRoomExists(Room room)
         {
             if (room == null) throw new Exception("Room not selected!");
-            foreach (Room rm in roomRepository.FindAll())
+            foreach (Room rm in _roomRepository.FindAll())
             {
                 if (rm.Id == room.Id)
                 {
@@ -81,7 +78,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void RoomNumberExists(Room room)
         {
-            if (roomRepository.FindByRoomNumber(room.RoomNumber) != null)
+            if (_roomRepository.FindByRoomNumber(room.RoomNumber) != null)
             {
                 throw new Exception("Room number " + room.RoomNumber + " already exists!");
             }

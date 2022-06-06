@@ -27,13 +27,13 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             app = Application.Current as App;
             _renovationController = app._renovationController;
-            _roomController = app._roomController;
+            _roomController = new RoomController();
             roomsForAdding = new ObservableCollection<Room>();
             InitializeComponent();
             DataContext = this;
 
             RoomsToBeAdded.ItemsSource = roomsForAdding;
-            RenovationRooms.ItemsSource = _roomController.ReadAll();
+            RenovationRooms.ItemsSource = _roomController.FindAll();
             this.KeyDown += new KeyEventHandler(GoBack);
         }
 

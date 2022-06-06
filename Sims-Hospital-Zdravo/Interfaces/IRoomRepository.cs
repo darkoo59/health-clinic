@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using System.Collections.Generic;
+using Model;
 
 namespace Sims_Hospital_Zdravo.Interfaces
 {
@@ -7,5 +8,8 @@ namespace Sims_Hospital_Zdravo.Interfaces
         Room FindById(int id);
         Room FindByRoomNumber(string roomNumber);
         Room FindByType(RoomType type);
+        List<RoomEquipment> FindAllEquipment();
+
+        void RemoveMultiple(List<Room> rooms);
     }
 }

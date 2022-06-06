@@ -23,9 +23,9 @@ namespace Service
         private IRoomRepository _roomRepository;
 
 
-        public RoomService(IRoomRepository roomRepository)
+        public RoomService()
         {
-            this._roomRepository = roomRepository;
+            _roomRepository = new RoomRepository();
             _validator = new RoomValidator(this);
         }
 
@@ -35,7 +35,7 @@ namespace Service
             _roomRepository.Create(room);
         }
 
-        public List<Room> ReadAll()
+        public List<Room> FindAll()
         {
             return _roomRepository.FindAll();
         }

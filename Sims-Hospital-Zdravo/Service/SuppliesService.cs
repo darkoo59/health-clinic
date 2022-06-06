@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 
@@ -10,15 +11,15 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class SuppliesService
     {
-        private RoomRepository _roomRepository;
-        private EquipmentRepository _equipmentRepository;
+        private IRoomRepository _roomRepository;
+        private IEquipmentRepository _equipmentRepository;
         private SuppliesAcquisitionRepository _suppliesAcquisitionRepository;
 
-        public SuppliesService(RoomRepository roomRepo, EquipmentRepository equipmentRepo,SuppliesAcquisitionRepository suppliesRepo)
+        public SuppliesService(SuppliesAcquisitionRepository suppliesRepo)
         {
-            this._roomRepository = roomRepo;
-            this._equipmentRepository = equipmentRepo;
-            this._suppliesAcquisitionRepository = suppliesRepo;
+            _roomRepository = new RoomRepository();
+            _equipmentRepository = new EquipmentRepository();
+            _suppliesAcquisitionRepository = suppliesRepo;
         }
 
 
@@ -94,28 +95,31 @@ namespace Sims_Hospital_Zdravo.Model
             {
                 ids.Add(supplie.Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
+
             return id;
         }
-        
+
         public int GenerateEquipmentId()
         {
-            ObservableCollection<Equipment> equipments = _equipmentRepository.ReadAll();
+            List<Equipment> equipments = _equipmentRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Equipment equipment in equipments)
             {
                 ids.Add(equipment.Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
+
             return id;
         }
-        
     }
 }

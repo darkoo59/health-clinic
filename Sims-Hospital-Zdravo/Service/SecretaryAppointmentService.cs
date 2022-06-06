@@ -20,12 +20,12 @@ namespace Sims_Hospital_Zdravo.Model
         private TimeSchedulerService _timeSchedulerService;
         private AppointmentSecretaryValidator _validator;
 
-        public SecretaryAppointmentService(AppointmentRepository appRepo, PatientRepository patientRepo, TimeSchedulerService timeService, IRoomRepository roomRepository, DoctorRepository doctorRepository)
+        public SecretaryAppointmentService(AppointmentRepository appRepo, PatientRepository patientRepo, TimeSchedulerService timeService, DoctorRepository doctorRepository)
         {
             this._appointmentRepository = appRepo;
             this._patientRepository = patientRepo;
             this._timeSchedulerService = timeService;
-            this._roomRepository = roomRepository;
+            this._roomRepository = new RoomRepository();
             this._doctorRepository = doctorRepository;
             this._validator = new AppointmentSecretaryValidator(this);
         }

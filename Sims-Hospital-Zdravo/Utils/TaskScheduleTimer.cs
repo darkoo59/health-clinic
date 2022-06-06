@@ -73,7 +73,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckIfRelocationAppointmentDone()
         {
-            List<RelocationAppointment> appointments = _relocationController.ReadAll();
+            List<RelocationAppointment> appointments = _relocationController.FindAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
                 if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
@@ -85,7 +85,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckIfRenovationAppointmentDone()
         {
-            ObservableCollection<RenovationAppointment> renovations = new ObservableCollection<RenovationAppointment>(_renovationController.ReadAll());
+            ObservableCollection<RenovationAppointment> renovations = new ObservableCollection<RenovationAppointment>(_renovationController.FindAll());
             foreach (RenovationAppointment renovation in renovations)
             {
                 if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0)
@@ -113,7 +113,6 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckNotificationForManager()
         {
-
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.MANAGER)) return;
@@ -142,13 +141,15 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 Notify(notification);
             }
+
             List<Notification> meetingNotifications = _notificationController.ReadAllDoctorMeetingsNotifications(account._Id);
             foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
             }
+
             List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account._Id);
-            foreach(Notification notification in freeDaysNotifications)
+            foreach (Notification notification in freeDaysNotifications)
             {
                 Notify(notification);
             }

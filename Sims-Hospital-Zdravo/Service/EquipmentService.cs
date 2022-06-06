@@ -6,21 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Repository;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Service
 {
     public class EquipmentService
     {
-        private EquipmentRepository _equipmentRepository;
+        private IEquipmentRepository _equipmentRepository;
 
-        public EquipmentService(EquipmentRepository equipmentRepository)
+        public EquipmentService()
         {
-            this._equipmentRepository = equipmentRepository;
+            _equipmentRepository = new EquipmentRepository();
         }
 
-        public ObservableCollection<Equipment> ReadAll()
+        public List<Equipment> FindAll()
         {
-            return _equipmentRepository.ReadAll();
+            return _equipmentRepository.FindAll();
         }
 
         public void Create(Equipment equipment)

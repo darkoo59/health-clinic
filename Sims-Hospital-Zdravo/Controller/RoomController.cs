@@ -17,12 +17,12 @@ namespace Controller
 {
     public class RoomController
     {
-        public RoomService _roomService;
+        private RoomService _roomService;
 
 
-        public RoomController(RoomService roomService)
+        public RoomController()
         {
-            this._roomService = roomService;
+            _roomService = new RoomService();
         }
 
         public void Create(Room room)
@@ -30,9 +30,9 @@ namespace Controller
             _roomService.Create(room);
         }
 
-        public List<Room> ReadAll()
+        public List<Room> FindAll()
         {
-            return _roomService.ReadAll();
+            return _roomService.FindAll();
         }
 
         public void Update(Room room)
