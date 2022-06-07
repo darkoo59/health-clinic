@@ -128,19 +128,21 @@ namespace Sims_Hospital_Zdravo.Utils
             if (!account._Role.Equals(RoleType.MANAGER)) return;
 
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
-            foreach (Notification notification in notifications)
+            foreach (var notification in notifications.Where(notification => !isManagerNotificationInProgress))
             {
-                if (!isManagerNotificationInProgress)
+                isManagerNotificationInProgress = true;
+                App.Current.Dispatcher.Invoke(delegate
                 {
-                    isManagerNotificationInProgress = true;
-                    App.Current.Dispatcher.Invoke(delegate
-                    {
-                        Notify(notification);
-                        isManagerNotificationInProgress = false;
-                    });
-                }
+                    Notify(notification);
+                    isManagerNotificationInProgress = false;
+                });
             }
 
+            CheckForManagerMeeting(account);
+        }
+
+        public void CheckForManagerMeeting(User account)
+        {
             List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {

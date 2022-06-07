@@ -23,8 +23,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public DoctorSurveyPdfCreator(Doctor doctor)
         {
-            App app = Application.Current as App;
-            surveyController = app._surveyController;
+            surveyController = new SurveyController();
             this.doctor = doctor;
         }
 
@@ -33,6 +32,12 @@ namespace Sims_Hospital_Zdravo.Utils
             try
             {
                 List<ISurveyStatistic> statistics = surveyController.GetDoctorSurveys(doctor.Id);
+                if (statistics.Count == 0)
+                {
+                    MessageBox.Show("There is no surveys for doctor!");
+                    return;
+                }
+
                 PdfDocument document = new PdfDocument();
                 DrawAllGrids(document, statistics);
                 FileStream stream = CreateAndSaveDocument(document);

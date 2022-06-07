@@ -22,7 +22,6 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
             }
             else
             {
-                Console.WriteLine(doctor);
                 DoctorSurveyPdfCreator pdfCreator = new DoctorSurveyPdfCreator(doctor);
                 pdfCreator.PrintSurvey();
             }
