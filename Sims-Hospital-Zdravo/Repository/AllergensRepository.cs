@@ -15,9 +15,9 @@ namespace Sims_Hospital_Zdravo.Repository
         private AllergensDataHandler _allergensDataHandler;
         public Allergens _allergens;
 
-        public AllergensRepository(AllergensDataHandler dataHandler)
+        public AllergensRepository()
         {
-            this._allergensDataHandler = dataHandler;
+            this._allergensDataHandler = new AllergensDataHandler();
             this._allergens = new Allergens();
             LoadDataFromFile();
         }

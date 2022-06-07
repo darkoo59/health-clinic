@@ -13,9 +13,9 @@ namespace Sims_Hospital_Zdravo.Model
     {
         private PrescriptionRepository _prescriptionRepository;
 
-        public PrescriptionService(PrescriptionRepository prescriptionRepository)
+        public PrescriptionService()
         {
-            this._prescriptionRepository = prescriptionRepository;
+            this._prescriptionRepository = new PrescriptionRepository();
         }
         public ObservableCollection<Prescription> ReadAll()
         {

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -23,13 +24,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     public partial class NewAppointmentChooseDate : Window
     {
 
-        private SecretaryAppointmentController appointmentController;
-        private App app;
+        private SecretaryAppointmentController _appointmentController;
+        private MedicalRecordController _medicalRecordController;
         public NewAppointmentChooseDate()
         {
             InitializeComponent();
-            app = Application.Current as App;
-            this.appointmentController = app._secretaryAppointmentController;
+            this._appointmentController = new SecretaryAppointmentController();
+            _medicalRecordController = new MedicalRecordController();
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
@@ -44,7 +45,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     TimeSpan endTime = TimeSpan.Parse(txtEndTime.Text);
                     endDate = endDate.Add(endTime);
                     TimeInterval selectedDate = new TimeInterval(startDate, endDate);
-                    appointmentController.ValidateAppointmentInterval(selectedDate);
+                    _appointmentController.ValidateAppointmentInterval(selectedDate);
                     NewAppointmentChoosePatient choosePatient = new NewAppointmentChoosePatient(selectedDate);
                     choosePatient.Show();
                     this.Close();
@@ -60,7 +61,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void btnCreateRecord_Click(object sender, RoutedEventArgs e)
         {
-            InsertRecordWindow insertRecord = new InsertRecordWindow(app._recordController);
+            InsertRecordWindow insertRecord = new InsertRecordWindow();
             insertRecord.Show();
         }
 
@@ -115,14 +116,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }

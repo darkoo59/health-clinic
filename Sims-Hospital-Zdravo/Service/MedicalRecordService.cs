@@ -24,11 +24,11 @@ namespace Service
         private AllergensRepository _allergensRepository;
         private MedicalRecordValidator _validator;
 
-        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
+        public MedicalRecordService()
         {
-            _medicalRecordRepository = medicalRepo;
-            _patientRepository = patientRepo;
-            _allergensRepository = alergRepo;
+            _medicalRecordRepository = new MedicalRecordsRepository();
+            _patientRepository = new PatientRepository();
+            _allergensRepository = new AllergensRepository();
             _validator = new MedicalRecordValidator(this);
         }
         public void Create(MedicalRecord medicalRecord, Patient patient)

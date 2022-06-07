@@ -15,10 +15,10 @@ namespace Sims_Hospital_Zdravo.Repository
         private MeetingDataHandler _meetingDataHandler;
         private List<Meeting> _meetings;
 
-        public MeetingRepository(MeetingDataHandler meetingDataHandler)
+        public MeetingRepository()
         {
             _meetings = new List<Meeting>();
-            _meetingDataHandler = meetingDataHandler;
+            _meetingDataHandler = new MeetingDataHandler();
             LoadDataFromFiles();
         }
 

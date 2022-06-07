@@ -21,12 +21,12 @@ namespace Sims_Hospital_Zdravo.Model
         private RequestForFreeDaysValidator _freeDaysValidator;
         private INotificationRepository _notificationRepository;
 
-        public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository, AppointmentRepository appointmentRepository)
+        public RequestForFreeDaysService()
         {
-            _requestForFreeDaysRepository = requestForFreeDaysRepository;
-            _appointmentRepository = appointmentRepository;
+            _requestForFreeDaysRepository = new RequestForFreeDaysRepository();
+            _appointmentRepository = new AppointmentRepository();
             _notificationRepository = new NotificationRepository();
-            _freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
+            _freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, _requestForFreeDaysRepository);
         }
 
         public void Create(FreeDaysRequest request)

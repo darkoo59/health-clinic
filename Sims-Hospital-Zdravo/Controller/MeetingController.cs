@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Repository;
 
 namespace Sims_Hospital_Zdravo.Controller
 {
@@ -13,9 +15,9 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private MeetingService _meetingService;
 
-        public MeetingController(MeetingService meetingService)
+        public MeetingController()
         {
-            this._meetingService = meetingService;
+            this._meetingService = new MeetingService();
         }
 
         public void Create(Meeting meeting)

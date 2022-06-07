@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
@@ -24,14 +25,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     {
         private Patient selectedPatient;
         private TimeInterval selectedTimeInterval;
-        private App app;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public UpdateChooseRoomWindow(Patient patient, TimeInterval startEndDate)
         {
             InitializeComponent();
-            this.app = Application.Current as App;
             this.selectedPatient = patient;
             this.selectedTimeInterval = startEndDate;
-            ListRooms.ItemsSource = app._secretaryAppointmentController.FindAvailableRoomsForInterval(startEndDate);
+            _secretaryAppointmentController = new SecretaryAppointmentController();
+            ListRooms.ItemsSource = _secretaryAppointmentController.FindAvailableRoomsForInterval(startEndDate);
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -106,7 +107,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
@@ -120,7 +121,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

@@ -22,9 +22,9 @@ namespace Service
         private RenovationRepository _renovationRepository;
         private RelocationAppointmentRepository _relocationRepository;
 
-        public TimeSchedulerService(AppointmentRepository appointmentRepository)
+        public TimeSchedulerService()
         {
-            _appointmentRepository = appointmentRepository;
+            _appointmentRepository = new AppointmentRepository();
             _renovationRepository = new RenovationRepository();
             _relocationRepository = new RelocationAppointmentRepository();
         }

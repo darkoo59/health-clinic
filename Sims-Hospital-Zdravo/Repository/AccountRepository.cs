@@ -16,9 +16,9 @@ namespace Sims_Hospital_Zdravo.Repository
         public List<User> accounts;
         public User loggedAccount;
 
-        public AccountRepository(AccountDataHandler accHandler)
+        public AccountRepository()
         {
-            this.accHandler = accHandler;
+            this.accHandler = new AccountDataHandler();
             this.accounts = new List<User>();
             loggedAccount = null;
             LoadDataFromFile();

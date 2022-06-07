@@ -15,9 +15,9 @@ namespace Sims_Hospital_Zdravo.Repository
         private List<SuppliesAcquisition> _suppliesAcquisitions;
         private SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler;
         
-        public SuppliesAcquisitionRepository(SuppliesAcquisitionDataHandler dataHandler)
+        public SuppliesAcquisitionRepository()
         {
-            this._suppliesAcquisitionDataHandler = dataHandler;
+            this._suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
             _suppliesAcquisitions = new List<SuppliesAcquisition>();
             LoadDataFromFile();
         }

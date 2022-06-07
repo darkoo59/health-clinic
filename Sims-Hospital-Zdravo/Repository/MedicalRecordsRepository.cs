@@ -22,10 +22,10 @@ namespace Repository
         public DataHandler.MedicalRecordDataHandler _medicalRecordDataHandler;
         public List<Patient> _patients;
 
-        public MedicalRecordsRepository(MedicalRecordDataHandler recordDataHandler)
+        public MedicalRecordsRepository()
         {
             _medicalRecords = new List<MedicalRecord>();
-            _medicalRecordDataHandler = recordDataHandler;
+            _medicalRecordDataHandler = new MedicalRecordDataHandler();
             LoadDataFromFile();
         }
 

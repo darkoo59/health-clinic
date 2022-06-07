@@ -15,9 +15,9 @@ namespace Repository
         public DoctorDataHandler docHandler;
         public ObservableCollection<Doctor> doctors;
 
-        public DoctorRepository(DoctorDataHandler docHandler)
+        public DoctorRepository()
         {
-            this.docHandler = docHandler;
+            this.docHandler = new DoctorDataHandler();
             this.doctors = new ObservableCollection<Doctor>();
             LoadDataFromFile();
         }

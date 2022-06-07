@@ -15,11 +15,11 @@ namespace Sims_Hospital_Zdravo.Model
         private IEquipmentRepository _equipmentRepository;
         private SuppliesAcquisitionRepository _suppliesAcquisitionRepository;
 
-        public SuppliesService(SuppliesAcquisitionRepository suppliesRepo)
+        public SuppliesService()
         {
             _roomRepository = new RoomRepository();
             _equipmentRepository = new EquipmentRepository();
-            _suppliesAcquisitionRepository = suppliesRepo;
+            _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository();
         }
 
 

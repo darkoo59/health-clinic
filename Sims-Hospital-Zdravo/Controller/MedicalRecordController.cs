@@ -20,11 +20,11 @@ namespace Controller
         public Service.MedicalRecordService medicalRecordService;
         public MedicalRecordValidator validator;
         public PrescriptionService prescriptionService;
-        public MedicalRecordController(MedicalRecordService recordService,PrescriptionService prescriptionService)
+        public MedicalRecordController()
         {
-            medicalRecordService = recordService;
+            medicalRecordService = new MedicalRecordService();
             validator = new MedicalRecordValidator(medicalRecordService);
-            this.prescriptionService = prescriptionService;
+            this.prescriptionService = new PrescriptionService();
         }
 
         public void Create(MedicalRecord medicalRecord, Patient patient)

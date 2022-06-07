@@ -13,9 +13,9 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private RequestForFreeDaysService _requestForFreeDaysService;
 
-        public RequestForFreeDaysController(RequestForFreeDaysService requestForFreeDaysService)
+        public RequestForFreeDaysController()
         {
-            this._requestForFreeDaysService = requestForFreeDaysService;
+            this._requestForFreeDaysService = new RequestForFreeDaysService();
         }
 
         public void Create(FreeDaysRequest request)

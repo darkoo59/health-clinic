@@ -10,9 +10,9 @@ namespace Sims_Hospital_Zdravo.Controller
     public class SecretaryAppointmentController
     {
         private SecretaryAppointmentService secretaryAppointmenService;
-        public SecretaryAppointmentController(SecretaryAppointmentService appService)
+        public SecretaryAppointmentController()
         {
-            this.secretaryAppointmenService = appService;
+            this.secretaryAppointmenService = new SecretaryAppointmentService();
         }
 
         public void Create(Appointment appointment)
