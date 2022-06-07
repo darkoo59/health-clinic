@@ -8,7 +8,7 @@ using System.ComponentModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Controller;
 
-namespace Sims_Hospital_Zdravo.ViewModel.Doctor
+namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class LabaratoryTestViewModel
     {

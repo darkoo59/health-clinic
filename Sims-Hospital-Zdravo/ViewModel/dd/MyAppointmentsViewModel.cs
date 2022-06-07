@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using Model;
 using Controller;
 
-namespace Sims_Hospital_Zdravo.ViewModel.Doctor
+namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class MyAppointmentsViewModel : INotifyPropertyChanged
     {

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using Controller;
-using Model;
+﻿using Controller;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
-using Sims_Hospital_Zdravo.ViewModel.Commands;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
+using Model;
 namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class ManagerDoctorSurveyModel : INotifyPropertyChanged
@@ -46,7 +43,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
         {
             try
             {
-                surveyStatistics = surveyController.GetDoctorSurveyStatistics(Selected._Id);
+                surveyStatistics = surveyController.GetDoctorSurveyStatistics(Selected.Id);
                 AverageMark = "Average Mark : " + surveyStatistics.AverageMark;
                 OnPropertyChanged("AverageMark");
                 QuestionStatistics = surveyStatistics.QuestionStatistics;

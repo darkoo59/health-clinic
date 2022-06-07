@@ -147,7 +147,7 @@ namespace Model
 
         public override string ToString()
         {
-            return this.Role.ToString() + " " + this._Name + " " + this._Surname;
+            return this.Role.ToString() + " " + this.Name + " " + this.Surname;
         }
 
 

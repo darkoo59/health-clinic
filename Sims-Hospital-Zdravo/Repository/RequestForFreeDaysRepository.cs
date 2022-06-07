@@ -7,10 +7,11 @@ using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.DataHandler;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class RequestForFreeDaysRepository
+    public class RequestForFreeDaysRepository 
     {
         private ObservableCollection<FreeDaysRequest> _requests;
         private RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler;
@@ -42,23 +43,23 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFile();
         }
 
-        public void Delete(FreeDaysRequest request)
+        public void DeleteById(FreeDaysRequest request)
         {
             _requests.Remove(request);
             LoadDataToFile();
         }
 
-        public ref ObservableCollection<FreeDaysRequest> ReadAll()
+        public ref  ObservableCollection<FreeDaysRequest> FindAll()
         {
 
-            return ref _requests;
+            return  ref _requests;
 
         }
         
         public  ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
         {
             ObservableCollection<FreeDaysRequest> doctorRequests = new ObservableCollection<FreeDaysRequest>();
-            foreach(FreeDaysRequest request in ReadAll())
+            foreach(FreeDaysRequest request in FindAll())
             {
                 if(request.Doctor.Id == doctorId)
                 {

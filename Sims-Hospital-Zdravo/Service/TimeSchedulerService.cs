@@ -263,14 +263,7 @@ namespace Service
                 intervals.Add(new TimeInterval(dateInterval));
             }
         }
-                if (app.Time.Start.Date.Equals(date.Date))
-                {
-                    if (app.Patient.Jmbg.Equals(pat.Jmbg))
-                    {
-                        return app;
-                    }
-                }
-            }
+
 
 
         private void JoinIntervalsIfTouching(TimeInterval interval, TimeInterval dateInterval)
@@ -301,7 +294,7 @@ namespace Service
         {
             return _appointmentRepository.FindByDoctorId(id)
                 .Where(app => app.Time.Start.Date.Equals(date.Date))
-                .FirstOrDefault(app => app.Patient._Jmbg.Equals(pat._Jmbg));
+                .FirstOrDefault(app => app.Patient.Jmbg.Equals(pat.Jmbg));
         }
     }
 }

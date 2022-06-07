@@ -179,8 +179,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
-            ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
-            FrameForMain.Content = viewRequestForFreeDays;
+            //ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
+            //FrameForMain.Content = viewRequestForFreeDays;
         }
     }
 }

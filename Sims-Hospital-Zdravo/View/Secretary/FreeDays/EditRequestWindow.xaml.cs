@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Sims_Hospital_Zdravo.Model;
 namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
 {
     /// <summary>
@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             this._freeDaysRequest = request;
             comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();
             comboStatus.SelectedItem = _freeDaysRequest.Status;
-            txtReason.Text = _freeDaysRequest.ReasonForfreeDays;
+            txtReason.Text = _freeDaysRequest.ReasonForFreeDays;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             {
                 try
                 {
-                    FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForfreeDays,
+                    FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForFreeDays,
                         (RequestStatus)comboStatus.SelectedValue);
                     Notification notification = new FreeDaysNotification(txtReason.Text, app._notificationController.GenerateId(),
                         request);

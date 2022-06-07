@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Sims_Hospital_Zdravo.ViewModel.Doctor
+namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class MyICommand : ICommand
     {

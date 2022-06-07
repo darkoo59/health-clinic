@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Sims_Hospital_Zdravo.ViewModel.Doctor
+namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class SearchPatientViewModel : INotifyPropertyChanged
     {

@@ -260,7 +260,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                     foreach(User user in meeting.RequiredAttendees)
                     {
                         notificationsToAdd.Add(new MeetingCreatedNotifications("You have new meeting on " + meeting.Start.ToString(), meeting.Start,
-    user._Role,user._Id, app._notificationController.GenerateId()));
+    user._Role,user.Id, app._notificationController.GenerateId()));
                     }
                     _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
                     MessageBox.Show("Meeting successfully created!", "Successfully created!", MessageBoxButton.OK);

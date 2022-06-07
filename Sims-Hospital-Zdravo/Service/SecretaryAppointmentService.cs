@@ -177,8 +177,8 @@ namespace Sims_Hospital_Zdravo.Model
             TimeInterval interval = new TimeInterval(startDate, endDate);
             while (true)
             {
-                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor._Id,
-                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id, interval))
+                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor.Id,
+                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient.Id, interval))
                 {
                     return interval;
                 }

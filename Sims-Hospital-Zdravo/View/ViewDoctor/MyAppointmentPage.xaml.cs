@@ -17,7 +17,7 @@ using System.Collections.ObjectModel;
 using Model;
 using Controller;
 using Sims_Hospital_Zdravo.ViewModel;
-using Sims_Hospital_Zdravo.ViewModel.Doctor;
+
 using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor

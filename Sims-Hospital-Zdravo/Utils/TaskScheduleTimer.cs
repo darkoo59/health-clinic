@@ -41,6 +41,7 @@ namespace Sims_Hospital_Zdravo.Utils
             _suppliesController = suppliesController;
             _accountController = accountController;
             isRenovationAppointmentInProgress = false;
+            Console.WriteLine("Timer created");
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -63,6 +64,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
+            Console.WriteLine("Timer working");
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
@@ -130,7 +132,7 @@ namespace Sims_Hospital_Zdravo.Utils
                 Notify(notification);
             }
 
-            List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account._Id);
+            List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
@@ -139,23 +141,30 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void CheckNotificationForDoctor()
         {
+
+            Console.WriteLine("Searching for notification");
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
-
+            Console.WriteLine("User logged");
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account.Id);
+            Console.WriteLine(notifications.Count);
             foreach (Notification notification in notifications)
             {
+                Console.WriteLine("ahahahhahahahhaha");
                 Notify(notification);
             }
 
-            List<Notification> meetingNotifications = _notificationController.ReadAllDoctorMeetingsNotifications(account._Id);
+            List<Notification> meetingNotifications = _notificationController.ReadAllDoctorMeetingsNotifications(account.Id);
+            Console.WriteLine(meetingNotifications.Count);
+
             foreach (Notification notification in meetingNotifications)
             {
+                Console.WriteLine("lalalalallallalal");
                 Notify(notification);
             }
 
-            List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account._Id);
+            List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account.Id);
             foreach (Notification notification in freeDaysNotifications)
             {
                 Notify(notification);
@@ -168,7 +177,7 @@ namespace Sims_Hospital_Zdravo.Utils
             if (account == null) return;
             if (!account._Role.Equals(RoleType.SECRETARY)) return;
 
-            List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account._Id);
+            List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
