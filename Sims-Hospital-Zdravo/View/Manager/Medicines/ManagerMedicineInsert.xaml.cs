@@ -23,8 +23,8 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         public ManagerMedicineInsert()
         {
             app = Application.Current as App;
-            medicineController = app._medicineController;
-            notificationController = app._notificationController;
+            medicineController = new MedicineController();
+            notificationController = new NotificationController();
             doctorAppointmentController = app._doctorAppointmentController;
             InitializeComponent();
 
@@ -56,7 +56,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 this.Medicine = new Medicine(name, strength, allergens, description);
                 Medicine.Id = medicineController.GenerateId();
                 this.Medicine.Substitution = substitutes;
-                this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor.Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
             catch (Exception ex)

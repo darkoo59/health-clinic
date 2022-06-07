@@ -8,6 +8,7 @@ namespace Sims_Hospital_Zdravo.Interfaces
     {
         List<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor);
         List<FreeDaysRequest> RequestPendingOrApproved(Doctor doctor);
+        List <FreeDaysRequest> ReadAllByDoctor(int doctorId);
         int GenerateId();
     }
 }

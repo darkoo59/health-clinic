@@ -51,12 +51,12 @@ namespace Sims_Hospital_Zdravo
                 ListPatientMedicalAllergens.Items.Add(str);
             }
 
-            TxtName.Text = patient._Name;
-            TxtSurname.Text = patient._Surname;
-            TxtBirth.Text = patient._BirthDate.ToString("yyyy-MM-dd");
-            TxtEmail.Text = patient._Email;
-            TxtJmbg.Text = patient._Jmbg;
-            TxtPhone.Text = patient._PhoneNumber;
+            TxtName.Text = patient.Name;
+            TxtSurname.Text = patient.Surname;
+            TxtBirth.Text = patient.BirthDate.ToString("yyyy-MM-dd");
+            TxtEmail.Text = patient.Email;
+            TxtJmbg.Text = patient.Jmbg;
+            TxtPhone.Text = patient.PhoneNumber;
             foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
             {
                 if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
@@ -101,7 +101,7 @@ namespace Sims_Hospital_Zdravo
             try
             {
                 Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                patientUpdated._Id = patient._Id;
+                patientUpdated.Id = patient.Id;
                 List<String> allergens = new List<String>();
                 List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)

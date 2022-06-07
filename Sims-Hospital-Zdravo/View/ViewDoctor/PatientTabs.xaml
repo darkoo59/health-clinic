@@ -9,11 +9,11 @@
       Title="PatientTabs">
 
     <Grid >
-        <Frame Name="FrameForPatient" Height="530" Width="800"/>
+        
         <Menu Height="80" VerticalAlignment="Top" >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                    <VirtualizingStackPanel Orientation="Horizontal" Width="500"></VirtualizingStackPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="Medical record" Name="MedicalRecordItem" Click="MedcialRecordClick"  />

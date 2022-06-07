@@ -1,0 +1,50 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.LabaratoryTestForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="LabaratoryTestForm" Height="500" Width="500">
+    <Window.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Patient"/>
+            <ComboBox Name="ComboBoxPatient"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Medical record"></Label>
+            <TextBox></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Diagnosis"/>
+            <TextBox Name="diagnosisTxt"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Label Content="Date"></Label>
+            <DatePicker></DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <Label Content="Test"/>
+            <ComboBox ></ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <Button Content="Make request" Width="120" Height="25"/>
+            <Button Content="Cancel" Width="120" Height="25"/>
+        </StackPanel>
+    </Grid>
+</Window>

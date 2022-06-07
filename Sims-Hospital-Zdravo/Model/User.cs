@@ -25,79 +25,79 @@ namespace Model
         public string _Username { get; set; }
         public string _Password { get; set; }
 
-        private Address address;
-        private int Id;
-        private String Name;
-        private String Surname;
-        private DateTime BirthDate;
-        private String Email;
-        private String Jmbg;
-        private String PhoneNumber;
+        private Address _address;
+        private int _id;
+        private String _name;
+        private String _surname;
+        private DateTime _birthDate;
+        private String _email;
+        private String _jmbg;
+        private String _phoneNumber;
         private RoleType Role;
         private List<DateTime> _cancels;
         private bool _blocked;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Address _Address { get; set; }
-        public int _Id { get; set; }
-        public String _Name
+        public Address Address { get; set; }
+        public int Id { get; set; }
+        public String Name
         {
             get
             {
-                return Name;
+                return _name;
             }
             set
             {
-                this.Name = value;
+                this._name = value;
                 OnPropertyChanged();
             }
         }
-        public String _Surname
+        public String Surname
         {
             get
             {
-                return Surname;
+                return _surname;
             }
             set
             {
-                this.Surname = value;
+                this._surname = value;
                 OnPropertyChanged();
             }
         }
-        public DateTime _BirthDate
+        public DateTime BirthDate
         {
             get
             {
-                return BirthDate;
+                return _birthDate;
             }
             set
             {
-                this.BirthDate = value;
+                this._birthDate = value;
                 OnPropertyChanged();
             }
         }
-        public String _Email
+        public String Email
         {
             get
             {
-                return Email;
+                return _email;
             }
             set
             {
-                this.Email = value;
+                this._email = value;
                 OnPropertyChanged();
             }
         }
-        public String _Jmbg { get; set; }
-        public String _PhoneNumber {
+        public String Jmbg { get; set; }
+        public String PhoneNumber {
             get
             {
-                return PhoneNumber;
+                return _phoneNumber;
             }
             set
             {
-                this.PhoneNumber = value;
+                this._phoneNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -147,7 +147,7 @@ namespace Model
 
         public override string ToString()
         {
-            return this.Role.ToString() + " " + this._Name + " " + this._Surname;
+            return this.Role.ToString() + " " + this.Name + " " + this.Surname;
         }
 
 

@@ -1,0 +1,15 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.WizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk ="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="WizardWindow" Height="450" Width="800">
+    <Grid>
+        <xctk:Wizard FinishButtonClosesWindow="true" >
+            <xctk:WizardPage x:Name="IntroPage" Title="Welcome to my help wizard" Description="This wizard will walk you through how to use application"/>
+        </xctk:Wizard>
+    </Grid>
+</Window>

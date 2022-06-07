@@ -23,9 +23,16 @@ namespace Sims_Hospital_Zdravo.View.ViewPatient
     /// </summary>
     public partial class TherapyPage : Page
     {
-        public TherapyPage()
+        private Frame frame;
+        public TherapyPage(Frame frame)
         {
             InitializeComponent();
+            this.frame = frame;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new NotesPage(frame);
         }
     }
 }

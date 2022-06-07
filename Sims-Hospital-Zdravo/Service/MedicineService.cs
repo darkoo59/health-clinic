@@ -15,18 +15,18 @@ namespace Sims_Hospital_Zdravo.Service
 {
     public class MedicineService
     {
-        private MedicineRepository _medicineRepository;
+        private IMedicineRepository _medicineRepository;
         private INotificationRepository _notificationRepository;
 
-        public MedicineService(MedicineRepository medicineRepository)
+        public MedicineService()
         {
-            _medicineRepository = medicineRepository;
+            _medicineRepository = new MedicineRepository();
             _notificationRepository = new NotificationRepository();
         }
 
-        public ref ObservableCollection<Medicine> ReadAllMedicine()
+        public List<Medicine> ReadAllMedicine()
         {
-            return ref _medicineRepository.ReadAll();
+            return _medicineRepository.FindAll();
         }
 
         public List<Medicine> FindByStatus(MedicineStatus status)
@@ -44,6 +44,10 @@ namespace Sims_Hospital_Zdravo.Service
             _medicineRepository.DeleteById(id);
         }
 
+        public void Update(Medicine medicine)
+        {
+            _medicineRepository.Update(medicine);
+        }
         public void Create(Medicine medicine)
         {
             _medicineRepository.Create(medicine);
@@ -68,7 +72,7 @@ namespace Sims_Hospital_Zdravo.Service
 
         public int GenerateId()
         {
-            List<Medicine> medicines = new List<Medicine>(_medicineRepository.ReadAll());
+            List<Medicine> medicines = new List<Medicine>(_medicineRepository.FindAll());
             List<int> ids = new List<int>(medicines.Select(x => x.Id));
 
             int id = 0;
@@ -81,9 +85,17 @@ namespace Sims_Hospital_Zdravo.Service
             return id;
         }
 
-        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord)
+
+        public List<Medicine> PatientAllergicToMedicine(MedicalRecord medicalRecord)
         {
-            ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
+            List<Medicine> medicines1 = _medicineRepository.FindAll();
+            CheckIfPatientAllergicToMedicine(medicalRecord, medicines1);
+            CheckIfPatientAllergicToMedicineIngredients(medicalRecord, medicines1);
+            return medicines1;
+        }
+
+        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord, List<Medicine> medicines)
+        {
             foreach (Medicine med in medicines)
             {
                 if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(med.Name))
@@ -95,16 +107,15 @@ namespace Sims_Hospital_Zdravo.Service
 
         public void ReturnListOfMedicinesToStart()
         {
-            ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
+            List<Medicine> medicines = _medicineRepository.FindAll();
             foreach (Medicine med in medicines)
             {
                 med.NotAllergic = true;
             }
         }
 
-        public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord)
+        public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord, List<Medicine> medicines)
         {
-            ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
             foreach (Medicine med in medicines)
             {
                 foreach (string ingredient in med.Ingredients)

@@ -7,11 +7,12 @@ using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
 
-    public class PrescriptionRepository
+    public class PrescriptionRepository 
     {
         private ObservableCollection<Prescription> _prescriptions;
         private PrescriptionDataHandler _prescriptionDataHandler;
@@ -28,7 +29,7 @@ namespace Sims_Hospital_Zdravo.Repository
             _prescriptions.Add(prescription);
             LoadDataToFiles();
         }
-        public void Delete(Prescription prescription)
+        public void DeleteById(Prescription prescription)
         {
             _prescriptions.Remove(prescription);
         }

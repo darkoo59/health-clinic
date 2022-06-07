@@ -44,35 +44,35 @@ namespace Sims_Hospital_Zdravo.View
             this.roomController = new RoomController();
             this.doctorAppController = doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
-
+            
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
 
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Start Time";
-            data_column.Binding = new Binding("_Time.Start");
+            data_column.Binding = new Binding("Time.Start");
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Start Time";
-            data_column.Binding = new Binding("_Time.End");
+            data_column.Binding = new Binding("Time.End");
 
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient Name";
-            data_column.Binding = new Binding("_Patient._Name");
+            data_column.Binding = new Binding("Patient.Name");
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient Surname";
-            data_column.Binding = new Binding("_Patient._Surname");
+            data_column.Binding = new Binding("Patient.Surname");
             dataGridDoctorApps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
-            data_column.Binding = new Binding("_Room.Id");
+            data_column.Binding = new Binding("Room.Id");
             dataGridDoctorApps.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Type";
-            data_column.Binding = new Binding("_Type");
+            data_column.Binding = new Binding("Type");
             dataGridDoctorApps.Columns.Add(data_column);
 
 

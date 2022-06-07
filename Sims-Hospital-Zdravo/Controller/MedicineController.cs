@@ -14,16 +14,19 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private MedicineService _medicineService;
 
-        public MedicineController(MedicineService medicineService)
+        public MedicineController()
         {
-            this._medicineService = medicineService;
+            this._medicineService = new MedicineService();
         }
 
-        public ref ObservableCollection<Medicine> ReadAllMedicines()
+        public  List<Medicine> ReadAllMedicines()
         {
-            return ref _medicineService.ReadAllMedicine();
+            return  _medicineService.ReadAllMedicine();
         }
-
+        public void Update(Medicine medicine)
+        {
+            _medicineService.Update(medicine);
+        }
         public void CreateMedicineWithNotifyingDoctor(Medicine medicine, Notification notification)
         {
             _medicineService.CreateMedicineWithNotifyingDoctor(medicine, notification);
@@ -38,21 +41,26 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             _medicineService.ValidateMedicineWithNotifyingDoctor(medicine, notification);
         }
+        
 
         public int GenerateId()
         {
             return _medicineService.GenerateId();
         }
 
-        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord)
+        public List<Medicine> PatientAllergicToMedicine(MedicalRecord medicalRecord)
         {
-            _medicineService.CheckIfPatientAllergicToMedicine(medicalRecord);
+            return _medicineService.PatientAllergicToMedicine(medicalRecord);
         }
-         public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord)
-        {
-            _medicineService.CheckIfPatientAllergicToMedicineIngredients(medicalRecord);
+        //public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord)
+        //{
+        //    _medicineService.CheckIfPatientAllergicToMedicine(medicalRecord);
+        //}
+        // public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord)
+        //{
+        //    _medicineService.CheckIfPatientAllergicToMedicineIngredients(medicalRecord);
 
-        }
+        //}
 
         public void ReturnListOfMedicineToStart()
         {

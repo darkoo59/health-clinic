@@ -15,43 +15,47 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
             
 
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
 
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <Label Content="Type of request"></Label>
-            <TextBox Name="ReasonForFreeDaysTxt" Height="30" Width="150" HorizontalAlignment="Left"></TextBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,25,0">
-            <StackPanel Grid.Row="1" Grid.Column="0">
-            <Label Content="From">
-            </Label>
-            <DatePicker Name="FromDateTxt" Width="150" Height="29" HorizontalAlignment="Left"></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="To:">
 
-            </Label>
-            <DatePicker Name="ToDateTxt" Width="150" Height="30" HorizontalAlignment="Left" Margin="25,0,0,0"></DatePicker>
-        </StackPanel>
-        </StackPanel>
-        <DockPanel Grid.Row="4" HorizontalAlignment="Center" Width="400">
+
+        <Grid HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                <Label Content="Type of request"></Label>
+                <TextBox Name="ReasonForFreeDaysTxt" Height="30" Width="150" HorizontalAlignment="Left"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                <StackPanel >
+                <Label Content="From">
+                </Label>
+                <DatePicker Name="FromDateTxt" Width="150" Height="29" HorizontalAlignment="Left"></DatePicker>
+            </StackPanel>
+            <StackPanel >
+                <Label Content="To:">
+
+                </Label>
+                <DatePicker Name="ToDateTxt" Width="150" Height="30" HorizontalAlignment="Left" Margin="25,0,0,0"></DatePicker>
+            </StackPanel>
+            </StackPanel>
+
+            <DockPanel Grid.Row="4" HorizontalAlignment="Center" Width="400">
             <Button Name="SendRequestBtn" HorizontalAlignment="Center" Click="SendRequestClick" Content="Send Request" Margin="25,0,25,0" Width="120" Height="50"></Button>
             <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="120" Height="50"/>
         </DockPanel>
-        <StackPanel Margin="0,108,0,4" Grid.RowSpan="2" Grid.Row="1">
+        <StackPanel Margin="0,108,0,4" Grid.Row="2">
             <Label Content="Urgent request:"></Label>
             <CheckBox Name="UrgentBox"></CheckBox>
         </StackPanel>
+    </Grid>
     </Grid>
 </Page>

@@ -41,22 +41,22 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             PrescriptionListPatient.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Medicine";
-            data_column.Binding = new Binding("_Medicine._Name");
+            data_column.Binding = new Binding("Medicine.Name");
             PrescriptionListPatient.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Strength";
-            data_column.Binding = new Binding("_Strength");
+            data_column.Binding = new Binding("Strength");
             PrescriptionListPatient.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Dosage";
-            data_column.Binding = new Binding("_Dosage");
+            data_column.Binding = new Binding("Dosage");
             PrescriptionListPatient.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Date";
-            data_column.Binding = new Binding("_PrescriptionDate");
+            data_column.Binding = new Binding("PrescriptionDate");
             PrescriptionListPatient.Columns.Add(data_column);
 
             

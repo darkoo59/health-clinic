@@ -7,16 +7,17 @@ using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Model
 {
     public class AnamnesisService
     {
-        private AnamnesisRepository _anamnesisRepository;
+        private IAnamnesisRepository _anamnesisRepository;
 
-        public AnamnesisService(AnamnesisRepository anamnesisRepository)
+        public AnamnesisService()
         {
-            this._anamnesisRepository = anamnesisRepository; 
+            this._anamnesisRepository = new AnamnesisRepository(); 
         }
 
         public void Create(Anamnesis anamnesis)
@@ -29,9 +30,9 @@ namespace Sims_Hospital_Zdravo.Model
             _anamnesisRepository.Update (anamnesis);
         }
 
-        public ref ObservableCollection<Anamnesis> ReadAll()
+        public  List<Anamnesis> FindAll()
         {
-            return ref _anamnesisRepository.ReadAll();
+            return  _anamnesisRepository.FindAll();
         }
 
         public ObservableCollection<Anamnesis> findAnamnesisByDoctor(int id)

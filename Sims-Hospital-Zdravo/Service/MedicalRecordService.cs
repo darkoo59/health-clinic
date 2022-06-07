@@ -35,9 +35,9 @@ namespace Service
         }
         public void Create(MedicalRecord medicalRecord, Patient patient)
         {
-            _validator.InsertValidation(patient._Jmbg);
+            _validator.InsertValidation(patient.Jmbg);
             medicalRecord.Id = _medicalRecordRepository.GenerateId();
-            patient._Id = _patientRepository.GenerateId();
+            patient.Id = _patientRepository.GenerateId();
             _medicalRecordRepository.Create(medicalRecord);
             _patientRepository.Create(patient);
         }
@@ -55,7 +55,8 @@ namespace Service
 
         public void Update(MedicalRecord medicalRecord, Patient patient)
         {
-            _validator.UpdateValidation(patient._Jmbg);
+            // TODO: implement
+            _validator.UpdateValidation(patient.Jmbg);
             _patientRepository.Update(patient);
             _medicalRecordRepository.Update(medicalRecord);
         }

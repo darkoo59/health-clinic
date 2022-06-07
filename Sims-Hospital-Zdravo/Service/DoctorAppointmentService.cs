@@ -24,11 +24,11 @@ namespace Service
         private AppointmentDoctorValidator _validator;
         private Appointment _app;
 
-        public DoctorAppointmentService(PatientRepository patientRepository, TimeSchedulerService timeSchedulerService, RoomService roomService)
+        public DoctorAppointmentService( TimeSchedulerService timeSchedulerService, RoomService roomService)
         {
             this._timeSchedulerService = timeSchedulerService;
             this._appointmentRepository = new AppointmentRepository();
-            this._patientRepository = patientRepository;
+            this._patientRepository = new PatientRepository();
             this._doctorRepo = new DoctorRepository();
             this._validator = new AppointmentDoctorValidator(_appointmentRepository,timeSchedulerService, roomService);
         }
@@ -114,20 +114,7 @@ namespace Service
             _appointmentRepository.Delete(_app);
         }
 
-        public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
-        {
-            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
-
-            foreach (Appointment appointment in appointments)
-            {
-                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient._Jmbg.Equals(pat._Jmbg))
-                {
-                    _app = appointment;
-                }
-            }
-
-            return _app;
-        }
+        
 
 
         public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
@@ -136,10 +123,7 @@ namespace Service
         }
 
 
-        public void IfUrgentRescheduleAllAppointment(int doctorID)
-        {
-            //ObservableCollection<>
-        }
+        
 
         public void UrgentSurgery(Appointment appointment, double duration)
         {

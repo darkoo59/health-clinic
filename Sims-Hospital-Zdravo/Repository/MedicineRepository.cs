@@ -7,32 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataHandler;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class MedicineRepository
+    public class MedicineRepository : IMedicineRepository
     {
         private MedicineDataHandler _medicineDataHandler;
-        private ObservableCollection<Medicine> _medicines;
+        private List<Medicine> _medicines;
 
-        public MedicineRepository(MedicineDataHandler medicineDataHandler)
+        public MedicineRepository()
         {
-            this._medicineDataHandler = medicineDataHandler;
-            this._medicines = new ObservableCollection<Medicine>();
-            LoadDataFromFile();
+            _medicineDataHandler = new MedicineDataHandler();
+            _medicines = new List<Medicine>();
         }
 
-        public ref ObservableCollection<Medicine> ReadAll()
+        public List<Medicine> FindAll()
         {
-            return ref this._medicines;
+            return _medicineDataHandler.ReadAll();
         }
 
         public void Delete(Medicine medicine)
         {
+            LoadDataFromFile();
             _medicines.Remove(medicine);
             LoadDataToFiles();
         }
 
+        public void Update(Medicine newMedicine)
+        {
+            
+            Medicine medicine = FindById(newMedicine.Id);
+            medicine.Status = newMedicine.Status;
+            LoadDataToFiles();
+        }
         public void DeleteById(int id)
         {
             Medicine medicine = FindById(id);
@@ -41,6 +49,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Medicine> FindByStatus(MedicineStatus medicineStatus)
         {
+            LoadDataFromFile();
             List<Medicine> medicinesByStatus = new List<Medicine>();
             foreach (Medicine medicine in _medicines)
             {
@@ -55,6 +64,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public Medicine FindById(int id)
         {
+            LoadDataFromFile();
             foreach (Medicine medicine in _medicines)
             {
                 if (medicine.Id == id) return medicine;
@@ -65,6 +75,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create(Medicine medicine)
         {
+            LoadDataFromFile();
             _medicines.Add(medicine);
             LoadDataToFiles();
         }

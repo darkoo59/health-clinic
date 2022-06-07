@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
            // PatientTxt.Text = medicalRecord._Patient._Name + medicalRecord._Patient._Surname;
             //MedicalRecordTxt.Text = medicalRecord._Id.ToString();
             ExaminatonTxt.Text = app.Time.Start.ToString();
-            DoctorTxt.Text = app.Doctor._Name + app.Doctor._Surname;
+            DoctorTxt.Text = app.Doctor.Name + app.Doctor.Surname;
         }
 
         private void SaveAnamnesis_Click(object sender, RoutedEventArgs e)

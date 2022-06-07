@@ -67,7 +67,19 @@ namespace Sims_Hospital_Zdravo.Repository
             return _requests;
 
         }
-
+        public List<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+        {
+            List<FreeDaysRequest> doctorrequests = new List<FreeDaysRequest>();
+            LoadDataFromFiles();
+            foreach(FreeDaysRequest freeDaysRequest in _requests)
+            {
+                if(freeDaysRequest.Doctor.Id == doctorId)
+                {
+                    doctorrequests.Add(freeDaysRequest);
+                }
+            }
+            return doctorrequests;
+        }
         public List<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
         {
             List<FreeDaysRequest> requestsBySpecialty = new List<FreeDaysRequest>();

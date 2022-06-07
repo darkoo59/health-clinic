@@ -62,7 +62,7 @@ namespace Sims_Hospital_Zdravo
             data_check_box.Header = "Rated";
             data_check_box.Binding = new Binding("Rated");
             Apps.Columns.Add(data_check_box);
-            Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(accountController.GetLoggedAccount()._Id);
+            Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(accountController.GetLoggedAccount().Id);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

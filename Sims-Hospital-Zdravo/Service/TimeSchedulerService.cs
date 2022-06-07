@@ -125,7 +125,7 @@ namespace Service
 
         public TimeInterval FindIntervalForOperation(Appointment appointment, double duration)
         {
-            if (IsDoctorFreeInInterval(appointment.Doctor._Id, appointment.Time))
+            if (IsDoctorFreeInInterval(appointment.Doctor.Id, appointment.Time))
             {
                 return appointment.Time;
             }
@@ -148,7 +148,7 @@ namespace Service
 
         private void CancelAppointmentsForOperation(Appointment appointment)
         {
-            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor.Id);
             List<Appointment> appointmentsToDelete = appointments.Where(i => i.Time.Start >= appointment.Time.Start && i.Time.End <= appointment.Time.End).ToList();
             foreach (Appointment appToDelete in appointmentsToDelete)
             {
@@ -166,7 +166,7 @@ namespace Service
 
         private List<TimeInterval> GetOrderedIntervalsForDoctor(Doctor doctor)
         {
-            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor.Id);
             var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
             return orderedAppointment.ToList();
         }
@@ -265,6 +265,7 @@ namespace Service
         }
 
 
+
         private void JoinIntervalsIfTouching(TimeInterval interval, TimeInterval dateInterval)
         {
             if (interval.IntervalsTouching(dateInterval))
@@ -293,7 +294,7 @@ namespace Service
         {
             return _appointmentRepository.FindByDoctorId(id)
                 .Where(app => app.Time.Start.Date.Equals(date.Date))
-                .FirstOrDefault(app => app.Patient._Jmbg.Equals(pat._Jmbg));
+                .FirstOrDefault(app => app.Patient.Jmbg.Equals(pat.Jmbg));
         }
     }
 }

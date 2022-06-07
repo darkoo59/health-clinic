@@ -257,7 +257,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(10));
 
-            app._notificationController.Delete(notification);
+            (new NotificationController()).Delete(notification);
         }
 
         private bool CompareUsersById(ItemCollection users, User userToFind)

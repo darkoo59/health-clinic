@@ -64,7 +64,7 @@ namespace Sims_Hospital_Zdravo
             data_column.Binding = new Binding("_Room._Id");
             McDataGrid.Columns.Add(data_column);
 
-            McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(accountController.GetLoggedAccount()._Id);
+            McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(accountController.GetLoggedAccount().Id);
             McDataGrid.Items.Refresh();
         }
 
