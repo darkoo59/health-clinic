@@ -52,7 +52,8 @@ namespace Repository
         public void DeleteById(int id)
         {
             RelocationAppointment relocationAppointment = FindById(id);
-            Delete(relocationAppointment);
+            _relocationAppointments.Remove(relocationAppointment);
+            LoadDataToFile();
         }
 
         public void Delete(RelocationAppointment appointment)

@@ -29,6 +29,8 @@ namespace Sims_Hospital_Zdravo.Utils
         private SuppliesController _suppliesController;
         private AccountController _accountController;
         private bool isRenovationAppointmentInProgress;
+        private bool isRelocationAppointmentInProgress;
+        private bool isManagerNotificationInProgress;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
             PrescriptionController prescriptionController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)

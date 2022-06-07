@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Model;
 using Sims_Hospital_Zdravo.DataHandler;
@@ -41,8 +42,15 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Delete(Notification notification)
         {
             LoadDataFromFiles();
-            _notifications.Remove(notification);
-            LoadDataToFile();
+            foreach (Notification not in _notifications)
+            {
+                if (not.Id == notification.Id)
+                {
+                    _notifications.Remove(not);
+                    LoadDataToFile();
+                    return;
+                }
+            }
         }
 
         public void DeleteById(int id)
