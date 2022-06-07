@@ -12,7 +12,7 @@ using Sims_Hospital_Zdravo.Interfaces;
 namespace Sims_Hospital_Zdravo.Repository
 {
 
-    public class PrescriptionRepository : IPrescriptionRepository
+    public class PrescriptionRepository 
     {
         private ObservableCollection<Prescription> _prescriptions;
         private PrescriptionDataHandler _prescriptionDataHandler;

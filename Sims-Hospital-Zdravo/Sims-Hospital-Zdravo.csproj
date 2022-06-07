@@ -144,10 +144,8 @@
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\INotificationRepository.cs" />
     <Compile Include="Interfaces\IExtendedCRUD.cs" />
-    <Compile Include="Interfaces\IPrescriptionRepository.cs" />
     <Compile Include="Interfaces\IRelocationRepository.cs" />
     <Compile Include="Interfaces\IRenovationRepository.cs" />
-    <Compile Include="Interfaces\IRequestForFreeDaysRepository.cs" />
     <Compile Include="Interfaces\IRoomRepository.cs" />
     <Compile Include="Interfaces\ISurveyStatistic.cs" />
     <Compile Include="Model\FreeDaysNotification.cs" />
