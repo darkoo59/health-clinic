@@ -49,7 +49,7 @@ namespace Sims_Hospital_Zdravo
                 tt_profile.Visibility = Visibility.Collapsed;
                 tt_about.Visibility = Visibility.Collapsed;
                 tt_meetings.Visibility = Visibility.Collapsed;
-                tt_accounts.Visibility = Visibility.Collapsed;
+                tt_free_days.Visibility = Visibility.Collapsed;
                 tt_equipment.Visibility = Visibility.Collapsed;
                 tt_appointments.Visibility = Visibility.Collapsed;
                 tt_contacts.Visibility = Visibility.Collapsed;
@@ -63,7 +63,7 @@ namespace Sims_Hospital_Zdravo
                 tt_profile.Visibility = Visibility.Visible;
                 tt_about.Visibility = Visibility.Visible;
                 tt_meetings.Visibility = Visibility.Visible;
-                tt_accounts.Visibility = Visibility.Visible;
+                tt_free_days.Visibility = Visibility.Visible;
                 tt_equipment.Visibility = Visibility.Visible;
                 tt_appointments.Visibility = Visibility.Visible;
                 tt_contacts.Visibility = Visibility.Visible;

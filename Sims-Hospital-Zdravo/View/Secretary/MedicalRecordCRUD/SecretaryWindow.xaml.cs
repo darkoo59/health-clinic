@@ -77,27 +77,27 @@ namespace Sims_Hospital_Zdravo
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Name";
-            dataColumn.Binding = new Binding("_Patient._Name");
+            dataColumn.Binding = new Binding("Patient._Name");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Surname";
-            dataColumn.Binding = new Binding("_Patient._Surname");
+            dataColumn.Binding = new Binding("Patient._Surname");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Jmbg";
-            dataColumn.Binding = new Binding("_Patient._Jmbg");
+            dataColumn.Binding = new Binding("Patient._Jmbg");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Gender";
-            dataColumn.Binding = new Binding("_Gender");
+            dataColumn.Binding = new Binding("Gender");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Blood type";
-            dataColumn.Binding = new Binding("_BloodType");
+            dataColumn.Binding = new Binding("BloodType");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Marital status";
-            dataColumn.Binding = new Binding("_MaritalStatus");
+            dataColumn.Binding = new Binding("MaritalStatus");
             ContentGrid.Columns.Add(dataColumn);
         }
 

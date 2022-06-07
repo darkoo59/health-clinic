@@ -17,7 +17,7 @@ namespace Controller
    public class MedicalRecordController
    {
 
-        public Service.MedicalRecordService medicalRecordService;
+        public MedicalRecordService medicalRecordService;
         public MedicalRecordValidator validator;
         public PrescriptionService prescriptionService;
         public MedicalRecordController()
@@ -59,14 +59,12 @@ namespace Controller
       
       public void DeleteById(int id)
       {
-            // TODO: implement
-            medicalRecordService.DeleteById(id);
+          medicalRecordService.DeleteById(id);
       }
       
       public void Delete(MedicalRecord medicalRecord)
       {
-            // TODO: implement
-            medicalRecordService.Delete(medicalRecord);
+          medicalRecordService.Delete(medicalRecord);
       }
 
       public List<String> ReadAllCommonAllergens()
@@ -89,7 +87,7 @@ namespace Controller
             prescriptionService.Create(prescription);
         }
 
-        public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord (MedicalRecord medicalRecord)
+        public List<Prescription> GetPrescriptionsByMedicalRecord (MedicalRecord medicalRecord)
         {
             return medicalRecordService.GetPrescriptionByMedicalRecord(medicalRecord);
         }

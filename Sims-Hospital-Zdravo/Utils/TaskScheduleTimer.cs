@@ -37,10 +37,10 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _medicalRecordController = new MedicalRecordController();
+            _medicalRecordController = medicalRecordController;
             _notificationController = notificationController;
             _doctorAppointmentController = doctorAppointmentController;
-            _suppliesController = new SuppliesController();
+            _suppliesController = suppliesController;
             _accountController = accountController;
             isRenovationAppointmentInProgress = false;
             isRelocationAppointmentInProgress = false;
@@ -53,7 +53,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void SetTimer()
         {
-            timer = new Timer(2000);
+            timer = new Timer(10000);
             timer.Elapsed += FireScheduledTask;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -65,7 +65,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
-            if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
+           // if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();

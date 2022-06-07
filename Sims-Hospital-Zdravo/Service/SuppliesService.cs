@@ -14,7 +14,7 @@ namespace Sims_Hospital_Zdravo.Model
     {
         private IRoomRepository _roomRepository;
         private IEquipmentRepository _equipmentRepository;
-        private SuppliesAcquisitionRepository _suppliesAcquisitionRepository;
+        private ISuppliesAcquisitionRepository _suppliesAcquisitionRepository;
 
         public SuppliesService()
         {

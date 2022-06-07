@@ -38,6 +38,9 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
+            ComboGender.SelectedIndex = (int)record.Gender;
+            ComboBlood.SelectedIndex = (int)record.BloodType;
+            ComboMarital.SelectedIndex = (int)record.MaritalStatus;
             foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
             {
                 ListPatientAllergens.Items.Add(str);

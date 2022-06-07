@@ -22,8 +22,8 @@ namespace Model
         private int _id;
         private Patient _patient;
 
-        private ObservableCollection<Prescription> _prescriptions;
-        private ObservableCollection<Anamnesis> _anamnesis;
+        private List<Prescription> _prescriptions;
+        private List<Anamnesis> _anamnesis;
 
         private Allergens _patientAllergens;
 
@@ -37,8 +37,8 @@ namespace Model
             this.Gender = gender;
             this.BloodType = blood;
             this.MaritalStatus = maritalStatus;
-            this._prescriptions = new ObservableCollection<Prescription>();
-            this._anamnesis = new ObservableCollection<Anamnesis>();
+            this._prescriptions = new List<Prescription>();
+            this._anamnesis = new List<Anamnesis>();
 
             this.PatientAllergens = allergens;
 
@@ -139,7 +139,7 @@ namespace Model
             }
         }
 
-        public ObservableCollection<Prescription> Prescriptions
+        public List<Prescription> Prescriptions
         {
             get
             {
@@ -155,7 +155,7 @@ namespace Model
             }
         }
 
-        public ObservableCollection<Anamnesis> Anamnesis
+        public List<Anamnesis> Anamnesis
         {
             get
             {

@@ -6,14 +6,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Model
 {
     public class AccountService
     {
-        public AccountRepository accountRepository;
+        public IAccountRepository accountRepository;
 
-        public AccountService(AccountRepository accRepository)
+        public AccountService(IAccountRepository accRepository)
         {
             this.accountRepository = accRepository;
         }

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 
 namespace Service
@@ -22,7 +23,7 @@ namespace Service
 
         private MedicalRecordsRepository _medicalRecordRepository;
         private PatientRepository _patientRepository;
-        private AllergensRepository _allergensRepository;
+        private IAllergensRepository _allergensRepository;
         private MedicalRecordValidator _validator;
 
         public MedicalRecordService()
@@ -86,7 +87,7 @@ namespace Service
             return _allergensRepository.FindAllMedicalAllergens();
         }
 
-        public ObservableCollection<Prescription> GetPrescriptionByMedicalRecord(MedicalRecord medicalRecord)
+        public List<Prescription> GetPrescriptionByMedicalRecord(MedicalRecord medicalRecord)
         {
             return _medicalRecordRepository.GetPrescriptionsByMedicalRecord(medicalRecord);
         }

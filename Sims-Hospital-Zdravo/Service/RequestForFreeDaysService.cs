@@ -16,10 +16,10 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class RequestForFreeDaysService
     {
-        private RequestForFreeDaysRepository _requestForFreeDaysRepository;
-        private AppointmentRepository _appointmentRepository;
-        private RequestForFreeDaysValidator _freeDaysValidator;
+        private IRequestForFreeDaysRepository _requestForFreeDaysRepository;
+        private IAppointmentRepository _appointmentRepository;
         private INotificationRepository _notificationRepository;
+        private RequestForFreeDaysValidator _freeDaysValidator;
 
         public RequestForFreeDaysService()
         {

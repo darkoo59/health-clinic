@@ -165,6 +165,7 @@
     <Compile Include="Model\MeetingCreatedNotifications.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="Utils\MeetingValidator.cs" />
     <Compile Include="ViewModel\Commands\SearchCommand.cs" />
     <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
     <Compile Include="Repository\MeetingRepository.cs" />

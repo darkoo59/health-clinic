@@ -149,10 +149,10 @@ namespace Sims_Hospital_Zdravo
             //     new SuppliesService(_suppliesAcquisitionRepository);
             // _suppliesController = new SuppliesController(suppliesService);
 
-            MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
-            MeetingRepository _meetingRepository = new MeetingRepository();
-            MeetingService _meetingService = new MeetingService();
-            _meetingController = new MeetingController();
+            // MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
+            // MeetingRepository _meetingRepository = new MeetingRepository();
+            // MeetingService _meetingService = new MeetingService();
+            // _meetingController = new MeetingController();
 
 
             _prescriptionController = new PrescriptionController(new PrescriptionService());
@@ -162,9 +162,9 @@ namespace Sims_Hospital_Zdravo
                 _equipmentTransferController,
                 _renovationController,
                 _doctorAppointmentController,
-                _recordController,
+                new MedicalRecordController(),
                 _notificationController,
-                _suppliesController,
+                new SuppliesController(),
                 _accountController
             );
 

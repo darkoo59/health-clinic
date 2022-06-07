@@ -13,10 +13,10 @@ namespace Sims_Hospital_Zdravo.Model
 {
     public class SecretaryAppointmentService
     {
-        private AppointmentRepository _appointmentRepository;
+        private IAppointmentRepository _appointmentRepository;
         private PatientRepository _patientRepository;
         private IRoomRepository _roomRepository;
-        private DoctorRepository _doctorRepository;
+        private IDoctorRepository _doctorRepository;
         private TimeSchedulerService _timeSchedulerService;
         private AppointmentSecretaryValidator _validator;
 
@@ -33,11 +33,6 @@ namespace Sims_Hospital_Zdravo.Model
         public List<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             return _appointmentRepository.ReadAllAppointmentsForDate(date);
-        }
-
-        public List<Appointment> ReadAll()
-        {
-            return _appointmentRepository.FindAll();
         }
 
         public void Create(Appointment appointment)
@@ -70,7 +65,6 @@ namespace Sims_Hospital_Zdravo.Model
 
         public Room FindAvailableRoomForEmergencyAppointment(TimeInterval interval)
         {
-            List<Room> availableRooms = new List<Room>();
             return _roomRepository.FindAll().FirstOrDefault(room => (room.Type == RoomType.OPERATION || room.Type
                 == RoomType.EXAMINATION) && _timeSchedulerService.IsRoomFreeInInterval(room.Id, interval));
         }
@@ -160,43 +154,6 @@ namespace Sims_Hospital_Zdravo.Model
             appointmentsAndRescheduleDate.Sort((x, y) =>
                 x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
             return appointmentsAndRescheduleDate;
-        }
-
-
-        public int GenerateId()
-        {
-            List<Appointment> appointments = _appointmentRepository.FindAll();
-            List<int> ids = new List<int>();
-            int id = 0;
-            foreach (Appointment appointment in appointments)
-            {
-                ids.Add(appointment.Id);
-            }
-
-            while (ids.Contains(id))
-            {
-                id++;
-            }
-
-            return id;
-        }
-
-        public int GeneratePatientId()
-        {
-            ObservableCollection<Patient> patients = _patientRepository.ReadAll();
-            List<int> ids = new List<int>();
-            int id = 0;
-            foreach (Patient patient in patients)
-            {
-                ids.Add(patient._Id);
-            }
-
-            while (ids.Contains(id))
-            {
-                id++;
-            }
-
-            return id;
         }
 
         public void ValidateAppointmentInterval(TimeInterval interval)

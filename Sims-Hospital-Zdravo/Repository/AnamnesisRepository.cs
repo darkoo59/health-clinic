@@ -58,9 +58,9 @@ namespace Sims_Hospital_Zdravo.Repository
             return listOfAnamnesisByDoctor;
         }
 
-        public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
+        public List<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
-            ObservableCollection<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
+            List<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
             foreach (Anamnesis anma in listOfPatientAnamnesis)
             {
                 Console.WriteLine(anma.Diagnosis + "xnxnxn");
