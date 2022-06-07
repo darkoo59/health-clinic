@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace Repository
 {
-    public class RoomRepository : IUpdateFilesObserver, IRoomRepository
+    public class RoomRepository : IRoomRepository
     {
         private RoomDataHandler _roomDataHandler;
         private List<Room> _rooms;
@@ -36,7 +36,6 @@ namespace Repository
         {
             LoadDataFromFiles();
             _rooms.Add(room);
-            room.AddObserver(this);
             LoadDataToFile();
         }
 
@@ -103,20 +102,11 @@ namespace Repository
         private void LoadDataFromFiles()
         {
             _rooms = _roomDataHandler.ReadAll();
-            foreach (Room room in _rooms)
-            {
-                room.AddObserver(this);
-            }
         }
 
         private void LoadDataToFile()
         {
             _roomDataHandler.Write(_rooms);
-        }
-
-        public void NotifyUpdated()
-        {
-            LoadDataToFile();
         }
     }
 }

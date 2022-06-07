@@ -58,8 +58,8 @@ namespace Repository
 
         public void Delete(RelocationAppointment appointment)
         {
-            LoadDataFromFiles();
-            _relocationAppointments.Remove(appointment);
+            RelocationAppointment app = FindById(appointment.Id);
+            _relocationAppointments.Remove(app);
             LoadDataToFile();
         }
 

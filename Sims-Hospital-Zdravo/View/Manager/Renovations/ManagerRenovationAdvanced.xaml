@@ -98,7 +98,13 @@
 
         <DockPanel Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <Label DockPanel.Dock="Top"> Rooms to be added: </Label>
-            <Button DockPanel.Dock="Bottom" Height="30" Click="AddNewRoom_Click"> Add More Rooms</Button>
+            <Button
+                DockPanel.Dock="Bottom"
+                Height="30"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}"
+                Click="AddNewRoom_Click">
+                Add More Rooms
+            </Button>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ListBox x:Name="RoomsToBeAdded">
                     <ListBox.ItemTemplate>

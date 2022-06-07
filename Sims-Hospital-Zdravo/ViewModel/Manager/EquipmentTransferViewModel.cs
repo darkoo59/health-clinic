@@ -81,6 +81,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 MessageBox.Show(e.Message);
             }
         }
