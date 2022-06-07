@@ -98,7 +98,7 @@ namespace Sims_Hospital_Zdravo
             try
             {
                 Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                patientUpdated._Id = patient._Id;
+                patientUpdated.Id = patient.Id;
                 List<String> allergens = new List<String>();
                 List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
