@@ -66,7 +66,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController, medicalRecordController, doctorId);
+            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController,  doctorId);
             myAppointments.Show();
         }
 

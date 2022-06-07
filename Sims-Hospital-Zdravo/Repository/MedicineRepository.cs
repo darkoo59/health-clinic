@@ -34,11 +34,13 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFiles();
         }
 
-        public void Update(Medicine medicine)
+        public void Update(Medicine newMedicine)
         {
-            Medicine medicine1 = FindById(medicine.Id);
-            medicine1.Ingredients = medicine.Ingredients;
-
+            
+            Medicine medicine = FindById(newMedicine.Id);
+            medicine.Status = newMedicine.Status;
+            LoadDataToFiles();
+        }
         public void DeleteById(int id)
         {
             Medicine medicine = FindById(id);

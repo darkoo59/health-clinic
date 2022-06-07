@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private DateTime AppointmentDate;
         private AnamnesisController anamnesisController;
         
-        public MyAppointments(DoctorAppointmentController doctorAppointmentController,AnamnesisController anamnesisController,MedicalRecordController medicalRecordController,int id )
+        public MyAppointments(DoctorAppointmentController doctorAppointmentController,AnamnesisController anamnesisController,int id )
         {
             app = App.Current as App;
             
@@ -42,11 +42,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
            // this.DataContext = this;
             this.doctorId = id;
             
-           this.medicalRecordController = medicalRecordController;
+           MedicalRecordController medicalRecordController = new MedicalRecordController();
             this.PatientMedicalRecordController = app._patientMedRecController;
             this.docController =doctorAppointmentController;
 
-            this.appointmentsScheduled = docController.GetByDoctorID(2);
+            this.appointmentsScheduled = docController.GetByDoctorID(doctorId);
             this.DoctorAppointments.ItemsSource = appointmentsScheduled;
             this.anamnesisController = anamnesisController;
             DoctorAppointments.AutoGenerateColumns = false;

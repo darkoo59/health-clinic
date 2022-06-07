@@ -38,6 +38,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DoctorId = id;
             this.anamnesisController = new AnamnesisController();
             this.frame = frame;
+            this.app = App.Current as App;
             this.medicalRecord = medicalRecord;
             this.doctorAppointmentController = app._doctorAppointmentController;
             this.patientMedicalRecordController = new PatientMedicalRecordController();

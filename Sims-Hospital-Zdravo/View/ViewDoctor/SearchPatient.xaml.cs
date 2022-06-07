@@ -77,8 +77,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void PrescriptionClick(object sender, RoutedEventArgs e)
         {
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
-            //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID,frame);
-            //frame.Content= prescriptionWindow;
+            
         }
 
         private void MedicalRecordDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

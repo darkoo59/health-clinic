@@ -44,6 +44,10 @@ namespace Sims_Hospital_Zdravo.Service
             _medicineRepository.DeleteById(id);
         }
 
+        public void Update(Medicine medicine)
+        {
+            _medicineRepository.Update(medicine);
+        }
         public void Create(Medicine medicine)
         {
             _medicineRepository.Create(medicine);

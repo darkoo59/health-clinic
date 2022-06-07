@@ -68,9 +68,9 @@ namespace Controller
             return _doctorAppointmentService.GenerateId();
         }
 
-        public DoctorAppointmentController(DoctorAppointmentService AppService)
+        public DoctorAppointmentController(DoctorAppointmentService doctorAppointmentService)
         {
-            this._doctorAppointmentService = AppService;
+            this._doctorAppointmentService = doctorAppointmentService;
         }
 
         public List<Appointment> FilterAppointmentsByDate(DateTime date)

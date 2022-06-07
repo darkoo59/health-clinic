@@ -78,7 +78,7 @@ namespace Sims_Hospital_Zdravo.Model
                 _timeInterval = value;
             }
         }
-        public DateTime _PrescriptionDate
+        public DateTime PrescriptionDate
         {
             get
             {

@@ -66,7 +66,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfSuppliesAcquisitionDone();
             //if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
-            CheckNotificationForDoctor();
+            //CheckNotificationForDoctor();
             CheckNotificationForSecretary();
             //AppointmentDone();
         }
