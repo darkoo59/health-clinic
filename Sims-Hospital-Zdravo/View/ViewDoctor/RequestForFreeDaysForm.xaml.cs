@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.app = App.Current as App;
-            this.notificationController = app._notificationController;
+            this.notificationController = new NotificationController();
             this.doctorAppointmentController = doctorAppointmentController;
             this.requestForFreeDaysController = requestForFreeDaysController;
             this.doctorId = doctorId;
@@ -68,7 +68,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Doctor doctor = doctorAppointmentController.GetDoctor(doctorId);
             TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate), DateTime.Parse(toDate));
             FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff, RequestStatus.PENDING);
-            RequestForFreeDaysNotification requestForFreeDaysNotification = new RequestForFreeDaysNotification(request, "Request for free days sent by"+doctor.Name+doctor.Surname, notificationController.GenerateId());
+            RequestForFreeDaysNotification requestForFreeDaysNotification =
+                new RequestForFreeDaysNotification(request, "Request for free days sent by" + doctor.Name + doctor.Surname, notificationController.GenerateId());
             requestForFreeDaysController.SendRequestForFreeDaysWithNotifyingSecretary(request, requestForFreeDaysNotification);
             UrgentVacationChecked(request);
         }

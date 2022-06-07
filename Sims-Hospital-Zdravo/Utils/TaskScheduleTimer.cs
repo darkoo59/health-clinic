@@ -33,12 +33,11 @@ namespace Sims_Hospital_Zdravo.Utils
         private bool isManagerNotificationInProgress;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
-            MedicalRecordController medicalRecordController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
+            MedicalRecordController medicalRecordController, SuppliesController suppliesController, AccountController accountController)
         {
             _relocationController = relocationController;
             _renovationController = renovationController;
             _medicalRecordController = new MedicalRecordController();
-            _notificationController = notificationController;
             _doctorAppointmentController = doctorAppointmentController;
             _suppliesController = new SuppliesController();
             _accountController = accountController;
@@ -62,7 +61,6 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
@@ -160,17 +158,14 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void CheckNotificationForDoctor()
         {
-
-            
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
-            
+
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account.Id);
             Console.WriteLine(notifications.Count);
             foreach (Notification notification in notifications)
             {
-                
                 Notify(notification);
             }
 
@@ -202,13 +197,13 @@ namespace Sims_Hospital_Zdravo.Utils
                 Notify(notification);
             }
         }
+
         public void CheckNotificationForDoctorRequests()
         {
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
             //List <Notification> notifications = 
-
         }
 
         public void AppointmentDone()
@@ -230,13 +225,14 @@ namespace Sims_Hospital_Zdravo.Utils
                 DateTime dateTime = prescription.GetDateTime();
                 for (int i = 0; i < prescription.GetQuantity(); i++)
                 {
-                    if (!CheckIfPrescriptionDateTimeIsNow(dateTime,prescription))
+                    if (!CheckIfPrescriptionDateTimeIsNow(dateTime, prescription))
                     {
                         dateTime = dateTime.AddHours(prescription.GetFrequency());
                     }
                 }
             }
         }
+
         private MedicalRecord FindMedicalRecordByAccount()
         {
             foreach (MedicalRecord medicalRecord in _medicalRecordController.ReadAll())
@@ -246,8 +242,10 @@ namespace Sims_Hospital_Zdravo.Utils
                     if (medicalRecord.Patient.Id == _accountController.GetLoggedAccount().Id) return medicalRecord;
                 }
             }
+
             return null;
         }
+
         private bool CheckIfPrescriptionDateTimeIsNow(DateTime dateTime, Prescription prescription)
         {
             if (dateTime.CompareTo(DateTime.Now) > 0 && dateTime.CompareTo(DateTime.Now.AddSeconds(10)) < 0)
@@ -261,6 +259,7 @@ namespace Sims_Hospital_Zdravo.Utils
                 return false;
             }
         }
+
         private void CheckIfMedicineAlreadyTaken(Prescription prescription)
         {
             if (prescription.Flag)

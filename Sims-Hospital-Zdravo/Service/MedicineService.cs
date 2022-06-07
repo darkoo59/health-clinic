@@ -15,7 +15,7 @@ namespace Sims_Hospital_Zdravo.Service
 {
     public class MedicineService
     {
-        private MedicineRepository _medicineRepository;
+        private IMedicineRepository _medicineRepository;
         private INotificationRepository _notificationRepository;
 
         public MedicineService()
@@ -24,9 +24,9 @@ namespace Sims_Hospital_Zdravo.Service
             _notificationRepository = new NotificationRepository();
         }
 
-        public  List<Medicine> ReadAllMedicine()
+        public List<Medicine> ReadAllMedicine()
         {
-            return  _medicineRepository.FindAll();
+            return _medicineRepository.FindAll();
         }
 
         public List<Medicine> FindByStatus(MedicineStatus status)
@@ -82,28 +82,23 @@ namespace Sims_Hospital_Zdravo.Service
         }
 
 
-        public List <Medicine> PatientAllergicToMedicine(MedicalRecord medicalRecord)
+        public List<Medicine> PatientAllergicToMedicine(MedicalRecord medicalRecord)
         {
             List<Medicine> medicines1 = _medicineRepository.FindAll();
-             CheckIfPatientAllergicToMedicine(medicalRecord,medicines1);
-            CheckIfPatientAllergicToMedicineIngredients(medicalRecord,medicines1);
+            CheckIfPatientAllergicToMedicine(medicalRecord, medicines1);
+            CheckIfPatientAllergicToMedicineIngredients(medicalRecord, medicines1);
             return medicines1;
-
         }
-                
-        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord,List<Medicine> medicines)
+
+        public void CheckIfPatientAllergicToMedicine(MedicalRecord medicalRecord, List<Medicine> medicines)
         {
-            
             foreach (Medicine med in medicines)
             {
-
                 if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(med.Name))
                 {
-                    
                     med.NotAllergic = false;
                 }
             }
-            
         }
 
         public void ReturnListOfMedicinesToStart()
@@ -117,14 +112,12 @@ namespace Sims_Hospital_Zdravo.Service
 
         public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord, List<Medicine> medicines)
         {
-            
             foreach (Medicine med in medicines)
             {
                 foreach (string ingredient in med.Ingredients)
                 {
                     if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(ingredient))
                     {
-                        
                         med.NotAllergic = false;
                     }
                 }

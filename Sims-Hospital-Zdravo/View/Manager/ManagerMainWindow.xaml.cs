@@ -29,7 +29,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
         public ManagerMainWindow()
         {
             app = Application.Current as App;
-            notificationController = app._notificationController;
+            notificationController = new NotificationController();
             notificationManager = new NotificationManager();
 
             app._taskScheduleTimer.AddObserver(this);
@@ -40,18 +40,19 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         public void Notify(Notification notification)
         {
-            if(notification as ReviewMedicineNotification != null)
+            if (notification as ReviewMedicineNotification != null)
             {
                 notificationManager.Show(
-                new NotificationContent { Title = "Medicine notification", Message = CreateNotificationMessageFromNotification((ReviewMedicineNotification)notification) },
-                areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                    new NotificationContent { Title = "Medicine notification", Message = CreateNotificationMessageFromNotification((ReviewMedicineNotification)notification) },
+                    areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
                 notificationController.Delete(notification);
-            }else if (notification as MeetingCreatedNotifications != null)
+            }
+            else if (notification as MeetingCreatedNotifications != null)
             {
                 MeetingCreatedNotifications meetingNotification = notification as MeetingCreatedNotifications;
                 notificationManager.Show(
-                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
-                areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                    new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
+                    areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
                 notificationController.Delete(notification);
             }
         }
