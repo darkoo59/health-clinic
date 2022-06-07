@@ -93,7 +93,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateIfAppointmentTaken(Appointment appoitnment)
         {
-            int doctorId = appoitnment.Doctor._Id;
+            int doctorId = appoitnment.Doctor.Id;
             TimeInterval tl = appoitnment.Time;
             if (!(timeSchedulerService.IsDoctorFreeInInterval(doctorId, tl)))
             {

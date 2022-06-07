@@ -38,15 +38,15 @@ namespace Repository
         {
             foreach (Patient patient in patients)
             {
-                if (patient._Id == newPatient._Id)
+                if (patient.Id == newPatient.Id)
                 {
-                    patient._Name = newPatient._Name;
-                    patient._Email = newPatient._Email;
-                    patient._BirthDate = newPatient._BirthDate;
-                    patient._Address = newPatient._Address;
-                    patient._Jmbg = newPatient._Jmbg;
+                    patient.Name = newPatient.Name;
+                    patient.Email = newPatient.Email;
+                    patient.BirthDate = newPatient.BirthDate;
+                    patient.Address = newPatient.Address;
+                    patient.Jmbg = newPatient.Jmbg;
                     patient._Password = newPatient._Password;
-                    patient._Surname = newPatient._Surname;
+                    patient.Surname = newPatient.Surname;
                     patient._Username = newPatient._Username;
                     LoadDataToFile();
                     return;
@@ -60,7 +60,7 @@ namespace Repository
         {
             foreach (Patient patient in patients)
             {
-                if (patient._Id == id) return patient;
+                if (patient.Id == id) return patient;
             }
             return null;
         }

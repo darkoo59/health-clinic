@@ -17,29 +17,29 @@ namespace Model
         public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg,
             String phoneNumber)
         {
-            this._Id = id;
-            this._Name = name;
-            this._Surname = surname;
-            this._BirthDate = birthDate;
-            this._Email = email;
-            this._Jmbg = jmbg;
-            this._PhoneNumber = phoneNumber;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.BirthDate = birthDate;
+            this.Email = email;
+            this.Jmbg = jmbg;
+            this.PhoneNumber = phoneNumber;
         }
 
         public Patient(int id,String name,String surname)
         {
-            this._Id = id;
-            this._Name = name;
-            this._Surname = surname;
-            this._BirthDate = DateTime.Now;
-            this._Email = "";
-            this._Jmbg = "";
-            this._PhoneNumber = "";
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.BirthDate = DateTime.Now;
+            this.Email = "";
+            this.Jmbg = "";
+            this.PhoneNumber = "";
         }
 
         public override string ToString()
     {
-        return _Name + " " + _Surname + " " + ",JMBG:"+_Jmbg;
+        return Name + " " + Surname + " " + ",JMBG:"+Jmbg;
     }
    }
 }

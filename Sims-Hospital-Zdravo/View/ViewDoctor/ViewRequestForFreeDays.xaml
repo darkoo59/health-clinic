@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewRequestForFreeDays">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,6 +17,6 @@
             <RowDefinition Height="3*"/>
 
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Name="DataGridRequestForFreeDays"></DataGrid>
+        <DataGrid Grid.Row="1" Name="DataGridRequestForFreeDays" ></DataGrid>
     </Grid>
 </Page>

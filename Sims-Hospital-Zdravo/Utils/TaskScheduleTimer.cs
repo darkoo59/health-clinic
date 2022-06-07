@@ -130,11 +130,19 @@ namespace Sims_Hospital_Zdravo.Utils
             if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
 
-            List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account._Id);
+            List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account.Id);
             foreach (Notification notification in notifications)
             {
                 Notify(notification);
             }
+        }
+        public void CheckNotificationForDoctorRequests()
+        {
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.DOCTOR)) return;
+            //List <Notification> notifications = 
+
         }
 
         public void AppointmentDone()

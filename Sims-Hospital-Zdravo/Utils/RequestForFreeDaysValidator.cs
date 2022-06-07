@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, AppointmentRepository appointmentRepository)
         {
-            List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request.Doctor._Id);
+            List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request.Doctor.Id);
             List<TimeInterval> takenTimeIntervals = timeIntervals.Where(i => i.Start.Date >= request.TimeInterval.Start.Date && i.Start.Date <= request.TimeInterval.End.Date).ToList();
             return takenTimeIntervals;
         }

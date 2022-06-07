@@ -47,7 +47,7 @@ namespace Sims_Hospital_Zdravo.View
 
             foreach (Patient pat in this.docAppController.GetPatients())
             {
-                patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
+                patients.Add(pat.Name + " " + pat.Surname + " " + pat.BirthDate.ToString());
             }
 
             Patients.ItemsSource = patients;
@@ -87,7 +87,7 @@ namespace Sims_Hospital_Zdravo.View
             string[] names = name.Split(' ');
             foreach (Patient pat in this.docAppController.GetPatients())
             {
-                if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
+                if (pat.Name.Equals(names[0]) && pat.Surname.Equals(names[1]))
 
                 {
                     Pat = pat;

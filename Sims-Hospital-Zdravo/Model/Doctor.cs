@@ -28,9 +28,9 @@ namespace Model
         public SpecialtyType _specialty;
         public Doctor (int id,string name,string surname, SpecialtyType specialty)
         {
-            this._Id = id;
-            this._Name = name;
-            this._Surname = surname;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
             this.Specialty = specialty;
         }
 
@@ -48,7 +48,7 @@ namespace Model
 
         public override string ToString()
         {
-            return _Name + " " +_Surname;
+            return Name + " " +Surname;
         }
     }
 }

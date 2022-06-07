@@ -154,9 +154,9 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         public void CheckIfAppointmentExists(Appointment appointment, Appointment app)
         {
-                if (appointment.Doctor._Id == app.Doctor._Id)
+                if (appointment.Doctor.Id == app.Doctor.Id)
                 {
-                    if (appointment.Patient._Id != app.Patient._Id)
+                    if (appointment.Patient.Id != app.Patient.Id)
                     {
                         throw new Exception("Appointment already exists");
                     }

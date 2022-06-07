@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             foreach (User account in accounts)
             {
-                if (account._Id == newAccount._Id)
+                if (account.Id == newAccount.Id)
                 {
                     account._Password = newAccount._Password;
                     account._Username = newAccount._Username;
@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             foreach (User acc in accounts)
             {
-                if (acc._Id == id) return acc;
+                if (acc.Id == id) return acc;
             }
 
             return null;

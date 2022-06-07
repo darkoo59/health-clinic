@@ -34,7 +34,7 @@ namespace Service
         public void Create(MedicalRecord medicalRecord, Patient patient)
         {
             // TODO: implement
-            _validator.InsertValidation(patient._Jmbg);
+            _validator.InsertValidation(patient.Jmbg);
             _medicalRecordRepository.Create(medicalRecord);
             _patientRepository.Create(patient);
             return;
@@ -56,7 +56,7 @@ namespace Service
         public void Update(MedicalRecord medicalRecord, Patient patient)
         {
             // TODO: implement
-            _validator.UpdateValidation(patient._Jmbg);
+            _validator.UpdateValidation(patient.Jmbg);
             _patientRepository.Update(patient);
             _medicalRecordRepository.Update(medicalRecord);
             return;
@@ -114,7 +114,7 @@ namespace Service
             int id = 0;
             foreach (Patient patient in patients)
             {
-                ids.Add(patient._Id);
+                ids.Add(patient.Id);
             }
             while (ids.Contains(id))
             {

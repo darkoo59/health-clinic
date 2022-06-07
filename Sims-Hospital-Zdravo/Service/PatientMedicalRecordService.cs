@@ -27,12 +27,12 @@ namespace Service
         public MedicalRecord FindMedicalRecordByPatient(Patient patient)
 
         {
-            Console.WriteLine(patient._Id);
+            Console.WriteLine(patient.Id);
             _records = _medicalRecordsRepository.ReadAll();
             foreach(MedicalRecord record in _records)
             {
-                Console.WriteLine(record.Patient._Id);
-                if (record.Patient._Id.Equals(patient._Id))
+                Console.WriteLine(record.Patient.Id);
+                if (record.Patient.Id.Equals(patient.Id))
                 {
                     return record;
                     

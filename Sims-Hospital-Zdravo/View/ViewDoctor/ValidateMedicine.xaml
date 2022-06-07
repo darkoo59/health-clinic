@@ -22,30 +22,30 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <Label Content="Name:"></Label>
-            <TextBox Name="MedicineNameTxt" Width="150" Height="25" HorizontalAlignment="Left"></TextBox>
+            <TextBlock Name="MedicineNameTxt" Width="150" Height="25" HorizontalAlignment="Left"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Strength:"></Label>
-            <TextBox Name="StrenghtTxt" Height="25"  Width="150" HorizontalAlignment="Left">
+            <TextBlock Name="StrenghtTxt" Height="25"  Width="150" HorizontalAlignment="Left">
                 
                    
-            </TextBox>
+            </TextBlock>
         </StackPanel>
         <StackPanel Margin="0,108,0,108" Grid.RowSpan="3" Grid.Row="1">
             <Label Content="Ingredients:"></Label>
-            <TextBox Name="IngredientsTxt" Width="150" Height="50" HorizontalAlignment="Left"></TextBox>
+            <TextBlock Name="IngredientsTxt" Width="161" Height="61" HorizontalAlignment="Left"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Column="0"  Grid.Row="4">
             <Label Content="Description:"></Label>
-            <TextBox x:Name="UsingForTxt" Width="150" Height="30" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="UsingForTxt" Width="150" Height="30" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Content="Allergens:"></Label>
-            <TextBox Name="AllegensTxt"/>
+            <TextBlock Name="AllegensTxt"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,0,0" Grid.Row="1">
             <Label Content="Medicine shouldnt be approved because:"></Label>
-            <TextBox Name="ReasonForRejectinMedicineTxt" Width="150" Height="70" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="ReasonForRejectinMedicineTxt" Width="383" Height="70" HorizontalAlignment="Left"></TextBox>
         </StackPanel >
         <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="4">
             <Button  Margin="0,0,50,0" Content="Approve" Width="150" Height="30" Name="ValidateMedicineBtn" Click="ValidateMedicineBtn_Click"></Button>

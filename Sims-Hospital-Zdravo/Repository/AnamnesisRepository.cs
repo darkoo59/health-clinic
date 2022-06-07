@@ -49,7 +49,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
             foreach (Anamnesis anam in _anamnesis)
             {
-                if (anam.Doctor._Id == id)
+                if (anam.Doctor.Id == id)
                 {
                     listOfAnamnesisByDoctor.Add(anam);
                 }

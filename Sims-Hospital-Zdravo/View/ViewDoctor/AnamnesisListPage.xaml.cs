@@ -50,11 +50,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             DataGridTextColumn data_column = new DataGridTextColumn();
             
             data_column.Header = "Patient Name ";
-            data_column.Binding = new Binding("Patient._Name");
+            data_column.Binding = new Binding("Patient.Name");
             AnamnesisListDoctor.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient Surname";
-            data_column.Binding = new Binding("Patient._Surname");
+            data_column.Binding = new Binding("Patient.Surname");
             AnamnesisListDoctor.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Diagnosis";
@@ -96,6 +96,20 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             listOfAnamnesisDoneByDoctor = controller.FindAnamnesisByDoctor(doctorID);
             AnamnesisListDoctor.ItemsSource = listOfAnamnesisDoneByDoctor;
+        }
+
+        private void ButtoneditClick(object sender, RoutedEventArgs e)
+        {
+            anamnesis = AnamnesisListDoctor.SelectedValue as Anamnesis;
+            if (anamnesis != null)
+            {
+                EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, medicalRecord);
+                editAnamnesis.Show();
+            }
+            else
+            {
+                MessageBox.Show("Select medical report you want to edit.");
+            }
         }
     }
 }

@@ -131,9 +131,16 @@
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
     <Compile Include="Interfaces\ISurveyStatistic.cs" />
+    <Compile Include="Model\LabaratoryTest.cs" />
     <Compile Include="Model\MarkStatistic.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="ViewModel\Doctor\BindableBase.cs" />
+    <Compile Include="ViewModel\Doctor\LabaratoryTestViewModel.cs" />
+    <Compile Include="ViewModel\Doctor\MyAppointmentsViewModel.cs" />
+    <Compile Include="ViewModel\Doctor\MyIComand.cs" />
+    <Compile Include="ViewModel\Doctor\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModel\Doctor\ValidateMedicineViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml.cs">
       <DependentUpon>ManagerHospitalSurveys.xaml</DependentUpon>
     </Compile>
@@ -371,6 +378,15 @@
       <DependentUpon>DoctorMedicines.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesis.xaml.cs" />
+    <Compile Include="View\ViewDoctor\HospitalTreatment.xaml.cs">
+      <DependentUpon>HospitalTreatment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\LabaratoryResultsPage.xaml.cs">
+      <DependentUpon>LabaratoryResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\LabaratoryTestForm.xaml.cs">
+      <DependentUpon>LabaratoryTestForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml.cs">
       <DependentUpon>ListOfMedecinesinSystem.xaml</DependentUpon>
     </Compile>
@@ -384,6 +400,9 @@
     <Compile Include="View\ViewDoctor\MyAppointments.xaml.cs" />
     <Compile Include="View\ViewDoctor\OperationForm.xaml.cs">
       <DependentUpon>OperationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\OperationSchedule.xaml.cs">
+      <DependentUpon>OperationSchedule.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\PatientMedicalHistory.xaml.cs">
       <DependentUpon>PatientMedicalHistory.xaml</DependentUpon>
@@ -415,6 +434,9 @@
     </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\WizardWindow.xaml.cs">
+      <DependentUpon>WizardWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
@@ -595,6 +617,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\EditAnamnesis.xaml" />
+    <Page Include="View\ViewDoctor\HospitalTreatment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\LabaratoryResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\LabaratoryTestForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\ListOfMedecinesinSystem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -612,6 +646,10 @@
     <Page Include="View\ViewDoctor\OperationForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\OperationSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\PatientMedicalHistory.xaml" />
     <Page Include="View\ViewDoctor\PatientMedicalRecord.xaml" />
@@ -648,6 +686,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\WizardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

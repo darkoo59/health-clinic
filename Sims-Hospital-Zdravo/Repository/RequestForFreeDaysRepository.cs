@@ -48,7 +48,7 @@ namespace Sims_Hospital_Zdravo.Repository
             ObservableCollection<FreeDaysRequest> doctorRequests = new ObservableCollection<FreeDaysRequest>();
             foreach(FreeDaysRequest request in ReadAll())
             {
-                if(request.Doctor._Id == doctorId)
+                if(request.Doctor.Id == doctorId)
                 {
                     doctorRequests.Add(request);
                 }

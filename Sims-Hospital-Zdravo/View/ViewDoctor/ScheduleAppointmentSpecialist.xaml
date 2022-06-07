@@ -17,7 +17,7 @@
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
 
 
 
@@ -36,17 +36,17 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
             <Label Content="Patient:"></Label>
             <TextBox Name="PatientTxt"  IsReadOnly="False" Height="35" Width="130"/>
 
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
             <Label Content="Date:" />
             <DatePicker x:Name="dateTxt" Width="130" Height="35" Style="{DynamicResource styleDatePicker}" />
             
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0">
+        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
             <Label >Time:</Label>
             <ComboBox Name="SpecialistAppointmentTimeComboBox" Width="130" Height="35" FontSize="13"
     Style="{DynamicResource theComboBox}"
@@ -60,15 +60,15 @@
     ItemContainerStyle="{DynamicResource theComboBoxItem}"
  />
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="0">
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center">
             <Label  >Room:</Label>
         <TextBox Width="130" Name="RoomText" Height="35" ></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="0">
+        <StackPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center">
             <Label >Procedure:</Label>
         <TextBox Width="130" Height="35" ></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="0">
+        <StackPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center">
             <Label >Specialty:</Label>
             <ComboBox Width="130" Height="35" Name="SpecialistComboBox" SelectionChanged="SpecialistComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
@@ -79,8 +79,8 @@
     Grid.Row="1"
     Grid.Column="1"
     ItemContainerStyle="{DynamicResource theComboBoxItem}"></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="0">
+        </StackPanel >
+        <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center">
             <Label >Doctor:</Label>
             <ComboBox Name="DoctorComboBox" Width="130" Height="35" SelectionChanged="DoctorComboBox_SelectionChanged" Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"
@@ -92,7 +92,7 @@
     Grid.Column="1"
     ItemContainerStyle="{DynamicResource theComboBoxItem}" ></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="7" Grid.Column="0">
+        <StackPanel Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center">
             <Label >Appointment type:</Label>
             <ComboBox Name="TypeOfAppointment" Width="130" Height="35"  Style="{DynamicResource theComboBox}"
     Padding="15,5,15,5"

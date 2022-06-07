@@ -120,7 +120,7 @@ namespace Service
 
             foreach (Appointment appointment in appointments)
             {
-                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient._Jmbg.Equals(pat._Jmbg))
+                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient.Jmbg.Equals(pat.Jmbg))
                 {
                     _app = appointment;
                 }

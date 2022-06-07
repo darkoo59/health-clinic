@@ -47,6 +47,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             string validateMedicine = "Medicine approved";
             string name = medicine.Name;
+            medicine.Status = MedicineStatus.ACCEPTED;
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_APPROVED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine,medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
@@ -58,6 +59,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string validateMedicine = ReasonForRejectinMedicineTxt.Text;
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_REJECTED;
             string name = medicine.Name;
+            medicine.Status = MedicineStatus.ABORTED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "rejected", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine,reviewMedicineNotification);
 

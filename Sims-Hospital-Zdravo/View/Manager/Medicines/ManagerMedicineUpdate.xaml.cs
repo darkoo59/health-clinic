@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
 
                 FillMedicine();
                 Medicine.Substitution = substitutes;
-                _CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
+                _CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor.Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
             catch (Exception ex)

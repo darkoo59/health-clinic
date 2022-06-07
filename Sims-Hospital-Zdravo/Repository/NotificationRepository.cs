@@ -77,6 +77,10 @@ namespace Sims_Hospital_Zdravo.Repository
             return notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
+        public List<Notification> ReadAllDoctorrequestForFreeDaysNotifications()
+        {
+            return null;
+        }
         public void LoadDataFromFiles()
         {
             notifications = _notificationDataHandler.ReadAll();

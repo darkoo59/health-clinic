@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="MedicinesToValidate" Height="450" Width="800">
+    
     <Grid>
         <DataGrid Margin="91,126,309,125" Name="MedicinesToValidateDataGrid">
             

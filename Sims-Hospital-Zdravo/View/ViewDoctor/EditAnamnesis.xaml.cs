@@ -42,11 +42,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             observers = new List<IUpdateFilesObserver>();
             this.doctorAppointmentController = app._doctorAppointmentController;
            
-            DoctorTxt.Text = anamnesis.Doctor._Name + anamnesis.Doctor._Surname;
+            //DoctorTxt.Text = anamnesis.Doctor.Name + anamnesis.Doctor.Surname;
             Editanam.Text = DateTime.Now.ToString();
             DiagnosisTxt.Text = anamnesis.Diagnosis;
             AnamnesisTxt.Text = anamnesis.Anamensis;
-            DoctorId = anamnesis.Doctor._Id;
+            //DoctorId = anamnesis.Doctor.Id;
             DateTime date = anamnesis.Date;
             //Patient pat = anamnesis._MedicalRecord._Patient;
             ExaminatonTxt.Text = DateTime.Now.Date.ToString();

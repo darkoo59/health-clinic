@@ -49,7 +49,7 @@ namespace Repository
         {
             foreach(MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Patient._Id == id)
+                if (medicalRecord.Patient.Id == id)
                     return medicalRecord.Patient;
             }
             return null;
@@ -106,7 +106,7 @@ namespace Repository
         {
             foreach (MedicalRecord medical in _medicalRecords) 
             {
-                if (appointment.Patient._Id == medical.Patient._Id) 
+                if (appointment.Patient.Id == medical.Patient.Id) 
                 {
                     foreach(Anamnesis ana in medical.Anamnesis)
                     {
@@ -124,11 +124,11 @@ namespace Repository
         {
             foreach (MedicalRecord medical in _medicalRecords)
             {
-                if (appointment.Patient._Id == medical.Patient._Id)
+                if (appointment.Patient.Id == medical.Patient.Id)
                 {
                     foreach (Prescription pres in medical.Prescriptions)
                     {
-                        if (pres._Doctor._Id == prescription._Doctor._Id && pres.TimeInterval.Start.Equals(prescription.TimeInterval.Start))
+                        if (pres._Doctor.Id == prescription._Doctor.Id && pres.TimeInterval.Start.Equals(prescription.TimeInterval.Start))
                         {
                             pres.StartDate = dateTime;
                             LoadDataToFile();
@@ -142,11 +142,11 @@ namespace Repository
         {
             foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Patient._Id == appointment.Patient._Id)
+                if (medicalRecord.Patient.Id == appointment.Patient.Id)
                 {
                     foreach (Anamnesis anamnesis in medicalRecord.Anamnesis)
                     {
-                        if (anamnesis.Doctor._Id == appointment.Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment.Time.Start))
+                        if (anamnesis.Doctor.Id == appointment.Doctor.Id && anamnesis._TimeInterval.Start.Equals(appointment.Time.Start))
                         {
                             return anamnesis;
                         }
@@ -160,7 +160,7 @@ namespace Repository
             ObservableCollection<Prescription> prescriptions = new ObservableCollection<Prescription>();
             foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Patient._Id == appointment.Patient._Id)
+                if (medicalRecord.Patient.Id == appointment.Patient.Id)
                 {
                     foreach (Prescription prescription in medicalRecord.Prescriptions)
                     {

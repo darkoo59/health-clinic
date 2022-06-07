@@ -107,7 +107,7 @@ namespace Service
             {
                 foreach (Appointment app in FindAll())
                 {
-                    if (app.Doctor._Id == appointment.Doctor._Id)
+                    if (app.Doctor.Id == appointment.Doctor.Id)
                     {
                         if (app.Time.Start.Year == appointment.Time.Start.Year && app.Time.Start.DayOfYear == appointment.Time.Start.DayOfYear)
                         {
@@ -126,7 +126,7 @@ namespace Service
                         {
                             foreach (Doctor d in ReadDoctors())
                             {
-                                if (d._Id == app.Doctor._Id)
+                                if (d.Id == app.Doctor.Id)
                                 {
                                     doctors.Remove(d);
                                     break;
@@ -140,7 +140,7 @@ namespace Service
             {
                 foreach (Appointment app in FindAll())
                 {
-                    if (app.Doctor._Id == appointment.Doctor._Id)
+                    if (app.Doctor.Id == appointment.Doctor.Id)
                     {
                         if (app.Time.Start.Year == appointment.Time.Start.Year && app.Time.Start.DayOfYear == appointment.Time.Start.DayOfYear)
                         {

@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
         private void SelectedPatient(MedicalRecord medicalRecord)
         {
-            PatTxt.Text = medicalRecord.Patient._Name +" " + medicalRecord.Patient._Surname;
+            PatTxt.Text = medicalRecord.Patient.Name +" " + medicalRecord.Patient.Surname;
             
         }
        

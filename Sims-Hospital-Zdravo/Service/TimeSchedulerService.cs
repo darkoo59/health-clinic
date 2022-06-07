@@ -126,7 +126,7 @@ namespace Service
 
         public TimeInterval FindIntervalForOperation(Appointment appointment, double duration)
         {
-            if (IsDoctorFreeInInterval(appointment.Doctor._Id, appointment.Time))
+            if (IsDoctorFreeInInterval(appointment.Doctor.Id, appointment.Time))
             {
                 return appointment.Time;
             }
@@ -147,7 +147,7 @@ namespace Service
 
         public void CancelAppointmentsForOperation(Appointment appointment)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
+            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor.Id);
             List<Appointment> appointmentsToDelete = appointments.Where(i => i.Time.Start >= appointment.Time.Start && i.Time.End <= appointment.Time.End).ToList();
             foreach (Appointment appToDelete in appointmentsToDelete)
             {
@@ -164,7 +164,7 @@ namespace Service
         }
         public List<TimeInterval> GetOrderedIntervalsForDoctor(Doctor doctor)
         {
-            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor._Id);
+            List<TimeInterval> takenIntervals = _appointmentRepository.GetTimeIntervalsForDoctor(doctor.Id);
             var orderedAppointment = takenIntervals.OrderBy(a => a.Start).ToArray();
             return orderedAppointment.ToList();
 
@@ -254,7 +254,7 @@ namespace Service
             {
                 if (app.Time.Start.Date.Equals(date.Date))
                 {
-                    if (app.Patient._Jmbg.Equals(pat._Jmbg))
+                    if (app.Patient.Jmbg.Equals(pat.Jmbg))
                     {
                         return app;
                     }
