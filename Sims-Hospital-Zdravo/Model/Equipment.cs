@@ -51,5 +51,11 @@ namespace Model
         {
             return Name;
         }
+
+        public void Update(Equipment equipment)
+        {
+            Name = equipment.Name;
+            Type = equipment.Type;
+        }
     }
 }

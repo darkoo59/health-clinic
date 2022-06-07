@@ -25,7 +25,6 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// </summary>
     public partial class ScheduleAppointmentSpecialist : Page
     {
-
         private DoctorAppointmentController doctorAppointmentController;
         private AppointmentPatientController patientController;
         private RoomController roomController;
@@ -33,15 +32,16 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         ObservableCollection<string> patients;
         ObservableCollection<string> doctors;
         ObservableCollection<string> specialties;
+
         public ScheduleAppointmentSpecialist(DoctorAppointmentController doctorAppointmentController)
         {
             InitializeComponent();
             this.doctorAppointmentController = doctorAppointmentController;
-            
-            
+
+
             app = App.Current as App;
             patientController = app._appointmentPatientController;
-            this.roomController = app._roomController;
+            this.roomController = new RoomController();
             var startTime = DateTime.Parse("8:00");
             var endTime = DateTime.Parse("21:00");
             TypeOfAppointment.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
@@ -49,19 +49,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             while (startTime < endTime)
             {
-
                 time_list.Add(startTime.ToShortTimeString() + " - " + startTime.AddMinutes(30).ToShortTimeString());
                 startTime = startTime.AddMinutes(30);
             }
+
             SpecialistAppointmentTimeComboBox.ItemsSource = time_list;
-           SpecialistComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
-            
-
-
-
+            SpecialistComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
         }
-
-
 
 
         ObservableCollection<Doctor> FillDoctorComboBox()
@@ -78,7 +72,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 DoctorComboBox.ItemsSource = FillDoctorComboBox();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -88,20 +82,16 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public void getDoctorID()
         {
             ComboBoxItem ChosenDoctor = DoctorComboBox.SelectedItem as ComboBoxItem;
-
         }
+
         private Patient patient1;
+
         public Patient _Patient1
         {
-            get
-            {
-                return patient1;
-            }
-            set
-            {
-                patient1 = value;
-            }
+            get { return patient1; }
+            set { patient1 = value; }
         }
+
         public Patient FindPatient()
         {
             string patient = PatientTxt.Text;
@@ -112,20 +102,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 if (pat.Name.Equals(patientFull[0]) && pat.Surname.Equals(patientFull[1]))
                 {
                     _Patient1 = pat;
-                    
-                    
                 }
             }
-            return _Patient1;
-         }
-        
-            private void SpecialistButton_Click(object sender, RoutedEventArgs e)
-        {
 
+            return _Patient1;
+        }
+
+        private void SpecialistButton_Click(object sender, RoutedEventArgs e)
+        {
             string dateAppoitment = dateTxt.Text;
             string timeAppointment = SpecialistAppointmentTimeComboBox.SelectedItem.ToString();
             Console.WriteLine();
-            
+
             string[] times = timeAppointment.Split('-');
             var dt_start = DateTime.Parse(dateAppoitment + " " + times[0]);
             var dt_end = DateTime.Parse(dateAppoitment + " " + times[1]);
@@ -136,14 +124,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             int doctorId = doctor.Id;
             Appointment appointment = new Appointment(room, doctor, pat, timeInterval, (AppointmentType)TypeOfAppointment.SelectedValue);
             doctorAppointmentController.Create(appointment);
-
-
-
-
-
-
         }
+
         public Doctor doctor;
+
         private void DoctorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string name = DoctorComboBox.SelectedItem.ToString();
@@ -157,7 +141,5 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 }
             }
         }
-       
-       
     }
 }

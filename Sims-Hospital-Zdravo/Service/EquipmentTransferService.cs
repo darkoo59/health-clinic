@@ -5,23 +5,23 @@ using Utils;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Service
 {
     public class EquipmentTransferService
     {
-        private RelocationAppointmentRepository _relocationAppointmentRepository;
-        private RoomRepository _roomRepository;
+        private IRelocationRepository _relocationAppointmentRepository;
+        private IRoomRepository _roomRepository;
         private TimeSchedulerService _timeSchedulerService;
         private EquipmentTransferValidator _validator;
 
-        public EquipmentTransferService(RoomRepository roomRepository,
-            RelocationAppointmentRepository relocationAppointmentRepository, TimeSchedulerService timeSchedulerService)
+        public EquipmentTransferService(TimeSchedulerService timeSchedulerService)
         {
-            this._roomRepository = roomRepository;
-            this._relocationAppointmentRepository = relocationAppointmentRepository;
-            this._timeSchedulerService = timeSchedulerService;
-            _validator = new EquipmentTransferValidator(roomRepository, timeSchedulerService);
+            _roomRepository = new RoomRepository();
+            _relocationAppointmentRepository = new RelocationAppointmentRepository();
+            _timeSchedulerService = timeSchedulerService;
+            _validator = new EquipmentTransferValidator(timeSchedulerService);
         }
 
         public void FinishRelocationAppointment(int appointmentId)
@@ -35,22 +35,17 @@ namespace Service
             originalRoom.AddEquipment(re);
         }
 
-        public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
+        public void MakeRelocationAppointment(RelocationAppointment relocationAppointment)
         {
-            _validator.ValidateTransferFromRoom(fromRoomId, toRoomId, eq.Id, quantity, ti);
-            MakeAppointmentFromRoom(fromRoomId, toRoomId, eq, quantity, ti);
+            _validator.ValidateTransferFromRoom(relocationAppointment);
+            MakeAppointmentFromRoom(relocationAppointment);
         }
 
-
-        private void MakeAppointmentFromRoom(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
+        private void MakeAppointmentFromRoom(RelocationAppointment relocationAppointment)
         {
-            Room fromRoom = _roomRepository.FindById(fromRoomId);
-            Room toRoom = _roomRepository.FindById(toRoomId);
-            RoomEquipment eqForTransfer = new RoomEquipment(eq, quantity);
-            RelocationAppointment relocationApp = new RelocationAppointment(fromRoom, toRoom, ti, eqForTransfer, GenerateId());
-
-            fromRoom.RemoveEquipment(eqForTransfer);
-            _relocationAppointmentRepository.Create(relocationApp);
+            Room fromRoom = _roomRepository.FindById(relocationAppointment.FromRoom.Id);
+            fromRoom.RemoveEquipment(relocationAppointment.RoomEquipment);
+            _relocationAppointmentRepository.Create(relocationAppointment);
         }
 
         public List<TimeInterval> FindReservedTimeForRooms(Room fromRoom, Room toRoom)
@@ -58,15 +53,15 @@ namespace Service
             return _timeSchedulerService.FindReservedTimeForRooms(fromRoom, toRoom);
         }
 
-        public List<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> FindAll()
         {
-            return _relocationAppointmentRepository.ReadAll();
+            return _relocationAppointmentRepository.FindAll();
         }
 
 
-        private int GenerateId()
+        public int GenerateId()
         {
-            List<RelocationAppointment> appointments = _relocationAppointmentRepository.ReadAll();
+            List<RelocationAppointment> appointments = _relocationAppointmentRepository.FindAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

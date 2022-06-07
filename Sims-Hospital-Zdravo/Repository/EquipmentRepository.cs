@@ -9,69 +9,62 @@ using System;
 using System.Collections.Generic;
 using DataHandler;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Repository
 {
-    public class EquipmentRepository
+    public class EquipmentRepository : IEquipmentRepository
     {
-        private ObservableCollection<Equipment> _equipment;
+        private List<Equipment> _equipment;
         private EquipmentDataHandler _equipmentDataHandler;
 
-        public EquipmentRepository(EquipmentDataHandler equipmentDataHandler)
+        public EquipmentRepository()
         {
-            this._equipmentDataHandler = equipmentDataHandler;
-            _equipment = new ObservableCollection<Equipment>();
-            LoadDataFromFile();
+            _equipmentDataHandler = new EquipmentDataHandler();
+            _equipment = new List<Equipment>();
         }
 
-        public ObservableCollection<Equipment> ReadAll()
+        public List<Equipment> FindAll()
         {
-            return _equipment;
+            return _equipmentDataHandler.ReadAll();
         }
 
         public void Create(Equipment equipment)
         {
-            this._equipment.Add(equipment);
+            LoadDataFromFiles();
+            _equipment.Add(equipment);
             LoadDataToFile();
         }
 
         public void Delete(Equipment equipment)
         {
-            this._equipment.Remove(equipment);
+            LoadDataFromFiles();
+            _equipment.Remove(equipment);
             LoadDataToFile();
         }
 
         public void Update(Equipment equipment)
         {
-            foreach (Equipment eq in this._equipment)
+            LoadDataFromFiles();
+            foreach (var eq in _equipment.Where(eq => eq.Id == equipment.Id))
             {
-                if (eq.Id == equipment.Id)
-                {
-                    eq.Name = equipment.Name;
-                    eq.Type = equipment.Type;
-                    LoadDataToFile();
-                    return;
-                }
+                eq.Update(equipment);
+                LoadDataToFile();
+                return;
             }
         }
 
         public Equipment FindById(int id)
         {
-            foreach (Equipment eq in _equipment)
-            {
-                if (eq.Id == id) return eq;
-            }
-
-            return null;
+            LoadDataFromFiles();
+            return _equipment.FirstOrDefault(eq => eq.Id == id);
         }
+
         public Equipment FindByName(String name)
         {
-            foreach (Equipment equipment in _equipment)
-            {
-                if (equipment.Name == name)
-                    return equipment;
-            }
-            return null;
+            LoadDataFromFiles();
+            return _equipment.FirstOrDefault(equipment => equipment.Name == name);
         }
 
         public void DeleteById(int id)
@@ -82,7 +75,7 @@ namespace Repository
         }
 
 
-        private void LoadDataFromFile()
+        private void LoadDataFromFiles()
         {
             _equipment = _equipmentDataHandler.ReadAll();
         }

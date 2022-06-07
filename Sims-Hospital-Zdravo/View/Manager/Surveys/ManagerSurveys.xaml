@@ -14,6 +14,21 @@
         <ResourceDictionary Source="../ManagerStyles.xaml">
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.InputBindings>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Surveys/ManagerHospitalSurveys.xaml"
+            Key="H"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Surveys/ManagerDoctorSurveys.xaml"
+            Key="D"
+            Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -35,12 +50,22 @@
         <Button
             Grid.Row="3"
             Grid.Column="1"
+            TabIndex="0"
             FocusVisualStyle="{DynamicResource MyFocusVisual}"
             Command="cmd:Commands.NavigateToCommand"
             CommandParameter="Surveys/ManagerHospitalSurveys.xaml">
             Hospital Statistics
         </Button>
-        <Button Grid.Row="3" Grid.Column="3" FocusVisualStyle="{DynamicResource MyFocusVisual}">Doctor Statistics</Button>
+        <Button
+            Grid.Row="3"
+            Grid.Column="3"
+            x:Name="DoctorSurveys"
+            TabIndex="1"
+            FocusVisualStyle="{DynamicResource MyFocusVisual}"
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Surveys/ManagerDoctorSurveys.xaml">
+            Doctor Statistics
+        </Button>
 
     </Grid>
 </Page>

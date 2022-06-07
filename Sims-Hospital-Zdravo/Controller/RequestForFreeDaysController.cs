@@ -27,6 +27,11 @@ namespace Sims_Hospital_Zdravo.Controller
             _requestForFreeDaysService.CreateUrgent(request);
         }
 
+        public void UpdateRequestAndNotify(FreeDaysRequest request, Notification notification)
+        {
+            _requestForFreeDaysService.UpdateRequestAndNotify(request, notification);
+        }
+
 
         public void Delete(FreeDaysRequest request)
         {

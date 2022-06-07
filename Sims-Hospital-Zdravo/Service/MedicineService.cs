@@ -7,6 +7,7 @@ using Sims_Hospital_Zdravo.Repository;
 using System.Collections.ObjectModel;
 using Repository;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 
 
@@ -15,12 +16,12 @@ namespace Sims_Hospital_Zdravo.Service
     public class MedicineService
     {
         private MedicineRepository _medicineRepository;
-        private NotificationRepository _notificationRepository;
+        private INotificationRepository _notificationRepository;
 
-        public MedicineService(MedicineRepository medicineRepository, NotificationRepository notificationRepository)
+        public MedicineService(MedicineRepository medicineRepository)
         {
-            this._medicineRepository = medicineRepository;
-            this._notificationRepository = notificationRepository;
+            _medicineRepository = medicineRepository;
+            _notificationRepository = new NotificationRepository();
         }
 
         public ref ObservableCollection<Medicine> ReadAllMedicine()
@@ -87,7 +88,7 @@ namespace Sims_Hospital_Zdravo.Service
             {
                 if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(med.Name))
                 {
-                    med.NotAllergic = false;  
+                    med.NotAllergic = false;
                 }
             }
         }
@@ -95,7 +96,7 @@ namespace Sims_Hospital_Zdravo.Service
         public void ReturnListOfMedicinesToStart()
         {
             ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
-            foreach(Medicine med in medicines)
+            foreach (Medicine med in medicines)
             {
                 med.NotAllergic = true;
             }
@@ -104,9 +105,9 @@ namespace Sims_Hospital_Zdravo.Service
         public void CheckIfPatientAllergicToMedicineIngredients(MedicalRecord medicalRecord)
         {
             ObservableCollection<Medicine> medicines = _medicineRepository.ReadAll();
-            foreach(Medicine med in medicines)
+            foreach (Medicine med in medicines)
             {
-                foreach(string ingredient in med.Ingredients)
+                foreach (string ingredient in med.Ingredients)
                 {
                     if (medicalRecord.PatientAllergens.MedicalAllergens.Contains(ingredient))
                     {

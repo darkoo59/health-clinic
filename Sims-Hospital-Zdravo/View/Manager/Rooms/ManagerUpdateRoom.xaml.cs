@@ -28,9 +28,9 @@ namespace Sims_Hospital_Zdravo.View
         {
             InitializeComponent();
             app = Application.Current as App;
-            this.roomController = app._roomController;
+            roomController = new RoomController();
             RoomTypeCmb.ItemsSource = Enum.GetValues(typeof(RoomType)).Cast<RoomType>();
-            this.KeyDown += new KeyEventHandler(GoBack);
+            KeyDown += new KeyEventHandler(GoBack);
         }
 
         private void GoBack(object sender, KeyEventArgs args)

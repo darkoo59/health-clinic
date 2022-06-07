@@ -15,6 +15,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
+using Sims_Hospital_Zdravo.View.Secretary.Meetings;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
+using Notifications.Wpf;
+using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -82,6 +87,20 @@ namespace Sims_Hospital_Zdravo
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
             SecretaryWindow window = new SecretaryWindow(app._recordController);
+            window.Show();
+            this.Close();
+        }
+
+        private void Meetings_Click(object sender, MouseButtonEventArgs e)
+        {
+            CreateNewMeeting window = new CreateNewMeeting(app._meetingController);
+            window.Show();
+            this.Close();
+        }
+
+        private void FreeDays_Click(object sender, MouseButtonEventArgs e)
+        {
+            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
             window.Show();
             this.Close();
         }

@@ -1,0 +1,80 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.Manager.Tutorial"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
+      mc:Ignorable="d"
+      Title="Tutorial"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="BorderBrush" Value="White"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="Background" Value="#0a718a"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="BorderThickness" Value="1"></Setter>
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource MyFocusVisual}"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.InputBindings>
+        <KeyBinding
+            Command="{Binding PlayVideoCommand}"
+            Key="P"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="{Binding RestartVideoCommand}"
+            Key="R"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="{Binding PauseVideoCommand}"
+            Key="S"
+            Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <MediaElement x:Name="TutorialPlayer" Source="../../Resources/demo.mp4" LoadedBehavior="Manual" />
+        <StackPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button
+                    TabIndex="0"
+                    Name="btnPlay"
+                    Command="{Binding PlayVideoCommand}">
+                    Play
+                </Button>
+                <Button
+                    TabIndex="1"
+                    Name="btnPause"
+                    Margin="5,0"
+                    Command="{Binding PauseVideoCommand}">
+                    Stop
+                </Button>
+                <Button
+                    TabIndex="2"
+                    Name="btnRestart"
+                    Command="{Binding RestartVideoCommand}">
+                    Restart
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>

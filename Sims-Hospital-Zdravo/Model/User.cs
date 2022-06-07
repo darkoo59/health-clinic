@@ -144,6 +144,13 @@ namespace Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-       
+
+        public override string ToString()
+        {
+            return this.Role.ToString() + " " + this._Name + " " + this._Surname;
+        }
+
+
+
     }
 }

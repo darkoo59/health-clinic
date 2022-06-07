@@ -11,72 +11,57 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 
 namespace Repository
 {
-    public class RoomRepository : IUpdateFilesObserver
+    public class RoomRepository : IUpdateFilesObserver, IRoomRepository
     {
         private RoomDataHandler _roomDataHandler;
-        private ObservableCollection<Room> _rooms;
+        private List<Room> _rooms;
 
-        public RoomRepository(RoomDataHandler rmDataHandler)
+        public RoomRepository()
         {
-            _rooms = new ObservableCollection<Room>();
-            _roomDataHandler = rmDataHandler;
-            LoadDataFromFiles();
+            _rooms = new List<Room>();
+            _roomDataHandler = new RoomDataHandler();
+        }
+
+        public List<Room> FindAll()
+        {
+            return _roomDataHandler.ReadAll();
         }
 
         public void Create(Room room)
         {
-            StackTrace stackTrace = new StackTrace();
+            LoadDataFromFiles();
             _rooms.Add(room);
             room.AddObserver(this);
             LoadDataToFile();
         }
 
-        public ref ObservableCollection<Room> ReadAll()
-        {
-            return ref _rooms;
-        }
-
         public void Update(Room room)
         {
-            int id = room.Id;
-            foreach (Room rm in _rooms)
+            LoadDataFromFiles();
+            foreach (var rm in _rooms.Where(rm => room.Id == rm.Id))
             {
-                if (id == rm.Id)
-                {
-                    rm.Id = room.Id;
-                    rm.Floor = room.Floor;
-                    rm.Type = room.Type;
-                    rm.RoomEquipment = room.RoomEquipment;
-                    LoadDataToFile();
-                    return;
-                }
+                rm.Update(room);
+                LoadDataToFile();
+                return;
             }
         }
 
         public void Delete(Room room)
         {
+            LoadDataFromFiles();
             _rooms.Remove(room);
             LoadDataToFile();
         }
 
         public Room FindById(int id)
         {
-            
-            foreach (Room room in _rooms)
-            {
-                
-                if (id == room.Id)
-                {
-                    
-                    return room;
-                }
-            }
-
-            return null;
+            LoadDataFromFiles();
+            return _rooms.FirstOrDefault(room => room.Id == id);
         }
 
         public void DeleteById(int id)
@@ -88,58 +73,31 @@ namespace Repository
 
         public Room FindByType(RoomType type)
         {
-            foreach (Room room in _rooms)
-            {
-                if (room.Type == type)
-                {
-                    return room;
-                }
-            }
-
-            return null;
+            LoadDataFromFiles();
+            return _rooms.FirstOrDefault(room => room.Type == type);
         }
 
         public Room FindByRoomNumber(string roomNumber)
         {
-            foreach (Room room in _rooms)
-            {
-                if (room.RoomNumber.Equals(roomNumber))
-                {
-                    return room;
-                }
-            }
+            LoadDataFromFiles();
+            return _rooms.FirstOrDefault(room => room.RoomNumber.Equals(roomNumber));
+        }
 
-            return null;
+        public List<RoomEquipment> FindAllEquipment()
+        {
+            Room room = FindByType(RoomType.WAREHOUSE);
+            return room.FindEquipmentByType(EquipmentType.Consumable);
         }
 
         public void RemoveMultiple(List<Room> rooms)
         {
+            LoadDataFromFiles();
             foreach (Room room in rooms)
             {
                 DeleteById(room.Id);
             }
-        }
-        
-        public List<RoomEquipment> FindAllEquipment()
-        {
-            List<RoomEquipment> allEquipment = new List<RoomEquipment>();
-            foreach (Room room in _rooms)
-            {
-                foreach (RoomEquipment equipment in room.RoomEquipment)
-                {
-                    if (!allEquipment.Contains(equipment) && equipment.Equipment.Type == EquipmentType.Consumable)
-                        allEquipment.Add(equipment);
-                    else
-                    {
-                        foreach (RoomEquipment equimp in allEquipment)
-                        {
-                            if (equimp == equipment)
-                                equimp.Quantity += equipment.Quantity;
-                        }
-                    }
-                }
-            }
-            return allEquipment;
+
+            LoadDataToFile();
         }
 
         private void LoadDataFromFiles()

@@ -9,6 +9,7 @@ using Sims_Hospital_Zdravo.Model;
 using Repository;
 using Model;
 using System.Windows;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Model
@@ -18,14 +19,14 @@ namespace Sims_Hospital_Zdravo.Model
         private RequestForFreeDaysRepository _requestForFreeDaysRepository;
         private AppointmentRepository _appointmentRepository;
         private RequestForFreeDaysValidator _freeDaysValidator;
-        private NotificationRepository _notificationRepository;
+        private INotificationRepository _notificationRepository;
 
         public RequestForFreeDaysService(RequestForFreeDaysRepository requestForFreeDaysRepository, AppointmentRepository appointmentRepository,NotificationRepository notificationRepository)
         {
-            this._requestForFreeDaysRepository = requestForFreeDaysRepository;
-            this._appointmentRepository = appointmentRepository;
-            this._notificationRepository = notificationRepository;
-            this._freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
+            _requestForFreeDaysRepository = requestForFreeDaysRepository;
+            _appointmentRepository = appointmentRepository;
+            _notificationRepository = new NotificationRepository();
+            _freeDaysValidator = new RequestForFreeDaysValidator(_appointmentRepository, requestForFreeDaysRepository);
         }
 
         public void Create(FreeDaysRequest request)
@@ -37,6 +38,12 @@ namespace Sims_Hospital_Zdravo.Model
         public void CreateUrgent(FreeDaysRequest request)
         {
             _requestForFreeDaysRepository.Create(request);
+        }
+
+        public void UpdateRequestAndNotify(FreeDaysRequest request, Notification notification)
+        {
+            _requestForFreeDaysRepository.Update(request);
+            _notificationRepository.Create(notification);
         }
 
         public void Delete(FreeDaysRequest request)

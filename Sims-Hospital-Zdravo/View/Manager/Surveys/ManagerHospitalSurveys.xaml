@@ -5,48 +5,99 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Surveys"
       mc:Ignorable="d"
-      Height="686"
-      Width="924"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
       Margin="0">
     <Page.Resources>
-        <ResourceDictionary Source="../ManagerStyles.xaml">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ManagerStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ItemsControl">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="7*" />
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30">
             Hospital Survey Results
         </Label>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <ItemsControl x:Name="SurveyStats" Background="#2f343d" Foreground="White">
+        <Label Grid.Row="1" Content="{Binding Path=AverageMark}" Foreground="White" FontSize="20" />
+        <ScrollViewer
+            Grid.Row="2">
+            <ItemsControl
+                x:Name="SurveyStats"
+                IsEnabled="True"
+                Background="Transparent"
+                Foreground="White"
+                Focusable="False"
+                ItemsSource="{Binding Path=QuestionStatistics}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Background="Transparent"
-                                    Orientation="Vertical"
-                                    Width="{Binding ActualWidth, ElementName=SurveyStats}">
-                            <TextBox FontWeight="Bold"
-                                     FontSize="20"
-                                     IsEnabled="False"
-                                     Background="Transparent"
-                                     Foreground="White"
-                                     Width="{Binding ActualWidth, ElementName=SurveyStats}"
-                                     Text="{Binding Path=QuestionContent}">
-                            </TextBox>
-                            <ItemsControl
-                                Background="#2f343d"
-                                Foreground="White"
-                                FontWeight="Bold"
-                                FontSize="15"
-                                Width="{Binding ActualWidth, ElementName=SurveyStats}"
-                                ItemsSource="{Binding Marks}">
-                            </ItemsControl>
-                        </StackPanel>
+                        <Border Padding="10" BorderBrush="White" BorderThickness="1" Margin="10, 10, 10, 10">
+                            <DockPanel
+                                HorizontalAlignment="Center"
+                                MaxWidth="370"
+                                FocusVisualStyle="{DynamicResource MyFocusVisual}"
+                                Width="{Binding ActualWidth, ElementName=SurveyStats}">
+                                <ItemsControl
+                                    DockPanel.Dock="Bottom"
+                                    Background="#2f343d"
+                                    HorizontalAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="25"
+                                    MaxWidth="350"
+                                    ItemsSource="{Binding Marks}"
+                                    FocusVisualStyle="{DynamicResource MyFocusVisual}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"
+                                    FontWeight="Bold"
+                                    MaxWidth="300"
+                                    FontSize="20"
+                                    Background="Transparent"
+                                    Foreground="White"
+                                    Focusable="True"
+                                    FocusVisualStyle="{DynamicResource MyFocusVisual}"
+                                    Width="{Binding ActualWidth, ElementName=SurveyStats}"
+                                    Text="{Binding Path=QuestionContent}"
+                                    Margin="0, 0, 0, 10">
+                                </TextBlock>
+
+                            </DockPanel>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+
     </Grid>
 </Page>
+
+<!-- Height="686" -->
+<!-- Width="924" -->

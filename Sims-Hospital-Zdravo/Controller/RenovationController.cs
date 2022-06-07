@@ -16,18 +16,9 @@ namespace Sims_Hospital_Zdravo.Controller
 
         public RenovationController(RenovationService renovationService)
         {
-            this._renovationService = renovationService;
+            _renovationService = renovationService;
         }
 
-        // public void MakeRenovationAppointment(TimeInterval time, Room room, RenovationType type, string description)
-        // {
-        //     _renovationService.MakeRenovationAppointment(time, room, type, description);
-        // }
-        //
-        // public void MakeAdvancedRenovationAppointment(TimeInterval time, Room room, string description, List<Room> rooms, RoomRenovationType roomRenovationType)
-        // {
-        //     _renovationService.MakeAdvancedRenovationAppointment(time, room, description, rooms, roomRenovationType);
-        // }
         public void MakeRenovationAppointment(RenovationAppointment renovationAppointment)
         {
             _renovationService.MakeRenovationAppointment(renovationAppointment);
@@ -73,9 +64,9 @@ namespace Sims_Hospital_Zdravo.Controller
             _renovationService.Delete(renovation);
         }
 
-        public ObservableCollection<RenovationAppointment> ReadAll()
+        public List<RenovationAppointment> FindAll()
         {
-            return _renovationService.ReadAll();
+            return _renovationService.FindAll();
         }
 
         public List<RenovationAppointment> FindByType(RenovationType type)

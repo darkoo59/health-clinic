@@ -28,17 +28,19 @@ namespace Sims_Hospital_Zdravo.Utils
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
         private AccountController _accountController;
+        private bool isRenovationAppointmentInProgress;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
             PrescriptionController prescriptionController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
         {
-            this._relocationController = relocationController;
-            this._renovationController = renovationController;
-            this._prescriptionController = prescriptionController;
-            this._notificationController = notificationController;
-            this._doctorAppointmentController = doctorAppointmentController;
-            this._suppliesController = suppliesController;
-            this._accountController = accountController;
+            _relocationController = relocationController;
+            _renovationController = renovationController;
+            _prescriptionController = prescriptionController;
+            _notificationController = notificationController;
+            _doctorAppointmentController = doctorAppointmentController;
+            _suppliesController = suppliesController;
+            _accountController = accountController;
+            isRenovationAppointmentInProgress = false;
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -67,29 +69,35 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
+            CheckNotificationForSecretary();
             //AppointmentDone();
         }
 
         private void CheckIfRelocationAppointmentDone()
         {
-            List<RelocationAppointment> appointments = _relocationController.ReadAll();
+            List<RelocationAppointment> appointments = _relocationController.FindAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
                 if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
                 {
-                    _relocationController.FinishRelocationAppointment(app.Id);
+                    App.Current.Dispatcher.Invoke((Action)delegate { _relocationController.FinishRelocationAppointment(app.Id); });
                 }
             }
         }
 
         private void CheckIfRenovationAppointmentDone()
         {
-            ObservableCollection<RenovationAppointment> renovations = new ObservableCollection<RenovationAppointment>(_renovationController.ReadAll());
+            List<RenovationAppointment> renovations = new List<RenovationAppointment>(_renovationController.FindAll());
             foreach (RenovationAppointment renovation in renovations)
             {
-                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0)
+                if (renovation.Time.End.Date.CompareTo(DateTime.Now.Date) <= 0 && !isRenovationAppointmentInProgress)
                 {
-                    App.Current.Dispatcher.Invoke((Action)delegate { _renovationController.FinishRenovationAppointment(renovation.Id); });
+                    isRenovationAppointmentInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        _renovationController.FinishRenovationAppointment(renovation.Id);
+                        isRenovationAppointmentInProgress = false;
+                    });
                 }
             }
         }
@@ -112,13 +120,18 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckNotificationForManager()
         {
-
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.MANAGER)) return;
 
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
             foreach (Notification notification in notifications)
+            {
+                Notify(notification);
+            }
+
+            List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
             }
@@ -132,6 +145,31 @@ namespace Sims_Hospital_Zdravo.Utils
 
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account.Id);
             foreach (Notification notification in notifications)
+            {
+                Notify(notification);
+            }
+
+            List<Notification> meetingNotifications = _notificationController.ReadAllDoctorMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
+            {
+                Notify(notification);
+            }
+
+            List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account._Id);
+            foreach (Notification notification in freeDaysNotifications)
+            {
+                Notify(notification);
+            }
+        }
+
+        public void CheckNotificationForSecretary()
+        {
+            User account = _accountController.GetLoggedAccount();
+            if (account == null) return;
+            if (!account._Role.Equals(RoleType.SECRETARY)) return;
+
+            List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account._Id);
+            foreach (Notification notification in meetingNotifications)
             {
                 Notify(notification);
             }

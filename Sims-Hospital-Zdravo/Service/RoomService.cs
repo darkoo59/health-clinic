@@ -10,19 +10,22 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.DTO;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils;
+using Sims_Hospital_Zdravo.Utils.FilterPipelines;
 
 namespace Service
 {
     public class RoomService
     {
         private RoomValidator _validator;
-        private RoomRepository _roomRepository;
+        private IRoomRepository _roomRepository;
 
 
-        public RoomService(RoomRepository roomRepository)
+        public RoomService()
         {
-            this._roomRepository = roomRepository;
+            _roomRepository = new RoomRepository();
             _validator = new RoomValidator(this);
         }
 
@@ -32,9 +35,9 @@ namespace Service
             _roomRepository.Create(room);
         }
 
-        public ref ObservableCollection<Room> ReadAll()
+        public List<Room> FindAll()
         {
-            return ref _roomRepository.ReadAll();
+            return _roomRepository.FindAll();
         }
 
         public void Update(Room room)
@@ -47,6 +50,12 @@ namespace Service
         {
             _validator.ValidateDelete(room);
             _roomRepository.Delete(room);
+        }
+
+        public List<RoomEquipment> FilterRoomEquipment(Room room, RoomEquipmentFilterDTO roomEquipmentFilterDto)
+        {
+            IFilterPipeline<RoomEquipment> roomEquipmentFilterPipeline = RoomEquipmentFilterPipeline.CreateEquipmentFilterPipeline(roomEquipmentFilterDto);
+            return roomEquipmentFilterPipeline.FilterAll(room.RoomEquipment);
         }
 
         public Room FindById(int id)
@@ -72,7 +81,7 @@ namespace Service
 
         public int GenerateId()
         {
-            List<Room> appointments = new List<Room>(_roomRepository.ReadAll());
+            List<Room> appointments = _roomRepository.FindAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

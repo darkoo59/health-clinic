@@ -58,6 +58,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -67,6 +70,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,6 +111,7 @@
     <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
+    <Compile Include="Controller\MeetingController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="Controller\PrescriptionController.cs" />
@@ -123,6 +130,7 @@
     <Compile Include="DataHandler\HospitalQuestionDataHandler.cs" />
     <Compile Include="DataHandler\HospitalSurveyDataHandler.cs" />
     <Compile Include="DataHandler\MedicineDataHandler.cs" />
+    <Compile Include="DataHandler\MeetingDataHandler.cs" />
     <Compile Include="DataHandler\NotificationDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
     <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
@@ -130,22 +138,39 @@
     <Compile Include="DataHandler\RenovationDataHandler.cs" />
     <Compile Include="DataHandler\RequestForFreeDaysDataHandler.cs" />
     <Compile Include="DataHandler\SuppliesAcquisitionDataHandler.cs" />
+    <Compile Include="DTO\RoomEquipmentFilterDTO.cs" />
+    <Compile Include="Interfaces\IEquipmentRepository.cs" />
+    <Compile Include="Interfaces\IGenericCRUD.cs" />
+    <Compile Include="Interfaces\IGenericRepository.cs" />
+    <Compile Include="Interfaces\INotificationRepository.cs" />
+    <Compile Include="Interfaces\IExtendedCRUD.cs" />
+    <Compile Include="Interfaces\IRelocationRepository.cs" />
+    <Compile Include="Interfaces\IRenovationRepository.cs" />
+    <Compile Include="Interfaces\IRoomRepository.cs" />
     <Compile Include="Interfaces\ISurveyStatistic.cs" />
-    <Compile Include="Model\LabaratoryTest.cs" />
+    <Compile Include="Model\FreeDaysNotification.cs" />
     <Compile Include="Model\MarkStatistic.cs" />
+    <Compile Include="Model\Meeting.cs" />
+    <Compile Include="Model\MeetingCreatedNotifications.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
-    <Compile Include="ViewModel\Doctor\BindableBase.cs" />
-    <Compile Include="ViewModel\Doctor\LabaratoryTestViewModel.cs" />
-    <Compile Include="ViewModel\Doctor\MyAppointmentsViewModel.cs" />
-    <Compile Include="ViewModel\Doctor\MyIComand.cs" />
-    <Compile Include="ViewModel\Doctor\SearchPatientViewModel.cs" />
-    <Compile Include="ViewModel\Doctor\ValidateMedicineViewModel.cs" />
+    <Compile Include="ViewModel\Commands\SearchCommand.cs" />
+    <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
+    <Compile Include="Repository\MeetingRepository.cs" />
+    <Compile Include="Service\MeetingService.cs" />
+    <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
+    <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
+    <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
+      <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml.cs">
       <DependentUpon>ManagerHospitalSurveys.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\Surveys\ManagerSurveys.xaml.cs">
       <DependentUpon>ManagerSurveys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Patient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
@@ -324,6 +349,12 @@
     <Compile Include="View\Secretary\Examination\UpdateChooseRoomWindow.xaml.cs">
       <DependentUpon>UpdateChooseRoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\FreeDays\EditRequestWindow.xaml.cs">
+      <DependentUpon>EditRequestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\FreeDays\FreeDaysWindow.xaml.cs">
+      <DependentUpon>FreeDaysWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml.cs">
       <DependentUpon>InsertRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -333,6 +364,9 @@
     <Compile Include="Repository\AppointmentRepository.cs" />
     <Compile Include="Repository\MedicalRecordsRepository.cs" />
     <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="View\Secretary\Meetings\CreateNewMeeting.xaml.cs">
+      <DependentUpon>CreateNewMeeting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\SecretaryHome.xaml.cs">
       <DependentUpon>SecretaryHome.xaml</DependentUpon>
     </Compile>
@@ -432,14 +466,10 @@
     <Compile Include="View\ViewDoctor\ValidateMedicine.xaml.cs">
       <DependentUpon>ValidateMedicine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
-      <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ViewDoctor\WizardWindow.xaml.cs">
-      <DependentUpon>WizardWindow.xaml</DependentUpon>
-    </Compile>
+    <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
+    <Page Include="View\Manager\Tutorial.xaml" />
     <Page Include="View\Patient\AnamnesisPage.xaml" />
     <Page Include="View\Patient\AppointmentDetailsPage.xaml" />
     <Page Include="View\Patient\AppointmentList.xaml">
@@ -538,6 +568,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Secretary\FreeDays\EditRequestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\FreeDays\FreeDaysWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Secretary\MedicalRecordCRUD\InsertRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -562,6 +600,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Patient\PatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Meetings\CreateNewMeeting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -811,7 +853,9 @@
     <Resource Include="Resources\img\icons8-day-off-96.png" />
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
+    <Resource Include="Resources\demo.mp4" />
     <Content Include="Resources\doctor_surveys.txt" />
+    <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
@@ -834,6 +878,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\img\Secretary\Home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\FreeDays.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\img\Secretary\Light\About.png" />
@@ -889,6 +936,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\medicines.txt" />
+    <Resource Include="Resources\meetings.txt" />
     <Content Include="Resources\notifications.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />

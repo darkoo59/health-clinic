@@ -15,7 +15,7 @@ namespace Controller
 
         public EquipmentTransferController(EquipmentTransferService equipmentTransferService)
         {
-            this._equipmentTransferService = equipmentTransferService;
+            _equipmentTransferService = equipmentTransferService;
         }
 
         public void FinishRelocationAppointment(int relocationAppointmentId)
@@ -23,19 +23,24 @@ namespace Controller
             _equipmentTransferService.FinishRelocationAppointment(relocationAppointmentId);
         }
 
-        public void MakeRelocationAppointment(int fromRoomId, int toRoomId, Equipment eq, int quantity, TimeInterval ti)
+        public void MakeRelocationAppointment(RelocationAppointment relocationAppointment)
         {
-            _equipmentTransferService.MakeRelocationAppointment(fromRoomId, toRoomId, eq, quantity, ti);
+            _equipmentTransferService.MakeRelocationAppointment(relocationAppointment);
         }
 
-        public List<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> FindAll()
         {
-            return _equipmentTransferService.ReadAll();
+            return _equipmentTransferService.FindAll();
         }
 
-        public List<TimeInterval> GetFreeTimeIntervals(Room fromRoom, Room toRoom)
+        public List<TimeInterval> GetTakenTimeIntervals(Room fromRoom, Room toRoom)
         {
             return _equipmentTransferService.FindReservedTimeForRooms(fromRoom, toRoom);
+        }
+
+        public int GenerateId()
+        {
+            return _equipmentTransferService.GenerateId();
         }
     }
 }

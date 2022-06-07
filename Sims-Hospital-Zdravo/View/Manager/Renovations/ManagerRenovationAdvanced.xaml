@@ -57,13 +57,20 @@
         <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30">
             Advanced Renovation
         </Label>
-        <RadioButton Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=IsSplit}"
-                     GroupName="SplitJoin">
+        <RadioButton
+            Grid.Row="1"
+            Grid.Column="0"
+            IsChecked="{Binding Path=IsSplit}"
+            FocusVisualStyle="{DynamicResource MyFocusVisual}"
+            GroupName="SplitJoin">
             Split Rooms
         </RadioButton>
-        <RadioButton Grid.Row="1" Grid.Column="1"
-                     IsChecked="{Binding Path=IsSplit, Converter={StaticResource AdvRenConverter}}"
-                     GroupName="SplitJoin">
+        <RadioButton
+            Grid.Row="1"
+            Grid.Column="1"
+            IsChecked="{Binding Path=IsSplit, Converter={StaticResource AdvRenConverter}}"
+            FocusVisualStyle="{DynamicResource MyFocusVisual}"
+            GroupName="SplitJoin">
             Join Rooms
         </RadioButton>
 
