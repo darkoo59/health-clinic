@@ -89,7 +89,7 @@ namespace Sims_Hospital_Zdravo
             // DoctorRepository doctorRepository = new DoctorRepository();
             // AppointmentRepository appointmentRepository = new AppointmentRepository();
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(new AppointmentRepository(), new DoctorRepository(), accountRepository);
+                new AppointmentPatientService(accountRepository);
             _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
             DoctorRepository docRepo = new DoctorRepository();
@@ -109,7 +109,7 @@ namespace Sims_Hospital_Zdravo
             TimeSchedulerService timeSchedulerService = new TimeSchedulerService();
 
             DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService(new AppointmentRepository(), patientRepository, docRepo, timeSchedulerService, roomService);
+                new DoctorAppointmentService(patientRepository, timeSchedulerService, roomService);
             _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
@@ -129,7 +129,7 @@ namespace Sims_Hospital_Zdravo
             //AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             //_anamnesisController = new AnamnesisController(anamnesisService);
 
-            DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
+            /*DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
             DoctorQuestionDataHandler doctorQuestionDataHandler = new DoctorQuestionDataHandler();
             HospitalQuestionDataHandler hospitalQuestionDataHandler = new HospitalQuestionDataHandler();
@@ -137,7 +137,7 @@ namespace Sims_Hospital_Zdravo
             DoctorSurveyRepository doctorSurveyRepository = new DoctorSurveyRepository(doctorSurveyDataHandler);
             HospitalSurveyRepository hospitalSurveyRepository = new HospitalSurveyRepository(hospitalSurveyDataHandler);
             SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository, questionRepository);
-            _surveyController = new SurveyController(surveyService);
+            _surveyController = new SurveyController(surveyService);*/
 
             // SecretaryAppointmentService secretaryAppointmentService =
             //     new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, doctorRepository);

@@ -6,17 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class DoctorSurveyRepository
+    public class DoctorSurveyRepository : IDoctorSurveyRepository
     {
         public DoctorSurveyDataHandler doctorSurveyDataHandler;
         public List<DoctorSurvey> surveys;
 
-        public DoctorSurveyRepository(DoctorSurveyDataHandler doctorSurveyDataHandler)
+        public DoctorSurveyRepository()
         {
-            this.doctorSurveyDataHandler = doctorSurveyDataHandler;
+            this.doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             this.surveys = new List<DoctorSurvey>();
             LoadDataFromFile();
         }
@@ -28,14 +29,16 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFile();
         }
 
-        public List<DoctorSurvey> ReadAll()
+        public List<DoctorSurvey> FindAll()
         {
+            LoadDataFromFile();
             return surveys;
         }
 
-        public List<DoctorSurvey> ReadAllByDoctorId(int id)
+        public List<DoctorSurvey> FindAllByDoctorId(int id)
         {
-            return surveys.FindAll(survey => survey.Appointment.Doctor.Id == id);
+            LoadDataFromFile();
+            return surveys.FindAll(survey => survey.Appointment.Doctor._Id == id);
         }
 
         public void LoadDataFromFile()

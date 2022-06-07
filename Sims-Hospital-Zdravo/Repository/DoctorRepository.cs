@@ -25,18 +25,21 @@ namespace Repository
 
         public void Create(Doctor doct)
         {
+            LoadDataFromFile();
             doctors.Add(doct);
             LoadDataToFile();
         }
 
         public void Delete(Doctor doc)
         {
+            LoadDataFromFile();
             doctors.Remove(doc);
             LoadDataToFile();
         }
 
         public void Update(Doctor newDoc)
         {
+            LoadDataFromFile();
             foreach (Doctor doc in doctors)
             {
                 if (doc.Id == newDoc.Id)
@@ -59,6 +62,7 @@ namespace Repository
 
         public Doctor FindDoctorById(int id)
         {
+            LoadDataFromFile();
             foreach (Doctor doc in doctors)
             {
                 if (doc.Id == id) return doc;
@@ -71,7 +75,7 @@ namespace Repository
 
         public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
         {
-            
+            LoadDataFromFile();
             List<Doctor> doctorss = new List<Doctor>();
 
             foreach(Doctor doc in doctors.ToList())
@@ -89,6 +93,7 @@ namespace Repository
         }
         public List<Doctor> FindDoctorsBySpeciality(SpecialtyType type)
         {
+            LoadDataFromFile();
             List<Doctor> docs = new List<Doctor>();
             foreach (Doctor doc in doctors)
             {
@@ -102,12 +107,13 @@ namespace Repository
 
         public List<Doctor> FindAll()
         {
-            return docHandler.ReadAll();
+            LoadDataFromFile();
+            return doctors;
         }
 
         public void LoadDataFromFile()
         {
-            this.doctors = docHandler.ReadAll();
+            doctors = docHandler.ReadAll();
         }
 
         public void LoadDataToFile()

@@ -12,9 +12,9 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         public SurveyService surveyService;
 
-        public SurveyController(SurveyService surveyService)
+        public SurveyController()
         {
-            this.surveyService = surveyService;
+            this.surveyService = new SurveyService();
         }
 
         public void CreateDoctorSurvey(DoctorSurvey doctorSurvey)

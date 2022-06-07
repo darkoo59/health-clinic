@@ -25,7 +25,7 @@ namespace Sims_Hospital_Zdravo
         App app;
         public AppointmentPatientController appointmentPatientController;
         public Appointment appointment;
-        public ObservableCollection<Appointment> appointments;
+        public List<Appointment> appointments;
         public ObservableCollection<Doctor> doctors;
         private Frame frame;
         public string priority;

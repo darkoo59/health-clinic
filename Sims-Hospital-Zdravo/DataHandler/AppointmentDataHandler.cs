@@ -16,14 +16,14 @@ namespace DataHandler
 {
    public class AppointmentDataHandler
    {
-      public ObservableCollection<Appointment> ReadAll()
+      public List<Appointment> ReadAll()
       {
             string appointmentSerialized = System.IO.File.ReadAllText(Path);
-            ObservableCollection<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Appointment>>(appointmentSerialized);
+            List<Appointment> appointments = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Appointment>>(appointmentSerialized);
             return appointments;
         }
       
-      public void Write(ObservableCollection<Appointment> appointments)
+      public void Write(List<Appointment> appointments)
       {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(appointments);
             System.IO.File.WriteAllText(Path, serialized);

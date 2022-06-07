@@ -7,7 +7,6 @@ namespace Sims_Hospital_Zdravo.ViewModel
 {
     public class ManagerHospitalSurveyViewModel
     {
-        private App app;
         private SurveyController surveyController;
         private SurveyStatistics surveyStatistics;
         public List<QuestionStatistic> QuestionStatistics { get; set; }
@@ -15,8 +14,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public ManagerHospitalSurveyViewModel()
         {
-            app = Application.Current as App;
-            surveyController = app._surveyController;
+            surveyController = new SurveyController();
             surveyStatistics = surveyController.GetHospitalSurveyStatistics();
             AverageMark = "Average Mark : " + surveyStatistics.AverageMark;
             QuestionStatistics = surveyStatistics.QuestionStatistics;

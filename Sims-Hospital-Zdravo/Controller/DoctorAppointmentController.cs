@@ -39,7 +39,7 @@ namespace Controller
             return _doctorAppointmentService.GetByID(appointment);
         }
 
-        public ObservableCollection<Appointment> GetByDoctorID(int id)
+        public List<Appointment> GetByDoctorID(int id)
         {
             return _doctorAppointmentService.ReadAll(id);
         }
@@ -54,7 +54,7 @@ namespace Controller
             _doctorAppointmentService.DeleteByID(appointment);
         }
 
-        public ObservableCollection<Appointment> ReadAll(int id)
+        public List<Appointment> ReadAll(int id)
         {
             // TODO: implement
             return _doctorAppointmentService.ReadAll(id);
@@ -73,7 +73,7 @@ namespace Controller
             this._doctorAppointmentService = AppService;
         }
 
-        public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
+        public List<Appointment> FilterAppointmentsByDate(DateTime date)
         {
             return _doctorAppointmentService.FilterAppointmentsByDate(date);
         }

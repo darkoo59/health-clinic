@@ -35,10 +35,20 @@ namespace Sims_Hospital_Zdravo
             this.appointment = appointment;
             InitializeComponent();
             this.prescription = prescription;
-            if (prescription.StartDate.CompareTo(appointment.Time.Start) > 0) 
+            if (prescription.StartDate.CompareTo(appointment.Time.Start) > 0)
             {
                 Date.SelectedDate = prescription.StartDate;
-                Time.Text = prescription.StartDate.ToString("{0:HH:mm}");
+                Time.Text = prescription.StartDate.ToString("HH:mm");
+                Submit.Visibility = Visibility.Visible;
+            }
+            else if (prescription.StartDate.CompareTo(DateTime.Now) < 0)
+            {
+                Submit.Content = "Edit";
+                Submit.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Submit.Visibility = Visibility.Hidden;
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)

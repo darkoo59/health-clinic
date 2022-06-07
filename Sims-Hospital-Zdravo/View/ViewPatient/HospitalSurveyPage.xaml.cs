@@ -23,7 +23,6 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class HospitalSurveyPage : Page
     {
-        private App app;
         private SurveyController surveyController;
         private ObservableCollection<QuestionForSurvey> questions;
         private Frame frame;
@@ -31,8 +30,7 @@ namespace Sims_Hospital_Zdravo
         {
             InitializeComponent();
             this.frame = frame;
-            app = Application.Current as App;
-            this.surveyController = app._surveyController;
+            this.surveyController = new SurveyController();
             this.DataContext = this;
             InitalizeList();
             Survey.ItemsSource = questions;
