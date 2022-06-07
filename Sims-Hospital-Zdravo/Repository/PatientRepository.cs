@@ -15,9 +15,9 @@ namespace Repository
         public ObservableCollection<Patient> patients;
         public MedicalRecordsRepository MedicalRecordsRepository;
 
-        public PatientRepository(PatientDataHandler patientHandler)
+        public PatientRepository()
         {
-            this.patientHandler = patientHandler;
+            this.patientHandler = new PatientDataHandler();
             this.patients = new ObservableCollection<Patient>();
             LoadDataFromFile();
         }

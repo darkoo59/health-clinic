@@ -1,0 +1,15 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewPatient.TherapyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewPatient"
+      mc:Ignorable="d" 
+      d:DesignHeight="327" d:DesignWidth="792"
+      Title="TherapyPage">
+
+    <Grid>
+        <DataGrid Name="Schedule" HorizontalAlignment="Left" Height="215" Margin="75,70,0,0" VerticalAlignment="Top" Width="651"/>
+
+    </Grid>
+</Page>

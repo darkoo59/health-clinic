@@ -28,11 +28,10 @@ namespace Service
         {
             RelocationAppointment appointment = _relocationAppointmentRepository.FindById(appointmentId);
             Room toRoom = appointment.ToRoom;
-            Room originalRoom = _roomRepository.FindById(toRoom.Id);
             RoomEquipment re = appointment.RoomEquipment;
-
-            _relocationAppointmentRepository.Delete(appointment);
-            originalRoom.AddEquipment(re);
+            toRoom.AddEquipment(re);
+            _roomRepository.Update(toRoom);
+            _relocationAppointmentRepository.DeleteById(appointmentId);
         }
 
         public void MakeRelocationAppointment(RelocationAppointment relocationAppointment)
@@ -45,6 +44,7 @@ namespace Service
         {
             Room fromRoom = _roomRepository.FindById(relocationAppointment.FromRoom.Id);
             fromRoom.RemoveEquipment(relocationAppointment.RoomEquipment);
+            _roomRepository.Update(fromRoom);
             _relocationAppointmentRepository.Create(relocationAppointment);
         }
 

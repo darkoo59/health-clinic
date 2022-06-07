@@ -14,15 +14,15 @@ namespace Sims_Hospital_Zdravo.Service
     public class MeetingService
     {
         private IRoomRepository _roomRepository;
-        private AccountRepository _accountRepository;
+        private IAccountRepository _accountRepository;
         private MeetingRepository _meetingRepository;
         private INotificationRepository _notificationRepository;
 
-        public MeetingService(AccountRepository accRepo, MeetingRepository meetingRepo)
+        public MeetingService()
         {
             _roomRepository = new RoomRepository();
-            _accountRepository = accRepo;
-            _meetingRepository = meetingRepo;
+            _accountRepository = new AccountRepository();
+            _meetingRepository = new MeetingRepository();
             _notificationRepository = new NotificationRepository();
         }
 
@@ -45,7 +45,7 @@ namespace Sims_Hospital_Zdravo.Service
 
         public List<User> ReadAllPotentionalAttendees()
         {
-            return (from User user in _accountRepository.ReadAll()
+            return (from User user in _accountRepository.FindAll()
                 where user._Role != RoleType.PATIENT
                 select user).ToList();
         }

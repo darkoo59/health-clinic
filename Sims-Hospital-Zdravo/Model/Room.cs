@@ -20,7 +20,7 @@ public enum RoomType
 
 namespace Model
 {
-    public class Room : INotifyPropertyChanged, IUpdateFilesObservable
+    public class Room : INotifyPropertyChanged
     {
         private int _floor;
         private int _id;
@@ -33,11 +33,9 @@ namespace Model
         {
         }
 
-        private List<IUpdateFilesObserver> _observers;
 
         public Room(int floor, int id, RoomType type, string roomNumber, int quadrature)
         {
-            this._observers = new List<IUpdateFilesObserver>();
             this._floor = floor;
             this._id = id;
             this._type = type;
@@ -114,13 +112,11 @@ namespace Model
                 if (eq.Equipment.Id == re.Equipment.Id)
                 {
                     eq.Quantity += re.Quantity;
-                    NotifyUpdated();
                     return;
                 }
             }
 
             _roomEquipment.Add(re);
-            NotifyUpdated();
         }
 
         public void RemoveEquipment(RoomEquipment re)
@@ -130,13 +126,11 @@ namespace Model
                 if (eq.Equipment.Id == re.Equipment.Id)
                 {
                     eq.Quantity -= re.Quantity;
-                    NotifyUpdated();
                     return;
                 }
             }
 
             _roomEquipment.Add(re);
-            NotifyUpdated();
         }
 
         public bool HasEquipment(string equipmentName)
@@ -166,28 +160,6 @@ namespace Model
             return this._roomNumber + " " + this._type;
         }
 
-        public void NotifyUpdated()
-        {
-            foreach (IUpdateFilesObserver observer in _observers)
-            {
-                observer.NotifyUpdated();
-            }
-        }
-
-        public void AddObserver(IUpdateFilesObserver observer)
-        {
-            if (_observers == null)
-            {
-                _observers = new List<IUpdateFilesObserver>();
-            }
-
-            _observers.Add(observer);
-        }
-
-        public void RemoveObserver(IUpdateFilesObserver observer)
-        {
-            _observers.Remove(observer);
-        }
 
         public List<RoomEquipment> GetAllEquipmentByType(EquipmentType equipmentType)
         {

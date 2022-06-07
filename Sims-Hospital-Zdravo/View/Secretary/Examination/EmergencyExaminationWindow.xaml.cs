@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -22,11 +23,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     public partial class EmergencyExaminationWindow : Window
     {
         private App app;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public EmergencyExaminationWindow()
         {
             app = Application.Current as App;
+            _secretaryAppointmentController = new SecretaryAppointmentController();
             InitializeComponent();
-            ListPatients.ItemsSource = app._secretaryAppointmentController.ReadAllPatients();
+            ListPatients.ItemsSource = _secretaryAppointmentController.ReadAllPatients();
         }
 
 
@@ -75,7 +78,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Guest_Click(object sender, RoutedEventArgs e)  //TODO
         {
-            Patient patient = new Patient(app._secretaryAppointmentController.GeneratePatientId(), "Guest", "Guest");
+            Patient patient = new Patient(_secretaryAppointmentController.GeneratePatientId(), "Guest", "Guest");
             ChooseDoctorSpecialityWindow window = new ChooseDoctorSpecialityWindow(patient);
             window.Show();
             this.Close();
@@ -110,14 +113,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
         
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }

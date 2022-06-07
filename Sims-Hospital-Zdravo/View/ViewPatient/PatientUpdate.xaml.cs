@@ -36,7 +36,6 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             app = Application.Current as App;
             this.DataContext = this;
-            this.appointmentPatientController = app._appointmentPatientController;
             this.appointment = appointment;
             dateTime = appointment.Time.Start;
             if (appointment.Time.Start.Hour < 10)

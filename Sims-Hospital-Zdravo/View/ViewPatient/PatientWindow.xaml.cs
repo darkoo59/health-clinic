@@ -12,40 +12,44 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Controller;
 
 namespace Sims_Hospital_Zdravo
 {
     /// <summary>
-    /// Interaction logic for HomePatientPage.xaml
+    /// Interaction logic for PatientWindow.xaml
     /// </summary>
-    public partial class HomePatient : Page
+    public partial class PatientWindow : Page
     {
-        public Frame frame;
         public AppointmentPatientController appointmentPatientController;
         App app;
-        public HomePatient(Frame frame)
+        Frame frame;
+        public AccountController accountController;
+        public PatientWindow(Frame frame)
         {
-            InitializeComponent();
             app = Application.Current as App;
             this.frame = frame;
+            InitializeComponent();
+            this.accountController = app._accountController;
             this.appointmentPatientController = app._appointmentPatientController;
             this.DataContext = this;
 
-            Apps.AutoGenerateColumns = false;
+            McDataGrid.AutoGenerateColumns = false;
             Binding date = new Binding("_Time.Start");
             date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
-            Apps.Columns.Add(data_column);
+            McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
             Binding time = new Binding("_Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
-            Apps.Columns.Add(data_column);
+            McDataGrid.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
             doctor.Bindings.Add(new Binding("_Doctor._Name"));
@@ -53,30 +57,38 @@ namespace Sims_Hospital_Zdravo
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
-            data_column.Width = 195;
-            Apps.Columns.Add(data_column);
-            DataGridCheckBoxColumn data_check_box = new DataGridCheckBoxColumn();
-            data_check_box.Header = "Rated";
-            data_check_box.Binding = new Binding("Rated");
-            Apps.Columns.Add(data_check_box);
-            Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(1);
+            data_column.Width = 190;
+            McDataGrid.Columns.Add(data_column);
+            data_column = new DataGridTextColumn();
+            data_column.Header = "Room";
+            data_column.Binding = new Binding("_Room._Id");
+            McDataGrid.Columns.Add(data_column);
+
+            McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(accountController.GetLoggedAccount()._Id);
+            McDataGrid.Items.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new HospitalSurveyPage(frame);
+            frame.Content = new PatientCreate(frame);
         }
 
-        private void Details_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Appointment appointment = (Appointment)Apps.SelectedItem;
-            frame.Content = new AppointmentDetailsPage(appointment);
+            Appointment appointment = (Appointment)McDataGrid.SelectedValue;
+            frame.Content = new PatientUpdate(frame, appointment) { DataContext = McDataGrid.SelectedItem };
         }
 
-        private void Rate_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Appointment appointment = (Appointment) Apps.SelectedItem;
-            if(appointment.Rated == false) frame.Content = new DoctorSurveyPage(appointment, frame);
+            try
+            {
+                appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
+            }
+            catch (Exception m)
+            {
+                MessageBox.Show(m.Message);
+            }
         }
     }
 }

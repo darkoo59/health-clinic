@@ -24,11 +24,11 @@ namespace Service
         private AllergensRepository _allergensRepository;
         private MedicalRecordValidator _validator;
 
-        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
+        public MedicalRecordService()
         {
-            _medicalRecordRepository = medicalRepo;
-            _patientRepository = patientRepo;
-            _allergensRepository = alergRepo;
+            _medicalRecordRepository = new MedicalRecordsRepository();
+            _patientRepository = new PatientRepository();
+            _allergensRepository = new AllergensRepository();
             _validator = new MedicalRecordValidator(this);
         }
         public void Create(MedicalRecord medicalRecord, Patient patient)
@@ -42,15 +42,13 @@ namespace Service
 
         public MedicalRecord FindById(int id)
         {
-            // TODO: implement
             return _medicalRecordRepository.FindById(id);
         }
 
 
-        public ref ObservableCollection<MedicalRecord> ReadAll()
+        public List<MedicalRecord> ReadAll()
         {
-            // TODO: implement
-            return ref _medicalRecordRepository.ReadAll();
+            return _medicalRecordRepository.FindAll();
         }
 
         public void Update(MedicalRecord medicalRecord, Patient patient)
@@ -59,12 +57,10 @@ namespace Service
             _validator.UpdateValidation(patient.Jmbg);
             _patientRepository.Update(patient);
             _medicalRecordRepository.Update(medicalRecord);
-            return;
         }
 
         public void DeleteById(int id)
         {
-            // TODO: implement
             _medicalRecordRepository.DeleteById(id);
         }
 
@@ -81,18 +77,18 @@ namespace Service
 
         public List<String> ReadAllCommonAllergens()
         {
-            return _allergensRepository.ReadAllCommonAllergens();
+            return _allergensRepository.FindAllCommonAllergens();
         }
 
 
         public List<String> ReadAllMedicalAllergens()
         {
-            return _allergensRepository.ReadAllMedicalAllergens();
+            return _allergensRepository.FindAllMedicalAllergens();
         }
 
         public int GenerateId()
         {
-            ObservableCollection<MedicalRecord> medicalRecords = _medicalRecordRepository.ReadAll();
+            List<MedicalRecord> medicalRecords = _medicalRecordRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (MedicalRecord record in medicalRecords)
@@ -136,7 +132,7 @@ namespace Service
         {
             _medicalRecordRepository.AddNotes(appointment, anamnesis, notes);
         }
-        public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment)
+        public List<Prescription> GetPrescriptions(Appointment appointment)
         {
             return _medicalRecordRepository.GetPrescriptions(appointment);
         }

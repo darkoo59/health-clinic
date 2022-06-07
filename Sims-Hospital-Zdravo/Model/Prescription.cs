@@ -89,9 +89,7 @@ namespace Sims_Hospital_Zdravo.Model
                 _prescriptionDate = value;
             }
         }
-        public Doctor _Doctor
-
-        
+        public Doctor Doctor
         {
             get
             {
@@ -140,5 +138,25 @@ namespace Sims_Hospital_Zdravo.Model
             }
         }
 
+
+        public int GetFrequency()
+        {
+            string[] s = this.Dosage.Split('x');
+            return Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
+        }
+        public DateTime GetDateTime()
+        {
+            DateTime dt = new DateTime(this.StartDate.Year, this.StartDate.Month, this.StartDate.Day);
+            dt = dt.AddHours(this.StartDate.Hour);
+            dt = dt.AddMinutes(this.StartDate.Minute);
+            return dt;
+        }
+        public int GetQuantity()
+        {
+            string[] s = this.Dosage.Split('x');
+            int p = 30;
+            p = p * Int32.Parse(s[0]) / Int32.Parse(s[1]);
+            return p;
+        }
     }
 }

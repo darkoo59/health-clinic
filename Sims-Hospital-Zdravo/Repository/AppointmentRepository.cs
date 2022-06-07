@@ -19,11 +19,11 @@ namespace Repository
         private ObservableCollection<Appointment> appointments;
         private AppointmentDataHandler appointmentDataHandler;
 
-        public AppointmentRepository(AppointmentDataHandler appDataHandler)
+        public AppointmentRepository()
         {
-            this.appointmentDataHandler = appDataHandler;
+            this.appointmentDataHandler = new AppointmentDataHandler();
             this.patientApps = new ObservableCollection<Appointment>();
-            this.appointments = appDataHandler.ReadAll();
+            this.appointments = appointmentDataHandler.ReadAll();
         }
 
         public void Create(Model.Appointment appointment)

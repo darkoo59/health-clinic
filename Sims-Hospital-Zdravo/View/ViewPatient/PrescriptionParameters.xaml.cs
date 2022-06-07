@@ -35,7 +35,7 @@ namespace Sims_Hospital_Zdravo
             this.appointment = appointment;
             InitializeComponent();
             this.prescription = prescription;
-            if (prescription.StartDate != null) 
+            if (prescription.StartDate.CompareTo(appointment.Time.Start) > 0) 
             {
                 Date.SelectedDate = prescription.StartDate;
                 Time.Text = prescription.StartDate.ToString("{0:HH:mm}");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Controller
@@ -12,9 +13,9 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private RequestForFreeDaysService _requestForFreeDaysService;
 
-        public RequestForFreeDaysController(RequestForFreeDaysService requestForFreeDaysService)
+        public RequestForFreeDaysController()
         {
-            this._requestForFreeDaysService = requestForFreeDaysService;
+            this._requestForFreeDaysService = new RequestForFreeDaysService();
         }
 
         public void Create(FreeDaysRequest request)
@@ -38,9 +39,9 @@ namespace Sims_Hospital_Zdravo.Controller
             _requestForFreeDaysService.Delete(request);
         }
 
-        public ref  ObservableCollection<FreeDaysRequest> ReadAll()
+        public List<FreeDaysRequest> FindAll()
         {
-            return  ref _requestForFreeDaysService.ReadAll();
+            return  _requestForFreeDaysService.ReadAll();
         }
 
         public ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)

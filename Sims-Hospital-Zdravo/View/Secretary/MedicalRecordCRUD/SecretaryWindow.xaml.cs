@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo
@@ -23,21 +24,21 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class SecretaryWindow : Window
     {
-        private MedicalRecordController medicalController;
-        private App app;
-        public SecretaryWindow(MedicalRecordController controller)
+        private MedicalRecordController _medicalController;
+        private SecretaryAppointmentController _secretaryAppointmentController;
+        public SecretaryWindow()
         {
-            app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = controller;
+            this._medicalController = new MedicalRecordController();
+            _secretaryAppointmentController = new SecretaryAppointmentController();
             this.DataContext = this;
             UpdateGridView();
-            ContentGrid.ItemsSource = this.medicalController.ReadAll();
+            ContentGrid.ItemsSource = this._medicalController.ReadAll();
         }
 
         private void Insert_Click(object sender, RoutedEventArgs e)
         {
-            InsertRecordWindow insertWindow = new InsertRecordWindow(medicalController);
+            InsertRecordWindow insertWindow = new InsertRecordWindow();
             insertWindow.Show();
         }
 
@@ -49,7 +50,7 @@ namespace Sims_Hospital_Zdravo
                 {
                     MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
                     Patient patient = medical.Patient;
-                    UpdateRecordWindow updateWindow = new UpdateRecordWindow(medicalController, patient, medical) { DataContext = ContentGrid.SelectedItem };
+                    UpdateRecordWindow updateWindow = new UpdateRecordWindow(patient, medical) { DataContext = ContentGrid.SelectedItem };
                     updateWindow.Show();
                 }
                 catch (Exception ex)
@@ -66,7 +67,7 @@ namespace Sims_Hospital_Zdravo
             MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to delete this item?", "Delete", MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                medicalController.Delete((MedicalRecord)ContentGrid.SelectedItem);
+                _medicalController.Delete((MedicalRecord)ContentGrid.SelectedItem);
             }
         }
 
@@ -152,14 +153,14 @@ namespace Sims_Hospital_Zdravo
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

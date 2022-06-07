@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sims_Hospital_Zdravo.Model
 {
      public class Allergens
-    {
+     {
         private List<String> _commonAllergens;
         private List<String> _medicalAllergens;
 

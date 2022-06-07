@@ -23,30 +23,28 @@ namespace Sims_Hospital_Zdravo.Utils
         public static Timer timer;
         private EquipmentTransferController _relocationController;
         private RenovationController _renovationController;
-        private PrescriptionController _prescriptionController;
+        private MedicalRecordController _medicalRecordController;
         private DoctorAppointmentController _doctorAppointmentController;
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
         private AccountController _accountController;
         private bool isRenovationAppointmentInProgress;
+        private bool isRelocationAppointmentInProgress;
+        private bool isManagerNotificationInProgress;
 
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
-            PrescriptionController prescriptionController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
+            MedicalRecordController medicalRecordController, NotificationController notificationController, SuppliesController suppliesController, AccountController accountController)
         {
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _prescriptionController = prescriptionController;
+            _medicalRecordController = medicalRecordController;
             _notificationController = notificationController;
             _doctorAppointmentController = doctorAppointmentController;
-            _suppliesController = suppliesController;
+            _suppliesController = new SuppliesController();
             _accountController = accountController;
             isRenovationAppointmentInProgress = false;
-            Console.WriteLine("Timer created");
-
-            foreach (Prescription prescription in _prescriptionController.ReadAll())
-            {
-                prescription.Flag = true;
-            }
+            isRelocationAppointmentInProgress = false;
+            isManagerNotificationInProgress = false;
 
             observers = new List<INotificationObserver>();
             SetTimer();
@@ -68,7 +66,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
-            CheckIfThereShouldBeNotification();
+            if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();
@@ -80,9 +78,14 @@ namespace Sims_Hospital_Zdravo.Utils
             List<RelocationAppointment> appointments = _relocationController.FindAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
-                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
+                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0 && !isRelocationAppointmentInProgress)
                 {
-                    App.Current.Dispatcher.Invoke((Action)delegate { _relocationController.FinishRelocationAppointment(app.Id); });
+                    isRelocationAppointmentInProgress = true;
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        _relocationController.FinishRelocationAppointment(app.Id);
+                        isRelocationAppointmentInProgress = false;
+                    });
                 }
             }
         }
@@ -129,13 +132,29 @@ namespace Sims_Hospital_Zdravo.Utils
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
             foreach (Notification notification in notifications)
             {
-                Notify(notification);
+                if (!isManagerNotificationInProgress)
+                {
+                    isManagerNotificationInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        Notify(notification);
+                        isManagerNotificationInProgress = false;
+                    });
+                }
             }
 
             List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {
-                Notify(notification);
+                if (!isManagerNotificationInProgress)
+                {
+                    isManagerNotificationInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        Notify(notification);
+                        isManagerNotificationInProgress = false;
+                    });
+                }
             }
         }
 
@@ -206,52 +225,49 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void CheckIfThereShouldBeNotification()
         {
-            DateTime dateTime = DateTime.Now;
-            DateTime dateTime1 = DateTime.Now.AddSeconds(10);
-            ObservableCollection<Prescription> prescriptions = _prescriptionController.ReadAll();
-            foreach (Prescription prescription in prescriptions)
+            foreach (Prescription prescription in _medicalRecordController.GetPrescriptionsByMedicalRecord(FindMedicalRecordByAccount()))
             {
-                int frequency = GetFrequency(prescription);
-                DateTime dt = GetDateTime(prescription);
-                for (int i = 0; i < GetQuantity(prescription); i++)
+                DateTime dateTime = prescription.GetDateTime();
+                for (int i = 0; i < prescription.GetQuantity(); i++)
                 {
-                    if (dt.CompareTo(dateTime) > 0 && dt.CompareTo(dateTime1) < 0)
+                    if (!CheckIfPrescriptionDateTimeIsNow(dateTime,prescription))
                     {
-                        if (prescription.Flag)
-                        {
-                            prescription.Flag = false;
-                            Notify(new Notification("You need to take " + prescription.Medicine.Name + ".", _notificationController.GenerateId()));
-                        }
-                    }
-                    else
-                    {
-                        prescription.Flag = true;
-                        dt = dt.AddHours(frequency);
+                        dateTime = dateTime.AddHours(prescription.GetFrequency());
                     }
                 }
             }
         }
-
-        public int GetFrequency(Prescription prescription)
+        private MedicalRecord FindMedicalRecordByAccount()
         {
-            string[] s = prescription.Dosage.Split('x');
-            return Int32.Parse(s[1]) * 24 / Int32.Parse(s[0]);
+            foreach (MedicalRecord medicalRecord in _medicalRecordController.ReadAll())
+            {
+                if (_accountController.GetLoggedAccount() != null)
+                {
+                    if (medicalRecord.Patient._Id == _accountController.GetLoggedAccount()._Id) return medicalRecord;
+                }
+            }
+            return null;
         }
-
-        public DateTime GetDateTime(Prescription prescription)
+        private bool CheckIfPrescriptionDateTimeIsNow(DateTime dateTime, Prescription prescription)
         {
-            DateTime dt = new DateTime(prescription._PrescriptionDate.Year, prescription._PrescriptionDate.Month, prescription._PrescriptionDate.Day);
-            dt = dt.AddHours(prescription._PrescriptionDate.Hour);
-            dt = dt.AddMinutes(prescription._PrescriptionDate.Minute);
-            return dt;
+            if (dateTime.CompareTo(DateTime.Now) > 0 && dateTime.CompareTo(DateTime.Now.AddSeconds(10)) < 0)
+            {
+                CheckIfMedicineAlreadyTaken(prescription);
+                return true;
+            }
+            else
+            {
+                prescription.Flag = true;
+                return false;
+            }
         }
-
-        public int GetQuantity(Prescription prescription)
+        private void CheckIfMedicineAlreadyTaken(Prescription prescription)
         {
-            string[] s = prescription.Dosage.Split('x');
-            int p = prescription.TimeInterval.End.DayOfYear - prescription.TimeInterval.Start.DayOfYear;
-            p = p * Int32.Parse(s[0]);
-            return p;
+            if (prescription.Flag)
+            {
+                prescription.Flag = false;
+                Notify(new Notification("You need to take " + prescription.Medicine.Name + ".", _notificationController.GenerateId()));
+            }
         }
 
         public void AddObserver(INotificationObserver observer)

@@ -25,19 +25,19 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     /// </summary>
     public partial class ExaminationWindow : Window, IUpdateFilesObserver
     {
-        private SecretaryAppointmentController secretaryAppointmentController;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public ObservableCollection<Appointment> appointments;
         private App app;
-        public ExaminationWindow(SecretaryAppointmentController controller)
+        public ExaminationWindow()
         {
             app = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.secretaryAppointmentController = controller;
+            this._secretaryAppointmentController = new SecretaryAppointmentController();
             appointmentsDatePicker.SelectedDate = DateTime.Today;
             UpdateGridView();
 
-            appointments = secretaryAppointmentController.ReadAllAppointmentsForDate(DateTime.Parse(appointmentsDatePicker.SelectedDate.ToString()));
+            appointments = _secretaryAppointmentController.ReadAllAppointmentsForDate(DateTime.Parse(appointmentsDatePicker.SelectedDate.ToString()));
             GridAppointments.ItemsSource = appointments;
         }
 
@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you want to cancel this appointment?", "Cancel appointment", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
-                    secretaryAppointmentController.Delete((Appointment)GridAppointments.SelectedItem);
+                    _secretaryAppointmentController.Delete((Appointment)GridAppointments.SelectedItem);
                     NotifyUpdated();
                 }
             }
@@ -68,7 +68,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             if (GridAppointments.SelectedItem != null)
             {
-                RescheduleExaminationWindow rescheduleWindow = new RescheduleExaminationWindow((Appointment)GridAppointments.SelectedValue, secretaryAppointmentController) { DataContext = GridAppointments.SelectedItem };
+                RescheduleExaminationWindow rescheduleWindow = new RescheduleExaminationWindow((Appointment)GridAppointments.SelectedValue) { DataContext = GridAppointments.SelectedItem };
                 rescheduleWindow.Show();
             }
             else
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         public void NotifyUpdated()
         {
-            appointments = secretaryAppointmentController.ReadAllAppointmentsForDate(DateTime.Parse(appointmentsDatePicker.SelectedDate.ToString()));
+            appointments = _secretaryAppointmentController.ReadAllAppointmentsForDate(DateTime.Parse(appointmentsDatePicker.SelectedDate.ToString()));
             GridAppointments.ItemsSource = appointments;
         }
 
@@ -184,14 +184,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
         
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }

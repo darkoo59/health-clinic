@@ -6,75 +6,68 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class MeetingRepository
+    public class MeetingRepository:IMeetingRepository
     {
         private MeetingDataHandler _meetingDataHandler;
-        private ObservableCollection<Meeting> _meetings;
+        private List<Meeting> _meetings;
 
-        public MeetingRepository(MeetingDataHandler meetingDataHandler)
+        public MeetingRepository()
         {
-            _meetings = new ObservableCollection<Meeting>();
-            _meetingDataHandler = meetingDataHandler;
+            _meetings = new List<Meeting>();
+            _meetingDataHandler = new MeetingDataHandler();
             LoadDataFromFiles();
         }
 
         public void Create(Meeting meeting)
         {
+            LoadDataFromFiles();
             meeting.Id = GenerateId();
             _meetings.Add(meeting);
             LoadDataToFile();
         }
 
-        public ref ObservableCollection<Meeting> ReadAll()
+        public List<Meeting> FindAll()
         {
-            return ref _meetings;
+            LoadDataFromFiles();
+            return _meetings;
         }
 
         public void Update(Meeting meeting)
         {
+            LoadDataFromFiles();
             int id = meeting.Id;
-            foreach (Meeting meet in _meetings)
+            foreach (var meet in _meetings.Where(meet => id == meet.Id))
             {
-                if (id == meet.Id)
-                {
-                    meet.Id = meeting.Id;
-                    meet.Start = meeting.Start;
-                    meet.Room = meeting.Room;
-                    meet.OptionalAttendees = meeting.OptionalAttendees;
-                    meet.RequiredAttendees = meeting.RequiredAttendees;
-                    LoadDataToFile();
-                    return;
-                }
+                meet.Id = meeting.Id;
+                meet.Start = meeting.Start;
+                meet.Room = meeting.Room;
+                meet.OptionalAttendees = meeting.OptionalAttendees;
+                meet.RequiredAttendees = meeting.RequiredAttendees;
+                LoadDataToFile();
+                return;
             }
         }
 
         public void Delete(Meeting meeting)
         {
+            LoadDataFromFiles();
             _meetings.Remove(meeting);
             LoadDataToFile();
         }
 
         public Meeting FindById(int id)
         {
-
-            foreach (Meeting meeting in _meetings)
-            {
-
-                if (id == meeting.Id)
-                {
-
-                    return meeting;
-                }
-            }
-
-            return null;
+            LoadDataFromFiles();
+            return _meetings.FirstOrDefault(meeting => id == meeting.Id);
         }
 
         public void DeleteById(int id)
         {
+            LoadDataFromFiles();
             Meeting meeting = FindById(id);
             if (meeting != null) _meetings.Remove(meeting);
             LoadDataToFile();
@@ -90,14 +83,11 @@ namespace Sims_Hospital_Zdravo.Repository
             _meetingDataHandler.Write(_meetings);
         }
 
-        private int GenerateId()
+        public int GenerateId()
         {
-            List<int> ids = new List<int>();
+            LoadDataFromFiles();
             int id = 0;
-            foreach (Meeting meeting in _meetings)
-            {
-                ids.Add(meeting.Id);
-            }
+            List<int> ids = _meetings.Select(meeting => meeting.Id).ToList();
             while (ids.Contains(id))
             {
                 id++;

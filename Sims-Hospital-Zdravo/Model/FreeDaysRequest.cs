@@ -18,6 +18,7 @@ namespace Sims_Hospital_Zdravo.Model
     public class FreeDaysRequest
     {
 
+        private int _id;
         private TimeInterval _timeInterval;
         private Doctor _doctor;
         private string _reasonForFreeDays;
@@ -78,6 +79,18 @@ namespace Sims_Hospital_Zdravo.Model
             set
             {
                     _status = value;
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
             }
         }
     }

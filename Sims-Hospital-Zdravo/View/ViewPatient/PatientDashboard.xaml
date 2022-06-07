@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
+        xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         Title="PatientDashboard" Height="450" Width="800">
     <Grid Background="#FF60BBC9">
@@ -25,6 +26,16 @@
         </Button>
         <Frame Content="" NavigationUIVisibility="Hidden" Name="Patient"  HorizontalAlignment="Left" Height="327" Margin="0,92,0,0" VerticalAlignment="Top" Width="792" Background="#FF60BBC9"/>
         <Button Click="Log_Out_Click" BorderBrush="#FF60BBC9" Background="#FF60BBC9" Content="Log Out" FontSize="15" HorizontalAlignment="Left" Margin="700,56,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF931919" Height="28" FontWeight="SemiBold"/>
-
+        <Frame Name="Notifications" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Height="168" Width="150" Margin="545,92,0,0" VerticalAlignment="Top"/>
+        <notifications:NotificationArea
+            Height="300"
+            Width="400"
+            Background="#0a718a"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="0,-135,132,254"
+            x:Name="WindowArea"
+            Focusable="False"
+            MaxItems="1" />
     </Grid>
 </Window>

@@ -14,7 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.Model;
+using Controller;
+using Sims_Hospital_Zdravo.Controller;
+
 namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
 {
     /// <summary>
@@ -22,14 +24,16 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
     /// </summary>
     public partial class EditRequestWindow : Window
     {
-
-        private App app;
+        
         private FreeDaysRequest _freeDaysRequest;
+        private RequestForFreeDaysController _requestControler;
+        private NotificationController _notificationController;
         public EditRequestWindow(FreeDaysRequest request)
         {
-            app = Application.Current as App;
             InitializeComponent();
             this._freeDaysRequest = request;
+            _requestControler = new RequestForFreeDaysController();
+            _notificationController = new NotificationController();
             comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();
             comboStatus.SelectedItem = _freeDaysRequest.Status;
             txtReason.Text = _freeDaysRequest.ReasonForFreeDays;
@@ -79,9 +83,9 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
                 {
                     FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForFreeDays,
                         (RequestStatus)comboStatus.SelectedValue);
-                    Notification notification = new FreeDaysNotification(txtReason.Text, app._notificationController.GenerateId(),
+                    Notification notification = new FreeDaysNotification(txtReason.Text, _notificationController.GenerateId(),
                         request);
-                    app._requestForFreeDaysController.UpdateRequestAndNotify(request, notification);
+                    _requestControler.UpdateRequestAndNotify(request, notification);
                     MessageBox.Show("Request succesffully updated!", "Successfully updated!", MessageBoxButton.OK);
                 }
                 catch (Exception ex)
@@ -111,14 +115,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

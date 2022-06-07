@@ -8,18 +8,18 @@ using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.DataHandler;
 using Model;
 using Sims_Hospital_Zdravo.Interfaces;
+using XamlGeneratedNamespace;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class RequestForFreeDaysRepository 
+    public class RequestForFreeDaysRepository:IRequestForFreeDaysRepository
     {
-        private ObservableCollection<FreeDaysRequest> _requests;
+        private List<FreeDaysRequest> _requests;
         private RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler;
-        
-        public RequestForFreeDaysRepository(RequestForFreeDaysDataHandler requestForFreeDaysDataHandler)
+        public RequestForFreeDaysRepository()
         {
-            _requests = new ObservableCollection<FreeDaysRequest>();
-            this._requestForFreeDaysDataHandler = requestForFreeDaysDataHandler;
+            _requests = new List<FreeDaysRequest>();
+            this._requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             LoadDataFromFiles();
 
         }
@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create(FreeDaysRequest request)
         {
+            request.Id = GenerateId();
             _requests.Add(request);
             LoadDataToFile();
         }
@@ -43,34 +44,33 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataToFile();
         }
 
-        public void DeleteById(FreeDaysRequest request)
+        public void DeleteById(int id)
+        {
+            LoadDataFromFiles();
+            foreach (var request in _requests.Where(request => request.Id == id))
+            {
+                _requests.Remove(request);
+                LoadDataToFile();
+                return;
+            }
+        }
+
+        public void Delete(FreeDaysRequest request)
         {
             _requests.Remove(request);
             LoadDataToFile();
         }
 
-        public ref  ObservableCollection<FreeDaysRequest> FindAll()
+        public List<FreeDaysRequest> FindAll()
         {
 
-            return  ref _requests;
+            return _requests;
 
         }
-        
-        public  ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+
+        public List<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
         {
-            ObservableCollection<FreeDaysRequest> doctorRequests = new ObservableCollection<FreeDaysRequest>();
-            foreach(FreeDaysRequest request in FindAll())
-            {
-                if(request.Doctor.Id == doctorId)
-                {
-                    doctorRequests.Add(request);
-                }
-            }
-            return  doctorRequests;
-        }
-        public ObservableCollection<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
-        {
-            ObservableCollection<FreeDaysRequest> requestsBySpecialty = new ObservableCollection<FreeDaysRequest>();
+            List<FreeDaysRequest> requestsBySpecialty = new List<FreeDaysRequest>();
             foreach(FreeDaysRequest request in _requests)
             {
                 if(request.Doctor._specialty.Equals(doctor._specialty))
@@ -80,10 +80,11 @@ namespace Sims_Hospital_Zdravo.Repository
             }
             return requestsBySpecialty;
         }
-        public ObservableCollection<FreeDaysRequest> RequestPendingOrApproved(Doctor doctor)
+        public List<FreeDaysRequest> RequestPendingOrApproved(Doctor doctor)
         {
-            ObservableCollection<FreeDaysRequest> requestsPendingOrAccepted = new ObservableCollection<FreeDaysRequest>();
-            foreach(FreeDaysRequest request in FindRequestByDoctorSpecialty(doctor))
+            List<FreeDaysRequest> requestsPendingOrAccepted = new List<FreeDaysRequest>();
+            List<FreeDaysRequest> requests = FindRequestByDoctorSpecialty(doctor);
+            foreach(FreeDaysRequest request in requests)
             {
                 if(request.Status == RequestStatus.ACCEPTED || request.Status == RequestStatus.PENDING)
                 {
@@ -92,6 +93,22 @@ namespace Sims_Hospital_Zdravo.Repository
             }
             return requestsPendingOrAccepted;
         }
+
+        public int GenerateId()
+        {
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (FreeDaysRequest request in _requests)
+            {
+                ids.Add(request.Id);
+            }
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+        }
+        
         public void LoadDataFromFiles()
         {
             _requests = _requestForFreeDaysDataHandler.ReadAll();

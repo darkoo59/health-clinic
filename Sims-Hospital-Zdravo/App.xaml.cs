@@ -35,7 +35,7 @@ namespace Sims_Hospital_Zdravo
         internal RenovationController _renovationController;
         internal PatientMedicalRecordController _patientMedRecController;
         internal AnamnesisController _anamnesisController;
-        internal SecretaryAppointmentController _secretaryAppointmentController;
+        //internal SecretaryAppointmentController _secretaryAppointmentController;
         internal PrescriptionController _prescriptionController;
         internal TaskScheduleTimer _taskScheduleTimer;
         internal MedicineController _medicineController;
@@ -59,41 +59,40 @@ namespace Sims_Hospital_Zdravo
             RoomService roomService = new RoomService();
             // _roomController = new RoomController();
 
-            PatientDataHandler patientDataHandler = new PatientDataHandler();
-            PatientRepository patientRepository = new PatientRepository(patientDataHandler);
+            // PatientDataHandler patientDataHandler = new PatientDataHandler();
+            PatientRepository patientRepository = new PatientRepository();
 
-            AllergensDataHandler allergensDataHandler = new AllergensDataHandler();
-            AllergensRepository allergensRepository = new AllergensRepository(allergensDataHandler);
+            // AllergensDataHandler allergensDataHandler = new AllergensDataHandler();
+            // AllergensRepository allergensRepository = new AllergensRepository();
 
 
-            PrescriptionDataHandler prescriptionDataHandler = new PrescriptionDataHandler();
-            PrescriptionRepository prescriptionRepository = new PrescriptionRepository(prescriptionDataHandler);
-            PrescriptionService prescriptionService = new PrescriptionService(prescriptionRepository);
+            // PrescriptionDataHandler prescriptionDataHandler = new PrescriptionDataHandler();
+            // PrescriptionRepository prescriptionRepository = new PrescriptionRepository();
+            // PrescriptionService prescriptionService = new PrescriptionService();
 
             MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
             MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
             MedicineService medicineService = new MedicineService(medicineRepository);
             _medicineController = new MedicineController(medicineService);
 
-            MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
-            MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
-            MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
-            _recordController = new MedicalRecordController(recordService, prescriptionService);
-
-            AccountDataHandler accountDataHandler = new AccountDataHandler();
-            AccountRepository accountRepository = new AccountRepository(accountDataHandler);
+            // MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
+            // MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
+            // MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
+            // _recordController = new MedicalRecordController(recordService, prescriptionService);
+            
+            AccountRepository accountRepository = new AccountRepository();
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
-            AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
-            DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
-            DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
-            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
+            // AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
+            // DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
+            // DoctorRepository doctorRepository = new DoctorRepository();
+            // AppointmentRepository appointmentRepository = new AppointmentRepository();
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(appointmentRepository, doctorRepository, accountRepository);
+                new AppointmentPatientService(new AppointmentRepository(), new DoctorRepository(), accountRepository);
             _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
 
-            DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
+            DoctorRepository docRepo = new DoctorRepository();
 
             // EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
             // EquipmentRepository equipmentRepository = new EquipmentRepository();
@@ -107,10 +106,10 @@ namespace Sims_Hospital_Zdravo
             RenovationRepository renovationRepository = new RenovationRepository();
 
 
-            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService();
 
             DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo, timeSchedulerService, roomService);
+                new DoctorAppointmentService(new AppointmentRepository(), patientRepository, docRepo, timeSchedulerService, roomService);
             _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
@@ -122,7 +121,7 @@ namespace Sims_Hospital_Zdravo
             _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
 
-            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(medicalRepo, patientRepository);
+            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(new MedicalRecordsRepository(), patientRepository);
             _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
             AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
@@ -140,39 +139,39 @@ namespace Sims_Hospital_Zdravo
             SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository, questionRepository);
             _surveyController = new SurveyController(surveyService);
 
-            SecretaryAppointmentService secretaryAppointmentService =
-                new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, doctorRepository);
-            _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
+            // SecretaryAppointmentService secretaryAppointmentService =
+            //     new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, doctorRepository);
+            // _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
-            SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
-            SuppliesAcquisitionRepository _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository(_suppliesAcquisitionDataHandler);
-            SuppliesService suppliesService =
-                new SuppliesService(_suppliesAcquisitionRepository);
-            _suppliesController = new SuppliesController(suppliesService);
+            // SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
+            // SuppliesAcquisitionRepository _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository(_suppliesAcquisitionDataHandler);
+            // SuppliesService suppliesService =
+            //     new SuppliesService(_suppliesAcquisitionRepository);
+            // _suppliesController = new SuppliesController(suppliesService);
 
             MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
-            MeetingRepository _meetingRepository = new MeetingRepository(_meetingDataHandler);
-            MeetingService _meetingService = new MeetingService(accountRepository, _meetingRepository);
-            _meetingController = new MeetingController(_meetingService);
+            MeetingRepository _meetingRepository = new MeetingRepository();
+            MeetingService _meetingService = new MeetingService();
+            _meetingController = new MeetingController();
 
 
-            _prescriptionController = new PrescriptionController(prescriptionService);
+            _prescriptionController = new PrescriptionController(new PrescriptionService());
 
             _taskScheduleTimer = new TaskScheduleTimer
             (
                 _equipmentTransferController,
                 _renovationController,
                 _doctorAppointmentController,
-                _prescriptionController,
+                _recordController,
                 _notificationController,
                 _suppliesController,
                 _accountController
             );
 
-            RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
-            RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
-            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
-            _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
+            // RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
+            // RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
+            // RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
+            // _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
         }
 
         void WindowLoaded(object sender, RoutedEventArgs e)

@@ -16,11 +16,10 @@ namespace Sims_Hospital_Zdravo.Repository
     {
         private ObservableCollection<Prescription> _prescriptions;
         private PrescriptionDataHandler _prescriptionDataHandler;
-        public PrescriptionRepository(PrescriptionDataHandler prescriptionDataHandler)
+        public PrescriptionRepository()
         {
-            this._prescriptionDataHandler = prescriptionDataHandler;
+            this._prescriptionDataHandler = new PrescriptionDataHandler();
             this._prescriptions = new ObservableCollection<Prescription>();
-            this._prescriptionDataHandler = prescriptionDataHandler;
             LoadDataFromFiles();
 
         }

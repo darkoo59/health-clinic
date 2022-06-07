@@ -5,25 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.DataHandler;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class SuppliesAcquisitionRepository
+    public class SuppliesAcquisitionRepository:ISuppliesAcquisitionRepository
     {
-        private ObservableCollection<SuppliesAcquisition> _suppliesAcquisitions;
+        private List<SuppliesAcquisition> _suppliesAcquisitions;
         private SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler;
         
-        public SuppliesAcquisitionRepository(SuppliesAcquisitionDataHandler dataHandler)
+        public SuppliesAcquisitionRepository()
         {
-            this._suppliesAcquisitionDataHandler = dataHandler;
-            _suppliesAcquisitions = new ObservableCollection<SuppliesAcquisition>();
+            this._suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
+            _suppliesAcquisitions = new List<SuppliesAcquisition>();
             LoadDataFromFile();
         }
         
         public void Create(SuppliesAcquisition suppliesAcquisition)
         {
             _suppliesAcquisitions.Add(suppliesAcquisition);
+            LoadDataToFile();
+        }
+
+        public void Delete(SuppliesAcquisition obj)
+        {
+            LoadDataFromFile();
+            _suppliesAcquisitions.Remove(obj);
             LoadDataToFile();
         }
 
@@ -41,19 +49,27 @@ namespace Sims_Hospital_Zdravo.Repository
             }
         }
 
-        public ObservableCollection<SuppliesAcquisition> ReadAll()
+        public void DeleteById(int id)
         {
+            LoadDataFromFile();
+            foreach (var acquisition in _suppliesAcquisitions.Where(acquisition => acquisition.Id == id))
+            {
+                _suppliesAcquisitions.Remove(acquisition);
+                LoadDataToFile();
+                return;
+            }
+        }
+
+        public List<SuppliesAcquisition> FindAll()
+        {
+            LoadDataFromFile();
             return _suppliesAcquisitions;
         }
 
         public SuppliesAcquisition FindById(int id)
         {
-            foreach (SuppliesAcquisition acquisition in _suppliesAcquisitions)
-            {
-                if (acquisition.Id == id)
-                    return acquisition;
-            }
-            return null;
+            LoadDataFromFile();
+            return _suppliesAcquisitions.FirstOrDefault(acquisition => acquisition.Id == id);
         }
         
         

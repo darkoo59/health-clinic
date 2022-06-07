@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -25,16 +26,16 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         private Patient selectedPatient;
         private TimeInterval selectedTime;
         private Room selectedRoom;
-        private App app;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public UpdateChooseDoctorWindow(Patient patient, TimeInterval date, Room room)
         {
             InitializeComponent();
             this.DataContext = this;
-            this.app = Application.Current as App;
             this.selectedPatient = patient;
             this.selectedTime = date;
             this.selectedRoom = room;
-            ListDoctors.ItemsSource = app._secretaryAppointmentController.FindAvailableDoctorsForInterval(selectedTime);
+            _secretaryAppointmentController = new SecretaryAppointmentController();
+            ListDoctors.ItemsSource = _secretaryAppointmentController.FindAvailableDoctorsForInterval(selectedTime);
             comboAppointmentType.ItemsSource = Enum.GetValues(typeof(AppointmentType)).Cast<AppointmentType>();
         }
 
@@ -51,8 +52,8 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     Doctor selectedDoctor = (Doctor)ListDoctors.SelectedItem;
                     Appointment appointment = new Appointment(selectedRoom, selectedDoctor, selectedPatient,
                         selectedTime, (AppointmentType)comboAppointmentType.SelectedValue);
-                    appointment.Id = app._secretaryAppointmentController.GenerateId();
-                    app._secretaryAppointmentController.Create(appointment);
+                    appointment.Id = _secretaryAppointmentController.GenerateId();
+                    _secretaryAppointmentController.Create(appointment);
                     this.Close();
                 }
             }
@@ -114,7 +115,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
@@ -128,7 +129,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
