@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             try
             {
-                List<ISurveyStatistic> statistics = surveyController.GetDoctorSurveys(doctor._Id);
+                List<ISurveyStatistic> statistics = surveyController.GetDoctorSurveys(doctor.Id);
                 PdfDocument document = new PdfDocument();
                 DrawAllGrids(document, statistics);
                 FileStream stream = CreateAndSaveDocument(document);
@@ -101,7 +101,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (QuestionAndRate question in survey.QuestionsAndRates)
             {
-                dataTable.Rows.Add(new object[] { doctor._Name + doctor._Surname, question.Question, question.Rate.ToString() });
+                dataTable.Rows.Add(new object[] { doctor.Name + doctor.Surname, question.Question, question.Rate.ToString() });
             }
 
             return dataTable;
