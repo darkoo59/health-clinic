@@ -28,6 +28,7 @@ namespace Repository
 
         public void Create(Model.Appointment appointment)
         {
+            appointment.Id = GenerateId();
             appointments.Add(appointment);
             patientApps.Add(appointment);
             loadDataToFile();
@@ -200,6 +201,17 @@ namespace Repository
             }
 
             return appointmentsForDate;
+        }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = appointments.Select(appointment => appointment.Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
     }
 }

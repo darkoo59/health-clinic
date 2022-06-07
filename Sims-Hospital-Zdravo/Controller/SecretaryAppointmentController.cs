@@ -65,19 +65,9 @@ namespace Sims_Hospital_Zdravo.Controller
             return secretaryAppointmenService.FindAllAppointmentsToRescheduleForEmergency(type);
         }
 
-        public int GenerateId()
-        {
-            return secretaryAppointmenService.GenerateId();
-        }
-
         public void ValidateAppointmentInterval(TimeInterval interval)
         {
             secretaryAppointmenService.ValidateAppointmentInterval(interval);
-        }
-
-        public int GeneratePatientId()
-        {
-            return secretaryAppointmenService.GeneratePatientId();
         }
     }
 }

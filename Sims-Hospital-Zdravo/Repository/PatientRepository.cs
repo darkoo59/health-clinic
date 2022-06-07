@@ -85,6 +85,18 @@ namespace Repository
         {
             patientHandler.Write(patients);
         }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = patients.Select(patient => patient._Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+
+        }
 
 
     }

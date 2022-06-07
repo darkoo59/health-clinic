@@ -137,7 +137,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
                     end = end.AddDays(3);
                     TimeInterval interval = new TimeInterval(start, end);
                     SuppliesAcquisition suppliesAcquisition =
-                        new SuppliesAcquisition(_suppliesController.GenerateSuppliesAcquistionId(), roomEquipments,
+                        new SuppliesAcquisition(roomEquipments,
                             interval);
                     _suppliesController.Create(suppliesAcquisition);
                     MessageBox.Show("Successfully made supplies acquisition!");
