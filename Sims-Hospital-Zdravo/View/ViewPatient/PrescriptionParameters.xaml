@@ -48,7 +48,7 @@
         <Label Content="Taking Medicine" FontSize="18" HorizontalAlignment="Left" Margin="185,35,0,0" VerticalAlignment="Top" Height="35" Width="150"/>
         <Label Content="Start Date:" FontSize="18" HorizontalAlignment="Left" Margin="70,95,0,0" VerticalAlignment="Top" Height="31" Width="130"/>
         <Label Content="Start Time:" FontSize="18" HorizontalAlignment="Left" Margin="70,169,0,0" VerticalAlignment="Top" Height="31" Width="130"/>
-        <Button Click="Button_Click" FontSize="20" Width ="250" Height ="31" Margin="143,235,142,41">Submit</Button>
+        <Button Click="Button_Click" Name="Submit"  FontSize="20" Width ="250" Height ="31" Margin="143,235,142,41">Set</Button>
         <DatePicker Name="Date" HorizontalAlignment="Left" FontSize="18" Margin="325,95,0,0" VerticalAlignment="Top" Width="152" Height="31"/>
         <TextBox HorizontalAlignment="Left" Name="Time" FontSize="18" Height="25" Margin="325,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
     </Grid>

@@ -24,7 +24,7 @@ namespace Sims_Hospital_Zdravo.View
     /// </summary>
     public partial class DoctorCRUDWindow : Page, IUpdateFilesObserver
     {
-        public ObservableCollection<Appointment> DoctorAppointments;
+        public List<Appointment> DoctorAppointments;
         private DoctorAppointmentController doctorAppController;
         public RoomController roomController;
         private Appointment app;

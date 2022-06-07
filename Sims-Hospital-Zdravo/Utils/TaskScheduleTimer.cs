@@ -37,7 +37,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _medicalRecordController = medicalRecordController;
+            _medicalRecordController = new MedicalRecordController();
             _notificationController = notificationController;
             _doctorAppointmentController = doctorAppointmentController;
             _suppliesController = new SuppliesController();
@@ -197,7 +197,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void AppointmentDone()
         {
-            ObservableCollection<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);
+            List<Appointment> appointments = _doctorAppointmentController.GetByDoctorID(2);
             foreach (Appointment appointment in appointments)
             {
                 if (appointment.Time.Start.CompareTo(DateTime.Now) < 0)

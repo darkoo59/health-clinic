@@ -38,7 +38,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
         {
             app = Application.Current as App;
             doctorAppointmentController = app._doctorAppointmentController;
-            surveyController = app._surveyController;
+            surveyController = new SurveyController();
             Doctors = doctorAppointmentController.ReadAllDoctors();
         }
 

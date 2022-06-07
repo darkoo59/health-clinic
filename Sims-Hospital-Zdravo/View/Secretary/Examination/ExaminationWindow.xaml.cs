@@ -26,7 +26,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     public partial class ExaminationWindow : Window, IUpdateFilesObserver
     {
         private SecretaryAppointmentController _secretaryAppointmentController;
-        public ObservableCollection<Appointment> appointments;
+        public List<Appointment> appointments;
         private App app;
         public ExaminationWindow()
         {

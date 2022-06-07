@@ -28,7 +28,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public DoctorAppointmentController docController;
         public MedicalRecordController medicalRecordController;
         private PatientMedicalRecordController PatientMedicalRecordController;
-        public ObservableCollection<Appointment> appointmentsScheduled;
+        public List<Appointment> appointmentsScheduled;
         private App app;
         private int doctorId;
         private DateTime AppointmentDate;

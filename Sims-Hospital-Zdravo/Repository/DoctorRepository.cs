@@ -7,35 +7,39 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Repository
 {
-    public class DoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         public DoctorDataHandler docHandler;
-        public ObservableCollection<Doctor> doctors;
+        public List<Doctor> doctors;
 
         public DoctorRepository()
         {
             this.docHandler = new DoctorDataHandler();
-            this.doctors = new ObservableCollection<Doctor>();
+            this.doctors = new List<Doctor>();
             LoadDataFromFile();
         }
 
         public void Create(Doctor doct)
         {
+            LoadDataFromFile();
             doctors.Add(doct);
             LoadDataToFile();
         }
 
         public void Delete(Doctor doc)
         {
+            LoadDataFromFile();
             doctors.Remove(doc);
             LoadDataToFile();
         }
 
         public void Update(Doctor newDoc)
         {
+            LoadDataFromFile();
             foreach (Doctor doc in doctors)
             {
                 if (doc._Id == newDoc._Id)
@@ -58,6 +62,7 @@ namespace Repository
 
         public Doctor FindDoctorById(int id)
         {
+            LoadDataFromFile();
             foreach (Doctor doc in doctors)
             {
                 if (doc._Id == id) return doc;
@@ -68,10 +73,10 @@ namespace Repository
 
        
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
+        public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
         {
-            
-            ObservableCollection<Doctor> doctorss = new ObservableCollection<Doctor>();
+            LoadDataFromFile();
+            List<Doctor> doctorss = new List<Doctor>();
 
             foreach(Doctor doc in doctors.ToList())
             {
@@ -88,6 +93,7 @@ namespace Repository
         }
         public List<Doctor> FindDoctorsBySpeciality(SpecialtyType type)
         {
+            LoadDataFromFile();
             List<Doctor> docs = new List<Doctor>();
             foreach (Doctor doc in doctors)
             {
@@ -99,14 +105,15 @@ namespace Repository
             return docs;
         }
 
-        public ObservableCollection<Doctor> ReadAll()
+        public List<Doctor> FindAll()
         {
-            return this.doctors;
+            LoadDataFromFile();
+            return doctors;
         }
 
         public void LoadDataFromFile()
         {
-            this.doctors = docHandler.ReadAll();
+            doctors = docHandler.ReadAll();
         }
 
         public void LoadDataToFile()

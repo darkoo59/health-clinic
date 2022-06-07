@@ -24,13 +24,13 @@ namespace Service
         private AppointmentDoctorValidator _validator;
         private Appointment _app;
 
-        public DoctorAppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository docRepo, TimeSchedulerService timeSchedulerService, RoomService roomService)
+        public DoctorAppointmentService(PatientRepository patientRepository, TimeSchedulerService timeSchedulerService, RoomService roomService)
         {
             this._timeSchedulerService = timeSchedulerService;
-            this._appointmentRepository = appointmentRepository;
+            this._appointmentRepository = new AppointmentRepository();
             this._patientRepository = patientRepository;
-            this._doctorRepo = docRepo;
-            this._validator = new AppointmentDoctorValidator(appointmentRepository, timeSchedulerService, roomService);
+            this._doctorRepo = new DoctorRepository();
+            this._validator = new AppointmentDoctorValidator(_appointmentRepository,timeSchedulerService, roomService);
         }
 
         public Doctor GetDoctor(int id)
@@ -40,7 +40,7 @@ namespace Service
 
         public List<Doctor> ReadAllDoctors()
         {
-            return _doctorRepo.ReadAll().ToList();
+            return _doctorRepo.FindAll();
         }
 
         public void Create(Appointment appointment)
@@ -54,7 +54,7 @@ namespace Service
             _appointmentRepository.Delete(appointment);
         }
 
-        public ObservableCollection<Appointment> ReadAll(int id)
+        public List<Appointment> ReadAll(int id)
         {
             return _appointmentRepository.FindByDoctorId(id);
         }
@@ -83,7 +83,7 @@ namespace Service
 
         public int GenerateId()
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindAll();
+            List<Appointment> appointments = _appointmentRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Appointment app in appointments)
@@ -99,11 +99,11 @@ namespace Service
             return id;
         }
 
-        public ObservableCollection<Appointment> FilterAppointmentsByDate(DateTime date)
+        public List<Appointment> FilterAppointmentsByDate(DateTime date)
         {
             var appointmentsDate = _appointmentRepository.FindByDoctorId(2);
             var appDate = appointmentsDate.Where(i => i.Time.Start.Date == date).ToList();
-            appointmentsDate = new ObservableCollection<Appointment>(appDate);
+            appointmentsDate = new List<Appointment>(appDate);
 
             return appointmentsDate;
         }
@@ -116,7 +116,7 @@ namespace Service
 
         public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
 
             foreach (Appointment appointment in appointments)
             {
@@ -130,7 +130,7 @@ namespace Service
         }
 
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
+        public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
             return _doctorRepo.FindDoctorsBySpecalty(specaltyType);
         }

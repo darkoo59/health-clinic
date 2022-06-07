@@ -30,12 +30,12 @@ namespace Sims_Hospital_Zdravo.Model
             this._validator = new AppointmentSecretaryValidator(this);
         }
 
-        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        public List<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             return _appointmentRepository.ReadAllAppointmentsForDate(date);
         }
 
-        public ObservableCollection<Appointment> ReadAll()
+        public List<Appointment> ReadAll()
         {
             return _appointmentRepository.FindAll();
         }
@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
-            return _doctorRepository.ReadAll().Where(doctor => _timeSchedulerService
+            return _doctorRepository.FindAll().Where(doctor => _timeSchedulerService
                 .IsDoctorFreeInInterval(doctor._Id, interval)).ToList();
         }
 
@@ -160,6 +160,43 @@ namespace Sims_Hospital_Zdravo.Model
             appointmentsAndRescheduleDate.Sort((x, y) =>
                 x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
             return appointmentsAndRescheduleDate;
+        }
+
+
+        public int GenerateId()
+        {
+            List<Appointment> appointments = _appointmentRepository.FindAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (Appointment appointment in appointments)
+            {
+                ids.Add(appointment.Id);
+            }
+
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+
+            return id;
+        }
+
+        public int GeneratePatientId()
+        {
+            ObservableCollection<Patient> patients = _patientRepository.ReadAll();
+            List<int> ids = new List<int>();
+            int id = 0;
+            foreach (Patient patient in patients)
+            {
+                ids.Add(patient._Id);
+            }
+
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+
+            return id;
         }
 
         public void ValidateAppointmentInterval(TimeInterval interval)

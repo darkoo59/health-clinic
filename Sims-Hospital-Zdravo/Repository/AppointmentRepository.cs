@@ -11,31 +11,31 @@ using System.Collections.ObjectModel;
 using DataHandler;
 using System.Linq;
 using Sims_Hospital_Zdravo;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Repository
 {
-    public class AppointmentRepository
+    public class AppointmentRepository : IAppointmentRepository
     {
-        private ObservableCollection<Appointment> appointments;
+        private List<Appointment> appointments;
         private AppointmentDataHandler appointmentDataHandler;
 
         public AppointmentRepository()
         {
             this.appointmentDataHandler = new AppointmentDataHandler();
-            this.patientApps = new ObservableCollection<Appointment>();
-            this.appointments = appointmentDataHandler.ReadAll();
+            LoadDataFromFile();
         }
 
         public void Create(Model.Appointment appointment)
         {
             appointment.Id = GenerateId();
             appointments.Add(appointment);
-            patientApps.Add(appointment);
-            loadDataToFile();
+            LoadDataToFile();
         }
 
         public void Update(Model.Appointment appointment)
         {
+            LoadDataFromFile();
             foreach (Appointment app in appointments)
             {
                 if (app.Id == appointment.Id)
@@ -46,21 +46,22 @@ namespace Repository
                     app.Room = appointment.Room;
                     app.Type = appointment.Type;
 
-                    loadDataToFile();
+                    LoadDataToFile();
                 }
             }
         }
 
         public void Delete(Model.Appointment appointment)
         {
+            LoadDataFromFile();
             appointments.Remove(appointment);
-            patientApps.Remove(appointment);
-            loadDataToFile();
+            LoadDataToFile();
         }
 
-        public ObservableCollection<Appointment> FindByDoctorId(int id)
+        public List<Appointment> FindByDoctorId(int id)
         {
-            ObservableCollection<Appointment> doctorsApps = new ObservableCollection<Appointment>();
+            LoadDataFromFile();
+            List<Appointment> doctorsApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
             {
                 if (app.Doctor == null) continue;
@@ -71,12 +72,13 @@ namespace Repository
             }
 
             var doctorsapps = doctorsApps.OrderBy(i => i.Time.Start.Date).ToList();
-            doctorsApps = new ObservableCollection<Appointment>(doctorsapps);
+            doctorsApps = new List<Appointment>(doctorsapps);
             return doctorsApps;
         }
 
         public List<Appointment> FindByDoctorSpecialityBeforeDate(SpecialtyType type, DateTime endDate)
         {
+            LoadDataFromFile();
             List<Appointment> doctorsApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
             {
@@ -90,11 +92,10 @@ namespace Repository
             return doctorsApps;
         }
 
-        ObservableCollection<Appointment> patientApps;
-
-        public ref ObservableCollection<Appointment> FindByPatientId(int id)
+        public List<Appointment> FindByPatientId(int id)
         {
-            patientApps = new ObservableCollection<Appointment>();
+            LoadDataFromFile();
+            List<Appointment> patientApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
             {
                 if (app.Patient._Id == id)
@@ -103,56 +104,56 @@ namespace Repository
                 }
             }
 
-            return ref patientApps;
+            return patientApps;
         }
 
-        public ref ObservableCollection<Appointment> FindAll()
+        public List<Appointment> FindAll()
         {
-            // TODO: implement
-            return ref appointments;
+            LoadDataFromFile();
+            return appointments;
         }
 
-        public void loadDataFromFiles()
+        public void LoadDataFromFile()
         {
             appointments = appointmentDataHandler.ReadAll();
         }
 
-        public void loadDataToFile()
+        public void LoadDataToFile()
         {
             appointmentDataHandler.Write(appointments);
         }
 
         public Appointment GetByID(Appointment app)
         {
-            // TODO: implement
-
+            LoadDataFromFile();
             foreach (Appointment appoi in appointments)
             {
                 if (appoi.Id == app.Id)
                 {
                     return appoi;
-                    ;
                 }
             }
-
             return null;
         }
 
 
         public List<TimeInterval> GetTimeIntervalsForRoom(Room room)
         {
+            LoadDataFromFile();
             if (room == null) return new List<TimeInterval>();
             return (from app in appointments where app.Room.Id == room.Id select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForRoom(int roomId)
         {
+            LoadDataFromFile();
             //return (from app in appointments where app.Room.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
             return (from app in appointments where app.Room?.Id == roomId select new TimeInterval(app.Time.Start, app.Time.End)).ToList();
         }
 
         public List<TimeInterval> GetTimeIntervalsForDoctor(int id)
         {
+            LoadDataFromFile();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
             foreach (Appointment app in appointments)
             {
@@ -167,6 +168,7 @@ namespace Repository
 
         public List<Appointment> FindByRoomId(int roomId)
         {
+            LoadDataFromFile();
             List<Appointment> apps = new List<Appointment>();
             foreach (Appointment app in appointments)
             {
@@ -179,10 +181,11 @@ namespace Repository
             return apps;
         }
 
-        public List<TimeInterval> getTimeIntervalsForDoctor(Doctor doctor)
+        public List<TimeInterval> GetTimeIntervalsForDoctor(Doctor doctor)
         {
+            LoadDataFromFile();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
-            ObservableCollection<Appointment> appointments = FindByDoctorId(doctor._Id);
+            List<Appointment> appointments = FindByDoctorId(doctor._Id);
             foreach (Appointment app in appointments)
             {
                 timeIntervals.Add(app.Time);
@@ -191,9 +194,10 @@ namespace Repository
             return timeIntervals;
         }
 
-        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        public List<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
-            ObservableCollection<Appointment> appointmentsForDate = new ObservableCollection<Appointment>();
+            LoadDataFromFile();
+            List<Appointment> appointmentsForDate = new List<Appointment>();
             foreach (Appointment app in FindAll())
             {
                 if (app.Time.Start.Date == date.Date)

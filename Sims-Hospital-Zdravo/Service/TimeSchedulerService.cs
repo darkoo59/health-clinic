@@ -79,26 +79,26 @@ namespace Service
 
         public bool IsDoctorFreeInInterval(int doctorId, TimeInterval ti)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
             return appointments.All(app => !app.Time.IsOverlaping(ti));
         }
 
         public bool IsDoctorFreeInIntervalWithoutSelectedAppointment(int doctorId, Appointment appointment)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(doctorId);
             return appointments.Where(app => app.Id != appointment.Id)
                 .All(app => !app.Time.IsOverlaping(appointment.Time));
         }
 
         public bool IsPatientFreeInInterval(int patientId, TimeInterval ti)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
+            List<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
             return appointments.All(app => !app.Time.IsOverlaping(ti));
         }
 
         public bool IsPatientFreeInIntervalWithoutSelectedAppointment(int patientId, Appointment appointment)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
+            List<Appointment> appointments = _appointmentRepository.FindByPatientId(patientId);
             return appointments.Where(app => app.Id != appointment.Id)
                 .All(app => !app.Time.IsOverlaping(appointment.Time));
         }
@@ -148,7 +148,7 @@ namespace Service
 
         private void CancelAppointmentsForOperation(Appointment appointment)
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
             List<Appointment> appointmentsToDelete = appointments.Where(i => i.Time.Start >= appointment.Time.Start && i.Time.End <= appointment.Time.End).ToList();
             foreach (Appointment appToDelete in appointmentsToDelete)
             {
