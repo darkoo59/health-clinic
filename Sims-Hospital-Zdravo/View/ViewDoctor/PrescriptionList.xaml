@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="PrescriptionList" Height="450" Width="800">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
     <Grid>
         <DataGrid Name="PrescriptionListPatient" Margin="54,182,298,114"/>
         <Label Content="Prescription List" HorizontalAlignment="Left" Margin="50,151,0,0" VerticalAlignment="Top"/>

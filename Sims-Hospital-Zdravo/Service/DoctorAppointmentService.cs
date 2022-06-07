@@ -24,11 +24,11 @@ namespace Service
         private AppointmentDoctorValidator _validator;
         private Appointment _app;
 
-        public DoctorAppointmentService(PatientRepository patientRepository, TimeSchedulerService timeSchedulerService, RoomService roomService)
+        public DoctorAppointmentService( TimeSchedulerService timeSchedulerService, RoomService roomService)
         {
             this._timeSchedulerService = timeSchedulerService;
             this._appointmentRepository = new AppointmentRepository();
-            this._patientRepository = patientRepository;
+            this._patientRepository = new PatientRepository();
             this._doctorRepo = new DoctorRepository();
             this._validator = new AppointmentDoctorValidator(_appointmentRepository,timeSchedulerService, roomService);
         }

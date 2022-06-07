@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public PrescriptionWindow(MedicalRecordController medicalRecordController, MedicalRecord medicalRecord, int id,Medicine medicine,Frame frame)
         {
             InitializeComponent();
-            this.medicalRecordController = medicalRecordController;
+            this.medicalRecordController = new MedicalRecordController();
             this.medicalRecord = medicalRecord;
             this.doctorId = id;
             app = App.Current as App;

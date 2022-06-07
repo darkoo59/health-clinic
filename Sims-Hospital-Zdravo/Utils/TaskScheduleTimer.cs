@@ -28,6 +28,7 @@ namespace Sims_Hospital_Zdravo.Utils
         private NotificationController _notificationController;
         private SuppliesController _suppliesController;
         private AccountController _accountController;
+        private NotesController _notesController;
         private bool isRenovationAppointmentInProgress;
         private bool isRelocationAppointmentInProgress;
         private bool isManagerNotificationInProgress;
@@ -35,6 +36,7 @@ namespace Sims_Hospital_Zdravo.Utils
         public TaskScheduleTimer(EquipmentTransferController relocationController, RenovationController renovationController, DoctorAppointmentController doctorAppointmentController,
             MedicalRecordController medicalRecordController, SuppliesController suppliesController, AccountController accountController)
         {
+            _notesController = new NotesController();
             _relocationController = relocationController;
             _renovationController = renovationController;
             _medicalRecordController = new MedicalRecordController();
@@ -64,11 +66,27 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
-            //if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
+            if (_accountController.GetLoggedAccount() != null) CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
-            CheckNotificationForDoctor();
+            //CheckNotificationForDoctor();
             CheckNotificationForSecretary();
+            if (_accountController.GetLoggedAccount() != null) CheckNotesNotification();
             //AppointmentDone();
+        }
+        private void CheckNotesNotification()
+        {
+            foreach (Notes note in _notesController.FindAll())
+            {
+                DateTime dateTime = note.Reminder;
+                if (dateTime.CompareTo(DateTime.Now) > 0 && dateTime.CompareTo(DateTime.Now.AddSeconds(10)) < 0)
+                {
+                    if (note.Flag)
+                    {
+                        _notesController.SetFlag(note);
+                        Notify(new Notification(note.Text, _notificationController.GenerateId()));
+                    }
+                }
+            }
         }
 
         private void CheckIfRelocationAppointmentDone()

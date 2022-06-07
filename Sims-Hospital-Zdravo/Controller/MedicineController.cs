@@ -23,7 +23,10 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             return  _medicineService.ReadAllMedicine();
         }
-
+        public void Update(Medicine medicine)
+        {
+            _medicineService.Update(medicine);
+        }
         public void CreateMedicineWithNotifyingDoctor(Medicine medicine, Notification notification)
         {
             _medicineService.CreateMedicineWithNotifyingDoctor(medicine, notification);
