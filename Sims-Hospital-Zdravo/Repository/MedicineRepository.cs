@@ -35,6 +35,8 @@ namespace Sims_Hospital_Zdravo.Repository
         }
         public void Update(Medicine medicine)
         {
+            Medicine medicine1 = FindById(medicine.Id);
+            medicine1.Ingredients = medicine.Ingredients;
 
         }
         public void DeleteById(int id)

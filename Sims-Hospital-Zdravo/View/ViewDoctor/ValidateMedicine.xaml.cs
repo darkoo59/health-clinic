@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.app = App.Current as App;
-            this.medicineController = app._medicineController;
+            this.medicineController = new MedicineController();
             this.notificationController = app._notificationController;
             this.medicine = medicine;
             MedicineNameTxt.Text = medicine.Name;

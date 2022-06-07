@@ -15,7 +15,7 @@ namespace Sims_Hospital_Zdravo.Service
 {
     public class MedicineService
     {
-        private MedicineRepository _medicineRepository;
+        private IMedicineRepository _medicineRepository;
         private INotificationRepository _notificationRepository;
 
         public MedicineService()

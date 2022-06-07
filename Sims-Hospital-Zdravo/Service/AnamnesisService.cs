@@ -7,12 +7,13 @@ using System.Collections.ObjectModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Model
 {
     public class AnamnesisService
     {
-        private AnamnesisRepository _anamnesisRepository;
+        private IAnamnesisRepository _anamnesisRepository;
 
         public AnamnesisService()
         {
