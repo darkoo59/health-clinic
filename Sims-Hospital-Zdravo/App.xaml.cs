@@ -34,12 +34,16 @@ namespace Sims_Hospital_Zdravo
 
         internal RenovationController _renovationController;
         internal PatientMedicalRecordController _patientMedRecController;
+
         internal AnamnesisController _anamnesisController;
+
         //internal SecretaryAppointmentController _secretaryAppointmentController;
         internal PrescriptionController _prescriptionController;
         internal TaskScheduleTimer _taskScheduleTimer;
+
         internal MedicineController _medicineController;
-        internal NotificationController _notificationController;
+
+        // internal NotificationController _notificationController;
         internal SuppliesController _suppliesController;
         internal RequestForFreeDaysController _requestForFreeDaysController;
         internal SurveyController _surveyController;
@@ -52,7 +56,7 @@ namespace Sims_Hospital_Zdravo
             // NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
             // NotificationRepository notificationRepository = new NotificationRepository();
             // NotificationService notificationService = new NotificationService();
-            _notificationController = new NotificationController();
+            // _notificationController = new NotificationController();
 
             // RoomDataHandler roomDataHandler = new RoomDataHandler();
             // RoomRepository roomRepository = new RoomRepository();
@@ -79,7 +83,7 @@ namespace Sims_Hospital_Zdravo
             //MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
             //MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             //_recordController = new MedicalRecordController(recordService, prescriptionService);
-            
+
             AccountRepository accountRepository = new AccountRepository();
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
@@ -102,6 +106,7 @@ namespace Sims_Hospital_Zdravo
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository =
                 new RelocationAppointmentRepository();
+
             RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
             RenovationRepository renovationRepository = new RenovationRepository();
 
@@ -163,7 +168,6 @@ namespace Sims_Hospital_Zdravo
                 _renovationController,
                 _doctorAppointmentController,
                 _recordController,
-                _notificationController,
                 _suppliesController,
                 _accountController
             );

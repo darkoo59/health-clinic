@@ -19,14 +19,12 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public ICommand UpdateMedicine_Command => new UpdateMedicine_Command(medicineController);
 
-        private App app;
         private object selectedItem;
         private MedicineController medicineController;
 
         public ManagerMedicinesViewModel()
         {
-            app = Application.Current as App;
-            medicineController = app._medicineController;
+            medicineController = new MedicineController();
             Medicines = medicineController.ReadAllMedicines().ToList();
         }
 

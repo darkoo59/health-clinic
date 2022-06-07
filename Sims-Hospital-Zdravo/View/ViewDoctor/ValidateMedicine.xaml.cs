@@ -25,9 +25,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicineController medicineController;
         private NotificationController notificationController;
         private Medicine medicine;
-         
+
         public ReviewMedicineNotification ReviewNotification { get; set; }
         public Medicine Medicine { get; set; }
+
         public ValidateMedicine(Medicine medicine)
         {
             InitializeComponent();
@@ -39,19 +40,16 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             StrenghtTxt.Text = medicine.Strength;
             UsingForTxt.Text = medicine.Description;
             AllegensTxt.Text = medicine.Allergens;
-
         }
 
         private void ValidateMedicineBtn_Click(object sender, RoutedEventArgs e)
         {
-
             string validateMedicine = "Medicine approved";
             string name = medicine.Name;
             medicine.Status = MedicineStatus.ACCEPTED;
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_APPROVED;
-            ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine,medicine, notificationController.GenerateId(), medicineValidationType);
+            ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
-
         }
 
         private void RejectMedicineBtn_Click(object sender, RoutedEventArgs e)
@@ -61,8 +59,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string name = medicine.Name;
             medicine.Status = MedicineStatus.ABORTED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "rejected", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
-            medicineController.ValidateMedicineWithNotifyindMenager(medicine,reviewMedicineNotification);
-
+            medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
         }
     }
 }
