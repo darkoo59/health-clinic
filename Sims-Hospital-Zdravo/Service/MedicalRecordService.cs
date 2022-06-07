@@ -11,6 +11,7 @@ using Sims_Hospital_Zdravo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model;
 using Sims_Hospital_Zdravo.Model;
 
@@ -24,19 +25,20 @@ namespace Service
         private AllergensRepository _allergensRepository;
         private MedicalRecordValidator _validator;
 
-        public MedicalRecordService(MedicalRecordsRepository medicalRepo, PatientRepository patientRepo, AllergensRepository alergRepo)
+        public MedicalRecordService()
         {
-            _medicalRecordRepository = medicalRepo;
-            _patientRepository = patientRepo;
-            _allergensRepository = alergRepo;
+            _medicalRecordRepository = new MedicalRecordsRepository();
+            _patientRepository = new PatientRepository();
+            _allergensRepository = new AllergensRepository();
             _validator = new MedicalRecordValidator(this);
         }
         public void Create(MedicalRecord medicalRecord, Patient patient)
         {
             _validator.InsertValidation(patient._Jmbg);
+            medicalRecord.Id = _medicalRecordRepository.GenerateId();
+            patient._Id = _patientRepository.GenerateId();
             _medicalRecordRepository.Create(medicalRecord);
             _patientRepository.Create(patient);
-            return;
         }
 
         public MedicalRecord FindById(int id)
@@ -82,39 +84,6 @@ namespace Service
         public List<String> ReadAllMedicalAllergens()
         {
             return _allergensRepository.FindAllMedicalAllergens();
-        }
-
-        public int GenerateId()
-        {
-            List<MedicalRecord> medicalRecords = _medicalRecordRepository.FindAll();
-            List<int> ids = new List<int>();
-            int id = 0;
-            foreach (MedicalRecord record in medicalRecords)
-            {
-                ids.Add(record.Id);
-            }
-            while (ids.Contains(id))
-            {
-                id++;
-            }
-            return id;
-
-        }
-
-        public int GenreatePatientId()
-        {
-            ObservableCollection<Patient> patients = _patientRepository.ReadAll();
-            List<int> ids = new List<int>();
-            int id = 0;
-            foreach (Patient patient in patients)
-            {
-                ids.Add(patient._Id);
-            }
-            while (ids.Contains(id))
-            {
-                id++;
-            }
-            return id;
         }
 
         public ObservableCollection<Prescription> GetPrescriptionByMedicalRecord(MedicalRecord medicalRecord)

@@ -23,14 +23,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
     /// </summary>
     public partial class FreeDaysWindow : Window
     {
-
-        private App app;
+        
         private RequestForFreeDaysController _freeDaysController;
-        public FreeDaysWindow(RequestForFreeDaysController controller)
+        public FreeDaysWindow()
         {
-            app = Application.Current as App;
             InitializeComponent();
-            this._freeDaysController = controller;
+            this._freeDaysController = new RequestForFreeDaysController();
             this.DataContext = this;
             UpdateGridView();
             ContentGrid.ItemsSource = this._freeDaysController.FindAll();
@@ -134,14 +132,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

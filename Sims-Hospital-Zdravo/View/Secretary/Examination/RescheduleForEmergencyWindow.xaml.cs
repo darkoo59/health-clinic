@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
@@ -22,19 +23,19 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     /// </summary>
     public partial class RescheduleForEmergencyWindow : Window
     {
-        private App app;
         private Patient patient;
         private SpecialtyType doctorType;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public RescheduleForEmergencyWindow(Patient patient,SpecialtyType type)
         {
-            app = Application.Current as App;
             InitializeComponent();
             this.patient = patient;
             this.doctorType = type;
             this.DataContext = this;
+            _secretaryAppointmentController = new SecretaryAppointmentController();
             UpdateGridView();
             ContentGrid.ItemsSource =
-                app._secretaryAppointmentController.FindAllAppointmentsToRescheduleForEmergency(type);
+                _secretaryAppointmentController.FindAllAppointmentsToRescheduleForEmergency(type);
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -81,11 +82,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                             emergencyReschedule.Appointment.Time.Start, emergencyReschedule.Appointment.Time.End);
                         rescheduleAppointment.Time.Start = emergencyReschedule.RescheduledDate.Start;
                         rescheduleAppointment.Time.End = emergencyReschedule.RescheduledDate.End;
-                        app._secretaryAppointmentController.Update(rescheduleAppointment);
+                        _secretaryAppointmentController.Update(rescheduleAppointment);
                         Appointment emergencyAppointment = new Appointment(emergencyReschedule.Appointment.Room,
                             emergencyReschedule.Appointment.Doctor, patient, emergencyTimeInterval,
                             AppointmentType.URGENCY);
-                        app._secretaryAppointmentController.Create(emergencyAppointment);
+                        _secretaryAppointmentController.Create(emergencyAppointment);
                         MessageBox.Show("Emergency appointment successfully created!", "Appointment created",
                             MessageBoxButton.OK);
                         this.Close();
@@ -143,14 +144,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

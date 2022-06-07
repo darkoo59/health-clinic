@@ -22,10 +22,10 @@ namespace Repository
         public DataHandler.MedicalRecordDataHandler _medicalRecordDataHandler;
         public List<Patient> _patients;
 
-        public MedicalRecordsRepository(MedicalRecordDataHandler recordDataHandler)
+        public MedicalRecordsRepository()
         {
             _medicalRecords = new List<MedicalRecord>();
-            _medicalRecordDataHandler = recordDataHandler;
+            _medicalRecordDataHandler = new MedicalRecordDataHandler();
             LoadDataFromFile();
         }
 
@@ -149,6 +149,18 @@ namespace Repository
         public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord)
         {
             return medicalRecord.Prescriptions;
+        }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = _medicalRecords.Select(record => record.Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+
         }
     }
 }

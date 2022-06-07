@@ -15,9 +15,9 @@ namespace Repository
         public ObservableCollection<Patient> patients;
         public MedicalRecordsRepository MedicalRecordsRepository;
 
-        public PatientRepository(PatientDataHandler patientHandler)
+        public PatientRepository()
         {
-            this.patientHandler = patientHandler;
+            this.patientHandler = new PatientDataHandler();
             this.patients = new ObservableCollection<Patient>();
             LoadDataFromFile();
         }
@@ -84,6 +84,18 @@ namespace Repository
         public void LoadDataToFile()
         {
             patientHandler.Write(patients);
+        }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = patients.Select(patient => patient._Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+
         }
 
 

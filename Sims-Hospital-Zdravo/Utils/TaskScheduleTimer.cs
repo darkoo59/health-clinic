@@ -37,10 +37,10 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _medicalRecordController = medicalRecordController;
+            _medicalRecordController = new MedicalRecordController();
             _notificationController = notificationController;
             _doctorAppointmentController = doctorAppointmentController;
-            _suppliesController = suppliesController;
+            _suppliesController = new SuppliesController();
             _accountController = accountController;
             isRenovationAppointmentInProgress = false;
             isRelocationAppointmentInProgress = false;

@@ -20,10 +20,10 @@ namespace Service
         private AppointmentPatientValidator appointmentPatientValidator;
         public AccountRepository accountRepository;
 
-        public AppointmentPatientService(DoctorRepository doctorRepository, AccountRepository accountRepository)
+        public AppointmentPatientService(AccountRepository accountRepository)
         {
             this.appointmentRepository = new AppointmentRepository();
-            this.doctorRepository = doctorRepository;
+            this.doctorRepository = new DoctorRepository();
             this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
             this.accountRepository = accountRepository;
         }

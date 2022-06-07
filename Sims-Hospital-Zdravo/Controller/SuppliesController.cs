@@ -10,9 +10,9 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private SuppliesService _suppliesService;
 
-        public SuppliesController(SuppliesService service)
+        public SuppliesController()
         {
-            this._suppliesService = service;
+            this._suppliesService = new SuppliesService();
         }
 
         public void Update(SuppliesAcquisition suppliesAcquisition)
@@ -39,11 +39,6 @@ namespace Sims_Hospital_Zdravo.Controller
         public Equipment CreateNewEquipment(string name)
         {
             return _suppliesService.CreateNewEquipment(name);
-        }
-
-        public int GenerateSuppliesAcquistionId()
-        {
-            return _suppliesService.GenerateSuppliesAcquistionId();
         }
 
         public void Create(SuppliesAcquisition suppliesAcquisition)

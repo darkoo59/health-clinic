@@ -20,11 +20,11 @@ namespace Controller
         public Service.MedicalRecordService medicalRecordService;
         public MedicalRecordValidator validator;
         public PrescriptionService prescriptionService;
-        public MedicalRecordController(MedicalRecordService recordService,PrescriptionService prescriptionService)
+        public MedicalRecordController()
         {
-            medicalRecordService = recordService;
+            medicalRecordService = new MedicalRecordService();
             validator = new MedicalRecordValidator(medicalRecordService);
-            this.prescriptionService = prescriptionService;
+            this.prescriptionService = new PrescriptionService();
         }
 
         public void Create(MedicalRecord medicalRecord, Patient patient)
@@ -69,17 +69,7 @@ namespace Controller
             medicalRecordService.Delete(medicalRecord);
       }
 
-        public int GenerateId()
-        {
-           return  medicalRecordService.GenerateId();
-        }
-
-        public int GeneratePatientId()
-        {
-            return medicalRecordService.GenreatePatientId();
-        }
-
-        public List<String> ReadAllCommonAllergens()
+      public List<String> ReadAllCommonAllergens()
         {
             return medicalRecordService.ReadAllCommonAllergens();
         }

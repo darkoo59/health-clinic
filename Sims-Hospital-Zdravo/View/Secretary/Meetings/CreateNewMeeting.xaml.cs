@@ -32,12 +32,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
         private MeetingController _meetingController;
         private NotificationManager _notificationManager;
         private App app;
-        public CreateNewMeeting(MeetingController meetingController)
+        public CreateNewMeeting()
         {
             app = Application.Current as App;
             InitializeComponent();
             app._taskScheduleTimer.AddObserver(this);
-            this._meetingController = meetingController;
+            this._meetingController = new MeetingController();
             this._notificationManager = new NotificationManager();
             comboRoom.ItemsSource = _meetingController.ReadAllRooms();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
@@ -199,28 +199,21 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
-            window.Show();
-            this.Close();
-        }
-
-        private void Meetings_Click(object sender, MouseButtonEventArgs e)
-        {
-            CreateNewMeeting window = new CreateNewMeeting(app._meetingController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
 
         private void FreeDays_Click(object sender, MouseButtonEventArgs e)
         {
-            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
+            FreeDaysWindow window = new FreeDaysWindow();
             window.Show();
             this.Close();
         }

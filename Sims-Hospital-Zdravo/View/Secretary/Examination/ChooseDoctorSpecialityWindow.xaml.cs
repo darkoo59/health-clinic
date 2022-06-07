@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -23,11 +24,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     {
         private App app;
         private Patient patient;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         public ChooseDoctorSpecialityWindow(Patient patient)
         {
             app = Application.Current as App;
             InitializeComponent();
             this.patient = patient;
+            _secretaryAppointmentController = new SecretaryAppointmentController();
             comboSpeciality.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
         }
 
@@ -81,12 +84,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 if (comboSpeciality.SelectedItem != null)
                 {
                     Appointment appointment =
-                            app._secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient,
+                            _secretaryAppointmentController.FindAndScheduleEmergencyAppointmentIfCan(patient,
                                 (SpecialtyType)comboSpeciality.SelectedItem);
                         if (appointment != null)
                         {
                             appointment.Type = AppointmentType.URGENCY;
-                            app._secretaryAppointmentController.Create(appointment);
+                            _secretaryAppointmentController.Create(appointment);
                             MessageBox.Show("Emergency appointment successfully scheduled");
                             this.Close();
                         }
@@ -117,14 +120,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

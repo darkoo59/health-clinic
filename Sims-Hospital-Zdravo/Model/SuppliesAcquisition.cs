@@ -14,11 +14,10 @@ namespace Sims_Hospital_Zdravo.Model
         private TimeInterval _time;
         private Boolean _acquistionDone;
 
-        public SuppliesAcquisition(int id, List<RoomEquipment> equipments,TimeInterval time)
+        public SuppliesAcquisition(List<RoomEquipment> equipments,TimeInterval time)
         {
             this._time = time;
             this._roomEquipments = equipments;
-            this._id = id;
             this._acquistionDone = false;
         }
 

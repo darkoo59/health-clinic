@@ -28,15 +28,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
     /// </summary>
     public partial class SuppliesHome : Window
     {
-        private App app;
         private SuppliesController _suppliesController;
-        private List<String> addedSupplies;
         public SuppliesHome()
         {
-            app = Application.Current as App;
             InitializeComponent();
-            this._suppliesController = app._suppliesController;
-            this.addedSupplies = new List<string>();
+            this._suppliesController = new SuppliesController();
             foreach (RoomEquipment roomEquipment in _suppliesController.FindAllEquipment())
             {
                 ListBoxAvaialble.Items.Add(roomEquipment.ToString());
@@ -89,7 +85,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
@@ -103,7 +99,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
@@ -141,7 +137,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
                     end = end.AddDays(3);
                     TimeInterval interval = new TimeInterval(start, end);
                     SuppliesAcquisition suppliesAcquisition =
-                        new SuppliesAcquisition(_suppliesController.GenerateSuppliesAcquistionId(), roomEquipments,
+                        new SuppliesAcquisition(roomEquipments,
                             interval);
                     _suppliesController.Create(suppliesAcquisition);
                     MessageBox.Show("Successfully made supplies acquisition!");

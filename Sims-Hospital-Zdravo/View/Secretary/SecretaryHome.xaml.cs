@@ -28,16 +28,16 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class SecretaryHome : Window
     {
-        private MedicalRecordController medicalController;
-        private SecretaryAppointmentController appointmentController;
+        private MedicalRecordController _medicalRecordController;
+        private SecretaryAppointmentController _secretaryAppointmentController;
         private App app;
 
         public SecretaryHome()
         {
-            app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = app._recordController;
-            this.appointmentController = app._secretaryAppointmentController;
+            app = Application.Current as App;
+            this._medicalRecordController = new MedicalRecordController();
+            this._secretaryAppointmentController = new SecretaryAppointmentController();
             lblName.Content = app._accountController.GetLoggedAccount()._Name + " " + app._accountController.GetLoggedAccount()._Surname;
         }
 
@@ -86,28 +86,28 @@ namespace Sims_Hospital_Zdravo
 
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
 
         private void Meetings_Click(object sender, MouseButtonEventArgs e)
         {
-            CreateNewMeeting window = new CreateNewMeeting(app._meetingController);
+            CreateNewMeeting window = new CreateNewMeeting();
             window.Show();
             this.Close();
         }
 
         private void FreeDays_Click(object sender, MouseButtonEventArgs e)
         {
-            FreeDaysWindow window = new FreeDaysWindow(app._requestForFreeDaysController);
+            FreeDaysWindow window = new FreeDaysWindow();
             window.Show();
             this.Close();
         }
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }

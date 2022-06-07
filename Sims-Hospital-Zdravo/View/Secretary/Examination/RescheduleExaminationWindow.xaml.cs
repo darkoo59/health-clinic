@@ -24,16 +24,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
     /// </summary>
     public partial class RescheduleExaminationWindow : Window
     {
-        private Appointment selectedAppointment;
-        private SecretaryAppointmentController secretaryAppointmentController;
-        private App app;
-        public RescheduleExaminationWindow(Appointment appointment, SecretaryAppointmentController controller)
+        private Appointment _selectedAppointment;
+        private SecretaryAppointmentController _secretaryAppointmentController;
+        public RescheduleExaminationWindow(Appointment appointment)
         {
-            app = Application.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.selectedAppointment = appointment;
-            this.secretaryAppointmentController = controller;
+            this._selectedAppointment = appointment;
+            this._secretaryAppointmentController = new SecretaryAppointmentController();
             startDatePicker.SelectedDate = appointment.Time.Start;
             endDatePicker.SelectedDate = appointment.Time.End;
             txtStartTime.Text = appointment.Time.Start.TimeOfDay.ToString();
@@ -56,10 +54,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 endDate = endDate.AddHours(Int32.Parse(endTime[0]));
                 endDate = endDate.AddMinutes(Int32.Parse(endTime[1]));
                 TimeInterval time = new TimeInterval(startDate, endDate);
-                Appointment app = new Appointment(selectedAppointment.Room, selectedAppointment.Doctor, selectedAppointment.Patient, time, selectedAppointment.Type);
-                app.Id = selectedAppointment.Id;
+                Appointment app = new Appointment(_selectedAppointment.Room, _selectedAppointment.Doctor, _selectedAppointment.Patient, time, _selectedAppointment.Type);
+                app.Id = _selectedAppointment.Id;
 
-                secretaryAppointmentController.Update(app);
+                _secretaryAppointmentController.Update(app);
                 Close();
             }
             catch (Exception ex)
@@ -120,14 +118,14 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

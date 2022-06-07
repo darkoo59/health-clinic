@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model;
 using Repository;
 using Sims_Hospital_Zdravo.Interfaces;
@@ -15,11 +16,11 @@ namespace Sims_Hospital_Zdravo.Model
         private IEquipmentRepository _equipmentRepository;
         private SuppliesAcquisitionRepository _suppliesAcquisitionRepository;
 
-        public SuppliesService(SuppliesAcquisitionRepository suppliesRepo)
+        public SuppliesService()
         {
             _roomRepository = new RoomRepository();
             _equipmentRepository = new EquipmentRepository();
-            _suppliesAcquisitionRepository = suppliesRepo;
+            _suppliesAcquisitionRepository = new SuppliesAcquisitionRepository();
         }
 
 
@@ -52,7 +53,6 @@ namespace Sims_Hospital_Zdravo.Model
         {
             if (_equipmentRepository.FindByName(name) != null)
                 return _equipmentRepository.FindByName(name);
-
             Equipment _equipment = new Equipment(GenerateEquipmentId(), name, EquipmentType.Consumable);
             _equipmentRepository.Create(_equipment);
             return _equipment;
@@ -66,59 +66,30 @@ namespace Sims_Hospital_Zdravo.Model
             List<String> equipmentNamesThatIsUpdatedAlready = new List<String>();
             foreach (RoomEquipment roomEquipmentToAdd in suppliesAcquisition.RoomEquipments)
             {
-                foreach (RoomEquipment roomEquipmentInWarehouse in roomEquipmentsInWarehouse)
+                foreach (var roomEquipmentInWarehouse in roomEquipmentsInWarehouse.Where
+                             (roomEquipmentInWarehouse => roomEquipmentToAdd.Equipment.Id
+                                                          == roomEquipmentInWarehouse.Equipment.Id))
                 {
-                    if (roomEquipmentToAdd.Equipment.Id == roomEquipmentInWarehouse.Equipment.Id)
-                    {
-                        roomEquipmentInWarehouse.Quantity += roomEquipmentToAdd.Quantity;
-                        equipmentNamesThatIsUpdatedAlready.Add(roomEquipmentToAdd.Equipment.Name);
-                    }
+                    roomEquipmentInWarehouse.Quantity += roomEquipmentToAdd.Quantity;
+                    equipmentNamesThatIsUpdatedAlready.Add(roomEquipmentToAdd.Equipment.Name);
                 }
             }
-
-            foreach (RoomEquipment roomEquipmentToAdd in suppliesAcquisition.RoomEquipments)
-            {
-                if (!equipmentNamesThatIsUpdatedAlready.Contains(roomEquipmentToAdd.Equipment.Name))
-                    roomEquipmentsInWarehouse.Add(roomEquipmentToAdd);
-            }
-
+            roomEquipmentsInWarehouse.AddRange(suppliesAcquisition.RoomEquipments.Where
+                (roomEquipmentToAdd => !equipmentNamesThatIsUpdatedAlready.Contains
+                    (roomEquipmentToAdd.Equipment.Name)));
             room.RoomEquipment = roomEquipmentsInWarehouse;
             _roomRepository.Update(room);
-        }
-
-        public int GenerateSuppliesAcquistionId()
-        {
-            List<SuppliesAcquisition> supplies = _suppliesAcquisitionRepository.FindAll();
-            List<int> ids = new List<int>();
-            int id = 0;
-            foreach (SuppliesAcquisition supplie in supplies)
-            {
-                ids.Add(supplie.Id);
-            }
-
-            while (ids.Contains(id))
-            {
-                id++;
-            }
-
-            return id;
         }
 
         public int GenerateEquipmentId()
         {
             List<Equipment> equipments = _equipmentRepository.FindAll();
-            List<int> ids = new List<int>();
             int id = 0;
-            foreach (Equipment equipment in equipments)
-            {
-                ids.Add(equipment.Id);
-            }
-
+            List<int> ids = equipments.Select(equipment => equipment.Id).ToList();
             while (ids.Contains(id))
             {
                 id++;
             }
-
             return id;
         }
     }

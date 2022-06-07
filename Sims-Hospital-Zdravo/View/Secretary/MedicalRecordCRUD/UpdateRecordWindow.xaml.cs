@@ -25,16 +25,14 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class UpdateRecordWindow : Window
     {
-        private MedicalRecordController medicalController;
+        private MedicalRecordController _medicalRecordController;
         private MedicalRecord medicalRecord;
         private Patient patient;
-        private App app;
 
-        public UpdateRecordWindow(MedicalRecordController controller, Patient patient, MedicalRecord record)
+        public UpdateRecordWindow(Patient patient, MedicalRecord record)
         {
-            app = System.Windows.Application.Current as App;
             InitializeComponent();
-            medicalController = controller;
+            _medicalRecordController = new MedicalRecordController();
             this.medicalRecord = record;
             this.patient = patient;
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
@@ -56,7 +54,7 @@ namespace Sims_Hospital_Zdravo
             TxtEmail.Text = patient._Email;
             TxtJmbg.Text = patient._Jmbg;
             TxtPhone.Text = patient._PhoneNumber;
-            foreach (String str in medicalController.ReadAllCommonAllergens())
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
             {
                 if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
                 {
@@ -64,7 +62,7 @@ namespace Sims_Hospital_Zdravo
                 }
             }
 
-            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
             {
                 if (!medicalRecord.PatientAllergens.MedicalAllergens.Contains(str))
                 {
@@ -99,7 +97,8 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patientUpdated = new Patient(patient._Id, TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                patientUpdated._Id = patient._Id;
                 List<String> allergens = new List<String>();
                 List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
@@ -114,9 +113,9 @@ namespace Sims_Hospital_Zdravo
                 Allergens updatedAllergens = new Allergens();
                 updatedAllergens.CommonAllergens = allergens;
                 updatedAllergens.MedicalAllergens = medicalAllergens;
-                MedicalRecord medicalRecordUpdated = new MedicalRecord(medicalRecord.Id, patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
+                MedicalRecord medicalRecordUpdated = new MedicalRecord(patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
-                medicalController.Update(medicalRecordUpdated, patientUpdated);
+                _medicalRecordController.Update(medicalRecordUpdated, patientUpdated);
                 Close();
             }
             catch (Exception ex)
@@ -133,7 +132,7 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListOtherAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllCommonAllergens())
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
             {
                 if (!ListPatientAllergens.Items.Contains(str))
                     ListOtherAllergens.Items.Add(str);
@@ -148,7 +147,7 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListPatientAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllCommonAllergens())
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
             {
                 if (!ListOtherAllergens.Items.Contains(str))
                     ListPatientAllergens.Items.Add(str);
@@ -163,7 +162,7 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListOtherMedicalAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
             {
                 if (!ListPatientMedicalAllergens.Items.Contains(str))
                     ListOtherMedicalAllergens.Items.Add(str);
@@ -178,7 +177,7 @@ namespace Sims_Hospital_Zdravo
             }
 
             ListPatientMedicalAllergens.Items.Clear();
-            foreach (String str in medicalController.ReadAllMedicalAllergens())
+            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
             {
                 if (!ListOtherMedicalAllergens.Items.Contains(str))
                     ListPatientMedicalAllergens.Items.Add(str);
@@ -237,14 +236,14 @@ namespace Sims_Hospital_Zdravo
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }

@@ -16,10 +16,10 @@ namespace Sims_Hospital_Zdravo.Repository
     {
         private List<FreeDaysRequest> _requests;
         private RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler;
-        public RequestForFreeDaysRepository(RequestForFreeDaysDataHandler requestForFreeDaysDataHandler)
+        public RequestForFreeDaysRepository()
         {
             _requests = new List<FreeDaysRequest>();
-            this._requestForFreeDaysDataHandler = requestForFreeDaysDataHandler;
+            this._requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             LoadDataFromFiles();
 
         }

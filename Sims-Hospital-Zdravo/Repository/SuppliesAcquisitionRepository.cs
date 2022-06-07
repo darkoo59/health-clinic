@@ -15,15 +15,16 @@ namespace Sims_Hospital_Zdravo.Repository
         private List<SuppliesAcquisition> _suppliesAcquisitions;
         private SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler;
         
-        public SuppliesAcquisitionRepository(SuppliesAcquisitionDataHandler dataHandler)
+        public SuppliesAcquisitionRepository()
         {
-            this._suppliesAcquisitionDataHandler = dataHandler;
+            this._suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
             _suppliesAcquisitions = new List<SuppliesAcquisition>();
             LoadDataFromFile();
         }
         
         public void Create(SuppliesAcquisition suppliesAcquisition)
         {
+            suppliesAcquisition.Id = GenerateId();
             _suppliesAcquisitions.Add(suppliesAcquisition);
             LoadDataToFile();
         }
@@ -82,6 +83,17 @@ namespace Sims_Hospital_Zdravo.Repository
         private void LoadDataFromFile()
         {
             _suppliesAcquisitions = _suppliesAcquisitionDataHandler.ReadAll();
+        }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = _suppliesAcquisitions.Select(supplie => supplie.Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
     }
 }

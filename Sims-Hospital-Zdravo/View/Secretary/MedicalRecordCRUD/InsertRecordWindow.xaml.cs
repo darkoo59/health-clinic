@@ -25,18 +25,16 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class InsertRecordWindow : Window
     {
-        private MedicalRecordController medicalController;
-        private App app;
-        public InsertRecordWindow(MedicalRecordController controller)
+        private MedicalRecordController _medicalRecordController;
+        public InsertRecordWindow()
         {
-            app = Application.Current as App;
             InitializeComponent();
-            this.medicalController = controller;
+            this._medicalRecordController = new MedicalRecordController();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            AllergensList.ItemsSource = medicalController.ReadAllCommonAllergens();
-            MedicalAllergensListBox.ItemsSource = medicalController.ReadAllMedicalAllergens();
+            AllergensList.ItemsSource = _medicalRecordController.ReadAllCommonAllergens();
+            MedicalAllergensListBox.ItemsSource = _medicalRecordController.ReadAllMedicalAllergens();
         }
 
 
@@ -45,7 +43,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patient = new Patient(medicalController.GeneratePatientId(), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                Patient patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 List<String> medicalAllergensList = new List<String>();
                 foreach (string str in AllergensList.SelectedItems)
@@ -60,8 +58,8 @@ namespace Sims_Hospital_Zdravo
                 Allergens allergens = new Allergens();
                 allergens.CommonAllergens = allergensItems;
                 allergens.MedicalAllergens = medicalAllergensList;
-                MedicalRecord medicalRecord = new MedicalRecord(medicalController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
-                medicalController.Create(medicalRecord, patient);
+                MedicalRecord medicalRecord = new MedicalRecord(patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
+                _medicalRecordController.Create(medicalRecord, patient);
                 Close();
             }
             catch (Exception ex)
@@ -122,14 +120,14 @@ namespace Sims_Hospital_Zdravo
 
         private void Appointment_Click(object sender, MouseButtonEventArgs e)
         {
-            ExaminationWindow window = new ExaminationWindow(app._secretaryAppointmentController);
+            ExaminationWindow window = new ExaminationWindow();
             window.Show();
             this.Close();
         }
         
         private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
         {
-            SecretaryWindow window = new SecretaryWindow(app._recordController);
+            SecretaryWindow window = new SecretaryWindow();
             window.Show();
             this.Close();
         }
