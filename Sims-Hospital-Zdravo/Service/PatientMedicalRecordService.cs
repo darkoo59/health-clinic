@@ -27,7 +27,7 @@ namespace Service
         public MedicalRecord FindMedicalRecordByPatient(Patient patient)
 
         {
-            Console.WriteLine(patient._Id);
+            Console.WriteLine(patient.Id);
             _records = _medicalRecordsRepository.FindAll();
             foreach(MedicalRecord record in _records)
             {

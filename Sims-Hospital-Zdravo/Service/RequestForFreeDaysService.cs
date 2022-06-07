@@ -46,18 +46,18 @@ namespace Sims_Hospital_Zdravo.Model
             _notificationRepository.Create(notification);
         }
 
-        public void Delete(FreeDaysRequest request)
+        public void Delete(int requestID)
         {
-            _requestForFreeDaysRepository.DeleteById(request);
+            _requestForFreeDaysRepository.DeleteById(requestID);
         }
 
         public List<FreeDaysRequest> ReadAll()
         {
             return _requestForFreeDaysRepository.FindAll();
-            return ref _requestForFreeDaysRepository.FindAll();
+            
         }
 
-        public ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+        public List<FreeDaysRequest> ReadAllByDoctor(int doctorId)
         {
             return _requestForFreeDaysRepository.ReadAllByDoctor(doctorId);
         }

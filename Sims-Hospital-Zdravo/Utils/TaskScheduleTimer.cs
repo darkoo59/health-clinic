@@ -243,7 +243,7 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 if (_accountController.GetLoggedAccount() != null)
                 {
-                    if (medicalRecord.Patient._Id == _accountController.GetLoggedAccount()._Id) return medicalRecord;
+                    if (medicalRecord.Patient.Id == _accountController.GetLoggedAccount().Id) return medicalRecord;
                 }
             }
             return null;

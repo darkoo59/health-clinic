@@ -61,26 +61,10 @@ namespace Sims_Hospital_Zdravo.Repository
         public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
             ObservableCollection<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
-            foreach (Anamnesis anma in listOfPatientAnamnesis)
-            {
-                Console.WriteLine(anma.Diagnosis + "xnxnxn");
-            }
-
             return listOfPatientAnamnesis;
         }
 
-        //public ObservableCollection<Anamnesis> FindAnamnesisByPatient (MedicalRecord med)
-        //{
-        //    ObservableCollection<Anamnesis> list = new ObservableCollection<Anamnesis>();
-        //    foreach(Anamnesis anam in Anamnesis)
-        //    {
-        //        if (anam._MedicalRecord._Patient._Jmbg == med._Patient._Jmbg)
-        //        {
-        //            list.Add(anam);
-        //        }
-        //    }
-        //    return list;
-        //}
+        
         public ref ObservableCollection<Anamnesis> ReadAll()
         {
             return ref _anamnesis;

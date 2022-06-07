@@ -54,7 +54,7 @@ namespace Sims_Hospital_Zdravo
             TxtEmail.Text = patient.Email;
             TxtJmbg.Text = patient.Jmbg;
             TxtPhone.Text = patient.PhoneNumber;
-            foreach (String str in medicalController.ReadAllCommonAllergens())
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
             {
                 if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
                 {

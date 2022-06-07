@@ -34,9 +34,9 @@ namespace Sims_Hospital_Zdravo.Controller
         }
 
 
-        public void Delete(FreeDaysRequest request)
+        public void Delete(int requestID)
         {
-            _requestForFreeDaysService.Delete(request);
+            _requestForFreeDaysService.Delete(requestID);
         }
 
         public List<FreeDaysRequest> FindAll()
@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo.Controller
             return  _requestForFreeDaysService.ReadAll();
         }
 
-        public ObservableCollection<FreeDaysRequest> ReadAllByDoctor(int doctorId)
+        public List<FreeDaysRequest> ReadAllByDoctor(int doctorId)
         {
             return _requestForFreeDaysService.ReadAllByDoctor(doctorId);
         }

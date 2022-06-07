@@ -146,7 +146,7 @@ namespace Service
         {
             foreach (Appointment app in appointmentRepository.FindAll())
             {
-                if (appointment.Doctor._Id == app.Doctor._Id)
+                if (appointment.Doctor.Id == app.Doctor.Id)
                 {
                     if (app.CheckIfTimeIntervalInAppointment(appointment.Time))
                     {

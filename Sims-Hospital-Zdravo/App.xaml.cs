@@ -75,10 +75,10 @@ namespace Sims_Hospital_Zdravo
             MedicineService medicineService = new MedicineService(medicineRepository);
             _medicineController = new MedicineController(medicineService);
 
-            // MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
-            // MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
-            // MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
-            // _recordController = new MedicalRecordController(recordService, prescriptionService);
+            //MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
+            //MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
+            //MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
+            //_recordController = new MedicalRecordController(recordService, prescriptionService);
             
             AccountRepository accountRepository = new AccountRepository();
             AccountService accountService = new AccountService(accountRepository);
