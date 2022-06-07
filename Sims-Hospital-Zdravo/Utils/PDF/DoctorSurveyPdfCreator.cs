@@ -41,7 +41,6 @@ namespace Sims_Hospital_Zdravo.Utils
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("Resource shouldn't be opened in another view!");
             }
         }
