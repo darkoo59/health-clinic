@@ -43,6 +43,8 @@ namespace Sims_Hospital_Zdravo.Utils
             _suppliesController = suppliesController;
             _accountController = accountController;
             isRenovationAppointmentInProgress = false;
+            isRelocationAppointmentInProgress = false;
+            isManagerNotificationInProgress = false;
 
             foreach (Prescription prescription in _prescriptionController.ReadAll())
             {
@@ -80,9 +82,14 @@ namespace Sims_Hospital_Zdravo.Utils
             List<RelocationAppointment> appointments = _relocationController.FindAll();
             foreach (RelocationAppointment app in appointments.ToList())
             {
-                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0)
+                if (app.Scheduled.End.CompareTo(DateTime.Now) < 0 && !isRelocationAppointmentInProgress)
                 {
-                    App.Current.Dispatcher.Invoke((Action)delegate { _relocationController.FinishRelocationAppointment(app.Id); });
+                    isRelocationAppointmentInProgress = true;
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        _relocationController.FinishRelocationAppointment(app.Id);
+                        isRelocationAppointmentInProgress = false;
+                    });
                 }
             }
         }
@@ -129,13 +136,29 @@ namespace Sims_Hospital_Zdravo.Utils
             List<Notification> notifications = _notificationController.ReadAllManagerMedicineNotifications();
             foreach (Notification notification in notifications)
             {
-                Notify(notification);
+                if (!isManagerNotificationInProgress)
+                {
+                    isManagerNotificationInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        Notify(notification);
+                        isManagerNotificationInProgress = false;
+                    });
+                }
             }
 
             List<Notification> meetingNotifications = _notificationController.ReadAllManagerMeetingsNotifications(account._Id);
             foreach (Notification notification in meetingNotifications)
             {
-                Notify(notification);
+                if (!isManagerNotificationInProgress)
+                {
+                    isManagerNotificationInProgress = true;
+                    App.Current.Dispatcher.Invoke(delegate
+                    {
+                        Notify(notification);
+                        isManagerNotificationInProgress = false;
+                    });
+                }
             }
         }
 
