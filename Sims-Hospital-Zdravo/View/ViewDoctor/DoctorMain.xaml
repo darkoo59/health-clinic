@@ -73,7 +73,7 @@
                             </AccessText>
                         </MenuItem.Header>
                     </MenuItem>
-                    <MenuItem Name="PrescriptionsItem" Height="50" Click="Prescription_Click">
+                    <MenuItem Name="PrescriptionsItem" Height="50" Click="ViewRequestsClick">
                         <MenuItem.Icon>
                             <Image  Margin="0,0,0,0"
                                Width="35" VerticalAlignment="Top" >

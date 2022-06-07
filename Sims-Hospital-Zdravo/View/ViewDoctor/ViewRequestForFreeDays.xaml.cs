@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DataContext = this;
             this._doctorId = id;
             this._app = App.Current as App;
-            this._requestForFreeDaysController = _app._requestForFreeDaysController;
+            this._requestForFreeDaysController = new RequestForFreeDaysController();
             DataGridRequestForFreeDays.ItemsSource = _requestForFreeDaysController.ReadAllByDoctor(id);
             DataGridRequestForFreeDays.AutoGenerateColumns = false;
             DataGridTextColumn datacolumn = new DataGridTextColumn();

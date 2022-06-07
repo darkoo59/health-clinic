@@ -70,10 +70,10 @@ namespace Sims_Hospital_Zdravo
             // PrescriptionRepository prescriptionRepository = new PrescriptionRepository();
             // PrescriptionService prescriptionService = new PrescriptionService();
 
-            MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
-            MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
-            MedicineService medicineService = new MedicineService(medicineRepository);
-            _medicineController = new MedicineController(medicineService);
+            //MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
+            //MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
+            //MedicineService medicineService = new MedicineService(medicineRepository);
+            //_medicineController = new MedicineController(medicineService);
 
             //MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
             //MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
@@ -121,13 +121,13 @@ namespace Sims_Hospital_Zdravo
             _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
 
-            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(new MedicalRecordsRepository(), patientRepository);
-            _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
+            //PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(new MedicalRecordsRepository(), patientRepository);
+            //_patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
-            AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
-            AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
-            AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
-            _anamnesisController = new AnamnesisController(anamnesisService);
+            //AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
+            //AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
+            //AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
+            //_anamnesisController = new AnamnesisController(anamnesisService);
 
             DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();

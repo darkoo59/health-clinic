@@ -69,9 +69,9 @@ namespace Service
             return ref appointmentRepository.FindByPatientId(id);
         }
 
-        public ObservableCollection<Doctor> ReadDoctors()
+        public List<Doctor> ReadDoctors()
         {
-            return doctorRepository.ReadAll();
+            return doctorRepository.FindAll();
         }
 
         public ObservableCollection<Appointment> FindAll()

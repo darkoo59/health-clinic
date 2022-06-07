@@ -89,7 +89,7 @@ namespace Repository
         public int GenerateId()
         {
             int id = 0;
-            List<int> ids = patients.Select(patient => patient._Id).ToList();
+            List<int> ids = patients.Select(patient => patient.Id).ToList();
             while (ids.Contains(id))
             {
                 id++;

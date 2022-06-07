@@ -83,7 +83,7 @@ namespace Controller
             _doctorAppointmentService.DeleteAfterExaminationIsDone(date, id, pat);
         }
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
+        public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
             return _doctorAppointmentService.FindDoctorsBySpecalty(specaltyType);
         }

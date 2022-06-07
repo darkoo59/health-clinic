@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
 
 
-        ObservableCollection<Doctor> FillDoctorComboBox()
+        List<Doctor> FillDoctorComboBox()
         {
             if (SpecialistComboBox.SelectedValue != null)
                 return doctorAppointmentController.FindDoctorsBySpecalty((SpecialtyType)SpecialistComboBox.SelectedValue);

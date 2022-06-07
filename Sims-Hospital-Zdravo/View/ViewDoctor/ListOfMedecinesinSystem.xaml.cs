@@ -30,33 +30,27 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecord medicalRecord;
         private int doctorId;
         private App app;
-        private ObservableCollection<Medicine> medicines;
+        private List<Medicine> medicines;
         private Frame frame;
         public ListOfMedecinesinSystem(int id,MedicalRecord medicalRecord,Frame frame)
         {
             InitializeComponent();
-            this.app = App.Current as App;
+            
             this.frame = frame;
-            this.medicineController = app._medicineController;
-            this.medicalRecordController = app._recordController;
+            this.medicineController = new MedicineController();
+            this.medicalRecordController = new MedicalRecordController();
             this.medicalRecord = medicalRecord;
             this.doctorId = id;
             
             medicineController.ReturnListOfMedicineToStart();
-            medicineController.CheckIfPatientAllergicToMedicine(medicalRecord);
-            medicineController.CheckIfPatientAllergicToMedicineIngredients(medicalRecord);
-            medicines = medicineController.ReadAllMedicines();
+            medicines = medicineController.PatientAllergicToMedicine(medicalRecord);
             MedicineListBox.ItemsSource = medicines;
             
 
 
         }
 
-        public void DisableIfAllergic()
-        {
-            ObservableCollection<Medicine> medicines = app._medicineController.ReadAllMedicines();
-
-        }
+        
 
         private void MedicineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

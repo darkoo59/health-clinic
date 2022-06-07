@@ -17,7 +17,7 @@ namespace Model
         public Patient( String name, String surname, DateTime birthDate, String email, String jmbg,
             String phoneNumber)
         {
-            this.Id = id;
+            
             this.Name = name;
             this.Surname = surname;
             this.BirthDate = birthDate;
@@ -28,7 +28,7 @@ namespace Model
 
         public Patient(String name,String surname)
         {
-            this.Id = id;
+            
             this.Name = name;
             this.Surname = surname;
             this.BirthDate = DateTime.Now;

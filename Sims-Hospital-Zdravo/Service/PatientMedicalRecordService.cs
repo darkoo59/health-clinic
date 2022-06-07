@@ -16,10 +16,10 @@ namespace Service
         private List<MedicalRecord> _records;
 
 
-        public PatientMedicalRecordService(MedicalRecordsRepository medRepo, PatientRepository patRepo)
+        public PatientMedicalRecordService()
         {
-            this._medicalRecordsRepository = medRepo;
-            this._patientRepository = patRepo;
+            this._medicalRecordsRepository = new MedicalRecordsRepository();
+            this._patientRepository = new PatientRepository();
             
         }
     
@@ -27,11 +27,10 @@ namespace Service
         public MedicalRecord FindMedicalRecordByPatient(Patient patient)
 
         {
-            Console.WriteLine(patient.Id);
+            
             _records = _medicalRecordsRepository.FindAll();
             foreach(MedicalRecord record in _records)
             {
-                Console.WriteLine(record.Patient.Id);
                 if (record.Patient.Id.Equals(patient.Id))
                 {
                     return record;

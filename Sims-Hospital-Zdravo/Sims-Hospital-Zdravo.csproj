@@ -141,10 +141,13 @@
     <Compile Include="DTO\RoomEquipmentFilterDTO.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IAllergensRepository.cs" />
+    <Compile Include="Interfaces\IAnamnesisRepository.cs" />
+    <Compile Include="Interfaces\IDoctorRepository.cs" />
     <Compile Include="Interfaces\IEquipmentRepository.cs" />
     <Compile Include="Interfaces\IGenericCRUD.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\IMedicalRecordsRepository.cs" />
+    <Compile Include="Interfaces\IMedicineRepository.cs" />
     <Compile Include="Interfaces\IMeetingRepository.cs" />
     <Compile Include="Interfaces\INotificationRepository.cs" />
     <Compile Include="Interfaces\IExtendedCRUD.cs" />
@@ -184,6 +187,9 @@
     </Compile>
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
+      <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewPatient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
@@ -492,9 +498,13 @@
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
-	<Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
+    <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
-	<Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewPatient\AnamnesisPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentDetailsPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentList.xaml">

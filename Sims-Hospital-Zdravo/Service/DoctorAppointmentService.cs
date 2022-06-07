@@ -40,7 +40,7 @@ namespace Service
 
         public List<Doctor> ReadAllDoctors()
         {
-            return _doctorRepo.ReadAll().ToList();
+            return _doctorRepo.FindAll();
         }
 
         public void Create(Appointment appointment)
@@ -114,32 +114,16 @@ namespace Service
             _appointmentRepository.Delete(_app);
         }
 
-        public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
-        {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
-
-            foreach (Appointment appointment in appointments)
-            {
-                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient.Jmbg.Equals(pat.Jmbg))
-                {
-                    _app = appointment;
-                }
-            }
-
-            return _app;
-        }
+        
 
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
+        public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
         {
             return _doctorRepo.FindDoctorsBySpecalty(specaltyType);
         }
 
 
-        public void IfUrgentRescheduleAllAppointment(int doctorID)
-        {
-            //ObservableCollection<>
-        }
+        
 
         public void UrgentSurgery(Appointment appointment, double duration)
         {

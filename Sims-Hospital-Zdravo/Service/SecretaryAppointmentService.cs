@@ -77,7 +77,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
-            return _doctorRepository.ReadAll().Where(doctor => _timeSchedulerService
+            return _doctorRepository.FindAll().Where(doctor => _timeSchedulerService
                 .IsDoctorFreeInInterval(doctor.Id, interval)).ToList();
         }
 

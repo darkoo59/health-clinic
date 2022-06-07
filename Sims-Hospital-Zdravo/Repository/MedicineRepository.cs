@@ -7,24 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataHandler;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class MedicineRepository
+    public class MedicineRepository : IMedicineRepository
     {
         private MedicineDataHandler _medicineDataHandler;
-        private ObservableCollection<Medicine> _medicines;
+        private List<Medicine> _medicines;
 
-        public MedicineRepository(MedicineDataHandler medicineDataHandler)
+        public MedicineRepository()
         {
-            this._medicineDataHandler = medicineDataHandler;
-            this._medicines = new ObservableCollection<Medicine>();
-            LoadDataFromFile();
+            this._medicineDataHandler = new MedicineDataHandler();
+            this._medicines = new List<Medicine>();
+            
         }
 
-        public ref ObservableCollection<Medicine> ReadAll()
+        public  List<Medicine> FindAll()
         {
-            return ref this._medicines;
+            return _medicineDataHandler.ReadAll();
         }
 
         public void Delete(Medicine medicine)
@@ -32,7 +33,10 @@ namespace Sims_Hospital_Zdravo.Repository
             _medicines.Remove(medicine);
             LoadDataToFiles();
         }
+        public void Update(Medicine medicine)
+        {
 
+        }
         public void DeleteById(int id)
         {
             Medicine medicine = FindById(id);
@@ -63,8 +67,9 @@ namespace Sims_Hospital_Zdravo.Repository
             return null;
         }
 
-        public void Create(Medicine medicine)
-        {
+        public void Create(Medicine medicine) {
+
+            LoadDataFromFile();
             _medicines.Add(medicine);
             LoadDataToFiles();
         }

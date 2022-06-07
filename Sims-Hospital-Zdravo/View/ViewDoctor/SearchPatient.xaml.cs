@@ -33,9 +33,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DataContext = this;
             this.frame = frame;
             this.doctorID = id;
-            this.anamnesisController = anamnesisController;
+            this.anamnesisController = new AnamnesisController();
             this.doctorAppointmentController = doctorAppointmentController;
-            this.medicalRecordController = medicalRecordController;
+             medicalRecordController = new MedicalRecordController();
             MedicalRecordDataGrid.ItemsSource = medicalRecordController.ReadAll();
             MedicalRecordDataGrid.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();

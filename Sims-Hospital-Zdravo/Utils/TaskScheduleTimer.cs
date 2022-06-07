@@ -62,11 +62,11 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private void FireScheduledTask(Object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Timer working");
+            
             CheckIfRelocationAppointmentDone();
             CheckIfRenovationAppointmentDone();
             CheckIfSuppliesAcquisitionDone();
-            if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
+            //if(_accountController.GetLoggedAccount() != null)CheckIfThereShouldBeNotification();
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();
@@ -161,16 +161,16 @@ namespace Sims_Hospital_Zdravo.Utils
         public void CheckNotificationForDoctor()
         {
 
-            Console.WriteLine("Searching for notification");
+            
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account._Role.Equals(RoleType.DOCTOR)) return;
-            Console.WriteLine("User logged");
+            
             List<Notification> notifications = _notificationController.ReadAllDoctorMedicineNotifications(account.Id);
             Console.WriteLine(notifications.Count);
             foreach (Notification notification in notifications)
             {
-                Console.WriteLine("ahahahhahahahhaha");
+                
                 Notify(notification);
             }
 

@@ -46,7 +46,7 @@ namespace Controller
         {
             return appointmentPatientService.FindByPatientIdNew(id);
         }
-        public ObservableCollection<Doctor> ReadDoctors()
+        public List<Doctor> ReadDoctors()
         {
             return appointmentPatientService.ReadDoctors();
         }

@@ -7,18 +7,19 @@ using DataHandler;
 using Model;
 using System;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Repository
 {
-    public class DoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         public DoctorDataHandler docHandler;
-        public ObservableCollection<Doctor> doctors;
+        public List<Doctor> doctors;
 
         public DoctorRepository()
         {
             this.docHandler = new DoctorDataHandler();
-            this.doctors = new ObservableCollection<Doctor>();
+            this.doctors = new List<Doctor>();
             LoadDataFromFile();
         }
 
@@ -68,10 +69,10 @@ namespace Repository
 
        
 
-        public ObservableCollection<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
+        public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specalty)
         {
             
-            ObservableCollection<Doctor> doctorss = new ObservableCollection<Doctor>();
+            List<Doctor> doctorss = new List<Doctor>();
 
             foreach(Doctor doc in doctors.ToList())
             {
@@ -99,9 +100,9 @@ namespace Repository
             return docs;
         }
 
-        public ObservableCollection<Doctor> ReadAll()
+        public List<Doctor> FindAll()
         {
-            return this.doctors;
+            return docHandler.ReadAll();
         }
 
         public void LoadDataFromFile()
@@ -112,6 +113,11 @@ namespace Repository
         public void LoadDataToFile()
         {
             docHandler.Write(doctors);
+        }
+
+        public void DeleteById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

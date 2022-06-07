@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DataContext = this;
             this.frame = frame;
             app = App.Current as App;
-            medicineController = app._medicineController;
+            medicineController = new MedicineController();
             MedicinesDataGrid.ItemsSource = medicineController.ReadAllMedicines();
             
             
