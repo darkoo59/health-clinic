@@ -43,7 +43,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patient = new Patient(_medicalRecordController.GeneratePatientId(), TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                Patient patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 List<String> medicalAllergensList = new List<String>();
                 foreach (string str in AllergensList.SelectedItems)
@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo
                 Allergens allergens = new Allergens();
                 allergens.CommonAllergens = allergensItems;
                 allergens.MedicalAllergens = medicalAllergensList;
-                MedicalRecord medicalRecord = new MedicalRecord(_medicalRecordController.GenerateId(), patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
+                MedicalRecord medicalRecord = new MedicalRecord(patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
                 _medicalRecordController.Create(medicalRecord, patient);
                 Close();
             }

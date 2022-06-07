@@ -31,9 +31,8 @@ namespace Model
         private BloodType _bloodType;
         private MaritalType _maritalStatus;
 
-        public MedicalRecord(int id,Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,Allergens allergens)
+        public MedicalRecord(Patient patient,GenderType gender,BloodType blood, MaritalType maritalStatus,Allergens allergens)
         {
-            this._id = id;
             this.Patient = patient;
             this.Gender = gender;
             this.BloodType = blood;

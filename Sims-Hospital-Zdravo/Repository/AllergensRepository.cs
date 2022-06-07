@@ -46,10 +46,5 @@ namespace Sims_Hospital_Zdravo.Repository
             this._allergens = _allergensDataHandler.ReadAll();
         }
 
-        public void LoadDataToFile()
-        {
-            _allergensDataHandler.Write(_allergens);
-        }
-
     }
 }

@@ -69,17 +69,7 @@ namespace Controller
             medicalRecordService.Delete(medicalRecord);
       }
 
-        public int GenerateId()
-        {
-           return  medicalRecordService.GenerateId();
-        }
-
-        public int GeneratePatientId()
-        {
-            return medicalRecordService.GenreatePatientId();
-        }
-
-        public List<String> ReadAllCommonAllergens()
+      public List<String> ReadAllCommonAllergens()
         {
             return medicalRecordService.ReadAllCommonAllergens();
         }

@@ -78,7 +78,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
 
         private void Guest_Click(object sender, RoutedEventArgs e)  //TODO
         {
-            Patient patient = new Patient(_secretaryAppointmentController.GeneratePatientId(), "Guest", "Guest");
+            Patient patient = new Patient("Guest", "Guest");
             ChooseDoctorSpecialityWindow window = new ChooseDoctorSpecialityWindow(patient);
             window.Show();
             this.Close();

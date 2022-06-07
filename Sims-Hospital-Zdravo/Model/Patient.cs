@@ -14,7 +14,7 @@ namespace Model
     {
 
         [JsonConstructor]
-        public Patient(int id, String name, String surname, DateTime birthDate, String email, String jmbg,
+        public Patient( String name, String surname, DateTime birthDate, String email, String jmbg,
             String phoneNumber)
         {
             this.Id = id;
@@ -26,7 +26,7 @@ namespace Model
             this.PhoneNumber = phoneNumber;
         }
 
-        public Patient(int id,String name,String surname)
+        public Patient(String name,String surname)
         {
             this.Id = id;
             this.Name = name;

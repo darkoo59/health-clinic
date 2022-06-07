@@ -150,5 +150,17 @@ namespace Repository
         {
             return medicalRecord.Prescriptions;
         }
+        
+        public int GenerateId()
+        {
+            int id = 0;
+            List<int> ids = _medicalRecords.Select(record => record.Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+
+        }
     }
 }
