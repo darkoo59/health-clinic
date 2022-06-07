@@ -185,7 +185,7 @@ namespace Repository
         {
             LoadDataFromFile();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
-            List<Appointment> appointments = FindByDoctorId(doctor._Id);
+            List<Appointment> appointments = FindByDoctorId(doctor.Id);
             foreach (Appointment app in appointments)
             {
                 timeIntervals.Add(app.Time);

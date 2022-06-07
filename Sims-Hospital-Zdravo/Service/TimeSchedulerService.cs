@@ -148,7 +148,7 @@ namespace Service
 
         private void CancelAppointmentsForOperation(Appointment appointment)
         {
-            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor._Id);
+            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(appointment.Doctor.Id);
             List<Appointment> appointmentsToDelete = appointments.Where(i => i.Time.Start >= appointment.Time.Start && i.Time.End <= appointment.Time.End).ToList();
             foreach (Appointment appToDelete in appointmentsToDelete)
             {

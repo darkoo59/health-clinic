@@ -141,6 +141,7 @@
     <Compile Include="DTO\RoomEquipmentFilterDTO.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IAllergensRepository.cs" />
+    <Compile Include="Interfaces\IAnamnesisRepository.cs" />
     <Compile Include="Interfaces\IAppointmentRepository.cs" />
     <Compile Include="Interfaces\IDoctorRepository.cs" />
     <Compile Include="Interfaces\IDoctorSurveyRepository.cs" />
@@ -504,6 +505,10 @@
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ViewPatient\AnamnesisPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentDetailsPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentList.xaml">

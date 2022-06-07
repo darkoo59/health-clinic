@@ -188,7 +188,7 @@ namespace Sims_Hospital_Zdravo.Model
             int id = 0;
             foreach (Patient patient in patients)
             {
-                ids.Add(patient._Id);
+                ids.Add(patient.Id);
             }
 
             while (ids.Contains(id))
