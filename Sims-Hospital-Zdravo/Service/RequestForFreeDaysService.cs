@@ -51,9 +51,9 @@ namespace Sims_Hospital_Zdravo.Model
             _requestForFreeDaysRepository.Delete(request);
         }
 
-        public ref ObservableCollection<FreeDaysRequest> ReadAll()
+        public List<FreeDaysRequest> ReadAll()
         {
-            return ref _requestForFreeDaysRepository.ReadAll();
+            return _requestForFreeDaysRepository.FindAll();
         }
     }
 }

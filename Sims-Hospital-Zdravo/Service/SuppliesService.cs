@@ -38,9 +38,9 @@ namespace Sims_Hospital_Zdravo.Model
             return this._roomRepository.FindAllEquipment();
         }
 
-        public ObservableCollection<SuppliesAcquisition> ReadAllSuppliesAcquisitions()
+        public List<SuppliesAcquisition> ReadAllSuppliesAcquisitions()
         {
-            return this._suppliesAcquisitionRepository.ReadAll();
+            return this._suppliesAcquisitionRepository.FindAll();
         }
 
         public SuppliesAcquisition FindSuppliesAcquisitionById(int id)
@@ -88,7 +88,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int GenerateSuppliesAcquistionId()
         {
-            ObservableCollection<SuppliesAcquisition> supplies = _suppliesAcquisitionRepository.ReadAll();
+            List<SuppliesAcquisition> supplies = _suppliesAcquisitionRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (SuppliesAcquisition supplie in supplies)

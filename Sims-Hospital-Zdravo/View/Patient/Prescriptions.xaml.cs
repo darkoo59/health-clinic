@@ -23,10 +23,10 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class Prescriptions : Page
     {
-        public ObservableCollection<Prescription> prescriptions;
+        public List<Prescription> prescriptions;
         public ObservableCollection<string> medicines;
         public Appointment appointment;
-        public Prescriptions(ObservableCollection<Prescription> prescriptions, Appointment appointment)
+        public Prescriptions(List<Prescription> prescriptions, Appointment appointment)
         {
             this.appointment = appointment;
             this.prescriptions = prescriptions;

@@ -10,14 +10,14 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class RequestForFreeDaysDataHandler
     {
-        public ObservableCollection<FreeDaysRequest> ReadAll()
+        public List<FreeDaysRequest> ReadAll()
         {
             string requestSerialized = System.IO.File.ReadAllText(Path);
-            ObservableCollection<FreeDaysRequest> request = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<FreeDaysRequest>>(requestSerialized);
+            List<FreeDaysRequest> request = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FreeDaysRequest>>(requestSerialized);
             return request;
         }
 
-        public void Write(ObservableCollection<FreeDaysRequest> request)
+        public void Write(List<FreeDaysRequest> request)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             System.IO.File.WriteAllText(Path, serialized);

@@ -10,15 +10,15 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class MeetingDataHandler
     {
-        public ObservableCollection<Meeting> ReadAll()
+        public List<Meeting> ReadAll()
         {
             // TODO: implement
             string meetingsSerialized = System.IO.File.ReadAllText(_path);
-            ObservableCollection<Meeting> meetings = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Meeting>>(meetingsSerialized);
+            List<Meeting> meetings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Meeting>>(meetingsSerialized);
             return meetings;
         }
 
-        public void Write(ObservableCollection<Meeting> meetings)
+        public void Write(List<Meeting> meetings)
         {
             // TODO: implement
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(meetings);

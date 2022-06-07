@@ -13,7 +13,7 @@ namespace Service
         private MedicalRecordsRepository _medicalRecordsRepository;
         private PatientRepository _patientRepository;
         private ObservableCollection<Patient> patients;
-        private ObservableCollection<MedicalRecord> _records;
+        private List<MedicalRecord> _records;
 
 
         public PatientMedicalRecordService(MedicalRecordsRepository medRepo, PatientRepository patRepo)
@@ -28,7 +28,7 @@ namespace Service
 
         {
             Console.WriteLine(patient._Id);
-            _records = _medicalRecordsRepository.ReadAll();
+            _records = _medicalRecordsRepository.FindAll();
             foreach(MedicalRecord record in _records)
             {
                 Console.WriteLine(record.Patient._Id);

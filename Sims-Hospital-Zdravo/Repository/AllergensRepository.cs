@@ -6,10 +6,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
-    public class AllergensRepository
+    public class AllergensRepository:IAllergensRepository
     {
         private AllergensDataHandler _allergensDataHandler;
         public Allergens _allergens;
@@ -21,19 +22,22 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataFromFile();
         }
 
-        public Allergens ReadAll()
+        public List<String> FindAll()
         {
-            return this._allergens;
+            LoadDataFromFile();
+            return _allergens.CommonAllergens.Concat(_allergens.MedicalAllergens).ToList();
 
         }
 
-        public List<String> ReadAllCommonAllergens()
+        public List<String> FindAllCommonAllergens()
         {
+            LoadDataFromFile();
             return _allergens.CommonAllergens;
         }
 
-        public List<String> ReadAllMedicalAllergens()
+        public List<String> FindAllMedicalAllergens()
         {
+            LoadDataFromFile();
             return _allergens.MedicalAllergens;
         }
 

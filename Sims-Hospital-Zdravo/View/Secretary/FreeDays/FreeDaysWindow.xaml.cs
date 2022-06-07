@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             this._freeDaysController = controller;
             this.DataContext = this;
             UpdateGridView();
-            ContentGrid.ItemsSource = this._freeDaysController.ReadAll();
+            ContentGrid.ItemsSource = this._freeDaysController.FindAll();
         }
 
         private void UpdateGridView()
