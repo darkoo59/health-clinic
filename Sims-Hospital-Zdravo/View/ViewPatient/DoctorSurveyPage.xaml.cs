@@ -25,7 +25,6 @@ namespace Sims_Hospital_Zdravo
     public partial class DoctorSurveyPage : Page
     {
         private Appointment appointment;
-        App app;
         private SurveyController surveyController;
         ObservableCollection<QuestionForSurvey> questions;
         Frame frame;
@@ -33,8 +32,7 @@ namespace Sims_Hospital_Zdravo
         {
             InitializeComponent();
             this.frame = frame;
-            app = Application.Current as App;
-            this.surveyController = app._surveyController;
+            this.surveyController = new SurveyController();
             this.appointment = appointment;
             this.appointment.Rated = false;
             this.DataContext = this;

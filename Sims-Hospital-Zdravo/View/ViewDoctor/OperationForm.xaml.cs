@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
         }
 
-        ObservableCollection<Doctor> FillDoctorComboBox()
+        List<Doctor> FillDoctorComboBox()
         {
             if (SpecilatyComboBox.SelectedValue != null)
                 return doctorAppointmentController.FindDoctorsBySpecalty((SpecialtyType)SpecilatyComboBox.SelectedValue);

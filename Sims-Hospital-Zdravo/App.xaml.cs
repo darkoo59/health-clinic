@@ -87,13 +87,11 @@ namespace Sims_Hospital_Zdravo
 
             AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
             DoctorDataHandler doctorDataHandler = new DoctorDataHandler();
-            DoctorRepository doctorRepository = new DoctorRepository(doctorDataHandler);
-            AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
+            DoctorRepository doctorRepository = new DoctorRepository();
+            //AppointmentRepository appointmentRepository = new AppointmentRepository(appointmentDataHandler);
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(appointmentRepository, doctorRepository, accountRepository);
+                new AppointmentPatientService(doctorRepository, accountRepository);
             _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
-
-            DoctorRepository docRepo = new DoctorRepository(doctorDataHandler);
 
             // EquipmentDataHandler equipmentDataHandler = new EquipmentDataHandler();
             // EquipmentRepository equipmentRepository = new EquipmentRepository();
@@ -107,10 +105,10 @@ namespace Sims_Hospital_Zdravo
             RenovationRepository renovationRepository = new RenovationRepository();
 
 
-            TimeSchedulerService timeSchedulerService = new TimeSchedulerService(appointmentRepository);
+            TimeSchedulerService timeSchedulerService = new TimeSchedulerService();
 
             DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService(appointmentRepository, patientRepository, docRepo, timeSchedulerService, roomService);
+                new DoctorAppointmentService( patientRepository, timeSchedulerService, roomService);
             _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
@@ -130,7 +128,7 @@ namespace Sims_Hospital_Zdravo
             AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
             _anamnesisController = new AnamnesisController(anamnesisService);
 
-            DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
+            /*DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
             DoctorQuestionDataHandler doctorQuestionDataHandler = new DoctorQuestionDataHandler();
             HospitalQuestionDataHandler hospitalQuestionDataHandler = new HospitalQuestionDataHandler();
@@ -138,10 +136,10 @@ namespace Sims_Hospital_Zdravo
             DoctorSurveyRepository doctorSurveyRepository = new DoctorSurveyRepository(doctorSurveyDataHandler);
             HospitalSurveyRepository hospitalSurveyRepository = new HospitalSurveyRepository(hospitalSurveyDataHandler);
             SurveyService surveyService = new SurveyService(doctorSurveyRepository, hospitalSurveyRepository, questionRepository);
-            _surveyController = new SurveyController(surveyService);
+            _surveyController = new SurveyController(surveyService);*/
 
             SecretaryAppointmentService secretaryAppointmentService =
-                new SecretaryAppointmentService(appointmentRepository, patientRepository, timeSchedulerService, doctorRepository);
+                new SecretaryAppointmentService(patientRepository, timeSchedulerService, doctorRepository);
             _secretaryAppointmentController = new SecretaryAppointmentController(secretaryAppointmentService);
 
             SuppliesAcquisitionDataHandler _suppliesAcquisitionDataHandler = new SuppliesAcquisitionDataHandler();
@@ -171,7 +169,7 @@ namespace Sims_Hospital_Zdravo
 
             RequestForFreeDaysDataHandler _requestForFreeDaysDataHandler = new RequestForFreeDaysDataHandler();
             RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
-            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
+            RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository);
             _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
         }
 

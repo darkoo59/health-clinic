@@ -20,9 +20,9 @@ namespace Sims_Hospital_Zdravo.Model
         private TimeSchedulerService _timeSchedulerService;
         private AppointmentSecretaryValidator _validator;
 
-        public SecretaryAppointmentService(AppointmentRepository appRepo, PatientRepository patientRepo, TimeSchedulerService timeService, DoctorRepository doctorRepository)
+        public SecretaryAppointmentService(PatientRepository patientRepo, TimeSchedulerService timeService, DoctorRepository doctorRepository)
         {
-            this._appointmentRepository = appRepo;
+            this._appointmentRepository = new AppointmentRepository();
             this._patientRepository = patientRepo;
             this._timeSchedulerService = timeService;
             this._roomRepository = new RoomRepository();
@@ -30,12 +30,12 @@ namespace Sims_Hospital_Zdravo.Model
             this._validator = new AppointmentSecretaryValidator(this);
         }
 
-        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        public List<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             return _appointmentRepository.ReadAllAppointmentsForDate(date);
         }
 
-        public ObservableCollection<Appointment> ReadAll()
+        public List<Appointment> ReadAll()
         {
             return _appointmentRepository.FindAll();
         }
@@ -90,7 +90,7 @@ namespace Sims_Hospital_Zdravo.Model
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
             List<Doctor> availableDoctors = new List<Doctor>();
-            foreach (Doctor doctor in _doctorRepository.ReadAll())
+            foreach (Doctor doctor in _doctorRepository.FindAll())
             {
                 if (_timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
                     availableDoctors.Add(doctor);
@@ -210,7 +210,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int GenerateId()
         {
-            ObservableCollection<Appointment> appointments = _appointmentRepository.FindAll();
+            List<Appointment> appointments = _appointmentRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Appointment appointment in appointments)

@@ -15,11 +15,11 @@ namespace Sims_Hospital_Zdravo.Service
         public HospitalSurveyRepository hospitalSurveyRepository;
         public QuestionRepository questionRepository;
 
-        public SurveyService(DoctorSurveyRepository doctorSurveyRepository, HospitalSurveyRepository hospitalSurveyRepository, QuestionRepository questionRepository)
+        public SurveyService()
         {
-            this.doctorSurveyRepository = doctorSurveyRepository;
-            this.hospitalSurveyRepository = hospitalSurveyRepository;
-            this.questionRepository = questionRepository;
+            this.doctorSurveyRepository = new DoctorSurveyRepository();
+            this.hospitalSurveyRepository = new HospitalSurveyRepository();
+            this.questionRepository = new QuestionRepository();
         }
 
         public void CreateDoctorSurvey(DoctorSurvey doctorSurvey)
@@ -54,12 +54,12 @@ namespace Sims_Hospital_Zdravo.Service
 
         public List<ISurveyStatistic> GetDoctorSurveys(int doctorId)
         {
-            return doctorSurveyRepository.ReadAllByDoctorId(doctorId).ConvertAll(x => (ISurveyStatistic)x);
+            return doctorSurveyRepository.FindAllByDoctorId(doctorId).ConvertAll(x => (ISurveyStatistic)x);
         }
 
         public List<ISurveyStatistic> GetHospitalSurveys()
         {
-            return hospitalSurveyRepository.ReadAll().ConvertAll(x => (ISurveyStatistic)x);
+            return hospitalSurveyRepository.FindAll().ConvertAll(x => (ISurveyStatistic)x);
         }
 
 

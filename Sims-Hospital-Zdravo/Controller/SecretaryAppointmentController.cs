@@ -20,7 +20,7 @@ namespace Sims_Hospital_Zdravo.Controller
             secretaryAppointmenService.Create(appointment);
         }
 
-        public ObservableCollection<Appointment> ReadAllAppointmentsForDate(DateTime date)
+        public List<Appointment> ReadAllAppointmentsForDate(DateTime date)
         {
             return secretaryAppointmenService.ReadAllAppointmentsForDate(date);
         }

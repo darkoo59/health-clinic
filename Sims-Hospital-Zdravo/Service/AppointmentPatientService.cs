@@ -20,9 +20,9 @@ namespace Service
         private AppointmentPatientValidator appointmentPatientValidator;
         public AccountRepository accountRepository;
 
-        public AppointmentPatientService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, AccountRepository accountRepository)
+        public AppointmentPatientService(DoctorRepository doctorRepository, AccountRepository accountRepository)
         {
-            this.appointmentRepository = appointmentRepository;
+            this.appointmentRepository = new AppointmentRepository();
             this.doctorRepository = doctorRepository;
             this.appointmentPatientValidator = new AppointmentPatientValidator(appointmentRepository);
             this.accountRepository = accountRepository;
@@ -46,35 +46,35 @@ namespace Service
             CheckIfPatientNotBlocked();
             appointmentRepository.Delete(appointment);
         }
-        public ObservableCollection<Appointment> FindByPatientIdOld(int id)
+        public List<Appointment> FindByPatientIdOld(int id)
         {
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            List<Appointment> appointments = new List<Appointment>();
             foreach (Appointment app in FindByPatientId(id))
             {
                 if (app.Time.End.CompareTo(DateTime.Now) < 0) appointments.Add(app);
             }
             return appointments;
         }
-        public ObservableCollection<Appointment> FindByPatientIdNew(int id)
+        public List<Appointment> FindByPatientIdNew(int id)
         {
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            List<Appointment> appointments = new List<Appointment>();
             foreach (Appointment app in FindByPatientId(id))
             {
                 if (app.Time.End.CompareTo(DateTime.Now) > 0) appointments.Add(app);
             }
             return appointments;
         }
-        public ref ObservableCollection<Appointment> FindByPatientId(int id)
+        public List<Appointment> FindByPatientId(int id)
         {
-            return ref appointmentRepository.FindByPatientId(id);
+            return appointmentRepository.FindByPatientId(id);
         }
 
-        public ObservableCollection<Doctor> ReadDoctors()
+        public List<Doctor> ReadDoctors()
         {
-            return doctorRepository.ReadAll();
+            return doctorRepository.FindAll();
         }
 
-        public ObservableCollection<Appointment> FindAll()
+        public List<Appointment> FindAll()
         {
             return appointmentRepository.FindAll();
         }
@@ -92,11 +92,11 @@ namespace Service
         {
             appointmentPatientValidator.CheckIfPatientNotBlocked(accountRepository);
         }
-        public ObservableCollection<Appointment> InitializeList(Appointment appointment, string priority)
+        public List<Appointment> InitializeList(Appointment appointment, string priority)
         {
             if (CheckIfFree(appointment))
             {
-                ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+                List<Appointment> appointments = new List<Appointment>();
                 appointments.Add(appointment);
                 return appointments;
             }
@@ -109,10 +109,10 @@ namespace Service
                 return GetAppointmentsByDoctorPriority(appointment);
             }
         }
-        private ObservableCollection<Appointment> GetAppointmentsByDoctorPriority(Appointment appointment)
+        private List<Appointment> GetAppointmentsByDoctorPriority(Appointment appointment)
         {
-            ObservableCollection<DateTime> dates = AddingTimes(appointment);
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            List<DateTime> dates = AddingTimes(appointment);
+            List<Appointment> appointments = new List<Appointment>();
             DeleteBusyTimes(appointment, dates);
             foreach (DateTime d in dates)
             {
@@ -121,10 +121,10 @@ namespace Service
             }
             return appointments;
         }
-        private ObservableCollection<Appointment> GetAppointmentsByDatePriority(Appointment appointment)
+        private List<Appointment> GetAppointmentsByDatePriority(Appointment appointment)
         {
-            ObservableCollection<Doctor> doctors = AddingDoctors();
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            List<Doctor> doctors = AddingDoctors();
+            List<Appointment> appointments = new List<Appointment>();
             DeleteBusyDoctors(appointment, doctors);
             foreach (Doctor d in doctors)
             {
@@ -133,9 +133,9 @@ namespace Service
             }
             return appointments;
         }
-        private ObservableCollection<Doctor> AddingDoctors() 
+        private List<Doctor> AddingDoctors() 
         {
-            ObservableCollection<Doctor> doctors = new ObservableCollection<Doctor>();
+            List<Doctor> doctors = new List<Doctor>();
             foreach (Doctor d in ReadDoctors())
             {
                 doctors.Add(d);
@@ -156,9 +156,9 @@ namespace Service
             }
             return true;
         }
-        private ObservableCollection<DateTime> AddingTimes(Appointment appointment)
+        private List<DateTime> AddingTimes(Appointment appointment)
         {
-            ObservableCollection<DateTime> dates = new ObservableCollection<DateTime>();
+            List<DateTime> dates = new List<DateTime>();
             for (int i = 8; i < 12; i++)
             {
                 DateTime dt = new DateTime(appointment.Time.Start.Year, appointment.Time.Start.Month, appointment.Time.Start.Day);
@@ -168,7 +168,7 @@ namespace Service
             }
             return dates;
         }
-        private void DeleteBusyTimes(Appointment appointment, ObservableCollection<DateTime> dateTimes)
+        private void DeleteBusyTimes(Appointment appointment, List<DateTime> dateTimes)
         {
             foreach (Appointment app in FindAll())
             {
@@ -181,7 +181,7 @@ namespace Service
                 }
             }
         }
-        private void DeleteBusyDoctors(Appointment appointment,ObservableCollection<Doctor> doctors)
+        private void DeleteBusyDoctors(Appointment appointment,List<Doctor> doctors)
         {
             foreach (Appointment app in FindAll())
             {
@@ -197,7 +197,7 @@ namespace Service
 
         public int GenerateId()
         {
-            ObservableCollection<Appointment> appointments = appointmentRepository.FindAll();
+            List<Appointment> appointments = appointmentRepository.FindAll();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (Appointment app in appointments)
