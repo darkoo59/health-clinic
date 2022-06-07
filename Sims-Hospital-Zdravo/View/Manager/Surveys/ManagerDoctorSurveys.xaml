@@ -41,6 +41,7 @@
             <Button
                 Height="30"
                 Width="150"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}"
                 DockPanel.Dock="Right"
                 Command="commands:Commands.CreatePdfCommand"
                 CommandParameter="{Binding SelectedItem, ElementName=ChosenDoctor}">
@@ -50,7 +51,7 @@
                 x:Name="ChosenDoctor"
                 VerticalAlignment="Center"
                 DockPanel.Dock="Right"
-                Width="250"
+                Width="150"
                 Height="30"
                 ItemsSource="{Binding Doctors}"
                 SelectedItem="{Binding Selected}"

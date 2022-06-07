@@ -15,7 +15,7 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Frame  Margin="211,0,0,0"/>
-        <DataGrid Name="MedicalRecordDataGrid" Grid.Row="1" Margin="10,10,10,10" ColumnWidth="*"/>
+        <DataGrid Name="MedicalRecordDataGrid" Grid.Row="1" Margin="10,10,10,10" ColumnWidth="*" SelectionChanged="MedicalRecordDataGrid_SelectionChanged"/>
         <StackPanel Grid.Row="0"  Orientation="Horizontal">
             <TextBox TextWrapping="Wrap" Name="SearchTxt" Width="120" Height="40" Margin="0,0,25,0" />
             <Button Content="Search" Margin="0,0,25,0" Width="120" Height="40" />

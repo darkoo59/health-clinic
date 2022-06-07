@@ -78,7 +78,7 @@ namespace Sims_Hospital_Zdravo.Model
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
             return _doctorRepository.FindAll().Where(doctor => _timeSchedulerService
-                .IsDoctorFreeInInterval(doctor._Id, interval)).ToList();
+                .IsDoctorFreeInInterval(doctor.Id, interval)).ToList();
         }
 
         public Appointment FindAndScheduleEmergencyAppointmentIfCan(Patient patient, SpecialtyType type)
@@ -91,7 +91,7 @@ namespace Sims_Hospital_Zdravo.Model
                 appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
                 for (int i = 0; i < 4; i++)
                 {
-                    if (_timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval) && interval.Start.CompareTo(minStart) < 0)
+                    if (_timeSchedulerService.IsDoctorFreeInInterval(doctor.Id, interval) && interval.Start.CompareTo(minStart) < 0)
                     {
                         minStart = interval.Start;
                         appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
@@ -120,7 +120,7 @@ namespace Sims_Hospital_Zdravo.Model
             ObservableCollection<Patient> availablePatients = new ObservableCollection<Patient>();
             foreach (Patient patient in _patientRepository.ReadAll())
             {
-                if (_timeSchedulerService.IsPatientFreeInInterval(patient._Id, startEndTime))
+                if (_timeSchedulerService.IsPatientFreeInInterval(patient.Id, startEndTime))
                     availablePatients.Add(patient);
             }
             return availablePatients;
@@ -140,8 +140,8 @@ namespace Sims_Hospital_Zdravo.Model
         {
             while (true)
             {
-                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor._Id,
-                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id, interval))
+                if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor.Id,
+                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient.Id, interval))
                 {
                     return interval;
                 }
@@ -188,7 +188,7 @@ namespace Sims_Hospital_Zdravo.Model
             int id = 0;
             foreach (Patient patient in patients)
             {
-                ids.Add(patient._Id);
+                ids.Add(patient.Id);
             }
 
             while (ids.Contains(id))

@@ -10,14 +10,14 @@ namespace Sims_Hospital_Zdravo.DataHandler
 {
     public class MedicineDataHandler
     {
-        public ObservableCollection<Medicine> ReadAll()
+        public List<Medicine> ReadAll()
         {
             string medicineSerialized = System.IO.File.ReadAllText(Path);
-            ObservableCollection<Medicine> medicines = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Medicine>>(medicineSerialized);
+            List<Medicine> medicines = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Medicine>>(medicineSerialized);
             return medicines;
         }
 
-        public void Write(ObservableCollection<Medicine> medicines)
+        public void Write(List<Medicine> medicines)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(medicines);
             System.IO.File.WriteAllText(Path, serialized);

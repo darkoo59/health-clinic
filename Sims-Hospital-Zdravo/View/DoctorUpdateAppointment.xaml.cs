@@ -41,12 +41,12 @@ namespace Sims_Hospital_Zdravo.View
             Patients = new ObservableCollection<string>();
             foreach (Patient pat in this.docController.GetPatients())
             {
-                Patients.Add(pat._Name + " " + pat._Surname + " " + pat._BirthDate.ToString());
+                Patients.Add(pat.Name + " " + pat.Surname + " " + pat.BirthDate.ToString());
             }
 
             Patientcb.ItemsSource = Patients;
             
-            Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app.Patient._Name + " " + app.Patient._Surname + " " + app.Patient._BirthDate.ToString()
+            Patientcb.SelectedIndex = Patientcb.Items.IndexOf(app.Patient.Name + " " + app.Patient.Surname + " " + app.Patient.BirthDate.ToString()
                 );
             
             Console.WriteLine(Patientcb.Text);
@@ -76,7 +76,7 @@ namespace Sims_Hospital_Zdravo.View
             string[] names = name.Split(' ');
             foreach (Patient pat in this.docController.GetPatients())
             {
-                if (pat._Name.Equals(names[0]) && pat._Surname.Equals(names[1]))
+                if (pat.Name.Equals(names[0]) && pat.Surname.Equals(names[1]))
 
                 {
                     Pat = pat;

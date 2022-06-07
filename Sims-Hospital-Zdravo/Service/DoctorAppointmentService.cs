@@ -114,20 +114,7 @@ namespace Service
             _appointmentRepository.Delete(_app);
         }
 
-        public Appointment FindAppointmentByDateAndPatient(DateTime date, Patient pat, int id)
-        {
-            List<Appointment> appointments = _appointmentRepository.FindByDoctorId(id);
-
-            foreach (Appointment appointment in appointments)
-            {
-                if (appointment.Time.Start.Date.Equals(date.Date) && appointment.Patient._Jmbg.Equals(pat._Jmbg))
-                {
-                    _app = appointment;
-                }
-            }
-
-            return _app;
-        }
+        
 
 
         public List<Doctor> FindDoctorsBySpecalty(SpecialtyType specaltyType)
@@ -136,10 +123,7 @@ namespace Service
         }
 
 
-        public void IfUrgentRescheduleAllAppointment(int doctorID)
-        {
-            //ObservableCollection<>
-        }
+        
 
         public void UrgentSurgery(Appointment appointment, double duration)
         {

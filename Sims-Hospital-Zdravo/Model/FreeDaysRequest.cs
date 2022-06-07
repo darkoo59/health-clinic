@@ -58,7 +58,7 @@ namespace Sims_Hospital_Zdravo.Model
                     _doctor = value;
             }
         }
-        public string ReasonForfreeDays
+        public string ReasonForFreeDays
         {
             get
             {

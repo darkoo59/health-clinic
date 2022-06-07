@@ -7,12 +7,12 @@ using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Model
 {
-    public class RequestForFreeDaysNotification
+    public class RequestForFreeDaysNotification : Notification
     {
 
         private FreeDaysRequest _request;
 
-        public RequestForFreeDaysNotification(FreeDaysRequest request)
+        public RequestForFreeDaysNotification(FreeDaysRequest request,string content,int id) : base(content, id)
         {
             _request = request;
         }

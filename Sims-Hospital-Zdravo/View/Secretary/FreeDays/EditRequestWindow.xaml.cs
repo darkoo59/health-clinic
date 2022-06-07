@@ -36,7 +36,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             _notificationController = new NotificationController();
             comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();
             comboStatus.SelectedItem = _freeDaysRequest.Status;
-            txtReason.Text = _freeDaysRequest.ReasonForfreeDays;
+            txtReason.Text = _freeDaysRequest.ReasonForFreeDays;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -81,7 +81,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             {
                 try
                 {
-                    FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForfreeDays,
+                    FreeDaysRequest request = new FreeDaysRequest(_freeDaysRequest.TimeInterval, _freeDaysRequest.Doctor, _freeDaysRequest.ReasonForFreeDays,
                         (RequestStatus)comboStatus.SelectedValue);
                     Notification notification = new FreeDaysNotification(txtReason.Text, _notificationController.GenerateId(),
                         request);

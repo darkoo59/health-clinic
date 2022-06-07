@@ -99,7 +99,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string[] patientFull = patient.Split(' ');
             foreach (Patient pat in this.doctorAppointmentController.GetPatients())
             {
-                if (pat._Name.Equals(patientFull[0]) && pat._Surname.Equals(patientFull[1]))
+                if (pat.Name.Equals(patientFull[0]) && pat.Surname.Equals(patientFull[1]))
                 {
                     _Patient1 = pat;
                 }
@@ -121,7 +121,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             int numOfRoom = Int32.Parse(RoomText.Text);
             Room room = this.roomController.FindById(numOfRoom);
             Patient pat = FindPatient();
-            int doctorId = doctor._Id;
+            int doctorId = doctor.Id;
             Appointment appointment = new Appointment(room, doctor, pat, timeInterval, (AppointmentType)TypeOfAppointment.SelectedValue);
             doctorAppointmentController.Create(appointment);
         }
@@ -134,7 +134,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string[] names = name.Split(' ');
             foreach (Doctor d in this.patientController.ReadDoctors())
             {
-                if (d._Name.Equals(names[0]) && d._Surname.Equals(names[1]))
+                if (d.Name.Equals(names[0]) && d.Surname.Equals(names[1]))
                 {
                     doctor = d;
                     break;

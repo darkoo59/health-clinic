@@ -72,7 +72,7 @@ namespace Sims_Hospital_Zdravo
             DateOrDoctors.ItemsSource = doctorordate;
             foreach (Doctor doctor in this.appointmentPatientController.ReadDoctors())
             {
-                doctors.Add(doctor._Name + " " + doctor._Surname);
+                doctors.Add(doctor.Name + " " + doctor.Surname);
             }
             Doctors.ItemsSource = doctors;
             Doctors.SelectedIndex = 1;
@@ -112,7 +112,7 @@ namespace Sims_Hospital_Zdravo
             string[] names = name.Split(' ');
             foreach (Doctor d in this.appointmentPatientController.ReadDoctors())
             {
-                if (d._Name.Equals(names[0]) && d._Surname.Equals(names[1]))
+                if (d.Name.Equals(names[0]) && d.Surname.Equals(names[1]))
                 {
                     doctor = d;
                     break;

@@ -33,21 +33,22 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.medicalRecord = medicalRecord;
+            this.frame = frame;
             PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame);
             this.doctorID = id;
-            FrameForPatient.Content = patientMedicalRecordPage;
+            frame.Content = patientMedicalRecordPage;
         }
 
         private void MedcialRecordClick(object sender, RoutedEventArgs e)
         {
             PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame);
-            FrameForPatient.Content = patientMedicalRecordPage;
+            frame.Content = patientMedicalRecordPage;
         }
 
         private void MedicalHistoryClick(object sender, RoutedEventArgs e)
         {
             PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory();
-            FrameForPatient.Content = patientMedicalHistory;
+            frame.Content = patientMedicalHistory;
         }
 
         private void TherapyClick(object sender, RoutedEventArgs e)
@@ -59,7 +60,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void PatientMedicalRecordClick(object sender, RoutedEventArgs e)
         {
             AnamnesisListPage anamnesisListPage = new AnamnesisListPage(doctorID, medicalRecord);
-            FrameForPatient.Content = anamnesisListPage;
+            frame.Content = anamnesisListPage;
         }
     }
 }

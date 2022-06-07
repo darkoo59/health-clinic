@@ -11,9 +11,9 @@ namespace Controller
     {
         private PatientMedicalRecordService _patMedRecService;
 
-        public PatientMedicalRecordController(PatientMedicalRecordService patientMedicalRecordService)
+        public PatientMedicalRecordController()
         {
-            this._patMedRecService = patientMedicalRecordService;
+            this._patMedRecService = new PatientMedicalRecordService();
         }
 
         public MedicalRecord findMedicalRecordByPatient(Patient patient)

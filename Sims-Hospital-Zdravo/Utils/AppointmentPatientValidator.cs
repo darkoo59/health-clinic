@@ -80,7 +80,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             foreach (Appointment app in appointmentRepository.FindAll())
             {
-                if (appointment.Doctor._Id == app.Doctor._Id)
+                if (appointment.Doctor.Id == app.Doctor.Id)
                 {
                     if (app.CheckIfTimeIntervalInAppointment(appointment.Time))
                     {
@@ -95,7 +95,7 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 if (appointment.Id != app.Id)
                 {
-                    if (appointment.Doctor._Id == app.Doctor._Id)
+                    if (appointment.Doctor.Id == app.Doctor.Id)
                     {
                         if (app.CheckIfTimeIntervalInAppointment(timeInterval))
                         {

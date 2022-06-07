@@ -15,7 +15,7 @@
             <ListBox Width="300" Height="150" HorizontalAlignment="Left" Name="MedicineListBox" ScrollViewer.HorizontalScrollBarVisibility="Visible" SelectionChanged="MedicineListBox_SelectionChanged" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="IsEnabled" Value="{Binding _NotAllergic}"/>
+                        <Setter Property="IsEnabled" Value="{Binding NotAllergic}"/>
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>

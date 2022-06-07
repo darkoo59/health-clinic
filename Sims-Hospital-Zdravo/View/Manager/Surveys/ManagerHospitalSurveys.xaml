@@ -41,6 +41,7 @@
             <Button
                 Height="30"
                 Width="150"
+                FocusVisualStyle="{DynamicResource MyFocusVisual}"
                 DockPanel.Dock="Right"
                 Command="cmd:Commands.CreatePdfCommand">
                 Print Surveys

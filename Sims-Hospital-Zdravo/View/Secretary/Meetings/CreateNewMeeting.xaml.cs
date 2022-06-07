@@ -27,11 +27,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
     /// </summary>
     public partial class CreateNewMeeting : Window, INotificationObserver
     {
-
         private MeetingCreatedNotifications _createdNotification;
         private MeetingController _meetingController;
         private NotificationManager _notificationManager;
         private App app;
+
         public CreateNewMeeting()
         {
             app = Application.Current as App;
@@ -48,25 +48,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
 
             //Images listeners
 
-            ImageToLeftOptional.MouseLeftButtonDown += (s, e) =>
-            {
-                imageToLeftOptionalFunctionality();
-            };
+            ImageToLeftOptional.MouseLeftButtonDown += (s, e) => { imageToLeftOptionalFunctionality(); };
 
-            ImageToRightOptional.MouseLeftButtonDown += (s, e) =>
-            {
-                ImageToRightOptionalFunctionality();
-            };
+            ImageToRightOptional.MouseLeftButtonDown += (s, e) => { ImageToRightOptionalFunctionality(); };
 
-            ImageToLeftRequired.MouseLeftButtonDown += (s, e) =>
-            {
-                imageToLeftRequiredFunctionality();
-            };
+            ImageToLeftRequired.MouseLeftButtonDown += (s, e) => { imageToLeftRequiredFunctionality(); };
 
-            ImageToRightRequired.MouseLeftButtonDown += (s, e) =>
-            {
-                ImageToRightRequiredFunctionality();
-            };
+            ImageToRightRequired.MouseLeftButtonDown += (s, e) => { ImageToRightRequiredFunctionality(); };
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -90,7 +78,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                     ListOptionalOthers.Items.Add(user);
                     ListRequiredOthers.Items.Add(user);
                 }
-
             }
         }
 
@@ -241,20 +228,23 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                     {
                         optional.Add(user);
                     }
+
                     List<User> required = new List<User>();
                     foreach (User user in ListRequired.Items)
                     {
                         required.Add(user);
                     }
+
                     Meeting meeting = new Meeting((DateTime)startDatePicker.SelectedDate, (Room)comboRoom.SelectedValue,
                         optional, required);
                     //this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
                     List<Notification> notificationsToAdd = new List<Notification>();
-                    foreach(User user in meeting.RequiredAttendees)
+                    foreach (User user in meeting.RequiredAttendees)
                     {
                         notificationsToAdd.Add(new MeetingCreatedNotifications("You have new meeting on " + meeting.Start.ToString(), meeting.Start,
-    user._Role,user._Id, app._notificationController.GenerateId()));
+                            user._Role, user.Id, (new NotificationController()).GenerateId()));
                     }
+
                     _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
                     MessageBox.Show("Meeting successfully created!", "Successfully created!", MessageBoxButton.OK);
                 }
@@ -274,8 +264,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingCreatedNotification.MeetingStart.ToString() },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(10));
 
-            app._notificationController.Delete(notification);
+            (new NotificationController()).Delete(notification);
         }
-
     }
 }

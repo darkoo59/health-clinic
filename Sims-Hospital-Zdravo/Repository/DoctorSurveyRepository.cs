@@ -38,7 +38,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public List<DoctorSurvey> FindAllByDoctorId(int id)
         {
             LoadDataFromFile();
-            return surveys.FindAll(survey => survey.Appointment.Doctor._Id == id);
+            return surveys.FindAll(survey => survey.Appointment.Doctor.Id == id);
         }
 
         public void LoadDataFromFile()

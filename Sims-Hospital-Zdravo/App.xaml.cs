@@ -34,12 +34,16 @@ namespace Sims_Hospital_Zdravo
 
         internal RenovationController _renovationController;
         internal PatientMedicalRecordController _patientMedRecController;
+
         internal AnamnesisController _anamnesisController;
+
         //internal SecretaryAppointmentController _secretaryAppointmentController;
         internal PrescriptionController _prescriptionController;
         internal TaskScheduleTimer _taskScheduleTimer;
+
         internal MedicineController _medicineController;
-        internal NotificationController _notificationController;
+
+        // internal NotificationController _notificationController;
         internal SuppliesController _suppliesController;
         internal RequestForFreeDaysController _requestForFreeDaysController;
         internal SurveyController _surveyController;
@@ -52,7 +56,7 @@ namespace Sims_Hospital_Zdravo
             // NotificationDataHandler notificationDataHandler = new NotificationDataHandler();
             // NotificationRepository notificationRepository = new NotificationRepository();
             // NotificationService notificationService = new NotificationService();
-            _notificationController = new NotificationController();
+            // _notificationController = new NotificationController();
 
             // RoomDataHandler roomDataHandler = new RoomDataHandler();
             // RoomRepository roomRepository = new RoomRepository();
@@ -70,16 +74,16 @@ namespace Sims_Hospital_Zdravo
             // PrescriptionRepository prescriptionRepository = new PrescriptionRepository();
             // PrescriptionService prescriptionService = new PrescriptionService();
 
-            MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
-            MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
-            MedicineService medicineService = new MedicineService(medicineRepository);
-            _medicineController = new MedicineController(medicineService);
+            //MedicineDataHandler medicineDataHandler = new MedicineDataHandler();
+            //MedicineRepository medicineRepository = new MedicineRepository(medicineDataHandler);
+            //MedicineService medicineService = new MedicineService(medicineRepository);
+            //_medicineController = new MedicineController(medicineService);
 
-            // MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
-            // MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
-            // MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
-            // _recordController = new MedicalRecordController(recordService, prescriptionService);
-            
+            //MedicalRecordDataHandler medicalRecordDataHandler = new MedicalRecordDataHandler();
+            //MedicalRecordsRepository medicalRepo = new MedicalRecordsRepository(medicalRecordDataHandler);
+            //MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
+            //_recordController = new MedicalRecordController(recordService, prescriptionService);
+
             AccountRepository accountRepository = new AccountRepository();
             AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
@@ -102,6 +106,7 @@ namespace Sims_Hospital_Zdravo
             RelocationAppointmentDataHandler relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             RelocationAppointmentRepository relocationAppointmentRepository =
                 new RelocationAppointmentRepository();
+
             RenovationDataHandler renovationDataHandler = new RenovationDataHandler();
             RenovationRepository renovationRepository = new RenovationRepository();
 
@@ -121,13 +126,13 @@ namespace Sims_Hospital_Zdravo
             _equipmentTransferController = new EquipmentTransferController(equipmentTransferService);
 
 
-            PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(new MedicalRecordsRepository(), patientRepository);
-            _patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
+            //PatientMedicalRecordService patientMedicalRecordService = new PatientMedicalRecordService(new MedicalRecordsRepository(), patientRepository);
+            //_patientMedRecController = new PatientMedicalRecordController(patientMedicalRecordService);
 
-            AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
-            AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
-            AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
-            _anamnesisController = new AnamnesisController(anamnesisService);
+            //AnamnesisDataHandler anamnesisDataHandler = new AnamnesisDataHandler();
+            //AnamnesisRepository anamnesisRepository = new AnamnesisRepository(anamnesisDataHandler);
+            //AnamnesisService anamnesisService = new AnamnesisService(anamnesisRepository);
+            //_anamnesisController = new AnamnesisController(anamnesisService);
 
             /*DoctorSurveyDataHandler doctorSurveyDataHandler = new DoctorSurveyDataHandler();
             HospitalSurveyDataHandler hospitalSurveyDataHandler = new HospitalSurveyDataHandler();
@@ -163,7 +168,6 @@ namespace Sims_Hospital_Zdravo
                 _renovationController,
                 _doctorAppointmentController,
                 _recordController,
-                _notificationController,
                 _suppliesController,
                 _accountController
             );

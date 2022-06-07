@@ -37,30 +37,30 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             
             this.frame = frame;
             this.DataContext = med;
-            Binding binding = new Binding("Patient._Name");
+            Binding binding = new Binding("Patient.Name");
             binding.Source = med;
-            PatienNameTxt.SetBinding(TextBox.TextProperty, binding);
+            PatienNameTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient._Surname");
-            PatientSurnameTxt.SetBinding(TextBox.TextProperty, binding);
+            binding = new Binding("Patient.Surname");
+            PatientSurnameTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient._BirthDate");
+            binding = new Binding("Patient.BirthDate");
             BirthDateTxt.SetBinding(TextBlock.TextProperty, binding);
 
             binding = new Binding("Gender");
-            Gendertxt.SetBinding(TextBox.TextProperty, binding);
+            Gendertxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient._PhoneNumber");
-            numberTxt.SetBinding(TextBox.TextProperty, binding);
+            binding = new Binding("Patient.PhoneNumber");
+            numberTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient._Address");
+            binding = new Binding("Patient.Address");
             //AdressTxt.SetBinding(TextBox.TextProperty, binding);
 
             binding = new Binding("MaritalStatus");
-            maritalStatusTxt.SetBinding(TextBox.TextProperty, binding);
+            maritalStatusTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient._Jmbg");
-           UIDTxt.SetBinding(TextBox.TextProperty, binding);
+            binding = new Binding("Patient.Jmbg");
+           UIDTxt.SetBinding(TextBlock.TextProperty, binding);
         }
 
         private void PrescribeButton_Click(object sender, RoutedEventArgs e)
@@ -75,6 +75,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             MedicalReport medicalReport = new MedicalReport(medRecord,doctorId, frame);
             frame.Content = medicalReport;
+        }
+
+        private void medicalHistoryClick(object sender, RoutedEventArgs e)
+        {
+            PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory();
+        }
+
+        private void LabaratoryTestClick(object sender, RoutedEventArgs e)
+        {
+            LabaratoryResultsPage labaratoryResultsPage = new LabaratoryResultsPage();
+            frame.Content = labaratoryResultsPage;
         }
     }
 }

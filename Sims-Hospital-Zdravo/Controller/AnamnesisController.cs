@@ -14,9 +14,9 @@ namespace Sims_Hospital_Zdravo.Controller
 
         private AnamnesisService _anamnesisService;
 
-        public AnamnesisController(AnamnesisService anamnesisService)
+        public AnamnesisController()
         {
-            this._anamnesisService = anamnesisService;
+            this._anamnesisService = new AnamnesisService();
         }
 
         public void Create(Anamnesis anamnesis)
@@ -29,9 +29,9 @@ namespace Sims_Hospital_Zdravo.Controller
             _anamnesisService.Update(anamnesis);
         }
 
-        public ref ObservableCollection<Anamnesis> ReadAll()
+        public  List<Anamnesis> FindAll()
         {
-            return  ref _anamnesisService.ReadAll();
+            return   _anamnesisService.FindAll();
 
         }
          public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)

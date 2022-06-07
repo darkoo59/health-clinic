@@ -65,7 +65,7 @@ namespace Repository
             foreach (Appointment app in this.appointments)
             {
                 if (app.Doctor == null) continue;
-                if (app.Doctor._Id == id)
+                if (app.Doctor.Id == id)
                 {
                     doctorsApps.Add(app);
                 }
@@ -98,7 +98,7 @@ namespace Repository
             List<Appointment> patientApps = new List<Appointment>();
             foreach (Appointment app in this.appointments)
             {
-                if (app.Patient._Id == id)
+                if (app.Patient.Id == id)
                 {
                     patientApps.Add(app);
                 }
@@ -157,7 +157,7 @@ namespace Repository
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
             foreach (Appointment app in appointments)
             {
-                if (app.Doctor._Id == id)
+                if (app.Doctor.Id == id)
                 {
                     timeIntervals.Add(new TimeInterval(app.Time.Start, app.Time.End));
                 }
@@ -185,7 +185,7 @@ namespace Repository
         {
             LoadDataFromFile();
             List<TimeInterval> timeIntervals = new List<TimeInterval>();
-            List<Appointment> appointments = FindByDoctorId(doctor._Id);
+            List<Appointment> appointments = FindByDoctorId(doctor.Id);
             foreach (Appointment app in appointments)
             {
                 timeIntervals.Add(app.Time);

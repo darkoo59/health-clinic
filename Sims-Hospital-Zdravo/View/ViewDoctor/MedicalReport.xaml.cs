@@ -36,12 +36,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.DoctorId = id;
-            this.app = App.Current as App;
-            this.anamnesisController = app._anamnesisController;
+            this.anamnesisController = new AnamnesisController();
             this.frame = frame;
             this.medicalRecord = medicalRecord;
             this.doctorAppointmentController = app._doctorAppointmentController;
-            this.patientMedicalRecordController = app._patientMedRecController;
+            this.patientMedicalRecordController = new PatientMedicalRecordController();
             SelectedPatient(medicalRecord);
 
 
@@ -55,7 +54,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
         private void SelectedPatient(MedicalRecord medicalRecord)
         {
-            PatTxt.Text = medicalRecord.Patient._Name +" " + medicalRecord.Patient._Surname;
+            PatTxt.Text = medicalRecord.Patient.Name +" " + medicalRecord.Patient.Surname;
             
         }
        
@@ -63,24 +62,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
              date = DateTime.Parse(dateExamination.Text);
         }
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-            
-        //    string diagnosis = DiagnosisTxt.Text;
-        //    string medical_report = AnamnesisTxt.Text;
-        //    Doctor doctor = doctorAppointmentController.GetDoctor(DoctorId);
-        //    //MedicalRecord med = patientMedicalRecordController.findMedicalRecordByPatient(Pat);
-        //    Anamnesis anamnesis = new Anamnesis(doctor, date, null, diagnosis, medical_report);
-            
-        //    anamnesisController.Create(anamnesis);
-        //    medicalRecord._Anamnesis.Add(anamnesis);
-        //    //doctorAppointmentController.DeleteAfterExaminationIsDone(date, DoctorId, Pat);
-        //    //AnamnesisList anamnesisList = new AnamnesisList( DoctorId ,medicalRecord);
-            
-            
-
-
-        //}
+        
 
         private void SaveMedicalReporClick(object sender, RoutedEventArgs e)
         {

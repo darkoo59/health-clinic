@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Update(User newAccount)
         {
             LoadDataFromFile();
-            foreach (var account in accounts.Where(account => account._Id == newAccount._Id))
+            foreach (var account in accounts.Where(account => account.Id == newAccount.Id))
             {
                 account._Password = newAccount._Password;
                 account._Username = newAccount._Username;
@@ -55,7 +55,7 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataFromFile();
             foreach (User acc in accounts)
             {
-                if (acc._Id == id) return acc;
+                if (acc.Id == id) return acc;
             }
 
             return null;

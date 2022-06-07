@@ -45,7 +45,7 @@ namespace Repository
         public Patient FindPatientById(int id)
         {
             LoadDataFromFile();
-            return (from medicalRecord in _medicalRecords where medicalRecord.Patient._Id == id select
+            return (from medicalRecord in _medicalRecords where medicalRecord.Patient.Id == id select
                 medicalRecord.Patient).FirstOrDefault();
         }
 
@@ -92,7 +92,7 @@ namespace Repository
         {
             LoadDataFromFile();
             foreach (var ana in from medical in _medicalRecords where
-                         appointment.Patient._Id == medical.Patient._Id from ana in medical.Anamnesis where
+                         appointment.Patient.Id == medical.Patient.Id from ana in medical.Anamnesis where
                          ana._TimeInterval.Start.Equals(anamnesis._TimeInterval.Start) select ana)
             {
                 ana.Notes = notes;
@@ -104,9 +104,9 @@ namespace Repository
         {
             LoadDataFromFile();
             foreach (var pres in from medical in _medicalRecords where
-                         appointment.Patient._Id == medical.Patient._Id from
+                         appointment.Patient.Id == medical.Patient.Id from
                          pres in medical.Prescriptions where
-                         pres.Doctor._Id == prescription.Doctor._Id &&
+                         pres.Doctor.Id == prescription.Doctor.Id &&
                          pres.TimeInterval.Equals(prescription.TimeInterval.Start) select pres)
             {
                 pres.StartDate = dateTime;
@@ -117,16 +117,16 @@ namespace Repository
         public Anamnesis GetAnamnesis(Appointment appointment)
         {
             LoadDataFromFile();
-            return _medicalRecords.Where(medicalRecord => medicalRecord.Patient._Id == appointment.Patient._Id)
-                .SelectMany(medicalRecord => medicalRecord.Anamnesis).FirstOrDefault(anamnesis => anamnesis.Doctor._Id
-                    == appointment.Doctor._Id && anamnesis._TimeInterval.Start.Equals(appointment.Time.Start));
+            return _medicalRecords.Where(medicalRecord => medicalRecord.Patient.Id == appointment.Patient.Id)
+                .SelectMany(medicalRecord => medicalRecord.Anamnesis).FirstOrDefault(anamnesis => anamnesis.Doctor.Id
+                    == appointment.Doctor.Id && anamnesis._TimeInterval.Start.Equals(appointment.Time.Start));
         }
         public List<Prescription> GetPrescriptions(Appointment appointment)
         {
             LoadDataFromFile();
             List<Prescription> prescriptions = new List<Prescription>();
-            foreach (var medicalRecord in _medicalRecords.Where(medicalRecord => medicalRecord.Patient._Id 
-                         == appointment.Patient._Id))
+            foreach (var medicalRecord in _medicalRecords.Where(medicalRecord => medicalRecord.Patient.Id 
+                         == appointment.Patient.Id))
             {
                 prescriptions.AddRange(medicalRecord.Prescriptions.Where
                     (prescription => prescription.TimeInterval.Start.Equals(appointment.Time.Start)));

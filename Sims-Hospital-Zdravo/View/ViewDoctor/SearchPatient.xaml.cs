@@ -33,23 +33,23 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DataContext = this;
             this.frame = frame;
             this.doctorID = id;
-            this.anamnesisController = anamnesisController;
+            this.anamnesisController = new AnamnesisController();
             this.doctorAppointmentController = doctorAppointmentController;
-            this.medicalRecordController = medicalRecordController;
+             medicalRecordController = new MedicalRecordController();
             MedicalRecordDataGrid.ItemsSource = medicalRecordController.ReadAll();
             MedicalRecordDataGrid.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Patient Name:";
-            data_column.Binding = new Binding("Patient._Name");
+            data_column.Binding = new Binding("Patient.Name");
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "BirthDate";
-            data_column.Binding = new Binding("Patient._BirthDate");
+            data_column.Binding = new Binding("Patient.BirthDate");
 
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient UID";
-            data_column.Binding = new Binding("Patient._Jmbg");
+            data_column.Binding = new Binding("Patient.Jmbg");
             MedicalRecordDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Patient blood type";
@@ -79,6 +79,20 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
             //PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorID,frame);
             //frame.Content= prescriptionWindow;
+        }
+
+        private void MedicalRecordDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
+            if (medicalRecord != null)
+            {
+                PatientTabs patientTabs = new PatientTabs(medicalRecord, frame, doctorID);
+                frame.Content = patientTabs;
+            }
+            else
+            {
+                MessageBox.Show("Chose whose medical record you want to see.");
+            }
         }
     }
 }

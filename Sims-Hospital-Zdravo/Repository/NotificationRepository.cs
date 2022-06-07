@@ -5,6 +5,8 @@ using Model;
 using Sims_Hospital_Zdravo.DataHandler;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sims_Hospital_Zdravo.Repository
 {
@@ -56,7 +58,8 @@ namespace Sims_Hospital_Zdravo.Repository
         public void DeleteById(int id)
         {
             Notification notification = FindById(id);
-            Delete(notification);
+            _notifications.Remove(notification);
+            LoadDataToFile();
         }
 
         public Notification FindById(int id)
@@ -67,21 +70,35 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> ReadAllManagerMedicineNotifications()
         {
+            
             LoadDataFromFiles();
             return _notifications.OfType<ReviewMedicineNotification>().Cast<Notification>().ToList();
         }
 
         public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
+            
             LoadDataFromFiles();
-            return _notifications.OfType<MedicineCreatedNotification>().Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
+            List<Notification> notifications = new List<Notification>();
+            foreach (Notification notification in _notifications) 
+            {
+                
+                if(notification is MedicineCreatedNotification && ((MedicineCreatedNotification)notification).DoctorId == doctorId)
+                {
+
+                    notifications.Add(notification);
+                }
+            }
+            return notifications;
+            //return _notifications.OfType<MedicineCreatedNotification>()
+                //.Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
         public List<Notification> ReadAllDoctorFreeDaysNotifications(int doctorId)
         {
             LoadDataFromFiles();
             return _notifications.OfType<FreeDaysNotification>().Cast<Notification>().ToList().Cast<FreeDaysNotification>()
-                .Where(notification => notification.FreeDaysRequest.Doctor._Id == doctorId)
+                .Where(notification => notification.FreeDaysRequest.Doctor.Id == doctorId)
                 .Cast<Notification>().ToList();
         }
 
@@ -114,6 +131,11 @@ namespace Sims_Hospital_Zdravo.Repository
             _notifications = _notificationDataHandler.ReadAll();
         }
 
+        public List<Notification> ReadAllDoctorrequestForFreeDaysNotifications()
+        {
+            return null;
+        }
+      
         private void LoadDataToFile()
         {
             _notificationDataHandler.Write(_notifications);

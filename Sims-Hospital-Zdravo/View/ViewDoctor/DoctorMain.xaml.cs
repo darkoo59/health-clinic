@@ -53,7 +53,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.patientMedicalRecordController = app._patientMedRecController;
             this.requestForFreeDaysController = app._requestForFreeDaysController;
             this.doctorAppointmentController = app._doctorAppointmentController;
-            this.notificationController = this.app._notificationController;
+            this.notificationController = new NotificationController();
             notificationManager = new NotificationManager();
             this.app._taskScheduleTimer.AddObserver(this);
         }
@@ -86,7 +86,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
 
         {
-            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain,doctorId);
+            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain, doctorId);
             FrameForMain.Content = searchPatient;
         }
 
@@ -126,8 +126,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 MedicineCreatedNotification medicineCreatedNotification = notification as MedicineCreatedNotification;
                 notificationManager.Show(
-               new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine.Name + " is waiting for approval!" },
-               areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                    new NotificationContent { Title = "Medicine notification", Message = "Medicine " + medicineCreatedNotification.Medicine.Name + " is waiting for approval!" },
+                    areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
 
                 notificationController.Delete(notification);
             }
@@ -135,8 +135,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             {
                 MeetingCreatedNotifications meetingNotification = notification as MeetingCreatedNotifications;
                 notificationManager.Show(
-                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
-                areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                    new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
+                    areaName: "DoctorWindowArea", expirationTime: TimeSpan.FromSeconds(30));
                 notificationController.Delete(notification);
             }
             else if (notification as FreeDaysNotification != null)
@@ -157,7 +157,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void AnamnesisClick(object sender, RoutedEventArgs e)
         {
-          // MedicalReport medicalReport = new MedicalReport( doctorId,FrameForMain);
+            // MedicalReport medicalReport = new MedicalReport( doctorId,FrameForMain);
             //FrameForMain.Content = medicalReport;
         }
 
@@ -173,14 +173,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void LogOutClick(object sender, RoutedEventArgs e)
         {
             Logout();
-
-
         }
 
         private void Prescription_Click(object sender, RoutedEventArgs e)
         {
-            //ListOfMedecinesinSystem listOfMedecineList = new ListOfMedecinesinSystem( doctorId);
-            //FrameForMain.Content = listOfMedecineList;
+            //ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
+            //FrameForMain.Content = viewRequestForFreeDays;
+        }
+
+        private void ViewRequestsClick(object sender, RoutedEventArgs e)
+        {
+            ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
+            FrameForMain.Content = viewRequestForFreeDays;
         }
     }
 }
