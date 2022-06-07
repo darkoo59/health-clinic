@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Service;
 
 namespace Sims_Hospital_Zdravo.Controller
@@ -45,6 +46,16 @@ namespace Sims_Hospital_Zdravo.Controller
         public SurveyStatistics GetHospitalSurveyStatistics()
         {
             return surveyService.GetHospitalSurveyStatistics();
+        }
+
+        public List<ISurveyStatistic> GetHospitalSurveys()
+        {
+            return surveyService.GetHospitalSurveys();
+        }
+
+        public List<ISurveyStatistic> GetDoctorSurveys(int id)
+        {
+            return surveyService.GetDoctorSurveys(id);
         }
     }
 }

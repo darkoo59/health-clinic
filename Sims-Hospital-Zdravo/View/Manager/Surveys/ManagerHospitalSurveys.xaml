@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Surveys"
+      xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
       mc:Ignorable="d"
       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
       Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
@@ -33,7 +34,19 @@
         <Label HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30">
             Hospital Survey Results
         </Label>
-        <Label Grid.Row="1" Content="{Binding Path=AverageMark}" Foreground="White" FontSize="20" />
+        <DockPanel
+            Grid.Row="1"
+            Margin="20, 0, 20,0"
+            VerticalAlignment="Center">
+            <Button
+                Height="30"
+                Width="150"
+                DockPanel.Dock="Right"
+                Command="cmd:Commands.CreatePdfCommand">
+                Print Surveys
+            </Button>
+            <Label Content="{Binding Path=AverageMark}" Foreground="White" FontSize="20" />
+        </DockPanel>
         <ScrollViewer
             Grid.Row="2">
             <ItemsControl
