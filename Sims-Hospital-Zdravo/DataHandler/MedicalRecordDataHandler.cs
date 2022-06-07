@@ -13,15 +13,15 @@ namespace DataHandler
 {
    public class MedicalRecordDataHandler
    {
-      public ObservableCollection<MedicalRecord> ReadAll()
+      public List<MedicalRecord> ReadAll()
       {
             // TODO: implement
             string recordsSerialized = System.IO.File.ReadAllText(_path);
-            ObservableCollection<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<MedicalRecord>>(recordsSerialized);
+            List<MedicalRecord> records = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MedicalRecord>>(recordsSerialized);
             return records;
         }
       
-      public void Write(ObservableCollection<MedicalRecord> medicalRecords)
+      public void Write(List<MedicalRecord> medicalRecords)
       {
             // TODO: implement
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(medicalRecords);

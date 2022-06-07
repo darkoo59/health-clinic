@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Controller;
 using Model;
@@ -21,11 +22,12 @@ namespace Sims_Hospital_Zdravo.ViewModel
         public ICommand UpdateRoomCommand => new UpdateRoomCommand();
         public ICommand DeleteRoomCommand => new DeleteRoomCommand(roomController);
 
+
         public RoomViewModel()
         {
             app = Application.Current as App;
-            roomController = app._roomController;
-            Rooms = roomController.ReadAll().ToList();
+            roomController = new RoomController();
+            Rooms = roomController.FindAll().ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -52,13 +54,20 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public void Execute(object parameter)
         {
-            RenovationRoomDialog roomDialog = new RenovationRoomDialog();
-            if (roomDialog.ShowDialog() == false)
+            try
             {
-                Room room = roomDialog.Room;
-                if (room == null) return;
-                room.Id = roomController.GenerateId();
-                roomController.Create(room);
+                RenovationRoomDialog roomDialog = new RenovationRoomDialog();
+                if (roomDialog.ShowDialog() == false)
+                {
+                    Room room = roomDialog.Room;
+                    if (room == null) return;
+                    room.Id = roomController.GenerateId();
+                    roomController.Create(room);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -124,6 +133,29 @@ namespace Sims_Hospital_Zdravo.ViewModel
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public event EventHandler CanExecuteChanged;
+    }
+
+
+    public class SearchCommand : ICommand
+    {
+        private TextBox searchBox;
+
+        public SearchCommand(TextBox searchBox)
+        {
+            this.searchBox = searchBox;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            searchBox.Focus();
         }
 
         public event EventHandler CanExecuteChanged;

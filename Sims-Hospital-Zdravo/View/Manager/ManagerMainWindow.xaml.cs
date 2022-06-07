@@ -40,13 +40,20 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
         public void Notify(Notification notification)
         {
-            ReviewMedicineNotification reviewMedicineNotification = notification as ReviewMedicineNotification;
-            if (reviewMedicineNotification is null) return;
-
-            notificationManager.Show(
-                new NotificationContent { Title = "Medicine notification", Message = CreateNotificationMessageFromNotification(reviewMedicineNotification) },
+            if(notification as ReviewMedicineNotification != null)
+            {
+                notificationManager.Show(
+                new NotificationContent { Title = "Medicine notification", Message = CreateNotificationMessageFromNotification((ReviewMedicineNotification)notification) },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
-            notificationController.Delete(notification);
+                notificationController.Delete(notification);
+            }else if (notification as MeetingCreatedNotifications != null)
+            {
+                MeetingCreatedNotifications meetingNotification = notification as MeetingCreatedNotifications;
+                notificationManager.Show(
+                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingNotification.MeetingStart.ToString() },
+                areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
+                notificationController.Delete(notification);
+            }
         }
 
 

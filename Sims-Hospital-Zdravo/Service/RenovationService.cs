@@ -9,24 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Model
 {
     public class RenovationService
     {
-        private RenovationRepository _renovationRepository;
-        private TimeSchedulerService timeSchedulerService;
+        private IRenovationRepository _renovationRepository;
+        private TimeSchedulerService _timeSchedulerService;
         private RenovationValidator _renovationValidator;
-        private RoomRepository _roomRepository;
+        private IRoomRepository _roomRepository;
 
-        public RenovationService(RenovationRepository renovationRepository, TimeSchedulerService timeSchedulerService,
-            RoomRepository roomRepository)
+        public RenovationService(TimeSchedulerService timeSchedulerService)
         {
-            this._renovationRepository = renovationRepository;
-            this._roomRepository = roomRepository;
-            this.timeSchedulerService = timeSchedulerService;
-            _renovationValidator = new RenovationValidator(roomRepository, renovationRepository, timeSchedulerService);
+            _renovationRepository = new RenovationRepository();
+            _roomRepository = new RoomRepository();
+            _timeSchedulerService = timeSchedulerService;
+            _renovationValidator = new RenovationValidator(timeSchedulerService);
         }
 
         public void MakeRenovationAppointment(RenovationAppointment renovationAppointment)
@@ -81,6 +81,7 @@ namespace Sims_Hospital_Zdravo.Model
             foreach (Room room in resultRooms)
             {
                 room.Id = GenerateId();
+                Console.WriteLine("Generating id for room " + room.RoomNumber);
                 _roomRepository.Create(room);
             }
 
@@ -90,23 +91,17 @@ namespace Sims_Hospital_Zdravo.Model
 
         private int CalculateQuadratureForRooms(List<Room> rooms)
         {
-            int quadrature = 0;
-            foreach (Room room in rooms)
-            {
-                quadrature += room.Quadrature;
-            }
-
-            return quadrature;
+            return rooms.Sum(room => room.Quadrature);
         }
 
         public List<TimeInterval> GetTakenDateIntervals(List<Room> rooms)
         {
-            return timeSchedulerService.FindReservedDatesForRooms(rooms);
+            return _timeSchedulerService.FindReservedDatesForRooms(rooms);
         }
 
         public List<TimeInterval> GetTakenDateIntervals(Room room)
         {
-            return timeSchedulerService.FindReservedDatesForRoom(room);
+            return _timeSchedulerService.FindReservedDatesForRoom(room);
         }
 
         public void Create(RenovationAppointment renovation)
@@ -124,9 +119,9 @@ namespace Sims_Hospital_Zdravo.Model
             _renovationRepository.Delete(renovation);
         }
 
-        public ObservableCollection<RenovationAppointment> ReadAll()
+        public List<RenovationAppointment> FindAll()
         {
-            return _renovationRepository.ReadAll();
+            return _renovationRepository.FindAll();
         }
 
         public List<RenovationAppointment> FindByType(RenovationType type)
@@ -141,7 +136,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int GenerateId()
         {
-            ObservableCollection<RenovationAppointment> appointments = _renovationRepository.ReadAll();
+            List<RenovationAppointment> appointments = _renovationRepository.FindAll();
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

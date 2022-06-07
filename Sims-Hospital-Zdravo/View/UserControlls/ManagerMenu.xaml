@@ -41,7 +41,9 @@
                         <Button.ToolTip>
                             Shift + 1
                         </Button.ToolTip>
-                        Equipment
+                        <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                            Equipment (Shift + 1)
+                        </TextBlock>
                     </Button>
                 </StackPanel>
             </Border>
@@ -56,7 +58,9 @@
                         <Button.ToolTip>
                             Shift + 2
                         </Button.ToolTip>
-                        Renovations
+                        <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                            Renovations (Shift + 2)
+                        </TextBlock>
                     </Button>
                 </StackPanel>
             </Border>
@@ -71,7 +75,9 @@
                         <Button.ToolTip>
                             Shift + 3
                         </Button.ToolTip>
-                        Rooms
+                        <TextBlock Width="55" TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                            Rooms (Shift + 3)
+                        </TextBlock>
                     </Button>
                 </StackPanel>
             </Border>
@@ -86,7 +92,9 @@
                         <Button.ToolTip>
                             Shift + 4
                         </Button.ToolTip>
-                        Medicines
+                        <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                            Medicines (Shift + 4)
+                        </TextBlock>
                     </Button>
                 </StackPanel>
             </Border>
@@ -101,7 +109,9 @@
                         <Button.ToolTip>
                             Shift + 5
                         </Button.ToolTip>
-                        Surveys
+                        <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                            Surveys (Shift + 5)
+                        </TextBlock>
                     </Button>
                 </StackPanel>
             </Border>
@@ -112,7 +122,10 @@
             <Button Focusable="False" ToolTip="Control + L"
                     Command="cmd:Commands.LogoutCommand"
                     Style="{StaticResource MenuButtonStyle}">
-                <AccessText>_Logout</AccessText>
+                <TextBlock Width="50" TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                    Logout
+                    (Ctrl + L)
+                </TextBlock>
             </Button>
         </StackPanel>
 

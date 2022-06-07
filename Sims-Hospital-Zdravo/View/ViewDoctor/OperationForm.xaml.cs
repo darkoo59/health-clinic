@@ -29,16 +29,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private RoomController roomController;
         private int doctorID;
         private App app;
+
         public OperationForm(DoctorAppointmentController doctorAppointmentController)
         {
             InitializeComponent();
             this.doctorAppointmentController = doctorAppointmentController;
             this.app = App.Current as App;
-            this.roomController = app._roomController;
+            this.roomController = new RoomController();
             this.patientController = app._appointmentPatientController;
             SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
-            
-
         }
 
         ObservableCollection<Doctor> FillDoctorComboBox()
@@ -72,18 +71,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 throw new Exception("choose doctor");
             }
         }
+
         private Doctor doctor;
+
         public Doctor _Doctor
         {
-            get
-            {
-                return doctor;
-            }
-            set
-            {
-                doctor = value;
-            }
+            get { return doctor; }
+            set { doctor = value; }
         }
+
         private void DoctorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string name = DoctorComboBox.SelectedItem.ToString();
@@ -98,18 +94,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 }
             }
         }
+
         private Patient patient1;
+
         public Patient Patient1
         {
-            get
-            {
-                return patient1;
-            }
-            set
-            {
-                patient1 = value;
-            }
+            get { return patient1; }
+            set { patient1 = value; }
         }
+
         public Patient FindPatient()
         {
             string patient = patientTxt.Text;
@@ -122,21 +115,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                     //break;
                 }
             }
+
             return Patient1;
         }
 
-        
 
         private void ButtonOperation_Click(object sender, RoutedEventArgs e)
         {
             string dateAppoitment = dateTxt.Text;
             string timeOfOperation = TimeTxt.Text;
-            double  duration = double.Parse(durationTxt.Text);
-            
-            
+            double duration = double.Parse(durationTxt.Text);
+
+
             var dt_start = DateTime.Parse(dateAppoitment + " " + timeOfOperation);
             var dt_end = dt_start.AddHours(duration);
-           // var dt_end = DateTime.Parse(dateAppoitment + " " + endTimeOfOperation);
+            // var dt_end = DateTime.Parse(dateAppoitment + " " + endTimeOfOperation);
             TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
             int numOfRoom = Int32.Parse(RoomTxt.Text);
             Room room = roomController.FindById(numOfRoom);

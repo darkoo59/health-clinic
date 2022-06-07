@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
+using Newtonsoft.Json;
 
 namespace Model
 {
@@ -12,20 +13,30 @@ namespace Model
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
+        [JsonConstructor]
         public TimeInterval(DateTime Start, DateTime End)
         {
             this.Start = Start;
             this.End = End;
         }
 
+        public TimeInterval(TimeInterval interval)
+        {
+            this.Start = interval.Start;
+            this.End = interval.End;
+        }
+
         public bool IsOverlaping(TimeInterval interval)
         {
-            Console.WriteLine(interval);
-            Console.WriteLine(this.Start + " " + this.End);
             return IsIntervalInside(interval, this)
                    || IsIntervalInside(this, interval)
                    || IsDateInsideInterval(this, interval.Start)
                    || IsDateInsideInterval(this, interval.End);
+        }
+
+        public bool IsLongerThanDuration(double duration)
+        {
+            return (this.End - this.Start).TotalHours >= duration;
         }
 
         private bool IsIntervalInside(TimeInterval outside, TimeInterval inside)
@@ -37,6 +48,27 @@ namespace Model
         {
             return interval.Start <= date && interval.End >= date;
         }
+
+        public bool IsSameOrNextDate(TimeInterval timeInterval)
+        {
+            return End.CompareTo(timeInterval.Start) == 0 || End.AddDays(1).CompareTo(timeInterval.Start) == 0;
+        }
+
+        public bool IsThereGapInDates(TimeInterval newInterval)
+        {
+            return End.AddDays(1).CompareTo(newInterval.Start) < 0;
+        }
+
+        public bool IsThereGapInIntervals(TimeInterval newInterval)
+        {
+            return End.CompareTo(newInterval.Start) < 0;
+        }
+
+        public bool IntervalsTouching(TimeInterval newInterval)
+        {
+            return End.CompareTo(newInterval.Start) == 0;
+        }
+
 
         public string toDateString()
         {

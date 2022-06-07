@@ -5,6 +5,7 @@ using System.Linq;
 using Model;
 using Repository;
 using Service;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Utils;
 
@@ -14,16 +15,17 @@ namespace Sims_Hospital_Zdravo.Model
     {
         private AppointmentRepository _appointmentRepository;
         private PatientRepository _patientRepository;
-        private RoomRepository _roomRepository;
+        private IRoomRepository _roomRepository;
         private DoctorRepository _doctorRepository;
         private TimeSchedulerService _timeSchedulerService;
         private AppointmentSecretaryValidator _validator;
-        public SecretaryAppointmentService(AppointmentRepository appRepo, PatientRepository patientRepo, TimeSchedulerService timeService, RoomRepository roomRepository, DoctorRepository doctorRepository)
+
+        public SecretaryAppointmentService(AppointmentRepository appRepo, PatientRepository patientRepo, TimeSchedulerService timeService, DoctorRepository doctorRepository)
         {
             this._appointmentRepository = appRepo;
             this._patientRepository = patientRepo;
             this._timeSchedulerService = timeService;
-            this._roomRepository = roomRepository;
+            this._roomRepository = new RoomRepository();
             this._doctorRepository = doctorRepository;
             this._validator = new AppointmentSecretaryValidator(this);
         }
@@ -64,24 +66,27 @@ namespace Sims_Hospital_Zdravo.Model
         public List<Room> FindAvailableRoomsForInterval(TimeInterval interval)
         {
             List<Room> availableRooms = new List<Room>();
-            foreach (Room room in _roomRepository.ReadAll())
+            foreach (Room room in _roomRepository.FindAll())
             {
                 if (_timeSchedulerService.IsRoomFreeInInterval(room.Id, interval))
                     availableRooms.Add(room);
             }
+
             return availableRooms;
         }
 
         public Room FindAvailableRoomForEmergencyAppointment(TimeInterval interval)
         {
             List<Room> availableRooms = new List<Room>();
-            foreach (Room room in _roomRepository.ReadAll())
+            foreach (Room room in _roomRepository.FindAll())
             {
                 if ((room.Type == RoomType.OPERATION || room.Type == RoomType.EXAMINATION) && _timeSchedulerService.IsRoomFreeInInterval(room.Id, interval))
                     return room;
             }
+
             return null;
         }
+
         public List<Doctor> FindAvailableDoctorsForInterval(TimeInterval interval)
         {
             List<Doctor> availableDoctors = new List<Doctor>();
@@ -90,6 +95,7 @@ namespace Sims_Hospital_Zdravo.Model
                 if (_timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
                     availableDoctors.Add(doctor);
             }
+
             return availableDoctors;
         }
 
@@ -105,14 +111,14 @@ namespace Sims_Hospital_Zdravo.Model
                 {
                     if (_timeSchedulerService.IsDoctorFreeInInterval(doctor._Id, interval))
                     {
-                        if(counter == 0)
+                        if (counter == 0)
                         {
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
                             appointment.Id = GenerateId();
                             counter++;
                         }
-                        else if(interval.Start.CompareTo(minStart)<0)
+                        else if (interval.Start.CompareTo(minStart) < 0)
                         {
                             minStart = interval.Start;
                             appointment = new Appointment(FindAvailableRoomForEmergencyAppointment(interval), doctor, patient, interval, AppointmentType.URGENCY);
@@ -120,12 +126,16 @@ namespace Sims_Hospital_Zdravo.Model
                             appointment.Patient._Id = GeneratePatientId();
                         }
                     }
+
                     interval.Start.AddMinutes(10);
                 }
+
                 interval.Start = DateTime.Now.AddMinutes(5);
             }
+
             return appointment;
         }
+
         public List<Doctor> FindAvailableDoctorsForSpeciality(SpecialtyType type)
         {
             return _doctorRepository.FindDoctorsBySpeciality(type);
@@ -140,7 +150,7 @@ namespace Sims_Hospital_Zdravo.Model
         {
             return _timeSchedulerService.IsPatientFreeInIntervalWithoutSelectedAppointment(patientId, app);
         }
-        
+
 
         public ObservableCollection<Patient> FindAvailablePatientsForInterval(TimeInterval startEndTime)
         {
@@ -152,6 +162,7 @@ namespace Sims_Hospital_Zdravo.Model
                     availablePatients.Add(patient);
                 }
             }
+
             return availablePatients;
         }
 
@@ -167,10 +178,11 @@ namespace Sims_Hospital_Zdravo.Model
             while (true)
             {
                 if (_timeSchedulerService.IsDoctorFreeInInterval(appointment.Doctor._Id,
-                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id,interval))
+                        interval) && _timeSchedulerService.IsPatientFreeInInterval(appointment.Patient._Id, interval))
                 {
                     return interval;
                 }
+
                 interval.Start = interval.Start.AddMinutes(30);
                 interval.End = interval.End.AddMinutes(30);
             }
@@ -181,7 +193,7 @@ namespace Sims_Hospital_Zdravo.Model
             //Uzimamo samo appointmente u narednih 24h
             List<Appointment> appointmentsToReschedule = _appointmentRepository.FindByDoctorSpecialityBeforeDate(type, DateTime.Now.AddDays(1));
             List<EmergencyReschedule> appointmentsAndRescheduleDate = new List<EmergencyReschedule>();
-            foreach(Appointment app in appointmentsToReschedule)
+            foreach (Appointment app in appointmentsToReschedule)
             {
                 if (app.Type != AppointmentType.URGENCY)
                 {
@@ -191,7 +203,7 @@ namespace Sims_Hospital_Zdravo.Model
                 }
             }
 
-            appointmentsAndRescheduleDate.Sort((x,y) => x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
+            appointmentsAndRescheduleDate.Sort((x, y) => x.RescheduledDate.Start.CompareTo(y.RescheduledDate.Start));
             return appointmentsAndRescheduleDate;
         }
 
@@ -205,12 +217,13 @@ namespace Sims_Hospital_Zdravo.Model
             {
                 ids.Add(appointment.Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
-            return id;
 
+            return id;
         }
 
         public int GeneratePatientId()
@@ -222,10 +235,12 @@ namespace Sims_Hospital_Zdravo.Model
             {
                 ids.Add(patient._Id);
             }
+
             while (ids.Contains(id))
             {
                 id++;
             }
+
             return id;
         }
 

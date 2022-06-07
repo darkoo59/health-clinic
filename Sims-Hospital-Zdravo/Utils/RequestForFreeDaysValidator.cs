@@ -57,7 +57,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public ObservableCollection<TimeInterval> GetTimeIntervalsForSpecialistRequests(FreeDaysRequest request)
         {
-            ObservableCollection<FreeDaysRequest> specialistFreeDaysRequests = requestForFreeDaysRepository.RequestPendingOrApproved(request.Doctor);
+            List<FreeDaysRequest> specialistFreeDaysRequests = requestForFreeDaysRepository.RequestPendingOrApproved(request.Doctor);
             ObservableCollection<TimeInterval> timeIntervals = new ObservableCollection<TimeInterval>();
             foreach(FreeDaysRequest freeDaysRequest in specialistFreeDaysRequests)
             {

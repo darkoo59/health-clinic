@@ -40,6 +40,9 @@
                     Background="#0a718a"
                     BorderThickness="1"
                     Margin="0, 0, 40, 0"
+                    Command="cmd:Commands.NavigateToCommand"
+                    CommandParameter="Tutorial.xaml"
+                    TabIndex="7"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
                 Tutorial
             </Button>
@@ -62,7 +65,7 @@
                Focusable="False">
         </Frame>
 
-        <uc:ManagerMenu x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
+        <uc:ManagerMenu Focusable="False" x:Name="ManagerMenu" Grid.Column="0" Grid.Row="1" />
 
 
         <notifications:NotificationArea
@@ -131,6 +134,12 @@
         <KeyBinding
             Command="cmd:Commands.LogoutCommand"
             Key="L"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Tutorial.xaml"
+            Key="T"
             Modifiers="Control">
         </KeyBinding>
 

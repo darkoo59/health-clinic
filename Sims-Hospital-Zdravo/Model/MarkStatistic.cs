@@ -23,9 +23,22 @@
             set => _quantity = value;
         }
 
+        private string GetStarsByMark()
+        {
+            switch (_mark)
+            {
+                case 1: return "☆            ";
+                case 2: return "☆☆         ";
+                case 3: return "☆☆☆      ";
+                case 4: return "☆☆☆☆   ";
+                case 5: return "☆☆☆☆☆";
+                default: return "";
+            }
+        }
+
         public override string ToString()
         {
-            return "Mark : " + _mark + " Ratings: " + _quantity;
+            return GetStarsByMark() + " " + _quantity;
         }
     }
 }

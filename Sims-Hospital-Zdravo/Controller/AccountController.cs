@@ -11,7 +11,7 @@ namespace Sims_Hospital_Zdravo.Controller
 {
     public class AccountController
     {
-        public AccountService accountService;
+        private AccountService accountService;
 
         public AccountController(AccountService accService)
         {
@@ -23,9 +23,9 @@ namespace Sims_Hospital_Zdravo.Controller
             accountService.Create(account);
         }
 
-        public ref ObservableCollection<User> ReadAll()
+        public List<User> FindAll()
         {
-            return ref accountService.ReadAll();
+            return  accountService.FindAll();
         }
 
         public void Update(User account)

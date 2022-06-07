@@ -6,20 +6,21 @@
 
 using Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace DataHandler
 {
     public class EquipmentDataHandler
     {
-        public ObservableCollection<Equipment> ReadAll()
+        public List<Equipment> ReadAll()
         {
             string equipmentSerialized = System.IO.File.ReadAllText(_path);
-            ObservableCollection<Equipment> equipment = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Equipment>>(equipmentSerialized);
+            List<Equipment> equipment = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Equipment>>(equipmentSerialized);
             return equipment;
         }
 
-        public void Write(ObservableCollection<Equipment> equipment)
+        public void Write(List<Equipment> equipment)
         {
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(equipment);
             System.IO.File.WriteAllText(_path, serialized);

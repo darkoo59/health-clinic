@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Model;
+using Sims_Hospital_Zdravo.DTO;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Utils.Filters;
 
@@ -29,20 +30,27 @@ namespace Sims_Hospital_Zdravo.Utils.FilterPipelines
             return this;
         }
 
-        public static IFilterPipeline<RoomEquipment> CreateEquipmentFilterPipeline(bool showStatic, bool showConsumable)
+        public static IFilterPipeline<RoomEquipment> CreateEquipmentFilterPipeline(RoomEquipmentFilterDTO roomEquipmentFilterDto)
         {
+            bool showStatic = roomEquipmentFilterDto.ShowStatic;
+            bool showConsumable = roomEquipmentFilterDto.ShowConsumable;
+            string searchParam = roomEquipmentFilterDto.SearchParam;
+
             if (showStatic && showConsumable)
-                return new RoomEquipmentFilterPipeline();
+                return (new RoomEquipmentFilterPipeline()).AddFilter(new RoomEquipmentSearchFilter(searchParam));
 
             if (showStatic)
                 return (new RoomEquipmentFilterPipeline())
+                    .AddFilter(new RoomEquipmentSearchFilter(searchParam))
                     .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Static));
 
             if (showConsumable)
                 return (new RoomEquipmentFilterPipeline())
+                    .AddFilter(new RoomEquipmentSearchFilter(searchParam))
                     .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable));
 
             return (new RoomEquipmentFilterPipeline())
+                .AddFilter(new RoomEquipmentSearchFilter(searchParam))
                 .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Consumable))
                 .AddFilter(new RoomEquipmentTypeFilter(EquipmentType.Static));
         }

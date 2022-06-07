@@ -27,13 +27,13 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             app = Application.Current as App;
             _renovationController = app._renovationController;
-            _roomController = app._roomController;
+            _roomController = new RoomController();
             roomsForAdding = new ObservableCollection<Room>();
             InitializeComponent();
             DataContext = this;
 
             RoomsToBeAdded.ItemsSource = roomsForAdding;
-            RenovationRooms.ItemsSource = _roomController.ReadAll();
+            RenovationRooms.ItemsSource = _roomController.FindAll();
             this.KeyDown += new KeyEventHandler(GoBack);
         }
 
@@ -96,6 +96,7 @@ namespace Sims_Hospital_Zdravo.View.Manager
                 AdvancedRenovationAppointment advancedRenovationAppointment =
                     new AdvancedRenovationAppointment(time, roomData.Item1, description, roomData.Item2, roomRenovationType, _renovationController.GenerateId());
                 _renovationController.MakeAdvancedRenovationAppointment(advancedRenovationAppointment);
+                MessageBox.Show("Renovation successfully scheduled");
                 NavigationService.GoBack();
             }
             catch (Exception ex)

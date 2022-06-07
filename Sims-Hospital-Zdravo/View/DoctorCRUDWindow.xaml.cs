@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.View
             application = App.Current as App;
             InitializeComponent();
             this.DataContext = this;
-            this.roomController = application._roomController;
+            this.roomController = new RoomController();
             this.doctorAppController = doctorAppointmentController;
             DoctorAppointments = doctorAppController.ReadAll(2);
 

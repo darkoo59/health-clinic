@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 
 namespace Sims_Hospital_Zdravo.Controller
@@ -27,15 +28,20 @@ namespace Sims_Hospital_Zdravo.Controller
             _requestForFreeDaysService.CreateUrgent(request);
         }
 
+        public void UpdateRequestAndNotify(FreeDaysRequest request, Notification notification)
+        {
+            _requestForFreeDaysService.UpdateRequestAndNotify(request, notification);
+        }
+
 
         public void Delete(FreeDaysRequest request)
         {
             _requestForFreeDaysService.Delete(request);
         }
 
-        public ref  ObservableCollection<FreeDaysRequest> ReadAll()
+        public List<FreeDaysRequest> FindAll()
         {
-            return  ref _requestForFreeDaysService.ReadAll();
+            return  _requestForFreeDaysService.ReadAll();
         }
 
 

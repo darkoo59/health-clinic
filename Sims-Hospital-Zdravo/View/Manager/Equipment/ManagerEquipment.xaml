@@ -6,8 +6,26 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager"
+      xmlns:cmd="clr-namespace:Sims_Hospital_Zdravo.ViewModel.Commands"
       mc:Ignorable="d"
-      Title="ManagerEquipment" Height="686" Width="924">
+      Title="ManagerEquipment"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
+
+    <Page.InputBindings>
+        <KeyBinding
+            Command="cmd:Commands.SearchCommand"
+            CommandParameter="{Binding ElementName=SearchBox}"
+            Key="F"
+            Modifiers="Control">
+        </KeyBinding>
+        <KeyBinding
+            Command="cmd:Commands.NavigateToCommand"
+            CommandParameter="Equipment/EquipmentTransfer.xaml"
+            Key="R"
+            Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -55,7 +73,7 @@
             <Button Grid.Column="5" Width="100" Height="30"
                     HorizontalAlignment="Right" Click="Transfer_Click"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                <AccessText>_Transfer</AccessText>
+                Relocate
             </Button>
         </Grid>
         <DataGrid AutoGenerateColumns="False" SelectionMode="Single" x:Name="EquipmentTable" Grid.Row="1"

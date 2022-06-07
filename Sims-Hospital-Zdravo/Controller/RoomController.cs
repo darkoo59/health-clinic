@@ -11,17 +11,18 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Sims_Hospital_Zdravo.DTO;
 
 namespace Controller
 {
     public class RoomController
     {
-        public RoomService _roomService;
+        private RoomService _roomService;
 
 
-        public RoomController(RoomService roomService)
+        public RoomController()
         {
-            this._roomService = roomService;
+            _roomService = new RoomService();
         }
 
         public void Create(Room room)
@@ -29,9 +30,9 @@ namespace Controller
             _roomService.Create(room);
         }
 
-        public ref ObservableCollection<Room> ReadAll()
+        public List<Room> FindAll()
         {
-            return ref _roomService.ReadAll();
+            return _roomService.FindAll();
         }
 
         public void Update(Room room)
@@ -42,6 +43,11 @@ namespace Controller
         public void Delete(Room room)
         {
             _roomService.Delete(room);
+        }
+
+        public List<RoomEquipment> FilterRoomEquipment(Room room, RoomEquipmentFilterDTO roomEquipmentFilterDto)
+        {
+            return _roomService.FilterRoomEquipment(room, roomEquipmentFilterDto);
         }
 
         public Room FindById(int id)

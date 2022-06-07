@@ -6,32 +6,29 @@ using System.Threading.Tasks;
 using Service;
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Utils
 {
     class EquipmentTransferValidator
     {
-        private RoomRepository _roomRepo;
+        private IRoomRepository _roomRepo;
         private TimeSchedulerService _timeSchedulerService;
 
 
-        public EquipmentTransferValidator(RoomRepository roomRepo, TimeSchedulerService timeSchedulerService)
+        public EquipmentTransferValidator(TimeSchedulerService timeSchedulerService)
         {
-            this._roomRepo = roomRepo;
-            this._timeSchedulerService = timeSchedulerService;
+            _roomRepo = new RoomRepository();
+            _timeSchedulerService = timeSchedulerService;
         }
 
 
         private void HasEnoughEquipment(int roomId, int quantity, int equipmentId)
         {
             Room room = _roomRepo.FindById(roomId);
-            foreach (RoomEquipment re in room.RoomEquipment)
+            if (room.RoomEquipment.Where(re => re.Equipment.Id == equipmentId).Any(re => re.Quantity < quantity))
             {
-                if (re.Equipment.Id != equipmentId) continue;
-                if (re.Quantity < quantity)
-                {
-                    throw new Exception("Not enough equipment for transfer!");
-                }
+                throw new Exception("Not enough equipment for transfer!");
             }
         }
 
@@ -69,6 +66,16 @@ namespace Utils
             HasEnoughEquipment(fromRoomId, quantity, equipmentId);
             ValidateRoomTaken(fromRoomId, ti);
             ValidateRoomTaken(toRoomId, ti);
+        }
+
+        public void ValidateTransferFromRoom(RelocationAppointment relocationAppointment)
+        {
+            RoomExists(relocationAppointment.FromRoom.Id);
+            RoomExists(relocationAppointment.ToRoom.Id);
+            ValidateDateCorrect(relocationAppointment.Scheduled);
+            HasEnoughEquipment(relocationAppointment.FromRoom.Id, relocationAppointment.RoomEquipment.Quantity, relocationAppointment.RoomEquipment.Equipment.Id);
+            ValidateRoomTaken(relocationAppointment.FromRoom.Id, relocationAppointment.Scheduled);
+            ValidateRoomTaken(relocationAppointment.ToRoom.Id, relocationAppointment.Scheduled);
         }
     }
 }

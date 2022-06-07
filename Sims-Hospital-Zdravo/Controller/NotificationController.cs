@@ -8,14 +8,14 @@ namespace Sims_Hospital_Zdravo.Controller
     {
         private NotificationService _notificationService;
 
-        public NotificationController(NotificationService notificationService)
+        public NotificationController()
         {
-            this._notificationService = notificationService;
+            _notificationService = new NotificationService();
         }
 
-        public List<Notification> ReadAll()
+        public List<Notification> FindAll()
         {
-            return _notificationService.ReadAll();
+            return _notificationService.FindAll();
         }
 
         public Notification FindById(int id)
@@ -46,6 +46,26 @@ namespace Sims_Hospital_Zdravo.Controller
         public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
             return _notificationService.ReadAllDoctorMedicineNotifications(doctorId);
+        }
+
+        public List<Notification> ReadAllManagerMeetingsNotifications(int managerId)
+        {
+            return _notificationService.ReadAllManagerMeetingsNotifications(managerId);
+        }
+
+        public List<Notification> ReadAllDoctorMeetingsNotifications(int doctorId)
+        {
+            return _notificationService.ReadAllDoctorMeetingsNotifications(doctorId);
+        }
+
+        public List<Notification> ReadAllDoctorFreeDaysNotifications(int doctorId)
+        {
+            return _notificationService.ReadAllDoctorFreeDaysNotifications(doctorId);
+        }
+
+        public List<Notification> ReadAllSecretaryMeetingsNotifications(int secretaryId)
+        {
+            return _notificationService.ReadAllSecretaryMeetingsNotifications(secretaryId);
         }
 
         public int GenerateId()

@@ -73,5 +73,13 @@ namespace Sims_Hospital_Zdravo.Model
         {
             return Type == RenovationType.ADVANCED;
         }
+
+        public void Update(RenovationAppointment renovation)
+        {
+            Room = renovation.Room;
+            Type = renovation.Type;
+            Time = renovation.Time;
+            Description = renovation.Description;
+        }
     }
 }

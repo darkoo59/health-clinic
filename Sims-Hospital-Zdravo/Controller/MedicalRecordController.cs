@@ -45,10 +45,10 @@ namespace Controller
         }
 
 
-      public ref ObservableCollection<MedicalRecord> ReadAll()
+      public List<MedicalRecord> ReadAll()
       {
          // TODO: implement
-         return ref medicalRecordService.ReadAll();
+         return medicalRecordService.ReadAll();
       }
       
       public void Update(MedicalRecord medicalRecord, Patient patient)
@@ -113,7 +113,7 @@ namespace Controller
             medicalRecordService.AddNotes(appointment, anamnesis, notes);
         }
 
-        public ObservableCollection<Prescription> GetPrescriptions(Appointment appointment) 
+        public List<Prescription> GetPrescriptions(Appointment appointment) 
         {
             return medicalRecordService.GetPrescriptions(appointment);
         }

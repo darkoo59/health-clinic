@@ -7,53 +7,58 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Model;
 using DataHandler;
+using Sims_Hospital_Zdravo.Interfaces;
 
 
 namespace Repository
 {
-    public class RelocationAppointmentRepository
+    public class RelocationAppointmentRepository : IRelocationRepository
     {
         private List<RelocationAppointment> _relocationAppointments;
         private RelocationAppointmentDataHandler _relocationAppointmentDataHandler;
 
-        public RelocationAppointmentRepository(RelocationAppointmentDataHandler relocationAppointmentDataHandler)
+        public RelocationAppointmentRepository()
         {
-            this._relocationAppointmentDataHandler = relocationAppointmentDataHandler;
+            _relocationAppointmentDataHandler = new RelocationAppointmentDataHandler();
             _relocationAppointments = new List<RelocationAppointment>();
-            LoadDataFromFile();
         }
 
-        public List<RelocationAppointment> ReadAll()
+        public List<RelocationAppointment> FindAll()
         {
-            return _relocationAppointments;
+            return _relocationAppointmentDataHandler.ReadAll();
         }
 
         public void Create(RelocationAppointment appointment)
         {
+            LoadDataFromFiles();
             _relocationAppointments.Add(appointment);
             LoadDataToFile();
         }
 
         public void Update(RelocationAppointment appointment)
         {
-            foreach (RelocationAppointment ra in _relocationAppointments)
+            LoadDataFromFiles();
+            foreach (var ra in _relocationAppointments.Where(ra => ra.Id == appointment.Id))
             {
-                if (ra.Id == appointment.Id)
-                {
-                    ra.RoomEquipment = appointment.RoomEquipment;
-                    ra.Scheduled = appointment.Scheduled;
-                    ra.FromRoom = appointment.FromRoom;
-                    ra.ToRoom = appointment.ToRoom;
-                    LoadDataToFile();
-                    return;
-                }
+                ra.Update(appointment);
+                LoadDataToFile();
+                return;
             }
+        }
+
+        public void DeleteById(int id)
+        {
+            RelocationAppointment relocationAppointment = FindById(id);
+            _relocationAppointments.Remove(relocationAppointment);
+            LoadDataToFile();
         }
 
         public void Delete(RelocationAppointment appointment)
         {
+            LoadDataFromFiles();
             _relocationAppointments.Remove(appointment);
             LoadDataToFile();
         }
@@ -61,29 +66,18 @@ namespace Repository
 
         public RelocationAppointment FindById(int id)
         {
-            foreach (RelocationAppointment ra in _relocationAppointments)
-            {
-                if (ra.Id == id)
-                {
-                    return ra;
-                }
-            }
-
-            return null;
+            LoadDataFromFiles();
+            return _relocationAppointments.FirstOrDefault(ra => ra.Id == id);
         }
 
         public List<TimeInterval> FindTakenIntervalsForRoom(int roomId)
         {
-            List<TimeInterval> intervals = new List<TimeInterval>();
-            foreach (RelocationAppointment relocationAppointment in _relocationAppointments)
-            {
-                if (relocationAppointment.FromRoom.Id == roomId || relocationAppointment.ToRoom.Id == roomId)
-                {
-                    intervals.Add(relocationAppointment.Scheduled);
-                }
-            }
-
-            return intervals;
+            LoadDataFromFiles();
+            return (from relocationAppointment in _relocationAppointments
+                    where relocationAppointment.FromRoom.Id == roomId
+                          || relocationAppointment.ToRoom.Id == roomId
+                    select relocationAppointment.Scheduled)
+                .ToList();
         }
 
 
@@ -92,7 +86,7 @@ namespace Repository
             _relocationAppointmentDataHandler.Write(_relocationAppointments);
         }
 
-        private void LoadDataFromFile()
+        private void LoadDataFromFiles()
         {
             _relocationAppointments = _relocationAppointmentDataHandler.ReadAll();
         }

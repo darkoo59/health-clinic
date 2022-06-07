@@ -23,9 +23,9 @@ namespace Sims_Hospital_Zdravo.Model
             accountRepository.Create(account);
         }
 
-        public ref ObservableCollection<User> ReadAll()
+        public List<User> FindAll()
         {
-            return ref accountRepository.ReadAll();
+            return accountRepository.FindAll();
         }
 
         public void Update(User account)
@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public User FindAccountById(int id)
         {
-            return accountRepository.FindAccountById(id);
+            return accountRepository.FindById(id);
         }
 
         public User GetAccountByUsernameAndPassword(String username, String password)

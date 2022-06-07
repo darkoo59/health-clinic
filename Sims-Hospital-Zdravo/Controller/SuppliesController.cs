@@ -26,7 +26,7 @@ namespace Sims_Hospital_Zdravo.Controller
             return this._suppliesService.FindAllEquipment();
         }
         
-        public ObservableCollection<SuppliesAcquisition> ReadAllSuppliesAcquisitions()
+        public List<SuppliesAcquisition> ReadAllSuppliesAcquisitions()
         {
             return this._suppliesService.ReadAllSuppliesAcquisitions();
         }
