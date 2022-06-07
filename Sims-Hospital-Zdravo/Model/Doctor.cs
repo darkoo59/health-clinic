@@ -25,7 +25,7 @@ namespace Model
    public class Doctor : User
    {
 
-        public SpecialtyType _specialty;
+        private SpecialtyType _specialty;
         public Doctor (int id,string name,string surname, SpecialtyType specialty)
         {
             this.Id = id;

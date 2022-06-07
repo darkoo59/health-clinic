@@ -43,8 +43,8 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataFromFile();
             foreach (var account in accounts.Where(account => account.Id == newAccount.Id))
             {
-                account._Password = newAccount._Password;
-                account._Username = newAccount._Username;
+                account.Password = newAccount.Password;
+                account.Username = newAccount.Username;
                 LoadDataToFile();
                 return;
             }
@@ -70,7 +70,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public User GetAccountByUsernameAndPassword(String username, String password)
         {
             LoadDataFromFile();
-            return accounts.FirstOrDefault(acc => acc._Password.Equals(password) && acc._Username.Equals(username));
+            return accounts.FirstOrDefault(acc => acc.Password.Equals(password) && acc.Username.Equals(username));
         }
 
         public User GetLoggedAccount()
@@ -82,7 +82,7 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Login(string username, string password)
         {
             LoadDataFromFile();
-            foreach (var acc in accounts.Where(acc => acc._Password.Equals(password) && acc._Username.Equals(username)))
+            foreach (var acc in accounts.Where(acc => acc.Password.Equals(password) && acc.Username.Equals(username)))
             {
                 loggedAccount = acc;
                 return;

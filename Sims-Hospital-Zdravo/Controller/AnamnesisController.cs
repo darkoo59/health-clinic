@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.Controller
             return   _anamnesisService.FindAll();
 
         }
-         public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
+         public List<Anamnesis> FindAnamnesisByDoctor(int id)
         {
             return _anamnesisService.findAnamnesisByDoctor (id);
 

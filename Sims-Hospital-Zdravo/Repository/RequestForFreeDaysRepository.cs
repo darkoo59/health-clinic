@@ -85,7 +85,7 @@ namespace Sims_Hospital_Zdravo.Repository
             List<FreeDaysRequest> requestsBySpecialty = new List<FreeDaysRequest>();
             foreach(FreeDaysRequest request in _requests)
             {
-                if(request.Doctor._specialty.Equals(doctor._specialty))
+                if(request.Doctor.Specialty.Equals(doctor.Specialty))
                 {
                     requestsBySpecialty.Add(request);
                 }

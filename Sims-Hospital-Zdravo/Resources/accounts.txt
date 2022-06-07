@@ -1,4 +1,4 @@
-[{"_Username":"manager","_Password":"manager","_Id":1,"_Role":0, "_Name":"darko","_Surname":"selakovic"}
-,{"_Username":"secretary","_Password":"secretary","_Id":2,"_Role":1, "_Name":"Ana","_Surname":"Jovanovic"}
-,{"_Username":"patient","_Password":"patient","_Id":4,"_Role":3,"Blocked":false,"Cancels":[], "_Name":"darko","_Surname":"selakovic"}
-,{"_Username":"doctor1","_Password":"doctor1","_Id":3,"_Role":2, "_Name":"darko","_Surname":"selakovic"}]
+[{"Username":"manager","Password":"manager","Id":1,"Role":0, "Name":"darko","Surname":"selakovic"}
+,{"Username":"secretary","Password":"secretary","Id":2,"Role":1, "Name":"Ana","Surname":"Jovanovic"}
+,{"Username":"patient","Password":"patient","Id":4,"Role":3,"Blocked":false,"Cancels":[], "Name":"darko","Surname":"selakovic"}
+,{"Username":"doctor1","Password":"doctor1","Id":3,"Role":2, "Name":"darko","Surname":"selakovic"}]

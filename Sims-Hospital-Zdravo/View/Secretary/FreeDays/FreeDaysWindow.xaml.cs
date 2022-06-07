@@ -40,11 +40,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Name";
-            dataColumn.Binding = new Binding("Doctor._Name");
+            dataColumn.Binding = new Binding("Doctor.Name");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Surname";
-            dataColumn.Binding = new Binding("Doctor._Surname");
+            dataColumn.Binding = new Binding("Doctor.Surname");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Start";

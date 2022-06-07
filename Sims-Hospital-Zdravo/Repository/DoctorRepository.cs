@@ -49,9 +49,9 @@ namespace Repository
                     doc.BirthDate = newDoc.BirthDate;
                     doc.Address = newDoc.Address;
                     doc.Jmbg = newDoc.Jmbg;
-                    doc._Password = newDoc._Password;
+                    doc.Password = newDoc.Password;
                     doc.Surname = newDoc.Surname;
-                    doc._Username = newDoc._Username;
+                    doc.Username = newDoc.Username;
                     doc.Specialty = newDoc.Specialty;
                     LoadDataToFile();
                     return;

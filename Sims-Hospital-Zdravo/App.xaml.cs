@@ -168,7 +168,6 @@ namespace Sims_Hospital_Zdravo
                 _renovationController,
                 _doctorAppointmentController,
                 new MedicalRecordController(),
-                _notificationController,
                 new SuppliesController(),
                 _accountController
             );

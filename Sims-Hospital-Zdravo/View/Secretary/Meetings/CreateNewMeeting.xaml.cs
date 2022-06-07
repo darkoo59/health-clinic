@@ -72,6 +72,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             ListRequiredOthers.Items.Clear();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
+                Console.WriteLine(user.Name + "nestooo");
                 if (!CompareUsersById(ListOptional.Items, user) && !CompareUsersById(ListRequired.Items, user))
                 {
                     ListOptionalOthers.Items.Add(user);
@@ -232,7 +233,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 {
                     notificationsToAdd.Add(new MeetingCreatedNotifications(
                         "You have new meeting on " + meeting.Start.ToString(), meeting.Start,
-                        user._Role, user._Id, app._notificationController.GenerateId()));
+                        user.Role, user.Id, new NotificationController().GenerateId()));
                 }
 
                 _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
@@ -264,7 +265,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
         {
             foreach (User user in users)
             {
-                if (user._Id == userToFind._Id)
+                if (user.Id == userToFind.Id)
                 {
                     return true;
                 }

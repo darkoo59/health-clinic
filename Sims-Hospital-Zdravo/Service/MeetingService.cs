@@ -50,7 +50,7 @@ namespace Sims_Hospital_Zdravo.Service
         public List<User> ReadAllPotentionalAttendees()
         {
             return (from User user in _accountRepository.FindAll()
-                where user._Role != RoleType.PATIENT
+                where user.Role != RoleType.PATIENT
                 select user).ToList();
         }
     }
