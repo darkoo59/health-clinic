@@ -124,6 +124,7 @@
     <Compile Include="Controller\EquipmentTransferController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\MeetingController.cs" />
+    <Compile Include="Controller\NotesController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PatientMedicalRecordController.cs" />
     <Compile Include="Controller\PrescriptionController.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="DataHandler\HospitalSurveyDataHandler.cs" />
     <Compile Include="DataHandler\MedicineDataHandler.cs" />
     <Compile Include="DataHandler\MeetingDataHandler.cs" />
+    <Compile Include="DataHandler\NotesDataHandler.cs" />
     <Compile Include="DataHandler\NotificationDataHandler.cs" />
     <Compile Include="DataHandler\PatientDataHandler.cs" />
     <Compile Include="DataHandler\PrescriptionDataHandler.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Interfaces\IHospitalSurveyRepository.cs" />
     <Compile Include="Interfaces\IMedicalRecordsRepository.cs" />
     <Compile Include="Interfaces\IMeetingRepository.cs" />
+    <Compile Include="Interfaces\INotesRepository.cs" />
     <Compile Include="Interfaces\INotificationRepository.cs" />
     <Compile Include="Interfaces\IQuestionRepository.cs" />
     <Compile Include="Interfaces\IExtendedCRUD.cs" />
@@ -175,8 +178,11 @@
     <Compile Include="Model\MarkStatistic.cs" />
     <Compile Include="Model\Meeting.cs" />
     <Compile Include="Model\MeetingCreatedNotifications.cs" />
+    <Compile Include="Model\Notes.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="Repository\NotesRepository.cs" />
+    <Compile Include="Service\NotesService.cs" />
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
@@ -250,6 +256,9 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\RoomEquipment.cs" />
+    <Compile Include="View\ViewPatient\NotesPage.xaml.cs">
+      <DependentUpon>NotesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewPatient\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
@@ -493,9 +502,9 @@
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
-	<Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
+    <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
-	<Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\Manager\Tutorial.xaml" />
     <Page Include="View\ViewPatient\AnamnesisPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentDetailsPage.xaml" />
     <Page Include="View\ViewPatient\AppointmentList.xaml">
@@ -516,6 +525,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewPatient\HospitalSurveyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPatient\NotesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -955,6 +968,7 @@
     </Resource>
     <Content Include="Resources\medicines.txt" />
     <Resource Include="Resources\meetings.txt" />
+    <Resource Include="Resources\notes.txt" />
     <Content Include="Resources\notifications.txt" />
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />

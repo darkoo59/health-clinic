@@ -94,7 +94,7 @@ namespace Sims_Hospital_Zdravo
             Therapy.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
             Profile.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
             Profile.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Patient.Content = new TherapyPage();
+            Patient.Content = new TherapyPage(Patient);
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)
