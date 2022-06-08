@@ -9,7 +9,11 @@
       Title="ListOfMedecinesinSystem">
 
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
             <Label Content="Drug list
                "></Label>
             <ListBox Width="300" Height="150" HorizontalAlignment="Left" Name="MedicineListBox" ScrollViewer.HorizontalScrollBarVisibility="Visible" SelectionChanged="MedicineListBox_SelectionChanged" >

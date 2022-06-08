@@ -29,42 +29,42 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Label  Content="Patient"/>
-            <TextBox Name="patientTxt" Width="200"></TextBox>
+            <TextBox Name="patientTxt" Width="150" Height="30"></TextBox>
 
         </StackPanel  >
         <StackPanel Grid.Column="0"  Grid.Row="1">
             <Label  Content="Gender"/>
-            <TextBox Name="genderTxt" Width="200"></TextBox>
+            <TextBox Name="genderTxt" Width="150" Height="30">></TextBox>
 
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0">
             <Label  Content="Date:"/>
-            <DatePicker Name="dateTxt" Width="200"></DatePicker>
+            <DatePicker Name="dateTxt" Width="150" Height="30"></DatePicker>
 
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="0">
             <Label  Content="Time:"/>
-            <TextBox Name="TimeTxt" Width="200"></TextBox>
+            <TextBox Name="TimeTxt" Width="150" Height="30"></TextBox>
 
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="0">
             <Label  Content="Duration:"/>
-            <TextBox Name="durationTxt" Width="200"></TextBox>
+            <TextBox Name="durationTxt" Width="150" Height="30"></TextBox>
 
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0">
             <Label  Content="Specialty"/>
-            <ComboBox Name="SpecilatyComboBox" SelectionChanged="SpecilatyComboBox_SelectionChanged" Width="200" Style="{DynamicResource theComboBox}"/>
+            <ComboBox Name="SpecilatyComboBox" SelectionChanged="SpecilatyComboBox_SelectionChanged" Width="150" Height="30" Style="{DynamicResource theComboBox}"/>
 
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="0">
             <Label  Content="Doctor"/>
-            <ComboBox Name="DoctorComboBox" SelectionChanged="DoctorComboBox_SelectionChanged" Width="200"  Style="{DynamicResource theComboBox}"/>
+            <ComboBox Name="DoctorComboBox" SelectionChanged="DoctorComboBox_SelectionChanged" Width="150" Height="30"  Style="{DynamicResource theComboBox}"/>
 
         </StackPanel>
         <StackPanel Grid.Row="7" Grid.Column="0">
             <Label  Content="Operatig room"/>
-            <TextBox Name="RoomTxt" Width="200"/>
+            <TextBox Name="RoomTxt" Width="150" Height="30"/>
 
         </StackPanel>
         <StackPanel Grid.Column="1">
@@ -73,8 +73,8 @@
 
         </StackPanel>
         <DockPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center">
-            <Button Content="Schedule operation" Width="94" Click="ButtonOperation_Click"/>
-            <Button Content="cancel" DockPanel.Dock="Right" Width="100"/>
+            <Button Content="Schedule operation" Width="100" Height="30" Click="ButtonOperation_Click"/>
+            <Button Content="cancel" DockPanel.Dock="Right" Width="100" Height="30"/>
         </DockPanel>
     </Grid>
 

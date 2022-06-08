@@ -10,10 +10,15 @@
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
     </Page.Resources>
     <Grid>
-        <DataGrid Name="PrescriptionListPatient" Margin="54,182,298,114"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="PrescriptionListPatient" Grid.Row="1"/>
         <Label Content="Prescription List" HorizontalAlignment="Left" Margin="50,151,0,0" VerticalAlignment="Top"/>
-        <Button Content="Add new Prescription" Margin="54,27,631,367" Click="Button_Click"/>
-        <Button Content="Print" Margin="262,27,423,367"/>
-
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Add new Prescription" Height="30" Click="Button_Click" Margin="0 0 50 0"/>
+        <Button Content="Print" Height="30" Width="130"/>
+        </StackPanel>
     </Grid>
 </Page>

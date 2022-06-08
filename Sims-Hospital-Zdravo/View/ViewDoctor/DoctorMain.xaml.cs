@@ -105,7 +105,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void operation_click(object sender, RoutedEventArgs e)
         {
             OperationForm operationform = new OperationForm(docController);
-            FrameForMain.Content = operationform;
+            //FrameForMain.Content = operationform;
+            OperationSchedule operationSchedule = new OperationSchedule(docController, FrameForMain);
+            FrameForMain.Content = operationSchedule;
         }
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)

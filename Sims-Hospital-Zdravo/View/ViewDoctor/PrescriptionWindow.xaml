@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="PrescriptionWindow" Height="700" Width="700">
+        Title="PrescriptionWindow" Height="700" Width="400">
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
             
@@ -55,8 +55,8 @@
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Prescribe" Width="150" Click="Prescription_Click"/>
-                <Button Content="Prescribe and New"  Width="150"/>
+                <Button Content="Prescribe" Width="150" Height="30" Click="Prescription_Click"/>
+                <Button Content="Prescribe and New"  Width="150" Height="30"/>
             </StackPanel>
         </StackPanel>
         <Label Content="Patient:" Margin="341,114,181,0" Grid.Row="1" Grid.ColumnSpan="2"/>
