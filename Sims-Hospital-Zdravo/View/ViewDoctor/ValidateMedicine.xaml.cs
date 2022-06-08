@@ -32,9 +32,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public ValidateMedicine(Medicine medicine)
         {
             InitializeComponent();
-            this.app = App.Current as App;
-            this.medicineController = new MedicineController();
-            this.notificationController = new NotificationController();
+            medicineController = new MedicineController();
+            notificationController = new NotificationController();
             this.medicine = medicine;
             MedicineNameTxt.Text = medicine.Name;
             StrenghtTxt.Text = medicine.Strength;

@@ -55,27 +55,27 @@
         </Label>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label>Name:</Label>
-            <TextBox x:Name="TxtMedicineName" Text="{Binding Path=_Name, Mode=TwoWay}"></TextBox>
+            <TextBox x:Name="TxtMedicineName" Text="{Binding Path=Name, Mode=TwoWay}"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0">
             <Label>Allergens:</Label>
-            <TextBox x:Name="TxtAllergens" Text="{Binding Path=_Allergens, Mode=TwoWay}"></TextBox>
+            <TextBox x:Name="TxtAllergens" Text="{Binding Path=Allergens, Mode=TwoWay}"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0">
             <Label>Description:</Label>
-            <TextBox x:Name="TxtDescription" Text="{Binding Path=_Description, Mode=TwoWay}"></TextBox>
+            <TextBox x:Name="TxtDescription" Text="{Binding Path=Description, Mode=TwoWay}"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0">
             <Label>Strength:</Label>
-            <TextBox x:Name="TxtStrength" Text="{Binding Path=_Strength, Mode=TwoWay}"></TextBox>
+            <TextBox x:Name="TxtStrength" Text="{Binding Path=Strength, Mode=TwoWay}"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="0">
             <Label> Doctor:</Label>
-            <ComboBox x:Name="ComboDoctors" Text="{Binding Path=_Doctor, Mode=TwoWay}"></ComboBox>
+            <ComboBox x:Name="ComboDoctors" Text="{Binding Path=Doctor, Mode=TwoWay}"></ComboBox>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.RowSpan="2">
