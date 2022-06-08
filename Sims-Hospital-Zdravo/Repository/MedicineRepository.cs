@@ -30,8 +30,15 @@ namespace Sims_Hospital_Zdravo.Repository
         public void Delete(Medicine medicine)
         {
             LoadDataFromFile();
-            _medicines.Remove(medicine);
-            LoadDataToFiles();
+            foreach(Medicine med in _medicines)
+            {
+                if(medicine.Id == med.Id)
+                {
+                    _medicines.Remove(med);
+                    LoadDataToFiles();
+                    return;
+                }
+            }
         }
 
         public void Update(Medicine newMedicine)
