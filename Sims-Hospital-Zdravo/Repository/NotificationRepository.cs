@@ -21,11 +21,6 @@ namespace Sims_Hospital_Zdravo.Repository
             _notifications = new List<Notification>();
         }
 
-        public List<Notification> ReadAll()
-        {
-            return _notificationDataHandler.ReadAll();
-        }
-
         public void Create(Notification notification)
         {
             LoadDataFromFiles();
@@ -70,28 +65,25 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> ReadAllManagerMedicineNotifications()
         {
-            
             LoadDataFromFiles();
             return _notifications.OfType<ReviewMedicineNotification>().Cast<Notification>().ToList();
         }
 
         public List<Notification> ReadAllDoctorMedicineNotifications(int doctorId)
         {
-            
             LoadDataFromFiles();
             List<Notification> notifications = new List<Notification>();
-            foreach (Notification notification in _notifications) 
+            foreach (Notification notification in _notifications)
             {
-                
-                if(notification is MedicineCreatedNotification && ((MedicineCreatedNotification)notification).DoctorId == doctorId)
+                if (notification is MedicineCreatedNotification && ((MedicineCreatedNotification)notification).DoctorId == doctorId)
                 {
-
                     notifications.Add(notification);
                 }
             }
+
             return notifications;
             //return _notifications.OfType<MedicineCreatedNotification>()
-                //.Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
+            //.Where(x => x.DoctorId == doctorId).Cast<Notification>().ToList();
         }
 
         public List<Notification> ReadAllDoctorFreeDaysNotifications(int doctorId)
@@ -135,7 +127,7 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             return null;
         }
-      
+
         private void LoadDataToFile()
         {
             _notificationDataHandler.Write(_notifications);
@@ -143,8 +135,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Notification> FindAll()
         {
-            LoadDataFromFiles();
-            return _notifications;
+            return _notificationDataHandler.ReadAll();
         }
     }
 }

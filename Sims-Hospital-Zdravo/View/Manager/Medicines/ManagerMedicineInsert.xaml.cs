@@ -61,6 +61,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }

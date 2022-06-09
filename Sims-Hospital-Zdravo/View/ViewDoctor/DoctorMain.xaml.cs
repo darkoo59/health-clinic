@@ -112,7 +112,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)
         {
-            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController, doctorId);
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
         }
 

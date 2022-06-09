@@ -42,7 +42,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public InsertMedicine_Command(MedicineController medicineController)
         {
-            this.medicineController = medicineController;
+            this.medicineController = new MedicineController();
         }
 
         public bool CanExecute(object parameter)
@@ -57,9 +57,11 @@ namespace Sims_Hospital_Zdravo.ViewModel
             {
                 Medicine medicine = medicineInsert.Medicine;
                 Notification notification = medicineInsert._CreatedNotification;
+
                 if (medicine != null)
                 {
                     medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
+                    MessageBox.Show("Success");
                 }
             }
         }
@@ -73,7 +75,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
         public UpdateMedicine_Command(MedicineController medicineController)
         {
-            this.medicineController = medicineController;
+            medicineController = new MedicineController();
         }
 
         public bool CanExecute(object parameter)
@@ -103,10 +105,12 @@ namespace Sims_Hospital_Zdravo.ViewModel
             if (medicineUpdate.ShowDialog() == false)
             {
                 Medicine med = medicineUpdate.Medicine;
-                Notification notification = medicineUpdate._CreatedNotification;
+                Notification notification = medicineUpdate.CreatedNotification;
+
                 if (med != null)
                 {
                     medicineController.ResubmitMedicineWithNotifyingDoctor(medicine, notification);
+                    MessageBox.Show("Success");
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
@@ -79,6 +80,7 @@ namespace Sims_Hospital_Zdravo.Model
         public int GenerateId()
         {
             List<Notification> appointments = _notificationRepository.FindAll();
+            Console.WriteLine(appointments.Count);
             List<int> ids = new List<int>(appointments.Select(x => x.Id));
 
             int id = 0;

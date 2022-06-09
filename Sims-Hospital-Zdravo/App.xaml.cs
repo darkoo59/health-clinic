@@ -113,9 +113,9 @@ namespace Sims_Hospital_Zdravo
 
             TimeSchedulerService timeSchedulerService = new TimeSchedulerService();
 
-            DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService( timeSchedulerService, roomService);
-            _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
+            // DoctorAppointmentService doctorAppointmentService =
+            //     new DoctorAppointmentService( timeSchedulerService, roomService);
+            // _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
                 new RenovationService(timeSchedulerService);
