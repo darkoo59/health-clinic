@@ -30,13 +30,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private NotificationController notificationController;
         private App app;
 
-        public RequestForFreeDaysForm(DoctorAppointmentController doctorAppointmentController, RequestForFreeDaysController requestForFreeDaysController, int doctorId)
+        public RequestForFreeDaysForm(DoctorAppointmentController doctorAppointmentController,  int doctorId)
         {
             InitializeComponent();
             this.app = App.Current as App;
             this.notificationController = new NotificationController();
             this.doctorAppointmentController = doctorAppointmentController;
-            this.requestForFreeDaysController = requestForFreeDaysController;
+            this.requestForFreeDaysController = new RequestForFreeDaysController();
             this.doctorId = doctorId;
         }
 
@@ -68,9 +68,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             Doctor doctor = doctorAppointmentController.GetDoctor(doctorId);
             TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate), DateTime.Parse(toDate));
             FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff, RequestStatus.PENDING);
-            RequestForFreeDaysNotification requestForFreeDaysNotification =
-                new RequestForFreeDaysNotification(request, "Request for free days sent by" + doctor.Name + doctor.Surname, notificationController.GenerateId());
-            requestForFreeDaysController.SendRequestForFreeDaysWithNotifyingSecretary(request, requestForFreeDaysNotification);
+            try
+            {
+                RequestForFreeDaysNotification requestForFreeDaysNotification =
+                    new RequestForFreeDaysNotification(request, "Request for free days sent by" + doctor.Name + doctor.Surname, notificationController.GenerateId());
+                requestForFreeDaysController.SendRequestForFreeDaysWithNotifyingSecretary(request, requestForFreeDaysNotification);
+            }
+            catch(Exception ex
+            )
+            {
+                MessageBox.Show(ex.Message);
+            }
             UrgentVacationChecked(request);
         }
     }

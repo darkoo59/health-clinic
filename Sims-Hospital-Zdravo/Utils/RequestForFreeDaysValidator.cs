@@ -21,8 +21,8 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public RequestForFreeDaysValidator(IAppointmentRepository appointmentRepository,IRequestForFreeDaysRepository requestForFreeDaysRepository)
         {
-            this.appointmentRepository = appointmentRepository;
-            this.requestForFreeDaysRepository = requestForFreeDaysRepository;
+            this.appointmentRepository = new AppointmentRepository();
+            this.requestForFreeDaysRepository = new RequestForFreeDaysRepository();
             
         }
 
@@ -30,6 +30,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             if (GetAllAppointmentsBetweenDatesPlannedForVacation(request, appointmentRepository) != null)
             {
+                Console.WriteLine("nenenen");
                 throw new Exception("Vacation cant be scheduled due to scheduled appointments");
             }
         }
@@ -44,7 +45,13 @@ namespace Sims_Hospital_Zdravo.Utils
         public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, IAppointmentRepository appointmentRepository)
         {
             List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request.Doctor.Id);
+            
             List<TimeInterval> takenTimeIntervals = timeIntervals.Where(i => i.Start.Date >= request.TimeInterval.Start.Date && i.Start.Date <= request.TimeInterval.End.Date).ToList();
+            foreach(TimeInterval timeInterval in takenTimeIntervals)
+            {
+                Console.WriteLine(timeInterval.Start.ToString() + timeInterval.End.ToString() + "jahahahah");
+            }
+
             return takenTimeIntervals;
         }
 
@@ -76,6 +83,7 @@ namespace Sims_Hospital_Zdravo.Utils
             {
                 if(interval.Start.Date< request.TimeInterval.End.Date && request.TimeInterval.Start <interval.End.Date  )
                 {
+                    Console.WriteLine("usao ovde");
                     overlap = true;
                 }
             }
