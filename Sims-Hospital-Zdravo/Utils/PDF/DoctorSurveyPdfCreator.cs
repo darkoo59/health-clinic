@@ -67,6 +67,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             PdfPage page = document.Pages.Add();
             PdfLayoutResult result = CreateFirstGrid(page, (DoctorSurvey)statistics[0]);
+            result.Page.Graphics.DrawString(doctor.Name + " " + doctor.Surname + " surveys", new PdfStandardFont(PdfFontFamily.Helvetica, 10), PdfBrushes.Black, new PointF(230, 0));
             int counter = 1;
             result = statistics.Aggregate(result, (current, statistic) => DrawNextGrid(current.Page, counter++, statistic));
         }
@@ -76,14 +77,14 @@ namespace Sims_Hospital_Zdravo.Utils
             PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
             layoutFormat.Layout = PdfLayoutType.Paginate;
             PdfGrid firstGrid = CreateGridFromSurvey(survey);
-            PdfLayoutResult result = firstGrid.Draw(page, new PointF(10, 10), layoutFormat);
+            PdfLayoutResult result = firstGrid.Draw(page, new PointF(10, 30), layoutFormat);
             return result;
         }
 
         private PdfLayoutResult DrawNextGrid(PdfPage page, int counter, ISurveyStatistic statistic)
         {
             PdfGrid grid = CreateGridFromSurvey((DoctorSurvey)statistic);
-            return grid.Draw(page, new PointF(10, 10 + counter * 90));
+            return grid.Draw(page, new PointF(10, 30 + counter * 90));
         }
 
         private PdfGrid CreateGridFromSurvey(DoctorSurvey hospitalSurvey)
