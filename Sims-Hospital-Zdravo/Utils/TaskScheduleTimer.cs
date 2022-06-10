@@ -71,7 +71,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();
-            //if (_accountController.GetLoggedAccount() != null) CheckNotesNotification();
+            CheckNotesNotification();
             //AppointmentDone();
         }
         private void CheckNotesNotification()

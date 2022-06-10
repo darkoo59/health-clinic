@@ -19,10 +19,10 @@ namespace Sims_Hospital_Zdravo.Utils
         private IRequestForFreeDaysRepository requestForFreeDaysRepository;
 
 
-        public RequestForFreeDaysValidator(IAppointmentRepository appointmentRepository,IRequestForFreeDaysRepository requestForFreeDaysRepository)
+        public RequestForFreeDaysValidator()
         {
-            this.appointmentRepository = appointmentRepository;
-            this.requestForFreeDaysRepository = requestForFreeDaysRepository;
+            this.appointmentRepository = new AppointmentRepository();
+            this.requestForFreeDaysRepository = new RequestForFreeDaysRepository();
             
         }
 
@@ -36,9 +36,9 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateSchedulingDaysOff(FreeDaysRequest request)
         {
-            ValidateIfDoctorIsFree(request,appointmentRepository);
-            CheckIfIsTooLateForSchedulingVacation(request);
-            AnotherSpecialistOnVacation(request);
+           // ValidateIfDoctorIsFree(request,appointmentRepository);
+            //CheckIfIsTooLateForSchedulingVacation(request);
+            //AnotherSpecialistOnVacation(request);
         }
 
         public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, IAppointmentRepository appointmentRepository)

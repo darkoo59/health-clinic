@@ -77,15 +77,15 @@ namespace Sims_Hospital_Zdravo
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Name";
-            dataColumn.Binding = new Binding("Patient._Name");
+            dataColumn.Binding = new Binding("Patient.Name");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Surname";
-            dataColumn.Binding = new Binding("Patient._Surname");
+            dataColumn.Binding = new Binding("Patient.Surname");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Jmbg";
-            dataColumn.Binding = new Binding("Patient._Jmbg");
+            dataColumn.Binding = new Binding("Patient.Jmbg");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
             dataColumn.Header = "Gender";
