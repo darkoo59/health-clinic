@@ -190,6 +190,7 @@
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
+    <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />
     <Compile Include="ViewModel\Commands\SearchCommand.cs" />
     <Compile Include="ViewModel\dd\BindableBase.cs" />
     <Compile Include="ViewModel\dd\LabaratoryTestViewModel.cs" />
@@ -210,6 +211,9 @@
     </Compile>
     <Compile Include="View\Manager\Surveys\ManagerSurveys.xaml.cs">
       <DependentUpon>ManagerSurveys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\Surveys\PdfViewer.xaml.cs">
+      <DependentUpon>PdfViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
@@ -532,6 +536,7 @@
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
+    <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
     <Page Include="View\UserControlls\SecretaryMenu.xaml">
       <SubType>Designer</SubType>
