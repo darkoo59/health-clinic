@@ -25,7 +25,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             app = Application.Current as App;
             medicineController = new MedicineController();
             notificationController = new NotificationController();
-            doctorAppointmentController = app._doctorAppointmentController;
+            doctorAppointmentController = new DoctorAppointmentController();
             InitializeComponent();
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
