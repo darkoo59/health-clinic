@@ -218,6 +218,9 @@
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
+      <DependentUpon>SecretaryMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
     </Compile>
@@ -535,6 +538,10 @@
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\UserControlls\SecretaryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1026,6 +1033,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\img\Doctor\" />
+    <Folder Include="View\Secretary\About\" />
+    <Folder Include="View\Secretary\Account\" />
+    <Folder Include="View\Secretary\Contact\" />
+    <Folder Include="View\Secretary\Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
