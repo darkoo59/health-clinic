@@ -894,7 +894,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\.gitignore" />
     <Content Include="Resources\anamnesis.txt" />
+    <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
     <Resource Include="Resources\img\image-equipment.ico" />
@@ -934,7 +936,6 @@
     <Resource Include="Resources\img\icons8-day-off-96.png" />
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
-    <Resource Include="Resources\demo.mp4" />
     <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />

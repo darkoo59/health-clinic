@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using Controller;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
@@ -18,6 +19,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             this.DataContext = new RenovationsViewModel();
             InitializeComponent();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }

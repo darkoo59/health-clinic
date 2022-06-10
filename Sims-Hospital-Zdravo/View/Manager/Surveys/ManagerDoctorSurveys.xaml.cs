@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Sims_Hospital_Zdravo.ViewModel;
 
 namespace Sims_Hospital_Zdravo.View.Manager.Surveys
@@ -11,6 +12,8 @@ namespace Sims_Hospital_Zdravo.View.Manager.Surveys
             Console.WriteLine("Working");
             InitializeComponent();
             DataContext = new ManagerDoctorSurveyModel();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }
