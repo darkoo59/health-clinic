@@ -184,6 +184,7 @@
     <Compile Include="Model\Notes.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="Utils\AccountValidator.cs" />
     <Compile Include="Utils\MeetingValidator.cs" />
     <Compile Include="Repository\NotesRepository.cs" />
     <Compile Include="Service\NotesService.cs" />
@@ -217,6 +218,9 @@
     </Compile>
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Profile\SecretaryProfileWindow.xaml.cs">
+      <DependentUpon>SecretaryProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
       <DependentUpon>SecretaryMenu.xaml</DependentUpon>
@@ -538,6 +542,10 @@
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\Secretary\Profile\SecretaryProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserControlls\SecretaryMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -971,6 +979,9 @@
     <Resource Include="Resources\img\Secretary\FreeDays.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\img\Secretary\eye.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\img\Secretary\Light\About.png" />
     <Content Include="Resources\img\Secretary\Light\Accounts.png" />
     <Content Include="Resources\img\Secretary\Light\Appointment.png" />
@@ -1033,7 +1044,6 @@
   <ItemGroup>
     <Folder Include="Resources\img\Doctor\" />
     <Folder Include="View\Secretary\About\" />
-    <Folder Include="View\Secretary\Account\" />
     <Folder Include="View\Secretary\Contact\" />
     <Folder Include="View\Secretary\Settings\" />
   </ItemGroup>
