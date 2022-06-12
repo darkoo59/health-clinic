@@ -38,6 +38,9 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
+            ComboGender.SelectedIndex = (int)record.Gender;
+            ComboBlood.SelectedIndex = (int)record.BloodType;
+            ComboMarital.SelectedIndex = (int)record.MaritalStatus;
             foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
             {
                 ListPatientAllergens.Items.Add(str);
@@ -183,39 +186,6 @@ namespace Sims_Hospital_Zdravo
                     ListPatientMedicalAllergens.Items.Add(str);
             }
         }
-
-        private void ListViewItem_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (TgButton.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_profile.Visibility = Visibility.Collapsed;
-                tt_about.Visibility = Visibility.Collapsed;
-                tt_meetings.Visibility = Visibility.Collapsed;
-                tt_accounts.Visibility = Visibility.Collapsed;
-                tt_equipment.Visibility = Visibility.Collapsed;
-                tt_appointments.Visibility = Visibility.Collapsed;
-                tt_contacts.Visibility = Visibility.Collapsed;
-                tt_medical_records.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_sign_out.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_profile.Visibility = Visibility.Visible;
-                tt_about.Visibility = Visibility.Visible;
-                tt_meetings.Visibility = Visibility.Visible;
-                tt_accounts.Visibility = Visibility.Visible;
-                tt_equipment.Visibility = Visibility.Visible;
-                tt_appointments.Visibility = Visibility.Visible;
-                tt_contacts.Visibility = Visibility.Visible;
-                tt_medical_records.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_sign_out.Visibility = Visibility.Visible;
-            }
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
@@ -224,34 +194,6 @@ namespace Sims_Hospital_Zdravo
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
-        }
-
-        private void Home_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryHome window = new SecretaryHome();
-            window.Show();
-            this.Close();
-        }
-
-        private void Appointment_Click(object sender, MouseButtonEventArgs e)
-        {
-            ExaminationWindow window = new ExaminationWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryWindow window = new SecretaryWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void Equipment_Click(object sender, MouseButtonEventArgs e)
-        {
-            SuppliesHome window = new SuppliesHome();
-            window.Show();
             this.Close();
         }
     }

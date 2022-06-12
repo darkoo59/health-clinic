@@ -17,7 +17,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         private MedicineController medicineController;
         private NotificationController notificationController;
         private DoctorAppointmentController doctorAppointmentController;
-        public MedicineCreatedNotification _CreatedNotification { get; set; }
+        public MedicineCreatedNotification CreatedNotification { get; set; }
         public Medicine Medicine { get; set; }
 
 
@@ -25,9 +25,9 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         {
             Medicine = medicine;
             app = Application.Current as App;
-            medicineController = app._medicineController;
+            medicineController = new MedicineController();
             notificationController = new NotificationController();
-            doctorAppointmentController = app._doctorAppointmentController;
+            doctorAppointmentController = new DoctorAppointmentController();
             InitializeComponent();
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
@@ -51,15 +51,22 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
                 Validate();
 
                 Doctor doctor = (Doctor)ComboDoctors.SelectedItem;
-                List<Medicine> substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
+                List<Medicine> substitutes = new List<Medicine>();
+                if (MedicineSubstitues.SelectedItems.Count != 0)
+                {
+                    substitutes = new List<Medicine>(MedicineSubstitues.SelectedItems.Cast<Medicine>());
+                }
 
+                Console.WriteLine(notificationController + " controller");
+                Console.WriteLine(doctor + " doctor");
                 FillMedicine();
                 Medicine.Substitution = substitutes;
-                _CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor.Id, this.Medicine, notificationController.GenerateId());
+                CreatedNotification = new MedicineCreatedNotification("Medicine " + TxtMedicineName.Name + " added!", doctor.Id, this.Medicine, notificationController.GenerateId());
                 Close();
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }

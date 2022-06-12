@@ -28,7 +28,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     {
         private App app;
         private AnamnesisController controller;
-        private ObservableCollection<Anamnesis> listOfAnamnesisDoneByDoctor;
+        private List<Anamnesis> listOfAnamnesisDoneByDoctor;
         private int doctorID;
         private Anamnesis anamnesis;
         private MedicalRecord medicalRecord;
@@ -43,7 +43,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.doctorID = doctorId;
             this.medicalRecord = medicalRecord;
             this.doctorAppointmentController = app._doctorAppointmentController;
-            listOfAnamnesisDoneByDoctor = new ObservableCollection<Anamnesis>();
+            listOfAnamnesisDoneByDoctor = new List<Anamnesis>();
             //listOfAnamnesisDoneByDoctor = controller.FindAnamnesisByDoctor(doctorID);
             AnamnesisListDoctor.ItemsSource = controller.FindAnamnesisByPatient(medicalRecord);
             AnamnesisListDoctor.AutoGenerateColumns = false;

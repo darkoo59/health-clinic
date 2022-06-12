@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public List<Meeting> FindAll()
         {
-            LoadDataFromFiles();
+          //  LoadDataFromFiles();
             return _meetings;
         }
 

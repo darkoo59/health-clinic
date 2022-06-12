@@ -9,22 +9,24 @@ using Sims_Hospital_Zdravo;
 using Sims_Hospital_Zdravo.Repository;
 using Repository;
 using System.Collections.ObjectModel;
+using Sims_Hospital_Zdravo.Interfaces;
+
 namespace Sims_Hospital_Zdravo.Utils
 {
     public class RequestForFreeDaysValidator
     {
-        private AppointmentRepository appointmentRepository;
-        private RequestForFreeDaysRepository requestForFreeDaysRepository;
+        private IAppointmentRepository appointmentRepository;
+        private IRequestForFreeDaysRepository requestForFreeDaysRepository;
 
 
-        public RequestForFreeDaysValidator(AppointmentRepository appointmentRepository,RequestForFreeDaysRepository requestForFreeDaysRepository)
+        public RequestForFreeDaysValidator()
         {
-            this.appointmentRepository = appointmentRepository;
-            this.requestForFreeDaysRepository = requestForFreeDaysRepository;
+            this.appointmentRepository = new AppointmentRepository();
+            this.requestForFreeDaysRepository = new RequestForFreeDaysRepository();
             
         }
 
-        public  void ValidateIfDoctorIsFree(FreeDaysRequest request, AppointmentRepository appointmentRepository)
+        public  void ValidateIfDoctorIsFree(FreeDaysRequest request, IAppointmentRepository appointmentRepository)
         {
             if (GetAllAppointmentsBetweenDatesPlannedForVacation(request, appointmentRepository) != null)
             {
@@ -34,12 +36,12 @@ namespace Sims_Hospital_Zdravo.Utils
 
         public void ValidateSchedulingDaysOff(FreeDaysRequest request)
         {
-            ValidateIfDoctorIsFree(request,appointmentRepository);
-            CheckIfIsTooLateForSchedulingVacation(request);
-            AnotherSpecialistOnVacation(request);
+           // ValidateIfDoctorIsFree(request,appointmentRepository);
+            //CheckIfIsTooLateForSchedulingVacation(request);
+            //AnotherSpecialistOnVacation(request);
         }
 
-        public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, AppointmentRepository appointmentRepository)
+        public List<TimeInterval> GetAllAppointmentsBetweenDatesPlannedForVacation(FreeDaysRequest request, IAppointmentRepository appointmentRepository)
         {
             List<TimeInterval> timeIntervals = appointmentRepository.GetTimeIntervalsForDoctor(request.Doctor.Id);
             List<TimeInterval> takenTimeIntervals = timeIntervals.Where(i => i.Start.Date >= request.TimeInterval.Start.Date && i.Start.Date <= request.TimeInterval.End.Date).ToList();

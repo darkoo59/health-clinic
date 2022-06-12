@@ -32,9 +32,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public ValidateMedicine(Medicine medicine)
         {
             InitializeComponent();
-            this.app = App.Current as App;
-            this.medicineController = app._medicineController;
-            this.notificationController = new NotificationController();
+            medicineController = new MedicineController();
+            notificationController = new NotificationController();
             this.medicine = medicine;
             MedicineNameTxt.Text = medicine.Name;
             StrenghtTxt.Text = medicine.Strength;
@@ -47,6 +46,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string validateMedicine = "Medicine approved";
             string name = medicine.Name;
             medicine.Status = MedicineStatus.ACCEPTED;
+            medicineController.Update(medicine);
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_APPROVED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
@@ -58,6 +58,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_REJECTED;
             string name = medicine.Name;
             medicine.Status = MedicineStatus.ABORTED;
+            medicineController.Update(medicine);
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "rejected", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
         }

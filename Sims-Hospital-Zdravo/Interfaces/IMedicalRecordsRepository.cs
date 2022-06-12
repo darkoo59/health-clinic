@@ -13,5 +13,7 @@ namespace Sims_Hospital_Zdravo.Interfaces
         void AddStartDate(DateTime dateTime, Prescription prescription, Appointment appointment);
         Anamnesis GetAnamnesis(Appointment appointment);
         List<Prescription> GetPrescriptions(Appointment appointment);
+        int GenerateId();
+        List<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord);
     }
 }

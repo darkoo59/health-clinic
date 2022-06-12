@@ -41,7 +41,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public PrescriptionWindow(MedicalRecordController medicalRecordController, MedicalRecord medicalRecord, int id,Medicine medicine,Frame frame)
         {
             InitializeComponent();
-            this.medicalRecordController = medicalRecordController;
+            this.medicalRecordController = new MedicalRecordController();
             this.medicalRecord = medicalRecord;
             this.doctorId = id;
             app = App.Current as App;
@@ -94,7 +94,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 DateTime startDate = DateTime.Parse(start.Text);
                 DateTime endDate = DateTime.Parse(End.Text);
                 TimeInterval tl = new TimeInterval(startDate, endDate);
-                Doctor doctor = app._doctorAppointmentController.GetDoctor(doctorId);
+                Doctor doctor = new DoctorAppointmentController().GetDoctor(doctorId);
                 int numOfDays = 20;
                 Prescription prescription = new Prescription(medicine, date, strength, tl, doctor, dosage, numOfDays);
                 medicalRecordController.createPrescription(prescription);

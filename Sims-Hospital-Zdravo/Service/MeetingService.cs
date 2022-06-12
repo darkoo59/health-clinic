@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Service
 {
@@ -15,8 +16,9 @@ namespace Sims_Hospital_Zdravo.Service
     {
         private IRoomRepository _roomRepository;
         private IAccountRepository _accountRepository;
-        private MeetingRepository _meetingRepository;
+        private IMeetingRepository _meetingRepository;
         private INotificationRepository _notificationRepository;
+        private MeetingValidator _meetingValidator;
 
         public MeetingService()
         {
@@ -24,10 +26,12 @@ namespace Sims_Hospital_Zdravo.Service
             _accountRepository = new AccountRepository();
             _meetingRepository = new MeetingRepository();
             _notificationRepository = new NotificationRepository();
+            _meetingValidator = new MeetingValidator();
         }
 
         public void Create(Meeting meeting)
         {
+            _meetingValidator.ValidateMeeting(meeting);
             _meetingRepository.Create(meeting);
         }
 
@@ -46,7 +50,7 @@ namespace Sims_Hospital_Zdravo.Service
         public List<User> ReadAllPotentionalAttendees()
         {
             return (from User user in _accountRepository.FindAll()
-                where user._Role != RoleType.PATIENT
+                where user.Role != RoleType.PATIENT
                 select user).ToList();
         }
     }

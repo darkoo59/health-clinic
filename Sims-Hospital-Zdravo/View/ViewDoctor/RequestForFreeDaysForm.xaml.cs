@@ -28,15 +28,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private RequestForFreeDaysController requestForFreeDaysController;
         private int doctorId;
         private NotificationController notificationController;
-        private App app;
 
-        public RequestForFreeDaysForm(DoctorAppointmentController doctorAppointmentController, RequestForFreeDaysController requestForFreeDaysController, int doctorId)
+        public RequestForFreeDaysForm(int doctorId)
         {
             InitializeComponent();
-            this.app = App.Current as App;
             this.notificationController = new NotificationController();
-            this.doctorAppointmentController = doctorAppointmentController;
-            this.requestForFreeDaysController = requestForFreeDaysController;
+            this.doctorAppointmentController = new DoctorAppointmentController();
+            this.requestForFreeDaysController = new RequestForFreeDaysController();
             this.doctorId = doctorId;
         }
 
@@ -47,10 +45,6 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 if (UrgentBox.IsChecked == true)
                 {
                     requestForFreeDaysController.CreateUrgent(request);
-                }
-                else
-                {
-                    requestForFreeDaysController.Create(request);
                 }
             }
             catch (Exception e)

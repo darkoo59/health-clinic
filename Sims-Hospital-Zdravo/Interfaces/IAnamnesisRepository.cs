@@ -11,8 +11,8 @@ namespace Sims_Hospital_Zdravo.Interfaces
 {
     public interface IAnamnesisRepository : IGenericCRUD<Anamnesis>
     {
-        ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord);
-        ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id);
+        List<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord);
+        List<Anamnesis> FindAnamnesisByDoctor(int id);
 
 
 

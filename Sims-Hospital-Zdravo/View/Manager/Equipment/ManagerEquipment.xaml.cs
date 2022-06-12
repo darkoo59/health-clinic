@@ -43,6 +43,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
 
             EquipmentTable.ItemsSource = roomController.FilterRoomEquipment((Room)RoomPicker.SelectedItem, CreateFilterDTO());
             RetrieveMainFrame();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
 
         private void Transfer_Click(object sender, RoutedEventArgs e)

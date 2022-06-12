@@ -45,9 +45,9 @@ namespace Repository
                     patient.BirthDate = newPatient.BirthDate;
                     patient.Address = newPatient.Address;
                     patient.Jmbg = newPatient.Jmbg;
-                    patient._Password = newPatient._Password;
+                    patient.Password = newPatient.Password;
                     patient.Surname = newPatient.Surname;
-                    patient._Username = newPatient._Username;
+                    patient.Username = newPatient.Username;
                     LoadDataToFile();
                     return;
                 }

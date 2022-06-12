@@ -55,10 +55,10 @@ namespace Sims_Hospital_Zdravo.View.Login
             User account = accountController.GetAccountByUsernameAndPassword(username, password);
 
             if (account == null) return;
-            if (account._Role != RoleType.PATIENT || account.Blocked == false)
+            if (account.Role != RoleType.PATIENT || account.Blocked == false)
             {
                 accountController.Login(username, password);
-                Window window = GetWindowByRole(account._Role, account);
+                Window window = GetWindowByRole(account.Role, account);
                 window.Show();
             }
 

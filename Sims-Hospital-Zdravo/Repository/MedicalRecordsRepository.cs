@@ -19,7 +19,7 @@ namespace Repository
     public class MedicalRecordsRepository:IMedicalRecordsRepository
     {
         public List<MedicalRecord> _medicalRecords;
-        public DataHandler.MedicalRecordDataHandler _medicalRecordDataHandler;
+        public MedicalRecordDataHandler _medicalRecordDataHandler;
         public List<Patient> _patients;
 
         public MedicalRecordsRepository()
@@ -84,7 +84,7 @@ namespace Repository
         public void Delete(MedicalRecord medicalRecord)
         {
             LoadDataFromFile();
-            _medicalRecords.Remove(medicalRecord);
+            DeleteById(medicalRecord.Id);
             LoadDataToFile();
         }
 
@@ -146,7 +146,7 @@ namespace Repository
             _medicalRecordDataHandler.Write(_medicalRecords);
         }
 
-        public ObservableCollection<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord)
+        public List<Prescription> GetPrescriptionsByMedicalRecord(MedicalRecord medicalRecord)
         {
             return medicalRecord.Prescriptions;
         }

@@ -205,6 +205,7 @@
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\TherapySchedule.cs" />
+    <Compile Include="Utils\MeetingValidator.cs" />
     <Compile Include="Repository\NotesRepository.cs" />
     <Compile Include="Service\NotesService.cs" />
     <Compile Include="Utils\Commands\FillTextBoxCommand.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
+    <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />
     <Compile Include="ViewModel\Commands\SearchCommand.cs" />
     <Compile Include="ViewModel\dd\BindableBase.cs" />
     <Compile Include="ViewModel\dd\LabaratoryTestViewModel.cs" />
@@ -237,8 +239,14 @@
     <Compile Include="View\Manager\Surveys\ManagerSurveys.xaml.cs">
       <DependentUpon>ManagerSurveys.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manager\Surveys\PdfViewer.xaml.cs">
+      <DependentUpon>PdfViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
+      <DependentUpon>SecretaryMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
@@ -558,7 +566,12 @@
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
+    <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\UserControlls\SecretaryMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -922,7 +935,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\.gitignore" />
     <Content Include="Resources\anamnesis.txt" />
+    <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
     <Resource Include="Resources\img\image-equipment.ico" />
@@ -962,7 +977,6 @@
     <Resource Include="Resources\img\icons8-day-off-96.png" />
     <Resource Include="Resources\img\icons8-surgery-100.png" />
     <Resource Include="Resources\img\icons8-medicine-64.png" />
-    <Resource Include="Resources\demo.mp4" />
     <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
@@ -1053,6 +1067,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\img\Doctor\" />
+    <Folder Include="View\Secretary\About\" />
+    <Folder Include="View\Secretary\Account\" />
+    <Folder Include="View\Secretary\Contact\" />
+    <Folder Include="View\Secretary\Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />

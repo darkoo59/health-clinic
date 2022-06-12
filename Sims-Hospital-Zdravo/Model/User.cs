@@ -19,11 +19,11 @@ namespace Model
             return false;
         }
 
-        private string Username;
-        private string Password;
+        private string _username;
+        private string _password;
 
-        public string _Username { get; set; }
-        public string _Password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         private Address _address;
         private int _id;
@@ -33,7 +33,7 @@ namespace Model
         private String _email;
         private String _jmbg;
         private String _phoneNumber;
-        private RoleType Role;
+        private RoleType _role;
         private List<DateTime> _cancels;
         private bool _blocked;
 
@@ -102,15 +102,15 @@ namespace Model
             }
         }
 
-        public RoleType _Role
+        public RoleType Role
         {
             get
             {
-                return Role;
+                return _role;
             }
             set
             {
-                this.Role = value;
+                this._role = value;
                 OnPropertyChanged();
             }
         }
@@ -147,7 +147,7 @@ namespace Model
 
         public override string ToString()
         {
-            return this.Role.ToString() + " " + this.Name + " " + this.Surname;
+            return this._role.ToString() + " " + this.Name + " " + this.Surname;
         }
 
 

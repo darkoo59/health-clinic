@@ -35,6 +35,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
             RoomsToBeAdded.ItemsSource = roomsForAdding;
             RenovationRooms.ItemsSource = _roomController.FindAll();
             this.KeyDown += new KeyEventHandler(GoBack);
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
 
         private void GoBack(object sender, KeyEventArgs args)

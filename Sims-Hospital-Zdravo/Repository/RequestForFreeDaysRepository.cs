@@ -27,6 +27,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Create(FreeDaysRequest request)
         {
+            LoadDataFromFiles();
             request.Id = GenerateId();
             _requests.Add(request);
             LoadDataToFile();
@@ -34,9 +35,10 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Update(FreeDaysRequest request)
         {
+            LoadDataFromFiles();
             foreach(FreeDaysRequest req in _requests)
             {
-                if(request.Doctor == req.Doctor && request.TimeInterval == req.TimeInterval)
+                if(request.Id == req.Id)
                 {
                     req.Status = request.Status;
                 }
@@ -57,13 +59,14 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public void Delete(FreeDaysRequest request)
         {
+            LoadDataToFile();
             _requests.Remove(request);
             LoadDataToFile();
         }
 
         public List<FreeDaysRequest> FindAll()
         {
-
+            LoadDataFromFiles();
             return _requests;
 
         }
@@ -82,10 +85,11 @@ namespace Sims_Hospital_Zdravo.Repository
         }
         public List<FreeDaysRequest> FindRequestByDoctorSpecialty(Doctor doctor)
         {
+            LoadDataFromFiles();
             List<FreeDaysRequest> requestsBySpecialty = new List<FreeDaysRequest>();
             foreach(FreeDaysRequest request in _requests)
             {
-                if(request.Doctor._specialty.Equals(doctor._specialty))
+                if(request.Doctor.Specialty.Equals(doctor.Specialty))
                 {
                     requestsBySpecialty.Add(request);
                 }
@@ -94,6 +98,7 @@ namespace Sims_Hospital_Zdravo.Repository
         }
         public List<FreeDaysRequest> RequestPendingOrApproved(Doctor doctor)
         {
+            LoadDataFromFiles();
             List<FreeDaysRequest> requestsPendingOrAccepted = new List<FreeDaysRequest>();
             List<FreeDaysRequest> requests = FindRequestByDoctorSpecialty(doctor);
             foreach(FreeDaysRequest request in requests)
@@ -108,6 +113,7 @@ namespace Sims_Hospital_Zdravo.Repository
 
         public int GenerateId()
         {
+            LoadDataFromFiles();
             List<int> ids = new List<int>();
             int id = 0;
             foreach (FreeDaysRequest request in _requests)

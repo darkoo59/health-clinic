@@ -66,7 +66,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController, medicalRecordController, doctorId);
+            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController,  doctorId);
             myAppointments.Show();
         }
 
@@ -110,7 +110,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)
         {
-            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorAppointmentController, requestForFreeDaysController, doctorId);
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
         }
 

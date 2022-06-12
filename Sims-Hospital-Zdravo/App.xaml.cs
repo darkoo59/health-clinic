@@ -113,9 +113,9 @@ namespace Sims_Hospital_Zdravo
 
             TimeSchedulerService timeSchedulerService = new TimeSchedulerService();
 
-            DoctorAppointmentService doctorAppointmentService =
-                new DoctorAppointmentService(patientRepository, timeSchedulerService, roomService);
-            _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
+            // DoctorAppointmentService doctorAppointmentService =
+            //     new DoctorAppointmentService( timeSchedulerService, roomService);
+            // _doctorAppointmentController = new DoctorAppointmentController(doctorAppointmentService);
 
             RenovationService renovationService =
                 new RenovationService(timeSchedulerService);
@@ -154,10 +154,10 @@ namespace Sims_Hospital_Zdravo
             //     new SuppliesService(_suppliesAcquisitionRepository);
             // _suppliesController = new SuppliesController(suppliesService);
 
-            MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
-            MeetingRepository _meetingRepository = new MeetingRepository();
-            MeetingService _meetingService = new MeetingService();
-            _meetingController = new MeetingController();
+            // MeetingDataHandler _meetingDataHandler = new MeetingDataHandler();
+            // MeetingRepository _meetingRepository = new MeetingRepository();
+            // MeetingService _meetingService = new MeetingService();
+            // _meetingController = new MeetingController();
 
 
             _prescriptionController = new PrescriptionController(new PrescriptionService());
@@ -167,8 +167,8 @@ namespace Sims_Hospital_Zdravo
                 _equipmentTransferController,
                 _renovationController,
                 _doctorAppointmentController,
-                _recordController,
-                _suppliesController,
+                new MedicalRecordController(),
+                new SuppliesController(),
                 _accountController
             );
 

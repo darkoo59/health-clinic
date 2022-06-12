@@ -43,7 +43,7 @@
             Modifiers="Control">
         </KeyBinding>
     </Page.InputBindings>
-    <Grid>
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -52,7 +52,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <MediaElement x:Name="TutorialPlayer" Source="../../Resources/demo.mp4" LoadedBehavior="Manual" />
+        <MediaElement x:Name="TutorialPlayer" Source="../../Resources/tutorial.mkv" LoadedBehavior="Manual" />
         <StackPanel>
             <WrapPanel HorizontalAlignment="Center">
                 <Button

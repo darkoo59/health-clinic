@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo.Controller
             return   _anamnesisService.FindAll();
 
         }
-         public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
+         public List<Anamnesis> FindAnamnesisByDoctor(int id)
         {
             return _anamnesisService.findAnamnesisByDoctor (id);
 
@@ -44,7 +44,7 @@ namespace Sims_Hospital_Zdravo.Controller
         //    return _anamnesisService.FindAnamnesisByAppointment(appointment);
         //}
 
-        public ObservableCollection<Anamnesis> FindAnamnesisByPatient(MedicalRecord medicalRecord)
+        public List<Anamnesis> FindAnamnesisByPatient(MedicalRecord medicalRecord)
         {
             return _anamnesisService.FindAnamnesisByPatient(medicalRecord);
         }

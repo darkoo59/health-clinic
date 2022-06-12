@@ -51,10 +51,21 @@ namespace Repository
             }
         }
 
-        public void Delete(Model.Appointment appointment)
+        public void DeleteById(int id)
         {
             LoadDataFromFile();
-            appointments.Remove(appointment);
+            foreach (var appointment in appointments.Where(appointment => appointment.Id == id))
+            {
+                appointments.Remove(appointment);
+                LoadDataToFile();
+                return;
+            }
+        }
+
+        public void Delete(Appointment appointment)
+        {
+            LoadDataFromFile();
+            DeleteById(appointment.Id);
             LoadDataToFile();
         }
 

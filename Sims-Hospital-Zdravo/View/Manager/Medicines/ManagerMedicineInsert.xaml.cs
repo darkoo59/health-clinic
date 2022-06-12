@@ -23,9 +23,9 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
         public ManagerMedicineInsert()
         {
             app = Application.Current as App;
-            medicineController = app._medicineController;
+            medicineController = new MedicineController();
             notificationController = new NotificationController();
-            doctorAppointmentController = app._doctorAppointmentController;
+            doctorAppointmentController = new DoctorAppointmentController();
             InitializeComponent();
 
             ComboDoctors.ItemsSource = doctorAppointmentController.ReadAllDoctors();
@@ -61,6 +61,7 @@ namespace Sims_Hospital_Zdravo.View.Manager.Medicines
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }

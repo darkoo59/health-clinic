@@ -46,9 +46,9 @@ namespace Sims_Hospital_Zdravo.Repository
             }
         }
 
-        public ObservableCollection<Anamnesis> FindAnamnesisByDoctor(int id)
+        public List<Anamnesis> FindAnamnesisByDoctor(int id)
         {
-            ObservableCollection<Anamnesis> listOfAnamnesisByDoctor = new ObservableCollection<Anamnesis>();
+            List<Anamnesis> listOfAnamnesisByDoctor = new List<Anamnesis>();
 
             foreach (Anamnesis anam in _anamnesis)
             {
@@ -61,9 +61,14 @@ namespace Sims_Hospital_Zdravo.Repository
             return listOfAnamnesisByDoctor;
         }
 
-        public ObservableCollection<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
+        public List<Anamnesis> FindAnamesisByPatient(MedicalRecord medicalRecord)
         {
-            ObservableCollection<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
+            List<Anamnesis> listOfPatientAnamnesis = medicalRecord.Anamnesis;
+            foreach (Anamnesis anma in listOfPatientAnamnesis)
+            {
+                Console.WriteLine(anma.Diagnosis + "xnxnxn");
+            }
+
             return listOfPatientAnamnesis;
         }
 
@@ -92,7 +97,5 @@ namespace Sims_Hospital_Zdravo.Repository
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

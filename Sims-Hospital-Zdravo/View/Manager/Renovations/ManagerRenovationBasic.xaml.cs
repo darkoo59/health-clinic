@@ -21,6 +21,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             this.DataContext = new RenovationBasicViewModel();
             InitializeComponent();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }

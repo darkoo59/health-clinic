@@ -27,7 +27,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
     /// </summary>
     public partial class CreateNewMeeting : Window, INotificationObserver
     {
-        private MeetingCreatedNotifications _createdNotification;
         private MeetingController _meetingController;
         private NotificationManager _notificationManager;
         private App app;
@@ -73,7 +72,8 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             ListRequiredOthers.Items.Clear();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
-                if (!ListOptional.Items.Contains(user) && !ListRequired.Items.Contains(user))
+                Console.WriteLine(user.Name + "nestooo");
+                if (!CompareUsersById(ListOptional.Items, user) && !CompareUsersById(ListRequired.Items, user))
                 {
                     ListOptionalOthers.Items.Add(user);
                     ListRequiredOthers.Items.Add(user);
@@ -92,7 +92,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             ListOptional.Items.Clear();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
-                if (!ListOptionalOthers.Items.Contains(user) && !ListRequired.Items.Contains(user))
+                if (!CompareUsersById(ListOptionalOthers.Items, user) && !CompareUsersById(ListRequired.Items, user))
                     ListOptional.Items.Add(user);
             }
         }
@@ -108,7 +108,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             ListOptionalOthers.Items.Clear();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
-                if (!ListRequired.Items.Contains(user) && !ListOptional.Items.Contains(user))
+                if (!CompareUsersById(ListRequired.Items, user) && !CompareUsersById(ListOptional.Items, user))
                 {
                     ListRequiredOthers.Items.Add(user);
                     ListOptionalOthers.Items.Add(user);
@@ -127,131 +127,53 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             ListRequired.Items.Clear();
             foreach (User user in _meetingController.ReadAllPotentionalAttendees())
             {
-                if (!ListRequiredOthers.Items.Contains(user) && !ListOptional.Items.Contains(user))
+                if (!CompareUsersById(ListRequiredOthers.Items, user) && !CompareUsersById(ListOptional.Items, user))
                     ListRequired.Items.Add(user);
             }
         }
-
-        private void ListViewItem_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (TgButton.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_profile.Visibility = Visibility.Collapsed;
-                tt_about.Visibility = Visibility.Collapsed;
-                tt_meetings.Visibility = Visibility.Collapsed;
-                tt_accounts.Visibility = Visibility.Collapsed;
-                tt_equipment.Visibility = Visibility.Collapsed;
-                tt_appointments.Visibility = Visibility.Collapsed;
-                tt_contacts.Visibility = Visibility.Collapsed;
-                tt_medical_records.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_sign_out.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_profile.Visibility = Visibility.Visible;
-                tt_about.Visibility = Visibility.Visible;
-                tt_meetings.Visibility = Visibility.Visible;
-                tt_accounts.Visibility = Visibility.Visible;
-                tt_equipment.Visibility = Visibility.Visible;
-                tt_appointments.Visibility = Visibility.Visible;
-                tt_contacts.Visibility = Visibility.Visible;
-                tt_medical_records.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_sign_out.Visibility = Visibility.Visible;
-            }
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
                 this.DragMove();
         }
 
-        private void Home_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryHome window = new SecretaryHome();
-            window.Show();
-            this.Close();
-        }
-
-        private void Equipment_Click(object sender, MouseButtonEventArgs e)
-        {
-            SuppliesHome window = new SuppliesHome();
-            window.Show();
-            this.Close();
-        }
-
-        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryWindow window = new SecretaryWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void Appointment_Click(object sender, MouseButtonEventArgs e)
-        {
-            ExaminationWindow window = new ExaminationWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void FreeDays_Click(object sender, MouseButtonEventArgs e)
-        {
-            FreeDaysWindow window = new FreeDaysWindow();
-            window.Show();
-            this.Close();
-        }
-
         private void ScheduleMeeting_Click(object sender, RoutedEventArgs e)
         {
-            if (comboRoom.SelectedValue == null)
+            try
             {
-                MessageBox.Show("Please select room first!", "Select room", MessageBoxButton.OK);
-            }
-            else if (ListRequired.Items == null || ListOptional.Items == null)
-            {
-                MessageBox.Show("Please select at least one attendee!", "Select who will attend", MessageBoxButton.OK);
-            }
-            else if (startDatePicker.SelectedDate == null)
-            {
-                MessageBox.Show("Please select date!", "Select date!", MessageBoxButton.OK);
-            }
-            else
-            {
-                try
+                List<User> optional = new List<User>();
+                foreach (User user in ListOptional.Items)
                 {
-                    List<User> optional = new List<User>();
-                    foreach (User user in ListOptional.Items)
-                    {
-                        optional.Add(user);
-                    }
-
-                    List<User> required = new List<User>();
-                    foreach (User user in ListRequired.Items)
-                    {
-                        required.Add(user);
-                    }
-
-                    Meeting meeting = new Meeting((DateTime)startDatePicker.SelectedDate, (Room)comboRoom.SelectedValue,
-                        optional, required);
-                    //this._CreatedNotification = new MedicineCreatedNotification("Medicine " + name + " added!", doctor._Id, this.Medicine, notificationController.GenerateId());
-                    List<Notification> notificationsToAdd = new List<Notification>();
-                    foreach (User user in meeting.RequiredAttendees)
-                    {
-                        notificationsToAdd.Add(new MeetingCreatedNotifications("You have new meeting on " + meeting.Start.ToString(), meeting.Start,
-                            user._Role, user.Id, (new NotificationController()).GenerateId()));
-                    }
-
-                    _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
-                    MessageBox.Show("Meeting successfully created!", "Successfully created!", MessageBoxButton.OK);
+                    optional.Add(user);
                 }
-                catch (Exception ex)
+
+                List<User> required = new List<User>();
+                foreach (User user in ListRequired.Items)
                 {
-                    MessageBox.Show(ex.Message);
+                    required.Add(user);
                 }
+
+                DateTime startDate;
+                if (startDatePicker.SelectedDate == null)
+                    startDate = DateTime.MinValue;
+                else
+                    startDate = (DateTime)startDatePicker.SelectedDate;
+
+                Meeting meeting = new Meeting(startDate, (Room)comboRoom.SelectedValue,optional, required);
+                List<Notification> notificationsToAdd = new List<Notification>();
+                foreach (User user in meeting.RequiredAttendees)
+                {
+                    notificationsToAdd.Add(new MeetingCreatedNotifications(
+                        "You have new meeting on " + meeting.Start.ToString(), meeting.Start,
+                        user.Role, user.Id, new NotificationController().GenerateId()));
+                }
+
+                _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
+                MessageBox.Show("Meeting successfully created!", "Successfully created!", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -261,10 +183,27 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
             if (meetingCreatedNotification is null) return;
 
             _notificationManager.Show(
-                new NotificationContent { Title = "Meeting notification", Message = "You have new meeting at " + meetingCreatedNotification.MeetingStart.ToString() },
+                new NotificationContent
+                {
+                    Title = "Meeting notification",
+                    Message = "You have new meeting at " + meetingCreatedNotification.MeetingStart.ToString()
+                },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(10));
 
             (new NotificationController()).Delete(notification);
+        }
+
+        private bool CompareUsersById(ItemCollection users, User userToFind)
+        {
+            foreach (User user in users)
+            {
+                if (user.Id == userToFind.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -21,16 +21,18 @@ namespace Service
         public AppointmentRepository _appointmentRepository;
         public PatientRepository _patientRepository;
         public TimeSchedulerService _timeSchedulerService;
+        public RoomService _roomService;
         private AppointmentDoctorValidator _validator;
         private Appointment _app;
 
-        public DoctorAppointmentService(PatientRepository patientRepository, TimeSchedulerService timeSchedulerService, RoomService roomService)
+        public DoctorAppointmentService()
         {
-            this._timeSchedulerService = timeSchedulerService;
+            this._timeSchedulerService = new TimeSchedulerService();
             this._appointmentRepository = new AppointmentRepository();
-            this._patientRepository = patientRepository;
+            this._roomService = new RoomService();
+            this._patientRepository = new PatientRepository();
             this._doctorRepo = new DoctorRepository();
-            this._validator = new AppointmentDoctorValidator(_appointmentRepository,timeSchedulerService, roomService);
+            this._validator = new AppointmentDoctorValidator(_appointmentRepository,_timeSchedulerService, _roomService);
         }
 
         public Doctor GetDoctor(int id)

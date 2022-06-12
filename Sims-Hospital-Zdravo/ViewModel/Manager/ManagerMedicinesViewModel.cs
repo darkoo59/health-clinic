@@ -15,9 +15,9 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         public List<Medicine> Medicines { get; set; }
 
-        public ICommand InsertMedicine_Command => new InsertMedicine_Command(medicineController);
+        public ICommand InsertMedicine_Command => new InsertMedicine_Command();
 
-        public ICommand UpdateMedicine_Command => new UpdateMedicine_Command(medicineController);
+        public ICommand UpdateMedicine_Command => new UpdateMedicine_Command();
 
         private object selectedItem;
         private MedicineController medicineController;
@@ -40,9 +40,9 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         private MedicineController medicineController;
 
-        public InsertMedicine_Command(MedicineController medicineController)
+        public InsertMedicine_Command()
         {
-            this.medicineController = medicineController;
+            this.medicineController = new MedicineController();
         }
 
         public bool CanExecute(object parameter)
@@ -57,9 +57,11 @@ namespace Sims_Hospital_Zdravo.ViewModel
             {
                 Medicine medicine = medicineInsert.Medicine;
                 Notification notification = medicineInsert._CreatedNotification;
+
                 if (medicine != null)
                 {
                     medicineController.CreateMedicineWithNotifyingDoctor(medicine, notification);
+                    MessageBox.Show("Success");
                 }
             }
         }
@@ -71,9 +73,9 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         private MedicineController medicineController;
 
-        public UpdateMedicine_Command(MedicineController medicineController)
+        public UpdateMedicine_Command()
         {
-            this.medicineController = medicineController;
+            medicineController = new MedicineController();
         }
 
         public bool CanExecute(object parameter)
@@ -103,10 +105,12 @@ namespace Sims_Hospital_Zdravo.ViewModel
             if (medicineUpdate.ShowDialog() == false)
             {
                 Medicine med = medicineUpdate.Medicine;
-                Notification notification = medicineUpdate._CreatedNotification;
+                Notification notification = medicineUpdate.CreatedNotification;
+
                 if (med != null)
                 {
-                    medicineController.ResubmitMedicineWithNotifyingDoctor(medicine, notification);
+                    medicineController.ResubmitMedicineWithNotifyingDoctor(med, notification);
+                    MessageBox.Show("Success");
                 }
             }
         }
