@@ -77,5 +77,6 @@ namespace Sims_Hospital_Zdravo
         {
             this.Close();
         }
+
     }
 }

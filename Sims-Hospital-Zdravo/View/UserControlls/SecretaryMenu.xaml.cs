@@ -2,6 +2,7 @@
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 using Sims_Hospital_Zdravo.View.Secretary.Meetings;
+using Sims_Hospital_Zdravo.View.Secretary.Profile;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,14 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         {
             var myWindow = Window.GetWindow(this);
             SuppliesHome window = new SuppliesHome();
+            window.Show();
+            myWindow.Close();
+        }
+
+        private void Profile_Click(object sender, MouseButtonEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            SecretaryProfileWindow window = new SecretaryProfileWindow();
             window.Show();
             myWindow.Close();
         }

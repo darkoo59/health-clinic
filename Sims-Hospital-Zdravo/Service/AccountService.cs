@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils;
 
 namespace Sims_Hospital_Zdravo.Model
 {
     public class AccountService
     {
         public IAccountRepository accountRepository;
-
+        public AccountValidator validator;
         public AccountService(IAccountRepository accRepository)
         {
             this.accountRepository = accRepository;
+            this.validator = new AccountValidator(accountRepository);
         }
 
         public void Create(User account)
@@ -31,6 +33,7 @@ namespace Sims_Hospital_Zdravo.Model
 
         public void Update(User account)
         {
+            validator.ValidateAccountUpdate(account);
             accountRepository.Update(account);
         }
 

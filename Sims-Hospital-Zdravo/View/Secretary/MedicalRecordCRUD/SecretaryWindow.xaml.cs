@@ -40,6 +40,7 @@ namespace Sims_Hospital_Zdravo
         {
             InsertRecordWindow insertWindow = new InsertRecordWindow();
             insertWindow.Show();
+            this.Close();
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
