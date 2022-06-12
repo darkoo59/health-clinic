@@ -33,7 +33,7 @@ namespace Sims_Hospital_Zdravo
             this.app = Application.Current as App;
             this.frame = frame;
             this.accountController = app._accountController;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.DataContext = this;
 
             Apps.AutoGenerateColumns = false;

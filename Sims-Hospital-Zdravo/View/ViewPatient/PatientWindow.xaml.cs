@@ -34,7 +34,7 @@ namespace Sims_Hospital_Zdravo
             this.frame = frame;
             InitializeComponent();
             this.accountController = app._accountController;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.DataContext = this;
 
             McDataGrid.AutoGenerateColumns = false;

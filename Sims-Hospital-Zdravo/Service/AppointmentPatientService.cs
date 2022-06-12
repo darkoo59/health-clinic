@@ -192,6 +192,10 @@ namespace Service
                 }
             }
         }
+        public void SetAppointmentRated(Appointment appointment) 
+        {
+            appointmentRepository.SetAppointmentRated(appointment);
+        }
 
         public AppointmentRepository appointmentRepository;
         public DoctorRepository doctorRepository;

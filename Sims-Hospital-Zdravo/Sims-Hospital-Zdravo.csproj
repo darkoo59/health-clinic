@@ -937,6 +937,8 @@
   <ItemGroup>
     <Content Include="Resources\.gitignore" />
     <Content Include="Resources\anamnesis.txt" />
+    <Resource Include="Resources\questions_hospital.txt" />
+    <Resource Include="Resources\questions_doctor.txt" />
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />

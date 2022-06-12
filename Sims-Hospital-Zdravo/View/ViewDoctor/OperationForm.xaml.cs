@@ -36,7 +36,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.doctorAppointmentController = doctorAppointmentController;
             this.app = App.Current as App;
             this.roomController = new RoomController();
-            this.patientController = app._appointmentPatientController;
+            this.patientController = new AppointmentPatientController(app._accountRepository);
             SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
         }
 

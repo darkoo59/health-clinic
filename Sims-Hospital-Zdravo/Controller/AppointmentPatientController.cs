@@ -71,6 +71,10 @@ namespace Controller
         {
             appointmentPatientService.ValidateReschedule(appointment, timeInterval);
         }
+        public void SetAppointmentRated(Appointment appointment)
+        {
+            appointmentPatientService.SetAppointmentRated(appointment);
+        }
 
         public Service.AppointmentPatientService appointmentPatientService;
     }

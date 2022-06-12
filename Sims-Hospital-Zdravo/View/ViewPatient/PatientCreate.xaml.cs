@@ -2,6 +2,7 @@
 using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Utils.Commands;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,7 @@ namespace Sims_Hospital_Zdravo
             this.accountController = app._accountController;
             InitializeComponent();
             this.DataContext = this;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             patientMedicalRecordController = new PatientMedicalRecordController();
             doctors = new ObservableCollection<string>();
             doctorordate = new ObservableCollection<string>();

@@ -38,7 +38,7 @@ namespace Sims_Hospital_Zdravo
             this.frame = frame;
             InitializeComponent();
             app = Application.Current as App;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.appointment = appointment;
             this.priority = priority;
             this.DataContext = this;

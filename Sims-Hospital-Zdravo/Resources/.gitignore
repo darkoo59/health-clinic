@@ -12,6 +12,8 @@ notes.txt
 notifications.txt
 patient.txt
 prescriptions.txt
+questions_doctor.txt
+questions_hospital.txt
 relocation_appointments.txt
 renovation_appointments.txt
 requests.txt
