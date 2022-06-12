@@ -216,6 +216,7 @@
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
+    <Compile Include="ViewModel\Commands\FullScreenCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />
     <Compile Include="ViewModel\Commands\SearchCommand.cs" />
     <Compile Include="ViewModel\dd\BindableBase.cs" />

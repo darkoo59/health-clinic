@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View.Manager.Surveys;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
+using Sims_Hospital_Zdravo.ViewModel.Commands;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -34,7 +35,10 @@ namespace Sims_Hospital_Zdravo.Utils
                 DrawAllGrids(document, statistics);
                 FileStream stream = CreateAndSaveDocument(document);
                 CloseStreams(stream, document);
-                Process.Start(@"..\..\Resources\output.pdf");
+                PdfViewer viewer = new PdfViewer();
+                NavigateWithParameterCommand navigateWithParameterCommand = new NavigateWithParameterCommand(viewer);
+                navigateWithParameterCommand.Execute(null);
+                // Process.Start(@"..\..\Resources\output.pdf");
             }
             catch (Exception ex)
             {
