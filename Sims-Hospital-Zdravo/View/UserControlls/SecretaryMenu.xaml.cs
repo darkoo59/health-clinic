@@ -1,4 +1,5 @@
 ﻿using Sims_Hospital_Zdravo.View.Login;
+using Sims_Hospital_Zdravo.View.Secretary.About;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 using Sims_Hospital_Zdravo.View.Secretary.Meetings;
@@ -126,6 +127,14 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
             var myWindow = Window.GetWindow(this);
             app._accountController.Logout();
             LoginMainWindow window = new LoginMainWindow();
+            window.Show();
+            myWindow.Close();
+        }
+
+        private void About_Click(object sender, MouseButtonEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            AboutWindow window = new AboutWindow();
             window.Show();
             myWindow.Close();
         }

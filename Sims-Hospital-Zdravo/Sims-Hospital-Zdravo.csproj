@@ -265,6 +265,12 @@
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\About\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Contact\ContactWindow.xaml.cs">
+      <DependentUpon>ContactWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Secretary\Profile\SecretaryProfileWindow.xaml.cs">
       <DependentUpon>SecretaryProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -591,6 +597,14 @@
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\Secretary\About\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Contact\ContactWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Secretary\Profile\SecretaryProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -966,6 +980,15 @@
     <Content Include="Resources\anamnesis.txt" />
     <Resource Include="Resources\questions_hospital.txt" />
     <Resource Include="Resources\questions_doctor.txt" />
+    <Resource Include="Resources\img\Secretary\Checked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
@@ -1099,9 +1122,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\img\Doctor\" />
-    <Folder Include="View\Secretary\About\" />
-    <Folder Include="View\Secretary\Contact\" />
     <Folder Include="View\Secretary\Settings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls">
+      <Version>6.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
