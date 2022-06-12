@@ -85,8 +85,8 @@ namespace Sims_Hospital_Zdravo
             //MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             //_recordController = new MedicalRecordController(recordService, prescriptionService);
 
-            _accountRepository = new AccountRepository();
-            AccountService accountService = new AccountService(_accountRepository);
+            AccountRepository accountRepository = new AccountRepository();
+            AccountService accountService = new AccountService(accountRepository);
             _accountController = new AccountController(accountService);
 
             // AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
@@ -94,8 +94,8 @@ namespace Sims_Hospital_Zdravo
             // DoctorRepository doctorRepository = new DoctorRepository();
             // AppointmentRepository appointmentRepository = new AppointmentRepository();
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(_accountRepository);
-            _appointmentPatientController = new AppointmentPatientController(_accountRepository);
+                new AppointmentPatientService(accountRepository);
+            _appointmentPatientController = new AppointmentPatientController(accountRepository);
 
             DoctorRepository docRepo = new DoctorRepository();
 
