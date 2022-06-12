@@ -31,7 +31,7 @@ namespace Sims_Hospital_Zdravo
         public PrescriptionParameters(Prescription prescription, Appointment appointment)
         {
             app = Application.Current as App;
-            medicalRecordController = app._recordController;
+            medicalRecordController = new MedicalRecordController();
             this.appointment = appointment;
             InitializeComponent();
             this.prescription = prescription;
@@ -40,15 +40,15 @@ namespace Sims_Hospital_Zdravo
                 Date.SelectedDate = prescription.StartDate;
                 Time.Text = prescription.StartDate.ToString("HH:mm");
                 Submit.Visibility = Visibility.Visible;
-            }
-            else if (prescription.StartDate.CompareTo(DateTime.Now) < 0)
-            {
-                Submit.Content = "Edit";
-                Submit.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Submit.Visibility = Visibility.Hidden;
+                if (prescription.StartDate.CompareTo(DateTime.Now) < 0)
+                {
+                    Submit.Content = "Edit";
+                    Submit.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    Submit.Visibility = Visibility.Hidden;
+                }
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)

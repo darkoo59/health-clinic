@@ -23,26 +23,17 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class DiagnosisPage : Page
     {
-        public App app;
-        public MedicalRecordController medicalRecordController;
         public Appointment appointment;
         public Anamnesis anamnesis;
         public DiagnosisPage(Appointment appointment, Anamnesis anamnesis)
         {
             InitializeComponent();
-            app = Application.Current as App;
-            medicalRecordController = app._recordController;
             this.anamnesis = anamnesis;
             this.appointment = appointment;
             if (anamnesis != null)
             {
                 DiagnosisLabel.Content = anamnesis.Diagnosis;
-                Notes.Text = anamnesis.Notes;
             }
-        }
-        private void Notes_LostFocus(object sender, RoutedEventArgs e)
-        {
-            medicalRecordController.AddNotes(appointment, anamnesis, Notes.Text);
         }
     }
 }

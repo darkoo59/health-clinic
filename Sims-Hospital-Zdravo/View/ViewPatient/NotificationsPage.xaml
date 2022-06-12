@@ -9,7 +9,21 @@
       Title="NotificationsPage">
 
     <Grid>
-        <ListView HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="150" FontSize="15">
+        <ListView Background="#FF60BBC9" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="150" FontSize="12">
+            <Label Background="#FF3183CB" Height="60" Width="135" BorderBrush="Black" BorderThickness="1">
+                <Label.Content>
+                    <TextBlock>
+                        Your appointment has <LineBreak></LineBreak>been rescheduled.
+                    </TextBlock>
+                </Label.Content>
+            </Label>
+            <Label Background="#FF3183CB" Height="60" Width="135" BorderBrush="Black" BorderThickness="1">
+                <Label.Content>
+                    <TextBlock>
+                        You need to take <LineBreak></LineBreak>Panklav(10:30).
+                    </TextBlock>
+                </Label.Content>
+            </Label>
         </ListView>
 
     </Grid>

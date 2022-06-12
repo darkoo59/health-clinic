@@ -6,6 +6,7 @@
 
 using Model;
 using Repository;
+using Sims_Hospital_Zdravo;
 using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Utils;
 using System;
@@ -18,7 +19,7 @@ namespace Service
     public class AppointmentPatientService
     {
         private AppointmentPatientValidator appointmentPatientValidator;
-        public AccountRepository accountRepository;
+        private AccountRepository accountRepository;
 
         public AppointmentPatientService(AccountRepository accountRepository)
         {

@@ -1,6 +1,8 @@
 ﻿using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -50,12 +53,14 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class PatientCreate : Page, INotifyPropertyChanged
     {
-        public AppointmentPatientController appointmentPatientController;
-        public AccountController accountController;
-        public ObservableCollection<string> doctors;
-        public ObservableCollection<string> doctorordate;
-        string pattern = @"\d?\d:\d\d";
+        private AppointmentPatientController appointmentPatientController;
+        private PatientMedicalRecordController patientMedicalRecordController;
+        private AccountController accountController;
+        private ObservableCollection<string> doctors;
+        private ObservableCollection<string> doctorordate;
+        private string pattern = @"\d?\d:\d\d";
         private Frame frame;
+        private Timer timer;
         App app;
         public PatientCreate(Frame frame)
         {
@@ -65,6 +70,7 @@ namespace Sims_Hospital_Zdravo
             InitializeComponent();
             this.DataContext = this;
             this.appointmentPatientController = app._appointmentPatientController;
+            patientMedicalRecordController = new PatientMedicalRecordController();
             doctors = new ObservableCollection<string>();
             doctorordate = new ObservableCollection<string>();
             doctorordate.Add("Doctor");
@@ -138,7 +144,7 @@ namespace Sims_Hospital_Zdravo
                 {
                     //throw new Exception("You must pick a date");
                 }
-                Patient patient = (Patient)accountController.GetLoggedAccount();
+                Patient patient = patientMedicalRecordController.FindPatientById(accountController.GetLoggedAccount().Id);
                 TimeInterval timeInterval = new TimeInterval(dateTime, dateTime.AddMinutes(30));
                 Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
                 string priority = DateOrDoctors.SelectedItem.ToString();
@@ -148,6 +154,37 @@ namespace Sims_Hospital_Zdravo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            List<IDemoCommand> commands = new List<IDemoCommand>
+            {
+                new SelectComboBoxCommand(Doctors,"Grigorije Kucanski"),
+                new SelectDateCommand(datePicker,new DateTime(2022,6,19)),
+                new FillTextBoxCommand(TimeText,"10:30"),
+                new SelectComboBoxCommand(DateOrDoctors, "Date")
+            };
+            timer = new Timer(1000);
+            timer.Elapsed += (Object source, ElapsedEventArgs e1) => TimerCallback(commands);
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+        private void TimerCallback(List<IDemoCommand> commands)
+        {
+            if (commands.Count > 0)
+            {
+                commands[0].Execute();
+                commands.RemoveAt(0);
+            }
+            else
+            {
+                timer.Stop();
+                Patient patient = patientMedicalRecordController.FindPatientById(accountController.GetLoggedAccount().Id);
+                TimeInterval timeInterval = new TimeInterval(dateTime, dateTime.AddMinutes(30));
+                Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
+                App.Current.Dispatcher.Invoke((Action)delegate { AppointmentList appointmentList = new AppointmentList(frame, appointment, "Date"); frame.Content = appointmentList; appointmentList.PlayDemo(); });
             }
         }
     }

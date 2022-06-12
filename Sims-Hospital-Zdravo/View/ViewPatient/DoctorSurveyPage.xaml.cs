@@ -26,8 +26,8 @@ namespace Sims_Hospital_Zdravo
     {
         private Appointment appointment;
         private SurveyController surveyController;
-        ObservableCollection<QuestionForSurvey> questions;
-        Frame frame;
+        private ObservableCollection<QuestionForSurvey> questions;
+        private Frame frame;
         public DoctorSurveyPage(Appointment appointment, Frame frame)
         {
             InitializeComponent();

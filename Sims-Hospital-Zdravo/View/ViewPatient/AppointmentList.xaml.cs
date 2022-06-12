@@ -1,11 +1,14 @@
 ﻿using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,13 +25,14 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class AppointmentList : Page
     {
-        App app;
-        public AppointmentPatientController appointmentPatientController;
-        public Appointment appointment;
-        public List<Appointment> appointments;
-        public ObservableCollection<Doctor> doctors;
+        private AppointmentPatientController appointmentPatientController;
+        private Appointment appointment;
+        private List<Appointment> appointments;
+        private ObservableCollection<Doctor> doctors;
         private Frame frame;
-        public string priority;
+        private string priority;
+        private Timer timer;
+        private App app;
         public AppointmentList(Frame frame, Appointment appointment, string priority)
         {
             this.frame = frame;
@@ -42,7 +46,7 @@ namespace Sims_Hospital_Zdravo
             Apps.ItemsSource = appointments;
             Apps.AutoGenerateColumns = false;
 
-            Binding date = new Binding("_Time.Start");
+            Binding date = new Binding("Time.Start");
             date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
@@ -51,15 +55,15 @@ namespace Sims_Hospital_Zdravo
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
-            Binding time = new Binding("_Time.Start");
+            Binding time = new Binding("Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
             Apps.Columns.Add(data_column);
 
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
-            doctor.Bindings.Add(new Binding("_Doctor._Name"));
-            doctor.Bindings.Add(new Binding("_Doctor._Surname"));
+            doctor.Bindings.Add(new Binding("Doctor.Name"));
+            doctor.Bindings.Add(new Binding("Doctor.Surname"));
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
@@ -90,6 +94,30 @@ namespace Sims_Hospital_Zdravo
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             frame.Content = new PatientCreate(frame);
+        }
+        public void PlayDemo()
+        {
+            List<IDemoCommand> commands = new List<IDemoCommand>
+            {
+                new SelectDataGridCommand(Apps,0)
+            };
+            timer = new Timer(1000);
+            timer.Elapsed += (Object source, ElapsedEventArgs e1) => TimerCallback(commands);
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+        private void TimerCallback(List<IDemoCommand> commands)
+        {
+            if (commands.Count > 0)
+            {
+                commands[0].Execute();
+                commands.RemoveAt(0);
+            }
+            else
+            {
+                timer.Stop();
+                App.Current.Dispatcher.Invoke((Action)delegate { frame.Content = new PatientWindow(frame); });
+            }
         }
     }
 }

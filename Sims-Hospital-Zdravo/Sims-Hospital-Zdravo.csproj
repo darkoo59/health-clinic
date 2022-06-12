@@ -76,6 +76,24 @@
     <Reference Include="Syncfusion.Pdf.Portable, Version=20.1200.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Pdf.Net.Core.20.1.0.59\lib\netstandard2.0\Syncfusion.Pdf.Portable.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.SfBusyIndicator.WPF.20.1.0.59\lib\net46\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.SfInput.WPF.20.1.0.59\lib\net46\Syncfusion.SfInput.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfScheduler.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.SfScheduler.WPF.20.1.0.59\lib\net46\Syncfusion.SfScheduler.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.SfSkinManager.WPF.20.1.0.59\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Shared.WPF.20.1.0.59\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Themes.MaterialLight.WPF, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Themes.MaterialLight.WPF.20.1.0.59\lib\net46\Syncfusion.Themes.MaterialLight.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Text.Encoding.CodePages, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -157,6 +175,7 @@
     <Compile Include="Interfaces\IAllergensRepository.cs" />
     <Compile Include="Interfaces\IAnamnesisRepository.cs" />
     <Compile Include="Interfaces\IAppointmentRepository.cs" />
+    <Compile Include="Interfaces\IDemoCommand.cs" />
     <Compile Include="Interfaces\IDoctorRepository.cs" />
     <Compile Include="Interfaces\IDoctorSurveyRepository.cs" />
     <Compile Include="Interfaces\IEquipmentRepository.cs" />
@@ -184,8 +203,15 @@
     <Compile Include="Model\Notes.cs" />
     <Compile Include="Model\QuestionStatistic.cs" />
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
+    <Compile Include="Model\Therapy.cs" />
+    <Compile Include="Model\TherapySchedule.cs" />
     <Compile Include="Repository\NotesRepository.cs" />
     <Compile Include="Service\NotesService.cs" />
+    <Compile Include="Utils\Commands\FillTextBoxCommand.cs" />
+    <Compile Include="Utils\Commands\FillTextFieldCommand.cs" />
+    <Compile Include="Utils\Commands\SelectComboBoxCommand.cs" />
+    <Compile Include="Utils\Commands\SelectDataGridCommand.cs" />
+    <Compile Include="Utils\Commands\SelectDateCommand.cs" />
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
@@ -201,6 +227,7 @@
     <Compile Include="Service\MeetingService.cs" />
     <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
     <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
+    <Compile Include="ViewModel\PatientViewModel\TherapyViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
       <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
     </Compile>
@@ -525,6 +552,9 @@
     <Compile Include="View\ViewPatient\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewPatient\WeeklyCalendarPage.xaml.cs">
+      <DependentUpon>WeeklyCalendarPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\Manager\Surveys\ManagerHospitalSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
@@ -807,6 +837,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewPatient\TherapyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPatient\WeeklyCalendarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

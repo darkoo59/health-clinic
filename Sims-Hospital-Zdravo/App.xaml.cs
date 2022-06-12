@@ -94,7 +94,7 @@ namespace Sims_Hospital_Zdravo
             // AppointmentRepository appointmentRepository = new AppointmentRepository();
             AppointmentPatientService appointmentPatientService =
                 new AppointmentPatientService(accountRepository);
-            _appointmentPatientController = new AppointmentPatientController(appointmentPatientService);
+            _appointmentPatientController = new AppointmentPatientController(accountRepository);
 
             DoctorRepository docRepo = new DoctorRepository();
 
