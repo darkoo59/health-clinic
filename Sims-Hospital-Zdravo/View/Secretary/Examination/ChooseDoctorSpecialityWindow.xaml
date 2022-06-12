@@ -1,18 +1,19 @@
-﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.ChooseDoctorSpecialityWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
-        mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Sims_Hospital_Zdravo.View.Secretary.Examination.ChooseDoctorSpecialityWindow"
+        mc:Ignorable="d"
         Title="ChooseDoctorSpecialityWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
-        <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
     </Window.Resources>
     <Grid>
 
-        <ComboBox Name="comboSpeciality" HorizontalAlignment="Left" Margin="110,206,0,0" VerticalAlignment="Top" Width="146" Height="35"/>
+        <ComboBox x:Name="comboSpeciality" HorizontalAlignment="Left" Margin="110,206,0,0" VerticalAlignment="Top" Width="146" Height="35"/>
         <Label Content="Choose doctor speciality :" HorizontalAlignment="Left" Margin="62,161,0,0" VerticalAlignment="Top" Height="40" Width="264" FontSize="22" Style="{StaticResource label_style}" />
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,437,44,0" MouseLeftButtonDown="Next_Click">
             <Image.ToolTip>
