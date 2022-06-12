@@ -1,1 +1,1 @@
-["Tree pollen","Dust","Nuts","Fruit","Eggs","Bites","Stings","Milk","Perfumes","Household chemicals"]
+{"CommonAllergens":["Eggs","Milk","Sun"],"MedicalAllergens":["Ibuprofen","Penicilin","Aspirin","Antibiotik","bromazepam"]}

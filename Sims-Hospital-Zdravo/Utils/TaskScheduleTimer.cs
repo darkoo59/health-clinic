@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo.Utils
             _notesController = new NotesController();
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _medicalRecordController = medicalRecordController;
+            _medicalRecordController = new MedicalRecordController();
             _notificationController = new NotificationController();
             _doctorAppointmentController = doctorAppointmentController;
             _suppliesController = suppliesController;
@@ -195,7 +195,6 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (Notification notification in meetingNotifications)
             {
-                Console.WriteLine("lalalalallallalal");
                 Notify(notification);
             }
 
