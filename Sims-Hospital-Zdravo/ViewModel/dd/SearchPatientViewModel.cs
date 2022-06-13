@@ -21,7 +21,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
         public SearchPatientViewModel()
         {
             this._medicalRecordController = new MedicalRecordController();
-           this._medicalRecords  = _medicalRecordController.ReadAll() ;
+           this._medicalRecords  = _medicalRecordController.FindAll() ;
              this.medicalRecordsCollection = new ObservableCollection<MedicalRecord>(_medicalRecords);
             
         }
