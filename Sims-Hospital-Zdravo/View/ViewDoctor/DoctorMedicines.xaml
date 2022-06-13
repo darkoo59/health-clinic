@@ -14,10 +14,29 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Label Content="Medicine validation" FontSize="20"/>
         <Label Content="List of medicines" Margin="0,112,0,0" ></Label>
-        <DataGrid Grid.Row="1" Name="MedicinesDataGrid">
+        <ListBox Grid.Row="1" Name="MedicinesDataGrid" >
+            <ListBox.Style>
+                <Style TargetType="ListBox">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Width="200">
+                                        <Label Content="{Binding Name}" FontSize="20"/>
+                                        <Label Content="{Binding Strength}" FontSize="20"/>
+                                    </StackPanel>
+                                    <Label Content="{Binding Status}" HorizontalAlignment="Right"/>
+                                    
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>  
+                    </Setter>
+                </Style>
+            </ListBox.Style>
             
-        </DataGrid>
+        </ListBox>
         <Button Grid.Row="0" Width="150" Height="30" HorizontalAlignment="Left" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
     </Grid>
 </Page>

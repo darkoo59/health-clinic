@@ -42,48 +42,57 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
-            <Label Content="Patient name:"></Label>
-            <TextBlock  Name="PatienNameTxt" ></TextBlock>
-        </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Label Content="Patient medical record" FontSize="30" Grid.ColumnSpan="2" Grid.Column="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+            <Label Content="Patient name:" Width="100" VerticalAlignment="Top" ></Label>
+            <Label  Name="PatienNameTxt" Content="{Binding MedicalRecord.Patient.Name}" Width="100" VerticalAlignment="Top" Height="25"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Left">
             <Label Content="Patient surname:" ></Label>
-            <TextBlock  Name="PatientSurnameTxt"></TextBlock>
+            <Label  Name="PatientSurnameTxt"  Content="{Binding MedicalRecord.Patient.Surname}"></Label>
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Birth date:" ></Label>
-            <TextBlock  Name="BirthDateTxt"></TextBlock>
+            <Label  Name="BirthDateTxt" Content="{Binding MedicalRecord.Patient.BirthDate}"></Label>
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Address:"></Label>
-            <TextBlock  Name="AdressTxt" ></TextBlock>
+            <Label  Name="AdressTxt" Content="{Binding MedicalRecord.Patient.Adress}"></Label>
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Gender"/>
-            <TextBlock Name="Gendertxt"/>
+            <Label Name="Gendertxt" Content="{Binding MedicalRecord.Gender}"/>
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Phone number"/>
-            <TextBlock Name="numberTxt"/>
+            <Label Name="numberTxt" Content="{Binding MedicalRecord.Patient.PhoneNumber}"/>
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Marital status"/>
-            <TextBlock Name="maritalStatusTxt" Width="100" />
+            <Label Name="maritalStatusTxt" Width="100" Content="{Binding MedicalRecord.MaritalStatus}" />
         </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Identification number"/>
-            <TextBlock Name="UIDTxt" Width="100"/>
+            <Label Name="UIDTxt" Width="100" Content="{Binding MedicalRecord.Patient.Jmbg}"/>
 
         </StackPanel>
-    </Grid>
-        <Grid   Grid.Row="1">
-            <StackPanel Orientation="Horizontal" Grid.Column="1" >
-            <Button Name="PrescribeButton" Width="150" Height="30" Margin="0,0,50,0" Content="Prescription" Click="PrescribeButton_Click"/>
-            <Button Name="AnamnesisButton" Width="150" Height="30" Content="MedicalReport" Click="MedicalreprotClick"/>
-                <Button Name="MedicalHistoryButton" Width="150" Height="30" Content="Medical history" Click="medicalHistoryClick"/>
-                <Button Name="LabaratoryTestButton" Width="150" Height="30" Content="Labaratory test" Click="LabaratoryTestClick"/>
+            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="10">
+                
+                <Button Name="AnamnesisButton" Width="150" Height="30" Content="MedicalReport" Margin=" 0 70 0 50" Click="MedicalreprotClick"/>
+                <Button Name="MedicalHistoryButton" Width="150" Height="30" Content="Medical history" Margin=" 0 0 0 50" Click="medicalHistoryClick"/>
+                <Button Name="LabaratoryTestButton" Width="150" Height="30" Content="Labaratory test" Margin=" 0 0 0 50" Click="LabaratoryTestClick"/>
+                <Button Name="therapyButton" Width="150" Height="30" Content="Therapy" Margin=" 0 0 0 50" Click="therapyButton_Click" />
             </StackPanel>
         </Grid>
+        
+            
+        
     </Grid>
 </UserControl>

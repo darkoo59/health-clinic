@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private App app;
         private List<Medicine> medicines;
         private Frame frame;
-        public ListOfMedecinesinSystem(int id,MedicalRecord medicalRecord,Frame frame)
+        public ListOfMedecinesinSystem(int id,MedicalRecord medicalRecord)
         {
             InitializeComponent();
             
@@ -45,17 +45,28 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             medicineController.ReturnListOfMedicineToStart();
             medicines = medicineController.PatientAllergicToMedicine(medicalRecord);
             MedicineListBox.ItemsSource = medicines;
+
+            
             
 
 
         }
 
-        
+        private void StringAllergic()
+        {
+            foreach(Medicine med in medicineController.ReadAllMedicines())
+            {
+                if(med.NotAllergic == true)
+                {
+
+                }
+            }
+        }
 
         private void MedicineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Medicine medicine = MedicineListBox.SelectedItem as Medicine;
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow(medicalRecordController, medicalRecord, doctorId, medicine, frame);
+            PrescriptionWindow prescriptionWindow = new PrescriptionWindow( medicalRecord, doctorId, medicine);
             prescriptionWindow.Show();
 
 

@@ -14,13 +14,25 @@ namespace Sims_Hospital_Zdravo.ViewModel
     public class SearchPatientViewModel : BindableBase
     {
         private ObservableCollection<Patient> _patients;
-        private DoctorAppointmentController _doctorAppointmentController;
+        private List<MedicalRecord> _medicalRecords;
+        private MedicalRecordController _medicalRecordController;
+        private ObservableCollection<MedicalRecord> medicalRecordsCollection;
 
         public SearchPatientViewModel()
         {
-            //this._doctorAppointmentController = new DoctorAppointmentController();
+            this._medicalRecordController = new MedicalRecordController();
+           this._medicalRecords  = _medicalRecordController.ReadAll() ;
+             this.medicalRecordsCollection = new ObservableCollection<MedicalRecord>(_medicalRecords);
+            
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<MedicalRecord> MedicalRecordCollection
+        {
+            get
+            {
+                return medicalRecordsCollection;
+            }
+            
+        }
     }
 }

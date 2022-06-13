@@ -30,11 +30,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.doctorAppointmentController = doctorAppointmentController;
             this.frame = frame;
+            OperationDataGrid.ItemsSource = doctorAppointmentController.FindOperations();
         }
 
         private void Newoperation_Click(object sender, RoutedEventArgs e)
         {
-            OperationForm operationForm = new OperationForm(doctorAppointmentController);
+            OperationForm operationForm = new OperationForm();
             frame.Content = operationForm;
         }
     }

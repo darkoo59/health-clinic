@@ -12,25 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.ViewModel;
-
+using Sims_Hospital_Zdravo.ViewModel.dd;
+using Model;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
-    /// Interaction logic for LabaratoryResultsPage.xaml
+    /// Interaction logic for TherapyPage.xaml
     /// </summary>
-    public partial class LabaratoryResultsPage : Page
+    public partial class TherapyPage : Page
     {
-        public LabaratoryResultsPage()
+        private int _medId;
+        private MedicalRecord _medicalRecord;
+        private Frame _frame;
+        public TherapyPage(int id,MedicalRecord medicalRecord,Frame frame)
         {
             InitializeComponent();
-            this.DataContext = new LabaratoryTestViewModel();
-        }
-
-        private void NewTestClick(object sender, RoutedEventArgs e)
-        {
-            LabaratoryTestForm labaratoryTestForm = new LabaratoryTestForm();
+            this._medId = id;
+            this._medicalRecord = medicalRecord;
+            this._frame = frame;
+            this.DataContext = new TherapyViewModel(_medId,frame);
         }
     }
 }

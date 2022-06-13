@@ -38,7 +38,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private Frame frame;
         
         
-        public PrescriptionWindow(MedicalRecordController medicalRecordController, MedicalRecord medicalRecord, int id,Medicine medicine,Frame frame)
+        public PrescriptionWindow( MedicalRecord medicalRecord, int id,Medicine medicine)
         {
             InitializeComponent();
             this.medicalRecordController = new MedicalRecordController();
@@ -49,7 +49,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.frame = frame;
             MedicineTxt.Text = medicine.Name;
             strengthTxt.Text = medicine.Strength;
-            PatientTxt.Text = medicalRecord.Patient.Name + medicalRecord.Patient.Surname;
+            nameTxt.Text = medicalRecord.Patient.Name;
+            PatientsurnameTxt.Text = medicalRecord.Patient.Surname;
             
             
 

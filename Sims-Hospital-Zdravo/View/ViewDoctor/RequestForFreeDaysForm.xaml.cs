@@ -22,7 +22,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// <summary>
     /// Interaction logic for RequestForFreeDaysForm.xaml
     /// </summary>
-    public partial class RequestForFreeDaysForm : Page
+    public partial class RequestForFreeDaysForm : Window
     {
         private DoctorAppointmentController doctorAppointmentController;
         private RequestForFreeDaysController requestForFreeDaysController;
@@ -60,7 +60,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             string fromDate = FromDateTxt.Text;
             string toDate = ToDateTxt.Text;
             Doctor doctor = doctorAppointmentController.GetDoctor(doctorId);
-            TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate), DateTime.Parse(toDate));
+            TimeInterval timeInteral = new TimeInterval(DateTime.Parse(fromDate).Date, DateTime.Parse(toDate).Date);
             FreeDaysRequest request = new FreeDaysRequest(timeInteral, doctor, reasonForDaysOff, RequestStatus.PENDING);
             try
             {

@@ -26,50 +26,28 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// </summary>
     public partial class AnamnesisListPage : Page, IUpdateFilesObserver
     {
-        private App app;
+        
         private AnamnesisController controller;
         private List<Anamnesis> listOfAnamnesisDoneByDoctor;
         private int doctorID;
         private Anamnesis anamnesis;
         private MedicalRecord medicalRecord;
         private DoctorAppointmentController doctorAppointmentController;
-        public AnamnesisListPage(int doctorId,MedicalRecord medicalRecord)
+        private Frame frame;
+        public AnamnesisListPage(int doctorId,MedicalRecord medicalRecord,Frame frame)
         {
 
             InitializeComponent();
             this.DataContext = this;
-            this.app = App.Current as App;
-            this.controller = app._anamnesisController;
+            //this.app = App.Current as App;
+            this.controller = new AnamnesisController();
             this.doctorID = doctorId;
+            this.frame = frame;
             this.medicalRecord = medicalRecord;
-            this.doctorAppointmentController = app._doctorAppointmentController;
+            this.doctorAppointmentController = new DoctorAppointmentController();
             listOfAnamnesisDoneByDoctor = new List<Anamnesis>();
-            //listOfAnamnesisDoneByDoctor = controller.FindAnamnesisByDoctor(doctorID);
             AnamnesisListDoctor.ItemsSource = controller.FindAnamnesisByPatient(medicalRecord);
-            AnamnesisListDoctor.AutoGenerateColumns = false;
-            DataGridTextColumn data_column = new DataGridTextColumn();
             
-            data_column.Header = "Patient Name ";
-            data_column.Binding = new Binding("Patient.Name");
-            AnamnesisListDoctor.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Patient Surname";
-            data_column.Binding = new Binding("Patient.Surname");
-            AnamnesisListDoctor.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Diagnosis";
-            data_column.Binding = new Binding("Diagnosis");
-            AnamnesisListDoctor.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Medical report taken:";
-            data_column.Binding = new Binding("Date");
-            AnamnesisListDoctor.Columns.Add(data_column);
-            DataGridTemplateColumn templateColumn = new DataGridTemplateColumn();
-            Button editButton = new Button();
-            DataTemplate dataTemplate = new DataTemplate();
-            dataTemplate.DataType = editButton.GetType();
-            templateColumn.CellTemplate = dataTemplate;
-            AnamnesisListDoctor.Columns.Add(templateColumn);
 
 
 
@@ -84,7 +62,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             if (anamnesis != null)
             {
                 EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, medicalRecord);
-                editAnamnesis.Show();
+                //editAnamnesis.Show();
             }
             else
             {
@@ -104,12 +82,18 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             if (anamnesis != null)
             {
                 EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, medicalRecord);
-                editAnamnesis.Show();
+               // editAnamnesis.Show();
             }
             else
             {
                 MessageBox.Show("Select medical report you want to edit.");
             }
+        }
+
+        private void MedicalreportClick(object sender, RoutedEventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(medicalRecord, doctorID, frame);
+            frame.Content = medicalReport;
         }
     }
 }

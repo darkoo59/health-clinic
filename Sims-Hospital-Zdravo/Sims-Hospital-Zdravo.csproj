@@ -179,6 +179,7 @@
     <Compile Include="Model\FreeDaysNotification.cs" />
     <Compile Include="Model\LabaratoryTest.cs" />
     <Compile Include="Model\MarkStatistic.cs" />
+    <Compile Include="Model\MedicalEquipment.cs" />
     <Compile Include="Model\Meeting.cs" />
     <Compile Include="Model\MeetingCreatedNotifications.cs" />
     <Compile Include="Model\Notes.cs" />
@@ -195,13 +196,16 @@
     <Compile Include="ViewModel\dd\LabaratoryTestViewModel.cs" />
     <Compile Include="ViewModel\dd\MyAppointmentsViewModel.cs" />
     <Compile Include="ViewModel\dd\MyIComand.cs" />
+    <Compile Include="ViewModel\dd\PatientMedicalRecordViewModel.cs" />
     <Compile Include="ViewModel\dd\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModel\dd\TherapyViewModel.cs" />
     <Compile Include="ViewModel\dd\ValidateMedicineViewModel.cs" />
     <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
     <Compile Include="Repository\MeetingRepository.cs" />
     <Compile Include="Service\MeetingService.cs" />
     <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
     <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
+    <Compile Include="ViewModel\MedicalEquipmentViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
       <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
     </Compile>
@@ -214,8 +218,23 @@
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\EditAnamnesisPage.xaml.cs">
+      <DependentUpon>EditAnamnesisPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\MedicalEqupiment.xaml.cs">
+      <DependentUpon>MedicalEqupiment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\TherapyPage.xaml.cs">
+      <DependentUpon>TherapyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\WizardWindow.xaml.cs">
+      <DependentUpon>WizardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewPatient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
@@ -530,7 +549,27 @@
     <Page Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml" />
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\ViewDoctor\EditAnamnesisPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\MedicalEqupiment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\TherapyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\WizardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -922,16 +961,23 @@
     </Resource>
     <Resource Include="Resources\img\image-medicines.ico" />
     <Resource Include="Resources\img\image-logout.ico" />
-    <Resource Include="Resources\img\icons8-crowd-patient-96.png" />
-    <Resource Include="Resources\img\icons8-medical-100.png" />
-    <Resource Include="Resources\img\icons8-stethoscope-64.png" />
-    <Resource Include="Resources\img\icons8-treatment-list-96.png" />
-    <Resource Include="Resources\img\icons8-day-off-96.png" />
-    <Resource Include="Resources\img\icons8-surgery-100.png" />
-    <Resource Include="Resources\img\icons8-medicine-64.png" />
     <Resource Include="Resources\demo.mp4" />
     <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\hospital_surveys.txt" />
+    <Resource Include="Resources\img\Doctor\DoctorProfilePicture.png" />
+    <Resource Include="Resources\img\Doctor\DoctorCircle.png" />
+    <Resource Include="Resources\img\Doctor\icons8-edit-calendar-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medical-100.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medical-equipment-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-stethoscope-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-crowd-patient-96.png" />
+    <Resource Include="Resources\img\Doctor\icons8-day-off-96.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medicine-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-surgery-100.png" />
+    <Resource Include="Resources\img\Doctor\logoApp.png" />
+    <Resource Include="Resources\img\Doctor\search.png" />
+    <Resource Include="Resources\img\Doctor\help.png" />
+    <Resource Include="Resources\img\Doctor\logout.png" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
     <Content Include="Resources\img\Secretary\Dark\Accounts.png" />
     <Content Include="Resources\img\Secretary\Dark\Appointment.png" />
@@ -1018,9 +1064,7 @@
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\img\Doctor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

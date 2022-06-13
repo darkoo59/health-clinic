@@ -36,13 +36,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private int doctorId;
         private DateTime AppointmentDate;
        
-        public MyAppointmentPage(DoctorAppointmentController doctorAppointmentController, AnamnesisController anamnesisController, MedicalRecordController medicalRecordController, int id)
+        public MyAppointmentPage( AnamnesisController anamnesisController, MedicalRecordController medicalRecordController, int id)
         {
             InitializeComponent();
 
             app = App.Current as App;
-            this.docController = doctorAppointmentController;
-            this.DataContext = new MyAppointmentsViewModel(doctorId,docController);
+            this.docController = new DoctorAppointmentController();
+            this.DataContext = new MyAppointmentsViewModel(doctorId);
             //DoctorAppointments.ItemsSource = doctorAppointmentController.ReadAll(2);
              
             this.doctorId = id;

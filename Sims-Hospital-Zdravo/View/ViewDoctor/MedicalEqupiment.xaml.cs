@@ -14,23 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.ViewModel;
 
-
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
-    /// Interaction logic for LabaratoryResultsPage.xaml
+    /// Interaction logic for MedicalEqupiment.xaml
     /// </summary>
-    public partial class LabaratoryResultsPage : Page
+    public partial class MedicalEqupiment : Page
     {
-        public LabaratoryResultsPage()
+        public MedicalEqupiment()
         {
             InitializeComponent();
-            this.DataContext = new LabaratoryTestViewModel();
-        }
+            this.DataContext = new MedicalEquipmentViewModel();
 
-        private void NewTestClick(object sender, RoutedEventArgs e)
-        {
-            LabaratoryTestForm labaratoryTestForm = new LabaratoryTestForm();
         }
     }
 }

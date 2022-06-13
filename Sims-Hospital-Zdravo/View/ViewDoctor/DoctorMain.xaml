@@ -15,112 +15,97 @@
 
 
 
-        <Grid VerticalAlignment="Top" Height="100" Width="1024" Background="#FF1E4AD9" ></Grid>
+        <Grid VerticalAlignment="Top" Height="100" Width="724" Background="#FF1E4AD9" HorizontalAlignment="Right" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="HealthClinic" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Normal" />
+                <Image Source="../../Resources/img/Doctor/logoApp.png" Width="50"></Image>
+            </StackPanel>
+        </Grid>
         <Grid HorizontalAlignment="Left" Width="300">
             <StackPanel Background="#FF1E4AD9" Width="250">
 
             </StackPanel>
             <StackPanel Background="#FF2249C5" HorizontalAlignment="Left" Grid.RowSpan="3" Width="300" Grid.Row="1">
                 <Grid Width="300" Height="150" Background="White">
-                    <Button Name="nesto"  >
+                    <Button Name="nesto" Height="90" Width="150" VerticalAlignment="Top" >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+
                         <Button.Background>
-                            <ImageBrush />
+                            <ImageBrush ImageSource="\Resources\img\Doctor\DoctorCircle.png"  />
                         </Button.Background>
                     </Button>
+                    <Label Content="Grigorije Kucanski" VerticalAlignment="Top" Margin="0,90,0,0" HorizontalAlignment="Center" ></Label>
+                    
                 </Grid>
-                <Menu Background="Transparent">
-                    <Menu.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Orientation="Vertical">
+                <Grid Height="600" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
 
-                            </VirtualizingStackPanel>
-                        </ItemsPanelTemplate>
 
-                    </Menu.ItemsPanel>
-                    <MenuItem Name="MyAppointmentMenuItem" Height="50" Click="MyAppointmentMenuItem_Click">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text=" Appointments" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="250" FontFamily="Comic Sans MS" FontSize="20">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="ScheduleMenuItem" Click="schedule_Appointment_Click" Height="50">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text="Schedule appointment" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="250" FontFamily="Comic Sans MS" FontSize="20" >
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="PatientMenuItem" Height="50" Click="PatientMenuItem_Click">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text="Patients" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="PrescriptionsItem" Height="50" Click="ViewRequestsClick">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text="Requestsview" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="118" FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="OperationMenuItem" Height="53" Click="operation_click">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text="Operation" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="RequestForFreeDaysItem" Height="50" Width="298" Click="DaysOff_Click">
-                        
-                        <MenuItem.Header>
-                            <AccessText Text="Days off" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Width="250" FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="MedicinesItem" Height="50" Click="MedcinesClick">
-                        
-
-                        <MenuItem.Header>
-                            <AccessText Text="Medicines" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="appointmentsItem" Height="50" Click="AppointmentsClick">
-
-                        <MenuItem.Header>
-                            <AccessText Text="Appointments" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="anamnesisItem" Height="50" Click="AnamnesisClick">
-
-                        <MenuItem.Header>
-                            <AccessText Text="Medical reports" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Name="LogOutItem" Height="50" Click="LogOutClick">
-
-                        <MenuItem.Header>
-                            <AccessText Text="Log out" HorizontalAlignment="Left" VerticalAlignment="Center" Width="118"
-                                    FontFamily="Comic Sans MS" FontSize="25">
-                            </AccessText>
-                        </MenuItem.Header>
-                    </MenuItem>
-                </Menu>
-
-            </StackPanel>
+                    </Grid.RowDefinitions>
+                    <Button Height="50" Background="#FF1E4AD9" Click="Button_Click_Appointment">
+                    <StackPanel Orientation="Horizontal" Width="300" Grid.Row="0">
+                            <Image Source="..\..\resources\img\doctor\icons8-medical-100.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Appointments" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="1" Click="operation_click">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/doctor/icons8-stethoscope-64.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Operations" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="2" Click="PatientMenuItem_Click">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="\Resources\img\Doctor\icons8-crowd-patient-96.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Patients" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="3" Click="DaysOff_Click">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/doctor/icons8-day-off-96.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Leaves" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="4" Click="MedicalEquipmentClick">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/Doctor/icons8-medical-equipment-64.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Medical equipment" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="5" Click="MedcinesClick">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/doctor/icons8-medicine-64.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Medicines" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="6">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/doctor/help.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Help" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="7" Click="LogOutClick">
+                        <StackPanel Orientation="Horizontal" Width="300">
+                            <Image Source="../../resources/img/doctor/logout.png" Width="30" Height="30" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Log out" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+        </StackPanel>
         </Grid>
         <Frame Name="FrameForMain" Margin="305,100,10,5" NavigationUIVisibility="Hidden" />
         <notifications:NotificationArea

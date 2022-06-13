@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
 using Controller;
 using Model;
+using Sims_Hospital_Zdravo.ViewModel;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -30,31 +31,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public SearchPatient(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,MedicalRecordController medicalRecordController,Frame frame,int id)
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.DataContext = new SearchPatientViewModel();
             this.frame = frame;
             this.doctorID = id;
             this.anamnesisController = new AnamnesisController();
             this.doctorAppointmentController = doctorAppointmentController;
-             medicalRecordController = new MedicalRecordController();
-            MedicalRecordDataGrid.ItemsSource = medicalRecordController.ReadAll();
-            MedicalRecordDataGrid.AutoGenerateColumns = false;
-            DataGridTextColumn data_column = new DataGridTextColumn();
-            data_column.Header = "Patient Name:";
-            data_column.Binding = new Binding("Patient.Name");
-            MedicalRecordDataGrid.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "BirthDate";
-            data_column.Binding = new Binding("Patient.BirthDate");
-
-            MedicalRecordDataGrid.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Patient UID";
-            data_column.Binding = new Binding("Patient.Jmbg");
-            MedicalRecordDataGrid.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Patient blood type";
-            data_column.Binding = new Binding("BloodType");
-            MedicalRecordDataGrid.Columns.Add(data_column);
+            this.medicalRecordController = medicalRecordController;
+            
+            
             
             
         }
@@ -63,10 +47,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
+            int medicalRecordId = medicalRecord.Id;
             if (medicalRecord != null)
             {
-                PatientTabs patientTabs = new PatientTabs(medicalRecord,frame,doctorID);
-                frame.Content = patientTabs;
+                PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord,frame,doctorID);
+                frame.Content = patientMedicalRecordPage;
             }
             else
             {
@@ -85,9 +70,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicalRecord medicalRecord = MedicalRecordDataGrid.SelectedValue as MedicalRecord;
             if (medicalRecord != null)
             {
-                PatientTabs patientTabs = new PatientTabs(medicalRecord, frame, doctorID);
-                frame.Content = patientTabs;
+                PatientMedicalRecordPage patientMedicalRecordPage = new PatientMedicalRecordPage(medicalRecord, frame, doctorID);
+                frame.Content = patientMedicalRecordPage;
             }
+        
             else
             {
                 MessageBox.Show("Chose whose medical record you want to see.");

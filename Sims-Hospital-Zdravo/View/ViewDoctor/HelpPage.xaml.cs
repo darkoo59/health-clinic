@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.ViewModel;
-
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
-    /// Interaction logic for LabaratoryResultsPage.xaml
+    /// Interaction logic for HelpPage.xaml
     /// </summary>
-    public partial class LabaratoryResultsPage : Page
+    public partial class HelpPage : Page
     {
-        public LabaratoryResultsPage()
+        public HelpPage()
         {
             InitializeComponent();
-            this.DataContext = new LabaratoryTestViewModel();
-        }
-
-        private void NewTestClick(object sender, RoutedEventArgs e)
-        {
-            LabaratoryTestForm labaratoryTestForm = new LabaratoryTestForm();
         }
     }
 }

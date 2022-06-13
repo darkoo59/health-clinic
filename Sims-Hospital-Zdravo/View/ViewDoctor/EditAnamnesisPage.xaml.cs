@@ -10,20 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Controller;
 using Controller;
 using Model;
+using Syncfusion.Pdf;
 using Sims_Hospital_Zdravo.Interfaces;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
-    /// Interaction logic for EditAnamnesis.xaml
+    /// Interaction logic for EditAnamnesisPage.xaml
     /// </summary>
-    public partial class EditAnamnesis : Window, IUpdateFilesObservable
+    public partial class EditAnamnesisPage : Page, IUpdateFilesObservable
     {
+        
         private AnamnesisController anamnesisController;
         private DoctorAppointmentController doctorAppointmentController;
         private MedicalRecord medicalRecord;
@@ -31,10 +34,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private int DoctorId;
         private Anamnesis anamnesis;
         private List<IUpdateFilesObserver> observers;
-        public EditAnamnesis( Anamnesis anamnesis, MedicalRecord medicalRecord)
+        public EditAnamnesisPage(Anamnesis anamnesis, MedicalRecord medicalRecord)
         {
             InitializeComponent();
-            
+
             this.anamnesisController = new AnamnesisController();
             this.anamnesis = anamnesis;
             this.medicalRecord = medicalRecord;
@@ -48,7 +51,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
 
         }
-        
+
 
         public void AddObserver(IUpdateFilesObserver observer)
         {
@@ -69,10 +72,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         }
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Close();
-        }
+        
 
         private void SaveMedicalReporClick(object sender, RoutedEventArgs e)
         {
@@ -84,5 +84,14 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             anamnesisController.Update(anam);
             //Close();
         }
+
+        private void PrintClick(object sender, RoutedEventArgs e)
+        {
+            PdfDocument pdfDocument = new PdfDocument();
+
+        }
     }
+    
+        
+    
 }
