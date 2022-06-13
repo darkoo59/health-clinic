@@ -118,127 +118,127 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Sačuvaj</value>
   </data>
   <data name="HospitalName" xml:space="preserve">
-    <value>Hospital Zdravo</value>
+    <value>Bolnica Zdravo</value>
   </data>
   <data name="LanguageText" xml:space="preserve">
-    <value>Language :</value>
+    <value>Jezik :</value>
   </data>
   <data name="LblAbout" xml:space="preserve">
-    <value>About</value>
+    <value>O nama</value>
   </data>
   <data name="LblAppointments" xml:space="preserve">
-    <value>Appointments</value>
+    <value>Pregledi</value>
   </data>
   <data name="LblContact" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontakt</value>
   </data>
   <data name="LblEquipment" xml:space="preserve">
-    <value>Equipment</value>
+    <value>Oprema</value>
   </data>
   <data name="LblFreeDays" xml:space="preserve">
-    <value>Free days requests</value>
+    <value>Slobodni dani</value>
   </data>
   <data name="LblHome" xml:space="preserve">
-    <value>Home</value>
+    <value>Početna</value>
   </data>
   <data name="LblMedicalRecords" xml:space="preserve">
-    <value>Medical records</value>
+    <value>Medicinski kartoni</value>
   </data>
   <data name="LblMeetings" xml:space="preserve">
-    <value>Meetings</value>
+    <value>Sastanci</value>
   </data>
   <data name="LblProfile" xml:space="preserve">
-    <value>Profile</value>
+    <value>Profil</value>
   </data>
   <data name="LblSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Podešavanja</value>
   </data>
   <data name="LblSignOut" xml:space="preserve">
-    <value>Sign out</value>
+    <value>Odjavi se</value>
   </data>
   <data name="ThemeText" xml:space="preserve">
-    <value>Theme :</value>
+    <value>Tema :</value>
   </data>
   <data name="ttAppointments" xml:space="preserve">
-    <value>Managing appointments</value>
+    <value>Upravljaj pregledima</value>
   </data>
   <data name="ttEquipment" xml:space="preserve">
-    <value>Equipment acquisition</value>
+    <value>Nabavi opremu</value>
   </data>
   <data name="ttFreeDays" xml:space="preserve">
-    <value>Managing free days</value>
+    <value>Upravljaj slobodnim danima</value>
   </data>
   <data name="About1" xml:space="preserve">
-    <value>High Quality Treatments</value>
+    <value>Veoma kvalitetni tretmani</value>
   </data>
   <data name="About2" xml:space="preserve">
-    <value>Experienced Doctors</value>
+    <value>Iskusni doktori</value>
   </data>
   <data name="About3" xml:space="preserve">
-    <value>Newest Technologies</value>
+    <value>Najnovije tehnologije</value>
   </data>
   <data name="About4" xml:space="preserve">
-    <value>High Customer Satisfaction</value>
+    <value>Veoma zadovoljni pacijenti</value>
   </data>
   <data name="About5" xml:space="preserve">
-    <value>Emergency help</value>
+    <value>Brza pomoć</value>
   </data>
   <data name="About6" xml:space="preserve">
-    <value>International</value>
+    <value>Multinacionalni</value>
   </data>
   <data name="About7" xml:space="preserve">
-    <value>Open hours : 00:00-24:00</value>
+    <value>Radno vreme : 00:00-24:00</value>
   </data>
   <data name="ChooseDoctor" xml:space="preserve">
-    <value>Choose doctor speciality :</value>
+    <value>Odaberi specijalnost lekara :</value>
   </data>
   <data name="NonRegistered" xml:space="preserve">
-    <value>For non registerd patients:</value>
+    <value>Za neregistrovane pacijente:</value>
   </data>
   <data name="SelectPatient" xml:space="preserve">
-    <value>Select patient:</value>
+    <value>Izaberite pacijenta:</value>
   </data>
   <data name="Guest" xml:space="preserve">
-    <value>Guest</value>
+    <value>Gost</value>
   </data>
   <data name="ttNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Dalje</value>
   </data>
   <data name="DoesPatientExist" xml:space="preserve">
-    <value>If patient doesn't exist,&amp;#xD;&amp;#xA;please create medical  record first!</value>
+    <value>Ako pacijent ne postoji, molim Vas prvo kreirajte medicinski karton!</value>
   </data>
   <data name="ttCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>Kreiraj</value>
   </data>
   <data name="StartAt" xml:space="preserve">
-    <value>Start at:</value>
+    <value>Počinje u :</value>
   </data>
   <data name="EndAt" xml:space="preserve">
-    <value>End at :</value>
+    <value>Završava se u :</value>
   </data>
   <data name="AppStartAt" xml:space="preserve">
-    <value>Appointment start at :</value>
+    <value>Pregled počinje u :</value>
   </data>
   <data name="AppEndAt" xml:space="preserve">
-    <value>Appointment end at :</value>
+    <value>Pregled se završava u :</value>
   </data>
   <data name="SelectAppType" xml:space="preserve">
-    <value>Select appointment type :</value>
+    <value>Izaberite tip pregleda :</value>
   </data>
   <data name="SelectRoom" xml:space="preserve">
-    <value>Select room :</value>
+    <value>Izaberite sobu :</value>
   </data>
   <data name="RequestStatus" xml:space="preserve">
-    <value>Request status :</value>
+    <value>Status zahteva :</value>
   </data>
   <data name="Reason" xml:space="preserve">
-    <value>Reason :</value>
+    <value>Razlog :</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>Explanation :</value>
+    <value>Objašnjenje :</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>

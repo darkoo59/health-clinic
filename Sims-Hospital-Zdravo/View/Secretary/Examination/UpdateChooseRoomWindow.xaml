@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Title="UpdateChooseRoomWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -17,11 +18,11 @@
             <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="58,437,58.6,0" MouseLeftButtonDown="btnNext_Click">
                 <Image.ToolTip>
                     <ToolTip x:Name="tt_next"
-                        Content="Next"
+                        Content="{x:Static rs:Resources.ttNext}"
                         Style="{StaticResource tt_medicalRecord_style}"/>
                 </Image.ToolTip>
             </Image>
-            <Label Content="Select room :" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
+            <Label Content="{x:Static rs:Resources.SelectRoom}" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
         </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <!-- //Menu bar panel // -->

@@ -19,17 +19,17 @@ namespace Sims_Hospital_Zdravo.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class Resources_sr_LATN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources_sr_LATN() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sims_Hospital_Zdravo.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sims_Hospital_Zdravo.Properties.Resources.sr-LATN", typeof(Resources_sr_LATN).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High Quality Treatments.
+        ///   Looks up a localized string similar to Veoma kvalitetni tretmani.
         /// </summary>
         public static string About1 {
             get {
@@ -70,7 +70,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Experienced Doctors.
+        ///   Looks up a localized string similar to Iskusni doktori.
         /// </summary>
         public static string About2 {
             get {
@@ -79,7 +79,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Newest Technologies.
+        ///   Looks up a localized string similar to Najnovije tehnologije.
         /// </summary>
         public static string About3 {
             get {
@@ -88,7 +88,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High Customer Satisfaction.
+        ///   Looks up a localized string similar to Veoma zadovoljni pacijenti.
         /// </summary>
         public static string About4 {
             get {
@@ -97,7 +97,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emergency help.
+        ///   Looks up a localized string similar to Brza pomoć.
         /// </summary>
         public static string About5 {
             get {
@@ -106,7 +106,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to International.
+        ///   Looks up a localized string similar to Multinacionalni.
         /// </summary>
         public static string About6 {
             get {
@@ -115,7 +115,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open hours : 00:00-24:00.
+        ///   Looks up a localized string similar to Radno vreme : 00:00-24:00.
         /// </summary>
         public static string About7 {
             get {
@@ -124,7 +124,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Appointment end at :.
+        ///   Looks up a localized string similar to Pregled se završava u :.
         /// </summary>
         public static string AppEndAt {
             get {
@@ -133,7 +133,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Appointment start at :.
+        ///   Looks up a localized string similar to Pregled počinje u :.
         /// </summary>
         public static string AppStartAt {
             get {
@@ -142,7 +142,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save.
+        ///   Looks up a localized string similar to Sačuvaj.
         /// </summary>
         public static string BtnSave {
             get {
@@ -151,7 +151,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose doctor speciality :.
+        ///   Looks up a localized string similar to Odaberi specijalnost lekara :.
         /// </summary>
         public static string ChooseDoctor {
             get {
@@ -160,7 +160,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If patient doesn&apos;t exist,&amp;#xD;&amp;#xA;please create medical  record first!.
+        ///   Looks up a localized string similar to Ako pacijent ne postoji, molim Vas prvo kreirajte medicinski karton!.
         /// </summary>
         public static string DoesPatientExist {
             get {
@@ -169,7 +169,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End at :.
+        ///   Looks up a localized string similar to Završava se u :.
         /// </summary>
         public static string EndAt {
             get {
@@ -178,16 +178,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explanation :.
-        /// </summary>
-        public static string Explanation {
-            get {
-                return ResourceManager.GetString("Explanation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Guest.
+        ///   Looks up a localized string similar to Gost.
         /// </summary>
         public static string Guest {
             get {
@@ -196,7 +187,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hospital Zdravo.
+        ///   Looks up a localized string similar to Bolnica Zdravo.
         /// </summary>
         public static string HospitalName {
             get {
@@ -205,7 +196,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language :.
+        ///   Looks up a localized string similar to Jezik :.
         /// </summary>
         public static string LanguageText {
             get {
@@ -214,7 +205,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to O nama.
         /// </summary>
         public static string LblAbout {
             get {
@@ -223,7 +214,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Appointments.
+        ///   Looks up a localized string similar to Pregledi.
         /// </summary>
         public static string LblAppointments {
             get {
@@ -232,7 +223,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact.
+        ///   Looks up a localized string similar to Kontakt.
         /// </summary>
         public static string LblContact {
             get {
@@ -241,7 +232,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Equipment.
+        ///   Looks up a localized string similar to Oprema.
         /// </summary>
         public static string LblEquipment {
             get {
@@ -250,7 +241,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Free days requests.
+        ///   Looks up a localized string similar to Slobodni dani.
         /// </summary>
         public static string LblFreeDays {
             get {
@@ -259,7 +250,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home.
+        ///   Looks up a localized string similar to Početna.
         /// </summary>
         public static string LblHome {
             get {
@@ -268,7 +259,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medical records.
+        ///   Looks up a localized string similar to Medicinski kartoni.
         /// </summary>
         public static string LblMedicalRecords {
             get {
@@ -277,7 +268,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meetings.
+        ///   Looks up a localized string similar to Sastanci.
         /// </summary>
         public static string LblMeetings {
             get {
@@ -286,7 +277,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile.
+        ///   Looks up a localized string similar to Profil.
         /// </summary>
         public static string LblProfile {
             get {
@@ -295,7 +286,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Podešavanja.
         /// </summary>
         public static string LblSettings {
             get {
@@ -304,7 +295,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign out.
+        ///   Looks up a localized string similar to Odjavi se.
         /// </summary>
         public static string LblSignOut {
             get {
@@ -313,7 +304,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For non registerd patients:.
+        ///   Looks up a localized string similar to Za neregistrovane pacijente:.
         /// </summary>
         public static string NonRegistered {
             get {
@@ -322,25 +313,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reason :.
-        /// </summary>
-        public static string Reason {
-            get {
-                return ResourceManager.GetString("Reason", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Request status :.
-        /// </summary>
-        public static string RequestStatus {
-            get {
-                return ResourceManager.GetString("RequestStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select appointment type :.
+        ///   Looks up a localized string similar to Izaberite tip pregleda :.
         /// </summary>
         public static string SelectAppType {
             get {
@@ -349,7 +322,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select patient:.
+        ///   Looks up a localized string similar to Izaberite pacijenta:.
         /// </summary>
         public static string SelectPatient {
             get {
@@ -358,7 +331,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select room :.
+        ///   Looks up a localized string similar to Izaberite sobu :.
         /// </summary>
         public static string SelectRoom {
             get {
@@ -367,7 +340,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start at:.
+        ///   Looks up a localized string similar to Počinje u :.
         /// </summary>
         public static string StartAt {
             get {
@@ -376,7 +349,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme :.
+        ///   Looks up a localized string similar to Tema :.
         /// </summary>
         public static string ThemeText {
             get {
@@ -385,7 +358,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Managing appointments.
+        ///   Looks up a localized string similar to Upravljaj pregledima.
         /// </summary>
         public static string ttAppointments {
             get {
@@ -394,7 +367,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create.
+        ///   Looks up a localized string similar to Kreiraj.
         /// </summary>
         public static string ttCreate {
             get {
@@ -403,7 +376,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Equipment acquisition.
+        ///   Looks up a localized string similar to Nabavi opremu.
         /// </summary>
         public static string ttEquipment {
             get {
@@ -412,7 +385,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Managing free days.
+        ///   Looks up a localized string similar to Upravljaj slobodnim danima.
         /// </summary>
         public static string ttFreeDays {
             get {
@@ -421,20 +394,11 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next.
+        ///   Looks up a localized string similar to Dalje.
         /// </summary>
         public static string ttNext {
             get {
                 return ResourceManager.GetString("ttNext", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sims_Hospital_Zdravo.View.Manager;
+using Sims_Hospital_Zdravo.View.Manager.Surveys;
 
 namespace Sims_Hospital_Zdravo.ViewModel.Commands
 {
@@ -29,7 +30,10 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
 
             if (ManagerContent.Source == null && ManagerContent.Content != null)
             {
-                ManagerContent.GoBack();
+                if (!(ManagerContent.Content is ManagerSurveys))
+                {
+                    ManagerContent.GoBack();
+                }
             }
             else if (!IsMainWindowPage(ManagerContent.Source.OriginalString) && ManagerContent.CanGoBack)
             {
@@ -58,6 +62,7 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
                 case "Sims-Hospital-Zdravo;component/view/manager/Equipment/ManagerEquipment.xaml": return true;
                 case "Sims-Hospital-Zdravo;component/view/manager/Medicines/ManagerMedicines.xaml": return true;
                 case "Sims-Hospital-Zdravo;component/view/manager/Renovations/ManagerRenovations.xaml": return true;
+                case "Sims-Hospital-Zdravo;component/view/manager/Surveys/ManagerSurveys.xaml": return true;
                 default: return false;
             }
         }

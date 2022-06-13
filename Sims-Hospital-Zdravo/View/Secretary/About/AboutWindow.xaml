@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.About"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         mc:Ignorable="d"
         Title="AboutWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -13,7 +14,7 @@
     <Grid>
 
         <Grid Width="350" Margin="0,0,0,360" Grid.ColumnSpan="2" Background="#1D80CA">
-            <Label Content="Hospital Zdravo" Name="lblHospital" HorizontalAlignment="Left" Margin="94,0,0,0" VerticalAlignment="Top" Height="50" Width="200" Foreground="White" FontSize="25"/>
+            <Label Content="{x:Static rs:Resources.HospitalName}" Name="lblHospital" HorizontalAlignment="Left" Margin="94,0,0,0" VerticalAlignment="Top" Height="50" Width="200" Foreground="White" FontSize="25"/>
             <Image Source="../../../Resources/img/Secretary/Logo.png" HorizontalAlignment="Left" Height="72" Margin="149,50,0,0" VerticalAlignment="Top" Width="117"/>
         </Grid>
 
@@ -23,19 +24,19 @@
         <!-- //Menu bar panel // -->
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu1" Grid.Column="0" Grid.Row="1"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,300,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,305,0,0" TextWrapping="Wrap" Text="High Quality treatments" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,305,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About1}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,255,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,260,0,0" TextWrapping="Wrap" Text="Experienced Doctors" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,260,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About2}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,210,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,215,0,0" TextWrapping="Wrap" Text="Newest Technologies" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,215,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About3}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,165,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,170,0,0" TextWrapping="Wrap" Text="High Customer Satisfaction" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,170,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About4}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,345,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,350,0,0" TextWrapping="Wrap" Text="Emergency help" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,350,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About5}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,390,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,395,0,0" TextWrapping="Wrap" Text="International" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,395,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About6}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,435,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,440,0,0" TextWrapping="Wrap" Text="Open hours : 00:00-24:00" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,440,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.About7}" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
 
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />
     </Grid>
