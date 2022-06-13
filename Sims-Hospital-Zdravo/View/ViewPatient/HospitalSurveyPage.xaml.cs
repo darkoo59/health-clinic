@@ -1,11 +1,14 @@
 ﻿using Sims_Hospital_Zdravo.Controller;
+using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.Utils.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,9 +26,10 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class HospitalSurveyPage : Page
     {
-        private SurveyController surveyController;
-        private ObservableCollection<QuestionForSurvey> questions;
-        private Frame frame;
+        public SurveyController surveyController { get; set; }
+        public ObservableCollection<QuestionForSurvey> questions { get; set; }
+        public Frame frame { get; set; }
+        public Timer timer { get; set; }
         public HospitalSurveyPage(Frame frame)
         {
             InitializeComponent();
@@ -34,8 +38,7 @@ namespace Sims_Hospital_Zdravo
             this.DataContext = this;
             InitalizeList();
             Survey.ItemsSource = questions;
-
-            Survey.AutoGenerateColumns = false;   
+            Survey.AutoGenerateColumns = false;
         }
         private void InitalizeList()
         {

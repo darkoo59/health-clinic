@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
 using System;
@@ -26,15 +27,18 @@ namespace Sims_Hospital_Zdravo
     {
         private Appointment appointment;
         private SurveyController surveyController;
-        ObservableCollection<QuestionForSurvey> questions;
-        Frame frame;
+        private AppointmentPatientController appointmentPatientController;
+        private App app;
+        private ObservableCollection<QuestionForSurvey> questions;
+        private Frame frame;
         public DoctorSurveyPage(Appointment appointment, Frame frame)
         {
+            app = Application.Current as App;
             InitializeComponent();
             this.frame = frame;
             this.surveyController = new SurveyController();
+            appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.appointment = appointment;
-            this.appointment.Rated = false;
             this.DataContext = this;
             InitalizeList();
             Survey.ItemsSource = questions;
@@ -66,6 +70,7 @@ namespace Sims_Hospital_Zdravo
                 questionsAndRates.Add(new QuestionAndRate(questionForSurvey.Id, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
             }
             surveyController.CreateDoctorSurvey(new DoctorSurvey(appointment, questionsAndRates));
+            appointmentPatientController.SetAppointmentRated(appointment);
             frame.Content = new HomePatient(frame);
         }
 

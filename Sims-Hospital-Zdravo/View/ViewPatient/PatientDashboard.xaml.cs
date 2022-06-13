@@ -6,6 +6,7 @@ using Sims_Hospital_Zdravo.View.Login;
 using Sims_Hospital_Zdravo.View.ViewPatient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,6 +124,12 @@ namespace Sims_Hospital_Zdravo
             notificationManager.Show(
                 new NotificationContent { Title = "Medicine notification", Message = notification.Content },
                 areaName: "WindowArea", expirationTime: TimeSpan.FromSeconds(30));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+                HospitalSurveyPage hospitalSurveyPage = new HospitalSurveyPage(Patient);
+                Patient.Content = hospitalSurveyPage;
         }
     }
 }

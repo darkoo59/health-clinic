@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
 
             app = App.Current as App;
-            patientController = app._appointmentPatientController;
+            patientController = new AppointmentPatientController(app._accountRepository);
             this.roomController = new RoomController();
             var startTime = DateTime.Parse("8:00");
             var endTime = DateTime.Parse("21:00");

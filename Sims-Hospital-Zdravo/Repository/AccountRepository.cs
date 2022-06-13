@@ -43,6 +43,16 @@ namespace Sims_Hospital_Zdravo.Repository
             LoadDataFromFile();
             foreach (var account in accounts.Where(account => account.Id == newAccount.Id))
             {
+                account.Address = newAccount.Address;
+                account.BirthDate = newAccount.BirthDate;
+                account.Blocked = newAccount.Blocked;
+                account.Cancels = newAccount.Cancels;
+                account.Email = newAccount.Email;
+                account.Jmbg = newAccount.Jmbg;
+                account.Name = newAccount.Name;
+                account.PhoneNumber = newAccount.PhoneNumber;
+                account.Role = newAccount.Role;
+                account.Surname = newAccount.Surname;
                 account.Password = newAccount.Password;
                 account.Username = newAccount.Username;
                 LoadDataToFile();

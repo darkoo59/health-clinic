@@ -22,13 +22,13 @@ namespace Sims_Hospital_Zdravo.View.ViewPatient
     /// </summary>
     public partial class NotesPage : Page
     {
-        private NotesController _notesController;
-        private Frame _frame;
+        private NotesController notesController;
+        private Frame frame;
         public NotesPage(Frame frame)
         {
             InitializeComponent();
-            _notesController = new NotesController();
-            _frame = frame;
+            notesController = new NotesController();
+            this.frame = frame;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -36,8 +36,8 @@ namespace Sims_Hospital_Zdravo.View.ViewPatient
             string[] time = Time.Text.Split(':');
             dateTime = dateTime.AddHours(Int32.Parse(time[0]));
             dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
-            _notesController.Create(new Notes(dateTime,Notes.Text));
-            _frame.Content = new TherapyPage(_frame);
+            notesController.Create(new Notes(dateTime,Notes.Text));
+            frame.Content = new TherapyPage(frame);
         }
     }
 }

@@ -143,5 +143,10 @@
             Modifiers="Control">
         </KeyBinding>
 
+        <KeyBinding
+            Command="cmd:Commands.FullScreenCommand"
+            Key="F12">
+        </KeyBinding>
+
     </Window.InputBindings>
 </Window>

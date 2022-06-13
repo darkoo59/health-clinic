@@ -1,0 +1,22 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Settings.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Settings"
+        xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
+        mc:Ignorable="d"
+        Title="SettingsWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <ComboBox Name="ComboTheme"  HorizontalAlignment="Left" Margin="170,80,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
+        <ComboBox Name="ComboLanguage"  HorizontalAlignment="Left" Margin="170,125,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
+        <Label Content="Theme :" HorizontalAlignment="Left" Margin="59,76,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
+        <Label Content="Language :" HorizontalAlignment="Left" Margin="59,120,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="140,450,0,0" VerticalAlignment="Top" Width="76" Height="35" Style="{StaticResource btn_style}"/>
+        <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />
+    </Grid>
+</Window>

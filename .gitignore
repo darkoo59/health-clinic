@@ -365,6 +365,14 @@ Sims-Hospital-Zdravo/Resources/anamnesis.txt
 Sims-Hospital-Zdravo/Resources/medicines.txt
 Sims-Hospital-Zdravo/Resources/notifications.txt
 Sims-Hospital-Zdravo/Resources/prescriptions.txt
+Sims-Hospital-Zdravo/Resources/accounts.txt
+Sims-Hospital-Zdravo/Resources/anamnesis.txt
+Sims-Hospital-Zdravo/Resources/doctor_surveys.txt
+Sims-Hospital-Zdravo/Resources/notes.txt
+Sims-Hospital-Zdravo/Resources/prescriptions.txt
+Sims-Hospital-Zdravo/Resources/questions_doctor.txt
+Sims-Hospital-Zdravo/Resources/questions_hospital.txt
+Sims-Hospital-Zdravo/Resources/requests.txt
 Sims-Hospital-Zdravo/.idea/
 
 Sims-Hospital-Zdravo/Resources/supplies_acquisition.txt
@@ -372,3 +380,4 @@ Sims-Hospital-Zdravo/Resources/hospital_surveys.txt
 Sims-Hospital-Zdravo/Resources/meetings.txt
 Sims-Hospital-Zdravo/Resources/meetings.txt
 Sims-Hospital-Zdravo/Resources/output.pdf
+Sims-Hospital-Zdravo/Resources/accounts.txt

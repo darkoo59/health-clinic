@@ -6,6 +6,7 @@
 
 using Model;
 using Service;
+using Sims_Hospital_Zdravo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +15,9 @@ namespace Controller
 {
     public class AppointmentPatientController
     {
-        public AppointmentPatientController(AppointmentPatientService appointmentPatientService)
+        public AppointmentPatientController(AccountRepository accountRepository)
         {
-            this.appointmentPatientService = appointmentPatientService;
+            this.appointmentPatientService = new AppointmentPatientService(accountRepository);
         }
 
         public void Create(Appointment appointment)
@@ -69,6 +70,10 @@ namespace Controller
         public void ValidateReshedule(Appointment appointment, TimeInterval timeInterval)
         {
             appointmentPatientService.ValidateReschedule(appointment, timeInterval);
+        }
+        public void SetAppointmentRated(Appointment appointment)
+        {
+            appointmentPatientService.SetAppointmentRated(appointment);
         }
 
         public Service.AppointmentPatientService appointmentPatientService;

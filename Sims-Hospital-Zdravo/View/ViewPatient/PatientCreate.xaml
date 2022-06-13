@@ -41,9 +41,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </Page.Resources>
     <Grid HorizontalAlignment="Left">
+        <Button Width="75" FontSize="20" Height="31" Click="Button_Click_1" Margin="710,24,-318,395">Demo</Button>
         <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Margin="120,14,97,399" >Doctor:</TextBlock>
         <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Margin="120,74,97,341">Date:</TextBlock>
         <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" FontSize="18" Width="250" Height="31" Margin="120,144,97,273" >Time:</TextBlock>

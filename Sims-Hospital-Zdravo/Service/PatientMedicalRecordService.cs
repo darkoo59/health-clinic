@@ -40,6 +40,10 @@ namespace Service
             }
             return null;
         }
+        public Patient FindPatientById(int id) 
+        {
+            return _patientRepository.FindPatientById(id);
+        }
 
     }
 }

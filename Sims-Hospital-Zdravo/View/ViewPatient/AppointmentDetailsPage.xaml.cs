@@ -24,16 +24,14 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class AppointmentDetailsPage : Page
     {
-        Appointment appointment;
-        App app;
-        MedicalRecordController medicalRecordController;
-        Anamnesis anamnesis;
+        private Appointment appointment;
+        private MedicalRecordController medicalRecordController;
+        private Anamnesis anamnesis;
         public AppointmentDetailsPage(Appointment appointment)
         {
             this.appointment = appointment;
-            app = Application.Current as App;
             InitializeComponent();
-            medicalRecordController = app._recordController;
+            medicalRecordController = new MedicalRecordController();
             anamnesis = medicalRecordController.GetAnamnesis(appointment);
             Appointment.Content = new AnamnesisPage(anamnesis);
         }

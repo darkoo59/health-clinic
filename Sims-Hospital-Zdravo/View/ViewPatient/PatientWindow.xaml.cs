@@ -34,11 +34,11 @@ namespace Sims_Hospital_Zdravo
             this.frame = frame;
             InitializeComponent();
             this.accountController = app._accountController;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.DataContext = this;
 
             McDataGrid.AutoGenerateColumns = false;
-            Binding date = new Binding("_Time.Start");
+            Binding date = new Binding("Time.Start");
             date.StringFormat = "{0:dd/MM/yyyy}";
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
@@ -46,14 +46,14 @@ namespace Sims_Hospital_Zdravo
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
-            Binding time = new Binding("_Time.Start");
+            Binding time = new Binding("Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
             McDataGrid.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
-            doctor.Bindings.Add(new Binding("_Doctor._Name"));
-            doctor.Bindings.Add(new Binding("_Doctor._Surname"));
+            doctor.Bindings.Add(new Binding("Doctor.Name"));
+            doctor.Bindings.Add(new Binding("Doctor.Surname"));
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
@@ -61,9 +61,9 @@ namespace Sims_Hospital_Zdravo
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
-            data_column.Binding = new Binding("_Room._Id");
+            data_column.Binding = new Binding("Room.Id");
             McDataGrid.Columns.Add(data_column);
-
+            McDataGrid.RowHeaderWidth = 0;
             McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(accountController.GetLoggedAccount().Id);
             McDataGrid.Items.Refresh();
         }

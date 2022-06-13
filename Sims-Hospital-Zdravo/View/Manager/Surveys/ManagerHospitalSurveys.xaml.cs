@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
@@ -28,6 +29,8 @@ namespace Sims_Hospital_Zdravo.View.Manager.Surveys
             surveyController = app._surveyController;
             InitializeComponent();
             DataContext = new ManagerHospitalSurveyViewModel();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }

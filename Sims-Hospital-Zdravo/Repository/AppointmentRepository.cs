@@ -230,6 +230,19 @@ namespace Repository
 
             return appointmentsForDate;
         }
+        public void SetAppointmentRated(Appointment appointment)
+        {
+            LoadDataFromFile();
+            foreach (Appointment app in appointments)
+            {
+                if (app.Id == appointment.Id)
+                {
+                    app.Rated = true;
+                    LoadDataToFile();
+                    return;
+                }
+            }
+        }
         
         public int GenerateId()
         {

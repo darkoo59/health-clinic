@@ -136,7 +136,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-            </DataGrid.Columns>        
+            </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Page>

@@ -9,6 +9,14 @@
       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
       Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
       Margin="0">
+    <Page.InputBindings>
+        <KeyBinding
+            Command="commands:Commands.NavigateToPdfViewerCommand"
+            CommandParameter="{Binding SelectedItem, ElementName=ChosenDoctor}"
+            Key="P"
+            Modifiers="Control">
+        </KeyBinding>
+    </Page.InputBindings>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -43,7 +51,7 @@
                 Width="150"
                 FocusVisualStyle="{DynamicResource MyFocusVisual}"
                 DockPanel.Dock="Right"
-                Command="commands:Commands.CreatePdfCommand"
+                Command="commands:Commands.NavigateToPdfViewerCommand"
                 CommandParameter="{Binding SelectedItem, ElementName=ChosenDoctor}">
                 Print Surveys
             </Button>

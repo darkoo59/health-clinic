@@ -1,0 +1,1 @@
+[{"Id":1,"Text":"Personnel are polite."},{"Id":2,"Text":"Personnel are professional."},{"Id":3,"Text":"Hospital is clean."},{"Id":4,"Text":"Application is good and easy to use."},{"Id":5,"Text":"Waiting room is comfortable and peaceful."}]

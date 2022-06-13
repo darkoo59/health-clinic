@@ -27,7 +27,11 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
                 RetrieveMainFrame();
             }
 
-            if (!IsMainWindowPage(ManagerContent.Source.OriginalString) && ManagerContent.CanGoBack)
+            if (ManagerContent.Source == null && ManagerContent.Content != null)
+            {
+                ManagerContent.GoBack();
+            }
+            else if (!IsMainWindowPage(ManagerContent.Source.OriginalString) && ManagerContent.CanGoBack)
             {
                 ManagerContent.GoBack();
             }

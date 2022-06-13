@@ -15,9 +15,9 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         public List<Medicine> Medicines { get; set; }
 
-        public ICommand InsertMedicine_Command => new InsertMedicine_Command(medicineController);
+        public ICommand InsertMedicine_Command => new InsertMedicine_Command();
 
-        public ICommand UpdateMedicine_Command => new UpdateMedicine_Command(medicineController);
+        public ICommand UpdateMedicine_Command => new UpdateMedicine_Command();
 
         private object selectedItem;
         private MedicineController medicineController;
@@ -40,7 +40,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         private MedicineController medicineController;
 
-        public InsertMedicine_Command(MedicineController medicineController)
+        public InsertMedicine_Command()
         {
             this.medicineController = new MedicineController();
         }
@@ -73,7 +73,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
         private MedicineController medicineController;
 
-        public UpdateMedicine_Command(MedicineController medicineController)
+        public UpdateMedicine_Command()
         {
             medicineController = new MedicineController();
         }
@@ -109,7 +109,7 @@ namespace Sims_Hospital_Zdravo.ViewModel
 
                 if (med != null)
                 {
-                    medicineController.ResubmitMedicineWithNotifyingDoctor(medicine, notification);
+                    medicineController.ResubmitMedicineWithNotifyingDoctor(med, notification);
                     MessageBox.Show("Success");
                 }
             }

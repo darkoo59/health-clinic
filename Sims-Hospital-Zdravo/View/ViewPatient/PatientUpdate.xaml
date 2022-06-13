@@ -41,7 +41,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Center" Margin="94,0,10,0" Width="688">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -52,14 +52,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-30,76,30,-69">Date:</TextBlock>
-        <DatePicker Grid.Column="1" Grid.Row="4" Height="25" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="datePicker" Margin="0,82,0,-62"/>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-14,95,47,-72">Date:</TextBlock>
+        <DatePicker Grid.Row="4" FontSize="20" SelectedDateChanged="DatePicker_SelectedDateChanged" Name ="DatePicker" Margin="0,96,2,-71" Grid.Column="1">
+        </DatePicker>
         <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-30,160,30,-151">Time:</TextBlock>
         <TextBox FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" x:Name="Time" Grid.Column="1" Grid.Row="4" Margin="0,160,0,-151"></TextBox>
-        <Button Width="250" FontSize="20" Height="31" Grid.Row="4" Grid.Column="0" Click="Button_Click" Margin="-30,236,30,-233">Submit</Button>
+        <Button Width="250" FontSize="20" Height="31" Grid.Row="4" Grid.Column="0" Click="Button_Click" Margin="0,245,31,-224">Submit</Button>
         <Button Width="250" FontSize="20" Height="31" Grid.Row="4" Grid.Column="1" Click="Button_Click_1" Margin="0,236,0,-233">Cancel</Button>
-        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-15,6,45,5">Doctor:</TextBlock>
-        <TextBlock Name ="Doctor" FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="1" Grid.Row="4" Margin="0,6,0,5"/>
+        <TextBlock FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="0" Grid.Row="4" Margin="-14,27,46,-5">Doctor:</TextBlock>
+        <TextBlock Name ="Doctor" FontFamily="#Segoe UI" FontWeight="DemiBold" Width="250" FontSize="18" Height="31" Grid.Column="1" Grid.Row="4" Margin="0,28,1,-3"/>
+        <Button Width="75" FontSize="20" Height="31" Grid.Row="4" Grid.Column="2" Click="Button_Click_2" Margin="55,10,-52,3">Demo</Button>
+
     </Grid>
 </Page>

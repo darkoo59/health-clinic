@@ -20,6 +20,9 @@ namespace Controller
         {
             return _patMedRecService.FindMedicalRecordByPatient(patient);
         }
-
+        public Patient FindPatientById(int id) 
+        {
+            return _patMedRecService.FindPatientById(id);
+        }
     }
 }

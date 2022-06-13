@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View.Manager.Surveys;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
+using Sims_Hospital_Zdravo.ViewModel.Commands;
 
 namespace Sims_Hospital_Zdravo.Utils
 {
@@ -34,7 +35,10 @@ namespace Sims_Hospital_Zdravo.Utils
                 DrawAllGrids(document, statistics);
                 FileStream stream = CreateAndSaveDocument(document);
                 CloseStreams(stream, document);
-                Process.Start(@"..\..\Resources\output.pdf");
+                PdfViewer viewer = new PdfViewer();
+                NavigateWithParameterCommand navigateWithParameterCommand = new NavigateWithParameterCommand(viewer);
+                navigateWithParameterCommand.Execute(null);
+                // Process.Start(@"..\..\Resources\output.pdf");
             }
             catch (Exception ex)
             {
@@ -60,6 +64,7 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             PdfPage page = document.Pages.Add();
             PdfLayoutResult result = CreateFirstGrid(page, (HospitalSurvey)statistics[0]);
+            result.Page.Graphics.DrawString("Hospital Surveys", new PdfStandardFont(PdfFontFamily.Helvetica, 10), PdfBrushes.Black, new PointF(230, 0));
             int counter = 1;
             result = statistics.Aggregate(result, (current, statistic) => DrawNextGrid(current.Page, counter++, statistic));
         }
@@ -69,14 +74,14 @@ namespace Sims_Hospital_Zdravo.Utils
             PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
             layoutFormat.Layout = PdfLayoutType.Paginate;
             PdfGrid firstGrid = CreateGridFromSurvey(survey);
-            PdfLayoutResult result = firstGrid.Draw(page, new PointF(10, 10), layoutFormat);
+            PdfLayoutResult result = firstGrid.Draw(page, new PointF(10, 30), layoutFormat);
             return result;
         }
 
         private PdfLayoutResult DrawNextGrid(PdfPage page, int counter, ISurveyStatistic statistic)
         {
             PdfGrid grid = CreateGridFromSurvey((HospitalSurvey)statistic);
-            return grid.Draw(page, new PointF(10, 10 + counter * 90));
+            return grid.Draw(page, new PointF(10, 30 + counter * 90));
         }
 
         private PdfGrid CreateGridFromSurvey(HospitalSurvey hospitalSurvey)

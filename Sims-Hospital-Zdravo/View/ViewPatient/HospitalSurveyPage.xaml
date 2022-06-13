@@ -129,7 +129,7 @@
                 <DataGridTemplateColumn Width="40" Header="5">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <RadioButton GroupName="{Binding Text}" IsChecked="{Binding Path=Five, UpdateSourceTrigger=PropertyChanged}">
+                            <RadioButton x:Name="Radio" GroupName="{Binding Text}" IsChecked="{Binding Path=Five, UpdateSourceTrigger=PropertyChanged}">
                                 <RadioButton.LayoutTransform>
                                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                                 </RadioButton.LayoutTransform>

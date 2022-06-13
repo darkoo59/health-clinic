@@ -26,6 +26,8 @@ namespace Sims_Hospital_Zdravo
     public partial class InsertRecordWindow : Window
     {
         private MedicalRecordController _medicalRecordController;
+        public MedicalRecord MedicalRecord { get; set; }
+        public Patient Patient { get; set; }
         public InsertRecordWindow()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                this.Patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 List<String> medicalAllergensList = new List<String>();
                 foreach (string str in AllergensList.SelectedItems)
@@ -58,48 +60,13 @@ namespace Sims_Hospital_Zdravo
                 Allergens allergens = new Allergens();
                 allergens.CommonAllergens = allergensItems;
                 allergens.MedicalAllergens = medicalAllergensList;
-                MedicalRecord medicalRecord = new MedicalRecord(patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
-                _medicalRecordController.Create(medicalRecord, patient);
-                Close();
+                this.MedicalRecord = new MedicalRecord(Patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (TgButton.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_profile.Visibility = Visibility.Collapsed;
-                tt_about.Visibility = Visibility.Collapsed;
-                tt_meetings.Visibility = Visibility.Collapsed;
-                tt_accounts.Visibility = Visibility.Collapsed;
-                tt_equipment.Visibility = Visibility.Collapsed;
-                tt_appointments.Visibility = Visibility.Collapsed;
-                tt_contacts.Visibility = Visibility.Collapsed;
-                tt_medical_records.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_sign_out.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_profile.Visibility = Visibility.Visible;
-                tt_about.Visibility = Visibility.Visible;
-                tt_meetings.Visibility = Visibility.Visible;
-                tt_accounts.Visibility = Visibility.Visible;
-                tt_equipment.Visibility = Visibility.Visible;
-                tt_appointments.Visibility = Visibility.Visible;
-                tt_contacts.Visibility = Visibility.Visible;
-                tt_medical_records.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_sign_out.Visibility = Visibility.Visible;
-            }
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
@@ -111,32 +78,5 @@ namespace Sims_Hospital_Zdravo
             this.Close();
         }
 
-        private void Home_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryHome window = new SecretaryHome();
-            window.Show();
-            this.Close();
-        }
-
-        private void Appointment_Click(object sender, MouseButtonEventArgs e)
-        {
-            ExaminationWindow window = new ExaminationWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryWindow window = new SecretaryWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void Equipment_Click(object sender, MouseButtonEventArgs e)
-        {
-            SuppliesHome window = new SuppliesHome();
-            window.Show();
-            this.Close();
-        }
     }
 }

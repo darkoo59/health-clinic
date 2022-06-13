@@ -26,19 +26,15 @@ namespace Sims_Hospital_Zdravo
     public partial class UpdateRecordWindow : Window
     {
         private MedicalRecordController _medicalRecordController;
-        private MedicalRecord medicalRecord;
-        private Patient patient;
 
-        public UpdateRecordWindow(Patient patient, MedicalRecord record)
+        public UpdateRecordWindow()
         {
             InitializeComponent();
             _medicalRecordController = new MedicalRecordController();
-            this.medicalRecord = record;
-            this.patient = patient;
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            ComboGender.SelectedIndex = (int)record.Gender;
+            /*ComboGender.SelectedIndex = (int)record.Gender;
             ComboBlood.SelectedIndex = (int)record.BloodType;
             ComboMarital.SelectedIndex = (int)record.MaritalStatus;
             foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
@@ -56,22 +52,9 @@ namespace Sims_Hospital_Zdravo
             TxtBirth.Text = patient.BirthDate.ToString("yyyy-MM-dd");
             TxtEmail.Text = patient.Email;
             TxtJmbg.Text = patient.Jmbg;
-            TxtPhone.Text = patient.PhoneNumber;
-            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
-            {
-                if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
-                {
-                    ListOtherAllergens.Items.Add(str);
-                }
-            }
-
-            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
-            {
-                if (!medicalRecord.PatientAllergens.MedicalAllergens.Contains(str))
-                {
-                    ListOtherMedicalAllergens.Items.Add(str);
-                }
-            }
+            TxtPhone.Text = patient.PhoneNumber;*/
+            //ListPatientAllergens.Items.Add(str);
+            this.Loaded += new RoutedEventHandler(UpdateRecordWindow_Loaded);
 
             //Images listeners
 
@@ -96,12 +79,46 @@ namespace Sims_Hospital_Zdravo
             };
         }
 
+        void UpdateRecordWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Check DataContext Property here - Value is not null
+            MedicalRecord record = (MedicalRecord)DataContext;
+
+            foreach (String str in record.PatientAllergens.CommonAllergens)
+            {
+                ListPatientAllergens.Items.Add(str);
+            }
+
+            foreach (String str in record.PatientAllergens.MedicalAllergens)
+            {
+                ListPatientMedicalAllergens.Items.Add(str);
+            }
+
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
+            {
+                if (!ListPatientAllergens.Items.OfType<String>().ToList().Contains(str))
+                {
+                    ListOtherAllergens.Items.Add(str);
+                }
+            }
+
+            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
+            {
+                if (!ListPatientMedicalAllergens.Items.OfType<String>().ToList().Contains(str))
+                {
+                    ListOtherMedicalAllergens.Items.Add(str);
+                }
+            }
+        }
+
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                MedicalRecord record = (MedicalRecord)DataContext;
                 Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                patientUpdated.Id = patient.Id;
+                patientUpdated.Id = record.Patient.Id;
+                //patientUpdated.Id = patient.Id;
                 List<String> allergens = new List<String>();
                 List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
@@ -118,8 +135,9 @@ namespace Sims_Hospital_Zdravo
                 updatedAllergens.MedicalAllergens = medicalAllergens;
                 MedicalRecord medicalRecordUpdated = new MedicalRecord(patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
+                medicalRecordUpdated.Id = record.Id;
                 _medicalRecordController.Update(medicalRecordUpdated, patientUpdated);
-                Close();
+                System.Windows.MessageBox.Show("Medical record successfully updated!","Successfully updated!",MessageBoxButton.OK);
             }
             catch (Exception ex)
             {
@@ -186,39 +204,6 @@ namespace Sims_Hospital_Zdravo
                     ListPatientMedicalAllergens.Items.Add(str);
             }
         }
-
-        private void ListViewItem_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (TgButton.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_profile.Visibility = Visibility.Collapsed;
-                tt_about.Visibility = Visibility.Collapsed;
-                tt_meetings.Visibility = Visibility.Collapsed;
-                tt_accounts.Visibility = Visibility.Collapsed;
-                tt_equipment.Visibility = Visibility.Collapsed;
-                tt_appointments.Visibility = Visibility.Collapsed;
-                tt_contacts.Visibility = Visibility.Collapsed;
-                tt_medical_records.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_sign_out.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_profile.Visibility = Visibility.Visible;
-                tt_about.Visibility = Visibility.Visible;
-                tt_meetings.Visibility = Visibility.Visible;
-                tt_accounts.Visibility = Visibility.Visible;
-                tt_equipment.Visibility = Visibility.Visible;
-                tt_appointments.Visibility = Visibility.Visible;
-                tt_contacts.Visibility = Visibility.Visible;
-                tt_medical_records.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_sign_out.Visibility = Visibility.Visible;
-            }
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && this.IsFocused == true)
@@ -227,34 +212,6 @@ namespace Sims_Hospital_Zdravo
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
-        }
-
-        private void Home_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryHome window = new SecretaryHome();
-            window.Show();
-            this.Close();
-        }
-
-        private void Appointment_Click(object sender, MouseButtonEventArgs e)
-        {
-            ExaminationWindow window = new ExaminationWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void MedicalRecord_Click(object sender, MouseButtonEventArgs e)
-        {
-            SecretaryWindow window = new SecretaryWindow();
-            window.Show();
-            this.Close();
-        }
-        
-        private void Equipment_Click(object sender, MouseButtonEventArgs e)
-        {
-            SuppliesHome window = new SuppliesHome();
-            window.Show();
             this.Close();
         }
     }

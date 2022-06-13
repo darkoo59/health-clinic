@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Manager.Medicines;
@@ -18,6 +19,8 @@ namespace Sims_Hospital_Zdravo.View.Manager
         {
             this.DataContext = new ManagerMedicinesViewModel();
             InitializeComponent();
+            Loaded += (sender, e) =>
+                MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }

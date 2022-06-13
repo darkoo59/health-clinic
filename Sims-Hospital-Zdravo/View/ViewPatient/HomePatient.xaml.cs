@@ -23,17 +23,17 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class HomePatient : Page
     {
-        public Frame frame;
-        public AppointmentPatientController appointmentPatientController;
-        public AccountController accountController;
-        App app;
+        private Frame frame;
+        private AppointmentPatientController appointmentPatientController;
+        private AccountController accountController;
+        private App app;
         public HomePatient(Frame frame)
         {
             InitializeComponent();
-            app = Application.Current as App;
+            this.app = Application.Current as App;
             this.frame = frame;
             this.accountController = app._accountController;
-            this.appointmentPatientController = app._appointmentPatientController;
+            this.appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.DataContext = this;
 
             Apps.AutoGenerateColumns = false;
@@ -51,8 +51,8 @@ namespace Sims_Hospital_Zdravo
             Apps.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
-            doctor.Bindings.Add(new Binding("Doctor._Name"));
-            doctor.Bindings.Add(new Binding("Doctor._Surname"));
+            doctor.Bindings.Add(new Binding("Doctor.Name"));
+            doctor.Bindings.Add(new Binding("Doctor.Surname"));
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
@@ -62,6 +62,7 @@ namespace Sims_Hospital_Zdravo
             data_check_box.Header = "Rated";
             data_check_box.Binding = new Binding("Rated");
             Apps.Columns.Add(data_check_box);
+            Apps.RowHeaderWidth = 0;
             Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(accountController.GetLoggedAccount().Id);
         }
 

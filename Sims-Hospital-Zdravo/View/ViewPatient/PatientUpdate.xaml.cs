@@ -1,5 +1,7 @@
 ﻿using Controller;
 using Model;
+using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +10,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,22 +32,24 @@ namespace Sims_Hospital_Zdravo
         string pattern = @"\d?\d:\d\d";
         private DateTime dateTime;
         private Frame patient;
+        private Timer timer;
         App app;
         public PatientUpdate(Frame frame, Appointment appointment)
         {
             this.patient = frame;
             InitializeComponent();
             app = Application.Current as App;
+            appointmentPatientController = new AppointmentPatientController(app._accountRepository);
             this.DataContext = this;
             this.appointment = appointment;
             dateTime = appointment.Time.Start;
             if (appointment.Time.Start.Hour < 10)
             {
-                Time.Text ="0" + appointment.Time.Start.Hour;
+                Time.Text = "0" + appointment.Time.Start.Hour;
             }
             else
             {
-                Time.Text ="" +appointment.Time.Start.Hour;
+                Time.Text = "" + appointment.Time.Start.Hour;
             }
             Time.Text = Time.Text + ":";
             if (appointment.Time.Start.Minute < 10)
@@ -55,11 +60,12 @@ namespace Sims_Hospital_Zdravo
             {
                 Time.Text = Time.Text + appointment.Time.Start.Minute;
             }
-            datePicker.SelectedDate = appointment.Time.Start;
+            DatePicker.SelectedDate = appointment.Time.Start;
+            Doctor.Text = appointment.Doctor.Name + appointment.Doctor.Surname;
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            dateTime = datePicker.SelectedDate.Value;
+            dateTime = DatePicker.SelectedDate.Value;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -88,13 +94,39 @@ namespace Sims_Hospital_Zdravo
                 MessageBox.Show(ex.Message);
                 if (ex.Message.Equals("You are blocked"))
                 {
-                    
+
                 }
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             patient.Content = new PatientWindow(patient);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            List<IDemoCommand> commands = new List<IDemoCommand>
+            {
+                new SelectDateCommand(DatePicker,new DateTime(2022,6,11)),
+                new FillTextBoxCommand(Time,"10:30"),
+            };
+            timer = new Timer(1000);
+            timer.Elapsed += (Object source, ElapsedEventArgs e1) => TimerCallback(commands);
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+        private void TimerCallback(List<IDemoCommand> commands)
+        {
+            if (commands.Count > 0)
+            {
+                commands[0].Execute();
+                commands.RemoveAt(0);
+            }
+            else
+            {
+                timer.Stop();
+                App.Current.Dispatcher.Invoke((Action)delegate { patient.Content = new PatientWindow(patient); });
+            }
         }
     }
 }

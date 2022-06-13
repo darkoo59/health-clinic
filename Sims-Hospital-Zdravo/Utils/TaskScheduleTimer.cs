@@ -39,7 +39,7 @@ namespace Sims_Hospital_Zdravo.Utils
             _notesController = new NotesController();
             _relocationController = relocationController;
             _renovationController = renovationController;
-            _medicalRecordController = medicalRecordController;
+            _medicalRecordController = new MedicalRecordController();
             _notificationController = new NotificationController();
             _doctorAppointmentController = doctorAppointmentController;
             _suppliesController = suppliesController;
@@ -71,7 +71,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();
-            //if (_accountController.GetLoggedAccount() != null) CheckNotesNotification();
+            //CheckNotesNotification();
             //AppointmentDone();
         }
         private void CheckNotesNotification()
@@ -195,7 +195,6 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (Notification notification in meetingNotifications)
             {
-                Console.WriteLine("lalalalallallalal");
                 Notify(notification);
             }
 
@@ -256,7 +255,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private MedicalRecord FindMedicalRecordByAccount()
         {
-            foreach (MedicalRecord medicalRecord in _medicalRecordController.ReadAll())
+            foreach (MedicalRecord medicalRecord in _medicalRecordController.FindAll())
             {
                 if (_accountController.GetLoggedAccount() != null)
                 {
