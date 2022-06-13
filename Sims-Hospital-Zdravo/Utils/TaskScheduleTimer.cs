@@ -255,7 +255,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
         private MedicalRecord FindMedicalRecordByAccount()
         {
-            foreach (MedicalRecord medicalRecord in _medicalRecordController.ReadAll())
+            foreach (MedicalRecord medicalRecord in _medicalRecordController.FindAll())
             {
                 if (_accountController.GetLoggedAccount() != null)
                 {

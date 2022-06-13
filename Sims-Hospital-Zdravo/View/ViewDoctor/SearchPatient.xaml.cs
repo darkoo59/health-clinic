@@ -36,7 +36,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.anamnesisController = new AnamnesisController();
             this.doctorAppointmentController = doctorAppointmentController;
              medicalRecordController = new MedicalRecordController();
-            MedicalRecordDataGrid.ItemsSource = medicalRecordController.ReadAll();
+            MedicalRecordDataGrid.ItemsSource = medicalRecordController.FindAll();
             MedicalRecordDataGrid.AutoGenerateColumns = false;
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Patient Name:";

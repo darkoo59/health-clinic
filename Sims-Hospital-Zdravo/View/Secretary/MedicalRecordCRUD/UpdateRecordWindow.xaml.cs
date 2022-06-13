@@ -26,19 +26,15 @@ namespace Sims_Hospital_Zdravo
     public partial class UpdateRecordWindow : Window
     {
         private MedicalRecordController _medicalRecordController;
-        private MedicalRecord medicalRecord;
-        private Patient patient;
 
-        public UpdateRecordWindow(Patient patient, MedicalRecord record)
+        public UpdateRecordWindow()
         {
             InitializeComponent();
             _medicalRecordController = new MedicalRecordController();
-            this.medicalRecord = record;
-            this.patient = patient;
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            ComboGender.SelectedIndex = (int)record.Gender;
+            /*ComboGender.SelectedIndex = (int)record.Gender;
             ComboBlood.SelectedIndex = (int)record.BloodType;
             ComboMarital.SelectedIndex = (int)record.MaritalStatus;
             foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
@@ -56,22 +52,9 @@ namespace Sims_Hospital_Zdravo
             TxtBirth.Text = patient.BirthDate.ToString("yyyy-MM-dd");
             TxtEmail.Text = patient.Email;
             TxtJmbg.Text = patient.Jmbg;
-            TxtPhone.Text = patient.PhoneNumber;
-            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
-            {
-                if (!medicalRecord.PatientAllergens.CommonAllergens.Contains(str))
-                {
-                    ListOtherAllergens.Items.Add(str);
-                }
-            }
-
-            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
-            {
-                if (!medicalRecord.PatientAllergens.MedicalAllergens.Contains(str))
-                {
-                    ListOtherMedicalAllergens.Items.Add(str);
-                }
-            }
+            TxtPhone.Text = patient.PhoneNumber;*/
+            //ListPatientAllergens.Items.Add(str);
+            this.Loaded += new RoutedEventHandler(UpdateRecordWindow_Loaded);
 
             //Images listeners
 
@@ -96,12 +79,46 @@ namespace Sims_Hospital_Zdravo
             };
         }
 
+        void UpdateRecordWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Check DataContext Property here - Value is not null
+            MedicalRecord record = (MedicalRecord)DataContext;
+
+            foreach (String str in record.PatientAllergens.CommonAllergens)
+            {
+                ListPatientAllergens.Items.Add(str);
+            }
+
+            foreach (String str in record.PatientAllergens.MedicalAllergens)
+            {
+                ListPatientMedicalAllergens.Items.Add(str);
+            }
+
+            foreach (String str in _medicalRecordController.ReadAllCommonAllergens())
+            {
+                if (!ListPatientAllergens.Items.OfType<String>().ToList().Contains(str))
+                {
+                    ListOtherAllergens.Items.Add(str);
+                }
+            }
+
+            foreach (String str in _medicalRecordController.ReadAllMedicalAllergens())
+            {
+                if (!ListPatientMedicalAllergens.Items.OfType<String>().ToList().Contains(str))
+                {
+                    ListOtherMedicalAllergens.Items.Add(str);
+                }
+            }
+        }
+
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                MedicalRecord record = (MedicalRecord)DataContext;
                 Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
-                patientUpdated.Id = patient.Id;
+                patientUpdated.Id = record.Patient.Id;
+                //patientUpdated.Id = patient.Id;
                 List<String> allergens = new List<String>();
                 List<String> medicalAllergens = new List<String>();
                 foreach (String str in ListPatientAllergens.Items)
@@ -118,8 +135,9 @@ namespace Sims_Hospital_Zdravo
                 updatedAllergens.MedicalAllergens = medicalAllergens;
                 MedicalRecord medicalRecordUpdated = new MedicalRecord(patientUpdated, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue,
                     updatedAllergens);
+                medicalRecordUpdated.Id = record.Id;
                 _medicalRecordController.Update(medicalRecordUpdated, patientUpdated);
-                Close();
+                System.Windows.MessageBox.Show("Medical record successfully updated!","Successfully updated!",MessageBoxButton.OK);
             }
             catch (Exception ex)
             {

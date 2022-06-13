@@ -2,6 +2,7 @@
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
+using Sims_Hospital_Zdravo.ViewModel.Secretary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
     {
         
         private RequestForFreeDaysController _freeDaysController;
+        private FreeDaysViewModel viewModel;
         public FreeDaysWindow()
         {
             InitializeComponent();
             this._freeDaysController = new RequestForFreeDaysController();
-            this.DataContext = this;
+            viewModel = new FreeDaysViewModel();
+            this.DataContext = viewModel;
             UpdateGridView();
             ContentGrid.ItemsSource = this._freeDaysController.FindAll();
         }
@@ -66,10 +69,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             {
                 try
                 {
-                    FreeDaysRequest freeDaysRequest = (FreeDaysRequest)ContentGrid.SelectedValue;
-                    EditRequestWindow window = new EditRequestWindow(freeDaysRequest);
-                    window.Show();
-
+                    viewModel.UpdateRequestCommand.Execute(ContentGrid.SelectedItem);
                 }
                 catch (Exception ex)
                 {

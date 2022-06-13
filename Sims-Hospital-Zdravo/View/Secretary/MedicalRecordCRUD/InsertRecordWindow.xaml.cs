@@ -26,6 +26,8 @@ namespace Sims_Hospital_Zdravo
     public partial class InsertRecordWindow : Window
     {
         private MedicalRecordController _medicalRecordController;
+        public MedicalRecord MedicalRecord { get; set; }
+        public Patient Patient { get; set; }
         public InsertRecordWindow()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
-                Patient patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
+                this.Patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 List<String> medicalAllergensList = new List<String>();
                 foreach (string str in AllergensList.SelectedItems)
@@ -58,9 +60,7 @@ namespace Sims_Hospital_Zdravo
                 Allergens allergens = new Allergens();
                 allergens.CommonAllergens = allergensItems;
                 allergens.MedicalAllergens = medicalAllergensList;
-                MedicalRecord medicalRecord = new MedicalRecord(patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
-                _medicalRecordController.Create(medicalRecord, patient);
-                Close();
+                this.MedicalRecord = new MedicalRecord(Patient, (GenderType)ComboGender.SelectedValue, (BloodType)ComboBlood.SelectedValue, (MaritalType)ComboMarital.SelectedValue, allergens);
             }
             catch (Exception ex)
             {

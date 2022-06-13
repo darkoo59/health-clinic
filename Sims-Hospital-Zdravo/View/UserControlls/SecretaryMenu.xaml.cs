@@ -1,9 +1,11 @@
 ﻿using Sims_Hospital_Zdravo.View.Login;
 using Sims_Hospital_Zdravo.View.Secretary.About;
+using Sims_Hospital_Zdravo.View.Secretary.Contact;
 using Sims_Hospital_Zdravo.View.Secretary.Examination;
 using Sims_Hospital_Zdravo.View.Secretary.FreeDays;
 using Sims_Hospital_Zdravo.View.Secretary.Meetings;
 using Sims_Hospital_Zdravo.View.Secretary.Profile;
+using Sims_Hospital_Zdravo.View.Secretary.Settings;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using System;
 using System.Collections.Generic;
@@ -135,6 +137,22 @@ namespace Sims_Hospital_Zdravo.View.UserControlls
         {
             var myWindow = Window.GetWindow(this);
             AboutWindow window = new AboutWindow();
+            window.Show();
+            myWindow.Close();
+        }
+
+        private void Contact_Click(object sender, MouseButtonEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            ContactWindow window = new ContactWindow();
+            window.Show();
+            myWindow.Close();
+        }
+
+        private void Settings_Click(object sender, MouseButtonEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            SettingsWindow window = new SettingsWindow();
             window.Show();
             myWindow.Close();
         }

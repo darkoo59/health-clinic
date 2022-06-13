@@ -43,7 +43,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             app = App.Current as App;
             this.docController = doctorAppointmentController;
             this.DataContext = new MyAppointmentsViewModel(doctorId,docController);
-            //DoctorAppointments.ItemsSource = doctorAppointmentController.ReadAll(2);
+            //DoctorAppointments.ItemsSource = doctorAppointmentController.FindAll(2);
              
             this.doctorId = id;
 

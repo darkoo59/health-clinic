@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sims_Hospital_Zdravo.View.Secretary.Contact
+namespace Sims_Hospital_Zdravo.View.Secretary.Settings
 {
     /// <summary>
-    /// Interaction logic for ContactWindow.xaml
+    /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class ContactWindow : Window
+    public partial class SettingsWindow : Window
     {
-        public ContactWindow()
+        public SettingsWindow()
         {
             InitializeComponent();
+            ComboTheme.Items.Add("Light");
+            ComboTheme.Items.Add("Dark");
+
+            ComboLanguage.Items.Add("English");
+            ComboLanguage.Items.Add("Serbian");
         }
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

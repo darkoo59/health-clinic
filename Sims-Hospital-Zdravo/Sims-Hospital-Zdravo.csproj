@@ -250,6 +250,8 @@
     <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
     <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel\TherapyViewModel.cs" />
+    <Compile Include="ViewModel\Secretary\FreeDaysViewModel.cs" />
+    <Compile Include="ViewModel\Secretary\MedicalRecordViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
       <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
     </Compile>
@@ -273,6 +275,9 @@
     </Compile>
     <Compile Include="View\Secretary\Profile\SecretaryProfileWindow.xaml.cs">
       <DependentUpon>SecretaryProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Settings\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
       <DependentUpon>SecretaryMenu.xaml</DependentUpon>
@@ -606,6 +611,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Secretary\Profile\SecretaryProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Settings\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1122,7 +1131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\img\Doctor\" />
-    <Folder Include="View\Secretary\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls">
