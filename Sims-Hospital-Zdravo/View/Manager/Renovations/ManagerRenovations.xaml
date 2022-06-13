@@ -55,14 +55,14 @@
                     Command="cmd:Commands.NavigateToCommand"
                     CommandParameter="Renovations/ManagerRenovationAdvanced.xaml"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                <AccessText>_Advanced</AccessText>
+                Advanced
             </Button>
             <Button Grid.Column="5" Width="100"
                     Command="cmd:Commands.NavigateToCommand"
                     CommandParameter="Renovations/ManagerRenovationBasic.xaml"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}"
                     HorizontalAlignment="Right" Height="30">
-                <AccessText>_Basic</AccessText>
+                Basic
             </Button>
 
 
