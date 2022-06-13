@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.ViewModel;
+using Sims_Hospital_Zdravo.ViewModel.dd;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
