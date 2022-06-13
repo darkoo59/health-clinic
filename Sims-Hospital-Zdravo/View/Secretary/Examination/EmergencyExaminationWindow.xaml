@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Title="EmergencyExaminationWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -15,13 +16,13 @@
         <!-- Other goes here -->
 
         <ListBox x:Name="ListPatients" HorizontalAlignment="Left" Height="254" Margin="52,178,0,0" VerticalAlignment="Top" Width="288" SelectionMode="Single"/>
-        <Label Content="Select patient :" HorizontalAlignment="Left" Margin="57,131,0,0" VerticalAlignment="Top" Height="42" Width="156" FontSize="22" Style="{StaticResource label_style}" />
-        <Button Content="Guest" HorizontalAlignment="Left" Margin="138,72,0,0" VerticalAlignment="Top" Width="108" Height="39" Click="Guest_Click" Style="{StaticResource btn_style}" RenderTransformOrigin="1.926,-2.584"/>
-        <Label Content="For non registerd patients:" HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Height="42" Width="271" FontSize="22" Style="{StaticResource label_style}" />
+        <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="57,131,0,0" VerticalAlignment="Top" Height="42" Width="156" FontSize="22" Style="{StaticResource label_style}" />
+        <Button Content="{x:Static rs:Resources.Guest}" HorizontalAlignment="Left" Margin="138,72,0,0" VerticalAlignment="Top" Width="108" Height="39" Click="Guest_Click" Style="{StaticResource btn_style}" RenderTransformOrigin="1.926,-2.584"/>
+        <Label Content="{x:Static rs:Resources.NonRegistered}" HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Height="42" Width="271" FontSize="22" Style="{StaticResource label_style}" />
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,437,44,0" MouseLeftButtonDown="Next_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_next"
-                    Content="Next"
+                    Content="{x:Static rs:Resources.ttNext}"
                     Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>

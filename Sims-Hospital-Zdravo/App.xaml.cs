@@ -14,6 +14,7 @@ using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Repository;
 using Sims_Hospital_Zdravo.Service;
 using Sims_Hospital_Zdravo.Utils;
+using Sims_Hospital_Zdravo.View.Secretary.Translation;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -49,6 +50,8 @@ namespace Sims_Hospital_Zdravo
         internal RequestForFreeDaysController _requestForFreeDaysController;
         internal SurveyController _surveyController;
         internal MeetingController _meetingController;
+
+        internal String _currentLanguage;
 
         public App()
         {
@@ -177,6 +180,8 @@ namespace Sims_Hospital_Zdravo
             // RequestForFreeDaysRepository _requestForfreeDaysRepository = new RequestForFreeDaysRepository(_requestForFreeDaysDataHandler);
             // RequestForFreeDaysService _requestForFreeDaysService = new RequestForFreeDaysService(_requestForfreeDaysRepository, appointmentRepository);
             // _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
+
+            _currentLanguage = "en-US";
         }
 
         void WindowLoaded(object sender, RoutedEventArgs e)
@@ -185,6 +190,18 @@ namespace Sims_Hospital_Zdravo
             System.Threading.Thread.Sleep(100);
             window.Dispatcher.Invoke(
                 new Action(() => { window.MoveFocus(new TraversalRequest(FocusNavigationDirection.First)); }));
+        }
+
+        public void ChangeLanguage(string currLang)
+        {
+            if (currLang.Equals("en-US"))
+            {
+                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            }
+            else
+            {
+                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
+            }
         }
     }
 }

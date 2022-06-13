@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.FreeDays"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Title="EditRequestWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -13,14 +14,14 @@
     <Grid>
 
         <TextBox x:Name="txtReason" HorizontalAlignment="Left" IsEnabled="False" Height="124" Margin="53,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Style="{StaticResource textBox_style}"/>
-        <Label Content="Reason :" FontSize="16" HorizontalAlignment="Left" Margin="53,87,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource label_style}" Foreground="#FF0067AE" Height="38"/>
+        <Label Content="{x:Static rs:Resources.Reason}" FontSize="16" HorizontalAlignment="Left" Margin="53,87,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource label_style}" Foreground="#FF0067AE" Height="38"/>
 
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <ComboBox x:Name="comboStatus" HorizontalAlignment="Left" Margin="53,45,0,0" VerticalAlignment="Top" Width="135" Height="30"/>
-        <Label Content="Request status :" FontSize="16" HorizontalAlignment="Left" Margin="53,13,0,0" VerticalAlignment="Top" Width="123" Style="{StaticResource label_style}" Foreground="#FF0067AE"/>
+        <Label Content="{x:Static rs:Resources.RequestStatus}" FontSize="16" HorizontalAlignment="Left" Margin="53,13,0,0" VerticalAlignment="Top" Width="123" Style="{StaticResource label_style}" Foreground="#FF0067AE"/>
         <TextBox HorizontalAlignment="Left" Height="158" Margin="53,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" Style="{StaticResource textBox_style}"/>
-        <Label Content="Explanation :" FontSize="16" HorizontalAlignment="Left" Margin="53,242,0,0" VerticalAlignment="Top" Width="123" Style="{StaticResource label_style}" Foreground="#FF0067AE"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="144,459,0,0" VerticalAlignment="Top" Width="96" Height="31" Click="Update_Click" Style="{StaticResource btn_style}"/>
+        <Label Content="{x:Static rs:Resources.Explanation}" FontSize="16" HorizontalAlignment="Left" Margin="53,242,0,0" VerticalAlignment="Top" Width="123" Style="{StaticResource label_style}" Foreground="#FF0067AE"/>
+        <Button Content="{x:Static rs:Resources.Update}" HorizontalAlignment="Left" Margin="144,459,0,0" VerticalAlignment="Top" Width="96" Height="31" Click="Update_Click" Style="{StaticResource btn_style}"/>
 
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />
     </Grid>

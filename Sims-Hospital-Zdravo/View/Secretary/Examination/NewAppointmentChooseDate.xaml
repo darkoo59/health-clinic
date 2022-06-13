@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -12,17 +13,17 @@
     </Window.Resources>
     <Grid>
         <Grid>
-            <Label Content="Start at:" HorizontalAlignment="Left" Margin="65,161,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
-            <Label Content="End at:" HorizontalAlignment="Left" Margin="65,269,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
+            <Label Content="{x:Static rs:Resources.StartAt}" HorizontalAlignment="Left" Margin="65,161,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
+            <Label Content="{x:Static rs:Resources.EndAt}" HorizontalAlignment="Left" Margin="65,269,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
             <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="199,161,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
             <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="199,269,0,0" VerticalAlignment="Top" Height="35" Width="106"/>
             <TextBox x:Name="txtStartTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="199,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" FontSize="20" Style="{StaticResource textBox_style}"/>
             <TextBox x:Name="txtEndTime" Text="00:00:00" HorizontalAlignment="Left" Height="35" Margin="199,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" FontSize="20" Style="{StaticResource textBox_style}"/>
-            <Label Content="If patient doesn't exist,&#xD;&#xA;please create medical  record first!" HorizontalAlignment="Left" Margin="49,25,0,0" VerticalAlignment="Top" Height="57" Width="251" FontSize="13" Style="{StaticResource label_style}"/>
+            <Label Content="{x:Static rs:Resources.DoesPatientExist}" HorizontalAlignment="Left" Margin="49,25,0,0" VerticalAlignment="Top" Height="57" Width="251" FontSize="13" Style="{StaticResource label_style}"/>
             <Image Source="../../../Resources/img/Secretary/Add.png" Height="45" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="199,25,-51,0" MouseLeftButtonDown="btnCreateRecord_Click">
                 <Image.ToolTip>
                     <ToolTip Name="tt_create"
-                                     Content="Create"
+                                     Content="{x:Static rs:Resources.ttCreate}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
                 </Image.ToolTip>
             </Image>
@@ -30,7 +31,7 @@
         <Image Source="../../../Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="58,437,59,0" MouseLeftButtonDown="btnNext_Click">
             <Image.ToolTip>
                 <ToolTip Name="tt_next"
-                                     Content="Next"
+                                     Content="{x:Static rs:Resources.ttNext}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>

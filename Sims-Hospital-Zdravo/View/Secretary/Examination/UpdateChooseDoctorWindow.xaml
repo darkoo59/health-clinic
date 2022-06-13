@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Title="UpdateChooseDoctorWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -16,12 +17,12 @@
         <ListBox x:Name="ListDoctors" HorizontalAlignment="Left" Height="222" Margin="50,82,0,0" VerticalAlignment="Top" Width="290"/>
         <ComboBox Name="comboAppointmentType" HorizontalAlignment="Left" Margin="116,356,0,0" VerticalAlignment="Top" Width="134" Height="42"/>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        <Label Content="Select patient :" HorizontalAlignment="Left" Margin="50,40,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
-        <Label Content="Select appointment type :" HorizontalAlignment="Left" Margin="45,309,0,0" VerticalAlignment="Top" Height="42" Width="269" FontSize="22" Style="{StaticResource label_style}" />
+        <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="50,40,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
+        <Label Content="{x:Static rs:Resources.SelectAppType}" HorizontalAlignment="Left" Margin="45,309,0,0" VerticalAlignment="Top" Height="42" Width="269" FontSize="22" Style="{StaticResource label_style}" />
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="58,437,58.6,0" MouseLeftButtonDown="btnFinish_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_next"
-                    Content="Next"
+                    Content="{x:Static rs:Resources.ttNext}"
                     Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>

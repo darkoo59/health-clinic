@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -13,11 +14,11 @@
     </Window.Resources>
     <Grid>
         <ListBox x:Name="ListPatients" HorizontalAlignment="Left" Height="332" Margin="50,77,0,0" VerticalAlignment="Top" Width="288"/>
-        <Label Content="Select patient :" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
+        <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
         <Image Source="../../../Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="58,437,59,0" MouseLeftButtonDown="btnNext_Click">
             <Image.ToolTip>
                 <ToolTip Name="tt_next"
-                                     Content="Next"
+                                     Content="{x:Static rs:Resources.ttNext}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
