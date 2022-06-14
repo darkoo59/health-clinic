@@ -40,8 +40,8 @@
             <ComboBox  Name="TestCb" Style="{DynamicResource theComboBox}" HorizontalAlignment="Left" Width="190"></ComboBox>
         </StackPanel >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
-            <Button Content="Save" Width="90" Height="25" Margin=" 0 0 100 0"/>
-            <Button Content="Cancel" Width="90" Height="25"/>
+            <Button Content="Save" Width="90" Height="30" Margin=" 0 0 30 0"/>
+            <Button Content="Cancel" Width="90" Height="30"/>
         </StackPanel>
     </Grid>
 </Window>

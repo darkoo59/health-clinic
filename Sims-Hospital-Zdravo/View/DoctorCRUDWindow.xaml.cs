@@ -29,21 +29,22 @@ namespace Sims_Hospital_Zdravo.View
         public RoomController roomController;
         private Appointment app;
         private App application;
-
+        private int doctorId;
         public Appointment _App
         {
             get { return this.app; }
             set { this.app = value; }
         }
 
-        public DoctorCRUDWindow(DoctorAppointmentController doctorAppointmentController)
+        public DoctorCRUDWindow(DoctorAppointmentController doctorAppointmentController,int id)
         {
-            application = App.Current as App;
+           
             InitializeComponent();
             this.DataContext = this;
+            this.doctorId = id;
             this.roomController = new RoomController();
             this.doctorAppController = doctorAppointmentController;
-            DoctorAppointments = doctorAppController.ReadAll(2);
+            DoctorAppointments = doctorAppController.ReadAll(doctorId);
             
             //this.DataContext = DoctorAppointments;
             dataGridDoctorApps.AutoGenerateColumns = false;
@@ -65,14 +66,11 @@ namespace Sims_Hospital_Zdravo.View
             data_column.Header = "Patient Surname";
             data_column.Binding = new Binding("Patient.Surname");
             dataGridDoctorApps.Columns.Add(data_column);
-            data_column = new DataGridTextColumn();
-            data_column.Header = "Room";
-            data_column.Binding = new Binding("Room.Id");
-            dataGridDoctorApps.Columns.Add(data_column);
+            
 
             data_column = new DataGridTextColumn();
             data_column.Header = "Type";
-            data_column.Binding = new Binding("Type");
+            data_column.Binding = new Binding("Type ");
             dataGridDoctorApps.Columns.Add(data_column);
 
 
@@ -101,7 +99,7 @@ namespace Sims_Hospital_Zdravo.View
             app = dataGridDoctorApps.SelectedValue as Appointment;
             if (app != null)
             {
-                DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController, app, roomController) { DataContext = dataGridDoctorApps.SelectedItem };
+                DoctorUpdateAppointment editAppointment = new DoctorUpdateAppointment(doctorAppController, app, roomController,doctorId) { DataContext = dataGridDoctorApps.SelectedItem };
 
                 editAppointment.Show();
             }
@@ -120,7 +118,7 @@ namespace Sims_Hospital_Zdravo.View
 
         public void NotifyUpdated()
         {
-            DoctorAppointments = doctorAppController.ReadAll(2);
+            DoctorAppointments = doctorAppController.ReadAll(doctorId);
             dataGridDoctorApps.ItemsSource = DoctorAppointments;
         }
     }

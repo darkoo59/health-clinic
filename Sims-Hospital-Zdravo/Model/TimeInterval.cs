@@ -75,6 +75,7 @@ namespace Model
             return Start.ToString("MMMM dd, yyyy") + " - " + End.ToString("MMMM dd, yyyy");
         }
 
+        
         public override string ToString()
         {
             return Start + " - " + End;

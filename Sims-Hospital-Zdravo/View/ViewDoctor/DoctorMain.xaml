@@ -7,11 +7,11 @@
         xmlns:xctk ="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
-        Title="DoctorMain" Height="768" Width="1024" >
+        Title="DoctorMain" Height="768" Width="1024" KeyDown="Window_KeyDown" >
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml" ></ResourceDictionary>
     </Window.Resources>
-    <Grid Background="#FFEEE6D5">
+    <Grid Background="White">
 
 
 
@@ -92,7 +92,7 @@
                             <TextBlock Text="Medicines" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="6">
+                    <Button Height="50" Background="#FF1E4AD9" Grid.Row="6" Click="HelpClick">
                         <StackPanel Orientation="Horizontal" Width="300">
                             <Image Source="../../resources/img/doctor/help.png" Width="30" Height="30" HorizontalAlignment="Left"/>
                             <TextBlock Text="Help" VerticalAlignment="Center" FontSize="20" Margin="10 0 20 0" Foreground="White"/>

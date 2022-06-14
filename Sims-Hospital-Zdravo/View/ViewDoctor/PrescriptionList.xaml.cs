@@ -28,11 +28,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private List<Prescription> prescriptions;
         private int doctorId;
         private Frame frame;
-        public PrescriptionList(MedicalRecordController medicalRecordController,MedicalRecord medicalRecord,int id, Frame frame)
+        public PrescriptionList(MedicalRecordController medicalRecordController,MedicalRecord medicalRecord, Frame frame)
         {
             InitializeComponent();
             this.DataContext = this;
-            this.doctorId = id;
+            //this.doctorId = id;
             this.frame = frame;
             this.medicalRecordController = medicalRecordController;
             this.medicalRecord = medicalRecord;

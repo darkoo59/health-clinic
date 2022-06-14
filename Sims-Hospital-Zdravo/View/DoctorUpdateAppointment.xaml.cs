@@ -30,14 +30,15 @@ namespace Sims_Hospital_Zdravo.View
         private RoomController roomControl;
         public ObservableCollection<string> Patients;
         private int id_app;
+        private int doctorid;
 
-        public DoctorUpdateAppointment(DoctorAppointmentController docController, Appointment app, RoomController rom)
+        public DoctorUpdateAppointment(DoctorAppointmentController docController, Appointment app, RoomController rom,int id )
         {
             InitializeComponent();
             this.DataContext = this;
             this.docController = docController;
             this.roomControl = rom;
-
+            this.doctorid = id;
             Patients = new ObservableCollection<string>();
             foreach (Patient pat in this.docController.GetPatients())
             {
@@ -105,7 +106,7 @@ namespace Sims_Hospital_Zdravo.View
             string end_time = endtime.Text;
             DateTime start = DateTime.Parse(date + " " + starttime);
             DateTime end = DateTime.Parse(date + " " + end_time);
-            Doctor doc = this.docController.GetDoctor(2);
+            Doctor doc = this.docController.GetDoctor(doctorid);
 
 
             TimeInterval timeInterval = new TimeInterval(start, end);
@@ -115,6 +116,7 @@ namespace Sims_Hospital_Zdravo.View
             try
             {
                 docController.Update(appoi);
+                MessageBox.Show("Appointment successfully updated");
             }
             catch (Exception ex)
             {

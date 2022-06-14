@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      Height="600" Width="600"
+      Height="600" Width="750"
       Title="AnamnesisListPage">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
@@ -18,28 +18,28 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Content="Medical reports  " FontSize="25" Margin="20 0 0 0"/>
+            <Label Content="Medical reports  " FontSize="25" Margin="10 0 20 0"/>
         </StackPanel>
         
-        <DataGrid Grid.Row="1" Width="700" Name="AnamnesisListDoctor" SelectionMode="Single" AutoGenerateColumns="False" RowHeaderWidth="0" Margin="20 0 0 0" >
+        <DataGrid Grid.Row="1" Width="680" Name="AnamnesisListDoctor" SelectionMode="Single" AutoGenerateColumns="False" RowHeaderWidth="0" Margin="0 0 90 0" >
             
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient name:" Binding="{Binding Patient.Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}"/>
-                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}"/>
-                <DataGridTextColumn Header=" Date" Binding="{Binding Date}"/>
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Patient name:" Binding="{Binding Patient.Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}" Width="*"/>
+                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" Width="*"/>
+                <DataGridTextColumn Header=" Date" Binding="{Binding Date}" Width="*"/>
+                <DataGridTemplateColumn Width="*" Header="Edit">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Click="ButtoneditClick" >Details </Button>
+                        <Button Click="ButtoneditClick" Width="70"  >Edit </Button>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin=" 0 40 40 0">
-            <Button Grid.Row="0" Content="Edit" Width="130" Height="40" Click="Button_Click" Margin="0 0 20 0" HorizontalAlignment="Right" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin=" 0 40 80 0">
+            <Button Grid.Row="0" Content="Edit" Width="130" Height="40" Click="Button_Click" Margin="0 0 10 0" HorizontalAlignment="Right" />
         <Button Content="Add" Width="130" Height="40" Click="MedicalreportClick"/>
         </StackPanel>
     </Grid>

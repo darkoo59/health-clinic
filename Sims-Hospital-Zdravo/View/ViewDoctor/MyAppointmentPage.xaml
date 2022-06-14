@@ -6,11 +6,11 @@
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       
       mc:Ignorable="d" 
-      Height="700" Width="700"
+      Height="700" Width="650"
       Title="MyAppointmentPage">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
-        
+
     </Page.Resources>
     <Grid>
 
@@ -27,25 +27,37 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-            <Label Content="My Appointments" FontSize="25" Margin="10 0 0 0"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                
+                
+                    <Label Content="My Appointments" FontSize="25" Margin="10 0 0 0"/>
+                
+                
+                    <Label Content="Tooltips" Height="25" Margin="240 0 0 0" Grid.Column="1" />
+                <ToggleButton Width="40" Height="20" HorizontalAlignment="Right" Margin="10 0 100 0" Checked="CheckdTooltip" Unchecked="uncheckedtooltipclick"/>
+
             </StackPanel>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="20 0 0 0">
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="20 0 0 0">
                 <Label Content="Filter by  date:"   HorizontalAlignment="Left"  Height="32"/>
-                <DatePicker x:Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" HorizontalAlignment="Left" Height="60" Width="224"  />
+                <DatePicker x:Name="AppointmentShow" SelectedDateChanged="AppointmentShow_SelectedDateChanged" HorizontalAlignment="Left" Height="26" Width="224"  />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right">
+                    <Button Width="130" Height="40" Content="New appointment" Margin="250 30 0 0" Click="NewAppoitmentClick" HorizontalAlignment="Right"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
-        
-        <DataGrid HorizontalAlignment="Center" RowHeaderWidth="0"   ItemsSource="{Binding Appointments, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="DoctorAppointments" Width="660"  SelectionMode="Single" Grid.Row="1" Margin="10,10,0,10" >
+
+        <DataGrid HorizontalAlignment="Center" RowHeaderWidth="0"   ItemsSource="{Binding Appointments, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="DoctorAppointments" Width="600"  SelectionMode="Single" Grid.Row="1" Margin="0,10,0,10" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Start Time" Binding="{Binding Time.Start}"/>
-                <DataGridTextColumn Header="End Time" Binding="{Binding Time.End}"/>
-                <DataGridTextColumn Header="Patient Name" Binding="{Binding Patient.Name}"/>
-                <DataGridTextColumn Header="Patient Surname" Binding="{Binding Patient.Surname}"/>
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Time.Start}" Width="*"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding Time.End}" Width="*"/>
+                <DataGridTextColumn Header="Patient Name" Binding="{Binding Patient.Name}" Width="*"/>
+                <DataGridTextColumn Header="Patient Surname" Binding="{Binding Patient.Surname}" Width="*"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
 
     </Grid>
 </Page>

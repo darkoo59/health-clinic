@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private App app;
         private List<Medicine> medicines;
         private Frame frame;
-        public ListOfMedecinesinSystem(int id,MedicalRecord medicalRecord)
+        public ListOfMedecinesinSystem(int id,MedicalRecord medicalRecord,Frame frame)
         {
             InitializeComponent();
             
@@ -66,7 +66,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private void MedicineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Medicine medicine = MedicineListBox.SelectedItem as Medicine;
-            PrescriptionWindow prescriptionWindow = new PrescriptionWindow( medicalRecord, doctorId, medicine);
+            PrescriptionWindow prescriptionWindow = new PrescriptionWindow( medicalRecord, doctorId, medicine,frame);
             prescriptionWindow.Show();
 
 

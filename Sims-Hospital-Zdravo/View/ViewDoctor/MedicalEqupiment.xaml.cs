@@ -26,7 +26,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             InitializeComponent();
             this.DataContext = new MedicalEquipmentViewModel();
+            this.cbMedEq.DataContext = new MedicalEquipmentViewModel();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Report succesfully sent");
         }
     }
 }

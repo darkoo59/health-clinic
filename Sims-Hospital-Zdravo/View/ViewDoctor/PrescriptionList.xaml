@@ -5,18 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="PrescriptionList" Height="450" Width="800">
+        Title="PrescriptionList" Height="450" Width="700">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <DataGrid Name="PrescriptionListPatient" Grid.Row="1"/>
+        <StackPanel>
+            <Label Content=" Prescriptions" FontSize="30"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="20 0 0 0">
+            <Label Content="Patient's prescriptions:"/>
+        <DataGrid Name="PrescriptionListPatient" Height="400" Grid.Row="2" Margin="0 0 10 0"/>
+        </StackPanel>
         <Label Content="Prescription List" HorizontalAlignment="Left" Margin="50,151,0,0" VerticalAlignment="Top"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="20 50 10 0">
             <Button Content="Add new Prescription" Height="30" Click="Button_Click" Margin="0 0 50 0"/>
         <Button Content="Print" Height="30" Width="130"/>
         </StackPanel>

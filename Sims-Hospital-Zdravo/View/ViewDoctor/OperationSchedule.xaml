@@ -19,12 +19,12 @@
         <StackPanel Grid.Row="0">
             <Label Content="Operations" FontSize="25" Margin="20 0 0 0"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" Name="OperationDataGrid" Margin="20 0 20 0" RowHeaderWidth="0" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" Name="OperationDataGrid" HorizontalAlignment="Left" ColumnWidth="*" Margin="20 0 20 0" RowHeaderWidth="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient name" Binding="{Binding Patient.Name}" Width="Auto"/>
-                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}" Width="Auto"/>
-                <DataGridTextColumn Header="Start Time" Binding="{Binding Time.Start}" Width="Auto"/>
-                <DataGridTextColumn Header="End Time" Binding="{Binding Time.End}" Width="Auto"/>
+                <DataGridTextColumn Header="Patient name" Binding="{Binding Patient.Name}" Width="*" />
+                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}" Width="*"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Time.Start}" Width="*"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding Time.End}" Width="*"/>
                 <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

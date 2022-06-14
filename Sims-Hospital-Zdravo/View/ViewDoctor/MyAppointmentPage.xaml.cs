@@ -35,21 +35,26 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private App app;
         private int doctorId;
         private DateTime AppointmentDate;
+          private bool  _isToolTipVisible;
+        private Frame frame;
        
-        public MyAppointmentPage( AnamnesisController anamnesisController, MedicalRecordController medicalRecordController, int id)
+        public MyAppointmentPage( AnamnesisController anamnesisController,  int id,Frame frame)
         {
             InitializeComponent();
 
             app = App.Current as App;
+            this.doctorId = id;
+            this.frame = frame;
             this.docController = new DoctorAppointmentController();
             this.DataContext = new MyAppointmentsViewModel(doctorId);
-            //DoctorAppointments.ItemsSource = doctorAppointmentController.ReadAll(2);
-             
-            this.doctorId = id;
-
-            this.medicalRecordController = medicalRecordController;
+            this._isToolTipVisible = false;
             
-            //this.docController = doctorAppointmentController;
+             
+            
+
+            this.medicalRecordController = new MedicalRecordController();
+            
+            
 
             
 
@@ -60,7 +65,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         }
 
-
+        public bool IsToolTipVisible
+        {
+            get
+            {
+                return _isToolTipVisible;
+            }
+            set
+            {
+                _isToolTipVisible = value;
+            }
+        }
 
         
 
@@ -89,7 +104,24 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         }
 
-        
+       
+
+        private void CheckdTooltip(object sender, RoutedEventArgs e)
+        {
+            IsToolTipVisible = false;
+
+        }
+
+        private void uncheckedtooltipclick(object sender, RoutedEventArgs e)
+        {
+            IsToolTipVisible = true;
+        }
+
+        private void NewAppoitmentClick(object sender, RoutedEventArgs e)
+        {
+            DoctorCRUDWindow doctorCRUDWindow = new DoctorCRUDWindow(docController,doctorId);
+            frame.Content = doctorCRUDWindow;
+        }
     }
  }
 

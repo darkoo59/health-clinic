@@ -34,6 +34,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             medicineController = new MedicineController();
             notificationController = new NotificationController();
+            if(medicine == null)
+            {
+                MessageBox.Show("Choose medicine you want to check and validate");
+            } 
             this.medicine = medicine;
             MedicineNameTxt.Text = medicine.Name;
             StrenghtTxt.Text = medicine.Strength;
@@ -50,6 +54,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             MedicineValidationType medicineValidationType = MedicineValidationType.MEDICINE_APPROVED;
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "approved", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
+            Close();
+            MessageBox.Show("Medicine approved");
         }
 
         private void RejectMedicineBtn_Click(object sender, RoutedEventArgs e)
@@ -61,6 +67,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             medicineController.Update(medicine);
             ReviewMedicineNotification reviewMedicineNotification = new ReviewMedicineNotification("Medicine" + name + "rejected", validateMedicine, medicine, notificationController.GenerateId(), medicineValidationType);
             medicineController.ValidateMedicineWithNotifyindMenager(medicine, reviewMedicineNotification);
+            Close();
+            MessageBox.Show("Medicine denied");
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.OperationHelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="OperationHelpWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Schedule operation"  FontSize="15" FontWeight="Black"/>
+            <TextBlock TextWrapping="Wrap" >
+                To make  schedule operation follow next steps: <LineBreak/>
+                1.Click on the menu options <Bold>Operations</Bold> <LineBreak/>
+                2. Table with scheduled operations will appear <LineBreak/>
+                3. Above table click on <Bold>New operation</Bold> button on the right side   <LineBreak/>
+                4. New page will appear with form to fill for operation .On he right side is checkbox if operation is urgent<LineBreak/>
+                5.After filling the form click on <Bold>Schedule operation </Bold> button at the bottom
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Hospital treatment" FontSize="15" FontWeight="Black"/>
+            <TextBlock TextWrapping="Wrap" >
+                To sent patient to hospital treatment  follow next steps: <LineBreak/>
+                1.Click on the menu options <Bold>Patients</Bold> <LineBreak/>
+                2. Select patient for hospital treatment <LineBreak/>
+                3. On the right side click  on <Bold>Hospital treatment</Bold>    <LineBreak/>
+                4. Fill the form and click <Bold>Save</Bold><LineBreak/>
+                
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

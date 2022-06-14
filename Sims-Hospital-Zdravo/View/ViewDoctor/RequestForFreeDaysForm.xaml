@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      Height="450" Width="600"
+      Height="550" Width="500"
       Title="RequestForFreeDaysForm">
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
@@ -33,14 +33,14 @@
                 
 
             </Grid.RowDefinitions>
-            <StackPanel Margin="20,72,0,1" Grid.RowSpan="2">
+            <StackPanel Margin="50,72,0,1" Grid.RowSpan="2">
                 <Label Content="Type of request" Height="24"></Label>
                 <RadioButton Content="Sick leave" FontFamily="Comic Sans MS" Foreground="Black"/>
                 <RadioButton Content="Vacation" FontFamily="Comic Sans MS"></RadioButton>
                 <RadioButton Content="Emergency" FontFamily="Comic Sans MS"></RadioButton>
             </StackPanel>
             <Label Content="Apply for leave " Grid.Row="0" FontSize="30" HorizontalAlignment="Left" Width="600"></Label>
-            <StackPanel Margin="20 0 0 0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" >
+            <StackPanel Margin="50 0 0 0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" >
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
                     <StackPanel HorizontalAlignment="Left" >
                         <Label Content="From">
@@ -58,11 +58,11 @@
 
                 
             </StackPanel>
-            <StackPanel  Grid.Row="3" Margin="20 0 0 0">
+            <StackPanel  Grid.Row="3" Margin="50 0 0 0">
                 <Label Content="Type of request"></Label>
                 <TextBox Name="ReasonForFreeDaysTxt" Height="30" Width="330" HorizontalAlignment="Left"></TextBox>
             </StackPanel>
-            <DockPanel Grid.Row="4" HorizontalAlignment="Left" Width="400">
+            <DockPanel Grid.Row="4" HorizontalAlignment="Left" Width="400" Margin="30 0 0 0">
             <Button Name="SendRequestBtn" HorizontalAlignment="Center" Click="SendRequestClick" Content="Send Request" Margin="25,0,25,0" Width="120" Height="50"></Button>
             <Button x:Name="CancelBtn" Content="Cancel" DockPanel.Dock="Right" Width="120" Height="50"/>
         </DockPanel>

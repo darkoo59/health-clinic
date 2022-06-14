@@ -1,2 +1,2 @@
-[{"Patient":{"Id":45,"Name":"Darko","Surname":"Markovic","BirthDate":"2000-11-11T00:00:00","Email":"dadad@gmail.com","Jmbg":"3421341242414","PhoneNumber":"412343214123"},
+[{"Patient":{"Id":14,"Name":"Darko","Surname":"Markovic","BirthDate":"2000-11-11T00:00:00","Email":"dadad@gmail.com","Jmbg":"3421341242414","PhoneNumber":"412343214123"},
 "Doctor":{"Id":2,"Name":"Grigorije","Surname":"Kucanski","Role":2,"BirthDate":"1995-04-07T00:00:00","Email":"ognen@gmail.com","Jmbg":"123423522","PhoneNumber":"+381641534322"},"Date":"2022-05-07T00:00:00","TimeInterval":null,"Diagnosis":"upala grla","Anamnesis":"crveno zapaljeno grlo sa sekretom","Notes":"otici opet kod ovog doktora"}]

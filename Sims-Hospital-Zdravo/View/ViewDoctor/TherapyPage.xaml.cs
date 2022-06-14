@@ -33,5 +33,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this._frame = frame;
             this.DataContext = new TherapyViewModel(_medId,frame);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           // PrescriptionList prescriptionList = new PrescriptionList(medicalRecord, _medId, frame);
+        }
     }
 }

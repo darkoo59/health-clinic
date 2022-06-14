@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="DoctorMedicines" Height="450" Width="800">
+        Title="DoctorMedicines" Height="600" Width="700">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
     </Page.Resources>
@@ -14,9 +14,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Content="Medicine validation" FontSize="20"/>
-        <Label Content="List of medicines" Margin="0,112,0,0" ></Label>
-        <ListBox Grid.Row="1" Name="MedicinesDataGrid" >
+        <Label Content="Medicine validation" FontSize="25" Margin="20 0 20 0"/>
+        <Label Content="List of medicines" Margin="20,112,20,0" ></Label>
+        <ListBox Grid.Row="1" Name="MedicinesDataGrid" Width="650" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListBox.Style>
                 <Style TargetType="ListBox">
                     <Setter Property="ItemTemplate">
@@ -27,7 +27,7 @@
                                         <Label Content="{Binding Name}" FontSize="20"/>
                                         <Label Content="{Binding Strength}" FontSize="20"/>
                                     </StackPanel>
-                                    <Label Content="{Binding Status}" HorizontalAlignment="Right"/>
+                                    <Label Content="{Binding Status}" HorizontalAlignment="Right" Margin="300 0 0 0"/>
                                     
                                 </StackPanel>
                             </DataTemplate>
@@ -37,6 +37,6 @@
             </ListBox.Style>
             
         </ListBox>
-        <Button Grid.Row="0" Width="150" Height="30" HorizontalAlignment="Left" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
+        <Button Grid.Row="0" Width="150" Height="30" Margin="0 80 30 0" HorizontalAlignment="Right" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
     </Grid>
 </Page>

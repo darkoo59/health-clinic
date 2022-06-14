@@ -48,9 +48,9 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label Content="Doctor" />
-            <TextBlock TextWrapping="Wrap" Name="DoctorTxt" />
+            <Label  Name="DoctorTxt" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" >
+        <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" Margin="10 20 0 0" >
             <Button Content="Save" Width="120" Height="30" Margin="0,0,50,0" Click="SaveMedicalReporClick" />
             <Button Content="Print" Width="120" Height="30" Click="PrintClick"/>
         </StackPanel>

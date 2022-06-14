@@ -18,6 +18,73 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     
+                    <Image Source="../../resources/img/doctor/prvizahelpwizard.png" Grid.Column="1"/>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="This is page that appears when you run the app.You can see appointments schedule.There is option for filtering appointments by date.Also you can create new appointments clicking on button new appointment "/>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage x:Name="Page2" PageType="Interior" Title="Page 2" PreviousPage="{Binding Page1}" NextPage="{Binding Page3}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="../resources/img/doctor/searchhelpwizard.png"></Image>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0" > Click on the menu option <Bold>Patients</Bold> open page( shown on the right).On the page 
+                    is table with patients.Above table is placed search bar.If you want to see information related to the patient just click on row in table.</TextBlock>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage x:Name="Page3" PageType="Interior" Title="Page 3" PreviousPage="{Binding Page2}" NextPage="{Binding Page3}">
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Image></Image>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0">After click on chosen patient new page appears where on the left side are shown information
+                    about patient and his medical record.<LineBreak/> On the right side there are five buttons.<LineBreak/>With
+                    <Bold>Medical report</Bold> button you can create and edit  medical reports and also have access to patient's other medical reocrd.<LineBreak/>
+                    With <Bold>Therapy</Bold> button you can see patients allergens and past medication and also make new prescriptions<LineBreak/>
+                    With <Bold>Hospital treatment</Bold> you can fill to form for patient to stay at hospital<LineBreak/>
+                    With <Bold>Labaratory test</Bold> you can see all patient's taken labaratory tests and schedule new ones</TextBlock>
+                </Grid>
+                
+            </xctk:WizardPage>
+            <xctk:WizardPage PageType="Interior" Title="Page 4" x:Name="Page4" PreviousPage="{Binding Page3}" NextPage="{Binding Page5}">
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Image></Image>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0">Click on the menu option <Bold>Medical equipment</Bold> opens page where you can report if
+                    some of the medical equipment isn't working</TextBlock>
+                </Grid>
+
+            </xctk:WizardPage>
+            <xctk:WizardPage PageType="Interior" Title="Page 5" Name="Page5" PreviousPage="{Binding Page4}" NextPage="{Binding Page6}">
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Image Source="../../resources/img/doctor/freedayshelp.png" Grid.Column="1"></Image>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0">Click on the menu options <Bold>Leaves</Bold> open page where you can create new request
+                    for leaves (vacation ,family issues,health problems...).<LineBreak/>And also see all submmited request and their status.</TextBlock>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage x:Name="Page6" Title="Page 6" PageType="Interior" PreviousPage="{Binding Page5}" NextPage="{Binding Page7}" >
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Image Source="../../resources/img/doctor/medicinevalidationhelp.png" Grid.Column="1"></Image>
+                    <TextBlock TextWrapping="Wrap" Grid.Column="0">Click on the menu options <Bold>Leaves</Bold> open page where you can create new request
+                    for leaves (vacation ,family issues,health problems...).<LineBreak/>And also see all submmited request and their status.</TextBlock>
                 </Grid>
             </xctk:WizardPage>
         </xctk:Wizard>

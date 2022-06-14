@@ -25,6 +25,8 @@ namespace Sims_Hospital_Zdravo.ViewModel
             this._appointments.Clear();
             foreach(Appointment app in _appointmentController.ReadAll(id))
             {
+                Console.WriteLine(id + "blalallalala");
+                Console.WriteLine(app.Patient.Name + "ahhaha");
                 this._appointments.Add(app);
                
             }

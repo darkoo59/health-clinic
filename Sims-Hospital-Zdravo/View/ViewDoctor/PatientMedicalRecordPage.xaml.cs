@@ -45,7 +45,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void PrescribeButton_Click(object sender, RoutedEventArgs e)
         {
-            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord);
+            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord,frame);
             frame.Content = listOfMedecinesinSystem;
         }
 

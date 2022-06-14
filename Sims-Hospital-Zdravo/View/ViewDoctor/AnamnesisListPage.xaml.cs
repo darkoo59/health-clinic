@@ -81,8 +81,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             anamnesis = AnamnesisListDoctor.SelectedValue as Anamnesis;
             if (anamnesis != null)
             {
-                EditAnamnesis editAnamnesis = new EditAnamnesis(anamnesis, medicalRecord);
-               // editAnamnesis.Show();
+                EditAnamnesisPage editAnamnesis = new EditAnamnesisPage(anamnesis, medicalRecord);
+                frame.Content = editAnamnesis;
             }
             else
             {
