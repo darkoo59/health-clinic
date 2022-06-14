@@ -52,6 +52,7 @@ namespace Sims_Hospital_Zdravo
         internal MeetingController _meetingController;
 
         internal String _currentLanguage;
+        internal String _currentTheme;
 
         public App()
         {
@@ -182,6 +183,7 @@ namespace Sims_Hospital_Zdravo
             // _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
 
             _currentLanguage = "en-US";
+            _currentTheme = "Dark";
         }
 
         void WindowLoaded(object sender, RoutedEventArgs e)

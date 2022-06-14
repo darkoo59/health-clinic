@@ -39,6 +39,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Settings
                 ComboLanguage.SelectedIndex = 0;
             else
                 ComboLanguage.SelectedIndex = 1;
+
+            if (app._currentTheme.Equals("Dark"))
+                ComboTheme.SelectedIndex = 1;
+            else
+                ComboTheme.SelectedIndex = 0;
         }
 
 
@@ -81,6 +86,18 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Settings
             {
                 TranslationSource.Instance.ChangeLanguage("en-US");
                 app._currentLanguage = "en-US";
+            }
+
+            if(ComboTheme.SelectedValue.ToString().Equals("Light"))
+            {
+                Properties.Settings.Default.ColorMode = "Light";
+                Properties.Settings.Default.Save();
+                app._currentTheme = "Light";
+            }else if(ComboTheme.SelectedValue.ToString().Equals("Dark"))
+            {
+                Properties.Settings.Default.ColorMode = "Dark";
+                Properties.Settings.Default.Save();
+                app._currentTheme = "Dark";
             }
             SecretaryHome window = new SecretaryHome();
             window.Show();

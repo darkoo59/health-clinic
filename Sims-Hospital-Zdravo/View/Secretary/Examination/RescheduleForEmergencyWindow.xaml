@@ -11,7 +11,7 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
 
         <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10.4,89.4" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}"/>
         <Label Content="Choose appointment to reschedule :" HorizontalAlignment="Left" Margin="45,29,0,0" VerticalAlignment="Top" Height="42" Width="305" FontSize="18" Style="{StaticResource label_style}"/>

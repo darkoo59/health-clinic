@@ -11,7 +11,7 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <Grid>
             <Label Content="{x:Static rs:Resources.StartAt}" HorizontalAlignment="Left" Margin="65,161,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>
             <Label Content="{x:Static rs:Resources.EndAt}" HorizontalAlignment="Left" Margin="65,269,0,0" VerticalAlignment="Top" Height="42" Width="129" FontSize="18" Style="{StaticResource label_style}"/>

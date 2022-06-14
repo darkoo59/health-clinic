@@ -241,6 +241,117 @@
     <value>Objašnjenje :</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Ažuriraj</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Prezime</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Datum rodjenja</value>
+  </data>
+  <data name="PhoneNum" xml:space="preserve">
+    <value>Broj telefona</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Pol</value>
+  </data>
+  <data name="BloodType" xml:space="preserve">
+    <value>Krvna grupa</value>
+  </data>
+  <data name="Marital status" xml:space="preserve">
+    <value>Bračni status</value>
+  </data>
+  <data name="Allergens" xml:space="preserve">
+    <value>Alergeni</value>
+  </data>
+  <data name="MedicalAllergens" xml:space="preserve">
+    <value>Medicinski alergeni</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>gggg-mm-dd</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Izbriši</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Izmeni</value>
+  </data>
+  <data name="PatientAllergicTo" xml:space="preserve">
+    <value>Pacijent alergičan na:</value>
+  </data>
+  <data name="OtherAllergens" xml:space="preserve">
+    <value>Ostali alergeni:</value>
+  </data>
+  <data name="PatientMedicalAllergens" xml:space="preserve">
+    <value>Pacijentovi medicinski alergeni:</value>
+  </data>
+  <data name="MeetingAt" xml:space="preserve">
+    <value>Sastanak počinje u :</value>
+  </data>
+  <data name="ChooseRoom" xml:space="preserve">
+    <value>Odaberi sobu :</value>
+  </data>
+  <data name="OptionalAttendees" xml:space="preserve">
+    <value>Opcioni radnici :</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Ostali :</value>
+  </data>
+  <data name="RequiredAttendees" xml:space="preserve">
+    <value>Obavezni radnici :</value>
+  </data>
+  <data name="ScheduleMeeting" xml:space="preserve">
+    <value>Zakaži sastanak</value>
+  </data>
+  <data name="Secretary" xml:space="preserve">
+    <value>Sekretar</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Korisničko ime</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Šifra</value>
+  </data>
+  <data name="AvailableSupplies" xml:space="preserve">
+    <value>Već dostupna oprema :</value>
+  </data>
+  <data name="EquipmentName" xml:space="preserve">
+    <value>Naziv opreme :</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Količina :</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Kreiraj</value>
+  </data>
+  <data name="SendRequest" xml:space="preserve">
+    <value>Pošalji zahtev</value>
+  </data>
+  <data name="AboutSecretary" xml:space="preserve">
+    <value>O sekretaru</value>
+  </data>
+  <data name="SecretaryInfo" xml:space="preserve">
+    <value>Sekretar Ana Jovanović je iskusan sekretar, koji konstantno radi na unapređenju svojih veština.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="EmergencyExamination" xml:space="preserve">
+    <value>Hitna operacija</value>
+  </data>
+  <data name="Reschedule" xml:space="preserve">
+    <value>Promeni</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Zakaži</value>
   </data>
 </root>

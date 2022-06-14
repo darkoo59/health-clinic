@@ -13,7 +13,7 @@
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="127,101,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="{x:Static rs:Resources.AppStartAt}" HorizontalAlignment="Left" Margin="120,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="16" Height="45" Width="184" Style="{StaticResource label_style}"/>
         <Label Content="{x:Static rs:Resources.AppEndAt}" HorizontalAlignment="Left" Margin="120,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" Height="33" FontSize="16" Width="184" Style="{StaticResource label_style}"/>

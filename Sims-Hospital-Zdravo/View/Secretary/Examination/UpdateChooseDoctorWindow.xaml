@@ -13,9 +13,9 @@
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
-        <ListBox x:Name="ListDoctors" HorizontalAlignment="Left" Height="222" Margin="50,82,0,0" VerticalAlignment="Top" Width="290"/>
-        <ComboBox Name="comboAppointmentType" HorizontalAlignment="Left" Margin="116,356,0,0" VerticalAlignment="Top" Width="134" Height="42"/>
+    <Grid Style="{StaticResource GridStyle}">
+        <ListBox x:Name="ListDoctors" HorizontalAlignment="Left" Height="222" Margin="50,82,0,0" VerticalAlignment="Top" Width="290" Style="{StaticResource listbox_style}"/>
+        <ComboBox Name="comboAppointmentType" HorizontalAlignment="Left" Margin="116,356,0,0" VerticalAlignment="Top" Width="134" Height="42" Style="{StaticResource combo_style}"/>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="50,40,0,0" VerticalAlignment="Top" Height="42" Width="157" FontSize="22" Style="{StaticResource label_style}" />
         <Label Content="{x:Static rs:Resources.SelectAppType}" HorizontalAlignment="Left" Margin="45,309,0,0" VerticalAlignment="Top" Height="42" Width="269" FontSize="22" Style="{StaticResource label_style}" />

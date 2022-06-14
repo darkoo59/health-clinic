@@ -10,10 +10,10 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        <ComboBox Name="ComboTheme"  HorizontalAlignment="Left" Margin="170,80,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <ComboBox Name="ComboLanguage"  HorizontalAlignment="Left" Margin="170,125,0,0" VerticalAlignment="Top" Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
+        <ComboBox Name="ComboTheme" Style="{StaticResource combo_style}"  HorizontalAlignment="Left" Margin="170,80,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="ComboLanguage" Style="{StaticResource combo_style}"  HorizontalAlignment="Left" Margin="170,125,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="{x:Static rs:Resources.ThemeText}" HorizontalAlignment="Left" Margin="59,76,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
         <Label Content="{x:Static rs:Resources.LanguageText}" HorizontalAlignment="Left" Margin="59,120,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
         <Button Content="{x:Static rs:Resources.BtnSave}" HorizontalAlignment="Left" Margin="140,450,0,0" VerticalAlignment="Top" Width="76" Height="35" Style="{StaticResource btn_style}" Click="Save_Click"/>
