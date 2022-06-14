@@ -28,13 +28,20 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
         private FreeDaysRequest _freeDaysRequest;
         private RequestForFreeDaysController _requestControler;
         private NotificationController _notificationController;
-        public EditRequestWindow(FreeDaysRequest request)
+        public EditRequestWindow()
         {
             InitializeComponent();
-            this._freeDaysRequest = request;
+            this.Loaded += new RoutedEventHandler(EditRequestWindow_Loaded);
+            //this._freeDaysRequest = request;
             _requestControler = new RequestForFreeDaysController();
             _notificationController = new NotificationController();
             comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();
+        }
+
+        void EditRequestWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Check DataContext Property here - Value is not null
+            _freeDaysRequest = (FreeDaysRequest)DataContext;
             comboStatus.SelectedItem = _freeDaysRequest.Status;
             txtReason.Text = _freeDaysRequest.ReasonForFreeDays;
         }

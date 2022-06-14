@@ -48,7 +48,7 @@ namespace Service
         }
 
 
-        public List<MedicalRecord> ReadAll()
+        public List<MedicalRecord> FindAll()
         {
             return _medicalRecordRepository.FindAll();
         }

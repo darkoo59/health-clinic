@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.Controller;
+using Controller;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -20,9 +22,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
     /// </summary>
     public partial class OperationSchedule : Page
     {
-        public OperationSchedule()
+        private DoctorAppointmentController doctorAppointmentController;
+        private Frame frame;
+
+        public OperationSchedule(DoctorAppointmentController doctorAppointmentController,Frame frame)
         {
             InitializeComponent();
+            this.doctorAppointmentController = doctorAppointmentController;
+            this.frame = frame;
+            OperationDataGrid.ItemsSource = doctorAppointmentController.FindOperations();
+        }
+
+        private void Newoperation_Click(object sender, RoutedEventArgs e)
+        {
+            OperationForm operationForm = new OperationForm();
+            frame.Content = operationForm;
         }
     }
 }

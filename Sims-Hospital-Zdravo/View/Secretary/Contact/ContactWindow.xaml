@@ -1,0 +1,22 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.Secretary.Contact.ContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Contact"
+        xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
+        mc:Ignorable="d"
+        Title="ContactWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
+    </Window.Resources>
+    <Grid>
+
+        <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <Image Source="../../../Resources/img/Secretary/Location.png" HorizontalAlignment="Left" Height="324" Margin="43,330,0,-128" VerticalAlignment="Top" Width="300"/>
+        <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,50,0,0" VerticalAlignment="Top" Width="29"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,50,0,0" TextWrapping="Wrap" Text="Open hours : 00:00-24:00" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <!-- //Menu bar panel // -->
+        <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu1" Grid.Column="0" Grid.Row="1"/>
+    </Grid>
+</Window>

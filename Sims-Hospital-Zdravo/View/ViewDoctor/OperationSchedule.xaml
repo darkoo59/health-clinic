@@ -7,12 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OperationSchedule">
-
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1"/>
+        <StackPanel Grid.Row="0">
+            <Label Content="Operations" FontSize="25" Margin="20 0 0 0"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Name="OperationDataGrid" Margin="20 0 20 0" RowHeaderWidth="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Patient name" Binding="{Binding Patient.Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}" Width="Auto"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Time.Start}" Width="Auto"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding Time.End}" Width="Auto"/>
+                <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="Newoperation" Content=" New Operation" Height="40" Width="130" HorizontalAlignment="Right" Margin=" 0 20 20 0" Click="Newoperation_Click"/>
     </Grid>
 </Page>

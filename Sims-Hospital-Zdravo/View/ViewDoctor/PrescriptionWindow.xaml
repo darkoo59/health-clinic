@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="PrescriptionWindow" Height="700" Width="700">
+        Title="PrescriptionWindow" Height="700" Width="400">
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
-            
+
         </ResourceDictionary>
 
-      
-        
+
+
     </Window.Resources>
-    
+
     <Grid HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            
+
 
 
         </Grid.ColumnDefinitions>
@@ -33,43 +33,45 @@
 
 
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-            <Label Content="Medicine" />
-            <TextBox Name="MedicineTxt" Width="120" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Center" >
+                <Label Content="Medicine"  Margin="20 0 0 0" />
+                <TextBox Name="MedicineTxt" Width="130"  Margin="20 0 50 0" />
+            </StackPanel>
 
 
-            </TextBox>
+
+            <StackPanel>
+                <Label Content="Strength"/>
+                <TextBox Width="130"  Name="strengthTxt"/>
+            </StackPanel>
         </StackPanel>
-        
-        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
-            <Label Content="Description" HorizontalAlignment="Left" />
-            <TextBox TextWrapping="Wrap" Name="descriptionTxt" Width="120" HorizontalAlignment="Left" />
+
+        <StackPanel Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left">
+            <Label Content="Patient " Height="30" Margin="20 0 0 0" HorizontalAlignment="Left" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox TextWrapping="Wrap" Name="nameTxt" Width="130"  Margin="20 0 50 0" HorizontalAlignment="Left" />
+                <TextBox Name="PatientsurnameTxt" Width="130" ></TextBox>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
-            <Label Content="Strength" HorizontalAlignment="Left"  VerticalAlignment="Top" />
-            <TextBox TextWrapping="Wrap"  Name="strengthTxt" Width="120" />
-        </StackPanel>
-        <StackPanel Grid.Row="4" HorizontalAlignment="Center">
-            <Label Content="Dosage" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBox TextWrapping="Wrap" Name="DosageTxt" Width="120" />
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Left">
+            <Label Content="Dosage" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20 0 0 0"/>
+            <TextBox TextWrapping="Wrap" Name="DosageTxt" Width="120" Margin="20 0 0 0" />
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Prescribe" Width="150" Click="Prescription_Click"/>
-                <Button Content="Prescribe and New"  Width="150"/>
+                <Button Content="Prescribe" Width="150" Height="30" Click="Prescription_Click"/>
+                <Button Content="Print"  Width="150" Height="30"/>
             </StackPanel>
         </StackPanel>
-        <Label Content="Patient:" Margin="341,114,181,0" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBox TextWrapping="Wrap" Name="PatientTxt" Margin="21,96,185,97" Grid.Column="2"/>
-        <StackPanel>
-            <Label Content="Prescription date:" Margin="224,125,281,239" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <TextBox TextWrapping="Wrap" Name="DateTxt" Margin="54,176,82,179" Grid.Column="2" Grid.RowSpan="2"/>
-        </StackPanel>
+
+        
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <Label Content=" Duration:" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <DatePicker   SelectedDateChanged="start_SelectedDateChanged" Name="start" Margin="0,0,50,0" />
-                <DatePicker  SelectedDateChanged="End_SelectedDateChanged" Name="End" />
+            <Label Content=" Duration:" Margin="20 0 0 0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <DatePicker   SelectedDateChanged="start_SelectedDateChanged" Width="130" Margin="20 0 50 0" x:Name="start" />
+                <DatePicker  SelectedDateChanged="End_SelectedDateChanged" x:Name="End" Width="130" />
             </StackPanel>
         </StackPanel>
 

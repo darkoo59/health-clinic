@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk ="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        
+      
         mc:Ignorable="d"
-        Title="SearchPatient" Height="768" Width="1024">
+        Title="SearchPatient" Height="768" Width="700">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
@@ -15,12 +18,33 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Frame  Margin="211,0,0,0"/>
-        <DataGrid Name="MedicalRecordDataGrid" Grid.Row="1" Margin="10,10,10,10" ColumnWidth="*" SelectionChanged="MedicalRecordDataGrid_SelectionChanged"/>
-        <StackPanel Grid.Row="0"  Orientation="Horizontal">
-            <TextBox TextWrapping="Wrap" Name="SearchTxt" Width="120" Height="40" Margin="0,0,25,0" />
-            <Button Content="Search" Margin="0,0,25,0" Width="120" Height="40" />
-            <Button Content="Patient Medical Record" Click="PatientMedicalRecordClick" Width="120" Height="40"  Margin="0,0,25,0"/>
-            <Button Content="Prescription" Width="120" Height="40" Click="PrescriptionClick"/>
+        <StackPanel Grid.Row="1" >
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="20 0 10 5" Name="MedicalRecordDataGrid" Style="{DynamicResource SearchPatientListBox}"  ItemsSource="{Binding MedicalRecordCollection}" SelectionChanged="MedicalRecordDataGrid_SelectionChanged" Height="573">
+            
+
+
+        </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0"  Orientation="Horizontal" VerticalAlignment="Bottom">
+
+            <!-- enter term here -->
+            
+           
+            <xctk:WatermarkTextBox Grid.Row="0" Height="28" Width="129" Margin="20">
+                
+                <xctk:WatermarkTextBox.Watermark>
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <TextBlock Text="Enter patient name..."  />
+                    </StackPanel>
+                </xctk:WatermarkTextBox.Watermark>
+            </xctk:WatermarkTextBox>
+
+
+            <Button  Width="30" Height="30" Background="White" Foreground="Wheat" Style="{DynamicResource roundButton}">
+               
+            </Button>
         </StackPanel>
     </Grid>
+    
 </Page>

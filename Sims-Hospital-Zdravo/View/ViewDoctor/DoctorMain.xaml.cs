@@ -46,16 +46,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             app = App.Current as App;
             InitializeComponent();
             this.doctorId = DoctorId;
-            this.docController = app._doctorAppointmentController;
+            this.docController = new DoctorAppointmentController();
             this.accountController = app._accountController;
-            this.medicalRecordController = app._recordController;
-            this.anamnesisController = app._anamnesisController;
-            this.patientMedicalRecordController = app._patientMedRecController;
-            this.requestForFreeDaysController = app._requestForFreeDaysController;
-            this.doctorAppointmentController = app._doctorAppointmentController;
+            this.medicalRecordController = new MedicalRecordController();
+            this.anamnesisController = new AnamnesisController ();
+            this.patientMedicalRecordController = new PatientMedicalRecordController();
+            this.requestForFreeDaysController = new RequestForFreeDaysController();
+            this.doctorAppointmentController = new DoctorAppointmentController();
             this.notificationController = new NotificationController();
             notificationManager = new NotificationManager();
             this.app._taskScheduleTimer.AddObserver(this);
+            FrameForMain.Content = new MyAppointmentPage(anamnesisController, medicalRecordController, doctorId);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,8 +67,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointments myAppointments = new MyAppointments(docController, anamnesisController,  doctorId);
-            myAppointments.Show();
+            MyAppointmentPage myAppointments = new MyAppointmentPage(anamnesisController, medicalRecordController, doctorId);
+            FrameForMain.Content = myAppointments;
         }
 
         private void button_medical_report_click(object sender, RoutedEventArgs e)
@@ -92,7 +93,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void MyAppointmentMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MyAppointmentPage appointmentPage = new MyAppointmentPage(docController, anamnesisController, medicalRecordController, doctorId);
+            MyAppointmentPage appointmentPage = new MyAppointmentPage( anamnesisController, medicalRecordController, doctorId);
             FrameForMain.Content = appointmentPage;
         }
 
@@ -104,13 +105,15 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void operation_click(object sender, RoutedEventArgs e)
         {
-            OperationForm operationform = new OperationForm(docController);
-            FrameForMain.Content = operationform;
+            OperationForm operationform = new OperationForm();
+            //FrameForMain.Content = operationform;
+            OperationSchedule operationSchedule = new OperationSchedule(docController, FrameForMain);
+            FrameForMain.Content = operationSchedule;
         }
 
         private void DaysOff_Click(object sender, RoutedEventArgs e)
         {
-            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(doctorId);
+            ViewRequestForFreeDays requestForFreeDaysForm = new ViewRequestForFreeDays(doctorId);
             FrameForMain.Content = requestForFreeDaysForm;
         }
 
@@ -185,6 +188,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
             FrameForMain.Content = viewRequestForFreeDays;
+        }
+
+        private void MedicalEquipmentClick(object sender, RoutedEventArgs e)
+        {
+            MedicalEqupiment medicalEqupiment = new MedicalEqupiment();
+            FrameForMain.Content = medicalEqupiment;
         }
     }
 }

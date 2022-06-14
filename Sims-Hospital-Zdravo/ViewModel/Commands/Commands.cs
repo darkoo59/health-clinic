@@ -10,6 +10,7 @@ namespace Sims_Hospital_Zdravo.ViewModel.Commands
         public static ICommand SetMenuItemCommand = new SetMenuItemCommand();
         public static ICommand LogoutCommand = new LogoutCommand();
         public static ICommand SearchCommand = new SearchCommand();
-        public static ICommand CreatePdfCommand = new CreatePdfCommand();
+        public static ICommand NavigateToPdfViewerCommand = new CreatePdfCommand();
+        public static ICommand FullScreenCommand = new FullScreenCommand();
     }
 }

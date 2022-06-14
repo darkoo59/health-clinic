@@ -93,5 +93,10 @@ namespace Controller
             _doctorAppointmentService.UrgentSurgery(appointment,duration);
         }
 
+        public List<Appointment> FindOperations()
+        {
+            return _doctorAppointmentService.FindOperations();
+        }
+
     }
 }

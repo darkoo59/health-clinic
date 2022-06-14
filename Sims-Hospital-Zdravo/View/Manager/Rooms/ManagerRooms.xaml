@@ -52,17 +52,22 @@
             </Grid.ColumnDefinitions>
             <xctk:WatermarkTextBox x:Name="SearchBox" Watermark="Search..." Height="30"></xctk:WatermarkTextBox>
             <Button Grid.Column="3" Width="100" Height="30" HorizontalAlignment="Right"
+                    Command="{Binding InsertRoomCommand}"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}"
                     x:Name="InsertBtn">
-                <AccessText>_Insert</AccessText>
+                Insert
             </Button>
             <Button Grid.Column="4" Width="100" Height="30" HorizontalAlignment="Right"
+                    Command="{Binding UpdateRoomCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                <AccessText>_Update</AccessText>
+                Update
             </Button>
             <Button Grid.Column="5" Width="100" Height="30" HorizontalAlignment="Right"
+                    Command="{Binding DeleteRoomCommand}"
+                    CommandParameter="{Binding SelectedItem, ElementName=RoomsTable}"
                     FocusVisualStyle="{DynamicResource MyFocusVisual}">
-                <AccessText> _Delete </AccessText>
+                Delete
             </Button>
 
 

@@ -198,6 +198,7 @@
     <Compile Include="Model\FreeDaysNotification.cs" />
     <Compile Include="Model\LabaratoryTest.cs" />
     <Compile Include="Model\MarkStatistic.cs" />
+    <Compile Include="Model\MedicalEquipment.cs" />
     <Compile Include="Model\Meeting.cs" />
     <Compile Include="Model\MeetingCreatedNotifications.cs" />
     <Compile Include="Model\Notes.cs" />
@@ -205,6 +206,13 @@
     <Compile Include="Model\RequestForFreeDaysNotification.cs" />
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\TherapySchedule.cs" />
+    <Compile Include="Properties\Resources.sr-LATN.Designer.cs">
+      <DependentUpon>Resources.sr-LATN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Utils\AccountValidator.cs" />
     <Compile Include="Utils\MeetingValidator.cs" />
     <Compile Include="Repository\NotesRepository.cs" />
     <Compile Include="Service\NotesService.cs" />
@@ -216,13 +224,17 @@
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
+    <Compile Include="ViewModel\Commands\FullScreenCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />
     <Compile Include="ViewModel\Commands\SearchCommand.cs" />
     <Compile Include="ViewModel\dd\BindableBase.cs" />
     <Compile Include="ViewModel\dd\LabaratoryTestViewModel.cs" />
+    <Compile Include="ViewModel\dd\MedicalEquipmentViewModel.cs" />
     <Compile Include="ViewModel\dd\MyAppointmentsViewModel.cs" />
     <Compile Include="ViewModel\dd\MyIComand.cs" />
+    <Compile Include="ViewModel\dd\PatientMedicalRecordViewModel.cs" />
     <Compile Include="ViewModel\dd\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModel\dd\TherapyViewModel.cs" />
     <Compile Include="ViewModel\dd\ValidateMedicineViewModel.cs" />
     <Compile Include="ViewModel\Manager\EquipmentTransferViewModel.cs" />
     <Compile Include="Repository\MeetingRepository.cs" />
@@ -233,6 +245,8 @@
     <Compile Include="ViewModel\PatientViewModel\DoctorSurveyViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel\HospitalSurveyViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel\TherapyViewModel.cs" />
+    <Compile Include="ViewModel\Secretary\FreeDaysViewModel.cs" />
+    <Compile Include="ViewModel\Secretary\MedicalRecordViewModel.cs" />
     <Compile Include="View\Manager\Surveys\ManagerDoctorSurveys.xaml.cs">
       <DependentUpon>ManagerDoctorSurveys.xaml</DependentUpon>
     </Compile>
@@ -248,8 +262,24 @@
     <Compile Include="View\Manager\Tutorial.xaml.cs">
       <DependentUpon>Tutorial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Secretary\About\AboutWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Contact\ContactWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Profile\SecretaryProfileWindow.xaml.cs">
+      <DependentUpon>SecretaryProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Secretary\Settings\SettingsWindow.xaml.cs" />
+    <Compile Include="View\Secretary\Translation\TranslationSource.cs" />
     <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
       <DependentUpon>SecretaryMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\EditAnamnesisPage.xaml.cs">
+      <DependentUpon>EditAnamnesisPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\MedicalEqupiment.xaml.cs">
+      <DependentUpon>MedicalEqupiment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\TherapyPage.xaml.cs">
+      <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
@@ -569,9 +599,28 @@
     <Page Include="View\Manager\Surveys\ManagerSurveys.xaml" />
     <Page Include="View\Manager\Surveys\PdfViewer.xaml" />
     <Page Include="View\Manager\Tutorial.xaml" />
+    <Page Include="View\Secretary\About\AboutWindow.xaml" />
+    <Page Include="View\Secretary\Contact\ContactWindow.xaml" />
+    <Page Include="View\Secretary\Profile\SecretaryProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Secretary\Settings\SettingsWindow.xaml" />
     <Page Include="View\UserControlls\SecretaryMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\EditAnamnesisPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\MedicalEqupiment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\TherapyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -876,8 +925,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.sr-LATN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.sr-LATN.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -938,6 +992,24 @@
     <Content Include="Resources\anamnesis.txt" />
     <Resource Include="Resources\questions_hospital.txt" />
     <Resource Include="Resources\questions_doctor.txt" />
+    <Resource Include="Resources\img\Secretary\Checked.png" />
+    <Resource Include="Resources\img\Secretary\Logo.png" />
+    <Resource Include="Resources\img\Doctor\DoctorCircle.png" />
+    <Resource Include="Resources\img\Doctor\DoctorProfilePicture.png" />
+    <Resource Include="Resources\img\Doctor\favpng_doctor-cartoon.png" />
+    <Resource Include="Resources\img\Doctor\help.png" />
+    <Resource Include="Resources\img\Doctor\icons8-crowd-patient-96.png" />
+    <Resource Include="Resources\img\Doctor\icons8-day-off-96.png" />
+    <Resource Include="Resources\img\Doctor\icons8-edit-calendar-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medical-100.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medical-equipment-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-medicine-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-stethoscope-64.png" />
+    <Resource Include="Resources\img\Doctor\icons8-surgery-100.png" />
+    <Resource Include="Resources\img\Doctor\icons8-treatment-list-96.png" />
+    <Resource Include="Resources\img\Doctor\logoApp.png" />
+    <Resource Include="Resources\img\Doctor\logout.png" />
+    <Resource Include="Resources\img\Doctor\search.png" />
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
@@ -971,13 +1043,6 @@
     </Resource>
     <Resource Include="Resources\img\image-medicines.ico" />
     <Resource Include="Resources\img\image-logout.ico" />
-    <Resource Include="Resources\img\icons8-crowd-patient-96.png" />
-    <Resource Include="Resources\img\icons8-medical-100.png" />
-    <Resource Include="Resources\img\icons8-stethoscope-64.png" />
-    <Resource Include="Resources\img\icons8-treatment-list-96.png" />
-    <Resource Include="Resources\img\icons8-day-off-96.png" />
-    <Resource Include="Resources\img\icons8-surgery-100.png" />
-    <Resource Include="Resources\img\icons8-medicine-64.png" />
     <Content Include="Resources\doctor_surveys.txt" />
     <Content Include="Resources\hospital_surveys.txt" />
     <Content Include="Resources\img\Secretary\Dark\About.png" />
@@ -1005,6 +1070,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\img\Secretary\FreeDays.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\eye.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\img\Secretary\Light\About.png" />
@@ -1066,13 +1134,7 @@
     <Content Include="Resources\prescriptions.txt" />
     <Content Include="Resources\renovation_appointments.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\img\Doctor\" />
-    <Folder Include="View\Secretary\About\" />
-    <Folder Include="View\Secretary\Account\" />
-    <Folder Include="View\Secretary\Contact\" />
-    <Folder Include="View\Secretary\Settings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

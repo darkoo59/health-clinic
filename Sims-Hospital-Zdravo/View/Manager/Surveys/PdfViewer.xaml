@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Manager.Surveys"
       mc:Ignorable="d"
-      Title="PdfViewer" Height="450" Width="800">
+      Title="PdfViewer"
+      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
+      Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>

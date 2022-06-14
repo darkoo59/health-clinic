@@ -36,17 +36,27 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
+        <Label Content="Patient information" FontSize="20"></Label>
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
             <Label Content="Patient:"></Label>
             <TextBox Name="PatientTxt"  IsReadOnly="False" Height="35" Width="130"/>
+            <Label Content="Gender"></Label>
+            <RadioButton Content="Man"></RadioButton>
+            <RadioButton Content="Woman"></RadioButton>
+            <StackPanel Orientation="Horizontal"></StackPanel>
+            <Label Content="Weight"/>
+            <TextBox></TextBox>
+            <Label Content="Height"/>
+            <TextBox></TextBox>
 
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+        <Label Content="Surgery information" FontSize="20"></Label>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Label Content="Date:" />
-            <DatePicker x:Name="dateTxt" Width="130" Height="35" Style="{DynamicResource styleDatePicker}" />
+            <DatePicker x:Name="dateTxt" Width="130" Height="35"  />
             
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
+        
+        
             <Label >Time:</Label>
             <ComboBox Name="SpecialistAppointmentTimeComboBox" Width="130" Height="35" FontSize="13"
     Style="{DynamicResource theComboBox}"

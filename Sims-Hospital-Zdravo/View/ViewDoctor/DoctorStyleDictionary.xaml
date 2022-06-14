@@ -19,6 +19,246 @@
             </Setter.Value>
             
         </Setter>
+        
+
+
+        </Style>
+    <Style x:Key="roundButton" TargetType="Button">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Ellipse Width="30" Height="30">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../../resources/img/doctor/search.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- mouse over look and feel here -->
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <!-- clicked look and feel here -->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style  TargetType="{x:Type ListBoxItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="hover"
+                            Background="#99E7E7E7"
+                            BorderBrush="#99979797"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <Border x:Name="highlight"
+                            Background="#99B0FFA5"
+                            BorderBrush="#995CB74E"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <ContentPresenter></ContentPresenter>
+                        <Border Height="1"
+                            BorderBrush="#99D7D7D7"
+                            BorderThickness="0,1,0,0"
+                            Grid.Row="1">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="hover"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="highlight"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MedicineListBox" TargetType="ListBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Width="530">
+                            <Label Content="{Binding Name}" FontSize="20"/>
+                            <Label Content="{Binding Strength}" FontSize="10" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <Label Content="{Binding StringAllergic}" HorizontalAlignment="Left" Margin="0 0 0 0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+    <Style x:Key="ListBoxMedValItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="hover"
+                            Background="#99E7E7E7"
+                            BorderBrush="#99979797"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <Border x:Name="highlight"
+                            Background="#99B0FFA5"
+                            BorderBrush="#995CB74E"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <ContentPresenter></ContentPresenter>
+                        <Border Height="1"
+                            BorderBrush="#99D7D7D7"
+                            BorderThickness="0,1,0,0"
+                            Grid.Row="1">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="hover"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="highlight"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MedicineValidationListBox" TargetType="ListBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Width="400">
+                            <Label Content="{Binding Name}" FontSize="20"/>
+                            <Label Content="{Binding Strength}" FontSize="5"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <Label Content="{Binding MedicineStatus}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="FreeDaysRequestListBox" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="hover"
+                            Background="#99E7E7E7"
+                            BorderBrush="#99979797"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <Border x:Name="highlight"
+                            Background="#99B0FFA5"
+                            BorderBrush="#995CB74E"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <ContentPresenter></ContentPresenter>
+                        <Border Height="1"
+                            BorderBrush="#99D7D7D7"
+                            BorderThickness="0,1,0,0"
+                            Grid.Row="1">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="hover"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="highlight"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="FreeDaysListBox" TargetType="ListBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding TimeInterval.Start.Date}" FontSize="20"/>
+                            <Label Content="-" VerticalAlignment="Center" FontSize="20"/>
+                            <Label Content="{Binding TimeInterval.End.Date}" FontSize="20"/>
+                            <Label Content="{Binding Status}" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                        <Label Content="{Binding ReasonForFreeDays}"/>
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
 
     </Style>
     <Style TargetType="Label">
@@ -26,7 +266,78 @@
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="Black"/>
     </Style>
+    <Style x:Key="SearchListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="hover"
+                            Background="#99E7E7E7"
+                            BorderBrush="#99979797"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <Border x:Name="highlight"
+                            Background="#99B0FFA5"
+                            BorderBrush="#995CB74E"
+                            BorderThickness="1"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Visibility="Collapsed">
+                        </Border>
+                        <ContentPresenter></ContentPresenter>
+                        <Border Height="1"
+                            BorderBrush="#99D7D7D7"
+                            BorderThickness="0,1,0,0"
+                            Grid.Row="1">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="hover"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="highlight"
+                                Property="Visibility"
+                                Value="Visible">
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SearchPatientListBox" TargetType="ListBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Patient.Name}" FontSize="20"/>
+                        <Label Content="{Binding Patient.Surname}" FontSize="20"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="BirhtDate:"/>
+                        <Label Content="{Binding Patient.BirthDate}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
 
+    </Style>
     <Style x:Key="styleDatePicker" TargetType="{x:Type DatePicker}">
         <Setter Property="Template">
             <Setter.Value>
@@ -53,9 +364,9 @@
         </Setter>
     </Style>
     <Style TargetType="DataGrid">
-        <Setter Property="BorderBrush" Value="#DDDDDD" />
-        <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
-        <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
+        <Setter Property="BorderBrush" Value="#FF1179D4" />
+        <Setter Property="HorizontalGridLinesBrush" Value="#FF4D96D6" />
+        <Setter Property="VerticalGridLinesBrush" Value="#FF4D96D6" />
         <Setter Property="ColumnWidth" Value="3*"/>
         
         <Setter Property="IsReadOnly" Value="True"></Setter>

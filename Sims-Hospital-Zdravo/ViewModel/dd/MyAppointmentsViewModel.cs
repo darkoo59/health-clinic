@@ -17,17 +17,16 @@ namespace Sims_Hospital_Zdravo.ViewModel
         private DoctorAppointmentController _appointmentController;
 
         public MyAppointmentsViewModel() { }
-        public MyAppointmentsViewModel(int id,DoctorAppointmentController doctorAppointmentController)
+        public MyAppointmentsViewModel(int id)
         {
             _appointments = new ObservableCollection<Appointment>();
             app = App.Current as App;
-            //this._appointmentController = app._doctorAppointmentController;
-            this._appointmentController = doctorAppointmentController;
+            this._appointmentController = new DoctorAppointmentController();
             this._appointments.Clear();
             foreach(Appointment app in _appointmentController.ReadAll(id))
             {
                 this._appointments.Add(app);
-                Console.WriteLine(app.Patient.Name+"ahahhaha");
+               
             }
             
             

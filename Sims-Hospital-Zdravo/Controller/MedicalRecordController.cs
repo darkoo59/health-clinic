@@ -45,10 +45,10 @@ namespace Controller
         }
 
 
-      public List<MedicalRecord> ReadAll()
+      public List<MedicalRecord> FindAll()
       {
          // TODO: implement
-         return medicalRecordService.ReadAll();
+         return medicalRecordService.FindAll();
       }
       
       public void Update(MedicalRecord medicalRecord, Patient patient)

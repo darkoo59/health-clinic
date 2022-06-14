@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Supplies"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -10,30 +11,30 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Label Content="Already available&#xD;&#xA;supplies :" HorizontalAlignment="Left" Margin="55,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Height="49" Style="{StaticResource label_style}"/>
-        <ListBox Name="ListBoxAvaialble" HorizontalAlignment="Left" Height="110" Margin="179,39,0,0" VerticalAlignment="Top" Width="156"/>
+    <Grid Style="{StaticResource GridStyle}">
+        <Label Content="{x:Static rs:Resources.AvailableSupplies}" HorizontalAlignment="Left" Margin="55,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Height="49" Style="{StaticResource label_style}"/>
+        <ListBox Name="ListBoxAvaialble" HorizontalAlignment="Left" Height="110" Margin="179,39,0,0" VerticalAlignment="Top" Width="156" Style="{StaticResource listbox_style}"/>
 
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="55,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.501,1.768"/>
-        <Label Content="Equipment name :" HorizontalAlignment="Left" Margin="50,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Style="{StaticResource label_style}"/>
-        <Label Content="Quantity :" HorizontalAlignment="Left" Margin="163,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Style="{StaticResource label_style}"/>
-        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="170,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.501,1.768"/>
-        <Button Content="Send request" HorizontalAlignment="Left" Margin="143,460,0,0" VerticalAlignment="Top" Width="90" Height="26" Click="SendRequest_Click" Style="{StaticResource btn_style}"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="55,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.501,1.768" Style="{StaticResource textBox_style}"/>
+        <Label Content="{x:Static rs:Resources.EquipmentName}" HorizontalAlignment="Left" Margin="50,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.Quantity}" HorizontalAlignment="Left" Margin="163,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.05,-0.091" Width="115" Style="{StaticResource label_style}"/>
+        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="170,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.501,1.768" Style="{StaticResource textBox_style}"/>
+        <Button Content="{x:Static rs:Resources.SendRequest}" HorizontalAlignment="Left" Margin="143,460,0,0" VerticalAlignment="Top" Width="90" Height="26" Click="SendRequest_Click" Style="{StaticResource btn_style}"/>
         <Image Source="../../../Resources/img/Secretary/Add.png" Height="32" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="200,185,0,0" MouseLeftButtonDown="Add_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_create"
-                    Content="Create"
+                    Content="{x:Static rs:Resources.Create}"
                     Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
         <Image Source="../../../Resources/img/Secretary/Minus.png" Height="32" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="280,185,0,0" MouseLeftButtonDown="Remove_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_remove"
-                         Content="Remove"
+                         Content="{x:Static rs:Resources.Remove}"
                          Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
-        <ListBox Name="ListBoxAddedSupplies" HorizontalAlignment="Left" Height="207" Margin="55,234,0,0" VerticalAlignment="Top" Width="280"/>
+        <ListBox Name="ListBoxAddedSupplies" HorizontalAlignment="Left" Height="207" Margin="55,234,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource listbox_style}"/>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="305,0,-14,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />
 

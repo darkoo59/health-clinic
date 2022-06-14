@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
 using Controller;
 using Model;
+using Sims_Hospital_Zdravo.ViewModel.dd;
 
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
@@ -30,42 +31,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private AnamnesisController anamnesisController;
         private int doctorId;
         private Frame frame;
-        public PatientMedicalRecordPage(MedicalRecord med, Frame frame)
+        public PatientMedicalRecordPage(MedicalRecord med, Frame frame,int id)
         {
             InitializeComponent();
             this.medRecord = med;
-            
+            this.doctorId = id;
             this.frame = frame;
-            this.DataContext = med;
-            Binding binding = new Binding("Patient.Name");
-            binding.Source = med;
-            PatienNameTxt.SetBinding(TextBlock.TextProperty, binding);
+            this.DataContext = new PatientMedicalRecordViewModel(med.Id);
+            
 
-            binding = new Binding("Patient.Surname");
-            PatientSurnameTxt.SetBinding(TextBlock.TextProperty, binding);
 
-            binding = new Binding("Patient.BirthDate");
-            BirthDateTxt.SetBinding(TextBlock.TextProperty, binding);
-
-            binding = new Binding("Gender");
-            Gendertxt.SetBinding(TextBlock.TextProperty, binding);
-
-            binding = new Binding("Patient.PhoneNumber");
-            numberTxt.SetBinding(TextBlock.TextProperty, binding);
-
-            binding = new Binding("Patient.Address");
-            //AdressTxt.SetBinding(TextBox.TextProperty, binding);
-
-            binding = new Binding("MaritalStatus");
-            maritalStatusTxt.SetBinding(TextBlock.TextProperty, binding);
-
-            binding = new Binding("Patient.Jmbg");
-           UIDTxt.SetBinding(TextBlock.TextProperty, binding);
         }
 
         private void PrescribeButton_Click(object sender, RoutedEventArgs e)
         {
-            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord,frame);
+            ListOfMedecinesinSystem listOfMedecinesinSystem = new ListOfMedecinesinSystem(doctorId,medRecord);
             frame.Content = listOfMedecinesinSystem;
         }
 
@@ -73,19 +53,26 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void MedicalreprotClick(object sender, RoutedEventArgs e)
         {
-            MedicalReport medicalReport = new MedicalReport(medRecord,doctorId, frame);
-            frame.Content = medicalReport;
+           AnamnesisListPage anamnesisListPage = new AnamnesisListPage(doctorId,medRecord,frame);
+            frame.Content = anamnesisListPage;
         }
 
         private void medicalHistoryClick(object sender, RoutedEventArgs e)
         {
             PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory();
+            frame.Content = patientMedicalHistory;
         }
 
         private void LabaratoryTestClick(object sender, RoutedEventArgs e)
         {
             LabaratoryResultsPage labaratoryResultsPage = new LabaratoryResultsPage();
             frame.Content = labaratoryResultsPage;
+        }
+
+        private void therapyButton_Click(object sender, RoutedEventArgs e)
+        {
+            TherapyPage therapyPage = new TherapyPage(medRecord.Id,medRecord,frame);
+            frame.Content = therapyPage;
         }
     }
 }

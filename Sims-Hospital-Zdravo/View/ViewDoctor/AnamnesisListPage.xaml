@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      Height="450" Width="800"
+      Height="600" Width="600"
       Title="AnamnesisListPage">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
@@ -17,8 +17,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Name="AnamnesisListDoctor" SelectionMode="Single"  >
+        <StackPanel Grid.Row="0">
+            <Label Content="Medical reports  " FontSize="25" Margin="20 0 0 0"/>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" Width="700" Name="AnamnesisListDoctor" SelectionMode="Single" AutoGenerateColumns="False" RowHeaderWidth="0" Margin="20 0 0 0" >
+            
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Patient name:" Binding="{Binding Patient.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Patient surname" Binding="{Binding Patient.Surname}"/>
+                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}"/>
+                <DataGridTextColumn Header=" Date" Binding="{Binding Date}"/>
                 <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
@@ -28,7 +37,10 @@
             </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Medical reports:" Grid.Row="0" Margin="10,76,0,0" />
-        <Button Grid.Row="0" Content="Edit" Width="120" Height="30" Click="Button_Click" HorizontalAlignment="Left" Margin="30,41,0,42"/>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin=" 0 40 40 0">
+            <Button Grid.Row="0" Content="Edit" Width="130" Height="40" Click="Button_Click" Margin="0 0 20 0" HorizontalAlignment="Right" />
+        <Button Content="Add" Width="130" Height="40" Click="MedicalreportClick"/>
+        </StackPanel>
     </Grid>
 </Page>

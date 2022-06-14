@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Meetings" xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -10,10 +11,10 @@
     <Window.Resources>
         <ResourceDictionary Source="../../Secretary/SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <ComboBox Name="comboRoom" HorizontalAlignment="Left" Margin="60,134,0,0" VerticalAlignment="Top" Width="120"/>
+    <Grid Style="{StaticResource GridStyle}">
+        <ComboBox Name="comboRoom" HorizontalAlignment="Left" Margin="60,134,0,0" VerticalAlignment="Top" Width="120" Style="{StaticResource combo_style}"/>
         <ListBox x:Name="ListOptional" HorizontalAlignment="Left" Height="113" Margin="62,195,0,0"
-            VerticalAlignment="Top" Width="118" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+            VerticalAlignment="Top" Width="118" SelectionMode="Multiple" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Style.Resources>
@@ -31,7 +32,7 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
         <ListBox x:Name="ListOptionalOthers" HorizontalAlignment="Left" Height="112" Margin="225,196,0,0"
-            VerticalAlignment="Top" Width="115" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+            VerticalAlignment="Top" Width="115" SelectionMode="Multiple" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Style.Resources>
@@ -48,11 +49,11 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Label Content="Optional attendees :" HorizontalAlignment="Left" Margin="55,161,0,0" VerticalAlignment="Top" FontSize="15"
+        <Label Content="{x:Static rs:Resources.OptionalAttendees}" HorizontalAlignment="Left" Margin="55,161,0,0" VerticalAlignment="Top" FontSize="15"
             RenderTransformOrigin="0.513,-0.135" Width="142" Style="{StaticResource label_style}" Height="29"/>
         <Image x:Name="ImageToLeftOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="23" Margin="190,204,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
         <Image x:Name="ImageToRightOptional" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="23" Margin="190,244,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
-        <ListBox x:Name="ListRequired" HorizontalAlignment="Left" Height="120" Margin="62,343,0,0" VerticalAlignment="Top" Width="122" Background="White" Foreground="#FF4A90E2">
+        <ListBox x:Name="ListRequired" HorizontalAlignment="Left" Height="120" Margin="62,343,0,0" VerticalAlignment="Top" Width="122" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Style.Resources>
@@ -69,7 +70,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <ListBox x:Name="ListRequiredOthers" HorizontalAlignment="Left" Height="120" Margin="225,343,0,0" VerticalAlignment="Top" Width="115" Background="White" Foreground="#FF4A90E2">
+        <ListBox x:Name="ListRequiredOthers" HorizontalAlignment="Left" Height="120" Margin="225,343,0,0" VerticalAlignment="Top" Width="115" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Style.Resources>
@@ -87,19 +88,19 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <Label Content="Meeting start at :" HorizontalAlignment="Left" Margin="55,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="45" Width="184" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.MeetingAt}" HorizontalAlignment="Left" Margin="55,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="45" Width="184" Style="{StaticResource label_style}"/>
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="60,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="1.205,-1.792"/>
-        <Label Content="Choose room :" HorizontalAlignment="Left" Margin="55,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="30" Width="153" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.ChooseRoom}" HorizontalAlignment="Left" Margin="55,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="15" Height="30" Width="153" Style="{StaticResource label_style}"/>
 
-        <Label Content="Required attendees :" HorizontalAlignment="Left" Margin="60,313,0,0" VerticalAlignment="Top" FontSize="15"
+        <Label Content="{x:Static rs:Resources.RequiredAttendees}" HorizontalAlignment="Left" Margin="60,313,0,0" VerticalAlignment="Top" FontSize="15"
             RenderTransformOrigin="0.513,-0.135" Width="148" Style="{StaticResource label_style}" Height="53"/>
-        <Label Content="Others :" HorizontalAlignment="Left" Margin="236,313,0,0" VerticalAlignment="Top" FontSize="15"
+        <Label Content="{x:Static rs:Resources.Others}" HorizontalAlignment="Left" Margin="236,313,0,0" VerticalAlignment="Top" FontSize="15"
             RenderTransformOrigin="0.513,-0.135" Width="104" Style="{StaticResource label_style}" Height="30"/>
         <Image x:Name="ImageToLeftRequired" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="23" Margin="190,343,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
         <Image x:Name="ImageToRightRequired" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="23" Margin="190,383,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.87,0.829"/>
-        <Label Content="Others :" HorizontalAlignment="Left" Margin="225,161,0,0" VerticalAlignment="Top" FontSize="15"
+        <Label Content="{x:Static rs:Resources.Others}" HorizontalAlignment="Left" Margin="225,161,0,0" VerticalAlignment="Top" FontSize="15"
             RenderTransformOrigin="0.513,-0.135" Width="104" Style="{StaticResource label_style}" Height="30"/>
-        <Button Content="Schedule meeting" HorizontalAlignment="Left" Margin="136,468,0,0" VerticalAlignment="Top" Width="131" Height="32" Style="{StaticResource btn_style}" Click="ScheduleMeeting_Click"/>
+        <Button Content="{x:Static rs:Resources.ScheduleMeeting}" HorizontalAlignment="Left" Margin="136,468,0,0" VerticalAlignment="Top" Width="131" Height="32" Style="{StaticResource btn_style}" Click="ScheduleMeeting_Click"/>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="305,0,-14.6,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />
         <Grid Margin="0,0,0.4,0.4">

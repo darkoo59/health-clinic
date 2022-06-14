@@ -1,0 +1,47 @@
+﻿<Page x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.TherapyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+      mc:Ignorable="d" 
+      Height="450" Width="800"
+      Title="TherapyPage">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1">
+                <Label Content=" Medical Allergens"></Label>
+                <ListBox Height="70" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding PatientAllergens.MedicalAllergens}" DataContext="{Binding MedicalRecord}"></ListBox>
+                <Label Content=" Common Allergens"></Label>
+                <ListBox Height="70" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding PatientAllergens.CommonAllergens}" DataContext="{Binding MedicalRecord}"></ListBox>
+            </StackPanel>
+            <StackPanel>
+                <Button Content=" New Prescription" Width="130" Height="50" Margin="0 40 0 40" Command="{Binding makePrescriptionCommand}"></Button>
+                <Button Content="Prescriptions" Width="130" Height="50" />
+            </StackPanel>
+
+        </Grid>
+        <DataGrid x:Name="TherapyDataGrid" Grid.Row="1" RowHeaderWidth="0" AutoGenerateColumns="False"  ItemsSource="{Binding MedicalRecord.Prescriptions}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Medicine" Binding="{Binding Medicine.Name}"/>
+                <DataGridTextColumn Header ="Strength"  Binding="{Binding Medicine.Strength}"/>
+                <DataGridTextColumn Header="Duration" />
+                <DataGridTextColumn Header="Dosage" Binding="{Binding Dosage}"/>
+                <DataGridTextColumn Header="Route"/>
+                <DataGridTextColumn Header="Take-on"/>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+    </Grid>
+</Page>

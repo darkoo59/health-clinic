@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
         Title="RescheduleExaminationWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
@@ -12,10 +13,10 @@
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Left" Margin="127,101,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Appointment start at :" HorizontalAlignment="Left" Margin="120,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="16" Height="45" Width="184" Style="{StaticResource label_style}"/>
-        <Label Content="Appointment end at :" HorizontalAlignment="Left" Margin="120,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" Height="33" FontSize="16" Width="184" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.AppStartAt}" HorizontalAlignment="Left" Margin="120,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" FontSize="16" Height="45" Width="184" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.AppEndAt}" HorizontalAlignment="Left" Margin="120,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.257,0.429" Height="33" FontSize="16" Width="184" Style="{StaticResource label_style}"/>
         <DatePicker x:Name="endDatePicker" HorizontalAlignment="Left" Margin="127,317,0,0" VerticalAlignment="Top" Height="30" FontSize="16"/>
         <TextBox x:Name="txtStartTime" HorizontalAlignment="Left" Height="29" Margin="127,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="18" Style="{StaticResource textBox_style}"/>
         <TextBox x:Name="txtEndTime" HorizontalAlignment="Left" Height="29" Margin="127,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="18" Style="{StaticResource textBox_style}"/>
@@ -24,7 +25,7 @@
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,438,44,0" MouseLeftButtonDown="btnSubmit_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_next"
-                    Content="Next"
+                    Content="{x:Static rs:Resources.ttNext}"
                     Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>

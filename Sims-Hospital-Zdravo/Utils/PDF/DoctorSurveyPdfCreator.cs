@@ -9,6 +9,8 @@ using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
+using Sims_Hospital_Zdravo.View.Manager.Surveys;
+using Sims_Hospital_Zdravo.ViewModel.Commands;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
@@ -42,7 +44,12 @@ namespace Sims_Hospital_Zdravo.Utils
                 DrawAllGrids(document, statistics);
                 FileStream stream = CreateAndSaveDocument(document);
                 CloseStreams(stream, document);
-                Process.Start(@"..\..\Resources\output.pdf");
+                // PdfViewer viewer = new PdfViewer();
+                // NavigateWithParameterCommand navigateWithParameterCommand = new NavigateWithParameterCommand(viewer);
+                // navigateWithParameterCommand.Execute(null);
+                NavigateToCommand navigateToCommand = new NavigateToCommand();
+                navigateToCommand.Execute("Surveys/PdfViewer.xaml");
+                // Process.Start(@"..\..\Resources\output.pdf");
             }
             catch (Exception ex)
             {
@@ -66,10 +73,15 @@ namespace Sims_Hospital_Zdravo.Utils
         private void DrawAllGrids(PdfDocument document, List<ISurveyStatistic> statistics)
         {
             PdfPage page = document.Pages.Add();
+            if (statistics.Count == 0) return;
             PdfLayoutResult result = CreateFirstGrid(page, (DoctorSurvey)statistics[0]);
             result.Page.Graphics.DrawString(doctor.Name + " " + doctor.Surname + " surveys", new PdfStandardFont(PdfFontFamily.Helvetica, 10), PdfBrushes.Black, new PointF(230, 0));
             int counter = 1;
-            result = statistics.Aggregate(result, (current, statistic) => DrawNextGrid(current.Page, counter++, statistic));
+            foreach (ISurveyStatistic statistic in statistics)
+            {
+                if (statistics.First().Equals(statistic)) continue;
+                result = DrawNextGrid(result.Page, counter++, statistic);
+            }
         }
 
         private PdfLayoutResult CreateFirstGrid(PdfPage page, DoctorSurvey survey)
@@ -107,7 +119,7 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (QuestionAndRate question in survey.QuestionsAndRates)
             {
-                dataTable.Rows.Add(new object[] { doctor.Name + doctor.Surname, question.Question, question.Rate.ToString() });
+                dataTable.Rows.Add(new object[] { doctor.Name + " " + doctor.Surname, question.Question, question.Rate.ToString() });
             }
 
             return dataTable;

@@ -32,26 +32,32 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.DataContext = this;
             this._doctorId = id;
-            this._app = App.Current as App;
             this._requestForFreeDaysController = new RequestForFreeDaysController();
             DataGridRequestForFreeDays.ItemsSource = _requestForFreeDaysController.ReadAllByDoctor(id);
-            DataGridRequestForFreeDays.AutoGenerateColumns = false;
-            DataGridTextColumn datacolumn = new DataGridTextColumn();
-            datacolumn.Header = "Time Interval";
-            datacolumn.Binding = new Binding("TimeInterval");
-            DataGridRequestForFreeDays.Columns.Add(datacolumn);
-            datacolumn = new DataGridTextColumn();
-            datacolumn.Header = "Reason";
-            datacolumn.Binding = new Binding("ReasonForFreeDays");
-            DataGridRequestForFreeDays.Columns.Add(datacolumn);
-            datacolumn = new DataGridTextColumn();
-            datacolumn.Header = "Status";
-            datacolumn.Binding = new Binding("Status");
-            DataGridRequestForFreeDays.Columns.Add(datacolumn);
+            
+            //DataGridTextColumn datacolumn = new DataGridTextColumn();
+            //datacolumn.Header = "Time Interval";
+            //datacolumn.Binding = new Binding("TimeInterval");
+            //DataGridRequestForFreeDays.Columns.Add(datacolumn);
+            //datacolumn = new DataGridTextColumn();
+            //datacolumn.Header = "Reason";
+            //datacolumn.Binding = new Binding("ReasonForFreeDays");
+            //DataGridRequestForFreeDays.Columns.Add(datacolumn);
+            //datacolumn = new DataGridTextColumn();
+            //datacolumn.Header = "Status";
+            //datacolumn.Binding = new Binding("Status");
+            //DataGridRequestForFreeDays.Columns.Add(datacolumn);
             
 
             
 
+
+        }
+
+        private void CreateNewRequestClick(object sender, RoutedEventArgs e)
+        {
+            RequestForFreeDaysForm requestForFreeDaysForm = new RequestForFreeDaysForm(_doctorId);
+            requestForFreeDaysForm.Show();
 
         }
     }

@@ -1,9 +1,1 @@
-[
-
-{ "_Name":"panklav","_Id":22,"_Strength":"50mg" ,"_Allergens":"peniclin","_Description":"For infections"},
-
-{ "_Name":"bromazepam","_Id":32,"_Strength":"2mg" ,"_Allergens":"peniclin","_Description":"For anxiety"},
-{ "_Name":"aspirin","_Id":22,"_Strength":"10mg" ,"_Allergens":"penicilin","_Description":"for heart"}
-
-
-]
+[{"Description":"For infections","Allergens":"peniclin","Id":22,"Name":"panklav","Strength":"50mg","Status":2,"Substitution":[],"Ingredients":["peniclin","ampiclin"],"NotAllergic":true},{"Description":"For anxiety","Allergens":"peniclin","Id":32,"Name":"bromazepam","Strength":"2mg","Status":0,"Substitution":[],"Ingredients":["linezolid","ampiclin"],"NotAllergic":true},{"Description":"for heart","Allergens":"penicilin","Id":22,"Name":"aspirin","Strength":"10mg","Status":0,"Substitution":[],"Ingredients":["rifampicin","ampiclin"],"NotAllergic":true},{"Description":"for kidneys","Allergens":"pencilin","Id":0,"Name":"baktrim","Strength":"20 mg","Status":0,"Substitution":[],"Ingredients":["rifampicin","linezolid"],"NotAllergic":true}]
