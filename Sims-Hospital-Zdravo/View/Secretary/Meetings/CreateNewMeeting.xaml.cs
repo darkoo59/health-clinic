@@ -181,7 +181,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
         {
             MeetingCreatedNotifications meetingCreatedNotification = notification as MeetingCreatedNotifications;
             if (meetingCreatedNotification is null) return;
-
+            if (meetingCreatedNotification.RoleType != RoleType.SECRETARY) return;
             _notificationManager.Show(
                 new NotificationContent
                 {

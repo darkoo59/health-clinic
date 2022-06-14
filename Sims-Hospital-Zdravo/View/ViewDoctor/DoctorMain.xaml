@@ -109,10 +109,10 @@
         </Grid>
         <Frame Name="FrameForMain" Margin="305,100,10,5" NavigationUIVisibility="Hidden" />
         <notifications:NotificationArea
-            Grid.Row="2"
-            Grid.Column="3"
-            Height="200"
-            Width="200"
+            Grid.Row="0"
+            Grid.Column="0"
+            Height="300"
+            Width="400"
             Background="#FF12469A"
             VerticalAlignment="Bottom"
             HorizontalAlignment="Right"
