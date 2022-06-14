@@ -134,7 +134,7 @@ namespace Service
             }
             return appointments;
         }
-        private List<Doctor> AddingDoctors() 
+        private List<Doctor> AddingDoctors()
         {
             List<Doctor> doctors = new List<Doctor>();
             foreach (Doctor d in ReadDoctors())
@@ -188,7 +188,18 @@ namespace Service
             {
                 if (app.CheckIfTimeIntervalInAppointment(appointment.Time))
                 {
-                    doctors.Remove(app.Doctor);
+                    DeleteDoctorById(appointment.Doctor.Id, doctors);
+                }
+            }
+        }
+        private void DeleteDoctorById(int id, List<Doctor> doctors)
+        {
+            foreach (Doctor doctor in doctors)
+            {
+                if (doctor.Id == id)
+                {
+                    doctors.Remove(doctor);
+                    break;
                 }
             }
         }

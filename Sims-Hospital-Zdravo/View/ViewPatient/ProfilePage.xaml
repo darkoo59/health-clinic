@@ -44,7 +44,7 @@
     </Page.Resources>
 
     <Grid>
-        <Label Content="User Data" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="75,30,0,0" VerticalAlignment="Top" Height="40" Width="110"/>
+        <Label Content="User Data" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Height="40" Width="110"/>
         <Rectangle Fill="#FF60BBC9" StrokeThickness="2" HorizontalAlignment="Left" Height="170" Margin="50,75,0,0" Stroke="Black" VerticalAlignment="Top" Width="470"/>
         <Label Content="Name:" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Height="30" Width="110"/>
         <Label Content="Surame:" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="90,125,0,0" VerticalAlignment="Top" Height="30" Width="110"/>
@@ -56,6 +56,5 @@
         <Label Content="Balzakova 64, Novi Sad" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="295,195,0,0" VerticalAlignment="Top" Height="30" Width="205"/>
         <Button Width="250" Height ="31" FontSize="20" Click="Button_Click" HorizontalAlignment="Left" Margin="165,265,0,0" VerticalAlignment="Top">Change Password</Button>
         <Image Source="C:\Users\I\Desktop\Sesti semestar\Specifikacija i modeliranje softvera\Projekat\SIMS-PROJEKAT\Sims-Hospital-Zdravo\Resources\img\no_image.jpg" RenderTransformOrigin="-7.385,0.615" Margin="590,75,67,132"></Image>
-        <Button Width="250" Height ="31" FontSize="20" HorizontalAlignment="Left" Margin="532,214,0,0" VerticalAlignment="Top">Set Profile Picture</Button>
     </Grid>
 </Page>

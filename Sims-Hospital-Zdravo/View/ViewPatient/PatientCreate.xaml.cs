@@ -25,30 +25,6 @@ using System.Windows.Shapes;
 
 namespace Sims_Hospital_Zdravo
 {
-    public class StringToTime : ValidationRule
-    {
-        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
-        {
-            try
-            {
-                string pattern = @"\d?\d:\d\d";
-                var s = value as string;
-                Match m = Regex.Match(s, pattern);
-                if (m.Success)
-                {
-                    return new ValidationResult(true, null);
-                }
-                else
-                {
-                    return new ValidationResult(false, "Time format must be HH:mm (10:00)");                
-                }
-            }
-            catch
-            {
-                return new ValidationResult(false, "Unknown error occured.");
-            }
-        }
-    }
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
@@ -84,6 +60,8 @@ namespace Sims_Hospital_Zdravo
             Doctors.ItemsSource = doctors;
             Doctors.SelectedIndex = 1;
             DateOrDoctors.SelectedItem = "Date";
+            ValidateDate.Visibility = Visibility.Hidden;
+            ValidateTime.Visibility = Visibility.Hidden;
         }
         public DateTime dateTime;
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -131,22 +109,23 @@ namespace Sims_Hospital_Zdravo
             try
             {
                 Match m = Regex.Match(TimeText.Text, pattern);
+                DateTime date = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
                 if (m.Success)
                 {
                     string[] time = TimeText.Text.Split(':');
-                    dateTime = dateTime.AddHours(Int32.Parse(time[0]));
-                    dateTime = dateTime.AddMinutes(Int32.Parse(time[1]));
+                    date = date.AddHours(Int32.Parse(time[0]));
+                    date = date.AddMinutes(Int32.Parse(time[1]));
                 }
                 else
                 {
-                    //throw new Exception("Time format must be HH:mm (10:00)");                
+                    throw new Exception("Time format must be HH:mm (10:00)");                
                 }
                 if (datePicker.SelectedDate == null)
                 {
-                    //throw new Exception("You must pick a date");
+                    throw new Exception("You must pick a date");
                 }
                 Patient patient = patientMedicalRecordController.FindPatientById(accountController.GetLoggedAccount().Id);
-                TimeInterval timeInterval = new TimeInterval(dateTime, dateTime.AddMinutes(30));
+                TimeInterval timeInterval = new TimeInterval(date, date.AddMinutes(30));
                 Appointment appointment = new Appointment(null, doctor, patient, timeInterval, AppointmentType.EXAMINATION);
                 string priority = DateOrDoctors.SelectedItem.ToString();
                 appointmentPatientController.ValidateAppointment(appointment);
@@ -154,7 +133,19 @@ namespace Sims_Hospital_Zdravo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                if (ex.Message.Equals("You must pick a date") || ex.Message.Equals("You can not time travel"))
+                {
+                    ValidateDate.Visibility = Visibility.Visible;
+                    ValidateTime.Visibility = Visibility.Hidden;
+                    ValidateDate.Text = ex.Message;
+                }
+                else
+                {
+                    ValidateDate.Visibility = Visibility.Hidden;
+                    ValidateTime.Visibility = Visibility.Visible;
+                    ValidateTime.Text = ex.Message;
+                }
             }
         }
 

@@ -24,15 +24,29 @@ namespace Sims_Hospital_Zdravo
     public partial class DiagnosisPage : Page
     {
         public Appointment appointment;
-        public Anamnesis anamnesis;
-        public DiagnosisPage(Appointment appointment, Anamnesis anamnesis)
+        public DiagnosisPage(Anamnesis anamnesis, List<Prescription> prescriptions)
         {
             InitializeComponent();
-            this.anamnesis = anamnesis;
-            this.appointment = appointment;
             if (anamnesis != null)
             {
                 DiagnosisLabel.Content = anamnesis.Diagnosis;
+            }
+            if (prescriptions != null && prescriptions.Count == 0)
+            {
+                string s = "";
+                bool flag = true;
+                foreach (Prescription prescription in prescriptions)
+                {
+                    if (flag)
+                    {
+                        s = s + prescription.Medicine.Name;
+                    }
+                    else
+                    {
+                        s = s + ", " + prescription.Medicine.Name;
+                    }
+                }
+                PrescriptionsLabel.Content = s;
             }
         }
     }

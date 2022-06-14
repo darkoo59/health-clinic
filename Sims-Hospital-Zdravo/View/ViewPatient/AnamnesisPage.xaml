@@ -9,7 +9,7 @@
       Title="AnamnesisPage">
 
     <Grid>
-        <Label BorderBrush="Black" BorderThickness="2" Name="AnamnesisLabel" Content="" FontWeight="Regular" FontSize="20" HorizontalAlignment="Left" Margin="110,70,0,0" VerticalAlignment="Top" Height="180" Width="455"/>
+        <Label BorderBrush="Black" BorderThickness="2" Name="AnamnesisLabel" Content="{Binding Anamnesis}" FontWeight="Regular" FontSize="20" HorizontalAlignment="Left" Margin="110,70,0,0" VerticalAlignment="Top" Height="180" Width="455"/>
         <Label FontFamily="#Segoe UI" FontWeight="DemiBold" Content="Anamnesis:" HorizontalAlignment="Left" Margin="110,25,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="115"/>
     </Grid>
 </Page>
