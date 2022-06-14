@@ -169,7 +169,8 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Already available&amp;#xD;&amp;#xA;supplies :.
+        ///   Looks up a localized string similar to Already available
+        ///supplies :.
         /// </summary>
         public static string AvailableSupplies {
             get {
@@ -250,7 +251,8 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If patient doesn&apos;t exist,&amp;#xD;&amp;#xA;please create medical  record first!.
+        ///   Looks up a localized string similar to If patient doesn&apos;t exist,
+        ///please create medical  record first!.
         /// </summary>
         public static string DoesPatientExist {
             get {
@@ -538,7 +540,8 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Patient medical&amp;#xD;&amp;#xA;allergens:.
+        ///   Looks up a localized string similar to Patient medical
+        ///Aallergens:.
         /// </summary>
         public static string PatientMedicalAllergens {
             get {
@@ -637,7 +640,9 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secretary Ana Jovanovic is an experienced&amp;#xD;&amp;#xA;secretary who is constantly working on&amp;#xD;&amp;#xA;improving her skills..
+        ///   Looks up a localized string similar to Secretary Ana Jovanovic is an experienced
+        ///secretary who is constantly working on
+        ///improving her skills..
         /// </summary>
         public static string SecretaryInfo {
             get {
@@ -651,6 +656,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         public static string SelectAppType {
             get {
                 return ResourceManager.GetString("SelectAppType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose doctor :.
+        /// </summary>
+        public static string SelectDoctor {
+            get {
+                return ResourceManager.GetString("SelectDoctor", resourceCulture);
             }
         }
         

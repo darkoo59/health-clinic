@@ -208,7 +208,8 @@
     <value>Dalje</value>
   </data>
   <data name="DoesPatientExist" xml:space="preserve">
-    <value>Ako pacijent ne postoji, molim Vas prvo kreirajte medicinski karton!</value>
+    <value>Ako pacijent ne postoji, molim Vas
+prvo kreirajte medicinski karton!</value>
   </data>
   <data name="ttCreate" xml:space="preserve">
     <value>Kreiraj</value>
@@ -340,7 +341,9 @@
     <value>O sekretaru</value>
   </data>
   <data name="SecretaryInfo" xml:space="preserve">
-    <value>Sekretar Ana Jovanović je iskusan sekretar, koji konstantno radi na unapređenju svojih veština.</value>
+    <value>Sekretar Ana Jovanović je iskusan sekretar, 
+koji konstantno radi na unapređenju
+svojih veština.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Otkaži</value>
@@ -353,5 +356,8 @@
   </data>
   <data name="Schedule" xml:space="preserve">
     <value>Zakaži</value>
+  </data>
+  <data name="SelectDoctor" xml:space="preserve">
+    <value>Izaberite doktora :</value>
   </data>
 </root>

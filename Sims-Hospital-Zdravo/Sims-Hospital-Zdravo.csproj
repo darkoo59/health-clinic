@@ -223,6 +223,7 @@
     <Compile Include="Utils\Commands\SelectDateCommand.cs" />
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
+    <Compile Include="Utils\PDF\SecretaryAppointmentsPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
     <Compile Include="ViewModel\Commands\FullScreenCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />

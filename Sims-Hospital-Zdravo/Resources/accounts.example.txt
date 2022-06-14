@@ -1,4 +1,4 @@
 [{"Username":"manager","Password":"manager","Id":1,"Role":0, "Name":"Srdjan","Surname":"Stjepanovic"}
-,{"Username":"secretary","Password":"secretary","Id":2,"Role":1, "Name":"Ana","Surname":"Jovanovic"}
+,{"Username":"secretary","Password":"secretary","Id":2,"Role":1, "Name":"Ana","Surname":"Jovanovic", "Email":"ana@gmail.com","Jmbg":"1234567891011","PhoneNumber":"0623132331","BirthDate":"1993-04-23T18:25:43.511Z"}
 ,{"Username":"patient","Password":"patient","Id":4,"Role":3,"Blocked":false,"Cancels":[], "Name":"Ognjen","Surname":"Golubovic"}
 ,{"Username":"doctor","Password":"doctor","Id":3,"Role":2, "Name":"Cvetana","Surname":"Despinic"}]

@@ -34,26 +34,6 @@ namespace Sims_Hospital_Zdravo
             ComboGender.ItemsSource = Enum.GetValues(typeof(GenderType)).Cast<GenderType>();
             ComboBlood.ItemsSource = Enum.GetValues(typeof(BloodType)).Cast<BloodType>();
             ComboMarital.ItemsSource = Enum.GetValues(typeof(MaritalType)).Cast<MaritalType>();
-            /*ComboGender.SelectedIndex = (int)record.Gender;
-            ComboBlood.SelectedIndex = (int)record.BloodType;
-            ComboMarital.SelectedIndex = (int)record.MaritalStatus;
-            foreach (String str in medicalRecord.PatientAllergens.CommonAllergens)
-            {
-                ListPatientAllergens.Items.Add(str);
-            }
-
-            foreach (String str in medicalRecord.PatientAllergens.MedicalAllergens)
-            {
-                ListPatientMedicalAllergens.Items.Add(str);
-            }
-
-            TxtName.Text = patient.Name;
-            TxtSurname.Text = patient.Surname;
-            TxtBirth.Text = patient.BirthDate.ToString("yyyy-MM-dd");
-            TxtEmail.Text = patient.Email;
-            TxtJmbg.Text = patient.Jmbg;
-            TxtPhone.Text = patient.PhoneNumber;*/
-            //ListPatientAllergens.Items.Add(str);
             this.Loaded += new RoutedEventHandler(UpdateRecordWindow_Loaded);
 
             //Images listeners
@@ -115,6 +95,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
+                Validate();
                 MedicalRecord record = (MedicalRecord)DataContext;
                 Patient patientUpdated = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 patientUpdated.Id = record.Patient.Id;
@@ -213,6 +194,30 @@ namespace Sims_Hospital_Zdravo
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+        
+        private void Validate()
+        {
+            ValidateNumber(TxtJmbg.Text, "Jmbg");
+            ValidateComboBoxSelected();
+        }
+
+        private void ValidateComboBoxSelected()
+        {
+            if (ComboGender.SelectedIndex == -1)
+                throw new Exception("Gender type should be selected");
+            if (ComboBlood.SelectedIndex == -1)
+                throw new Exception("Blood type should be selected");
+            if (ComboMarital.SelectedIndex == -1)
+                throw new Exception("Marital status should be selected");
+        }
+
+        private void ValidateNumber(string text, string property)
+        {
+            int number;
+            bool isValid = Int32.TryParse(text, out number);
+            if (!isValid)
+                throw new Exception(property + " should be number!");
         }
     }
 }

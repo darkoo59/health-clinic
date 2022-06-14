@@ -16,6 +16,7 @@ using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.PDF;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -141,6 +142,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             EmergencyExaminationWindow window = new EmergencyExaminationWindow();
             window.Show();
+        }
+        
+        private void OpenPDF_Click(object sender, RoutedEventArgs e)
+        {
+            SecretaryAppointmentsPdfCreator pdfCreator = new SecretaryAppointmentsPdfCreator();
+            pdfCreator.PrintSurvey();
+            System.Diagnostics.Process.Start(@"..\..\Resources\weeklyAppointments.pdf");
         }
     }
 }

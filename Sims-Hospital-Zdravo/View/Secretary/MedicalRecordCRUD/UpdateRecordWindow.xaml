@@ -11,7 +11,7 @@
     <Window.Resources>
         <ResourceDictionary Source="../../Secretary/SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <Label Content="{x:Static rs:Resources.Name}" HorizontalAlignment="Left" Margin="63,35,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="163,35,0,0" TextWrapping="Wrap"
                  Text="{Binding Patient.Name, Mode=OneTime}" VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
@@ -19,7 +19,7 @@
         <TextBox x:Name="TxtSurname" Text="{Binding Patient.Surname, Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,63,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
         <Label Content="{x:Static rs:Resources.BirthDate}" HorizontalAlignment="Left" Margin="63,89,0,0" VerticalAlignment="Top" Width="66" Style="{StaticResource label_style}"/>
-        <Label Content="{x:Static rs:Resources.BirthDate}" HorizontalAlignment="Left" Margin="283,91,-10,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.DateFormat}" HorizontalAlignment="Left" Margin="283,91,-10,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtBirth" Text="{Binding Patient.BirthDate,StringFormat='{}{0:yyyy-MM-dd}', Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,91,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="63,116,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
@@ -43,7 +43,6 @@
                Width="92" Style="{StaticResource label_style}"/>
         <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="163,257,0,0" VerticalAlignment="Top"
                   Width="120" Text="{Binding MaritalStatus, Mode=OneTime}" Style="{StaticResource combo_style}"/>
-        <Label Content="{x:Static rs:Resources.DateFormat}" HorizontalAlignment="Left" Margin="290,90,-17,0" VerticalAlignment="Top" Width="85" FontSize="9" />
         <Button Content="{x:Static rs:Resources.Update}" HorizontalAlignment="Left" Margin="130,475,0,5" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
         <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="55" Margin="63,314,0,0"
                  VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Style="{StaticResource listbox_style}">

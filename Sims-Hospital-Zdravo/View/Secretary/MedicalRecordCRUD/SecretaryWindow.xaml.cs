@@ -42,9 +42,7 @@ namespace Sims_Hospital_Zdravo
         private void Insert_Click(object sender, RoutedEventArgs e)
         {
             viewModel.InsertRecordCommand.Execute(null);
-            //InsertRecordWindow insertWindow = new InsertRecordWindow();
-            //insertWindow.Show();
-            //this.Close();
+            this.Close();
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -52,12 +50,8 @@ namespace Sims_Hospital_Zdravo
                 try
                 {
                     viewModel.UpdateRecordCommand.Execute((MedicalRecord)ContentGrid.SelectedValue);
-                /*MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
-                Patient patient = medical.Patient;
-                UpdateRecordWindow updateWindow = new UpdateRecordWindow(patient, medical) { DataContext = ContentGrid.SelectedItem };
-                updateWindow.Show();*/
-                ContentGrid.Items.Refresh();
-            }
+                    this.Close();
+                }
                 catch (Exception ex)
                 {
                     System.Windows.MessageBox.Show(ex.Message);
@@ -69,11 +63,6 @@ namespace Sims_Hospital_Zdravo
             try
             {
                 viewModel.DeleteRecordCommand.Execute((MedicalRecord)ContentGrid.SelectedValue);
-                /*MedicalRecord medical = (MedicalRecord)ContentGrid.SelectedValue;
-                Patient patient = medical.Patient;
-                UpdateRecordWindow updateWindow = new UpdateRecordWindow(patient, medical) { DataContext = ContentGrid.SelectedItem };
-                updateWindow.Show();*/
-                ContentGrid.Items.Refresh();
             }
             catch (Exception ex)
             {

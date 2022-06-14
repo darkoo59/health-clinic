@@ -160,5 +160,12 @@ namespace Sims_Hospital_Zdravo.Model
         {
             _validator.SchedulingAppointmentInWrongTime(interval);
         }
+        
+        public List<Appointment> GetAppointmentsForThisWeek()
+        {
+            List<Appointment> appointmentsToReturn = _appointmentRepository.GetAppointmentsForThisWeek();
+            appointmentsToReturn.Sort((app1, app2) => DateTime.Compare(app1.Time.Start, app2.Time.Start));
+            return appointmentsToReturn;
+        }
     }
 }

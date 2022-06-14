@@ -70,6 +70,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
                 try
                 {
                     viewModel.UpdateRequestCommand.Execute(ContentGrid.SelectedItem);
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
