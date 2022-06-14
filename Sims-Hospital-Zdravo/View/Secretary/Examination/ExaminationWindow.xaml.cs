@@ -16,6 +16,7 @@ using Controller;
 using Model;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.Interfaces;
+using Sims_Hospital_Zdravo.Utils.PDF;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 
 namespace Sims_Hospital_Zdravo.View.Secretary.Examination
@@ -92,31 +93,45 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             GridAppointments.AutoGenerateColumns = false;
             GridAppointments.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Doctor name";
-            dataColumn.Binding = new Binding("Doctor._Name");
+            if (app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Doctor name";
+            else
+                dataColumn.Header = "Ime doktora";
+            dataColumn.Binding = new Binding("Doctor.Name");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Doctor surname";
-            dataColumn.Binding = new Binding("Doctor._Surname");
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Doctor surname";
+            else
+                dataColumn.Header = "Prezime doktora";
+            dataColumn.Binding = new Binding("Doctor.Surname");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Patient name";
-            dataColumn.Binding = new Binding("Patient._Name");
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Patient name";
+            else
+                dataColumn.Header = "Ime pacijenta";
+            dataColumn.Binding = new Binding("Patient.Name");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Patient surname";
-            dataColumn.Binding = new Binding("Patient._Surname");
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Patient surname";
+            else 
+                dataColumn.Header = "Prezime pacijenta";
+            dataColumn.Binding = new Binding("Patient.Surname");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Room type";
-            dataColumn.Binding = new Binding("Room.Type");
-            GridAppointments.Columns.Add(dataColumn);
-            dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Start at";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Start at";
+            else
+                dataColumn.Header = "Počinje u";
             dataColumn.Binding = new Binding("Time.Start");
             GridAppointments.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "End at";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "End at";
+            else 
+                dataColumn.Header = "Završava u";
             dataColumn.Binding = new Binding("Time.End");
             GridAppointments.Columns.Add(dataColumn);
         }
@@ -141,6 +156,13 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         {
             EmergencyExaminationWindow window = new EmergencyExaminationWindow();
             window.Show();
+        }
+        
+        private void OpenPDF_Click(object sender, RoutedEventArgs e)
+        {
+            SecretaryAppointmentsPdfCreator pdfCreator = new SecretaryAppointmentsPdfCreator();
+            pdfCreator.PrintSurvey();
+            System.Diagnostics.Process.Start(@"..\..\Resources\weeklyAppointments.pdf");
         }
     }
 }

@@ -51,6 +51,7 @@ namespace Sims_Hospital_Zdravo
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
+            data_column.Width = 100;
             Apps.Columns.Add(data_column);
 
             data_column = new DataGridTextColumn();
@@ -58,6 +59,7 @@ namespace Sims_Hospital_Zdravo
             Binding time = new Binding("Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
+            data_column.Width = 50;
             Apps.Columns.Add(data_column);
 
             MultiBinding doctor = new MultiBinding();
@@ -67,8 +69,10 @@ namespace Sims_Hospital_Zdravo
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
-            data_column.Width = 338;
+            data_column.Width = 203;
             Apps.Columns.Add(data_column);
+            Apps.RowHeaderWidth = 0;
+            Update.Visibility = Visibility.Hidden;
 
             if (appointments.Contains(appointment))
             {
@@ -86,9 +90,21 @@ namespace Sims_Hospital_Zdravo
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            appointment = (Appointment) Apps.SelectedItem;
-            appointmentPatientController.Create(appointment);
-            frame.Content = new PatientWindow(frame);
+            try
+            {
+                if (Apps.SelectedItem == null)
+                {
+                    throw new Exception("Select an appointment");
+                }
+                appointment = (Appointment)Apps.SelectedItem;
+                appointmentPatientController.Create(appointment);
+                frame.Content = new PatientWindow(frame);
+            }
+            catch (Exception m)
+            {
+                Update.Visibility = Visibility.Visible;
+                Update.Text = m.Message;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

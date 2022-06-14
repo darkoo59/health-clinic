@@ -11,9 +11,9 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
 
-        <Grid Width="350" Margin="0,0,0,360" Grid.ColumnSpan="2" Background="#1D80CA">
+        <Grid Width="350" Margin="0,0,0,360" Grid.ColumnSpan="2" Style="{StaticResource Grid2Style}">
             <Label Content="{x:Static rs:Resources.HospitalName}" Name="lblHospital" HorizontalAlignment="Left" Margin="94,0,0,0" VerticalAlignment="Top" Height="50" Width="200" Foreground="White" FontSize="25"/>
             <Image Source="../../../Resources/img/Secretary/Logo.png" HorizontalAlignment="Left" Height="72" Margin="149,50,0,0" VerticalAlignment="Top" Width="117"/>
         </Grid>

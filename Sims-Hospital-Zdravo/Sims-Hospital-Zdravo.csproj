@@ -223,6 +223,7 @@
     <Compile Include="Utils\Commands\SelectDateCommand.cs" />
     <Compile Include="Utils\PDF\DoctorSurveyPdfCreator.cs" />
     <Compile Include="Utils\PDF\HospitalSurveyPdfCreator.cs" />
+    <Compile Include="Utils\PDF\SecretaryAppointmentsPdfCreator.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
     <Compile Include="ViewModel\Commands\FullScreenCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateWithParameterCommand.cs" />
@@ -241,6 +242,9 @@
     <Compile Include="Service\MeetingService.cs" />
     <Compile Include="ViewModel\Manager\ManagerDoctorSurveyModel.cs" />
     <Compile Include="ViewModel\Manager\ManagerHospitalSurveyViewModel.cs" />
+    <Compile Include="ViewModel\PatientViewModel\AnamnesisViewModel.cs" />
+    <Compile Include="ViewModel\PatientViewModel\DoctorSurveyViewModel.cs" />
+    <Compile Include="ViewModel\PatientViewModel\HospitalSurveyViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel\TherapyViewModel.cs" />
     <Compile Include="ViewModel\Secretary\FreeDaysViewModel.cs" />
     <Compile Include="ViewModel\Secretary\MedicalRecordViewModel.cs" />
@@ -363,8 +367,6 @@
     <Compile Include="View\ViewPatient\PatientUpdate.xaml.cs">
       <DependentUpon>PatientUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewPatient\PrescriptionParameters.xaml.cs" />
-    <Compile Include="View\ViewPatient\Prescriptions.xaml.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AllergensRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
@@ -706,8 +708,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewPatient\PrescriptionParameters.xaml" />
-    <Page Include="View\ViewPatient\Prescriptions.xaml" />
     <Page Include="View\Login\LoginMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -974,7 +974,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -1053,13 +1053,15 @@
     <Resource Include="Resources\img\Doctor\logoApp.png" />
     <Resource Include="Resources\img\Doctor\logout.png" />
     <Resource Include="Resources\img\Doctor\search.png" />
-    <Resource Include="Resources\img\Doctor\anamnesisihelp.png" />
-    <Resource Include="Resources\img\Doctor\freedaysformhelp.png" />
-    <Resource Include="Resources\img\Doctor\freedayshelp.png" />
-    <Resource Include="Resources\img\Doctor\medformvalidation.png" />
-    <Resource Include="Resources\img\Doctor\medicinevalidationhelp.png" />
-    <Resource Include="Resources\img\Doctor\prvizahelpwizard.png" />
-    <Resource Include="Resources\img\Doctor\searchhelpwizard.png" />
+    <Resource Include="Resources\img\Secretary\Email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Phone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Place.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />

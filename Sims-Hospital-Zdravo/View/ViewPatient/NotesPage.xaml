@@ -45,13 +45,16 @@
     </Page.Resources>
 
     <Grid>
-        <Label Content="Start Date:" FontSize="18" HorizontalAlignment="Left" Margin="180,150,0,0" VerticalAlignment="Top" Height="31" Width="130" RenderTransformOrigin="1.038,2.419"/>
-        <Label Content="Start Time:" FontSize="18" HorizontalAlignment="Left" Margin="180,206,0,0" VerticalAlignment="Top" Height="31" Width="130"/>
-        <Button Click="Button_Click" Name="Submit"  FontSize="20" Width ="250" Height ="31" Margin="270,265,272,31">Submit</Button>
-        <DatePicker Name="Date" HorizontalAlignment="Left" FontSize="18" Margin="473,150,0,0" VerticalAlignment="Top" Width="152" Height="31"/>
-        <TextBox HorizontalAlignment="Left" Name="Time" FontSize="18" Height="25" Margin="473,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <Label Content="Start Date:" FontSize="18" HorizontalAlignment="Left" Margin="180,157,0,0" VerticalAlignment="Top" Height="31" Width="130" RenderTransformOrigin="1.038,2.419"/>
+        <Label Content="Start Time:" FontSize="18" HorizontalAlignment="Left" Margin="180,213,0,0" VerticalAlignment="Top" Height="31" Width="130"/>
+        <Button Click="Button_Click" Name="Submit"  FontSize="20" Width ="250" Height ="31" Margin="270,275,272,21">Submit</Button>
+        <DatePicker Name="Date" HorizontalAlignment="Left" FontSize="18" Margin="435,157,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
+        <TextBox HorizontalAlignment="Left" Name="Time" FontSize="18" Height="25" Margin="435,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
         <Label Content="Notes:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,0,0,0" Height="35" Width="100" RenderTransformOrigin="0.45,-0.429"/>
         <TextBox Name="Notes" HorizontalAlignment="Left" FontSize="20" Height="92" Margin="180,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
+        <TextBlock Name="ValidateNotes" FontFamily="#Segoe UI" FontWeight="DemiBold" Foreground="Red" FontSize="12"  HorizontalAlignment="Left" Margin="180,130,0,0" VerticalAlignment="Top" Width="180" Height="31"/>
+        <TextBlock Name="ValidateDate" FontFamily="#Segoe UI" FontWeight="DemiBold" Foreground="Red" FontSize="12" HorizontalAlignment="Left" Margin="435,188,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
+        <TextBlock Name="ValidateTime" FontFamily="#Segoe UI" FontWeight="DemiBold" Foreground="Red" FontSize="12" HorizontalAlignment="Left" Margin="435,244,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
 
     </Grid>
 </Page>

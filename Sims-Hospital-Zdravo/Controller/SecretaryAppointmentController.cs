@@ -69,5 +69,10 @@ namespace Sims_Hospital_Zdravo.Controller
         {
             secretaryAppointmenService.ValidateAppointmentInterval(interval);
         }
+        
+        public List<Appointment> GetAppointmentsForThisWeek()
+        {
+            return secretaryAppointmenService.GetAppointmentsForThisWeek();
+        }
     }
 }

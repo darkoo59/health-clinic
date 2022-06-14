@@ -12,9 +12,9 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <Grid>
-            <ListBox x:Name="ListRooms" HorizontalAlignment="Left" Height="332" Margin="50,77,0,0" VerticalAlignment="Top" Width="288"/>
+            <ListBox x:Name="ListRooms" HorizontalAlignment="Left" Height="332" Margin="50,77,0,0" VerticalAlignment="Top" Width="288" Style="{StaticResource listbox_style}"/>
             <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="58,437,58.6,0" MouseLeftButtonDown="btnNext_Click">
                 <Image.ToolTip>
                     <ToolTip x:Name="tt_next"

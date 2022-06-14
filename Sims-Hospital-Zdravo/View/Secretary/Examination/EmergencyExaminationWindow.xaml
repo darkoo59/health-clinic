@@ -12,13 +12,13 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <!-- Other goes here -->
 
-        <ListBox x:Name="ListPatients" HorizontalAlignment="Left" Height="254" Margin="52,178,0,0" VerticalAlignment="Top" Width="288" SelectionMode="Single"/>
-        <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="57,131,0,0" VerticalAlignment="Top" Height="42" Width="156" FontSize="22" Style="{StaticResource label_style}" />
-        <Button Content="{x:Static rs:Resources.Guest}" HorizontalAlignment="Left" Margin="138,72,0,0" VerticalAlignment="Top" Width="108" Height="39" Click="Guest_Click" Style="{StaticResource btn_style}" RenderTransformOrigin="1.926,-2.584"/>
-        <Label Content="{x:Static rs:Resources.NonRegistered}" HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Height="42" Width="271" FontSize="22" Style="{StaticResource label_style}" />
+        <ListBox x:Name="ListPatients" HorizontalAlignment="Left" Height="254" Margin="52,178,0,0" VerticalAlignment="Top" Width="288" SelectionMode="Single" Style="{StaticResource listbox_style}"/>
+        <Label Content="{x:Static rs:Resources.SelectPatient}" HorizontalAlignment="Left" Margin="57,131,0,0" VerticalAlignment="Top" Height="42" Width="186" FontSize="20" Style="{StaticResource label_style}" />
+        <Button Content="{x:Static rs:Resources.Guest}" HorizontalAlignment="Left" Margin="138,82,0,0" VerticalAlignment="Top" Width="108" Height="39" Click="Guest_Click" Style="{StaticResource btn_style}" RenderTransformOrigin="1.926,-2.584"/>
+        <Label Content="{x:Static rs:Resources.NonRegistered}" HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Height="42" Width="271" FontSize="20" Style="{StaticResource label_style}" />
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,437,44,0" MouseLeftButtonDown="Next_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_next"

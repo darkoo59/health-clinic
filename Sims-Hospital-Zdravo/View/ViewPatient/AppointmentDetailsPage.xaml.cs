@@ -34,6 +34,11 @@ namespace Sims_Hospital_Zdravo
             medicalRecordController = new MedicalRecordController();
             anamnesis = medicalRecordController.GetAnamnesis(appointment);
             Appointment.Content = new AnamnesisPage(anamnesis);
+            var converter = new System.Windows.Media.BrushConverter();
+            Anamensis.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
+            Anamensis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
+            Diagnosis.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
+            Diagnosis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
         }
 
         private void Anamnesis_Click(object sender, RoutedEventArgs e)
@@ -42,32 +47,16 @@ namespace Sims_Hospital_Zdravo
             var converter = new System.Windows.Media.BrushConverter();
             Anamensis.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
             Anamensis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
-            Prescription.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Prescription.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Diagnosis.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Diagnosis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-        }
-
-        private void Prescription_Click(object sender, RoutedEventArgs e)
-        {
-            Appointment.Content = new Prescriptions(medicalRecordController.GetPrescriptions(appointment), appointment);
-            var converter = new System.Windows.Media.BrushConverter();
-            Anamensis.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Anamensis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Prescription.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
-            Prescription.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
             Diagnosis.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
             Diagnosis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
         }
 
         private void Diagnosis_Click(object sender, RoutedEventArgs e)
         {
-            Appointment.Content = new DiagnosisPage(appointment, anamnesis);
+            Appointment.Content = new DiagnosisPage(anamnesis, medicalRecordController.GetPrescriptions(appointment));
             var converter = new System.Windows.Media.BrushConverter();
             Anamensis.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
             Anamensis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Prescription.Background = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
-            Prescription.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF3183CB");
             Diagnosis.Background = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
             Diagnosis.BorderBrush = (SolidColorBrush)converter.ConvertFromString("#FF60BBC9");
         }

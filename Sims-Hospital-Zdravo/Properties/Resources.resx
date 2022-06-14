@@ -196,7 +196,7 @@
     <value>Choose doctor speciality :</value>
   </data>
   <data name="NonRegistered" xml:space="preserve">
-    <value>For non registerd patients:</value>
+    <value>For non registered patients:</value>
   </data>
   <data name="SelectPatient" xml:space="preserve">
     <value>Select patient:</value>
@@ -208,7 +208,8 @@
     <value>Next</value>
   </data>
   <data name="DoesPatientExist" xml:space="preserve">
-    <value>If patient doesn't exist,&amp;#xD;&amp;#xA;please create medical  record first!</value>
+    <value>If patient doesn't exist,
+please create medical  record first!</value>
   </data>
   <data name="ttCreate" xml:space="preserve">
     <value>Create</value>
@@ -242,5 +243,129 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth date</value>
+  </data>
+  <data name="PhoneNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="BloodType" xml:space="preserve">
+    <value>Blood type</value>
+  </data>
+  <data name="Marital status" xml:space="preserve">
+    <value>Marital status</value>
+  </data>
+  <data name="Allergens" xml:space="preserve">
+    <value>Allergens</value>
+  </data>
+  <data name="MedicalAllergens" xml:space="preserve">
+    <value>MedicalAllergens</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>yyyy-mm-dd</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="PatientAllergicTo" xml:space="preserve">
+    <value>Patient allergic to:</value>
+  </data>
+  <data name="OtherAllergens" xml:space="preserve">
+    <value>Other allergens:</value>
+  </data>
+  <data name="PatientMedicalAllergens" xml:space="preserve">
+    <value>Patient medical
+Aallergens:</value>
+  </data>
+  <data name="MeetingAt" xml:space="preserve">
+    <value>Meeting start at :</value>
+  </data>
+  <data name="ChooseRoom" xml:space="preserve">
+    <value>Choose room :</value>
+  </data>
+  <data name="OptionalAttendees" xml:space="preserve">
+    <value>Optional attendees :</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others :</value>
+  </data>
+  <data name="RequiredAttendees" xml:space="preserve">
+    <value>Required attendees :</value>
+  </data>
+  <data name="ScheduleMeeting" xml:space="preserve">
+    <value>Schedule meeting</value>
+  </data>
+  <data name="Secretary" xml:space="preserve">
+    <value>Secretary</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="AvailableSupplies" xml:space="preserve">
+    <value>Already available
+supplies :</value>
+  </data>
+  <data name="EquipmentName" xml:space="preserve">
+    <value>Equipment name :</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity :</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="SendRequest" xml:space="preserve">
+    <value>Send request</value>
+  </data>
+  <data name="AboutSecretary" xml:space="preserve">
+    <value>About Secretary</value>
+  </data>
+  <data name="SecretaryInfo" xml:space="preserve">
+    <value>Secretary Ana Jovanovic is an experienced
+secretary who is constantly working on
+improving her skills.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EmergencyExamination" xml:space="preserve">
+    <value>Emergency examination</value>
+  </data>
+  <data name="Reschedule" xml:space="preserve">
+    <value>Reschedule</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="SelectDoctor" xml:space="preserve">
+    <value>Choose doctor :</value>
+  </data>
+  <data name="Contact1" xml:space="preserve">
+    <value>Have any questions for us?                Feel free to contact us!</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>Open PDF</value>
   </data>
 </root>

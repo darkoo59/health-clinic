@@ -61,7 +61,9 @@ namespace Sims_Hospital_Zdravo
                 Time.Text = Time.Text + appointment.Time.Start.Minute;
             }
             DatePicker.SelectedDate = appointment.Time.Start;
-            Doctor.Text = appointment.Doctor.Name + appointment.Doctor.Surname;
+            Doctor.Text = appointment.Doctor.Name + " " + appointment.Doctor.Surname;
+            ValidateTime.Visibility = Visibility.Hidden;
+            ValidateDate.Visibility = Visibility.Hidden;
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -69,9 +71,9 @@ namespace Sims_Hospital_Zdravo
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
             try
             {
+                DateTime date = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
                 Match m = Regex.Match(Time.Text, pattern);
                 if (m.Success)
                 {
@@ -91,10 +93,18 @@ namespace Sims_Hospital_Zdravo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                if (ex.Message.Equals("You are blocked"))
+                //MessageBox.Show(ex.Message);
+                if (ex.Message.Equals("You can not time travel") || ex.Message.Equals("You cant move appointment more or less than 2 days from original day"))
                 {
-
+                    ValidateDate.Visibility = Visibility.Visible;
+                    ValidateTime.Visibility = Visibility.Hidden;
+                    ValidateDate.Text = ex.Message;
+                }
+                else
+                {
+                    ValidateDate.Visibility = Visibility.Hidden;
+                    ValidateTime.Visibility = Visibility.Visible;
+                    ValidateTime.Text = ex.Message;
                 }
             }
         }

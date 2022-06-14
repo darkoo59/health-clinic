@@ -131,11 +131,11 @@ namespace Model
 
         public bool CheckIfTimeIntervalInAppointment(TimeInterval timeInterval)
         {
-            if (this.Time.Start.CompareTo(timeInterval.Start) < 0 && this.Time.End.CompareTo(timeInterval.Start) > 0)
+            if (this.Time.Start.CompareTo(timeInterval.Start) <= 0 && this.Time.End.CompareTo(timeInterval.Start) > 0)
             {
                 return true;    
             }
-            if (this.Time.Start.CompareTo(timeInterval.End) < 0 && this.Time.End.CompareTo(timeInterval.End) > 0)
+            if (this.Time.Start.CompareTo(timeInterval.End) < 0 && this.Time.End.CompareTo(timeInterval.End) >= 0)
             {
                 return true;
             }

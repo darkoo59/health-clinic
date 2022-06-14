@@ -43,12 +43,14 @@ namespace Sims_Hospital_Zdravo
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
+            data_column.Width = 100;
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
             Binding time = new Binding("Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
+            data_column.Width = 50;
             McDataGrid.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
@@ -57,15 +59,18 @@ namespace Sims_Hospital_Zdravo
             data_column = new DataGridTextColumn();
             data_column.Header = "Doctor";
             data_column.Binding = doctor;
-            data_column.Width = 190;
+            data_column.Width = 195;
             McDataGrid.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Room";
             data_column.Binding = new Binding("Room.Id");
+            data_column.Width = 63;
             McDataGrid.Columns.Add(data_column);
             McDataGrid.RowHeaderWidth = 0;
             McDataGrid.ItemsSource = appointmentPatientController.FindByPatientIdNew(accountController.GetLoggedAccount().Id);
             McDataGrid.Items.Refresh();
+            Update.Visibility = Visibility.Hidden;
+            Delete.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -75,19 +80,38 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Appointment appointment = (Appointment)McDataGrid.SelectedValue;
-            frame.Content = new PatientUpdate(frame, appointment) { DataContext = McDataGrid.SelectedItem };
+            try
+            {
+                if (McDataGrid.SelectedItem == null)
+                {
+                    throw new Exception("Select an appointment");
+                }
+                Appointment appointment = (Appointment)McDataGrid.SelectedValue;
+                frame.Content = new PatientUpdate(frame, appointment) { DataContext = McDataGrid.SelectedItem };
+            }
+            catch (Exception m)
+            {
+                Update.Visibility = Visibility.Visible;
+                Delete.Visibility = Visibility.Hidden;
+                Update.Content = m.Message;
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (McDataGrid.SelectedItem == null)
+                {
+                    throw new Exception("Select an appointment");
+                }
                 appointmentPatientController.Delete((Appointment)McDataGrid.SelectedItem);
             }
             catch (Exception m)
             {
-                MessageBox.Show(m.Message);
+                Update.Visibility = Visibility.Hidden;
+                Delete.Visibility = Visibility.Visible;
+                Delete.Content = m.Message;
             }
         }
     }

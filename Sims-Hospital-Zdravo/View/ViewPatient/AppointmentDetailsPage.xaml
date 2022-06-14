@@ -9,10 +9,9 @@
       Title="AppointmentDetailsPage">
 
     <Grid>
-        <Menu HorizontalAlignment="Left" Height="327" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="115" Background="#FF3183CB">
-            <MenuItem Header="Anamnesis" FontSize="18" Click="Anamnesis_Click" Name="Anamensis" HorizontalAlignment="Right" Height="30" Width="115"/>
+        <Menu BorderBrush="#FF3183CB" BorderThickness="2" HorizontalAlignment="Left" Height="327" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="115" Background="#FF3183CB">
+            <MenuItem Header="Anamnesis" FontSize="18" Click="Anamnesis_Click" Name="Anamensis" HorizontalAlignment="Right" Height="30" Width="111"/>
             <MenuItem Header="Diagnosis" FontSize="18" Click="Diagnosis_Click" x:Name="Diagnosis" Height="30" Width="115" />
-            <MenuItem Header="Prescription" FontSize="18" Click="Prescription_Click" x:Name="Prescription" Height="30" Width="115" />
         </Menu>
         <Frame Content="" Name="Appointment" HorizontalAlignment="Left" Height="327" Margin="120,0,0,0" VerticalAlignment="Top" Width="672"/>
 

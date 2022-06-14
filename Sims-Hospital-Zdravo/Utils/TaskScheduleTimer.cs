@@ -211,6 +211,7 @@ namespace Sims_Hospital_Zdravo.Utils
             if (account == null) return;
             if (!account.Role.Equals(RoleType.SECRETARY)) return;
 
+            //Console.WriteLine(account.Id);
             List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {

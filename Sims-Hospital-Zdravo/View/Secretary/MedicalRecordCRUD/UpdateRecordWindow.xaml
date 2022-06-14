@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -10,15 +11,15 @@
     <Window.Resources>
         <ResourceDictionary Source="../../Secretary/SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="63,35,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
+    <Grid Style="{StaticResource GridStyle}">
+        <Label Content="{x:Static rs:Resources.Name}" HorizontalAlignment="Left" Margin="63,35,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="163,35,0,0" TextWrapping="Wrap"
                  Text="{Binding Patient.Name, Mode=OneTime}" VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Margin="63,61,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="-2.298,-3.19" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.Surname}" HorizontalAlignment="Left" Margin="63,61,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="-2.298,-3.19" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtSurname" Text="{Binding Patient.Surname, Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,63,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Birth date" HorizontalAlignment="Left" Margin="63,89,0,0" VerticalAlignment="Top" Width="66" Style="{StaticResource label_style}"/>
-        <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="283,91,-10,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.BirthDate}" HorizontalAlignment="Left" Margin="63,89,0,0" VerticalAlignment="Top" Width="66" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.DateFormat}" HorizontalAlignment="Left" Margin="283,91,-10,0" VerticalAlignment="Top" Width="77" Height="30" RenderTransformOrigin="0.4,-0.233" FontSize="8" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtBirth" Text="{Binding Patient.BirthDate,StringFormat='{}{0:yyyy-MM-dd}', Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,91,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="63,116,0,0" VerticalAlignment="Top" Width="49" Style="{StaticResource label_style}"/>
@@ -27,25 +28,24 @@
         <Label Content="Jmbg" HorizontalAlignment="Left" Margin="63,144,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.272,-0.333" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtJmbg" Text="{Binding Patient.Jmbg, Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,147,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Phone number" HorizontalAlignment="Left" Margin="63,173,0,0" VerticalAlignment="Top"
+        <Label Content="{x:Static rs:Resources.PhoneNum}" HorizontalAlignment="Left" Margin="63,173,0,0" VerticalAlignment="Top"
                Width="92" Style="{StaticResource label_style}"/>
         <TextBox x:Name="TxtPhone" Text="{Binding Patient.PhoneNumber, Mode=OneTime}" HorizontalAlignment="Left" Height="23" Margin="163,175,0,0" TextWrapping="Wrap"
                   VerticalAlignment="Top" Width="120" Style="{StaticResource textBox_style}"/>
-        <Label Content="Gender" HorizontalAlignment="Left" Margin="63,202,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
+        <Label Content="{x:Static rs:Resources.Gender}" HorizontalAlignment="Left" Margin="63,202,0,0" VerticalAlignment="Top" Width="92" Style="{StaticResource label_style}"/>
         <ComboBox x:Name="ComboGender" SelectedValue="{ Binding Gender, Mode=OneTime }" HorizontalAlignment="Left" Margin="163,203,0,0" VerticalAlignment="Top"
-                  Width="120" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Label Content="Blood type" HorizontalAlignment="Left" Margin="63,228,0,0" VerticalAlignment="Top"
+                  Width="120" Style="{StaticResource combo_style}"/>
+        <Label Content="{x:Static rs:Resources.BloodType}" HorizontalAlignment="Left" Margin="63,228,0,0" VerticalAlignment="Top"
                Width="92" Style="{StaticResource label_style}"/>
         <ComboBox x:Name="ComboBlood" HorizontalAlignment="Left" Margin="163,230,0,0" VerticalAlignment="Top"
-                  Width="120" SelectedValue="{Binding BloodType, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Label Content="Marital status" HorizontalAlignment="Left" Margin="63,257,0,0" VerticalAlignment="Top"
+                  Width="120" SelectedValue="{Binding BloodType, Mode=OneTime}" Style="{StaticResource combo_style}"/>
+        <Label Content="{x:Static rs:Resources.Marital_status}" HorizontalAlignment="Left" Margin="63,257,0,0" VerticalAlignment="Top"
                Width="92" Style="{StaticResource label_style}"/>
         <ComboBox x:Name="ComboMarital" HorizontalAlignment="Left" Margin="163,257,0,0" VerticalAlignment="Top"
-                  Width="120" Text="{Binding MaritalStatus, Mode=OneTime}" Background="#4A90E2" Foreground="#FF4A90E2"/>
-        <Label Content="yyyy-mm-dd" HorizontalAlignment="Left" Margin="530,202,0,0" VerticalAlignment="Top" Width="85" />
-        <Button Content="Update" HorizontalAlignment="Left" Margin="130,475,0,5" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
+                  Width="120" Text="{Binding MaritalStatus, Mode=OneTime}" Style="{StaticResource combo_style}"/>
+        <Button Content="{x:Static rs:Resources.Update}" HorizontalAlignment="Left" Margin="130,475,0,5" Width="115" Height="30" Click="Update_Click" Style="{StaticResource btn_style}"/>
         <ListBox x:Name="ListPatientAllergens" HorizontalAlignment="Left" Height="55" Margin="63,314,0,0"
-                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -63,7 +63,7 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
         <ListBox x:Name="ListOtherAllergens" HorizontalAlignment="Left" Height="55" Margin="218,314,0,0"
-                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Background="White" Foreground="#FF4A90E2">
+                 VerticalAlignment="Top" Width="100" SelectionMode="Multiple" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -80,14 +80,14 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Label Content="Patient allergic to:" HorizontalAlignment="Left" Margin="63,288,0,0" VerticalAlignment="Top"
+        <Label Content="{x:Static rs:Resources.PatientAllergicTo}" HorizontalAlignment="Left" Margin="63,288,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.513,-0.135" Width="106" Style="{StaticResource label_style}"/>
-        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="218,288,0,0" VerticalAlignment="Top"
+        <Label Content="{x:Static rs:Resources.OtherAllergens}" HorizontalAlignment="Left" Margin="218,288,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.513,-0.135" Width="93" Style="{StaticResource label_style}"/>
         <Image x:Name="ImageToLeftCommon" Source="../../../Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="20" Margin="177,314,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
         <Image x:Name="ImageToRightCommon" Source="../../../Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="20" Margin="177,349,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
 
-        <ListBox Name="ListPatientMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="63,415,0,0" VerticalAlignment="Top" Width="100" Background="White" Foreground="#FF4A90E2">
+        <ListBox Name="ListPatientMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="63,415,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -104,7 +104,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <ListBox Name="ListOtherMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="218,415,0,0" VerticalAlignment="Top" Width="100" Background="White" Foreground="#FF4A90E2">
+        <ListBox Name="ListOtherMedicalAllergens" HorizontalAlignment="Left" Height="55" Margin="218,415,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource listbox_style}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -121,9 +121,9 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Label Content="Patient medical&#xD;&#xA;allergens:" HorizontalAlignment="Left" Margin="63,369,0,0" VerticalAlignment="Top"
+        <Label Content="{x:Static rs:Resources.PatientMedicalAllergens}" HorizontalAlignment="Left" Margin="63,369,0,0" VerticalAlignment="Top"
             RenderTransformOrigin="0.513,-0.135" Width="100" Style="{StaticResource label_style}" Height="46"/>
-        <Label Content="Other allergens:" HorizontalAlignment="Left" Margin="218,384,0,0" VerticalAlignment="Top"
+        <Label Content="{x:Static rs:Resources.OtherAllergens}" HorizontalAlignment="Left" Margin="218,384,0,0" VerticalAlignment="Top"
             RenderTransformOrigin="0.513,-0.135" Width="93" Style="{StaticResource label_style}"/>
         <Image x:Name="ImageToLeftMedical" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToLeft.png" HorizontalAlignment="Left" Height="20" Margin="177,415,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>
         <Image x:Name="ImageToRightMedical" Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/ArrowToRight.png" HorizontalAlignment="Left" Height="20" Margin="177,450,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.87,0.829"/>

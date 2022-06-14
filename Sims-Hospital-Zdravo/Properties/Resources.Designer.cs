@@ -124,6 +124,33 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Secretary.
+        /// </summary>
+        public static string AboutSecretary {
+            get {
+                return ResourceManager.GetString("AboutSecretary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allergens.
+        /// </summary>
+        public static string Allergens {
+            get {
+                return ResourceManager.GetString("Allergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appointment end at :.
         /// </summary>
         public static string AppEndAt {
@@ -142,11 +169,48 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Already available
+        ///supplies :.
+        /// </summary>
+        public static string AvailableSupplies {
+            get {
+                return ResourceManager.GetString("AvailableSupplies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth date.
+        /// </summary>
+        public static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blood type.
+        /// </summary>
+        public static string BloodType {
+            get {
+                return ResourceManager.GetString("BloodType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string BtnSave {
             get {
                 return ResourceManager.GetString("BtnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -160,11 +224,66 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If patient doesn&apos;t exist,&amp;#xD;&amp;#xA;please create medical  record first!.
+        ///   Looks up a localized string similar to Choose room :.
+        /// </summary>
+        public static string ChooseRoom {
+            get {
+                return ResourceManager.GetString("ChooseRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have any questions for us?                Feel free to contact us!.
+        /// </summary>
+        public static string Contact1 {
+            get {
+                return ResourceManager.GetString("Contact1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yyyy-mm-dd.
+        /// </summary>
+        public static string DateFormat {
+            get {
+                return ResourceManager.GetString("DateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If patient doesn&apos;t exist,
+        ///please create medical  record first!.
         /// </summary>
         public static string DoesPatientExist {
             get {
                 return ResourceManager.GetString("DoesPatientExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emergency examination.
+        /// </summary>
+        public static string EmergencyExamination {
+            get {
+                return ResourceManager.GetString("EmergencyExamination", resourceCulture);
             }
         }
         
@@ -178,11 +297,29 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equipment name :.
+        /// </summary>
+        public static string EquipmentName {
+            get {
+                return ResourceManager.GetString("EquipmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Explanation :.
         /// </summary>
         public static string Explanation {
             get {
                 return ResourceManager.GetString("Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string Gender {
+            get {
+                return ResourceManager.GetString("Gender", resourceCulture);
             }
         }
         
@@ -201,6 +338,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         public static string HospitalName {
             get {
                 return ResourceManager.GetString("HospitalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert.
+        /// </summary>
+        public static string Insert {
+            get {
+                return ResourceManager.GetString("Insert", resourceCulture);
             }
         }
         
@@ -313,11 +459,129 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For non registerd patients:.
+        ///   Looks up a localized string similar to Marital status.
+        /// </summary>
+        public static string Marital_status {
+            get {
+                return ResourceManager.GetString("Marital status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MedicalAllergens.
+        /// </summary>
+        public static string MedicalAllergens {
+            get {
+                return ResourceManager.GetString("MedicalAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meeting start at :.
+        /// </summary>
+        public static string MeetingAt {
+            get {
+                return ResourceManager.GetString("MeetingAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For non registered patients:.
         /// </summary>
         public static string NonRegistered {
             get {
                 return ResourceManager.GetString("NonRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional attendees :.
+        /// </summary>
+        public static string OptionalAttendees {
+            get {
+                return ResourceManager.GetString("OptionalAttendees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other allergens:.
+        /// </summary>
+        public static string OtherAllergens {
+            get {
+                return ResourceManager.GetString("OtherAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others :.
+        /// </summary>
+        public static string Others {
+            get {
+                return ResourceManager.GetString("Others", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient allergic to:.
+        /// </summary>
+        public static string PatientAllergicTo {
+            get {
+                return ResourceManager.GetString("PatientAllergicTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient medical
+        ///Aallergens:.
+        /// </summary>
+        public static string PatientMedicalAllergens {
+            get {
+                return ResourceManager.GetString("PatientMedicalAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open PDF.
+        /// </summary>
+        public static string PDF {
+            get {
+                return ResourceManager.GetString("PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string PhoneNum {
+            get {
+                return ResourceManager.GetString("PhoneNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity :.
+        /// </summary>
+        public static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
             }
         }
         
@@ -331,6 +595,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request status :.
         /// </summary>
         public static string RequestStatus {
@@ -340,11 +613,76 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Required attendees :.
+        /// </summary>
+        public static string RequiredAttendees {
+            get {
+                return ResourceManager.GetString("RequiredAttendees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reschedule.
+        /// </summary>
+        public static string Reschedule {
+            get {
+                return ResourceManager.GetString("Reschedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule.
+        /// </summary>
+        public static string Schedule {
+            get {
+                return ResourceManager.GetString("Schedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule meeting.
+        /// </summary>
+        public static string ScheduleMeeting {
+            get {
+                return ResourceManager.GetString("ScheduleMeeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secretary.
+        /// </summary>
+        public static string Secretary {
+            get {
+                return ResourceManager.GetString("Secretary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secretary Ana Jovanovic is an experienced
+        ///secretary who is constantly working on
+        ///improving her skills..
+        /// </summary>
+        public static string SecretaryInfo {
+            get {
+                return ResourceManager.GetString("SecretaryInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select appointment type :.
         /// </summary>
         public static string SelectAppType {
             get {
                 return ResourceManager.GetString("SelectAppType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose doctor :.
+        /// </summary>
+        public static string SelectDoctor {
+            get {
+                return ResourceManager.GetString("SelectDoctor", resourceCulture);
             }
         }
         
@@ -367,11 +705,29 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send request.
+        /// </summary>
+        public static string SendRequest {
+            get {
+                return ResourceManager.GetString("SendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start at:.
         /// </summary>
         public static string StartAt {
             get {
                 return ResourceManager.GetString("StartAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
             }
         }
         
@@ -435,6 +791,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
     }

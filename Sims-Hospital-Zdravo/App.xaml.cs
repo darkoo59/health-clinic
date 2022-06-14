@@ -52,6 +52,7 @@ namespace Sims_Hospital_Zdravo
         internal MeetingController _meetingController;
 
         internal String _currentLanguage;
+        internal String _currentTheme;
 
         public App()
         {
@@ -88,8 +89,8 @@ namespace Sims_Hospital_Zdravo
             //MedicalRecordService recordService = new MedicalRecordService(medicalRepo, patientRepository, allergensRepository);
             //_recordController = new MedicalRecordController(recordService, prescriptionService);
 
-            AccountRepository accountRepository = new AccountRepository();
-            AccountService accountService = new AccountService(accountRepository);
+            _accountRepository = new AccountRepository();
+            AccountService accountService = new AccountService(_accountRepository);
             _accountController = new AccountController(accountService);
 
             // AppointmentDataHandler appointmentDataHandler = new AppointmentDataHandler();
@@ -97,8 +98,8 @@ namespace Sims_Hospital_Zdravo
             // DoctorRepository doctorRepository = new DoctorRepository();
             // AppointmentRepository appointmentRepository = new AppointmentRepository();
             AppointmentPatientService appointmentPatientService =
-                new AppointmentPatientService(accountRepository);
-            _appointmentPatientController = new AppointmentPatientController(accountRepository);
+                new AppointmentPatientService(_accountRepository);
+            _appointmentPatientController = new AppointmentPatientController(_accountRepository);
 
             DoctorRepository docRepo = new DoctorRepository();
 
@@ -182,6 +183,7 @@ namespace Sims_Hospital_Zdravo
             // _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
 
             _currentLanguage = "en-US";
+            _currentTheme = "Light";
         }
 
         void WindowLoaded(object sender, RoutedEventArgs e)

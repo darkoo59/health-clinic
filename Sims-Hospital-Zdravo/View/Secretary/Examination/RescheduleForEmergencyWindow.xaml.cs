@@ -26,9 +26,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
         private Patient patient;
         private SpecialtyType doctorType;
         private SecretaryAppointmentController _secretaryAppointmentController;
+        private App app;
         public RescheduleForEmergencyWindow(Patient patient,SpecialtyType type)
         {
             InitializeComponent();
+            app = Application.Current as App;
             this.patient = patient;
             this.doctorType = type;
             this.DataContext = this;
@@ -75,19 +77,31 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
             ContentGrid.AutoGenerateColumns = false;
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Start";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Start";
+            else
+                dataColumn.Header = "Početak";
             dataColumn.Binding = new Binding("Appointment._Time.Start");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "End";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "End";
+            else 
+                dataColumn.Header = "Kraj";
             dataColumn.Binding = new Binding("Appointment._Time.End");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Start after rescheduling";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Start after rescheduling";
+            else
+                dataColumn.Header = "Početak nakon pomeranja";
             dataColumn.Binding = new Binding("RescheduledDate.Start");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "End after rescheduling";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "End after rescheduling";
+            else 
+                dataColumn.Header = "Kraj nakon pomeranja";
             dataColumn.Binding = new Binding("RescheduledDate.End");
             ContentGrid.Columns.Add(dataColumn);
         }

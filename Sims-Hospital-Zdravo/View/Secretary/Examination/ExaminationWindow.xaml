@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Examination"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
@@ -11,30 +12,30 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
         <Image Source="../../../Resources/img/Secretary/Schedule.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="85,26,53,0" MouseLeftButtonDown="Schedule_Click" Grid.ColumnSpan="2">
             <Image.ToolTip>
                 <ToolTip Name="tt_schedule"
-                                     Content="Schedule"
+                                     Content="{x:Static rs:Resources.Schedule}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
         <Image Source="../../../Resources/img/Secretary/Reschedule.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="155,26,0,0" MouseLeftButtonDown="Reschedule_Click" Grid.Column="1" Grid.ColumnSpan="2">
             <Image.ToolTip>
                 <ToolTip Name="tt_reschedule"
-                                     Content="Reschedule"
+                                     Content="{x:Static rs:Resources.Reschedule}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
         <Image Source="../../../Resources/img/Secretary/Remove.png" Height="43" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="270,26,0,0" MouseLeftButtonDown="Cancel_Click" Grid.Column="2" Grid.ColumnSpan="2">
             <Image.ToolTip>
                 <ToolTip Name="tt_remove"
-                                     Content="Cancel"
+                                     Content="{x:Static rs:Resources.Cancel}"
                                      Style="{StaticResource tt_medicalRecord_style}"/>
             </Image.ToolTip>
         </Image>
         <DatePicker x:Name="appointmentsDatePicker" SelectedDateChanged="appDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Height="30" Width="104"/>
-        <DataGrid x:Name="GridAppointments"
+        <DataGrid x:Name="GridAppointments" RowStyle="{StaticResource dataGridRow_style}" RowHeaderStyle="{StaticResource dataGridRowHeader}" ColumnHeaderStyle="{StaticResource dataGridHeader}" Style="{StaticResource dataGrid}"
                   HorizontalScrollBarVisibility="Disabled"
                   VerticalScrollBarVisibility="Disabled"
                   SelectionMode="Single"
@@ -47,8 +48,9 @@
                   CanUserResizeColumns="True"
                   CanUserResizeRows="False"/>
 
-        <Button Content="Emergency examination" HorizontalAlignment="Left" Margin="126,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
-     
+        <Button Content="{x:Static rs:Resources.EmergencyExamination}" HorizontalAlignment="Left" Margin="64,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
+        <Button Content="{x:Static rs:Resources.PDF}" HorizontalAlignment="Left" Margin="240,462,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="OpenPDF_Click" Style="{StaticResource btn_style}"/>
+        
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <!-- //Menu bar panel // -->
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />

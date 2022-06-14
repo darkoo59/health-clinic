@@ -12,10 +12,10 @@
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridStyle}">
 
-        <ComboBox x:Name="comboSpeciality" HorizontalAlignment="Left" Margin="110,206,0,0" VerticalAlignment="Top" Width="146" Height="35"/>
-        <Label Content="{x:Static rs:Resources.ChooseDoctor}" HorizontalAlignment="Left" Margin="62,161,0,0" VerticalAlignment="Top" Height="40" Width="264" FontSize="22" Style="{StaticResource label_style}" />
+        <ComboBox x:Name="comboSpeciality" HorizontalAlignment="Left" Margin="110,206,0,0" VerticalAlignment="Top" Width="146" Height="35" Style="{StaticResource combo_style}"/>
+        <Label Content="{x:Static rs:Resources.ChooseDoctor}" HorizontalAlignment="Left" Margin="67,161,0,0" VerticalAlignment="Top" Height="40" Width="274" FontSize="20" Style="{StaticResource label_style}" />
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,437,44,0" MouseLeftButtonDown="Next_Click">
             <Image.ToolTip>
                 <ToolTip x:Name="tt_next"

@@ -39,6 +39,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Settings
                 ComboLanguage.SelectedIndex = 0;
             else
                 ComboLanguage.SelectedIndex = 1;
+
+            if (Properties.Settings.Default.ColorMode.Equals("Light"))
+                ComboTheme.SelectedIndex = 0;
+            else
+                ComboTheme.SelectedIndex = 1;
         }
 
 
@@ -53,22 +58,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Settings
             this.Close();
         }
 
-        /*private void applyResources(ComponentResourceManager manager, System.Windows.Forms.Control.ControlCollection ctls)
-        {
-            foreach(System.Windows.Forms.Control ctl in ctls)
-            {
-                manager.ApplyResources(ctl, ctl.Name);
-                applyResources(manager, ctl.Controls);
-            }
-        }
-
-        private void localizeForm(Form frm)
-        {
-            var manager = new ComponentResourceManager(frm.GetType());
-            manager.ApplyResources(frm, "$this");
-            applyResources(manager, frm.Controls);
-        }*/
-
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (ComboLanguage.SelectedValue.ToString().Equals("Serbian") || ComboLanguage.SelectedValue.ToString().Equals("Srpski"))
@@ -81,6 +70,18 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Settings
             {
                 TranslationSource.Instance.ChangeLanguage("en-US");
                 app._currentLanguage = "en-US";
+            }
+
+            if(ComboTheme.SelectedValue.ToString().Equals("Light"))
+            {
+                Properties.Settings.Default.ColorMode = "Light";
+                Properties.Settings.Default.Save();
+                app._currentTheme = "Light";
+            }else if(ComboTheme.SelectedValue.ToString().Equals("Dark"))
+            {
+                Properties.Settings.Default.ColorMode = "Dark";
+                Properties.Settings.Default.Save();
+                app._currentTheme = "Dark";
             }
             SecretaryHome window = new SecretaryHome();
             window.Show();

@@ -42,12 +42,14 @@ namespace Sims_Hospital_Zdravo
             DataGridTextColumn data_column = new DataGridTextColumn();
             data_column.Header = "Date";
             data_column.Binding = date;
+            data_column.Width = 100;
             Apps.Columns.Add(data_column);
             data_column = new DataGridTextColumn();
             data_column.Header = "Time";
             Binding time = new Binding("Time.Start");
             time.StringFormat = "{0:HH:mm}";
             data_column.Binding = time;
+            data_column.Width = 50;
             Apps.Columns.Add(data_column);
             MultiBinding doctor = new MultiBinding();
             doctor.StringFormat = "{0} {1}";
@@ -61,6 +63,7 @@ namespace Sims_Hospital_Zdravo
             DataGridCheckBoxColumn data_check_box = new DataGridCheckBoxColumn();
             data_check_box.Header = "Rated";
             data_check_box.Binding = new Binding("Rated");
+            data_check_box.Width = 63;
             Apps.Columns.Add(data_check_box);
             Apps.RowHeaderWidth = 0;
             Apps.ItemsSource = appointmentPatientController.FindByPatientIdOld(accountController.GetLoggedAccount().Id);
