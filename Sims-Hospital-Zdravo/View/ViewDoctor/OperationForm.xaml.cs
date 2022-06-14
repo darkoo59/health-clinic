@@ -17,6 +17,7 @@ using Controller;
 using Model;
 using System.Collections.ObjectModel;
 
+
 namespace Sims_Hospital_Zdravo.View.ViewDoctor
 {
     /// <summary>
@@ -30,13 +31,12 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private int doctorID;
         private App app;
 
-        public OperationForm(DoctorAppointmentController doctorAppointmentController)
+        public OperationForm()
         {
             InitializeComponent();
-            this.doctorAppointmentController = doctorAppointmentController;
-            this.app = App.Current as App;
+            this.doctorAppointmentController = new DoctorAppointmentController();
             this.roomController = new RoomController();
-            this.patientController = new AppointmentPatientController(app._accountRepository);
+            //this.patientController = new AppointmentPatientController();
             SpecilatyComboBox.ItemsSource = Enum.GetValues(typeof(SpecialtyType)).Cast<SpecialtyType>();
         }
 
@@ -131,13 +131,13 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             var dt_end = dt_start.AddHours(duration);
             // var dt_end = DateTime.Parse(dateAppoitment + " " + endTimeOfOperation);
             TimeInterval timeInterval = new TimeInterval(dt_start, dt_end);
-            int numOfRoom = Int32.Parse(RoomTxt.Text);
-            Room room = roomController.FindById(numOfRoom);
-            Console.WriteLine(room.Id + "hahahahahahahahaha");
+            
+            
+            
             int doctorId = _Doctor.Id;
             Patient pat = FindPatient();
             AppointmentType appointmentType = AppointmentType.OPERATION;
-            Appointment appointment = new Appointment(room, _Doctor, pat, timeInterval, appointmentType);
+            Appointment appointment = new Appointment(null, _Doctor, pat, timeInterval, appointmentType);
             doctorAppointmentController.UrgentSurgery(appointment, duration);
         }
     }

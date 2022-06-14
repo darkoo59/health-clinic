@@ -103,6 +103,19 @@ namespace Repository
             return doctorsApps;
         }
 
+        public List<Appointment> FindOperations()
+        {
+            LoadDataFromFile();
+            List<Appointment> operationApp = new List<Appointment>();
+            foreach(Appointment app in this.appointments)
+            {
+                if(app.Type == AppointmentType.OPERATION)
+                {
+                    operationApp.Add(app);
+                }
+            }
+            return operationApp;
+        }
         public List<Appointment> FindByPatientId(int id)
         {
             LoadDataFromFile();

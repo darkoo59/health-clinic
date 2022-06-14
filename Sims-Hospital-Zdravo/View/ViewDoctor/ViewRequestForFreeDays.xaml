@@ -17,6 +17,17 @@
             <RowDefinition Height="3*"/>
 
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Name="DataGridRequestForFreeDays" ></DataGrid>
+        <StackPanel>
+            <Label Content="Leaves" FontSize="25" Margin="10 0 10 10"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20 0 10 0">
+
+
+            <Button Content="New Request" Width="130" Height="40" HorizontalAlignment="Right" Margin=" 0 0 0 15"  Click="CreateNewRequestClick"/>
+
+            <ListBox Grid.Row="1" Height="300" Name="DataGridRequestForFreeDays" Style="{DynamicResource FreeDaysListBox}" ScrollViewer.VerticalScrollBarVisibility="Visible" >
+
+        </ListBox>
+        </StackPanel>
     </Grid>
 </Page>

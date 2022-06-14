@@ -9,7 +9,17 @@
         Title="WizardWindow" Height="450" Width="800">
     <Grid>
         <xctk:Wizard FinishButtonClosesWindow="true" >
-            <xctk:WizardPage x:Name="IntroPage" Title="Welcome to my help wizard" Description="This wizard will walk you through how to use application"/>
+            <xctk:WizardPage x:Name="IntroPage" Title="Welcome to my help wizard" Description="This wizard will give you a walkthrough how to use application" Margin="3,0,0,0"/>
+            <xctk:WizardPage x:Name="Page1" PageType="Interior" Title="Page 1" Description="When you open application you can see menu on the left side and first thing that appears is appoitment schedule"
+                             PreviousPage="{Binding IntroPage}" NextPage="{Binding Page2}">
+                <Grid  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                </Grid>
+            </xctk:WizardPage>
         </xctk:Wizard>
     </Grid>
 </Window>

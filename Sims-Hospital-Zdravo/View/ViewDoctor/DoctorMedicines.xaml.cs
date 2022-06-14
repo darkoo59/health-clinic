@@ -32,7 +32,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.DataContext = this;
             this.frame = frame;
-            app = App.Current as App;
+            
             medicineController = new MedicineController();
             MedicinesDataGrid.ItemsSource = medicineController.ReadAllMedicines();
             
@@ -50,7 +50,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             try
             {
-                ValidateSelection();
+               // ValidateSelection();
                 Medicine medicine = MedicinesDataGrid.SelectedValue as Medicine;
                 ValidateMedicine validateMedicine = new ValidateMedicine(medicine);
                 validateMedicine.Show();

@@ -38,10 +38,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.DoctorId = id;
             this.anamnesisController = new AnamnesisController();
             this.frame = frame;
-            this.app = App.Current as App;
+            
             this.medicalRecord = medicalRecord;
-            this.doctorAppointmentController = app._doctorAppointmentController;
+            this.doctorAppointmentController = new DoctorAppointmentController();
             this.patientMedicalRecordController = new PatientMedicalRecordController();
+            this.DoctorTxt.Text = doctorAppointmentController.GetDoctor(DoctorId).Name + doctorAppointmentController.GetDoctor(DoctorId).Surname;
             SelectedPatient(medicalRecord);
 
 
@@ -75,6 +76,7 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
             anamnesisController.Create(anamnesis);
             medicalRecord.Anamnesis.Add(anamnesis);
+            frame.Content =  new AnamnesisListPage(DoctorId,medicalRecord,frame);
             
         }
     }

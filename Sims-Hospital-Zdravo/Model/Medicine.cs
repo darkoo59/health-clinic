@@ -25,6 +25,7 @@ namespace Sims_Hospital_Zdravo.Model
         private List<string> _ingredients;
         private List<Medicine> _substitution;
         private bool _notAllergic;
+        private string _stringAllergic;
 
         public Medicine(string name, string strength, string allergens, string description)
         {
@@ -36,6 +37,22 @@ namespace Sims_Hospital_Zdravo.Model
             this._status = MedicineStatus.PENDING;
             _ingredients = new List<string>();
             this._notAllergic = false;
+        }
+
+        public string StringAllergic
+        {
+            get
+            {
+                if (NotAllergic == false)
+                    return _stringAllergic = "Allergic";
+                else
+                    return _stringAllergic = "Not allergic";
+
+            }
+            set
+            {
+                value = _stringAllergic;
+            }
         }
 
         public string Description

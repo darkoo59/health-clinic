@@ -6,11 +6,37 @@
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
         Title="DoctorMedicines" Height="450" Width="800">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
     <Grid>
-        <Label Content="List of medicines" Margin="84,89,557,310"></Label>
-        <DataGrid Margin="84,129,202,88" Name="MedicinesDataGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Medicine validation" FontSize="20"/>
+        <Label Content="List of medicines" Margin="0,112,0,0" ></Label>
+        <ListBox Grid.Row="1" Name="MedicinesDataGrid" >
+            <ListBox.Style>
+                <Style TargetType="ListBox">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Width="200">
+                                        <Label Content="{Binding Name}" FontSize="20"/>
+                                        <Label Content="{Binding Strength}" FontSize="20"/>
+                                    </StackPanel>
+                                    <Label Content="{Binding Status}" HorizontalAlignment="Right"/>
+                                    
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>  
+                    </Setter>
+                </Style>
+            </ListBox.Style>
             
-        </DataGrid>
-        <Button Margin="84,41,622,382" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
+        </ListBox>
+        <Button Grid.Row="0" Width="150" Height="30" HorizontalAlignment="Left" Name="ValidateMedBtn" Content="To validate" Click="To_Validate_Medicine_Click"></Button>
     </Grid>
 </Page>

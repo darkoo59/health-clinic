@@ -34,17 +34,17 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         public EditAnamnesis( Anamnesis anamnesis, MedicalRecord medicalRecord)
         {
             InitializeComponent();
-            this.app = App.Current as App;
+            
             this.anamnesisController = new AnamnesisController();
             this.anamnesis = anamnesis;
             this.medicalRecord = medicalRecord;
             observers = new List<IUpdateFilesObserver>();
-            this.doctorAppointmentController = app._doctorAppointmentController;
-            Editanam.Text = DateTime.Now.ToString();
+            this.doctorAppointmentController = new DoctorAppointmentController();
+            dateExamination.Content = DateTime.Now.ToString();
             DiagnosisTxt.Text = anamnesis.Diagnosis;
             AnamnesisTxt.Text = anamnesis.Anamensis;
             DateTime date = anamnesis.Date;
-            ExaminatonTxt.Text = DateTime.Now.Date.ToString();
+            //ExaminatonTxt.Text = DateTime.Now.Date.ToString();
 
 
         }
@@ -68,20 +68,21 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             observers.Remove(observer);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DateTime date = DateTime.Parse(Editanam.Text);
-            string diagnosis = DiagnosisTxt.Text;
-            string medical_report = AnamnesisTxt.Text;
-            Doctor doctor = anamnesis.Doctor;
-            Anamnesis anam = new Anamnesis(doctor,medicalRecord.Patient, date, null, diagnosis, medical_report);
-            anamnesisController.Update(anam);
-            Close();
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Close();
+            //Close();
+        }
+
+        private void SaveMedicalReporClick(object sender, RoutedEventArgs e)
+        {
+            DateTime date = DateTime.Parse(dateExamination.Content.ToString());
+            string diagnosis = DiagnosisTxt.Text;
+            string medical_report = AnamnesisTxt.Text;
+            Doctor doctor = anamnesis.Doctor;
+            Anamnesis anam = new Anamnesis(doctor, medicalRecord.Patient, date, null, diagnosis, medical_report);
+            anamnesisController.Update(anam);
+            //Close();
         }
     }
 }

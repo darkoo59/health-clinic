@@ -27,5 +27,10 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             InitializeComponent();
             this.DataContext = new LabaratoryTestViewModel();
         }
+
+        private void NewTestClick(object sender, RoutedEventArgs e)
+        {
+            LabaratoryTestForm labaratoryTestForm = new LabaratoryTestForm();
+        }
     }
 }

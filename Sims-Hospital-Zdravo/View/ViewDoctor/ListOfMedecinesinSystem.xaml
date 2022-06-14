@@ -5,18 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="600"
       Title="ListOfMedecinesinSystem">
-
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
     <Grid>
-        <StackPanel>
-            <Label Content="Drug list
-               "></Label>
-            <ListBox Width="300" Height="150" HorizontalAlignment="Left" Name="MedicineListBox" ScrollViewer.HorizontalScrollBarVisibility="Visible" SelectionChanged="MedicineListBox_SelectionChanged" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Medicine list" Margin="20 0 0 0" FontSize="30"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Select medicine:
+               " Margin="20 0 0 0"></Label>
+            <ListBox Width="700" Height="300" Margin="20 0 0 0" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Style="{DynamicResource MedicineListBox}" Name="MedicineListBox" ScrollViewer.HorizontalScrollBarVisibility="Visible" SelectionChanged="MedicineListBox_SelectionChanged" >
                 <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
+                    <Style TargetType="ListBoxItem"  >
                         <Setter Property="IsEnabled" Value="{Binding NotAllergic}"/>
+                        
                     </Style>
+                    
                 </ListBox.ItemContainerStyle>
             </ListBox>
         </StackPanel>

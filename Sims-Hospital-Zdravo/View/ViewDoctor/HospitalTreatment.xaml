@@ -5,11 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="600" Width="800"
       Title="HospitalTreatment">
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -19,38 +22,34 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Grid.Row="0">
+            <Label Content="Admission form" FontSize="20"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" >
             <Label Content="Patient name:"/>
             <TextBox Name="PatientNameTxt"/>
         </StackPanel>
-        <StackPanel>
-            <Label Content="Patient surname:"/>
-            <TextBox Name="PatientSurnameTxt"/>
+        <StackPanel Margin="0 0 50 0" Grid.Column="1" Grid.Row="1">
+            <Label Content="Patient surname:" Grid.Column="1"/>
+            <TextBox Name="PatientSurnameTxt" Margin="10 0 0 0"/>
+        
         </StackPanel>
-        <StackPanel>
+        <StackPanel Grid.Row="2">
             <Label Content="Birth date:"/>
             <TextBox Name="PatientBrithDateTxt"/>
         </StackPanel>
-        <StackPanel>
+        <StackPanel Grid.Row="3">
             <Label Content="Hospitalization cause"/>
             <TextBox />
-        </StackPanel>
-        <StackPanel>
-            <Label Content="Diagnosis"/>
-            <TextBox />
-        </StackPanel>
-        <StackPanel>
-            <Label Content="Duration"/>
-            <TextBox />
-            
-        </StackPanel>
-        <StackPanel>
-            <Label Content="Date:"></Label>
+        </StackPanel >
+        
+        
+        <StackPanel Grid.Row="4">
+            <Label Content=" Admission Date:"></Label>
             <DatePicker></DatePicker>
         </StackPanel>
-        <StackPanel >
-            <Label Content="Room"/>
-            <TextBox/>
-        </StackPanel>
+        
+        
     </Grid>
 </Page>

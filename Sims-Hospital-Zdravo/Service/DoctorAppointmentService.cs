@@ -133,5 +133,9 @@ namespace Service
             appointment.Time = tl;
             Create(appointment);
         }
+        public List<Appointment> FindOperations()
+        {
+            return _appointmentRepository.FindOperations();
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="MedicalReport" Height="450" Width="700">
+        Title="MedicalReport" Height="600" Width="700">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml">
             
@@ -20,6 +20,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,27 +30,28 @@
             
 
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <Label Content="Medical report" FontSize="20" Grid.Row="0"></Label>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="20 0 0 0">
             <Label Content="Patient" />
-            <TextBox Name="PatTxt"/>
+            <TextBox Name="PatTxt" Width="150" HorizontalAlignment="Left"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" >
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="20 0 0 0">
             <Label  Name="DateTxt" Content="Examination date and time" />
-            <DatePicker  Name="dateExamination" HorizontalAlignment="Left" Width="130"  VerticalAlignment="Top" SelectedDateChanged="dateExamination_SelectedDateChanged" />
+            <DatePicker  Name="dateExamination" HorizontalAlignment="Left" Width="150"  VerticalAlignment="Top" SelectedDateChanged="dateExamination_SelectedDateChanged" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" >
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="20 0 0 0" >
             <Label Content="Anamnesis/Report" />
-            <TextBox TextWrapping="Wrap"  Name="AnamnesisTxt" Height="140" HorizontalAlignment="Left"  Width="350"/>
+            <TextBox TextWrapping="Wrap"  Name="AnamnesisTxt" Height="140" HorizontalAlignment="Left"  Width="672"/>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
+        <StackPanel Grid.Row="3" Grid.Column="0" Margin="20 0 0 0">
             <Label Content="Diagnosis" />
             <TextBox TextWrapping="Wrap"   Name="DiagnosisTxt" Width="150" HorizontalAlignment="Left" />
         </StackPanel>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="3" Grid.Column="1">
             <Label Content="Doctor" />
         <TextBlock TextWrapping="Wrap" Name="DoctorTxt" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="4">
+        <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" >
             <Button Content="Save" Width="120" Height="30" Margin="0,0,50,0" Click="SaveMedicalReporClick" />
             <Button Content="Cancel" Width="120" Height="30"/>
         </StackPanel>

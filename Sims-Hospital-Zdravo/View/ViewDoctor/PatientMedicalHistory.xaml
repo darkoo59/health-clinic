@@ -6,12 +6,22 @@
              xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Title="PatientmedicalHistory">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
         <StackPanel>
+            <Label Content="Patient medical history" FontSize="25" Margin="20 0 0 0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20 0 0 0">
             <Label Content="History of present illness"></Label>
-        <TextBox Height="150" Width="300" HorizontalAlignment="Left"/>
+        <TextBox Height="120" Width="600" HorizontalAlignment="Left" />
             <Label Content="Previous medical/surgical procedure"></Label>
-            <TextBox Height="150" Width="300" HorizontalAlignment="Left"></TextBox>
+            <TextBox Height="120" Width="600" HorizontalAlignment="Left"></TextBox>
         </StackPanel>
     </Grid>
 </Page>

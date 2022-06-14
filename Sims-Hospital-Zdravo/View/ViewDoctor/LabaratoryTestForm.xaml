@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
         mc:Ignorable="d"
-        Title="LabaratoryTestForm" Height="500" Width="500">
+        Title="LabaratoryTestForm" Height="500" Width="300">
     <Window.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -22,29 +22,26 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <StackPanel>
+            <Label Content="Labaratory test" FontSize="20"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20 0 0 0">
             <Label Content="Patient"/>
-            <ComboBox Name="ComboBoxPatient"></ComboBox>
+            <ComboBox Name="ComboBoxPatient" Style="{DynamicResource theComboBox}" Width="190" HorizontalAlignment="Left"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Label Content="Medical record"></Label>
-            <TextBox></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
-            <Label Content="Diagnosis"/>
-            <TextBox Name="diagnosisTxt"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3">
+        
+        
+        <StackPanel Grid.Row="2" Margin=" 20 0 0 0">
             <Label Content="Date"></Label>
-            <DatePicker></DatePicker>
+            <DatePicker Width="190" HorizontalAlignment="Left"></DatePicker>
         </StackPanel>
-        <StackPanel Grid.Row="4">
+        <StackPanel Grid.Row="3" Margin=" 20 0 0 0">
             <Label Content="Test"/>
-            <ComboBox ></ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="1">
-            <Button Content="Make request" Width="120" Height="25"/>
-            <Button Content="Cancel" Width="120" Height="25"/>
+            <ComboBox  Name="TestCb" Style="{DynamicResource theComboBox}" HorizontalAlignment="Left" Width="190"></ComboBox>
+        </StackPanel >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
+            <Button Content="Save" Width="90" Height="25" Margin=" 0 0 100 0"/>
+            <Button Content="Cancel" Width="90" Height="25"/>
         </StackPanel>
     </Grid>
 </Window>

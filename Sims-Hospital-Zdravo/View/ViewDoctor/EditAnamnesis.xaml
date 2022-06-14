@@ -11,45 +11,48 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
 
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" >
-            <Label Content="Patient"  />
-            <TextBlock TextWrapping="Wrap" Text="TextBox" Name="PatientTxt" IsEnabled="False" Height="95"  />
+        <Label Content="Medical report" FontSize="20" Grid.Row="0"></Label>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="20 0 0 0">
+            <Label Content="Patient" />
+            <Label Name="PatTxt" Width="150" HorizontalAlignment="Left"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="1" >
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="20 0 0 0">
             <Label  Name="DateTxt" Content="Examination date and time" />
-            <TextBlock TextWrapping="Wrap" Name="ExaminatonTxt" Width="120" Height="30" VerticalAlignment="Top"/>
+            <Label  Name="dateExamination" HorizontalAlignment="Left" Width="150"  VerticalAlignment="Top"  />
         </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0">
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="20 0 0 0" >
             <Label Content="Anamnesis/Report" />
-            <TextBox TextWrapping="Wrap" Text="Anamesis and report about examination" Name="AnamnesisTxt" />
+            <TextBox TextWrapping="Wrap"  Name="AnamnesisTxt" Height="140" HorizontalAlignment="Left"  Width="672"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="3" Grid.Column="0" Margin="20 0 0 0">
             <Label Content="Diagnosis" />
-        <TextBox TextWrapping="Wrap" Text="Diagnosis"  Name="DiagnosisTxt" />
+            <TextBox TextWrapping="Wrap"   Name="DiagnosisTxt" Width="150" HorizontalAlignment="Left" />
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" >
-            <Button Content="Save" Margin="0 0 50 0" Click="Button_Click" Width="120" Height="30"/>
-            <Button Content="Cancel"  Click="Button_Click_1" Width="120" Height="30"/>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label Content="Doctor" />
+            <TextBlock TextWrapping="Wrap" Name="DoctorTxt" />
         </StackPanel>
-        <Label Content="Change created:" Margin="11,6,89,73" Name="EditAnamnesisLabel" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
-        <TextBox TextWrapping="Wrap" Name="Editanam" IsEnabled="False" Margin="116,3,0,70" Grid.Row="2"/>
-
-
+        <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" >
+            <Button Content="Save" Width="120" Height="30" Margin="0,0,50,0" Click="SaveMedicalReporClick" />
+            <Button Content="Cancel" Width="120" Height="30"/>
+        </StackPanel>
 
 
     </Grid>

@@ -62,9 +62,11 @@ namespace Repository
 
         public Doctor FindDoctorById(int id)
         {
+            Console.WriteLine(id+"gggggggggg");
             LoadDataFromFile();
             foreach (Doctor doc in doctors)
             {
+                Console.WriteLine(doc.Id+"haahahahahhaha");
                 if (doc.Id == id) return doc;
             }
 

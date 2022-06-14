@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Controller;
+using Model;
+using Controller;
+
 
 namespace Sims_Hospital_Zdravo.ViewModel
 {
@@ -14,12 +17,30 @@ namespace Sims_Hospital_Zdravo.ViewModel
     {
 
         private ObservableCollection<LabaratoryTest> _labaratoryTests;
+        private ObservableCollection<Patient> _patients;
+        private DoctorAppointmentController _doctorAppointmentController;
+        private List<string> _tests;
 
         public LabaratoryTestViewModel()
         {
+            this._doctorAppointmentController = new DoctorAppointmentController();
+            this._patients = _doctorAppointmentController.GetPatients();
+            LoadLabaratoryTests();
             LoadTests();
         }
 
+
+        public List<string> Tests
+        {
+            get
+            {
+                return _tests;
+            }
+            set
+            {
+                _tests = value;
+            }
+        }
         public ObservableCollection<LabaratoryTest> LabaratoryTests
         {
             get
@@ -30,6 +51,21 @@ namespace Sims_Hospital_Zdravo.ViewModel
             {
                 _labaratoryTests = value;
             }
+        }
+        public ObservableCollection<Patient> Patients
+        {
+            get { return _patients; }
+        }
+
+        public void LoadLabaratoryTests()
+        {
+            List<string> tes = new List<string>();
+            tes.Add("blood test");
+            tes.Add("urine test");
+            tes.Add("CRP");
+            tes.Add("leukocytes");
+            Tests = tes;
+
         }
         public void LoadTests()
         {
