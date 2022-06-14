@@ -2,6 +2,7 @@
 using Sims_Hospital_Zdravo.Interfaces;
 using Sims_Hospital_Zdravo.Model;
 using Sims_Hospital_Zdravo.Utils.Commands;
+using Sims_Hospital_Zdravo.ViewModel.PatientViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,55 +27,10 @@ namespace Sims_Hospital_Zdravo
     /// </summary>
     public partial class HospitalSurveyPage : Page
     {
-        public SurveyController surveyController { get; set; }
-        public ObservableCollection<QuestionForSurvey> questions { get; set; }
-        public Frame frame { get; set; }
-        public Timer timer { get; set; }
         public HospitalSurveyPage(Frame frame)
         {
             InitializeComponent();
-            this.frame = frame;
-            this.surveyController = new SurveyController();
-            this.DataContext = this;
-            InitalizeList();
-            Survey.ItemsSource = questions;
-            Survey.AutoGenerateColumns = false;
-        }
-        private void InitalizeList()
-        {
-            questions = new ObservableCollection<QuestionForSurvey>();
-            foreach (QuestionForSurvey questionForSurvey in surveyController.GetHospitalQuestions())
-            {
-                SetRadioButtons(questionForSurvey);
-                questions.Add(questionForSurvey);
-            }
-        }
-        private void SetRadioButtons(QuestionForSurvey questionForSurvey)
-        {
-            questionForSurvey.One = false;
-            questionForSurvey.Two = false;
-            questionForSurvey.Three = false;
-            questionForSurvey.Four = false;
-            questionForSurvey.Five = false;
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<QuestionAndRate> questionsAndRates = new List<QuestionAndRate>();
-            foreach (QuestionForSurvey questionForSurvey in questions)
-            {
-                questionsAndRates.Add(new QuestionAndRate(questionForSurvey.Id, questionForSurvey.Text, CheckIfComboBoxChecked(questionForSurvey)));
-            }
-            surveyController.CreateHospitalSurvey(new HospitalSurvey(questionsAndRates));
-            frame.Content = new HomePatient(frame);
-        }
-        private int CheckIfComboBoxChecked(QuestionForSurvey questionForSurvey)
-        {
-            if (questionForSurvey.One) return 1;
-            if (questionForSurvey.Two) return 2;
-            if (questionForSurvey.Three) return 3;
-            if (questionForSurvey.Four) return 4;
-            if (questionForSurvey.Five) return 5;
-            return 0;
+            this.DataContext = new HospitalSurveyViewModel(frame);
         }
     }
 }

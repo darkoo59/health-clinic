@@ -29,11 +29,64 @@ namespace Sims_Hospital_Zdravo.View.ViewPatient
         {
             InitializeComponent();
             this.frame = frame;
+            ValidateOld.Visibility = Visibility.Hidden;
+            ValidateNew.Visibility = Visibility.Hidden;
+            ValidateConfirm.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new ProfilePage(frame);
+            try
+            {
+                if (Old.Password == "")
+                {
+                    throw new Exception("Old");
+                }
+                else if (New.Password == "")
+                {
+                    throw new Exception("New");
+                }
+                else if (Confirm.Password == "")
+                {
+                    throw new Exception("Confirm");
+                }
+                else if (Confirm.Password != New.Password)
+                {
+                    throw new Exception("Mismatch");
+                }
+                frame.Content = new ProfilePage(frame);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Equals("Old"))
+                {
+                    ValidateOld.Visibility = Visibility.Visible;
+                    ValidateNew.Visibility = Visibility.Hidden;
+                    ValidateConfirm.Visibility = Visibility.Hidden;
+                    ValidateOld.Content = "Enter a value";
+                }
+                else if (ex.Message.Equals("New"))
+                {
+                    ValidateOld.Visibility = Visibility.Hidden;
+                    ValidateNew.Visibility = Visibility.Visible;
+                    ValidateConfirm.Visibility = Visibility.Hidden;
+                    ValidateNew.Content = "Enter a value";
+                }
+                else if (ex.Message.Equals("Confirm"))
+                {
+                    ValidateOld.Visibility = Visibility.Hidden;
+                    ValidateNew.Visibility = Visibility.Hidden;
+                    ValidateConfirm.Visibility = Visibility.Visible;
+                    ValidateConfirm.Content = "Enter a value";
+                }
+                else
+                {
+                    ValidateOld.Visibility = Visibility.Hidden;
+                    ValidateNew.Visibility = Visibility.Hidden;
+                    ValidateConfirm.Visibility = Visibility.Visible;
+                    ValidateConfirm.Content = "Password mismatch";
+                }
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

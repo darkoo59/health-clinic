@@ -25,7 +25,6 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckIfHospitalWorks(appointment.Time);
             CheckIfMinutesAreGood(appointment.Time);
             CheckIfTimeIsInPast(appointment.Time);
-            CheckIfAppointmentExists(appointment);
         }
         public void CheckIfPatientNotBlocked(AccountRepository accountRepository)
         {
@@ -63,8 +62,8 @@ namespace Sims_Hospital_Zdravo.Utils
         }
         private void CheckIfTimeIntervalInAvailableTime(Appointment appointment, TimeInterval timeInterval)
         {
-            DateTime startInterval = GetAppointmentTime(appointment).AddDays(-3);
-            DateTime endInterval = GetAppointmentTime(appointment).AddDays(3);
+            DateTime startInterval = GetAppointmentTime(appointment).AddDays(-2);
+            DateTime endInterval = GetAppointmentTime(appointment).AddDays(2);
             if (timeInterval.Start.CompareTo(startInterval) < 0 || timeInterval.Start.CompareTo(endInterval) > 0)
             {
                 throw new Exception("You cant move appointment more or less than 2 days from original day");

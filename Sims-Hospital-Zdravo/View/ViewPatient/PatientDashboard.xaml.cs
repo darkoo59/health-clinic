@@ -128,8 +128,13 @@ namespace Sims_Hospital_Zdravo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                HospitalSurveyPage hospitalSurveyPage = new HospitalSurveyPage(Patient);
-                Patient.Content = hospitalSurveyPage;
+            HospitalSurveyPage hospitalSurveyPage = new HospitalSurveyPage(Patient);
+            Patient.Content = hospitalSurveyPage;
+        }
+
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            Patient.Content = new NotesPage(Patient);
         }
     }
 }
