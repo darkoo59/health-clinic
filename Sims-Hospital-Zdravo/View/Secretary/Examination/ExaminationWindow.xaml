@@ -35,7 +35,7 @@
             </Image.ToolTip>
         </Image>
         <DatePicker x:Name="appointmentsDatePicker" SelectedDateChanged="appDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Height="30" Width="104"/>
-        <DataGrid x:Name="GridAppointments"
+        <DataGrid x:Name="GridAppointments" RowStyle="{StaticResource dataGridRow_style}" RowHeaderStyle="{StaticResource dataGridRowHeader}" ColumnHeaderStyle="{StaticResource dataGridHeader}" Style="{StaticResource dataGrid}"
                   HorizontalScrollBarVisibility="Disabled"
                   VerticalScrollBarVisibility="Disabled"
                   SelectionMode="Single"
@@ -49,7 +49,7 @@
                   CanUserResizeRows="False"/>
 
         <Button Content="{x:Static rs:Resources.EmergencyExamination}" HorizontalAlignment="Left" Margin="64,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
-        <Button Content="Open PDF" HorizontalAlignment="Left" Margin="240,462,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="OpenPDF_Click" Style="{StaticResource btn_style}"/>
+        <Button Content="{x:Static rs:Resources.PDF}" HorizontalAlignment="Left" Margin="240,462,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="OpenPDF_Click" Style="{StaticResource btn_style}"/>
         
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <!-- //Menu bar panel // -->

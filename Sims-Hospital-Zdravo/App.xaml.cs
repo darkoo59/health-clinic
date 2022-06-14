@@ -183,7 +183,7 @@ namespace Sims_Hospital_Zdravo
             // _requestForFreeDaysController = new RequestForFreeDaysController(_requestForFreeDaysService);
 
             _currentLanguage = "en-US";
-            _currentTheme = "Dark";
+            _currentTheme = "Light";
         }
 
         void WindowLoaded(object sender, RoutedEventArgs e)

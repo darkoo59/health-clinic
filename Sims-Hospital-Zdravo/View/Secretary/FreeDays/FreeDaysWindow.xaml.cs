@@ -27,9 +27,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
         
         private RequestForFreeDaysController _freeDaysController;
         private FreeDaysViewModel viewModel;
+        private App app;
         public FreeDaysWindow()
         {
             InitializeComponent();
+            app = Application.Current as App;
             this._freeDaysController = new RequestForFreeDaysController();
             viewModel = new FreeDaysViewModel();
             this.DataContext = viewModel;
@@ -42,19 +44,31 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
             ContentGrid.AutoGenerateColumns = false;
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Name";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Name";
+            else
+                dataColumn.Header = "Ime";
             dataColumn.Binding = new Binding("Doctor.Name");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Surname";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Surname";
+            else 
+                dataColumn.Header = "Prezime";
             dataColumn.Binding = new Binding("Doctor.Surname");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Start";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Start";
+            else 
+                dataColumn.Header = "Početak";
             dataColumn.Binding = new Binding("TimeInterval.Start");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "End";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "End";
+            else 
+                dataColumn.Header = "Kraj";
             dataColumn.Binding = new Binding("TimeInterval.End");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();

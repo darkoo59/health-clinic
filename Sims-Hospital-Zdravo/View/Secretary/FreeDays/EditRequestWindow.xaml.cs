@@ -32,7 +32,6 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(EditRequestWindow_Loaded);
-            //this._freeDaysRequest = request;
             _requestControler = new RequestForFreeDaysController();
             _notificationController = new NotificationController();
             comboStatus.ItemsSource = Enum.GetValues(typeof(RequestStatus)).Cast<RequestStatus>();

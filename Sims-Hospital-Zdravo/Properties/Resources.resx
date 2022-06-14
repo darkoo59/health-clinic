@@ -196,7 +196,7 @@
     <value>Choose doctor speciality :</value>
   </data>
   <data name="NonRegistered" xml:space="preserve">
-    <value>For non registerd patients:</value>
+    <value>For non registered patients:</value>
   </data>
   <data name="SelectPatient" xml:space="preserve">
     <value>Select patient:</value>
@@ -361,5 +361,11 @@ improving her skills.</value>
   </data>
   <data name="SelectDoctor" xml:space="preserve">
     <value>Choose doctor :</value>
+  </data>
+  <data name="Contact1" xml:space="preserve">
+    <value>Have any questions for us?                Feel free to contact us!</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>Open PDF</value>
   </data>
 </root>

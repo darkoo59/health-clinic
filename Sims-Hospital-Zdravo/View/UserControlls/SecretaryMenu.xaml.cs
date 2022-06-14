@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sims_Hospital_Zdravo.ViewModel.Secretary;
 
 namespace Sims_Hospital_Zdravo.View.UserControlls
 {

@@ -323,7 +323,7 @@ prvo kreirajte medicinski karton!</value>
     <value>Šifra</value>
   </data>
   <data name="AvailableSupplies" xml:space="preserve">
-    <value>Već dostupna oprema :</value>
+    <value>Već dostupna                                        oprema :</value>
   </data>
   <data name="EquipmentName" xml:space="preserve">
     <value>Naziv opreme :</value>
@@ -359,5 +359,11 @@ svojih veština.</value>
   </data>
   <data name="SelectDoctor" xml:space="preserve">
     <value>Izaberite doktora :</value>
+  </data>
+  <data name="Contact1" xml:space="preserve">
+    <value>Imate nekih pitanja za nas?               Osećajte se slobodno da pitate!</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>Otvori PDF</value>
   </data>
 </root>

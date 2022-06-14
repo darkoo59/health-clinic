@@ -13,7 +13,7 @@
     </Window.Resources>
     <Grid Style="{StaticResource GridStyle}">
 
-        <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10.4,89.4" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}"/>
+        <DataGrid x:Name="ContentGrid" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" SelectionMode="Single" Width="auto" Height="auto" ColumnWidth="*"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="45,71,10.4,89.4" CanUserResizeColumns="True" CanUserResizeRows="False"  RowStyle="{StaticResource dataGridRow_style}" RowHeaderStyle="{StaticResource dataGridRowHeader}" ColumnHeaderStyle="{StaticResource dataGridHeader}" Style="{StaticResource dataGrid}"/>
         <Label Content="Choose appointment to reschedule :" HorizontalAlignment="Left" Margin="45,29,0,0" VerticalAlignment="Top" Height="42" Width="305" FontSize="18" Style="{StaticResource label_style}"/>
         <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Next.png" Height="63" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Margin="73,438,44,0" MouseLeftButtonDown="btnSubmit_Click">
             <Image.ToolTip>

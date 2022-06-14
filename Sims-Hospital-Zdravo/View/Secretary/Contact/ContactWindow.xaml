@@ -5,17 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.Secretary.Contact"
         xmlns:uc="clr-namespace:Sims_Hospital_Zdravo.View.UserControlls"
+        xmlns:rs="clr-namespace:Sims_Hospital_Zdravo.Properties"
         mc:Ignorable="d"
         Title="ContactWindow" Height="510" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ResourceDictionary Source="../SecretaryWindowStyles.xaml"/>
     </Window.Resources>
-    <Grid>
-
+    <Grid Style="{StaticResource GridStyle}">
+    
+        <Grid Width="350" Margin="0,0,0,360" Grid.ColumnSpan="2" Style="{StaticResource Grid2Style}">
+            <Label Content="{x:Static rs:Resources.HospitalName}" Name="lblHospital" HorizontalAlignment="Left" Margin="94,0,0,0" VerticalAlignment="Top" Height="50" Width="200" Foreground="White" FontSize="25"/>
+            <Image Source="../../../Resources/img/Secretary/Logo.png" HorizontalAlignment="Left" Height="72" Margin="149,50,0,0" VerticalAlignment="Top" Width="117"/>
+        </Grid>
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        <Image Source="../../../Resources/img/Secretary/Location.png" HorizontalAlignment="Left" Height="324" Margin="43,330,0,-128" VerticalAlignment="Top" Width="300"/>
-        <Image Source="/Sims-Hospital-Zdravo;component/Resources/img/Secretary/Checked.png" HorizontalAlignment="Left" Height="38" Margin="49,50,0,0" VerticalAlignment="Top" Width="29"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,50,0,0" TextWrapping="Wrap" Text="Open hours : 00:00-24:00" VerticalAlignment="Top" Style="{StaticResource textblock_style}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="60,180,0,0" TextWrapping="Wrap" Text="{x:Static rs:Resources.Contact1}" VerticalAlignment="Top" FontSize="22" Style="{StaticResource textblock_style}"/>
+        <Image Source="../../../Resources/img/Secretary/Phone.png" Height="30" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="0,300,200,0" />
+        <TextBlock HorizontalAlignment="Left" Margin="100,300,0,0" TextWrapping="Wrap" Text="0612345678" VerticalAlignment="Top" FontSize="19" Style="{StaticResource textblock_style}"/>
+        <Image Source="../../../Resources/img/Secretary/Email.png" Height="30" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="0,360,200,0" />
+        <TextBlock HorizontalAlignment="Left" Margin="100,360,0,0" TextWrapping="Wrap" Text="bolnica.zdravo@info.com" VerticalAlignment="Top" FontSize="19" Style="{StaticResource textblock_style}"/>
+        <Image Source="../../../Resources/img/Secretary/Place.png" Height="30" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="0,430,200,0" />
+        <TextBlock HorizontalAlignment="Left" Margin="100,420,0,0" TextWrapping="Wrap" Text="Trg Dositeja Obradovića 6, Novi Sad" VerticalAlignment="Top" FontSize="19" Style="{StaticResource textblock_style}"/>
         <!-- //Menu bar panel // -->
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu1" Grid.Column="0" Grid.Row="1"/>
     </Grid>

@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Sims_Hospital_Zdravo.Controller;
 using Sims_Hospital_Zdravo.View.Secretary.Supplies;
 using Sims_Hospital_Zdravo.ViewModel.Secretary;
+using Xceed.Wpf.Toolkit;
 
 namespace Sims_Hospital_Zdravo
 {
@@ -28,9 +29,11 @@ namespace Sims_Hospital_Zdravo
         private MedicalRecordController _medicalController;
         private SecretaryAppointmentController _secretaryAppointmentController;
         private MedicalRecordViewModel viewModel;
+        private App app;
         public SecretaryWindow()
         {
             InitializeComponent();
+            app = Application.Current as App;
             this._medicalController = new MedicalRecordController();
             _secretaryAppointmentController = new SecretaryAppointmentController();
             viewModel = new MedicalRecordViewModel();
@@ -75,11 +78,17 @@ namespace Sims_Hospital_Zdravo
             ContentGrid.AutoGenerateColumns = false;
             ContentGrid.CanUserSortColumns = false;
             DataGridTextColumn dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Name";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Name";
+            else 
+                dataColumn.Header = "Ime";
             dataColumn.Binding = new Binding("Patient.Name");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Surname";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Surname";
+            else 
+                dataColumn.Header = "Prezime";
             dataColumn.Binding = new Binding("Patient.Surname");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
@@ -87,15 +96,24 @@ namespace Sims_Hospital_Zdravo
             dataColumn.Binding = new Binding("Patient.Jmbg");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Gender";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Gender";
+            else 
+                dataColumn.Header = "Pol";
             dataColumn.Binding = new Binding("Gender");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Blood type";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Blood type";
+            else 
+                dataColumn.Header = "Krvna grupa";
             dataColumn.Binding = new Binding("BloodType");
             ContentGrid.Columns.Add(dataColumn);
             dataColumn = new DataGridTextColumn();
-            dataColumn.Header = "Marital status";
+            if(app._currentLanguage.Equals("en-US"))
+                dataColumn.Header = "Marital status";
+            else 
+                dataColumn.Header = "Bračni status";
             dataColumn.Binding = new Binding("MaritalStatus");
             ContentGrid.Columns.Add(dataColumn);
         }

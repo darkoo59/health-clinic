@@ -233,6 +233,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have any questions for us?                Feel free to contact us!.
+        /// </summary>
+        public static string Contact1 {
+            get {
+                return ResourceManager.GetString("Contact1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Create {
@@ -486,7 +495,7 @@ namespace Sims_Hospital_Zdravo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For non registerd patients:.
+        ///   Looks up a localized string similar to For non registered patients:.
         /// </summary>
         public static string NonRegistered {
             get {
@@ -546,6 +555,15 @@ namespace Sims_Hospital_Zdravo.Properties {
         public static string PatientMedicalAllergens {
             get {
                 return ResourceManager.GetString("PatientMedicalAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open PDF.
+        /// </summary>
+        public static string PDF {
+            get {
+                return ResourceManager.GetString("PDF", resourceCulture);
             }
         }
         

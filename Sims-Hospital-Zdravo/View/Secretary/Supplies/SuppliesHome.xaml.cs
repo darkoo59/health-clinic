@@ -29,6 +29,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
     public partial class SuppliesHome : Window
     {
         private SuppliesController _suppliesController;
+        private List<RoomEquipment> _roomEquipment;
         public SuppliesHome()
         {
             InitializeComponent();

@@ -1011,6 +1011,15 @@
     <Resource Include="Resources\img\Doctor\logoApp.png" />
     <Resource Include="Resources\img\Doctor\logout.png" />
     <Resource Include="Resources\img\Doctor\search.png" />
+    <Resource Include="Resources\img\Secretary\Email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Phone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\img\Secretary\Place.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />
