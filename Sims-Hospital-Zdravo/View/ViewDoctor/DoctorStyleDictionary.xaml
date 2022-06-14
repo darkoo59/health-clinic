@@ -4,9 +4,11 @@
 
     <Style TargetType="Button">
 
-        <Setter Property="Background" Value="DeepSkyBlue"/>
+        <Setter Property="Background" Value="#FF0B4F8C"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsToolTipEnabled}"/>
         <Setter Property="Template">
+            
             <Setter.Value>
 
                 <ControlTemplate TargetType="Button">
@@ -19,10 +21,31 @@
             </Setter.Value>
             
         </Setter>
+
         
 
-
         </Style>
+    <Style x:Key="HelpButton"  TargetType="Button">
+
+        <Setter Property="Background" Value="AntiqueWhite"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="2">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+
+
+
+    </Style>
     <Style x:Key="roundButton" TargetType="Button">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -251,7 +274,7 @@
                             <Label Content="{Binding TimeInterval.Start.Date}" FontSize="20"/>
                             <Label Content="-" VerticalAlignment="Center" FontSize="20"/>
                             <Label Content="{Binding TimeInterval.End.Date}" FontSize="20"/>
-                            <Label Content="{Binding Status}" HorizontalAlignment="Right"/>
+                            <Label Content="{Binding Status}" Margin="330 0 0 0" HorizontalAlignment="Right"/>
                         </StackPanel>
                         <Label Content="{Binding ReasonForFreeDays}"/>
                         
@@ -394,13 +417,12 @@
                         <!-- Highlight selected rows -->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="#ff66ccff" />
-                            <Setter Property="BorderBrush" Value="Black" />
-                            <Setter Property="Foreground" Value="Black" />
+                            
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Background" Value="#ff66ccff" />
                             <Setter Property="BorderBrush" Value="Black" />
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderThickness" Value="0"/>
                             <Setter Property="Foreground" Value="Black" />
                         </Trigger>
                     </Style.Triggers>
@@ -436,7 +458,7 @@
     <Style TargetType="DataGridColumnHeader">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Background" Value="LightGreen"/>
+        <Setter Property="Background" Value="#FF105B86"/>
     </Style>
     <Style TargetType="TextBox">
         <Setter Property="Template">

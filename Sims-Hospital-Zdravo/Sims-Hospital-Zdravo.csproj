@@ -269,17 +269,35 @@
     <Compile Include="View\UserControlls\SecretaryMenu.xaml.cs">
       <DependentUpon>SecretaryMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\AppointmentWindowHelp.xaml.cs">
+      <DependentUpon>AppointmentWindowHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\EditAnamnesisPage.xaml.cs">
       <DependentUpon>EditAnamnesisPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDoctor\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewDoctor\MedicalEqupiment.xaml.cs">
       <DependentUpon>MedicalEqupiment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\MedicalReportsWindow.xaml.cs">
+      <DependentUpon>MedicalReportsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\MedicineHelpWindow.xaml.cs">
+      <DependentUpon>MedicineHelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\OperationHelpWindow.xaml.cs">
+      <DependentUpon>OperationHelpWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewDoctor\ViewRequestForFreeDays.xaml.cs">
       <DependentUpon>ViewRequestForFreeDays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDoctor\WizardWindow.xaml.cs">
+      <DependentUpon>WizardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewPatient\AnamnesisPage.xaml.cs">
       <DependentUpon>AnamnesisPage.xaml</DependentUpon>
@@ -609,7 +627,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ViewDoctor\AppointmentWindowHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\EditAnamnesisPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\HelpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -617,11 +643,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ViewDoctor\MedicalReportsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\MedicineHelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDoctor\OperationHelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewDoctor\TherapyPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ViewDoctor\ViewRequestForFreeDays.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewDoctor\WizardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1011,6 +1053,13 @@
     <Resource Include="Resources\img\Doctor\logoApp.png" />
     <Resource Include="Resources\img\Doctor\logout.png" />
     <Resource Include="Resources\img\Doctor\search.png" />
+    <Resource Include="Resources\img\Doctor\anamnesisihelp.png" />
+    <Resource Include="Resources\img\Doctor\freedaysformhelp.png" />
+    <Resource Include="Resources\img\Doctor\freedayshelp.png" />
+    <Resource Include="Resources\img\Doctor\medformvalidation.png" />
+    <Resource Include="Resources\img\Doctor\medicinevalidationhelp.png" />
+    <Resource Include="Resources\img\Doctor\prvizahelpwizard.png" />
+    <Resource Include="Resources\img\Doctor\searchhelpwizard.png" />
     <Content Include="Resources\tutorial.mkv" />
     <Resource Include="Resources\requests.txt" />
     <Resource Include="Resources\supplies_acquisition.txt" />

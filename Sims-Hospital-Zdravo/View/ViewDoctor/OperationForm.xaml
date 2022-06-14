@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      Height="500" Width="700"
+      Height="600" Width="700"
       Title="OperationForm">
     <Page.Resources>
         <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
@@ -68,8 +68,8 @@
                     <Label  Content="Date:"/>
                 <DatePicker Name="dateTxt" Width="150" Height="30" Margin=" 0 0 20 0"></DatePicker>
                 </StackPanel>
-                <StackPanel>
-                    <Label  Content="Time:"/>
+                <StackPanel Margin="30 0 0 0">
+                    <Label  Content="Time:" />
                 <TextBox Name="TimeTxt" Width="150" Height="20"></TextBox>
                 </StackPanel>
             </StackPanel>
@@ -81,7 +81,7 @@
                         <Label Content=" Procedure:"/>
                 <TextBox Width="150" HorizontalAlignment="Left" Height="20"></TextBox>
                 </StackPanel>
-                    <StackPanel Margin=" 20 0 20 0">
+                    <StackPanel Margin=" 50 0 0 0">
                         <Label  Content="Duration:"/>
                 <TextBox Name="durationTxt" Width="150" Height="20"  HorizontalAlignment="Left"></TextBox>
                     </StackPanel>

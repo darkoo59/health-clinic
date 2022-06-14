@@ -28,18 +28,18 @@
             </StackPanel>
             <StackPanel>
                 <Button Content=" New Prescription" Width="130" Height="50" Margin="0 40 0 40" Command="{Binding makePrescriptionCommand}"></Button>
-                <Button Content="Prescriptions" Width="130" Height="50" />
+                <Button Content="Prescriptions" Width="130" Height="50" Command="{Binding prescriptionListCommand}" />
+                <Label Content="Past medication" Margin="0 15 0 0"/>
             </StackPanel>
 
         </Grid>
-        <DataGrid x:Name="TherapyDataGrid" Grid.Row="1" RowHeaderWidth="0" AutoGenerateColumns="False"  ItemsSource="{Binding MedicalRecord.Prescriptions}" >
+        <DataGrid x:Name="TherapyDataGrid" Grid.Row="1" RowHeaderWidth="0" AutoGenerateColumns="False"  ItemsSource="{Binding Medicines}" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Medicine" Binding="{Binding Medicine.Name}"/>
-                <DataGridTextColumn Header ="Strength"  Binding="{Binding Medicine.Strength}"/>
-                <DataGridTextColumn Header="Duration" />
-                <DataGridTextColumn Header="Dosage" Binding="{Binding Dosage}"/>
-                <DataGridTextColumn Header="Route"/>
-                <DataGridTextColumn Header="Take-on"/>
+                <DataGridTextColumn Header="Medicine" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header ="Strength"  Binding="{Binding Strength}" Width="200"/>
+                
+                <DataGridTextColumn Header="Dosage" Binding="{Binding Dosage}" Width="*"/>
+                
             </DataGrid.Columns>
             
         </DataGrid>

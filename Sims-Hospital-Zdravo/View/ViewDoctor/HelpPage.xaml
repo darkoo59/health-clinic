@@ -5,22 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="700"
       Title="HelpPage">
+    <Page.Resources>
+        <ResourceDictionary Source="DoctorStyleDictionary.xaml"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Width="150" Height="100">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="150" Height="100" Margin="0 0 30 0">
                 <StackPanel >
-                    <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20"/>
+                    <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20" />
                     <Label Content="Manage appointments" />
                 </StackPanel>
             </Button>
-            <Button Width="150" Height="100">
+            <Button Width="150" Height="100" Margin="0 0 40 0">
                 <StackPanel >
                     <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20"/>
                     <Label Content="Manage operations" />
@@ -33,11 +36,23 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Width="150" Height="100">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" >
+            <Button Width="150" Height="100" Margin="0 0 30 0">
                 <StackPanel >
                     <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20"/>
                     <Label Content="Patient informations" />
+                </StackPanel>
+            </Button>
+            <Button Width="150" Height="100" Margin="0 0 30 0">
+                <StackPanel >
+                    <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20"/>
+                    <Label Content=" Manage leaves from work" />
+                </StackPanel>
+            </Button>
+            <Button Width="150" Height="100">
+                <StackPanel >
+                    <Image Source="../../resources/img/doctor/icons8-edit-calendar-64.png" Width="50" Height="20"/>
+                    <Label Content="Medical records" />
                 </StackPanel>
             </Button>
         </StackPanel>

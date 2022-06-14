@@ -36,9 +36,9 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private NotificationManager notificationManager;
         private AccountController accountController;
         private Frame frame;
-
+        private bool tooltip;
         private int doctorId;
-
+        
         private App app;
 
         public DoctorMain(int DoctorId)
@@ -56,46 +56,45 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             this.notificationController = new NotificationController();
             notificationManager = new NotificationManager();
             this.app._taskScheduleTimer.AddObserver(this);
-            FrameForMain.Content = new MyAppointmentPage(anamnesisController, medicalRecordController, doctorId);
+            MyAppointmentPage myAppointmentPage = new MyAppointmentPage(anamnesisController, DoctorId,FrameForMain);
+            FrameForMain.Content = myAppointmentPage;
+            this.tooltip = myAppointmentPage.IsToolTipVisible;
+            WizardWindow wizardWindow = new WizardWindow();
+            wizardWindow.Show();
+
         }
 
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow(docController);
+            //DoctorCRUDWindow CrudWindow = new DoctorCRUDWindow(docController);
             //CrudWindow.Show();
         }
 
         private void Button_Click_Appointment(object sender, RoutedEventArgs e)
         {
-            MyAppointmentPage myAppointments = new MyAppointmentPage(anamnesisController, medicalRecordController, doctorId);
+            MyAppointmentPage myAppointments = new MyAppointmentPage(anamnesisController, doctorId,FrameForMain);
             FrameForMain.Content = myAppointments;
+            
         }
 
-        private void button_medical_report_click(object sender, RoutedEventArgs e)
-        {
-            //MedicalReport medicalReportWindow = new MedicalReport(anamnesisController, docController, patientMedicalRecordController, doctorId);
-            //medicalReportWindow.Show();
-        }
+        
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //AnamnesisList anamnesisList = new AnamnesisList( doctorId, medicalRecord);
-            //anamnesisList.Show();
-        }
+        
 
         private void PatientMenuItem_Click(object sender, RoutedEventArgs e)
 
 
         {
-            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain, doctorId);
+            SearchPatient searchPatient = new SearchPatient(anamnesisController, docController, medicalRecordController, FrameForMain, doctorId,tooltip);
             FrameForMain.Content = searchPatient;
         }
 
-        private void MyAppointmentMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MyAppointmentPage appointmentPage = new MyAppointmentPage( anamnesisController, medicalRecordController, doctorId);
-            FrameForMain.Content = appointmentPage;
-        }
+        //private void MyAppointmentMenuItem_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MyAppointmentPage appointmentPage = new MyAppointmentPage( anamnesisController,  doctorId);
+        //    FrameForMain.Content = appointmentPage;
+        //}
 
         private void schedule_Appointment_Click(object sender, RoutedEventArgs e)
         {
@@ -154,8 +153,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void AppointmentsClick(object sender, RoutedEventArgs e)
         {
-            DoctorCRUDWindow doctorCRUDWindow = new DoctorCRUDWindow(docController);
-            FrameForMain.Content = doctorCRUDWindow;
+            //DoctorCRUDWindow doctorCRUDWindow = new DoctorCRUDWindow(docController);
+            //FrameForMain.Content = doctorCRUDWindow;
         }
 
         private void AnamnesisClick(object sender, RoutedEventArgs e)
@@ -194,6 +193,52 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         {
             MedicalEqupiment medicalEqupiment = new MedicalEqupiment();
             FrameForMain.Content = medicalEqupiment;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.A)
+            {
+                MyAppointmentPage appointmentPage = new MyAppointmentPage(anamnesisController, doctorId, FrameForMain);
+                FrameForMain.Content = appointmentPage;
+            }
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.O)
+            {
+                OperationSchedule operationSchedule = new OperationSchedule(doctorAppointmentController, FrameForMain);
+                FrameForMain.Content =operationSchedule;
+            }
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.H)
+            {
+                HelpPage helpPage = new HelpPage();
+                FrameForMain.Content = helpPage;
+            }
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.M)
+            {
+                DoctorMedicines doctorMedicines = new DoctorMedicines(FrameForMain);
+                FrameForMain.Content = doctorMedicines;
+            }
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.E)
+            {
+                
+            
+                    MedicalEqupiment medicalEqupiment = new MedicalEqupiment();
+                    FrameForMain.Content = medicalEqupiment;
+                }
+            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.R)
+            {
+
+
+                ViewRequestForFreeDays viewRequestForFreeDays = new ViewRequestForFreeDays(doctorId);
+                FrameForMain.Content = viewRequestForFreeDays;
+            }
+
+
+        }
+
+        private void HelpClick(object sender, RoutedEventArgs e)
+        {
+            HelpPage helpPage = new HelpPage();
+            FrameForMain.Content = helpPage;
         }
     }
 }

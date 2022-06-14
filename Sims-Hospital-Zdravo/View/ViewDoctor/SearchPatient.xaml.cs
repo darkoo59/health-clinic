@@ -28,19 +28,33 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
         private MedicalRecordController medicalRecordController;
         private Frame frame;
         private int doctorID;
-        public SearchPatient(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,MedicalRecordController medicalRecordController,Frame frame,int id)
+        private bool _isToolTipVisible;
+        public SearchPatient(AnamnesisController anamnesisController,DoctorAppointmentController doctorAppointmentController,MedicalRecordController medicalRecordController,Frame frame,int id,bool tooltip)
         {
             InitializeComponent();
-            this.DataContext = new SearchPatientViewModel();
+            this._isToolTipVisible = tooltip;
+            this.DataContext = new SearchPatientViewModel(_isToolTipVisible);
             this.frame = frame;
             this.doctorID = id;
             this.anamnesisController = new AnamnesisController();
             this.doctorAppointmentController = doctorAppointmentController;
             this.medicalRecordController = medicalRecordController;
+            //this._isToolTipVisible = tooltip;
             
             
             
-            
+        }
+
+        public bool IsToolTipVisible
+        {
+            get
+            {
+                return _isToolTipVisible;
+            }
+            set
+            {
+                _isToolTipVisible = value;
+            }
         }
 
         private void PatientMedicalRecordClick(object sender, RoutedEventArgs e)

@@ -13,20 +13,27 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <Button Content="New test" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50 50 0 20" Click="NewTestClick"/>
+            <Label Content="Labaratory tests" FontSize="30"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" Name="LabaratoryDataGrid" ItemsSource="{Binding LabaratoryTests}" RowHeaderWidth="0" Margin="50,50,0,20" AutoGenerateColumns="False" >
+        <StackPanel Grid.Row="1" Margin=" 0 0 50 0">
+            <Button Content="New test" Width="130" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="50 50 0 20" Click="NewTestClick" ToolTip="Create new labaratory test"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Labaratory test results:" Margin="50 0 0 0"/>
+        <DataGrid Grid.Row="2" Name="LabaratoryDataGrid" Height="300" Width="700" HorizontalAlignment="Left" ItemsSource="{Binding LabaratoryTests}" RowHeaderWidth="0" Margin="50,0,0,20" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date}">
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*">
                     
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Test" Binding="{Binding Test}"/>
-                <DataGridTextColumn Header="Result" Binding="{Binding Result}"/>
+                <DataGridTextColumn Header="Test" Binding="{Binding Test}" Width="*"/>
+                <DataGridTextColumn Header="Result" Binding="{Binding Result}" Width="*"/>
             </DataGrid.Columns> 
 
         </DataGrid>
+        </StackPanel>
     </Grid>
 </Page>

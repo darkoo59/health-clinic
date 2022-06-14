@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="500" Width="650">
     <Page.Resources>
         <ResourceDictionary Source="ViewDoctor/DoctorStyleDictionary.xaml" />
     </Page.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
 
-
-        <DataGrid CanUserAddRows="False" ColumnWidth="*" Margin="20,194,20,14" x:Name="dataGridDoctorApps" />
-        <Button x:Name="addButton" Content="add appointment" HorizontalAlignment="Left" Height="50" Width="120" Margin="69,62,0,0"
-                VerticalAlignment="Top"  Click="addButton_Click" />
+        <DataGrid CanUserAddRows="False" ColumnWidth="*" Width="600" Grid.Row="1" x:Name="dataGridDoctorApps" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button x:Name="addButton" Content="add appointment" HorizontalAlignment="Left" Height="50" Width="120" 
+                VerticalAlignment="Top"  Click="addButton_Click" Margin="30 0 90 0"  ToolTip="Create new appointment"/>
         <Button x:Name="editAppointment" Content="edit appointment" HorizontalAlignment="Center" Height="50"
-                Margin="0,62,0,0" VerticalAlignment="Top" Width="120" Click="editAppointment_Click" />
+                 VerticalAlignment="Top" Width="120" Click="editAppointment_Click" ToolTip="Edit existing appointment" Margin="0 0 150 0" />
         <Button x:Name="deleteButton" Content="delete appointment" HorizontalAlignment="Left" Height="50"
-                Margin="604,62,0,0" VerticalAlignment="Top" Width="120" Click="deleteButton_Click" />
+                 VerticalAlignment="Top" Width="120" Click="deleteButton_Click" ToolTip="Cancel existing appointment" />
+        </StackPanel>
     </Grid>
 </Page>

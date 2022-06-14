@@ -24,12 +24,12 @@
         </StackPanel>
         <StackPanel Margin="20 0 0 0" Grid.Row="1">
             <Label Content=" Choose Medical equpiment you want to make report about:"> </Label>
-            <ComboBox Width="150" HorizontalAlignment="Left" ItemsSource="{Binding MedicalEquipment}" Style="{DynamicResource theComboBox}"></ComboBox>
+            <ComboBox Width="150" HorizontalAlignment="Left" Name="cbMedEq" ItemsSource="{Binding MedicalEquipementString}" DataContext="{Binding MedicalEquipmentViewModel}" Style="{DynamicResource theComboBox}"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="20 0 0 0">
             <Label Content="Describe problem"></Label>
             <TextBox Width="500" Height="130" HorizontalAlignment="Left"></TextBox>
-            <Button Content="Report" Width="130" Height="30" HorizontalAlignment="Left" Margin="0 50 0 0"/>
+            <Button Content="Report" Width="130" Height="30" HorizontalAlignment="Left" Click="Button_Click" Margin="0 50 0 0"/>
         </StackPanel>
     </Grid>
 </Page>

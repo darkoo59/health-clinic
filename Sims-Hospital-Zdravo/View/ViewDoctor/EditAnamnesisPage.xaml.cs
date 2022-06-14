@@ -48,7 +48,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
             AnamnesisTxt.Text = anamnesis.Anamensis;
             DateTime date = anamnesis.Date;
             //ExaminatonTxt.Text = DateTime.Now.Date.ToString();
-
+            PatTxt.Content = anamnesis.Patient.Name + " " + anamnesis.Patient.Surname;
+            DoctorTxt.Content = anamnesis.Doctor.Name + " " + anamnesis.Doctor.Surname;
 
         }
 
@@ -87,7 +88,11 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
 
         private void PrintClick(object sender, RoutedEventArgs e)
         {
-            PdfDocument pdfDocument = new PdfDocument();
+            //PrintDialog pd = new PrintDialog();
+            //if(pd.ShowDialog() == true)
+            //{
+            //    pd.PrintVisual(, "anamnesis");
+            //}
 
         }
     }

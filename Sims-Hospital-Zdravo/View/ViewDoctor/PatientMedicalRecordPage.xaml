@@ -80,12 +80,12 @@
         </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left">
             <Label Content="Identification number"/>
-            <Label Name="UIDTxt" Width="100" Content="{Binding MedicalRecord.Patient.Jmbg}"/>
+            <Label Name="UIDTxt" Width="130" Content="{Binding MedicalRecord.Patient.Jmbg}"/>
 
         </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="10">
                 
-                <Button Name="AnamnesisButton" Width="150" Height="30" Content="MedicalReport" Margin=" 0 70 0 50" Click="MedicalreprotClick"/>
+                <Button Name="AnamnesisButton" Width="150" Height="30" Content="MedicalReport" Margin=" 0 90 0 50" Click="MedicalreprotClick"/>
                 <Button Name="MedicalHistoryButton" Width="150" Height="30" Content="Medical history" Margin=" 0 0 0 50" Click="medicalHistoryClick"/>
                 <Button Name="LabaratoryTestButton" Width="150" Height="30" Content="Labaratory test" Margin=" 0 0 0 50" Click="LabaratoryTestClick"/>
                 <Button Name="therapyButton" Width="150" Height="30" Content="Therapy" Margin=" 0 0 0 50" Click="therapyButton_Click" />

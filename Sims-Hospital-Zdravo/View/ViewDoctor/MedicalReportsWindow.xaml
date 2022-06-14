@@ -1,0 +1,39 @@
+﻿<Window x:Class="Sims_Hospital_Zdravo.View.ViewDoctor.MedicalReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sims_Hospital_Zdravo.View.ViewDoctor"
+        mc:Ignorable="d"
+        Title="MedicalReportsWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="Medical Reports" FontSize="15" FontWeight="Black"/>
+            <TextBlock TextWrapping="Wrap" >
+                To make  create medical report follow next steps: <LineBreak/>
+                1.Click on the menu options <Bold>Patients</Bold> <LineBreak/>
+                2. Click on the patient for which you want to write medical record <LineBreak/>
+                3. On the right side click on  <Bold>Medical report </Bold>   <LineBreak/>
+                4. New page will appear with all patient medical reports to fill for medical record.Click <Bold>Add</Bold> for creatin new.<LineBreak/>
+                5.After filling the all the fileds click on <Bold>Save </Bold> button at the bottom or <Bold>Print </Bold> for pdf format of medical report<LineBreak/>
+                
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Edit medical report" FontSize="15" FontWeight="Black"/>
+            <TextBlock TextWrapping="Wrap" >
+                To make  edit medical report follow next steps: <LineBreak/>
+                1.Click on the menu options <Bold>Patients</Bold> <LineBreak/>
+                2. Click on the patient for which you want to write medical record <LineBreak/>
+                3. On the right side click on  <Bold>Medical report </Bold>   <LineBreak/>
+                4. New page will appear with all patient medical reports to fill for medical record.Click <Bold>Edit</Bold> in table  for editing existing report.<LineBreak/>
+                5.After editing  medical report click on <Bold>Save </Bold> button at the bottom or <Bold>Print </Bold> for pdf format of medical report<LineBreak/>
+
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

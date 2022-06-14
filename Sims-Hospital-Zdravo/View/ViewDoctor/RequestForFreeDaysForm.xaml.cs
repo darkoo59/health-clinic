@@ -67,6 +67,8 @@ namespace Sims_Hospital_Zdravo.View.ViewDoctor
                 RequestForFreeDaysNotification requestForFreeDaysNotification =
                     new RequestForFreeDaysNotification(request, "Request for free days sent by" + doctor.Name + doctor.Surname, notificationController.GenerateId());
                 requestForFreeDaysController.SendRequestForFreeDaysWithNotifyingSecretary(request, requestForFreeDaysNotification);
+                Close();
+                MessageBox.Show("Request sent");
             }
             catch(Exception ex
             )

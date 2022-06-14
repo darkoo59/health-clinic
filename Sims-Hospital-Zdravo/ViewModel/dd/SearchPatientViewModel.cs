@@ -17,13 +17,16 @@ namespace Sims_Hospital_Zdravo.ViewModel
         private List<MedicalRecord> _medicalRecords;
         private MedicalRecordController _medicalRecordController;
         private ObservableCollection<MedicalRecord> medicalRecordsCollection;
+        private bool tooltip;
 
-        public SearchPatientViewModel()
+
+
+        public SearchPatientViewModel( bool  tooltip)
         {
             this._medicalRecordController = new MedicalRecordController();
            this._medicalRecords  = _medicalRecordController.FindAll() ;
              this.medicalRecordsCollection = new ObservableCollection<MedicalRecord>(_medicalRecords);
-            
+            this.tooltip = tooltip;
         }
 
         public ObservableCollection<MedicalRecord> MedicalRecordCollection
@@ -33,6 +36,18 @@ namespace Sims_Hospital_Zdravo.ViewModel
                 return medicalRecordsCollection;
             }
             
+        }
+
+        public bool Tooltip
+        {
+            get
+            {
+                return  tooltip;
+            }
+            set
+            {
+                tooltip = value;
+            }
         }
     }
 }
