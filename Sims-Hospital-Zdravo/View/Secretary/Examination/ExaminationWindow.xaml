@@ -48,8 +48,9 @@
                   CanUserResizeColumns="True"
                   CanUserResizeRows="False"/>
 
-        <Button Content="{x:Static rs:Resources.EmergencyExamination}" HorizontalAlignment="Left" Margin="126,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
-     
+        <Button Content="{x:Static rs:Resources.EmergencyExamination}" HorizontalAlignment="Left" Margin="64,462,0,0" VerticalAlignment="Top" Width="136" Height="38" Click="Emergency_Click" Style="{StaticResource btn_style}"/>
+        <Button Content="Open PDF" HorizontalAlignment="Left" Margin="240,462,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="OpenPDF_Click" Style="{StaticResource btn_style}"/>
+        
         <Image Source="../../../Resources/img/Secretary/Close.png" Height="20" VerticalAlignment="Top" RenderTransformOrigin="1.078,-0.625" Grid.Column="1" Margin="320,0,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         <!-- //Menu bar panel // -->
         <uc:SecretaryMenu Focusable="False" x:Name="SecretaryMenu" Grid.Column="0" Grid.Row="1" />

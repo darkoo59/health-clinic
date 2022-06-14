@@ -45,6 +45,7 @@ namespace Sims_Hospital_Zdravo
         {
             try
             {
+                Validate();
                 this.Patient = new Patient(TxtName.Text, TxtSurname.Text, DateTime.Parse(TxtBirth.Text), TxtEmail.Text, TxtJmbg.Text, TxtPhone.Text);
                 List<String> allergensItems = new List<String>();
                 List<String> medicalAllergensList = new List<String>();
@@ -76,6 +77,30 @@ namespace Sims_Hospital_Zdravo
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+        
+        private void Validate()
+        {
+            ValidateNumber(TxtJmbg.Text, "Jmbg");
+            ValidateComboBoxSelected();
+        }
+
+        private void ValidateComboBoxSelected()
+        {
+            if (ComboGender.SelectedIndex == -1)
+                throw new Exception("Gender type should be selected");
+            if (ComboBlood.SelectedIndex == -1)
+                throw new Exception("Blood type should be selected");
+            if (ComboMarital.SelectedIndex == -1)
+                throw new Exception("Marital status should be selected");
+        }
+
+        private void ValidateNumber(string text, string property)
+        {
+            int number;
+            bool isValid = Int32.TryParse(text, out number);
+            if (!isValid)
+                throw new Exception(property + " should be number!");
         }
 
     }

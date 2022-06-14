@@ -23,5 +23,7 @@ namespace Sims_Hospital_Zdravo.Interfaces
         List<TimeInterval> GetTimeIntervalsForDoctor(Doctor doctor);
         List<Appointment> ReadAllAppointmentsForDate(DateTime date);
         void SetAppointmentRated(Appointment appointment);
+
+        List<Appointment> GetAppointmentsForThisWeek();
     }
 }

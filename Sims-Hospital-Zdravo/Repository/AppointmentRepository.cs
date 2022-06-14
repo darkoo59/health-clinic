@@ -243,6 +243,12 @@ namespace Repository
                 }
             }
         }
+
+        public List<Appointment> GetAppointmentsForThisWeek()
+        {
+            LoadDataFromFile();
+            return appointments.Where(app => app.Time.Start > DateTime.Now).ToList();
+        }
         
         public int GenerateId()
         {
