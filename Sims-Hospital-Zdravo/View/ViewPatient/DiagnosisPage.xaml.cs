@@ -31,7 +31,7 @@ namespace Sims_Hospital_Zdravo
             {
                 DiagnosisLabel.Content = anamnesis.Diagnosis;
             }
-            if (prescriptions != null && prescriptions.Count == 0)
+            if (prescriptions != null && prescriptions.Count > 0)
             {
                 string s = "";
                 bool flag = true;

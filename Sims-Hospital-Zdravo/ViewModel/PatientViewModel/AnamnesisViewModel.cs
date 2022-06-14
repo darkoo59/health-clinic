@@ -12,7 +12,7 @@ namespace Sims_Hospital_Zdravo.ViewModel.PatientViewModel
         public string Anamnesis { get; set; }
         public AnamnesisViewModel(Anamnesis anamnesis)
         {
-            if(anamnesis != null)this.Anamnesis = anamnesis.Anamensis;
+            if (anamnesis != null)this.Anamnesis = anamnesis.Anamensis;
         }
     }
 }
