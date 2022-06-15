@@ -71,7 +71,7 @@ namespace Sims_Hospital_Zdravo.Utils
             CheckNotificationForManager();
             CheckNotificationForDoctor();
             CheckNotificationForSecretary();
-            //CheckNotesNotification();
+            CheckNotesNotification();
             //AppointmentDone();
         }
         private void CheckNotesNotification()
@@ -195,7 +195,10 @@ namespace Sims_Hospital_Zdravo.Utils
 
             foreach (Notification notification in meetingNotifications)
             {
-                Notify(notification);
+                App.Current.Dispatcher.Invoke(delegate
+                {
+                    Notify(notification);
+                });
             }
 
             List<Notification> freeDaysNotifications = _notificationController.ReadAllDoctorFreeDaysNotifications(account.Id);
@@ -210,12 +213,14 @@ namespace Sims_Hospital_Zdravo.Utils
             User account = _accountController.GetLoggedAccount();
             if (account == null) return;
             if (!account.Role.Equals(RoleType.SECRETARY)) return;
-
-            //Console.WriteLine(account.Id);
+            
             List<Notification> meetingNotifications = _notificationController.ReadAllSecretaryMeetingsNotifications(account.Id);
             foreach (Notification notification in meetingNotifications)
             {
-                Notify(notification);
+                App.Current.Dispatcher.Invoke(delegate
+                {
+                    Notify(notification);
+                });
             }
         }
 

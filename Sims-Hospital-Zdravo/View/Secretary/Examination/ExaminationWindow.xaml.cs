@@ -73,7 +73,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                 rescheduleWindow.Show();
             }
             else
-                MessageBox.Show("Appointment isn't selected", "Please select appointment", MessageBoxButton.OK);
+            {
+                if(app._currentLanguage.Equals("en-US"))
+                    MessageBox.Show("Appointment isn't selected", "Please select appointment", MessageBoxButton.OK);
+                else 
+                    MessageBox.Show("Pregled nije odabran", "Odaberite pregled", MessageBoxButton.OK);
+            }
         }
 
         public void NotifyUpdated()

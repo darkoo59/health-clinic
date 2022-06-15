@@ -28,9 +28,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
         private FreeDaysRequest _freeDaysRequest;
         private RequestForFreeDaysController _requestControler;
         private NotificationController _notificationController;
+        private App app;
         public EditRequestWindow()
         {
             InitializeComponent();
+            app = Application.Current as App;
             this.Loaded += new RoutedEventHandler(EditRequestWindow_Loaded);
             _requestControler = new RequestForFreeDaysController();
             _notificationController = new NotificationController();
@@ -48,7 +50,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
         {
             if ((RequestStatus)comboStatus.SelectedValue == _freeDaysRequest.Status)
             {
-                MessageBox.Show("Please change request status first!", "Change status", MessageBoxButton.OK);
+                if(app._currentLanguage.Equals("en-US"))
+                    MessageBox.Show("Please change request status first!", "Change status", MessageBoxButton.OK);
+                else
+                    MessageBox.Show("Molimo Vas promenite status zahteva prvo!", "Promenite status", MessageBoxButton.OK);
             }
             else
             {
@@ -59,7 +64,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
                     Notification notification = new FreeDaysNotification(txtReason.Text, _notificationController.GenerateId(),
                         request);
                     _requestControler.UpdateRequestAndNotify(request, notification);
-                    MessageBox.Show("Request succesffully updated!", "Successfully updated!", MessageBoxButton.OK);
+                    if(app._currentLanguage.Equals("en-US"))
+                        MessageBox.Show("Request succesffully updated!", "Successfully updated!", MessageBoxButton.OK);
+                    else
+                        MessageBox.Show("Zahtev uspešno ažuriran!", "Uspešna izmena!", MessageBoxButton.OK);
                 }
                 catch (Exception ex)
                 {

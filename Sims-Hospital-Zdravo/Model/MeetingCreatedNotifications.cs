@@ -13,7 +13,7 @@ namespace Sims_Hospital_Zdravo.Model
         private RoleType _roleType;
         private int _userId;
 
-        public MeetingCreatedNotifications(string content, DateTime start,RoleType role,int userId, int id) : base(content,id)
+        public MeetingCreatedNotifications(string content, DateTime start,RoleType role,int userId) : base(content,-1)
         {
             this._meetingStart = start;
             this._roleType = role;

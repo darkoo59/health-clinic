@@ -65,7 +65,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     this.Close();
                 }
                 else
-                    MessageBox.Show("Patient isn't selected", "Please select patient");
+                {
+                    if(app._currentLanguage.Equals("en-US"))
+                        MessageBox.Show("Patient isn't selected", "Please select patient");
+                    else
+                        MessageBox.Show("Pacijent nije selektovan", "Odaberite pacijenta");
+                }
             }
             catch (Exception ex)
             {

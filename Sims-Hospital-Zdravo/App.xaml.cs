@@ -193,17 +193,5 @@ namespace Sims_Hospital_Zdravo
             window.Dispatcher.Invoke(
                 new Action(() => { window.MoveFocus(new TraversalRequest(FocusNavigationDirection.First)); }));
         }
-
-        public void ChangeLanguage(string currLang)
-        {
-            if (currLang.Equals("en-US"))
-            {
-                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            }
-            else
-            {
-                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
-            }
-        }
     }
 }

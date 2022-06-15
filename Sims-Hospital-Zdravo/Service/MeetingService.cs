@@ -19,6 +19,7 @@ namespace Sims_Hospital_Zdravo.Service
         private IMeetingRepository _meetingRepository;
         private INotificationRepository _notificationRepository;
         private MeetingValidator _meetingValidator;
+        private NotificationService _notificationService;
 
         public MeetingService()
         {
@@ -27,6 +28,7 @@ namespace Sims_Hospital_Zdravo.Service
             _meetingRepository = new MeetingRepository();
             _notificationRepository = new NotificationRepository();
             _meetingValidator = new MeetingValidator();
+            _notificationService = new NotificationService();
         }
 
         public void Create(Meeting meeting)
@@ -39,7 +41,10 @@ namespace Sims_Hospital_Zdravo.Service
         {
             Create(meeting);
             foreach (Notification notification in notifications)
+            {
+                notification.Id = _notificationService.GenerateId();
                 _notificationRepository.Create(notification);
+            }
         }
 
         public List<Room> ReadAllRooms()

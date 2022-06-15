@@ -165,7 +165,7 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
                 {
                     notificationsToAdd.Add(new MeetingCreatedNotifications(
                         "You have new meeting on " + meeting.Start.ToString(), meeting.Start,
-                        user.Role, user.Id, new NotificationController().GenerateId()));
+                        user.Role, user.Id));
                 }
 
                 _meetingController.CreateMeetingWithNotifying(meeting, notificationsToAdd);
@@ -180,8 +180,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Meetings
         public void Notify(Notification notification)
         {
             MeetingCreatedNotifications meetingCreatedNotification = notification as MeetingCreatedNotifications;
+            Console.WriteLine(meetingCreatedNotification.RoleType + "Dosla");
             if (meetingCreatedNotification is null) return;
             if (meetingCreatedNotification.RoleType != RoleType.SECRETARY) return;
+            Console.WriteLine(meetingCreatedNotification.RoleType + "Prosla");
             _notificationManager.Show(
                 new NotificationContent
                 {

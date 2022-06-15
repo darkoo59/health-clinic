@@ -58,7 +58,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                         {
                             appointment.Type = AppointmentType.URGENCY;
                             _secretaryAppointmentController.Create(appointment);
-                            MessageBox.Show("Emergency appointment successfully scheduled");
+                            if(app._currentLanguage.Equals("en-US"))
+                                MessageBox.Show("Emergency appointment successfully scheduled");
+                            else 
+                                MessageBox.Show("Hitna operacija uspešno zakazana");
                             this.Close();
                         }
                         else
@@ -71,7 +74,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Examination
                     
             }
                 else
-                    MessageBox.Show("Speciality isn't selected", "Please select speciality");
+                {
+                    if(app._currentLanguage.Equals("en-US"))
+                        MessageBox.Show("Speciality isn't selected", "Please select speciality");
+                    else 
+                        MessageBox.Show("Specijalnost nije selektovana", "Odaberite specijalnost");
+                }
             }
             catch (Exception ex)
             {

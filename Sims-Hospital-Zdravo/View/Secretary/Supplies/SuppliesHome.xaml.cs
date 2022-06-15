@@ -30,9 +30,11 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
     {
         private SuppliesController _suppliesController;
         private List<RoomEquipment> _roomEquipment;
+        private App app;
         public SuppliesHome()
         {
             InitializeComponent();
+            app = Application.Current as App;
             this._suppliesController = new SuppliesController();
             foreach (RoomEquipment roomEquipment in _suppliesController.FindAllEquipment())
             {
@@ -78,14 +80,23 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
                         new SuppliesAcquisition(roomEquipments,
                             interval);
                     _suppliesController.Create(suppliesAcquisition);
-                    MessageBox.Show("Successfully made supplies acquisition!");
+                    if(app._currentLanguage.Equals("en-US"))
+                        MessageBox.Show("Successfully made supplies acquisition!");
+                    else 
+                        MessageBox.Show("Uspesno napravljen zahtev za dobavljanje opreme!");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }else
-                MessageBox.Show("First add some supplies!");
+            }
+            else
+            {
+                if(app._currentLanguage.Equals("en-US"))
+                    MessageBox.Show("First add some supplies!");
+                else 
+                    MessageBox.Show("Prvo dodajte neku opremu!");
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -103,7 +114,10 @@ namespace Sims_Hospital_Zdravo.View.Secretary.Supplies
             }
             else
             {
-                MessageBox.Show("Name or quanitity is empty", "Add data", MessageBoxButton.OK);
+                if(app._currentLanguage.Equals("en-US"))
+                    MessageBox.Show("Name or quanitity is empty", "Add data", MessageBoxButton.OK);
+                else 
+                    MessageBox.Show("Ime ili količina su prazni", "Unesite podatke", MessageBoxButton.OK);
             }
         }
         

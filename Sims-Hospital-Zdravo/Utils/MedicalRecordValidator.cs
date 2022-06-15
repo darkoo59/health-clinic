@@ -12,10 +12,12 @@ namespace Sims_Hospital_Zdravo.Utils
     public class MedicalRecordValidator
     {
         private MedicalRecordService _recordService;
+        private App app;
 
 
         public MedicalRecordValidator(MedicalRecordService service)
         {
+            app = Application.Current as App;
             this._recordService = service;
         }
 
@@ -23,14 +25,22 @@ namespace Sims_Hospital_Zdravo.Utils
         {
             if(jmbg.Length != 13)
             {
-                throw new Exception("JMBG must have 13 numbers!");
+                if(app._currentLanguage.Equals("en-US"))
+                    throw new Exception("JMBG must have 13 numbers!");
+                else
+                    throw new Exception("JMBG treba da ima 13 brojeva!");
             }
             else
             {
                 foreach (char c in jmbg)
                 {
                     if (c < '0' || c > '9')
-                        throw new Exception("JMBG can have numbers only!");
+                    {
+                        if(app._currentLanguage.Equals("en-US"))
+                            throw new Exception("JMBG can have numbers only!");
+                        else 
+                            throw new Exception("JMBG treba da ima samo brojeve!");
+                    }
                 }
             }
         }

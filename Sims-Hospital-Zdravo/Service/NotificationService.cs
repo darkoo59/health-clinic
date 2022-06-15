@@ -79,9 +79,9 @@ namespace Sims_Hospital_Zdravo.Model
 
         public int GenerateId()
         {
-            List<Notification> appointments = _notificationRepository.FindAll();
-            Console.WriteLine(appointments.Count);
-            List<int> ids = new List<int>(appointments.Select(x => x.Id));
+            List<Notification> notifications = _notificationRepository.FindAll();
+            Console.WriteLine(notifications.Count);
+            List<int> ids = new List<int>(notifications.Select(x => x.Id));
 
             int id = 0;
 

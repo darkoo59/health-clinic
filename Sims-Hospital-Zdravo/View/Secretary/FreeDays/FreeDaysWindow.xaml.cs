@@ -92,7 +92,12 @@ namespace Sims_Hospital_Zdravo.View.Secretary.FreeDays
                 }
             }
             else
-                MessageBox.Show("Please select medical record first!", "Select medical record", MessageBoxButton.OK);
+            {
+                if(app._currentLanguage.Equals("en-US"))
+                    MessageBox.Show("Please select request first!", "Select request", MessageBoxButton.OK);
+                else
+                    MessageBox.Show("Prvo odaberite zahtev!", "Odaberite zahtev", MessageBoxButton.OK);
+            }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

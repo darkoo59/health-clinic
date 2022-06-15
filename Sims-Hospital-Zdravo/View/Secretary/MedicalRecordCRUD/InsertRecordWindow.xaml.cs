@@ -81,7 +81,6 @@ namespace Sims_Hospital_Zdravo
         
         private void Validate()
         {
-            ValidateNumber(TxtJmbg.Text, "Jmbg");
             ValidateComboBoxSelected();
         }
 
@@ -94,14 +93,7 @@ namespace Sims_Hospital_Zdravo
             if (ComboMarital.SelectedIndex == -1)
                 throw new Exception("Marital status should be selected");
         }
-
-        private void ValidateNumber(string text, string property)
-        {
-            int number;
-            bool isValid = Int32.TryParse(text, out number);
-            if (!isValid)
-                throw new Exception(property + " should be number!");
-        }
+        
 
     }
 }

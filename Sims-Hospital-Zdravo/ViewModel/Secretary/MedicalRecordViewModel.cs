@@ -17,7 +17,7 @@ namespace Sims_Hospital_Zdravo.ViewModel.Secretary
         public event PropertyChangedEventHandler PropertyChanged;
         private App app;
         private MedicalRecordController _medicalController;
-        private SecretaryAppointmentController _secretaryAppointmentController;
+        
         public List<MedicalRecord> MedicalRecords { get; set; }
         public ICommand InsertRecordCommand => new InsertRecordCommand();
         public ICommand UpdateRecordCommand => new UpdateRecordCommand();
@@ -26,7 +26,6 @@ namespace Sims_Hospital_Zdravo.ViewModel.Secretary
         {
             app = Application.Current as App;
             _medicalController = new MedicalRecordController();
-            _secretaryAppointmentController = new SecretaryAppointmentController();
             MedicalRecords = _medicalController.FindAll().ToList();
         }
 
